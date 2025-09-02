@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="https://wangsenjie.github.io/tags/index.html">
+  <meta name="description" content="[T020401] 求微分方程的通解 $y’^2&#x3D;4y^3(1-y)$.     解 将方程化为 $y’&#x3D;\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy&#x3D;\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1&#x2F;2}&#x3D;\pm x+c$,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="参数法">
+<meta property="og:url" content="https://wangsenjie.github.io/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/index.html">
 <meta property="og:site_name" content="我的博客">
+<meta property="og:description" content="[T020401] 求微分方程的通解 $y’^2&#x3D;4y^3(1-y)$.     解 将方程化为 $y’&#x3D;\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy&#x3D;\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1&#x2F;2}&#x3D;\pm x+c$,">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-09-02T15:33:40.901Z">
-<meta property="article:modified_time" content="2025-09-02T15:33:40.901Z">
+<meta property="article:published_time" content="2025-09-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-02T17:46:43.280Z">
 <meta property="article:author" content="DMH">
+<meta property="article:tag" content="常微分方程">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wangsenjie.github.io/tags/">
+<link rel="canonical" href="https://wangsenjie.github.io/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -38,7 +41,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
@@ -58,8 +61,7 @@ window.MathJax = {
 <script id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-  <title>标签 | 我的博客
-</title>
+  <title>参数法 | 我的博客</title>
   
 
 
@@ -171,51 +173,144 @@ window.MathJax = {
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          参数法
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">标签
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：01:46:43" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>[T020401]</strong> 求微分方程的通解 $y’^2=4y^3(1-y)$.</p>
+<p>    <strong>解</strong> 将方程化为 $y’=\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1/2}=\pm x+c$, 从而原方程的通解为 $y=\frac{1}{1+(\mp x+c)^2}$, 其中 $c$ 为任意常数. 此外, $y=0$ 和 $y=1$ 也是方程的解.	#</p>
+<p><strong>[T020402]</strong> 求微分方程的通解 $y’^3+y^3-3yy’=0$.</p>
+<p>    <strong>解</strong> 令 $y’=p, \ y=pt$, 其中 $p,t$ 都是参数, 则 $p^3+p^3t^3-3p^2t=0$. 当 $p\neq0$ 时,<br>
+$$<br>
+p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}<br>
+$$<br>
+(此时 $t\neq 0,-1$, 否则 $p=0$) 从而 $y=\frac{3t^2}{1+t^3}$. 注意到<br>
+$$<br>
+\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt<br>
+$$<br>
+两边积分可得 $x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c$, 故原方程的通解为<br>
+$$<br>
+\begin{cases}<br>
+x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\<br>
+y=\frac{3t^2}{1+t^3}<br>
+\end{cases}<br>
+$$<br>
+其中 $c$ 为任意常数.</p>
+<p>    当 $p=0$ 时, $y=0$ 也是方程的解.	#</p>
+<p><strong>[T020403]</strong> 求微分方程的通解 $y’^3+y’^2-y’+1=0$.</p>
+<p>    <strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 $y’=a \ (\neq0)$, 则 $y=ax+c$ 为原方程的解, 从而 $a=\frac{y-c}{x}$, 于是 $y’=\frac{y-c}{x}$, 故方程的通解为<br>
+$$<br>
+\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.	\quad\quad#<br>
+$$</p>
+<p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
+<p>    <strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.	#</p>
+<p>    <strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
+$$<br>
+\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.	#</p>
+<p>    <strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
+$$<br>
+\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\mp\cot t+c\y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.	#</p>
+<p>    <strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
+$$<br>
+\mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.	#</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" rel="tag"># 常微分方程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/" rel="prev" title="解对初值与参数的连续性与可微性">
+      <i class="fa fa-chevron-left"></i> 解对初值与参数的连续性与可微性
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/09/03/2.3%E7%A7%AF%E5%88%86%E5%9B%A0%E5%AD%90%E6%B3%95/" rel="next" title="积分因子法">
+      积分因子法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              目前共计 2 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" style="font-size: 30px; color: #111">常微分方程</a> <a href="/tags/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" style="font-size: 12px; color: #ccc">测度论</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
