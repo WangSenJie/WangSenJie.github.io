@@ -260,6 +260,105 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/" class="post-title-link" itemprop="url">变量替换法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:26:17" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T020201]</strong> 若 $y=y^{\ast}(x)$ 是一阶齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y$ 的非零解, 而 $y=\bar y$ 是一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的解. 证明: 一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
+<h2 id="证-设-y-bar-y-z-两边对-x-求导-得-frac-mathrm-dy-mathrm-dx-frac-mathrm-d-bar-y-mathrm-dx-frac-mathrm-dz-mathrm-dx-Longrightarrow-py-q-p-bar-y-q-frac-mathrm-dz-mathrm-dx-Longrightarrow-frac-mathrm-dz-mathrm-dx-p-x-z-由题意可知上述方程得通解为-z-cy-ast-故原方程的通解为-y-cy-ast-x-bar-y-x-其中-c-为任意常数"><strong>证</strong> 设 $y=\bar y+z$, 两边对 $x$ 求导, 得<br>
+$$<br>
+\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z<br>
+$$<br>
+由题意可知上述方程得通解为 $z=cy^{\ast}$, 故原方程的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</h2>
+<p><strong>[T020202]</strong> 设 $y(x)$ 是方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y$ 的满足 $y(0)=0$ 的解, 其中 $p(x)$ 是 $(-\infty,+\infty)$ 上的连续函数. 证明 $y(x)\equiv0$.</p>
+<h2 id="证-注意到-frac-mathrm-dy-mathrm-dx-p-x-sin-y-2p-x-sin-frac-y-2-cos-frac-y-2-Longrightarrow-frac-mathrm-d-tan-frac-y-2-mathrm-dx-p-x-tan-frac-y-2-解得-tan-frac-y-2-ce-int-p-x-mathrm-dx-将-y-0-0-代入可得-c-0-故-y-x-equiv0"><strong>证</strong> 注意到<br>
+$$<br>
+\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}<br>
+$$<br>
+解得<br>
+$$<br>
+\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}<br>
+$$<br>
+将 $y(0)=0$ 代入可得 $c=0$, 故 $y(x)\equiv0$.</h2>
+<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 $P$ 的切线方向 $\overrightarrow{PQ}$ 与向径 $\overrightarrow{OP}$ 的交角等于 $45^{\circ}$.</p>
+<p><strong>解</strong> 由题设可知<br>
+$$<br>
+1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow<br>
+\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}<br>
+$$<br>
+令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
+$2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.3%E7%A7%AF%E5%88%86%E5%9B%A0%E5%AD%90%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -285,7 +384,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:16:17" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:26:20" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,6 +397,10 @@ $$<br>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
                 </span>
             </span>
 
@@ -364,101 +467,6 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/" class="post-title-link" itemprop="url">变量替换法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:16:33" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T020201]</strong> 若 $y=y^{\ast}(x)$ 是一阶齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y$ 的非零解, 而 $y=\bar y$ 是一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的解. 证明: 一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<h2 id="证-设-y-bar-y-z-两边对-x-求导-得-frac-mathrm-dy-mathrm-dx-frac-mathrm-d-bar-y-mathrm-dx-frac-mathrm-dz-mathrm-dx-Longrightarrow-py-q-p-bar-y-q-frac-mathrm-dz-mathrm-dx-Longrightarrow-frac-mathrm-dz-mathrm-dx-p-x-z-由题意可知上述方程得通解为-z-cy-ast-故原方程的通解为-y-cy-ast-x-bar-y-x-其中-c-为任意常数"><strong>证</strong> 设 $y=\bar y+z$, 两边对 $x$ 求导, 得<br>
-$$<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z<br>
-$$<br>
-由题意可知上述方程得通解为 $z=cy^{\ast}$, 故原方程的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</h2>
-<p><strong>[T020202]</strong> 设 $y(x)$ 是方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y$ 的满足 $y(0)=0$ 的解, 其中 $p(x)$ 是 $(-\infty,+\infty)$ 上的连续函数. 证明 $y(x)\equiv0$.</p>
-<h2 id="证-注意到-frac-mathrm-dy-mathrm-dx-p-x-sin-y-2p-x-sin-frac-y-2-cos-frac-y-2-Longrightarrow-frac-mathrm-d-tan-frac-y-2-mathrm-dx-p-x-tan-frac-y-2-解得-tan-frac-y-2-ce-int-p-x-mathrm-dx-将-y-0-0-代入可得-c-0-故-y-x-equiv0"><strong>证</strong> 注意到<br>
-$$<br>
-\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}<br>
-$$<br>
-解得<br>
-$$<br>
-\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}<br>
-$$<br>
-将 $y(0)=0$ 代入可得 $c=0$, 故 $y(x)\equiv0$.</h2>
-<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 $P$ 的切线方向 $\overrightarrow{PQ}$ 与向径 $\overrightarrow{OP}$ 的交角等于 $45^{\circ}$.</p>
-<p><strong>解</strong> 由题设可知<br>
-$$<br>
-1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}<br>
-$$<br>
-令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
-$2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -484,7 +492,7 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:22:20" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:26:33" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -497,6 +505,10 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
                 </span>
             </span>
 
@@ -537,134 +549,22 @@ $$<br>
 \left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.<br>
 $$</h2>
 <p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
-<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.	#</p>
+<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.</p>
 <p><strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
 $$<br>
 \mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
 $$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.	#</p>
+故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
 <p><strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
 $$<br>
 \mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
 $$<br>
-故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.	#</p>
+故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
 <p><strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
 $$<br>
 \mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
 $$<br>
 故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">Picard 存在唯一性定理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:22:31" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
-<h2 id="证-设-f-x-y-x-2-e-y-2-取矩形区域-R-x-le1-y-le1-即-a-b-1-显然-f-x-y-在-R-上连续-又-f-y-2ye-y-2-1-取-L-1-则-forall-y-1-y-2-in-1-1-f-x-y-1-f-x-y-2-le-L-y-1-y-2-即-f-x-y-关于-y-满足-Lipschitz-条件-再取-M-max-limits-x-y-in-R-f-x-y-2-h-min-left-lbrace-a-frac-b-M-right-rbrace-frac12-由-Picard-存在唯一性定理可知原初值问题在-vert-x-vert-le-h-frac12-上存在唯一的解-y-varphi-x-由逐次逼近法构造-Picard-逐步逼近序列得-varphi-0-x-y-0-0-quad-varphi-1-x-y-0-int-0-x-left-t-2-e-varphi-2-t-right-mathrm-dt-x-frac13x-3-显然当-x-in-0-frac12-时-varphi-1-x-le-frac-13-24-再由误差估计式知-varphi-1-x-varphi-x-le-frac-LM-2-h-2-frac-2-2-cdot-frac-1-4-frac14-于是当-x-in-0-frac12-时-有-varphi-x-le-varphi-x-varphi-1-x-varphi-1-x-le-frac14-frac-13-24-frac-19-24-1"><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
-$$<br>
-\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
-$$<br>
-显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
-$$<br>
-|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
-$$<br>
-于是当 $x\in[0,\frac12]$ 时, 有<br>
-$$<br>
-|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
-$$</h2>
-<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
-<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
-$$<br>
-|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
-$$<br>
-即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
-<h2 id="任取-x-0-in-mathbb-R-构造迭代数列-x-n-1-f-x-n-quad-n-0-1-2-cdots-tag-1-则-x-n-x-0-sum-limits-k-1-n-left-x-k-x-k-1-right-考察级数-sum-limits-n-1-infty-left-x-n-x-n-1-right-注意到-x-n-x-n-1-left-f-x-n-1-f-x-n-2-right-le-L-x-n-1-x-n-2-le-cdots-le-L-n-1-x-1-x-0-由-0-L-1-可知正项级数-sum-L-n-1-x-1-x-0-收敛-由比较判别法可知-sum-limits-n-1-infty-left-x-n-x-n-1-right-绝对收敛-从而数列-x-n-也收敛-记-x-lim-limits-n-to-infty-x-n-对-1-式两边同取-n-to-infty-由-f-x-的连续性以及-Heine-归结原理可知-x-f-x-即方程-x-f-x-存在解-x-x">任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
-$$<br>
-x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
-$$<br>
-则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
-$$<br>
-|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
-$$<br>
-由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
-$$<br>
-x^</em>=f(x^<em>)<br>
-$$<br>
-即方程 $x=f(x)$ 存在解 $x=x^</em>$.</h2>
-<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
-$$<br>
-x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
-$$<br>
-从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
-$$<br>
-|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
-$$<br>
-这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.	#</p>
 
       
     </div>
@@ -709,7 +609,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:24:11" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:26:40" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -722,6 +622,10 @@ $$<br>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
                 </span>
             </span>
 
@@ -754,7 +658,7 @@ $$<br>
 &amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
 \end{aligned}<br>
 $$<br>
-由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.	#</h2>
+由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$</h2>
 <p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
 <p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
 $$<br>
@@ -777,7 +681,7 @@ $$<br>
 &amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
 \end{aligned}<br>
 $$<br>
-注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.	#</p>
+注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
 
       
     </div>
@@ -822,7 +726,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:22:38" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:26:50" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -835,6 +739,10 @@ $$<br>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
                 </span>
             </span>
 
@@ -851,7 +759,7 @@ $$<br>
       
           <p><strong>[T030301]</strong> 设 $f(x,y)$ 在整个平面上连续有界, 且 $\frac{\partial f}{\partial y}(x,y)$ 也连续. 证明方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的每一个解 $y=\varphi(x)$ 的饱和区间为 $-\infty&lt;x&lt;+\infty$.</p>
 <p><strong>证</strong> 因为 $\frac{\partial f}{\partial y}(x,y)$ 在整个平面 $\mathbb{R}^2$ 上连续, 故 $f$ 在 $\mathbb{R}^2$ 上满足关于 $y$ 的局部 Lipschitz 条件. 又 $f(x,y)$ 在 $\mathbb{R}^2$ 上连续, 故方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 满足延拓定理, 及其一切解都可延拓到 $\mathbb{R}^2$ 的边界(即无穷远处).</p>
-<h2 id="考虑过任一点-P-x-0-y-0-的解-由-f-x-y-在-mathbb-R-2-上有界可知存在-M-0-使得对任意-x-y-in-mathbb-R-2-有-f-x-y-M-过点-P-作斜率为-M-与-M-的直线-由-f-x-y-M-知积分曲线-y-varphi-x-必在两条直线所围的对角区域之内-向左向右无限延拓-即方程的每一个解-y-varphi-x-的饱和区间为-infty-infty">考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\mathbb{R}^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\mathbb{R}^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y=\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y=\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.	#</h2>
+<h2 id="考虑过任一点-P-x-0-y-0-的解-由-f-x-y-在-mathbb-R-2-上有界可知存在-M-0-使得对任意-x-y-in-mathbb-R-2-有-f-x-y-M-过点-P-作斜率为-M-与-M-的直线-由-f-x-y-M-知积分曲线-y-varphi-x-必在两条直线所围的对角区域之内-向左向右无限延拓-即方程的每一个解-y-varphi-x-的饱和区间为-infty-infty">考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\mathbb{R}^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\mathbb{R}^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y=\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y=\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.</h2>
 <p><strong>[T030303]</strong> 证明: 对一阶线性方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 若 $P(x),Q(x)\in C[a,b]$ , 则对任意 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 方程有唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上连续.</p>
 <h2 id="证-设-f-x-y-P-x-y-Q-x-由条件知-f-x-y-在-R-a-b-times-infty-infty-上连续-又-frac-partial-f-partial-y-P-x-在-a-b-上连续-从而-f-x-y-关于-y-满足-Lipschitz-条件-故方程-frac-mathrm-dy-mathrm-dx-P-x-y-Q-x-满足延拓定理-即对任意的-x-0-in-a-b-y-0-in-infty-infty-通过-x-0-y-0-的解-y-varphi-x-可延拓到-R-的边界-设-left-frac-partial-f-partial-y-right-le-M-x-in-a-b-对任意-x-in-a-b-作逐步迭代-y-1-x-0-y-0-quad-y-n-x-y-0-int-x-0-xf-t-y-n-1-t-mathrm-d-t-n-2-3-cdots-由-Lipschitz-条件可知-left-y-n-x-y-n-1-x-right-le-frac-x-x-0-n-1-M-n-1-n-于是-y-0-x-sum-limits-n-1-infty-left-y-n-x-y-n-1-x-right-是-a-b-上的绝对一致收敛级数-从而连续函数列-y-n-x-在-a-b-上一致收敛于初值问题-y-varphi-x-即方程的唯一解-y-varphi-x-在-a-b-上有定义-显然在-a-b-上连续"><strong>证</strong> 设 $f(x,y)=P(x)y+Q(x)$, 由条件知 $f(x,y)$ 在 $R=[a,b]\times(-\infty,+\infty)$ 上连续, 又 $\frac{\partial f}{\partial y}=P(x)$ 在 $[a,b]$ 上连续, 从而 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件, 故方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$ 满足延拓定理, 即对任意的 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 通过 $(x_0,y_0)$ 的解 $y=\varphi(x)$ 可延拓到 $R$ 的边界. 设 $\left|\frac{\partial f}{\partial y}\right|\le M, \ x\in[a,b]$. 对任意 $x\in[a,b]$, 作逐步迭代<br>
 $$<br>
@@ -861,10 +769,119 @@ $$<br>
 $$<br>
 \left|y_n(x)-y_{n-1}(x)\right|\le\frac{(x-x_0)^{n-1}M^{n-1}}{n!}<br>
 $$<br>
-于是 $y_0(x)+\sum\limits_{n=1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y=\varphi(x)$, 即方程的唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.	#</h2>
+于是 $y_0(x)+\sum\limits_{n=1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y=\varphi(x)$, 即方程的唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.</h2>
 <p><strong>[T030304]</strong> 已知 $\frac{\mathrm dy}{\mathrm dx}=(y^2-a^2)f(x,y)$, 这里 $f(x,y)$ 及 $f’_y(x,y)$ 在 $xOy$ 面上连续. 试证明: 对 $\forall x_0$ 及 $|y_0|&lt;a$, 满足初始条件 $y(x_0)=y_0$ 的解 $y(x)$ 都在区间 $(-\infty,+\infty)$ 上存在.</p>
 <p><strong>证</strong> 方程的右端函数 $(y^2-a^2)f(x,y)$ 在全平面 $\mathbb{R}^2$ 上连续可微, 因此它满足解的存在唯一性定理和延拓定理.</p>
-<p>显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\mathbb{R}^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.	#</p>
+<p>显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\mathbb{R}^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/" class="post-title-link" itemprop="url">解对初值与参数的连续性与可微性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:26:52" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
+$$<br>
+|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty&lt;y&lt;+\infty<br>
+$$<br>
+那么方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 的经过点 $(x_0,\xi_0)$ 的积分曲线 $y=\eta(x)$ 也必在 $[x_0,X]$ 上有定义, 且在 $[x_0,X]$ 上满足不等式<br>
+$$<br>
+|\eta(x)-\xi(x)|&lt; \varepsilon,\quad x_0\le x\le X.<br>
+$$<br>
+<strong>证</strong> 因为 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 $y\mid_{x=x_0}=\xi_0$ 的解 $y=\xi(x)$ 存在且唯一. 记积分曲线 $y=\xi(x)$ 为 $l_1$, 则 $l_1: \ y=\xi(x),x\in[x_0,X]$ 为 $xOy$ 平面上的有界闭集. 对 $l_1$ 上的任一点 $(x,y)$, 必存在以该点为圆心的开圆 $C\subset D$, 使在其内的函数 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 $C_i \ (i=1,2,\cdots,N)$, 且它们的全体可以覆盖整个积分曲线段 $l_1$. 设 $C_i$ 的半径为 $\varepsilon_i$, Lipschitz 常数为 $L$. 再记 $\varepsilon_0=\min\limits_{1\le i\le N}\lbrace\varepsilon_i\rbrace$, 令 $\Omega=\bigcup\limits_{i=1}^NC_i$, 则 $l_1\subset \Omega\subset D$, 且 $\Omega$ 的边界 $\partial \Omega$ 到 $l_1$ 的距离为 $0&lt;\rho\le\varepsilon_0$.<br>
+设方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 经过点 $(x_0,\xi_0)$ 的积分曲线为 $l_2:\ y=\eta(x)$. 注意到 $\xi(x)$ 与 $\eta(x)$ 满足积分方程<br>
+$$<br>
+\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t<br>
+$$<br>
+则<br>
+$$<br>
+\begin{aligned}<br>
+|\xi(x)-\eta(x)|&amp;=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\\<br>
+&amp;=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\\<br>
+&amp;\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\\<br>
+&amp;=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t<br>
+\end{aligned}<br>
+$$<br>
+由 Gronwall 不等式可知<br>
+$$<br>
+|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t<br>
+$$<br>
+ 取 $\bar\varepsilon=\min{\varepsilon,\rho}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}$, 则有<br>
+$$<br>
+\begin{aligned}<br>
+|\xi(x)-\eta(x)|&amp;\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\\<br>
+&amp;\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}&lt;\rho<br>
+\end{aligned}<br>
+$$<br>
+即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.</p>
 
       
     </div>
@@ -909,7 +926,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:22:42" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:07" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -922,6 +939,10 @@ $$<br>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
                 </span>
             </span>
 
@@ -1020,7 +1041,7 @@ $$<br>
 的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
 <p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
 <p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.	#</p>
+<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.</p>
 <p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
 $$<br>
 \begin{vmatrix}<br>
@@ -1077,7 +1098,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:22:46" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:09" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1090,6 +1111,10 @@ $$<br>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
                 </span>
             </span>
 
@@ -1148,7 +1173,7 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/5.2%20%E4%B8%80%E9%98%B6%E5%B8%B8%E7%B3%BB%E6%95%B0%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -1162,7 +1187,7 @@ $$<br>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" class="post-title-link" itemprop="url">一阶线性微分方程组</a>
+            <a href="/2025/09/03/5.2%20%E4%B8%80%E9%98%B6%E5%B8%B8%E7%B3%BB%E6%95%B0%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" class="post-title-link" itemprop="url">一阶常系数线性微分方程组</a>
         </h2>
 
         <div class="post-meta">
@@ -1173,7 +1198,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:22:50" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:22" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1186,6 +1211,10 @@ $$<br>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">一阶线性微分方程组</span></a>
                 </span>
             </span>
 
@@ -1200,87 +1229,218 @@ $$<br>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T050101]</strong> 设 $A$ 为 $n\times n$ 常数矩阵, $\Phi(t)$ 是方程组 $X’=AX$ 的标准基解矩阵 $(\Phi(0)=E)$, 证明 $\Phi(t)\Phi^{-1}(t_0)=\Phi(t-t_0)$, 其中 $t_0$ 是常数.</p>
-<p><strong>证</strong> 由题设可知 $\Phi’(t)=A\Phi(t)$, 将 $t$ 换为 $t-t_0$, 则 $\Phi’(t-t_0)=A\Phi(t-t_0)$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的解矩阵. 又当 $t=t_0$ 时 $\det\Phi(0)=1$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的基解矩阵. 于是存在 $n$ 阶非奇异常数矩阵 $C$, 使得 $\Phi(t-t_0)=\Phi(t)C$, 再令 $t=t_0$, 有 $E=\Phi(t_0)C$, 得 $C=\Phi^{-1}(t_0)$, 故 $\Phi(t-t_0)=\Phi(t)\Phi^{-1}(t_0)$.</p>
-<hr>
-<p><strong>[T050102]</strong> (Liouville公式) 设 $X_1(t),X_2(t),\cdots,X_n(t)$ 是齐次线性方程组 $X’(t)=A(t)X(t)$ 的任意 $n$ 个解, 则它们的 Wronski 行列式 $W(t)$ 满足一阶线性微分方程<br>
-$$<br>
-W’(t)=\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]W(t),<br>
-$$<br>
-因而有<br>
-$$<br>
-W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$<br>
-<strong>证</strong> 记 $X_i(t)=\left(x_{i1}(t),\cdots,x_{in}(t)\right)^T$, 则<br>
-$$<br>
-W(t)=\left|X_1(t),\cdots,X_n(t)\right|=\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}<br>
-$$<br>
-由行列式求导法则知<br>
+          <p><strong>[T050201]</strong> 求方程组 $\begin{cases}x’+y’=y+z\\ y’+z’=z+x\\ z’+x’=x+y\end{cases}$ 的通解.</p>
+<p><strong>解</strong> 将方程组写成矩阵形式:<br>
 $$<br>
 \begin{aligned}<br>
-W’(t)=&amp;\begin{vmatrix}<br>
-x’<em>{11}(t) &amp; x’</em>{21}(t) &amp; \cdots &amp; x’<em>{n1}(t)\\<br>
-x</em>{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x’<em>{12}(t) &amp; x’</em>{22}(t) &amp; \cdots &amp; x’<em>{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x</em>{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}\&amp;+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x’<em>{1n}(t) &amp; x’</em>{2n}(t) &amp; \cdots &amp; x’_{nn}(t)<br>
-\end{vmatrix}\\</p>
-<p>=&amp;\begin{vmatrix}<br>
-\sum\limits_{i=1}^na_{1i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{1i}x_{2i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-\sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}\&amp;+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-\sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t)<br>
-\end{vmatrix}\\</p>
-<p>=&amp;\begin{vmatrix}<br>
-a_{11}x_{11}(t) &amp; a_{11}x_{21}(t) &amp; \cdots &amp; a_{11}x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-a_{nn}x_{1n}(t) &amp; a_{nn}x_{2n}(t) &amp; \cdots &amp; a_{nn}x_{nn}(t)<br>
-\end{vmatrix}\\<br>
-=&amp;[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).<br>
+&amp;\begin{pmatrix}<br>
+1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
+\end{pmatrix}<br>
+\begin{pmatrix}<br>
+x’\\y’\\z’<br>
+\end{pmatrix}=<br>
+\begin{pmatrix}<br>
+0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
+\end{pmatrix}<br>
+\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}\\ \\<br>
+\Longrightarrow<br>
+&amp;\begin{pmatrix}<br>
+x’\\y’\\z’<br>
+\end{pmatrix}=\begin{pmatrix}<br>
+1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
+\end{pmatrix}^{-1}\begin{pmatrix}<br>
+0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
+\end{pmatrix}\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}=\begin{pmatrix}<br>
+0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0<br>
+\end{pmatrix}\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}<br>
+:=A\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}<br>
 \end{aligned}<br>
 $$<br>
-求解上述微分方程得<br>
+则 $|\lambda E-A|=\begin{vmatrix}\lambda&amp;-1&amp;0\\0&amp;\lambda&amp;-1\\-1&amp;0&amp;\lambda\end{vmatrix}=\lambda^3-1=0\Longrightarrow \lambda_1=1,\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i,\lambda_3=-\frac{1}{2}-\frac{\sqrt3}{2}i$.<br>
+对于特征值 $\lambda_1=1$, 有<br>
 $$<br>
-W(t)=ce^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s}<br>
+A-\lambda_1E=<br>
+\begin{pmatrix}<br>
+-1&amp;1&amp;0\\0&amp;-1&amp;1\\1&amp;0&amp;-1<br>
+\end{pmatrix}\xrightarrow{初等行变换}<br>
+\begin{pmatrix}<br>
+1&amp;0&amp;-1\\0&amp;1&amp;-1\\0&amp;0&amp;0<br>
+\end{pmatrix}<br>
 $$<br>
-又 $W(t_0)=c$, 故<br>
+于是可取特征向量 $v_1=(1,1,1)^T$, 从而常系数齐次线性方程组有一个解 $X_1(t)=e^tv_1$.<br>
+对于特征值 $\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i$, 有<br>
 $$<br>
-W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
+A-\lambda_2E=<br>
+\begin{pmatrix}<br>
+\frac12-\frac{\sqrt{3}}{2}i&amp;1&amp;0\\0&amp;\frac12-\frac{\sqrt3}{2}i&amp;1\\1&amp;0&amp;\frac12-\frac{\sqrt{3}}{2}i<br>
+\end{pmatrix}<br>
+\xrightarrow{初等行变换}<br>
+\begin{pmatrix}<br>
+1&amp;0&amp;\frac12-\frac{\sqrt3}{2}i\\0&amp;1&amp;\frac12+\frac{\sqrt3}{2}i\\0&amp;0&amp;0<br>
+\end{pmatrix}<br>
+$$<br>
+于是可取特征向量 $v_2=\left(-\frac12-\frac{\sqrt3}{2}i,-\frac12+\frac{\sqrt3}{2}i,1\right)^T$. 注意到<br>
+$$<br>
+\begin{aligned}<br>
+e^{(-\frac{1}{2}+\frac{\sqrt3}{2}i)t}v_2&amp;=e^{-\frac12t}<br>
+\begin{pmatrix}<br>
+(-\frac{1}{2}+\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
+(-\frac{1}{2}-\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
+e^{\frac{\sqrt3}{2}it}<br>
+\end{pmatrix}\\<br>
+&amp;=e^{-\frac12t}<br>
+\left{<br>
+\begin{pmatrix}<br>
+-\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+-\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+\cos\frac{\sqrt3}{2}t<br>
+\end{pmatrix}+i<br>
+\begin{pmatrix}<br>
+-\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+-\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+\sin\frac{\sqrt3}{2}t<br>
+\end{pmatrix}<br>
+\right}<br>
+\end{aligned}<br>
+$$<br>
+于是另两个线性无关的解为<br>
+$$<br>
+X_2(t)=e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+-\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+\cos\frac{\sqrt3}{2}t<br>
+\end{pmatrix},\quad<br>
+X_3(t)=e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+-\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+\sin\frac{\sqrt3}{2}t<br>
+\end{pmatrix}<br>
+$$<br>
+注意到 $X_1(t),X_2(t),X_3(t)$ 是常系数齐次线性方程组的三个线性无关解, 故通解为<br>
+$$<br>
+\begin{aligned}<br>
+X(t)&amp;=c_1X_1(t)+c_2X_2(t)+c_3X_3(t)\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1\\1\\1<br>
+\end{pmatrix}+<br>
+c_2e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+-\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+\cos\frac{\sqrt3}{2}t<br>
+\end{pmatrix}+<br>
+c_3e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+-\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+\sin\frac{\sqrt3}{2}t<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+其中 $c_1,c_2,c_3$ 为任意常数.</p>
+<hr>
+<p><strong>[T050202]</strong> 求常系数非齐次线性方程组的通解:<br>
+$$<br>
+X’=\begin{pmatrix}<br>
+-1&amp;2\\-2&amp;3<br>
+\end{pmatrix}X+\begin{pmatrix}<br>
+1\\0<br>
+\end{pmatrix}.<br>
+$$<br>
+<strong>解</strong> 记 $X’=AX+F$, 于是<br>
+$$<br>
+|\lambda E-A|=\begin{vmatrix}<br>
+\lambda+1&amp;-2\\2&amp;\lambda-3<br>
+\end{vmatrix}=(\lambda-1)^2\Longrightarrow \lambda=1 \ (二 \ 重)<br>
+$$<br>
+从而对应的常系数齐次线性方程组有两个解形如 $X(t)=(R_0+R_1t)e^t$, 其中 $R_0,R_1$ 满足<br>
+$$<br>
+\begin{cases}<br>
+(A-E)R_0=R_1\\<br>
+(A-E)^2R_0=0<br>
+\end{cases}<br>
+$$<br>
+注意到<br>
+$$<br>
+(A-E)^2=\begin{pmatrix}<br>
+-2&amp;2\\-2&amp;2<br>
+\end{pmatrix}^2=<br>
+O<br>
+$$<br>
+故可取 $R_0=(1,0)^T$ 和 $(0,1)^T$, 从而 $R_1=(-2,-2)^T$ 和 $(2,2)$, 从而对应的常系数齐次线性方程组有两个线性无关解<br>
+$$<br>
+X_1(t)=\left[<br>
+\begin{pmatrix}<br>
+1\\0<br>
+\end{pmatrix}+<br>
+\begin{pmatrix}<br>
+-2\\-2<br>
+\end{pmatrix}t<br>
+\right]e^t=e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}\\ \\</p>
+<p>X_2(t)=\left[<br>
+\begin{pmatrix}<br>
+0\\1<br>
+\end{pmatrix}+<br>
+\begin{pmatrix}<br>
+2\\2<br>
+\end{pmatrix}t<br>
+\right]e^t=e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}<br>
+$$<br>
+由此可得对应的常系数齐次线性方程组的基解矩阵为 $\Phi(t)=e^t\begin{pmatrix}<br>
+1-2t&amp;2t\\-2t&amp;1+2t<br>
+\end{pmatrix}$,$\Phi^{-1}(t)=e^{-t}\begin{pmatrix}<br>
+1+2t&amp;-2t\\2t&amp;1-2t<br>
+\end{pmatrix}$, 于是原常系数非齐次线性方程组有特解<br>
+$$<br>
+\begin{aligned}<br>
+\bar X(t)&amp;=\Phi(t)\int_0^t\Phi^{-1}(s)F\mathrm{~d}s=e^t\begin{pmatrix}<br>
+1-2t&amp;2t\\-2t&amp;1+2t<br>
+\end{pmatrix}\begin{pmatrix}<br>
+-3e^{-t}-2te^{-t}+3\\-2e^{-t}-2te^{-t}+2<br>
+\end{pmatrix}\\<br>
+&amp;=e^t\begin{pmatrix}<br>
+-3e^{-t}+3-2t\\-2e^{-t}+2-2t<br>
+\end{pmatrix}=\begin{pmatrix}<br>
+-3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+故原方程组的通解<br>
+$$<br>
+\begin{aligned}<br>
+X(t)&amp;=c_1X_1(t)+c_2X_2(t)+\bar X(t)\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}+\begin{pmatrix}<br>
+-3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
+\end{pmatrix}\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}+\begin{pmatrix}<br>
+-3+2e^t\\-2+2e^t<br>
+\end{pmatrix}\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}+\begin{pmatrix}<br>
+-3\\-2<br>
+\end{pmatrix}.<br>
+\end{aligned}<br>
 $$</p>
 
       
@@ -1375,7 +1535,7 @@ $$</p>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
