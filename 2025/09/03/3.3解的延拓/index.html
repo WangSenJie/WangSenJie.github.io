@@ -28,7 +28,7 @@
 <meta property="og:description" content="[T030301] 设 $f(x,y)$ 在整个平面上连续有界, 且 $\frac{\partial f}{\partial y}(x,y)$ 也连续. 证明方程 $\frac{\mathrm dy}{\mathrm dx}&#x3D;f(x,y)$ 的每一个解 $y&#x3D;\varphi(x)$ 的饱和区间为 $-\infty&lt;x&lt;+\infty$.     证 因为 $\frac{\partial">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-02T17:58:44.491Z">
+<meta property="article:modified_time" content="2025-09-02T18:15:39.941Z">
 <meta property="article:author" content="DMH">
 <meta property="article:tag" content="常微分方程">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@ window.MathJax = {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：01:58:44" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:15:39" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,10 +233,10 @@ window.MathJax = {
 
       
         <p><strong>[T030301]</strong> 设 $f(x,y)$ 在整个平面上连续有界, 且 $\frac{\partial f}{\partial y}(x,y)$ 也连续. 证明方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的每一个解 $y=\varphi(x)$ 的饱和区间为 $-\infty&lt;x&lt;+\infty$.</p>
-<p>    <strong>证</strong> 因为 $\frac{\partial f}{\partial y}(x,y)$ 在整个平面 $\R^2$ 上连续, 故 $f$ 在 $\R^2$ 上满足关于 $y$ 的局部 Lipschitz 条件. 又 $f(x,y)$ 在 $\R^2$ 上连续, 故方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 满足延拓定理, 及其一切解都可延拓到 $\R^2$ 的边界(即无穷远处).</p>
-<p>    考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\R^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\R^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y=\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y=\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.	#</p>
+<p>    <strong>证</strong> 因为 $\frac{\partial f}{\partial y}(x,y)$ 在整个平面 $\mathbb{R}^2$ 上连续, 故 $f$ 在 $\mathbb{R}^2$ 上满足关于 $y$ 的局部 Lipschitz 条件. 又 $f(x,y)$ 在 $\mathbb{R}^2$ 上连续, 故方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 满足延拓定理, 及其一切解都可延拓到 $\mathbb{R}^2$ 的边界(即无穷远处).</p>
+<h2 id="考虑过任一点-P-x-0-y-0-的解-由-f-x-y-在-mathbb-R-2-上有界可知存在-M-0-使得对任意-x-y-in-mathbb-R-2-有-f-x-y-M-过点-P-作斜率为-M-与-M-的直线-由-f-x-y-M-知积分曲线-y-varphi-x-必在两条直线所围的对角区域之内-向左向右无限延拓-即方程的每一个解-y-varphi-x-的饱和区间为-infty-infty">    考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\mathbb{R}^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\mathbb{R}^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y=\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y=\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.	#</h2>
 <p><strong>[T030303]</strong> 证明: 对一阶线性方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 若 $P(x),Q(x)\in C[a,b]$ , 则对任意 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 方程有唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上连续.</p>
-<p>    <strong>证</strong> 设 $f(x,y)=P(x)y+Q(x)$, 由条件知 $f(x,y)$ 在 $R=[a,b]\times(-\infty,+\infty)$ 上连续, 又 $\frac{\partial f}{\partial y}=P(x)$ 在 $[a,b]$ 上连续, 从而 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件, 故方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$ 满足延拓定理, 即对任意的 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 通过 $(x_0,y_0)$ 的解 $y=\varphi(x)$ 可延拓到 $R$ 的边界. 设 $\left|\frac{\partial f}{\partial y}\right|\le M, \ x\in[a,b]$. 对任意 $x\in[a,b]$, 作逐步迭代<br>
+<h2 id="证-设-f-x-y-P-x-y-Q-x-由条件知-f-x-y-在-R-a-b-times-infty-infty-上连续-又-frac-partial-f-partial-y-P-x-在-a-b-上连续-从而-f-x-y-关于-y-满足-Lipschitz-条件-故方程-frac-mathrm-dy-mathrm-dx-P-x-y-Q-x-满足延拓定理-即对任意的-x-0-in-a-b-y-0-in-infty-infty-通过-x-0-y-0-的解-y-varphi-x-可延拓到-R-的边界-设-left-frac-partial-f-partial-y-right-le-M-x-in-a-b-对任意-x-in-a-b-作逐步迭代-y-1-x-0-y-0-quad-y-n-x-y-0-int-x-0-xf-t-y-n-1-t-mathrm-d-t-n-2-3-cdots-由-Lipschitz-条件可知-left-y-n-x-y-n-1-x-right-le-frac-x-x-0-n-1-M-n-1-n-于是-y-0-x-sum-limits-n-1-infty-left-y-n-x-y-n-1-x-right-是-a-b-上的绝对一致收敛级数-从而连续函数列-y-n-x-在-a-b-上一致收敛于初值问题-y-varphi-x-即方程的唯一解-y-varphi-x-在-a-b-上有定义-显然在-a-b-上连续">    <strong>证</strong> 设 $f(x,y)=P(x)y+Q(x)$, 由条件知 $f(x,y)$ 在 $R=[a,b]\times(-\infty,+\infty)$ 上连续, 又 $\frac{\partial f}{\partial y}=P(x)$ 在 $[a,b]$ 上连续, 从而 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件, 故方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$ 满足延拓定理, 即对任意的 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 通过 $(x_0,y_0)$ 的解 $y=\varphi(x)$ 可延拓到 $R$ 的边界. 设 $\left|\frac{\partial f}{\partial y}\right|\le M, \ x\in[a,b]$. 对任意 $x\in[a,b]$, 作逐步迭代<br>
 $$<br>
 y_1(x_0)=y_0,\quad y_n(x)=y_0+\int_{x_0}^xf(t,y_{n-1}(t))\mathrm{~d}t, \ n=2,3,\cdots<br>
 $$<br>
@@ -244,10 +244,10 @@ $$<br>
 $$<br>
 \left|y_n(x)-y_{n-1}(x)\right|\le\frac{(x-x_0)^{n-1}M^{n-1}}{n!}<br>
 $$<br>
-于是 $y_0(x)+\sum\limits_{n=1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y=\varphi(x)$, 即方程的唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.	#</p>
+于是 $y_0(x)+\sum\limits_{n=1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y=\varphi(x)$, 即方程的唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.	#</h2>
 <p><strong>[T030304]</strong> 已知 $\frac{\mathrm dy}{\mathrm dx}=(y^2-a^2)f(x,y)$, 这里 $f(x,y)$ 及 $f’_y(x,y)$ 在 $xOy$ 面上连续. 试证明: 对 $\forall x_0$ 及 $|y_0|&lt;a$, 满足初始条件 $y(x_0)=y_0$ 的解 $y(x)$ 都在区间 $(-\infty,+\infty)$ 上存在.</p>
-<p>    <strong>证</strong> 方程的右端函数 $(y^2-a^2)f(x,y)$ 在全平面 $\R^2$ 上连续可微, 因此它满足解的存在唯一性定理和延拓定理.</p>
-<p>    显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\R^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.	#</p>
+<p>    <strong>证</strong> 方程的右端函数 $(y^2-a^2)f(x,y)$ 在全平面 $\mathbb{R}^2$ 上连续可微, 因此它满足解的存在唯一性定理和延拓定理.</p>
+<p>    显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\mathbb{R}^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.	#</p>
 
     </div>
 
@@ -331,6 +331,15 @@ $$<br>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E8%99%91%E8%BF%87%E4%BB%BB%E4%B8%80%E7%82%B9-P-x-0-y-0-%E7%9A%84%E8%A7%A3-%E7%94%B1-f-x-y-%E5%9C%A8-mathbb-R-2-%E4%B8%8A%E6%9C%89%E7%95%8C%E5%8F%AF%E7%9F%A5%E5%AD%98%E5%9C%A8-M-0-%E4%BD%BF%E5%BE%97%E5%AF%B9%E4%BB%BB%E6%84%8F-x-y-in-mathbb-R-2-%E6%9C%89-f-x-y-M-%E8%BF%87%E7%82%B9-P-%E4%BD%9C%E6%96%9C%E7%8E%87%E4%B8%BA-M-%E4%B8%8E-M-%E7%9A%84%E7%9B%B4%E7%BA%BF-%E7%94%B1-f-x-y-M-%E7%9F%A5%E7%A7%AF%E5%88%86%E6%9B%B2%E7%BA%BF-y-varphi-x-%E5%BF%85%E5%9C%A8%E4%B8%A4%E6%9D%A1%E7%9B%B4%E7%BA%BF%E6%89%80%E5%9B%B4%E7%9A%84%E5%AF%B9%E8%A7%92%E5%8C%BA%E5%9F%9F%E4%B9%8B%E5%86%85-%E5%90%91%E5%B7%A6%E5%90%91%E5%8F%B3%E6%97%A0%E9%99%90%E5%BB%B6%E6%8B%93-%E5%8D%B3%E6%96%B9%E7%A8%8B%E7%9A%84%E6%AF%8F%E4%B8%80%E4%B8%AA%E8%A7%A3-y-varphi-x-%E7%9A%84%E9%A5%B1%E5%92%8C%E5%8C%BA%E9%97%B4%E4%B8%BA-infty-infty"><span class="nav-number">1.</span> <span class="nav-text">    考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\mathbb{R}^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\mathbb{R}^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y&#x3D;\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y&#x3D;\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.	#</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%81-%E8%AE%BE-f-x-y-P-x-y-Q-x-%E7%94%B1%E6%9D%A1%E4%BB%B6%E7%9F%A5-f-x-y-%E5%9C%A8-R-a-b-times-infty-infty-%E4%B8%8A%E8%BF%9E%E7%BB%AD-%E5%8F%88-frac-partial-f-partial-y-P-x-%E5%9C%A8-a-b-%E4%B8%8A%E8%BF%9E%E7%BB%AD-%E4%BB%8E%E8%80%8C-f-x-y-%E5%85%B3%E4%BA%8E-y-%E6%BB%A1%E8%B6%B3-Lipschitz-%E6%9D%A1%E4%BB%B6-%E6%95%85%E6%96%B9%E7%A8%8B-frac-mathrm-dy-mathrm-dx-P-x-y-Q-x-%E6%BB%A1%E8%B6%B3%E5%BB%B6%E6%8B%93%E5%AE%9A%E7%90%86-%E5%8D%B3%E5%AF%B9%E4%BB%BB%E6%84%8F%E7%9A%84-x-0-in-a-b-y-0-in-infty-infty-%E9%80%9A%E8%BF%87-x-0-y-0-%E7%9A%84%E8%A7%A3-y-varphi-x-%E5%8F%AF%E5%BB%B6%E6%8B%93%E5%88%B0-R-%E7%9A%84%E8%BE%B9%E7%95%8C-%E8%AE%BE-left-frac-partial-f-partial-y-right-le-M-x-in-a-b-%E5%AF%B9%E4%BB%BB%E6%84%8F-x-in-a-b-%E4%BD%9C%E9%80%90%E6%AD%A5%E8%BF%AD%E4%BB%A3-y-1-x-0-y-0-quad-y-n-x-y-0-int-x-0-xf-t-y-n-1-t-mathrm-d-t-n-2-3-cdots-%E7%94%B1-Lipschitz-%E6%9D%A1%E4%BB%B6%E5%8F%AF%E7%9F%A5-left-y-n-x-y-n-1-x-right-le-frac-x-x-0-n-1-M-n-1-n-%E4%BA%8E%E6%98%AF-y-0-x-sum-limits-n-1-infty-left-y-n-x-y-n-1-x-right-%E6%98%AF-a-b-%E4%B8%8A%E7%9A%84%E7%BB%9D%E5%AF%B9%E4%B8%80%E8%87%B4%E6%94%B6%E6%95%9B%E7%BA%A7%E6%95%B0-%E4%BB%8E%E8%80%8C%E8%BF%9E%E7%BB%AD%E5%87%BD%E6%95%B0%E5%88%97-y-n-x-%E5%9C%A8-a-b-%E4%B8%8A%E4%B8%80%E8%87%B4%E6%94%B6%E6%95%9B%E4%BA%8E%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98-y-varphi-x-%E5%8D%B3%E6%96%B9%E7%A8%8B%E7%9A%84%E5%94%AF%E4%B8%80%E8%A7%A3-y-varphi-x-%E5%9C%A8-a-b-%E4%B8%8A%E6%9C%89%E5%AE%9A%E4%B9%89-%E6%98%BE%E7%84%B6%E5%9C%A8-a-b-%E4%B8%8A%E8%BF%9E%E7%BB%AD"><span class="nav-number">2.</span> <span class="nav-text">    证 设 $f(x,y)&#x3D;P(x)y+Q(x)$, 由条件知 $f(x,y)$ 在 $R&#x3D;[a,b]\times(-\infty,+\infty)$ 上连续, 又 $\frac{\partial f}{\partial y}&#x3D;P(x)$ 在 $[a,b]$ 上连续, 从而 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件, 故方程 $\frac{\mathrm dy}{\mathrm dx}&#x3D;P(x)y+Q(x)$ 满足延拓定理, 即对任意的 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 通过 $(x_0,y_0)$ 的解 $y&#x3D;\varphi(x)$ 可延拓到 $R$ 的边界. 设 $\left|\frac{\partial f}{\partial y}\right|\le M, \ x\in[a,b]$. 对任意 $x\in[a,b]$, 作逐步迭代
+$$
+y_1(x_0)&#x3D;y_0,\quad y_n(x)&#x3D;y_0+\int_{x_0}^xf(t,y_{n-1}(t))\mathrm{~d}t, \ n&#x3D;2,3,\cdots
+$$
+由 Lipschitz 条件可知
+$$
+\left|y_n(x)-y_{n-1}(x)\right|\le\frac{(x-x_0)^{n-1}M^{n-1}}{n!}
+$$
+于是 $y_0(x)+\sum\limits_{n&#x3D;1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y&#x3D;\varphi(x)$, 即方程的唯一解 $y&#x3D;\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.	#</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
