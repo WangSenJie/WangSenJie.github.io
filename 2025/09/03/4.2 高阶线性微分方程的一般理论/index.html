@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="[T040201] 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.     证 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件 $$ \left\lbrace \begin{array}{cccc} x_1(t_0)&#x3D;1, &amp; x’_1(t_0)&#x3D;0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)&#x3D;0,\\ x_2(t">
+  <meta name="description" content="[T040201] 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解. 证 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件 $$ \left\lbrace \begin{array}{cccc} x_1(t_0)&#x3D;1, &amp; x’_1(t_0)&#x3D;0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)&#x3D;0,\\ x_2(t_0)&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高阶线性微分方程的一般理论">
 <meta property="og:url" content="https://wangsenjie.github.io/2025/09/03/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="[T040201] 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.     证 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件 $$ \left\lbrace \begin{array}{cccc} x_1(t_0)&#x3D;1, &amp; x’_1(t_0)&#x3D;0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)&#x3D;0,\\ x_2(t">
+<meta property="og:description" content="[T040201] 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解. 证 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件 $$ \left\lbrace \begin{array}{cccc} x_1(t_0)&#x3D;1, &amp; x’_1(t_0)&#x3D;0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)&#x3D;0,\\ x_2(t_0)&#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-02T18:13:21.567Z">
+<meta property="article:modified_time" content="2025-09-02T18:22:42.571Z">
 <meta property="article:author" content="DMH">
 <meta property="article:tag" content="常微分方程">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@ window.MathJax = {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:13:21" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:22:42" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +233,7 @@ window.MathJax = {
 
       
         <p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
-<p>    <strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
+<p><strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
 $$<br>
 \left\lbrace<br>
 \begin{array}{cccc}<br>
@@ -251,8 +251,8 @@ $$<br>
 故这 $n$ 个解必线性无关.</p>
 <hr>
 <p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
-<p>    <strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
-    显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
+<p><strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
+显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
 $$<br>
 \begin{aligned}<br>
 &amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\\<br>
@@ -260,7 +260,7 @@ $$<br>
 \end{aligned}<br>
 $$<br>
 此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
-    再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
+再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
 $$<br>
 \begin{aligned}<br>
 &amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\\<br>
@@ -273,7 +273,7 @@ $$<br>
 $$<br>
 W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
 $$<br>
-    <strong>证</strong> 由行列式求导法则可知<br>
+<strong>证</strong> 由行列式求导法则可知<br>
 $$<br>
 W’(t)=\begin{vmatrix}<br>
 x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
@@ -316,8 +316,8 @@ $$<br>
 的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
 <p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
 <p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-<p>    <strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.	#</p>
-<p>    (2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
+<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.	#</p>
+<p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
 $$<br>
 \begin{vmatrix}<br>
 x_1(t) &amp; x_2(t)\\<br>
@@ -347,12 +347,12 @@ $$<br>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/09/03/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/" rel="prev" title="常系数齐次线性方程的待定指数函数法">
-      <i class="fa fa-chevron-left"></i> 常系数齐次线性方程的待定指数函数法
+    <a href="/2025/09/03/5.2%20%E4%B8%80%E9%98%B6%E5%B8%B8%E7%B3%BB%E6%95%B0%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" rel="prev" title="一阶常系数线性微分方程组">
+      <i class="fa fa-chevron-left"></i> 一阶常系数线性微分方程组
     </a></div>
       <div class="post-nav-item">
-    <a href="/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/" rel="next" title="解对初值与参数的连续性与可微性">
-      解对初值与参数的连续性与可微性 <i class="fa fa-chevron-right"></i>
+    <a href="/2025/09/03/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" rel="next" title="一阶线性微分方程组">
+      一阶线性微分方程组 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="[T030201] 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)&#x3D;\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.     证 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $">
+  <meta name="description" content="[T030201] 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)&#x3D;\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续. 证 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="不动点定理与解的存在性">
 <meta property="og:url" content="https://wangsenjie.github.io/2025/09/03/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="[T030201] 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)&#x3D;\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.     证 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $">
+<meta property="og:description" content="[T030201] 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)&#x3D;\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续. 证 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-02T18:15:39.135Z">
+<meta property="article:modified_time" content="2025-09-02T18:22:34.930Z">
 <meta property="article:author" content="DMH">
 <meta property="article:tag" content="常微分方程">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@ window.MathJax = {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:15:39" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:22:34" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +233,7 @@ window.MathJax = {
 
       
         <p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
-<h2 id="证-用-X-表示区间-a-b-上所有连续函数组成的空间-在-X-内定义映射-T-quad-T-varphi-x-lambda-int-a-bF-x-t-varphi-t-mathrm-d-t-quad-forall-varphi-in-X-在-X-上引入距离-rho-varphi-1-varphi-2-max-limits-x-in-a-b-varphi-1-x-varphi-2-x-quad-forall-varphi-1-varphi-2-in-X-注意到-F-x-t-在有界闭域-a-b-times-a-b-上连续-故存在-M-0-对任意-x-t-in-a-b-2-都有-F-x-t-le-M-于是-begin-aligned-rho-T-varphi-1-T-varphi-2-max-limits-x-in-a-b-left-lambda-int-a-bF-x-t-left-varphi-1-t-varphi-2-t-right-mathrm-d-t-right-le-M-lambda-int-a-b-varphi-1-t-varphi-2-t-mathrm-d-t-le-M-lambda-b-a-cdot-max-limits-t-in-a-b-varphi-1-t-varphi-2-t-M-lambda-b-a-cdot-rho-varphi-1-varphi-2-end-aligned-由压缩映象原理-当-0-le-M-lambda-b-a-1-即-0-le-lambda-frac-1-M-b-a-时-T-在-X-中存在唯一的函数-varphi-0-x-使得-T-varphi-0-varphi-0-即当-0-le-lambda-frac-1-M-b-a-时-积分方程-varphi-x-lambda-displaystyle-int-a-b-F-x-t-varphi-t-mathrm-dt-存在唯一解-varphi-0-x">    <strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
+<h2 id="证-用-X-表示区间-a-b-上所有连续函数组成的空间-在-X-内定义映射-T-quad-T-varphi-x-lambda-int-a-bF-x-t-varphi-t-mathrm-d-t-quad-forall-varphi-in-X-在-X-上引入距离-rho-varphi-1-varphi-2-max-limits-x-in-a-b-varphi-1-x-varphi-2-x-quad-forall-varphi-1-varphi-2-in-X-注意到-F-x-t-在有界闭域-a-b-times-a-b-上连续-故存在-M-0-对任意-x-t-in-a-b-2-都有-F-x-t-le-M-于是-begin-aligned-rho-T-varphi-1-T-varphi-2-max-limits-x-in-a-b-left-lambda-int-a-bF-x-t-left-varphi-1-t-varphi-2-t-right-mathrm-d-t-right-le-M-lambda-int-a-b-varphi-1-t-varphi-2-t-mathrm-d-t-le-M-lambda-b-a-cdot-max-limits-t-in-a-b-varphi-1-t-varphi-2-t-M-lambda-b-a-cdot-rho-varphi-1-varphi-2-end-aligned-由压缩映象原理-当-0-le-M-lambda-b-a-1-即-0-le-lambda-frac-1-M-b-a-时-T-在-X-中存在唯一的函数-varphi-0-x-使得-T-varphi-0-varphi-0-即当-0-le-lambda-frac-1-M-b-a-时-积分方程-varphi-x-lambda-displaystyle-int-a-b-F-x-t-varphi-t-mathrm-dt-存在唯一解-varphi-0-x"><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
 $$<br>
 T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
 $$<br>
@@ -252,7 +252,7 @@ $$<br>
 $$<br>
 由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.	#</h2>
 <p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
-<p>    <strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
+<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
 $$<br>
 ||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
 $$<br>
@@ -292,8 +292,8 @@ $$<br>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/09/03/3.3%E8%A7%A3%E7%9A%84%E5%BB%B6%E6%8B%93/" rel="prev" title="解的延拓">
-      <i class="fa fa-chevron-left"></i> 解的延拓
+    <a href="/2025/09/03/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/" rel="prev" title="常系数齐次线性方程的待定指数函数法">
+      <i class="fa fa-chevron-left"></i> 常系数齐次线性方程的待定指数函数法
     </a></div>
       <div class="post-nav-item">
     <a href="/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/" rel="next" title="Picard 存在唯一性定理">
@@ -357,7 +357,7 @@ $$<br>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%81-%E7%94%A8-X-%E8%A1%A8%E7%A4%BA%E5%8C%BA%E9%97%B4-a-b-%E4%B8%8A%E6%89%80%E6%9C%89%E8%BF%9E%E7%BB%AD%E5%87%BD%E6%95%B0%E7%BB%84%E6%88%90%E7%9A%84%E7%A9%BA%E9%97%B4-%E5%9C%A8-X-%E5%86%85%E5%AE%9A%E4%B9%89%E6%98%A0%E5%B0%84-T-quad-T-varphi-x-lambda-int-a-bF-x-t-varphi-t-mathrm-d-t-quad-forall-varphi-in-X-%E5%9C%A8-X-%E4%B8%8A%E5%BC%95%E5%85%A5%E8%B7%9D%E7%A6%BB-rho-varphi-1-varphi-2-max-limits-x-in-a-b-varphi-1-x-varphi-2-x-quad-forall-varphi-1-varphi-2-in-X-%E6%B3%A8%E6%84%8F%E5%88%B0-F-x-t-%E5%9C%A8%E6%9C%89%E7%95%8C%E9%97%AD%E5%9F%9F-a-b-times-a-b-%E4%B8%8A%E8%BF%9E%E7%BB%AD-%E6%95%85%E5%AD%98%E5%9C%A8-M-0-%E5%AF%B9%E4%BB%BB%E6%84%8F-x-t-in-a-b-2-%E9%83%BD%E6%9C%89-F-x-t-le-M-%E4%BA%8E%E6%98%AF-begin-aligned-rho-T-varphi-1-T-varphi-2-max-limits-x-in-a-b-left-lambda-int-a-bF-x-t-left-varphi-1-t-varphi-2-t-right-mathrm-d-t-right-le-M-lambda-int-a-b-varphi-1-t-varphi-2-t-mathrm-d-t-le-M-lambda-b-a-cdot-max-limits-t-in-a-b-varphi-1-t-varphi-2-t-M-lambda-b-a-cdot-rho-varphi-1-varphi-2-end-aligned-%E7%94%B1%E5%8E%8B%E7%BC%A9%E6%98%A0%E8%B1%A1%E5%8E%9F%E7%90%86-%E5%BD%93-0-le-M-lambda-b-a-1-%E5%8D%B3-0-le-lambda-frac-1-M-b-a-%E6%97%B6-T-%E5%9C%A8-X-%E4%B8%AD%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E7%9A%84%E5%87%BD%E6%95%B0-varphi-0-x-%E4%BD%BF%E5%BE%97-T-varphi-0-varphi-0-%E5%8D%B3%E5%BD%93-0-le-lambda-frac-1-M-b-a-%E6%97%B6-%E7%A7%AF%E5%88%86%E6%96%B9%E7%A8%8B-varphi-x-lambda-displaystyle-int-a-b-F-x-t-varphi-t-mathrm-dt-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E8%A7%A3-varphi-0-x"><span class="nav-number">1.</span> <span class="nav-text">    证 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%81-%E7%94%A8-X-%E8%A1%A8%E7%A4%BA%E5%8C%BA%E9%97%B4-a-b-%E4%B8%8A%E6%89%80%E6%9C%89%E8%BF%9E%E7%BB%AD%E5%87%BD%E6%95%B0%E7%BB%84%E6%88%90%E7%9A%84%E7%A9%BA%E9%97%B4-%E5%9C%A8-X-%E5%86%85%E5%AE%9A%E4%B9%89%E6%98%A0%E5%B0%84-T-quad-T-varphi-x-lambda-int-a-bF-x-t-varphi-t-mathrm-d-t-quad-forall-varphi-in-X-%E5%9C%A8-X-%E4%B8%8A%E5%BC%95%E5%85%A5%E8%B7%9D%E7%A6%BB-rho-varphi-1-varphi-2-max-limits-x-in-a-b-varphi-1-x-varphi-2-x-quad-forall-varphi-1-varphi-2-in-X-%E6%B3%A8%E6%84%8F%E5%88%B0-F-x-t-%E5%9C%A8%E6%9C%89%E7%95%8C%E9%97%AD%E5%9F%9F-a-b-times-a-b-%E4%B8%8A%E8%BF%9E%E7%BB%AD-%E6%95%85%E5%AD%98%E5%9C%A8-M-0-%E5%AF%B9%E4%BB%BB%E6%84%8F-x-t-in-a-b-2-%E9%83%BD%E6%9C%89-F-x-t-le-M-%E4%BA%8E%E6%98%AF-begin-aligned-rho-T-varphi-1-T-varphi-2-max-limits-x-in-a-b-left-lambda-int-a-bF-x-t-left-varphi-1-t-varphi-2-t-right-mathrm-d-t-right-le-M-lambda-int-a-b-varphi-1-t-varphi-2-t-mathrm-d-t-le-M-lambda-b-a-cdot-max-limits-t-in-a-b-varphi-1-t-varphi-2-t-M-lambda-b-a-cdot-rho-varphi-1-varphi-2-end-aligned-%E7%94%B1%E5%8E%8B%E7%BC%A9%E6%98%A0%E8%B1%A1%E5%8E%9F%E7%90%86-%E5%BD%93-0-le-M-lambda-b-a-1-%E5%8D%B3-0-le-lambda-frac-1-M-b-a-%E6%97%B6-T-%E5%9C%A8-X-%E4%B8%AD%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E7%9A%84%E5%87%BD%E6%95%B0-varphi-0-x-%E4%BD%BF%E5%BE%97-T-varphi-0-varphi-0-%E5%8D%B3%E5%BD%93-0-le-lambda-frac-1-M-b-a-%E6%97%B6-%E7%A7%AF%E5%88%86%E6%96%B9%E7%A8%8B-varphi-x-lambda-displaystyle-int-a-b-F-x-t-varphi-t-mathrm-dt-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E8%A7%A3-varphi-0-x"><span class="nav-number">1.</span> <span class="nav-text">证 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射
 $$
 T:\quad(T\varphi)(x)&#x3D;\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.
 $$
