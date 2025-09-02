@@ -175,7 +175,7 @@ window.MathJax = {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -189,7 +189,7 @@ window.MathJax = {
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" class="post-title-link" itemprop="url">一阶线性微分方程组</a>
+            <a href="/2025/09/03/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/" class="post-title-link" itemprop="url">高阶线性微分方程的一般理论</a>
         </h2>
 
         <div class="post-meta">
@@ -200,7 +200,7 @@ window.MathJax = {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:17" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:07" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -216,7 +216,7 @@ window.MathJax = {
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">一阶线性微分方程组</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
                 </span>
             </span>
 
@@ -231,88 +231,103 @@ window.MathJax = {
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T050101]</strong> 设 $A$ 为 $n\times n$ 常数矩阵, $\Phi(t)$ 是方程组 $X’=AX$ 的标准基解矩阵 $(\Phi(0)=E)$, 证明 $\Phi(t)\Phi^{-1}(t_0)=\Phi(t-t_0)$, 其中 $t_0$ 是常数.</p>
-<p><strong>证</strong> 由题设可知 $\Phi’(t)=A\Phi(t)$, 将 $t$ 换为 $t-t_0$, 则 $\Phi’(t-t_0)=A\Phi(t-t_0)$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的解矩阵. 又当 $t=t_0$ 时 $\det\Phi(0)=1$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的基解矩阵. 于是存在 $n$ 阶非奇异常数矩阵 $C$, 使得 $\Phi(t-t_0)=\Phi(t)C$, 再令 $t=t_0$, 有 $E=\Phi(t_0)C$, 得 $C=\Phi^{-1}(t_0)$, 故 $\Phi(t-t_0)=\Phi(t)\Phi^{-1}(t_0)$.</p>
+          <p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
+<p><strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
+$$<br>
+\left\lbrace<br>
+\begin{array}{cccc}<br>
+x_1(t_0)=1, &amp; x’_1(t_0)=0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)=0,\\<br>
+x_2(t_0)=0, &amp; x’_2(t_0)=1, &amp; \cdots, &amp; x_2^{(n-2)}(t_0)=0,\\<br>
+\vdots &amp; \vdots &amp; &amp; \vdots\\<br>
+x_n(t_0)=0, &amp; x_n’(t_0)=0, &amp; \cdots, &amp; x_n^{(n-1)}(t_0)=1<br>
+\end{array}<br>
+\right.<br>
+$$<br>
+的解 $x_1(t),x_2(t),\cdots,x_n(t)$ 一定存在且唯一, 注意到它们的 Wronski 行列式<br>
+$$<br>
+W(x_1(t_0),x_2(t_0),\cdots,x_n(t_0))=1\neq0<br>
+$$<br>
+故这 $n$ 个解必线性无关.</p>
 <hr>
-<p><strong>[T050102]</strong> (Liouville公式) 设 $X_1(t),X_2(t),\cdots,X_n(t)$ 是齐次线性方程组 $X’(t)=A(t)X(t)$ 的任意 $n$ 个解, 则它们的 Wronski 行列式 $W(t)$ 满足一阶线性微分方程<br>
-$$<br>
-W’(t)=\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]W(t),<br>
-$$<br>
-因而有<br>
-$$<br>
-W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$<br>
-<strong>证</strong> 记 $X_i(t)=\left(x_{i1}(t),\cdots,x_{in}(t)\right)^T$, 则<br>
-$$<br>
-W(t)=\left|X_1(t),\cdots,X_n(t)\right|=\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}<br>
-$$<br>
-由行列式求导法则知<br>
+<p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
+<p><strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
+显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
 $$<br>
 \begin{aligned}<br>
-W’(t)=&amp;\begin{vmatrix}<br>
-x’<em>{11}(t) &amp; x’</em>{21}(t) &amp; \cdots &amp; x’<em>{n1}(t)\\<br>
-x</em>{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x’<em>{12}(t) &amp; x’</em>{22}(t) &amp; \cdots &amp; x’<em>{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x</em>{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}\&amp;+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x’<em>{1n}(t) &amp; x’</em>{2n}(t) &amp; \cdots &amp; x’_{nn}(t)<br>
-\end{vmatrix}\\</p>
-<p>=&amp;\begin{vmatrix}<br>
-\sum\limits_{i=1}^na_{1i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{1i}x_{2i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-\sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}\&amp;+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-\sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t)<br>
-\end{vmatrix}\\</p>
-<p>=&amp;\begin{vmatrix}<br>
-a_{11}x_{11}(t) &amp; a_{11}x_{21}(t) &amp; \cdots &amp; a_{11}x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-a_{nn}x_{1n}(t) &amp; a_{nn}x_{2n}(t) &amp; \cdots &amp; a_{nn}x_{nn}(t)<br>
-\end{vmatrix}\\<br>
-=&amp;[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).<br>
+&amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\\<br>
+\Longrightarrow&amp;(c_1x_1+c_2x_2+\cdots+c_nx_n)+(c_1+c_2+\cdots+c_{n+1})\bar x=0<br>
 \end{aligned}<br>
 $$<br>
-求解上述微分方程得<br>
+此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
+再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
 $$<br>
-W(t)=ce^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s}<br>
+\begin{aligned}<br>
+&amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\\<br>
+\Longrightarrow&amp;c_1x_1+c_2x_2+\cdots+c_{n+1}x_{n+1}-(c_1+c_2+\cdots+c_{n+1})x_{n+2}=0<br>
+\end{aligned}<br>
 $$<br>
-又 $W(t_0)=c$, 故<br>
+故这 $n+2$ 个解在 $[a,b]$ 上线性相关, 产生矛盾!</p>
+<hr>
+<p><strong>[T040203]</strong> (Liouville 公式) 设 $x_1(t),x_2(t),\cdots,x_n(t)$ 是齐次线性方程 $L[x]=0$ 的任意 $n$ 个解, $W(t)$ 是它们的 Wronski 行列式, 则 $W(t)$ 满足一阶线性微分方程 $W’(t)=-a_1(t)W(t)$, 因而有<br>
 $$<br>
-W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$</p>
+W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
+$$<br>
+<strong>证</strong> 由行列式求导法则可知<br>
+$$<br>
+W’(t)=\begin{vmatrix}<br>
+x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
+x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
+x_1^{(n)}&amp;x_2^{(n)}&amp;\cdots&amp;x_n^{(n)}<br>
+\end{vmatrix}<br>
+$$<br>
+于是<br>
+$$<br>
+W’(t)+a_1(t)W(t)=\begin{vmatrix}<br>
+x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
+x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
+x_1^{(n)}+a_1(t)x_1^{(n-1)}&amp;x_2^{(n)}+a_1(t)x_2^{(n-1)}&amp;\cdots&amp;x_n^{(n)}+a_1(t)x_n^{(n-1)}<br>
+\end{vmatrix}<br>
+$$<br>
+注意到<br>
+$$<br>
+\begin{cases}<br>
+x_1^{(n)}+a_1(t)x_1^{(n-1)}=-a_2(t)x_1^{(n-2)}-\cdots-a_n(t)x_1,\\<br>
+x_2^{(n)}+a_1(t)x_2^{(n-1)}=-a_2(t)x_2^{(n-2)}-\cdots-a_n(t)x_2,\\<br>
+\quad\quad\quad\quad\quad\quad\quad~ …\\<br>
+x_n^{(n)}+a_1(t)x_n^{(n-1)}=-a_2(t)x_n^{(n-2)}-\cdots-a_n(t)x_n,\\<br>
+\end{cases}<br>
+$$<br>
+因此 $W’(t)+a_1(t)W(t)=0, \ t\in[a,b]$. 解得<br>
+$$<br>
+W(t)=ce^{-\int_{t_0}^ta_1(s)\mathrm{~d}s}<br>
+$$<br>
+注意到 $W(t_0)=c$, 于是 $W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b]$.</p>
+<hr>
+<p><strong>[T040204]</strong> 设 $x=x_1(t), \ x=x_2(t)$ 是微分方程 $x’‘+x=0$ 的满足初始条件<br>
+$$<br>
+x_1(0)=0,\quad x_1’(0)=1,\\<br>
+x_2(0)=1,\quad x_2’(0)=0<br>
+$$<br>
+的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
+<p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
+<p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
+<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.</p>
+<p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
+$$<br>
+\begin{vmatrix}<br>
+x_1(t) &amp; x_2(t)\\<br>
+x_1’(t) &amp; x_2’(t)<br>
+\end{vmatrix}=<br>
+\begin{vmatrix}<br>
+x_1(0) &amp; x_2(0)\\<br>
+x_1’(0) &amp; x_2’(0)<br>
+\end{vmatrix}=-1<br>
+$$<br>
+又 $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$, 故 $x_1^2(t)+x_2^2(t)\equiv1$.</p>
 
       
     </div>
@@ -620,7 +635,7 @@ $$</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/4.4%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%9D%9E%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E7%B3%BB%E6%95%B0%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -634,7 +649,7 @@ $$</p>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/4.4%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%9D%9E%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E7%B3%BB%E6%95%B0%E6%B3%95/" class="post-title-link" itemprop="url">常系数非齐次线性方程的待定系数法</a>
+            <a href="/2025/09/03/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" class="post-title-link" itemprop="url">一阶线性微分方程组</a>
         </h2>
 
         <div class="post-meta">
@@ -645,7 +660,7 @@ $$</p>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:13" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:34:34" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -661,7 +676,7 @@ $$</p>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">一阶线性微分方程组</span></a>
                 </span>
             </span>
 
@@ -676,21 +691,87 @@ $$</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T040401]</strong> 求微分方程通解: $\frac{\mathrm d^2x}{\mathrm dt^2}+x=\frac{1}{\sin^3t}$.</p>
-<p><strong>解</strong> 对应的常系数齐次线性微分方程的特征方程为 $\lambda^2+1=0$, 得特征根为 $\lambda_1=i,\ \lambda_2=-i$. 故对应的常系数齐次线性微分方程的通解为 $x(t)=c_1\cos t+c_2\sin t$. 设原方程的通解为<br>
+          <p><strong>[T050101]</strong> 设 $A$ 为 $n\times n$ 常数矩阵, $\Phi(t)$ 是方程组 $X’=AX$ 的标准基解矩阵 $(\Phi(0)=E)$, 证明 $\Phi(t)\Phi^{-1}(t_0)=\Phi(t-t_0)$, 其中 $t_0$ 是常数.</p>
+<p><strong>证</strong> 由题设可知 $\Phi’(t)=A\Phi(t)$, 将 $t$ 换为 $t-t_0$, 则 $\Phi’(t-t_0)=A\Phi(t-t_0)$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的解矩阵. 又当 $t=t_0$ 时 $\det\Phi(0)=1$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的基解矩阵. 于是存在 $n$ 阶非奇异常数矩阵 $C$, 使得 $\Phi(t-t_0)=\Phi(t)C$, 再令 $t=t_0$, 有 $E=\Phi(t_0)C$, 得 $C=\Phi^{-1}(t_0)$, 故 $\Phi(t-t_0)=\Phi(t)\Phi^{-1}(t_0)$.</p>
+<hr>
+<p><strong>[T050102]</strong> (Liouville公式) 设 $X_1(t),X_2(t),\cdots,X_n(t)$ 是齐次线性方程组 $X’(t)=A(t)X(t)$ 的任意 $n$ 个解, 则它们的 Wronski 行列式 $W(t)$ 满足一阶线性微分方程<br>
 $$<br>
-x(t)=c_1(t)\cos t+c_2(t)\sin t<br>
+W’(t)=\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]W(t),<br>
 $$<br>
-利用常数变易法, 得到关于 $c_1’(t)$ 和 $c_2’(t)$ 的两个方程:<br>
+因而有<br>
 $$<br>
-\begin{cases}<br>
-c_1’(t)\cos t+c_2’(t)\sin t=0\<br>
--c_1’(t)\sin t+c_2’(t)\cos t=\frac{1}{\sin^3t}<br>
-\end{cases}<br>
+W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
 $$<br>
-解得 $c_1’(t)=-\frac{1}{2\sin^2t}, \ c_2’(t)=\frac{\cos t}{\sin ^3t}$. 于是 $c_1(t)=\frac{1}{2}\cot t+c_1, \ c_2(t)=-\frac{1}{2}\sin^{-2}t+c_2$, 从而通解为<br>
+<strong>证</strong> 记 $X_i(t)=\left(x_{i1}(t),\cdots,x_{in}(t)\right)^T$, 则<br>
 $$<br>
-x(t)=c_1\cos t+c_2\sin t+\frac{1}{2}\cot t\cos t-\frac{1}{2}\frac{1}{\sin t}.<br>
+W(t)=\left|X_1(t),\cdots,X_n(t)\right|=\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}<br>
+$$<br>
+由行列式求导法则知<br>
+$$<br>
+\begin{aligned}<br>
+W’(t)=&amp;\begin{vmatrix}<br>
+x’<em>{11}(t) &amp; x’</em>{21}(t) &amp; \cdots &amp; x’<em>{n1}(t)\\<br>
+x</em>{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}+<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x’<em>{12}(t) &amp; x’</em>{22}(t) &amp; \cdots &amp; x’<em>{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x</em>{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}\&amp;+\cdots +<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x’<em>{1n}(t) &amp; x’</em>{2n}(t) &amp; \cdots &amp; x’_{nn}(t)<br>
+\end{vmatrix}\\</p>
+<p>=&amp;\begin{vmatrix}<br>
+\sum\limits_{i=1}^na_{1i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{1i}x_{2i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}+<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+\sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}\&amp;+\cdots +<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+\sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t)<br>
+\end{vmatrix}\\</p>
+<p>=&amp;\begin{vmatrix}<br>
+a_{11}x_{11}(t) &amp; a_{11}x_{21}(t) &amp; \cdots &amp; a_{11}x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}+\cdots +<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+a_{nn}x_{1n}(t) &amp; a_{nn}x_{2n}(t) &amp; \cdots &amp; a_{nn}x_{nn}(t)<br>
+\end{vmatrix}\\<br>
+=&amp;[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).<br>
+\end{aligned}<br>
+$$<br>
+求解上述微分方程得<br>
+$$<br>
+W(t)=ce^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s}<br>
+$$<br>
+又 $W(t_0)=c$, 故<br>
+$$<br>
+W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
 $$</p>
 
       
