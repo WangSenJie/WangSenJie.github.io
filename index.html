@@ -175,101 +175,6 @@ window.MathJax = {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/02/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/02/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">单调收敛定理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-02 00:00:00 / 修改时间：23:57:43" itemprop="dateCreated datePublished" datetime="2025-09-02T00:00:00+08:00">2025-09-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">测度论</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
-$$<br>
-\mu(f)=\lim\limits_n\mu(f_n)<br>
-$$<br>
-<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
-$$<br>
-A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
-$$<br>
-满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
-$$<br>
-\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
-$$<br>
-因为 $g$ 是简单的, 故<br>
-$$<br>
-\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
-$$<br>
-由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
-$$<br>
-\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
-$$<br>
-可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
-$$<br>
-\lim\limits_n\mu(f_n)=\mu(f).<br>
-$$</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/02/Carathe%CC%81odory%E6%89%A9%E5%BC%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -368,6 +273,101 @@ $$<br>
 $$<br>
 由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
 综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/02/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/02/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">单调收敛定理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-02 00:00:00 / 修改时间：23:57:43" itemprop="dateCreated datePublished" datetime="2025-09-02T00:00:00+08:00">2025-09-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">测度论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
+$$<br>
+\mu(f)=\lim\limits_n\mu(f_n)<br>
+$$<br>
+<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
+$$<br>
+A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
+$$<br>
+满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
+$$<br>
+\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
+$$<br>
+因为 $g$ 是简单的, 故<br>
+$$<br>
+\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
+$$<br>
+由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
+$$<br>
+\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
+$$<br>
+可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
+$$<br>
+\lim\limits_n\mu(f_n)=\mu(f).<br>
+$$</p>
 
       
     </div>
