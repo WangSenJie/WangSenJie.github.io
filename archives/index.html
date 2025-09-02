@@ -40,6 +40,21 @@
     lang   : 'zh-CN'
   };
 </script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    packages: {'[+]': ['ams']},   // 关键：加载 ams（align/aligned 等）
+    tags: 'ams'
+  },
+  options: {
+    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <title>归档 | 我的博客</title>
   
@@ -161,15 +176,15 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2025-09-02T17:47:47+08:00"
+              datetime="2025-09-02T18:57:39+08:00"
               content="2025-09-02">
           09-02
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2025/09/02/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
+          <a class="post-title-link" href="/2025/09/02/Carathe%CC%81odory%E6%89%A9%E5%BC%A0/" itemprop="url">
+            <span itemprop="name">Carathéodory扩张</span>
           </a>
       </div>
 
