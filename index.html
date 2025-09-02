@@ -467,6 +467,122 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">Picard 存在唯一性定理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：01:47:57" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
+<p>    <strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left{a,\frac{b}{M}\right}$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $|x|\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
+$$<br>
+\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
+$$<br>
+显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
+$$<br>
+|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
+$$<br>
+于是当 $x\in[0,\frac12]$ 时, 有<br>
+$$<br>
+|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.\quad\quad #<br>
+$$</p>
+<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
+<p>    <strong>解</strong> 对 $\forall x\in \R, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\R$, 当 $|y-x|&lt;\delta$ 时, 有<br>
+$$<br>
+|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
+$$<br>
+即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\R$ 上的任意性可知 $f$ 在 $\R$ 上连续.</p>
+<p>    任取 $x_0\in\R$, 构造迭代数列<br>
+$$<br>
+x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
+$$<br>
+则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
+$$<br>
+|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
+$$<br>
+由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
+$$<br>
+x^</em>=f(x^<em>)<br>
+$$<br>
+即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
+<p>    再证解的唯一性, 假设原方程还有一个解 $y^<em>\neq x^</em>$, 则有<br>
+$$<br>
+x^<em>=f(x^</em>),\quad y^<em>=f(y^</em>)<br>
+$$<br>
+从而 $|f(y^<em>)-f(x^</em>)|=|y^<em>-x^</em>|$. 再由题设可知 $|f(y^<em>)-f(x^</em>)|\le L|y^<em>-x^</em>|$, 故<br>
+$$<br>
+|y^<em>-x^</em>|\le L|y^<em>-x^</em>|\Rightarrow L\ge1<br>
+$$<br>
+这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^*$.	#</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -584,7 +700,7 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -598,7 +714,7 @@ $$<br>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/" class="post-title-link" itemprop="url">解对初值与参数的连续性与可微性</a>
+            <a href="/2025/09/03/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/" class="post-title-link" itemprop="url">不动点定理与解的存在性</a>
         </h2>
 
         <div class="post-meta">
@@ -609,7 +725,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：01:49:54" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：01:49:05" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -640,40 +756,48 @@ $$<br>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
+          <p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
+<p>    <strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
 $$<br>
-|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty&lt;y&lt;+\infty<br>
+T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
 $$<br>
-那么方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 的经过点 $(x_0,\xi_0)$ 的积分曲线 $y=\eta(x)$ 也必在 $[x_0,X]$ 上有定义, 且在 $[x_0,X]$ 上满足不等式<br>
+在 $X$ 上引入距离<br>
 $$<br>
-|\eta(x)-\xi(x)|&lt; \varepsilon,\quad x_0\le x\le X.<br>
+\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
 $$<br>
-    <strong>证</strong> 因为 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 $y|<em>{x=x_0}=\xi_0$ 的解 $y=\xi(x)$ 存在且唯一. 记积分曲线 $y=\xi(x)$ 为 $l_1$, 则 $l_1: \ y=\xi(x),x\in[x_0,X]$ 为 $xOy$ 平面上的有界闭集. 对 $l_1$ 上的任一点 $(x,y)$, 必存在以该点为圆心的开圆 $C\subset D$, 使在其内的函数 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 $C_i \ (i=1,2,\cdots,N)$, 且它们的全体可以覆盖整个积分曲线段 $l_1$. 设 $C_i$ 的半径为 $\varepsilon_i$, Lipschitz 常数为 $L$. 再记 $\varepsilon_0=\min\limits</em>{1\le i\le N}{\varepsilon_i}$, 令 $\Omega=\bigcup\limits_{i=1}^NC_i$, 则 $l_1\subset \Omega\subset D$, 且 $\Omega$ 的边界 $\partial \Omega$ 到 $l_1$ 的距离为 $0&lt;\rho\le\varepsilon_0$.<br>
-    设方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 经过点 $(x_0,\xi_0)$ 的积分曲线为 $l_2:\ y=\eta(x)$. 注意到 $\xi(x)$ 与 $\eta(x)$ 满足积分方程<br>
-$$<br>
-\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t<br>
-$$<br>
-则<br>
+注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
 $$<br>
 \begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\<br>
-&amp;=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\<br>
-&amp;\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\<br>
-&amp;=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t<br>
+\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\<br>
+&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\<br>
+&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\<br>
+&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
 \end{aligned}<br>
 $$<br>
-由 Gronwall 不等式可知<br>
+由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.	#</p>
+<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
+<p>    <strong>解</strong> 记 $\R^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\R^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
 $$<br>
-|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t<br>
+||A||=\max\limits_{0\neq x\in\R^n}\frac{||Ax||}{||x||}.<br>
 $$<br>
-     取 $\bar\varepsilon=\min{\varepsilon,\rho}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}$, 则有<br>
+在 $\R^n$ 上定义距离<br>
+$$<br>
+\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\R^n.<br>
+$$<br>
+在 $\R^n$ 上定义映射<br>
+$$<br>
+T:\quad Tx=b+(I_n-A)x.<br>
+$$<br>
+则对任意的 $x_1,x_2\in\R^n$, 有<br>
 $$<br>
 \begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\<br>
-&amp;\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}&lt;\rho<br>
+\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\<br>
+&amp;=||(I_n-A)(x_1-x_2)||\<br>
+&amp;\le||I_n-A||\cdot||x_1-x_2||\<br>
+&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
 \end{aligned}<br>
 $$<br>
-即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.	#</p>
+注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.	#</p>
 
       
     </div>
@@ -784,178 +908,6 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/" class="post-title-link" itemprop="url">高阶线性微分方程的一般理论</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：01:52:19" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
-<p>    <strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
-$$<br>
-\left\lbrace<br>
-\begin{array}{cccc}<br>
-x_1(t_0)=1, &amp; x’_1(t_0)=0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)=0,\<br>
-x_2(t_0)=0, &amp; x’_2(t_0)=1, &amp; \cdots, &amp; x_2^{(n-2)}(t_0)=0,\<br>
-\vdots &amp; \vdots &amp; &amp; \vdots\<br>
-x_n(t_0)=0, &amp; x_n’(t_0)=0, &amp; \cdots, &amp; x_n^{(n-1)}(t_0)=1<br>
-\end{array}<br>
-\right.<br>
-$$<br>
-的解 $x_1(t),x_2(t),\cdots,x_n(t)$ 一定存在且唯一, 注意到它们的 Wronski 行列式<br>
-$$<br>
-W(x_1(t_0),x_2(t_0),\cdots,x_n(t_0))=1\neq0<br>
-$$<br>
-故这 $n$ 个解必线性无关.	#</p>
-<hr>
-<p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
-<p>    <strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
-    显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\<br>
-\Longrightarrow&amp;(c_1x_1+c_2x_2+\cdots+c_nx_n)+(c_1+c_2+\cdots+c_{n+1})\bar x=0<br>
-\end{aligned}<br>
-$$<br>
-此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
-    再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\<br>
-\Longrightarrow&amp;c_1x_1+c_2x_2+\cdots+c_{n+1}x_{n+1}-(c_1+c_2+\cdots+c_{n+1})x_{n+2}=0<br>
-\end{aligned}<br>
-$$<br>
-故这 $n+2$ 个解在 $[a,b]$ 上线性相关, 产生矛盾!	#</p>
-<hr>
-<p><strong>[T040203]</strong> (Liouville 公式) 设 $x_1(t),x_2(t),\cdots,x_n(t)$ 是齐次线性方程 $L[x]=0$ 的任意 $n$ 个解, $W(t)$ 是它们的 Wronski 行列式, 则 $W(t)$ 满足一阶线性微分方程 $W’(t)=-a_1(t)W(t)$, 因而有<br>
-$$<br>
-W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$<br>
-    <strong>证</strong> 由行列式求导法则可知<br>
-$$<br>
-W’(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\<br>
-x_1^{(n)}&amp;x_2^{(n)}&amp;\cdots&amp;x_n^{(n)}<br>
-\end{vmatrix}<br>
-$$<br>
-于是<br>
-$$<br>
-W’(t)+a_1(t)W(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}&amp;x_2^{(n)}+a_1(t)x_2^{(n-1)}&amp;\cdots&amp;x_n^{(n)}+a_1(t)x_n^{(n-1)}<br>
-\end{vmatrix}<br>
-$$<br>
-注意到<br>
-$$<br>
-\begin{cases}<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}=-a_2(t)x_1^{(n-2)}-\cdots-a_n(t)x_1,\<br>
-x_2^{(n)}+a_1(t)x_2^{(n-1)}=-a_2(t)x_2^{(n-2)}-\cdots-a_n(t)x_2,\<br>
-\quad\quad\quad\quad\quad\quad\quad~ …\<br>
-x_n^{(n)}+a_1(t)x_n^{(n-1)}=-a_2(t)x_n^{(n-2)}-\cdots-a_n(t)x_n,\<br>
-\end{cases}<br>
-$$<br>
-因此 $W’(t)+a_1(t)W(t)=0, \ t\in[a,b]$. 解得<br>
-$$<br>
-W(t)=ce^{-\int_{t_0}^ta_1(s)\mathrm{~d}s}<br>
-$$<br>
-注意到 $W(t_0)=c$, 于是 $W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b]$.	#</p>
-<hr>
-<p><strong>[T040204]</strong> 设 $x=x_1(t), \ x=x_2(t)$ 是微分方程 $x’‘+x=0$ 的满足初始条件<br>
-$$<br>
-x_1(0)=0,\quad x_1’(0)=1,\<br>
-x_2(0)=1,\quad x_2’(0)=0<br>
-$$<br>
-的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
-<p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
-<p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-<p>    <strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.	#</p>
-<p>    (2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
-$$<br>
-\begin{vmatrix}<br>
-x_1(t) &amp; x_2(t)\<br>
-x_1’(t) &amp; x_2’(t)<br>
-\end{vmatrix}=<br>
-\begin{vmatrix}<br>
-x_1(0) &amp; x_2(0)\<br>
-x_1’(0) &amp; x_2’(0)<br>
-\end{vmatrix}=-1<br>
-$$<br>
-又 $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$, 故 $x_1^2(t)+x_2^2(t)\equiv1$.	#</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/4.4%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%9D%9E%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E7%B3%BB%E6%95%B0%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1028,6 +980,115 @@ $$<br>
 $$<br>
 x(t)=c_1\cos t+c_2\sin t+\frac{1}{2}\cot t\cos t-\frac{1}{2}\frac{1}{\sin t}.	\quad\quad#<br>
 $$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/" class="post-title-link" itemprop="url">解对初值与参数的连续性与可微性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：01:49:54" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
+$$<br>
+|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty&lt;y&lt;+\infty<br>
+$$<br>
+那么方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 的经过点 $(x_0,\xi_0)$ 的积分曲线 $y=\eta(x)$ 也必在 $[x_0,X]$ 上有定义, 且在 $[x_0,X]$ 上满足不等式<br>
+$$<br>
+|\eta(x)-\xi(x)|&lt; \varepsilon,\quad x_0\le x\le X.<br>
+$$<br>
+    <strong>证</strong> 因为 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 $y|<em>{x=x_0}=\xi_0$ 的解 $y=\xi(x)$ 存在且唯一. 记积分曲线 $y=\xi(x)$ 为 $l_1$, 则 $l_1: \ y=\xi(x),x\in[x_0,X]$ 为 $xOy$ 平面上的有界闭集. 对 $l_1$ 上的任一点 $(x,y)$, 必存在以该点为圆心的开圆 $C\subset D$, 使在其内的函数 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 $C_i \ (i=1,2,\cdots,N)$, 且它们的全体可以覆盖整个积分曲线段 $l_1$. 设 $C_i$ 的半径为 $\varepsilon_i$, Lipschitz 常数为 $L$. 再记 $\varepsilon_0=\min\limits</em>{1\le i\le N}{\varepsilon_i}$, 令 $\Omega=\bigcup\limits_{i=1}^NC_i$, 则 $l_1\subset \Omega\subset D$, 且 $\Omega$ 的边界 $\partial \Omega$ 到 $l_1$ 的距离为 $0&lt;\rho\le\varepsilon_0$.<br>
+    设方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 经过点 $(x_0,\xi_0)$ 的积分曲线为 $l_2:\ y=\eta(x)$. 注意到 $\xi(x)$ 与 $\eta(x)$ 满足积分方程<br>
+$$<br>
+\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t<br>
+$$<br>
+则<br>
+$$<br>
+\begin{aligned}<br>
+|\xi(x)-\eta(x)|&amp;=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\<br>
+&amp;=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\<br>
+&amp;\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\<br>
+&amp;=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t<br>
+\end{aligned}<br>
+$$<br>
+由 Gronwall 不等式可知<br>
+$$<br>
+|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t<br>
+$$<br>
+     取 $\bar\varepsilon=\min{\varepsilon,\rho}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}$, 则有<br>
+$$<br>
+\begin{aligned}<br>
+|\xi(x)-\eta(x)|&amp;\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\<br>
+&amp;\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}&lt;\rho<br>
+\end{aligned}<br>
+$$<br>
+即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.	#</p>
 
       
     </div>
@@ -1185,122 +1246,6 @@ $$<br>
 $$<br>
 W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].\quad\quad #<br>
 $$</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">Picard 存在唯一性定理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：01:47:57" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
-<p>    <strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left{a,\frac{b}{M}\right}$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $|x|\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
-$$<br>
-\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
-$$<br>
-显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
-$$<br>
-|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
-$$<br>
-于是当 $x\in[0,\frac12]$ 时, 有<br>
-$$<br>
-|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.\quad\quad #<br>
-$$</p>
-<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
-<p>    <strong>解</strong> 对 $\forall x\in \R, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\R$, 当 $|y-x|&lt;\delta$ 时, 有<br>
-$$<br>
-|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
-$$<br>
-即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\R$ 上的任意性可知 $f$ 在 $\R$ 上连续.</p>
-<p>    任取 $x_0\in\R$, 构造迭代数列<br>
-$$<br>
-x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
-$$<br>
-则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
-$$<br>
-|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
-$$<br>
-由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
-$$<br>
-x^</em>=f(x^<em>)<br>
-$$<br>
-即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
-<p>    再证解的唯一性, 假设原方程还有一个解 $y^<em>\neq x^</em>$, 则有<br>
-$$<br>
-x^<em>=f(x^</em>),\quad y^<em>=f(y^</em>)<br>
-$$<br>
-从而 $|f(y^<em>)-f(x^</em>)|=|y^<em>-x^</em>|$. 再由题设可知 $|f(y^<em>)-f(x^</em>)|\le L|y^<em>-x^</em>|$, 故<br>
-$$<br>
-|y^<em>-x^</em>|\le L|y^<em>-x^</em>|\Rightarrow L\ge1<br>
-$$<br>
-这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^*$.	#</p>
 
       
     </div>
