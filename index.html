@@ -470,6 +470,126 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/" class="post-title-link" itemprop="url">参数法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:53:42" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T020401]</strong> 求微分方程的通解 $y’^2=4y^3(1-y)$.</p>
+<p><strong>解</strong> 将方程化为 $y’=\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1/2}=\pm x+c$, 从而原方程的通解为 $y=\frac{1}{1+(\mp x+c)^2}$, 其中 $c$ 为任意常数. 此外, $y=0$ 和 $y=1$ 也是方程的解.</p>
+<hr>
+<p><strong>[T020402]</strong> 求微分方程的通解 $y’^3+y^3-3yy’=0$.</p>
+<p><strong>解</strong> 令 $y’=p, \ y=pt$, 其中 $p,t$ 都是参数, 则 $p^3+p^3t^3-3p^2t=0$. 当 $p\neq0$ 时,<br>
+$$<br>
+p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}<br>
+$$<br>
+(此时 $t\neq 0,-1$, 否则 $p=0$) 从而 $y=\frac{3t^2}{1+t^3}$. 注意到<br>
+$$<br>
+\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt<br>
+$$<br>
+两边积分可得 $x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c$, 故原方程的通解为<br>
+$$<br>
+\begin{cases}<br>
+x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\<br>
+y=\frac{3t^2}{1+t^3}<br>
+\end{cases}<br>
+$$<br>
+其中 $c$ 为任意常数.</p>
+<p>当 $p=0$ 时, $y=0$ 也是方程的解.</p>
+<hr>
+<p><strong>[T020403]</strong> 求微分方程的通解 $y’^3+y’^2-y’+1=0$.</p>
+<p><strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 $y’=a \ (\neq0)$, 则 $y=ax+c$ 为原方程的解, 从而 $a=\frac{y-c}{x}$, 于是 $y’=\frac{y-c}{x}$, 故方程的通解为<br>
+$$<br>
+\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.<br>
+$$</p>
+<hr>
+<p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
+<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.</p>
+<p><strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
+$$<br>
+\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+<p><strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
+$$<br>
+\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+<p><strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
+$$<br>
+\mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -495,7 +615,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:53:49" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：16:21:24" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -569,124 +689,6 @@ $$<br>
 |y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
 $$<br>
 这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/" class="post-title-link" itemprop="url">不动点定理与解的存在性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:54:26" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
-<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
-$$<br>
-T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
-$$<br>
-在 $X$ 上引入距离<br>
-$$<br>
-\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
-$$<br>
-注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
-$$<br>
-\begin{aligned}<br>
-\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
-&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
-&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
-&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
-\end{aligned}<br>
-$$<br>
-由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
-<hr>
-<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
-<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
-$$<br>
-||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
-$$<br>
-在 $\mathbb{R}^n$ 上定义距离<br>
-$$<br>
-\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
-$$<br>
-在 $\mathbb{R}^n$ 上定义映射<br>
-$$<br>
-T:\quad Tx=b+(I_n-A)x.<br>
-$$<br>
-则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
-&amp;=||(I_n-A)(x_1-x_2)||\\<br>
-&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
-&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
-\end{aligned}<br>
-$$<br>
-注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
 
       
     </div>
@@ -1180,7 +1182,7 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -1194,7 +1196,7 @@ $$<br>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/" class="post-title-link" itemprop="url">参数法</a>
+            <a href="/2025/09/03/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/" class="post-title-link" itemprop="url">不动点定理与解的存在性</a>
         </h2>
 
         <div class="post-meta">
@@ -1205,7 +1207,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:53:42" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:54:26" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1221,7 +1223,7 @@ $$<br>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
                 </span>
             </span>
 
@@ -1236,51 +1238,49 @@ $$<br>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T020401]</strong> 求微分方程的通解 $y’^2=4y^3(1-y)$.</p>
-<p><strong>解</strong> 将方程化为 $y’=\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1/2}=\pm x+c$, 从而原方程的通解为 $y=\frac{1}{1+(\mp x+c)^2}$, 其中 $c$ 为任意常数. 此外, $y=0$ 和 $y=1$ 也是方程的解.</p>
+          <p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
+<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
+$$<br>
+T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
+$$<br>
+在 $X$ 上引入距离<br>
+$$<br>
+\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
+$$<br>
+注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
+$$<br>
+\begin{aligned}<br>
+\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
+&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
+&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
+&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
+\end{aligned}<br>
+$$<br>
+由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
 <hr>
-<p><strong>[T020402]</strong> 求微分方程的通解 $y’^3+y^3-3yy’=0$.</p>
-<p><strong>解</strong> 令 $y’=p, \ y=pt$, 其中 $p,t$ 都是参数, 则 $p^3+p^3t^3-3p^2t=0$. 当 $p\neq0$ 时,<br>
+<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
+<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
 $$<br>
-p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}<br>
+||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
 $$<br>
-(此时 $t\neq 0,-1$, 否则 $p=0$) 从而 $y=\frac{3t^2}{1+t^3}$. 注意到<br>
+在 $\mathbb{R}^n$ 上定义距离<br>
 $$<br>
-\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt<br>
+\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
 $$<br>
-两边积分可得 $x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c$, 故原方程的通解为<br>
+在 $\mathbb{R}^n$ 上定义映射<br>
 $$<br>
-\begin{cases}<br>
-x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\<br>
-y=\frac{3t^2}{1+t^3}<br>
-\end{cases}<br>
+T:\quad Tx=b+(I_n-A)x.<br>
 $$<br>
-其中 $c$ 为任意常数.</p>
-<p>当 $p=0$ 时, $y=0$ 也是方程的解.</p>
-<hr>
-<p><strong>[T020403]</strong> 求微分方程的通解 $y’^3+y’^2-y’+1=0$.</p>
-<p><strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 $y’=a \ (\neq0)$, 则 $y=ax+c$ 为原方程的解, 从而 $a=\frac{y-c}{x}$, 于是 $y’=\frac{y-c}{x}$, 故方程的通解为<br>
+则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
 $$<br>
-\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.<br>
-$$</p>
-<hr>
-<p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
-<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.</p>
-<p><strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
+\begin{aligned}<br>
+\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
+&amp;=||(I_n-A)(x_1-x_2)||\\<br>
+&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
+&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
+\end{aligned}<br>
 $$<br>
-\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
-$$<br>
-\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
-$$<br>
-\mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
 
       
     </div>
