@@ -175,6 +175,106 @@ window.MathJax = {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/" class="post-title-link" itemprop="url">常系数齐次线性方程的待定指数函数法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:09" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T040301]</strong> 求方程 $x^2 y’‘+2x^2\tan y\cdot y’^2+xy’-\sin y\cos y=0$ 的通解.</p>
+<p><strong>解</strong> 令 $u=\tan y$, 即 $y=\arctan u$, 于是<br>
+$$<br>
+\begin{cases}<br>
+y’=\frac{1}{1+u^2}\frac{\mathrm du}{\mathrm dx},\<br>
+y’'=-\frac{2u}{(1+u^2)^2}\left(\frac{\mathrm du}{\mathrm dx}\right)^2+\frac{1}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}<br>
+\end{cases}<br>
+$$<br>
+于是原方程变为<br>
+$$<br>
+\frac{x^2}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}+\frac{x}{1+u^2}\frac{\mathrm du}{\mathrm dx}-\frac{u}{1+u^2}=0<br>
+$$<br>
+即 $x^2\frac{\mathrm d^2u}{\mathrm dx^2}+x\frac{\mathrm du}{\mathrm dx}-u=0$. 令 $x=e^t$, 即 $t=\ln x$, 令 $D=\frac{\mathrm d}{\mathrm dt}$, 则原方程可改写为<br>
+$$<br>
+D(D-1)u+Du-u=0\Longrightarrow \frac{\mathrm d^2u}{\mathrm dt^2}-u=0.<br>
+$$<br>
+其特征方程为 $\lambda^2-1=0$, 解得特征根为 $\lambda_1=1, \ \lambda_2=-1$, 故通解为<br>
+$$<br>
+u(t)=c_1e^t+c_2e^{-t}<br>
+$$<br>
+其中 $c_1,c_2$ 为任意常数. 再将 $t=\ln x$ 代入, 得<br>
+$$<br>
+u=c_1x+\frac{c_2}{x}\Rightarrow \tan y=c_1x+\frac{c_2}{x}<br>
+$$<br>
+即通解为 $y=\arctan(c_1x+\frac{c_2}{x})$, 其中 $c_1,c_2$ 为任意常数.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1187,20 +1287,20 @@ $$</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
