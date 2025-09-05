@@ -175,7 +175,7 @@ window.MathJax = {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Hexo-%E6%8C%87%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/197%E4%B8%8A%E5%8D%87%E7%9A%84%E6%B8%A9%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -189,7 +189,7 @@ window.MathJax = {
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/05/Hexo-%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Hexo 指令</a>
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/197%E4%B8%8A%E5%8D%87%E7%9A%84%E6%B8%A9%E5%BA%A6/" class="post-title-link" itemprop="url">上升的温度</a>
         </h2>
 
         <div class="post-meta">
@@ -200,108 +200,7 @@ window.MathJax = {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-05 02:41:39 / 修改时间：02:50:22" itemprop="dateCreated datePublished" datetime="2025-09-05T02:41:39+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo-%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">Hexo 教程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="最常用（发文三步走）">最常用（发文三步走）</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;文章标题&quot;</span>          <span class="comment"># 1) 新建文章（自动带日期与 front-matter）</span></span><br><span class="line">hexo s -o                   <span class="comment"># 2) 本地预览（-o 自动打开浏览器）</span></span><br><span class="line">hexo d -g                   <span class="comment"># 3) 生成并部署（等价：hexo g &amp;&amp; hexo d）</span></span><br></pre></td></tr></table></figure>
-<h2 id="文章管理">文章管理</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo list post              <span class="comment"># 列出文章</span></span><br><span class="line">hexo new draft <span class="string">&quot;草稿标题&quot;</span>    <span class="comment"># 新建草稿（source/_drafts/）</span></span><br><span class="line">hexo publish <span class="string">&quot;草稿标题&quot;</span>      <span class="comment"># 草稿发布为正式文章（移到 _posts/）</span></span><br><span class="line">hexo clean                  <span class="comment"># 清缓存（改配置/主题后建议先 clean 再 g/s）</span></span><br></pre></td></tr></table></figure>
-<p><strong>建议的 front-matter 模板</strong>（放进 scaffolds/post.md）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line"><span class="built_in">date</span>: &#123;&#123; <span class="built_in">date</span> &#125;&#125;</span><br><span class="line">categories:</span><br><span class="line">  - 未分类</span><br><span class="line">tags:</span><br><span class="line">  - </span><br><span class="line"><span class="comment"># 若你在 NexT 里 math.per_page: true，可按需开启：</span></span><br><span class="line"><span class="comment"># mathjax: true   # 或 katex: true</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="分类-标签-页面">分类 / 标签 / 页面</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line"><span class="comment"># 打开 source/categories/index.md，写入：</span></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"><span class="comment"># title: 分类</span></span><br><span class="line"><span class="comment"># type: categories</span></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line">hexo new page tags</span><br><span class="line"><span class="comment"># 打开 source/tags/index.md，写入：</span></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"><span class="comment"># title: 标签</span></span><br><span class="line"><span class="comment"># type: tags</span></span><br><span class="line"><span class="comment"># ---</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="图片-附件（PDF）">图片 / 附件（PDF）</h2>
-<p><strong>开启文章资源夹（一次设置）：编辑站点根 _config.yml：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>然后：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;有图的文章&quot;</span></span><br><span class="line"><span class="comment"># 会得到：</span></span><br><span class="line"><span class="comment"># source/_posts/有图的文章.md</span></span><br><span class="line"><span class="comment"># source/_posts/有图的文章/   ← 把图片/PDF丢这里</span></span><br></pre></td></tr></table></figure>
-<p>在文中引用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![](./有图的文章/figure1.png)</span><br><span class="line">[下载讲义](./有图的文章/讲义.pdf)</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="部署（你用-SSH）">部署（你用 SSH）</h2>
-<p>站点根 _config.yml 中（确认一次即可）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:WangSenJie/WangSenJie.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
-<p>手动排障推送（遇到 hexo d 报错时）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/Sites/blog/.deploy_git</span><br><span class="line">git remote -v</span><br><span class="line">git push origin HEAD:main</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="域名-CNAME（可选）">域名 / CNAME（可选）</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义域名（防止 GitHub Pages 设置被覆盖）</span></span><br><span class="line"><span class="built_in">echo</span> blog.wangsenjie.com &gt; <span class="built_in">source</span>/CNAME</span><br><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="快速排错">快速排错</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo s          <span class="comment"># 大多显示问题先清缓存再预览</span></span><br><span class="line">ssh -T git@github.com         <span class="comment"># 检查 SSH 连通（应显示 successfully authenticated）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># YAML 报错（重复键/缩进）常见：</span></span><br><span class="line"><span class="comment"># YAMLException: duplicated mapping key</span></span><br><span class="line"><span class="comment"># 打开提示行附近去重；一个 key 只能出现一次</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 端口占用（4000 起不来）</span></span><br><span class="line">hexo s -p 4001</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找误触发标题的 &#x27;---&#x27;（导致上一行变大）</span></span><br><span class="line">grep -nE <span class="string">&#x27;^[[:space:]]*[-=]&#123;3,&#125;[[:space:]]*$&#x27;</span> <span class="built_in">source</span>/_posts/*.md</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="便捷脚本（推荐）">便捷脚本（推荐）</h2>
-<p>在站点 package.json 加：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;start&quot;</span>: <span class="string">&quot;hexo s -o&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build&quot;</span>: <span class="string">&quot;hexo g&quot;</span>,</span><br><span class="line">    <span class="string">&quot;deploy&quot;</span>: <span class="string">&quot;hexo d -g&quot;</span>,</span><br><span class="line">    <span class="string">&quot;clean&quot;</span>: <span class="string">&quot;hexo clean&quot;</span>,</span><br><span class="line">    <span class="string">&quot;new&quot;</span>: <span class="string">&quot;hexo new&quot;</span>           // 用法：npm run new \&quot;标题\&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以后可用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run start</span><br><span class="line">npm run deploy</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/%E7%BB%84%E5%90%88%E4%B8%A4%E5%BC%A0%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/%E7%BB%84%E5%90%88%E4%B8%A4%E5%BC%A0%E8%A1%A8/" class="post-title-link" itemprop="url">组合两张表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 02:28:13 / 修改时间：02:38:44" itemprop="dateCreated datePublished" datetime="2025-09-05T02:28:13+08:00">2025-09-05</time>
+              <time title="创建时间：2025-09-05 19:47:10 / 修改时间：19:51:51" itemprop="dateCreated datePublished" datetime="2025-09-05T19:47:10+08:00">2025-09-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -328,28 +227,390 @@ window.MathJax = {
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[leetcode 175]</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>personId 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
-<p>表: Address</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
-<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code> 。<br>
-以任意顺序返回结果表。</p>
+          <p><strong>问题描述：</strong><br>
+表： Weather</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+---------------+---------+</span><br><span class="line">| Column Name   | Type    |</span><br><span class="line">+---------------+---------+</span><br><span class="line">| id            | int     |</span><br><span class="line">| recordDate    | date    |</span><br><span class="line">| temperature   | int     |</span><br><span class="line">+---------------+---------+</span><br></pre></td></tr></table></figure>
+<p>id 是该表具有唯一值的列。<br>
+没有具有相同 recordDate 的不同行。<br>
+该表包含特定日期的温度信息</p>
+<p>编写解决方案，找出与之前（昨天的）日期相比温度更高的所有日期的 id 。</p>
+<p>返回结果 无顺序要求 。</p>
+<p>结果格式如下例子所示。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">Weather 表：</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| id | recordDate | Temperature |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| 1  | 2015-01-01 | 10          |</span><br><span class="line">| 2  | 2015-01-02 | 25          |</span><br><span class="line">| 3  | 2015-01-03 | 20          |</span><br><span class="line">| 4  | 2015-01-04 | 30          |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">输出：</span><br><span class="line">+----+</span><br><span class="line">| id |</span><br><span class="line">+----+</span><br><span class="line">| 2  |</span><br><span class="line">| 4  |</span><br><span class="line">+----+</span><br><span class="line">解释：</span><br><span class="line">2015-01-02 的温度比前一天高（10 -&gt; 25）</span><br><span class="line">2015-01-04 的温度比前一天高（20 -&gt; 30）</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rising_temperature</span>(<span class="params">weather: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    weather.sort_values(<span class="string">&#x27;recordDate&#x27;</span>, inplace = <span class="literal">True</span>)</span><br><span class="line">    weather_diff = weather.diff()</span><br><span class="line">    <span class="keyword">return</span> weather.loc[(weather_diff[<span class="string">&#x27;recordDate&#x27;</span>] == datetime.timedelta(<span class="number">1</span>)) &amp; (weather_diff[<span class="string">&#x27;temperature&#x27;</span>]&gt;<span class="number">0</span>), [<span class="string">&#x27;id&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(197)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/196%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/196%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/" class="post-title-link" itemprop="url">删除重复的电子邮箱</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-05 19:43:06 / 修改时间：19:51:42" itemprop="dateCreated datePublished" datetime="2025-09-05T19:43:06+08:00">2025-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>问题描述：</strong> 表: Person</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。</p>
+<p>编写解决方案 删除 所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
+<p>（对于 <code>SQL</code> 用户，请注意你应该编写一个 <code>DELETE</code> 语句而不是 <code>SELECT</code> 语句。）</p>
+<p>（对于 <code>Pandas</code> 用户，请注意你应该直接修改 <code>Person</code> 表。）</p>
+<p>运行脚本后，显示的答案是 <code>Person</code> 表。驱动程序将首先编译并运行您的代码片段，然后再显示 <code>Person</code> <code>表。Person</code> 表的最终顺序 无关紧要 。</p>
+<p>返回结果格式如下示例所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">输出: </span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br><span class="line">解释: john@example.com重复两次。我们保留最小的Id = 1。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(196)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/185%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E5%89%8D%E4%B8%89%E9%AB%98%E7%9A%84%E6%89%80%E6%9C%89%E5%91%98%E5%B7%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/185%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E5%89%8D%E4%B8%89%E9%AB%98%E7%9A%84%E6%89%80%E6%9C%89%E5%91%98%E5%B7%A5/" class="post-title-link" itemprop="url">部门工资前三高的所有员工</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-05 19:08:13 / 修改时间：19:51:27" itemprop="dateCreated datePublished" datetime="2025-09-05T19:08:13+08:00">2025-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>问题描述：</strong> 表: <code>Employee</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+<code>departmentId</code> 是 <code>Department</code> 表中 <code>ID</code> 的外键（<code>reference</code> 列）。<br>
+该表的每一行都表示员工的<code>ID</code>、姓名和工资。它还包含了他们部门的<code>ID</code>。</p>
+<p>表: <code>Department</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+该表的每一行表示部门ID和部门名。</p>
+<p>公司的主管们感兴趣的是公司每个部门中谁赚的钱最多。一个部门的 高收入者 是指一个员工的工资在该部门的 不同 工资中 排名前三 。</p>
+<p>编写解决方案，找出每个部门中 收入高的员工 。</p>
+<p>以 任意顺序 返回结果表。</p>
+<p>返回结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 85000  | 1            |</span><br><span class="line">| 2  | Henry | 80000  | 2            |</span><br><span class="line">| 3  | Sam   | 60000  | 2            |</span><br><span class="line">| 4  | Max   | 90000  | 1            |</span><br><span class="line">| 5  | Janet | 69000  | 1            |</span><br><span class="line">| 6  | Randy | 85000  | 1            |</span><br><span class="line">| 7  | Will  | 70000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department  表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">| IT         | Joe      | 85000  |</span><br><span class="line">| IT         | Randy    | 85000  |</span><br><span class="line">| IT         | Will     | 70000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| Sales      | Sam      | 60000  |</span><br><span class="line">+------------+----------+--------+</span><br></pre></td></tr></table></figure>
+<p><strong>解释:</strong><br>
+在IT部门:</p>
+<ul>
+<li>Max的工资最高</li>
+<li>兰迪和乔都赚取第二高的独特的薪水</li>
+<li>威尔的薪水是第三高的</li>
+</ul>
+<p>在销售部:</p>
+<ul>
+<li>亨利的工资最高</li>
+<li>山姆的薪水第二高</li>
+<li>没有第三高的工资，因为只有两名员工</li>
+</ul>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep&lt;=<span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(department, left_on=<span class="string">&#x27;departmentId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_dep&#x27;</span>))[[<span class="string">&#x27;name_dep&#x27;</span>,<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;salary&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(185)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/184%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E6%9C%80%E9%AB%98%E7%9A%84%E5%91%98%E5%B7%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/184%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E6%9C%80%E9%AB%98%E7%9A%84%E5%91%98%E5%B7%A5/" class="post-title-link" itemprop="url">部门工资最高的员工</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-05 19:03:13 / 修改时间：19:07:49" itemprop="dateCreated datePublished" datetime="2025-09-05T19:03:13+08:00">2025-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>问题描述：</strong><br>
+表： <code>Employee</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| 列名          | 类型    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 <code>SQL</code> 中，<code>id</code>是此表的主键。<br>
+<code>departmentId</code> 是 <code>Department</code> 表中 <code>id</code> 的外键（在 <code>Pandas</code> 中称为 <code>join key</code>）。<br>
+此表的每一行都表示员工的 <code>id</code>、姓名和工资。它还包含他们所在部门的 <code>id</code>。</p>
+<p>表： <code>Department</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 <code>SQL</code> 中，<code>id</code> 是此表的主键列。<br>
+此表的每一行都表示一个部门的 id 及其名称。</p>
+<p>查找出每个部门中薪资最高的员工。<br>
+按 任意顺序 返回结果表。<br>
+查询结果格式如下例所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 70000  | 1            |</span><br><span class="line">| 2  | Jim   | 90000  | 1            |</span><br><span class="line">| 3  | Henry | 80000  | 2            |</span><br><span class="line">| 4  | Sam   | 60000  | 2            |</span><br><span class="line">| 5  | Max   | 90000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出：</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Jim      | 90000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">解释：Max 和 Jim 在 IT 部门的工资都是最高的，Henry 在销售部的工资最高。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>]==max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(department, left_on = <span class="string">&#x27;departmentId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_d&#x27;</span>))[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(184)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/183%E4%BB%8E%E4%B8%8D%E8%AE%A2%E8%B4%AD%E7%9A%84%E5%AE%A2%E6%88%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/183%E4%BB%8E%E4%B8%8D%E8%AE%A2%E8%B4%AD%E7%9A%84%E5%AE%A2%E6%88%B7/" class="post-title-link" itemprop="url">从不订购的客户</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-05 18:58:13 / 修改时间：19:02:33" itemprop="dateCreated datePublished" datetime="2025-09-05T18:58:13+08:00">2025-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>问题描述：</strong> Customers 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 SQL 中，<code>id</code> 是该表的主键。该表的每一行都表示客户的 <code>ID</code> 和名称。</p>
+<p>Orders 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| customerId  | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p>在 <code>SQL</code> 中，<code>id </code>是该表的主键。<code>customerId</code> 是 <code>Customers</code> 表中 <code>ID</code> 的外键( <code>Pandas</code> 中的连接键)。该表的每一行都表示订单的 ID 和订购该订单的客户的 <code>ID</code>。</p>
+<p>找出所有从不点任何东西的顾客。以任意顺序返回结果表。</p>
 <p>结果格式如下所示。</p>
-<p>示例 1:</p>
-<p>输入:<br>
-Person表:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br></pre></td></tr></table></figure>
-<p>Address表:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
-<p>输出:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| firstName | lastName | city          | state    |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| Allen     | Wang     | Null          | Null     |</span><br><span class="line">| Bob       | Alice    | New York City | New York |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br></pre></td></tr></table></figure>
-<p>解释:<br>
-地址表中没有 <code>personId = 1</code> 的地址，所以它们的城市和州返回 <code>null</code>。<code>addressId = 1</code> 包含了 <code>personId = 2</code> 的地址信息。</p>
-<p><strong>解：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on = <span class="string">&#x27;personId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-<p>此题主要考察“左连接”。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">Customers table:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | Joe   |</span><br><span class="line">| 2  | Henry |</span><br><span class="line">| 3  | Sam   |</span><br><span class="line">| 4  | Max   |</span><br><span class="line">+----+-------+</span><br><span class="line">Orders table:</span><br><span class="line">+----+------------+</span><br><span class="line">| id | customerId |</span><br><span class="line">+----+------------+</span><br><span class="line">| 1  | 3          |</span><br><span class="line">| 2  | 1          |</span><br><span class="line">+----+------------+</span><br><span class="line">输出：</span><br><span class="line">+-----------+</span><br><span class="line">| Customers |</span><br><span class="line">+-----------+</span><br><span class="line">| Henry     |</span><br><span class="line">| Max       |</span><br><span class="line">+-----------+</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = customers.merge(orders[[<span class="string">&#x27;customerId&#x27;</span>]], left_on = <span class="string">&#x27;id&#x27;</span>, right_on = <span class="string">&#x27;customerId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_merge.loc[df_merge[<span class="string">&#x27;customerId&#x27;</span>].isna(), [<span class="string">&#x27;name&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Customers&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(183)</p>
+</blockquote>
 
       
     </div>
@@ -369,7 +630,7 @@ Person表:</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.1%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/182%E6%9F%A5%E6%89%BE%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -383,7 +644,7 @@ Person表:</p>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/2.1%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E6%B3%95/" class="post-title-link" itemprop="url">分离变量法</a>
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/182%E6%9F%A5%E6%89%BE%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/" class="post-title-link" itemprop="url">查找重复的电子邮箱</a>
         </h2>
 
         <div class="post-meta">
@@ -394,7 +655,7 @@ Person表:</p>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:16:37" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-05 18:31:13 / 修改时间：19:49:51" itemprop="dateCreated datePublished" datetime="2025-09-05T18:31:13+08:00">2025-09-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -402,15 +663,11 @@ Person表:</p>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
                 </span>
             </span>
 
@@ -425,16 +682,21 @@ Person表:</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
-<p><strong>解</strong> 令 $x=y=0$, 则 $f(0)=\frac{2f(0)}{1-f(0)^2}$, 得 $f(0)=0$. 注意到<br>
-$$<br>
-f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}<br>
-$$<br>
-因为 $f’(0)$ 存在, 故由导数的 定义可知<br>
-$$<br>
-f’(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f’(0)[1+f(x)^2]<br>
-$$<br>
-即 $f(x)$ 满足微分方程 $f’(x)=f’(0)[1+f(x)^2], f(0)=0$. 利用分离变量法求得其解为 $y=\tan\left(f’(0)x\right)$.</p>
+          <p><strong>问题描述：</strong> 表: Person</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（具有唯一值的列）。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。</p>
+<p>编写解决方案来报告所有重复的电子邮件。 请注意，可以保证电子邮件字段不为 NULL。以任意顺序返回结果表。</p>
+<p>结果格式如下例。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+---------+</span><br><span class="line">| id | email   |</span><br><span class="line">+----+---------+</span><br><span class="line">| 1  | a@b.com |</span><br><span class="line">| 2  | c@d.com |</span><br><span class="line">| 3  | a@b.com |</span><br><span class="line">+----+---------+</span><br><span class="line">输出: </span><br><span class="line">+---------+</span><br><span class="line">| Email   |</span><br><span class="line">+---------+</span><br><span class="line">| a@b.com |</span><br><span class="line">+---------+</span><br><span class="line">解释: a@b.com 出现了两次。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<p>解法一：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>]&gt;=<span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
+<p>解法二：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name = <span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(182)</p>
+</blockquote>
 
       
     </div>
@@ -454,7 +716,7 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/181%E8%B6%85%E8%BF%87%E7%BB%8F%E7%90%86%E6%94%B6%E5%85%A5%E7%9A%84%E5%91%98%E5%B7%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -468,7 +730,7 @@ $$<br>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/" class="post-title-link" itemprop="url">变量替换法</a>
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/181%E8%B6%85%E8%BF%87%E7%BB%8F%E7%90%86%E6%94%B6%E5%85%A5%E7%9A%84%E5%91%98%E5%B7%A5/" class="post-title-link" itemprop="url">超过经理收入的员工</a>
         </h2>
 
         <div class="post-meta">
@@ -479,7 +741,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:52:51" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-05 18:28:13 / 修改时间：18:29:40" itemprop="dateCreated datePublished" datetime="2025-09-05T18:28:13+08:00">2025-09-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -487,15 +749,11 @@ $$<br>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
                 </span>
             </span>
 
@@ -510,32 +768,17 @@ $$<br>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T020201]</strong> 若 $y=y^{\ast}(x)$ 是一阶齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y$ 的非零解, 而 $y=\bar y$ 是一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的解. 证明: 一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<p><strong>证</strong> 设 $y=\bar y+z$, 两边对 $x$ 求导, 得</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z<br>
-$$</p>
-<p>由题意可知上述方程得通解为 $z=cy^{\ast}$, 故原方程的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<hr>
-<p><strong>[T020202]</strong> 设 $y(x)$ 是方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y$ 的满足 $y(0)=0$ 的解, 其中 $p(x)$ 是 $(-\infty,+\infty)$ 上的连续函数. 证明 $y(x)\equiv0$.</p>
-<p><strong>证</strong> 注意到</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}<br>
-$$</p>
-<p>解得</p>
-<p>$$<br>
-\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}<br>
-$$</p>
-<p>将 $y(0)=0$ 代入可得 $c=0$, 故 $y(x)\equiv0$.</p>
-<hr>
-<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 $P$ 的切线方向 $\overrightarrow{PQ}$ 与向径 $\overrightarrow{OP}$ 的交角等于 $45^{\circ}$.</p>
-<p><strong>解</strong> 由题设可知</p>
-<p>$$<br>
-1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}<br>
-$$</p>
-<p>令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
-$2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
+          <p><strong>问题描述：</strong> 表：Employee</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（具有唯一值的列）。该表的每一行都表示雇员的ID、姓名、工资和经理的ID。编写解决方案，找出收入比经理高的员工。以任意顺序返回结果表。</p>
+<p>结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| id | name  | salary | managerId |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| 1  | Joe   | 70000  | 3         |</span><br><span class="line">| 2  | Henry | 80000  | 4         |</span><br><span class="line">| 3  | Sam   | 60000  | Null      |</span><br><span class="line">| 4  | Max   | 90000  | Null      |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">输出: </span><br><span class="line">+----------+</span><br><span class="line">| Employee |</span><br><span class="line">+----------+</span><br><span class="line">| Joe      |</span><br><span class="line">+----------+</span><br><span class="line">解释: Joe 是唯一挣得比经理多的雇员。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on = <span class="string">&#x27;managerId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(181)</p>
+</blockquote>
 
       
     </div>
@@ -555,7 +798,7 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.3%E7%A7%AF%E5%88%86%E5%9B%A0%E5%AD%90%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/180%E8%BF%9E%E7%BB%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -569,7 +812,7 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/2.3%E7%A7%AF%E5%88%86%E5%9B%A0%E5%AD%90%E6%B3%95/" class="post-title-link" itemprop="url">积分因子法</a>
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/180%E8%BF%9E%E7%BB%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%95%B0/" class="post-title-link" itemprop="url">连续出现的数</a>
         </h2>
 
         <div class="post-meta">
@@ -580,7 +823,7 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:53:29" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-05 18:21:13 / 修改时间：18:26:55" itemprop="dateCreated datePublished" datetime="2025-09-05T18:21:13+08:00">2025-09-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -588,15 +831,11 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
                 </span>
             </span>
 
@@ -611,40 +850,16 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T020301]</strong> 求微分方程通解: $\left(\frac{y^2}{(x-y)^2}-\frac{1}{x}\right)\mathrm dx+\left(\frac{1}{y}-\frac{x^2}{(x-y)^2}\right)\mathrm dx=0$.</p>
-<p><strong>解</strong> 设 $M=\frac{y^2}{(x-y)^2}-\frac{1}{x}, \ N=\frac{1}{y}-\frac{x^2}{(x-y)^2}$, 注意到<br>
-$$<br>
-\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}=\frac{2xy}{(x-y)^3},<br>
-$$<br>
-于是原方程为全微分方程, 又注意到<br>
-$$<br>
-\begin{aligned}<br>
-\left(\frac1y\mathrm dy-\frac1x\mathrm dx\right)+\frac{y^2\mathrm dx-x^2\mathrm dy}{(x-y)^2}&amp;=0\\<br>
-\mathrm d\left(\ln\left|\frac{y}{x}\right|\right)-\mathrm d\left(\frac{xy}{x-y}\right)&amp;=0\\<br>
-\mathrm d\left(\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}\right)&amp;=0<br>
-\end{aligned}<br>
-$$<br>
-从而原方程的通解为 $\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}=c$, 其中 $c$ 为任意常数.</p>
-<hr>
-<p><strong>[T020302]</strong> 求 Bernoulli 方程的积分因子.</p>
-<p><strong>解</strong> 因为 Bernoulli 方程可化为一阶线性微分方程, 因此可先求解一阶线性微分方程的积分因子. 设有一阶线性微分方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 其中 $P(x),Q(x)$ 连续. 将方程变形为 $\left(P(x)y+Q(x)\right)\mathrm dx-\mathrm dy=0$, 设 $M=P(x)y+Q(x),  N=-1$, 则 $\frac{\partial M}{\partial y}=P(x), \ \frac{\partial N}{\partial x}=0$, 于是<br>
-$$<br>
-\frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{N}=-P(x),<br>
-$$<br>
-故线性方程有一个只依赖于 $x$ 的积分因子 $\mu(x)=e^{-\int P(x)\mathrm dx}$. 将此积分因子乘到原方程的两边可得全微分方程<br>
-$$<br>
-e^{-\int P(x)\mathrm dx}\left(P(x)y+Q(x)\right)\mathrm dx-e^{-\int P(x)\mathrm dx}\mathrm dy=0,<br>
-$$<br>
-不难求得其通解为 $y=ce^{\int P(x)\mathrm dx}+e^{\int P(x)\mathrm dx}\displaystyle\int Q(x)e^{-\int P(x)\mathrm dx}\mathrm dx$.</p>
-<p>现设有 Bernoulli 方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)y^n$, 其中 $n\neq 0,1$ 且 $p(x),q(x)$ 连续. 方程两边同除 $y^n \ (y\neq0)$ 有<br>
-$$<br>
-y^{-n}\frac{\mathrm dy}{\mathrm dx}=y^{1-n}p(x)+q(x)\Longrightarrow \frac{\mathrm dy^{1-n}}{\mathrm dx}=(1-n)p(x)y^{1-n}+(1-n)q(x),<br>
-$$<br>
-这是以 $y^{1-n}$ 为未知函数的一阶线性微分方程, 由上面的讨论可知其积分因子为 $e^{-(1-n)\int  p(x)\mathrm dx}$, 从而原方程的积分因子为 $y^{-n}e^{-(1-n)\int  p(x)\mathrm dx}$, 且原方程的通解为<br>
-$$<br>
-y^{1-n}=ce^{(1-n)\int p(x)\mathrm dx}+(1-n)e^{(1-n)\int p(x)\mathrm dx}\displaystyle\int q(x)e^{-(1-n)\int p(x)\mathrm dx}\mathrm dx.<br>
-$$<br>
-此外, 若 $n&gt;0$, 则 $y=0$ 也是方程的解.</p>
+          <p><strong>问题描述：</strong> 表：<code>Logs</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。返回的结果表中的数据可以按任意顺序排列。结果格式如下面的例子所示：</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">Logs 表：</span><br><span class="line">+----+-----+</span><br><span class="line">| id | num |</span><br><span class="line">+----+-----+</span><br><span class="line">| 1  | 1   |</span><br><span class="line">| 2  | 1   |</span><br><span class="line">| 3  | 1   |</span><br><span class="line">| 4  | 2   |</span><br><span class="line">| 5  | 1   |</span><br><span class="line">| 6  | 2   |</span><br><span class="line">| 7  | 2   |</span><br><span class="line">+----+-----+</span><br><span class="line">输出：</span><br><span class="line">Result 表：</span><br><span class="line">+-----------------+</span><br><span class="line">| ConsecutiveNums |</span><br><span class="line">+-----------------+</span><br><span class="line">| 1               |</span><br><span class="line">+-----------------+</span><br><span class="line">解释：1 是唯一连续出现至少三次的数字。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(180)</p>
+</blockquote>
 
       
     </div>
@@ -664,7 +879,7 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/178%E5%88%86%E6%95%B0%E6%8E%92%E5%90%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -678,7 +893,7 @@ $$<br>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/2.4%E5%8F%82%E6%95%B0%E6%B3%95/" class="post-title-link" itemprop="url">参数法</a>
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/178%E5%88%86%E6%95%B0%E6%8E%92%E5%90%8D/" class="post-title-link" itemprop="url">分数排名</a>
         </h2>
 
         <div class="post-meta">
@@ -689,7 +904,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:53:42" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-05 18:12:13 / 修改时间：18:18:33" itemprop="dateCreated datePublished" datetime="2025-09-05T18:12:13+08:00">2025-09-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -697,15 +912,11 @@ $$<br>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
                 </span>
             </span>
 
@@ -720,52 +931,20 @@ $$<br>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T020401]</strong> 求微分方程的通解 $y’^2=4y^3(1-y)$.</p>
-<p><strong>解</strong> 将方程化为 $y’=\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1/2}=\pm x+c$, 从而原方程的通解为 $y=\frac{1}{1+(\mp x+c)^2}$, 其中 $c$ 为任意常数. 此外, $y=0$ 和 $y=1$ 也是方程的解.</p>
-<hr>
-<p><strong>[T020402]</strong> 求微分方程的通解 $y’^3+y^3-3yy’=0$.</p>
-<p><strong>解</strong> 令 $y’=p, \ y=pt$, 其中 $p,t$ 都是参数, 则 $p^3+p^3t^3-3p^2t=0$. 当 $p\neq0$ 时,<br>
-$$<br>
-p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}<br>
-$$<br>
-(此时 $t\neq 0,-1$, 否则 $p=0$) 从而 $y=\frac{3t^2}{1+t^3}$. 注意到<br>
-$$<br>
-\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt<br>
-$$<br>
-两边积分可得 $x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c$, 故原方程的通解为<br>
-$$<br>
-\begin{cases}<br>
-x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\<br>
-y=\frac{3t^2}{1+t^3}<br>
-\end{cases}<br>
-$$<br>
-其中 $c$ 为任意常数.</p>
-<p>当 $p=0$ 时, $y=0$ 也是方程的解.</p>
-<hr>
-<p><strong>[T020403]</strong> 求微分方程的通解 $y’^3+y’^2-y’+1=0$.</p>
-<p><strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 $y’=a \ (\neq0)$, 则 $y=ax+c$ 为原方程的解, 从而 $a=\frac{y-c}{x}$, 于是 $y’=\frac{y-c}{x}$, 故方程的通解为<br>
-$$<br>
-\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.<br>
-$$</p>
-<hr>
-<p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
-<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.</p>
-<p><strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
-$$<br>
-\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
-$$<br>
-\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
-$$<br>
-\mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-
+          <p><strong>问题描述：</strong> 表: Scores</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>Score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。排名按以下规则计算:</p>
+<ul>
+<li>分数应按从高到低排列。</li>
+<li>如果两个分数相等，那么两个分数的排名应该相同。</li>
+<li>在排名相同的分数后，排名数应该是下一个连续的整数。换句话说，排名之间不应该有空缺的数字。</li>
+</ul>
+<p>按 score 降序返回结果表。查询结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<p>输入:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Scores 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | score |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | 3.50  |</span><br><span class="line">| 2  | 3.65  |</span><br><span class="line">| 3  | 4.00  |</span><br><span class="line">| 4  | 3.85  |</span><br><span class="line">| 5  | 4.00  |</span><br><span class="line">| 6  | 3.65  |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+-------+------+</span><br><span class="line">| score | rank |</span><br><span class="line">+-------+------+</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 3.85  | 2    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.50  | 4    |</span><br><span class="line">+-------+------+</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method = <span class="string">&#x27;dense&#x27;</span>, ascending = <span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -784,7 +963,7 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/177%E7%AC%ACn%E9%AB%98%E7%9A%84%E8%96%AA%E6%B0%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -798,7 +977,7 @@ $$<br>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">Picard 存在唯一性定理</a>
+            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/177%E7%AC%ACn%E9%AB%98%E7%9A%84%E8%96%AA%E6%B0%B4/" class="post-title-link" itemprop="url">第n高的薪水</a>
         </h2>
 
         <div class="post-meta">
@@ -809,7 +988,7 @@ $$<br>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：16:21:24" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-05 18:09:13 / 修改时间：18:18:38" itemprop="dateCreated datePublished" datetime="2025-09-05T18:09:13+08:00">2025-09-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -817,15 +996,11 @@ $$<br>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
+                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
                 </span>
             </span>
 
@@ -840,424 +1015,11 @@ $$<br>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
-<p><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
-$$<br>
-\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
-$$<br>
-显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
-$$<br>
-|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
-$$<br>
-于是当 $x\in[0,\frac12]$ 时, 有<br>
-$$<br>
-|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
-$$</p>
-<hr>
-<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
-<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
-$$<br>
-|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
-$$<br>
-即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
-<p>任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
-$$<br>
-x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
-$$<br>
-则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
-$$<br>
-|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
-$$<br>
-由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
-$$<br>
-x^</em>=f(x^<em>)<br>
-$$<br>
-即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
-<hr>
-<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
-$$<br>
-x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
-$$<br>
-从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
-$$<br>
-|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
-$$<br>
-这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.3%E8%A7%A3%E7%9A%84%E5%BB%B6%E6%8B%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/3.3%E8%A7%A3%E7%9A%84%E5%BB%B6%E6%8B%93/" class="post-title-link" itemprop="url">解的延拓</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:54:34" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T030301]</strong> 设 $f(x,y)$ 在整个平面上连续有界, 且 $\frac{\partial f}{\partial y}(x,y)$ 也连续. 证明方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的每一个解 $y=\varphi(x)$ 的饱和区间为 $-\infty&lt;x&lt;+\infty$.</p>
-<p><strong>证</strong> 因为 $\frac{\partial f}{\partial y}(x,y)$ 在整个平面 $\mathbb{R}^2$ 上连续, 故 $f$ 在 $\mathbb{R}^2$ 上满足关于 $y$ 的局部 Lipschitz 条件. 又 $f(x,y)$ 在 $\mathbb{R}^2$ 上连续, 故方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 满足延拓定理, 及其一切解都可延拓到 $\mathbb{R}^2$ 的边界(即无穷远处).</p>
-<p>考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\mathbb{R}^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\mathbb{R}^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y=\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y=\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.</p>
-<hr>
-<p><strong>[T030303]</strong> 证明: 对一阶线性方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 若 $P(x),Q(x)\in C[a,b]$ , 则对任意 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 方程有唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上连续.</p>
-<p><strong>证</strong> 设 $f(x,y)=P(x)y+Q(x)$, 由条件知 $f(x,y)$ 在 $R=[a,b]\times(-\infty,+\infty)$ 上连续, 又 $\frac{\partial f}{\partial y}=P(x)$ 在 $[a,b]$ 上连续, 从而 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件, 故方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$ 满足延拓定理, 即对任意的 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 通过 $(x_0,y_0)$ 的解 $y=\varphi(x)$ 可延拓到 $R$ 的边界. 设 $\left|\frac{\partial f}{\partial y}\right|\le M, \ x\in[a,b]$. 对任意 $x\in[a,b]$, 作逐步迭代<br>
-$$<br>
-y_1(x_0)=y_0,\quad y_n(x)=y_0+\int_{x_0}^xf(t,y_{n-1}(t))\mathrm{~d}t, \ n=2,3,\cdots<br>
-$$<br>
-由 Lipschitz 条件可知<br>
-$$<br>
-\left|y_n(x)-y_{n-1}(x)\right|\le\frac{(x-x_0)^{n-1}M^{n-1}}{n!}<br>
-$$<br>
-于是 $y_0(x)+\sum\limits_{n=1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y=\varphi(x)$, 即方程的唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.</p>
-<hr>
-<p><strong>[T030304]</strong> 已知 $\frac{\mathrm dy}{\mathrm dx}=(y^2-a^2)f(x,y)$, 这里 $f(x,y)$ 及 $f’_y(x,y)$ 在 $xOy$ 面上连续. 试证明: 对 $\forall x_0$ 及 $|y_0|&lt;a$, 满足初始条件 $y(x_0)=y_0$ 的解 $y(x)$ 都在区间 $(-\infty,+\infty)$ 上存在.</p>
-<p><strong>证</strong> 方程的右端函数 $(y^2-a^2)f(x,y)$ 在全平面 $\mathbb{R}^2$ 上连续可微, 因此它满足解的存在唯一性定理和延拓定理.</p>
-<p>显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\mathbb{R}^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/" class="post-title-link" itemprop="url">解对初值与参数的连续性与可微性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:54:42" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
-$$<br>
-|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty&lt;y&lt;+\infty<br>
-$$<br>
-那么方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 的经过点 $(x_0,\xi_0)$ 的积分曲线 $y=\eta(x)$ 也必在 $[x_0,X]$ 上有定义, 且在 $[x_0,X]$ 上满足不等式<br>
-$$<br>
-|\eta(x)-\xi(x)|&lt; \varepsilon,\quad x_0\le x\le X.<br>
-$$<br>
-<strong>证</strong> 因为 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 $y\mid_{x=x_0}=\xi_0$ 的解 $y=\xi(x)$ 存在且唯一. 记积分曲线 $y=\xi(x)$ 为 $l_1$, 则 $l_1: \ y=\xi(x),x\in[x_0,X]$ 为 $xOy$ 平面上的有界闭集. 对 $l_1$ 上的任一点 $(x,y)$, 必存在以该点为圆心的开圆 $C\subset D$, 使在其内的函数 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 $C_i \ (i=1,2,\cdots,N)$, 且它们的全体可以覆盖整个积分曲线段 $l_1$. 设 $C_i$ 的半径为 $\varepsilon_i$, Lipschitz 常数为 $L$. 再记 $\varepsilon_0=\min\limits_{1\le i\le N}\lbrace\varepsilon_i\rbrace$, 令 $\Omega=\bigcup\limits_{i=1}^NC_i$, 则 $l_1\subset \Omega\subset D$, 且 $\Omega$ 的边界 $\partial \Omega$ 到 $l_1$ 的距离为 $0&lt;\rho\le\varepsilon_0$.<br>
-设方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 经过点 $(x_0,\xi_0)$ 的积分曲线为 $l_2:\ y=\eta(x)$. 注意到 $\xi(x)$ 与 $\eta(x)$ 满足积分方程<br>
-$$<br>
-\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t<br>
-$$<br>
-则<br>
-$$<br>
-\begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\\<br>
-&amp;=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\\<br>
-&amp;\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\\<br>
-&amp;=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t<br>
-\end{aligned}<br>
-$$<br>
-由 Gronwall 不等式可知<br>
-$$<br>
-|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t<br>
-$$<br>
- 取 $\bar\varepsilon=\min{\varepsilon,\rho}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}$, 则有<br>
-$$<br>
-\begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\\<br>
-&amp;\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}&lt;\rho<br>
-\end{aligned}<br>
-$$<br>
-即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/" class="post-title-link" itemprop="url">高阶线性微分方程的一般理论</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:07" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
-<p><strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
-$$<br>
-\left\lbrace<br>
-\begin{array}{cccc}<br>
-x_1(t_0)=1, &amp; x’_1(t_0)=0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)=0,\\<br>
-x_2(t_0)=0, &amp; x’_2(t_0)=1, &amp; \cdots, &amp; x_2^{(n-2)}(t_0)=0,\\<br>
-\vdots &amp; \vdots &amp; &amp; \vdots\\<br>
-x_n(t_0)=0, &amp; x_n’(t_0)=0, &amp; \cdots, &amp; x_n^{(n-1)}(t_0)=1<br>
-\end{array}<br>
-\right.<br>
-$$<br>
-的解 $x_1(t),x_2(t),\cdots,x_n(t)$ 一定存在且唯一, 注意到它们的 Wronski 行列式<br>
-$$<br>
-W(x_1(t_0),x_2(t_0),\cdots,x_n(t_0))=1\neq0<br>
-$$<br>
-故这 $n$ 个解必线性无关.</p>
-<hr>
-<p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
-<p><strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
-显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\\<br>
-\Longrightarrow&amp;(c_1x_1+c_2x_2+\cdots+c_nx_n)+(c_1+c_2+\cdots+c_{n+1})\bar x=0<br>
-\end{aligned}<br>
-$$<br>
-此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
-再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\\<br>
-\Longrightarrow&amp;c_1x_1+c_2x_2+\cdots+c_{n+1}x_{n+1}-(c_1+c_2+\cdots+c_{n+1})x_{n+2}=0<br>
-\end{aligned}<br>
-$$<br>
-故这 $n+2$ 个解在 $[a,b]$ 上线性相关, 产生矛盾!</p>
-<hr>
-<p><strong>[T040203]</strong> (Liouville 公式) 设 $x_1(t),x_2(t),\cdots,x_n(t)$ 是齐次线性方程 $L[x]=0$ 的任意 $n$ 个解, $W(t)$ 是它们的 Wronski 行列式, 则 $W(t)$ 满足一阶线性微分方程 $W’(t)=-a_1(t)W(t)$, 因而有<br>
-$$<br>
-W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$<br>
-<strong>证</strong> 由行列式求导法则可知<br>
-$$<br>
-W’(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
-x_1^{(n)}&amp;x_2^{(n)}&amp;\cdots&amp;x_n^{(n)}<br>
-\end{vmatrix}<br>
-$$<br>
-于是<br>
-$$<br>
-W’(t)+a_1(t)W(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}&amp;x_2^{(n)}+a_1(t)x_2^{(n-1)}&amp;\cdots&amp;x_n^{(n)}+a_1(t)x_n^{(n-1)}<br>
-\end{vmatrix}<br>
-$$<br>
-注意到<br>
-$$<br>
-\begin{cases}<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}=-a_2(t)x_1^{(n-2)}-\cdots-a_n(t)x_1,\\<br>
-x_2^{(n)}+a_1(t)x_2^{(n-1)}=-a_2(t)x_2^{(n-2)}-\cdots-a_n(t)x_2,\\<br>
-\quad\quad\quad\quad\quad\quad\quad~ …\\<br>
-x_n^{(n)}+a_1(t)x_n^{(n-1)}=-a_2(t)x_n^{(n-2)}-\cdots-a_n(t)x_n,\\<br>
-\end{cases}<br>
-$$<br>
-因此 $W’(t)+a_1(t)W(t)=0, \ t\in[a,b]$. 解得<br>
-$$<br>
-W(t)=ce^{-\int_{t_0}^ta_1(s)\mathrm{~d}s}<br>
-$$<br>
-注意到 $W(t_0)=c$, 于是 $W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b]$.</p>
-<hr>
-<p><strong>[T040204]</strong> 设 $x=x_1(t), \ x=x_2(t)$ 是微分方程 $x’‘+x=0$ 的满足初始条件<br>
-$$<br>
-x_1(0)=0,\quad x_1’(0)=1,\\<br>
-x_2(0)=1,\quad x_2’(0)=0<br>
-$$<br>
-的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
-<p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
-<p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.</p>
-<p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
-$$<br>
-\begin{vmatrix}<br>
-x_1(t) &amp; x_2(t)\\<br>
-x_1’(t) &amp; x_2’(t)<br>
-\end{vmatrix}=<br>
-\begin{vmatrix}<br>
-x_1(0) &amp; x_2(0)\\<br>
-x_1’(0) &amp; x_2’(0)<br>
-\end{vmatrix}=-1<br>
-$$<br>
-又 $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$, 故 $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-
+          <p><strong>问题描述：</strong> 表: Employee</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 n 高的 不同 工资。如果少于 n 个不同工资，查询结果应该为 null 。</p>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N-<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1275,7 +1037,7 @@ $$<br>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1343,7 +1105,7 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
