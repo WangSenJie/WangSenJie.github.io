@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="极限论 *：中档 **：中档偏上 ***：难 一、判断题（给反例）   [华四第2章总练习题11] 若 $\lbrace a_n\rbrace ,\lbrace b_n\rbrace $ 均为无界数列，则 $\lbrace a_nb_n\rbrace $ 一定是无界数列. 注：无穷大量和无界量的定义.   [华四3.2.7(1)] 设 $\lim\limits_{x\to x_0}f(x)&#x3D;A,\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数列极限与函数极限">
+<meta property="og:url" content="https://wangsenjie.github.io/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/1.%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E4%B8%8E%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="极限论 *：中档 **：中档偏上 ***：难 一、判断题（给反例）   [华四第2章总练习题11] 若 $\lbrace a_n\rbrace ,\lbrace b_n\rbrace $ 均为无界数列，则 $\lbrace a_nb_n\rbrace $ 一定是无界数列. 注：无穷大量和无界量的定义.   [华四3.2.7(1)] 设 $\lim\limits_{x\to x_0}f(x)&#x3D;A,\">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-07T16:22:15.503Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="数学分析">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/1.%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E4%B8%8E%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    packages: {'[+]': ['ams']},   // 关键：加载 ams（align/aligned 等）
+    tags: 'ams'
+  },
+  options: {
+    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <title>数列极限与函数极限 | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/1.%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E4%B8%8E%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数列极限与函数极限
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-07T00:00:00+08:00">2025-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-09-08 00:22:15" itemprop="dateModified" datetime="2025-09-08T00:22:15+08:00">2025-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">习题集</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>极限论</h1>
+<p>*：中档</p>
+<p>**：中档偏上</p>
+<p>***：难</p>
+<h2 id="一、判断题（给反例）">一、判断题（给反例）</h2>
+<ol>
+<li>
+<p><strong>[华四第2章总练习题11]</strong> 若 $\lbrace a_n\rbrace ,\lbrace b_n\rbrace $ 均为无界数列，则 $\lbrace a_nb_n\rbrace $ 一定是无界数列.</p>
+<p>注：无穷大量和无界量的定义.</p>
+</li>
+<li>
+<p><strong>[华四3.2.7(1)]</strong> 设 $\lim\limits_{x\to x_0}f(x)=A,\lim\limits_{x\to x_0}g(x)=B$, 若在某 $U^o(x_0)$ 上有 $f(x)&lt;g(x)$, 则 $A&lt;B$.</p>
+</li>
+<li>
+<p><strong>[华四3.5.6(2)]</strong> 当 $x\to\infty$ 时, $x^2$ 与 $x+x^2(2+\sin x)$ 是同阶无穷大量.</p>
+<p>注：同阶无穷大量的定义.</p>
+</li>
+<li>
+<p><strong>[华四第3章总习题5]</strong> 设 $\lim\limits_{x\to a}f(x)=A,\lim\limits_{u\to A}g(u)=B$, 则 $\lim\limits_{x\to a}g(f(a))=B.$</p>
+</li>
+<li>
+<p>*<strong>[裴1.1.2]</strong> 存在函数 $f(x)$ 在 $[0,1]$ 上每点取有限值，但在此区间的任何点的任意领域内无界.</p>
+</li>
+<li>
+<p><strong>[裴例1.2.8]</strong> 数列 $\lbrace a_n\rbrace $ 存在极限 $\lim\limits_{n\to\infty}a_n=a\Longleftrightarrow$ 对任意自然数 $p$，都有 $\lim\limits_{n\to\infty}|a_{n+p}-a_n|=0.$</p>
+</li>
+</ol>
+<h2 id="二、计算题">二、计算题</h2>
+<h3 id="（一）数列极限">（一）数列极限</h3>
+<ol>
+<li>
+<p><strong>[华四2.2.8(1)]</strong> $\lim\limits_{n\to\infty}\frac{(2n-1)!!}{(2n)!!}$.</p>
+</li>
+<li>
+<p><strong>[华四2.2.8(2)]</strong> $\lim\limits_{n\to\infty}\frac{\sum\limits_{p=1}^np!}{(n)!}$</p>
+</li>
+<li>
+<p>*<strong>[裴例1.3.10(3)]</strong> $\lim\limits_{n\to\infty}\left[(n^k+1)^{-1/k}+(n^k-1)^{-1/k}\right]$.</p>
+</li>
+<li>
+<p>*<strong>[裴例1.3.6]</strong> $\lim\limits_{n\to\infty}\sqrt{n}\prod\limits_{i=1}^n\frac{e^{1-1/i}}{\left(1+\frac{1}{i}\right)^i}$.</p>
+</li>
+<li>
+<p>$\lim\limits_{n\to\infty}\sum\limits_{k=1}^n\frac{1}{\sqrt{1^3+2^3+\cdots+k^3}}$.</p>
+</li>
+<li>
+<p>*<strong>[裴例1.3.13(5)]</strong> $\lim\limits_{n\to\infty}n\sin(2\pi n!e).$</p>
+</li>
+<li>
+<p><strong>[裴例1.3.14(4)]</strong> $\lim\limits_{n\to\infty}\frac{\sqrt[n]{n!}}{n}$.</p>
+</li>
+<li>
+<p>*<strong>[裴例1.3.14(5)]</strong> $\lim\limits_{n\to\infty}\frac{\sin\frac{\pi}{n}}{n+\frac{1}{n}}+\frac{\sin\frac{2\pi}{n}}{n+\frac{2}{n}}+\cdots+\frac{\sin{\pi}}{n+1}$.</p>
+</li>
+<li>
+<p>*<strong>[裴1.3.9]</strong> 设 $\lim\limits_{n\to\infty}(a_1+a_2+\cdots+a_n)$ 存在，求 $\lim\limits_{n\to\infty}\frac{n^2}{\frac{1}{a_1}+\frac{1}{a_2}+\cdots+\frac{1}{a_n}}.$</p>
+</li>
+<li>
+<p>**$\lim\limits_{n\to\infty}\int_0^{+\infty}\frac{ne^{-nx}}{2+3^x}\mathrm{~d}x$.<br>
+注：证明 $\lim\limits_{n\to\infty}\int_0^{+\infty}ne^{-nx}f(x)\mathrm{~d}x=f(0).$</p>
+</li>
+</ol>
+<h3 id="（二）函数极限">（二）函数极限</h3>
+<ol>
+<li><strong>[华四3.2.8(5)]</strong> $\lim\limits_{x\to\infty}\frac{[x]}{x}$.</li>
+<li><strong>[华四3.5.4(3)]</strong> 求函数 $y=\frac{3x^3+4}{x^2-2x}$ 的渐近线.</li>
+<li>*<strong>[华四第3章总练习题1(7)]</strong> $\lim\limits_{x\to1}\left(\frac{m}{1-x^m}-\frac{n}{1-x^n}\right), \ \ m,n\in\mathbb{N}^+.$</li>
+<li><strong>[裴1.3.8]</strong> $\lim\limits_{x\to0}\frac{1-\cos\sqrt{\tan x-\sin x}}{\sqrt[3]{1+x^3}-\sqrt[3]{1-x^3}}.$</li>
+<li><strong>[裴例1.3.12练习1]</strong> 设 $f(x)$ 有二阶导数，且在原点附近不为零，但 $\lim\limits_{x\to 0}\frac{f(x)}{x}=0,f’'(0)=4.$ 求 $\lim\limits_{x\to0}\left(1+\frac{f(x)}{x}\right)^{1/x}.$</li>
+<li>*<strong>[裴例1.3.12练习2]</strong> 设 $f(x)$ 有二阶导数，$f’(0)=0,f’'(0)=1$, 且 $f(x)$ 在 $x=0$ 处连续. 求 $\lim\limits_{x\to0}\frac{f(x)-f(\ln(1+x))}{x^3}.$</li>
+<li>*<strong>[裴例1.3.13]</strong> 设 $f(x)$ 在点 $a$ 处可导且 $f(a)\neq0$, 求 $\lim\limits_{n\to\infty}\left[\frac{f\left(a+\frac{1}{n}\right)}{f(a)}\right]^n.$</li>
+<li><strong>[裴1.3.11]</strong> $\lim\limits_{n\to\infty}\sqrt[n]{1+2^n\sin^nx}.$</li>
+<li><strong>[裴1.3.26]</strong> $\lim\limits_{x\to1}(1-x)^{1-n}(1-\sqrt{x})(1-\sqrt[3]{x})\cdots(1-\sqrt[n]{x}).$</li>
+</ol>
+<h2 id="三、证明题">三、证明题</h2>
+<h3 id="（一）数列极限-2">（一）数列极限</h3>
+<p><strong>[华四2.3例1]</strong> 设 $a_n=1+\frac{1}{2^{\alpha}}+\cdots+\frac{1}{n^{\alpha}}, \ \alpha&gt;1$. 证明: $\lbrace a_n\rbrace $ 收敛.</p>
+<p><strong>[华四2.3例3]</strong> *设 $S$ 为有界数集. 证明：若 $\inf S=a\notin S$，则存在严格递减数列 $\lbrace x_n\rbrace \subset S$，使得 $\lim\limits_{n\to\infty}x_n=a.$</p>
+<p><strong>[华四2.3例4]</strong> 证明极限 $\lim\limits_{n\to\infty}\left(1+\frac{1}{n}\right)^n$ 存在，并计算 $\lim\limits_{n\to\infty}(1+\frac{1}{n})^{\sqrt{n}}$.</p>
+<p><strong>[华四2.3.10]</strong> 证明: $\left|e-\left(1+\frac{1}{n}\right)^n\right|&lt;\frac{3}{n}.$<br>
+注：$\left\lbrace \left(1+\frac{1}{n}\right)^n\right\rbrace $ <strong>单调递增</strong>趋于 $e$, $\left\lbrace \left(1+\frac{1}{n}\right)^{n+1}\right\rbrace $ <strong>单调递减</strong>趋于 $e$.</p>
+<p><strong>[华四2.3例5]</strong> 证明：任何数列都有单调子列.<br>
+注：配合<strong>单调有界定理</strong>可证得<strong>致密性定理</strong>.</p>
+<p><strong>[华四第二章总练习题3]</strong> 设 $\lim\limits_{n\to\infty}a_n=a$, 证明 $\lim\limits_{n\to\infty}\frac{a_1+a_2+\cdots+a_n}{n}=a$; 若 $a_n&gt;0 \ (n=1,2,\cdots)$, 则 $\lim\limits_{n\to\infty}\sqrt[n]{a_1a_2\cdots a_n}=a.$<br>
+注：<strong>分段法</strong>，$a$ 可以是无穷.</p>
+<p>*<strong>[裴1.2.2]</strong> 用 $\varepsilon-N$ 方法证明 $\lim\limits_{n\to\infty}n^3q^n=0 \ (|q|&lt;1)$.<br>
+注：<strong>放大法</strong></p>
+<p>**<strong>[裴例1.2.1(2)]</strong> 设 $\lbrace a_n\rbrace $ 是一数列 $(a_n\neq0)$，满足 $a_n\to 0(n\to\infty)$，定义数集 $P=\lbrace ka_i|k\in\mathbb{Z},i\in\mathbb{N}\rbrace $，证明：对 $\forall b\in\mathbb{R}$，存在 $\lbrace b_n\rbrace \subset P$，使得 $\lim\limits_{n\to\infty}b_n=b.$</p>
+<p>**<strong>[裴例1.2.3]</strong> 设实数列 $\lbrace x_n\rbrace $ 满足 $x_n-x_{n-2}\to0 \ (n\in\infty)$，证明：$\lim\limits_{n\to\infty}\frac{x_n-x_{n-1}}{n}=0.$</p>
+<p>**<strong>[裴例1.2.5]</strong> 设 $f(x)\sim x(x\to 0), \ x_n=\sum\limits_{i=1}^nf\left(\frac{2i-1}{n^2}a\right)$，证明：$\lim\limits_{n\to\infty}x_n=a \ (a&gt;0).$<br>
+注：<strong>拟合法</strong></p>
+<p>**<strong>[裴例1.2.5练习2]</strong> 设 $\lim\limits_{n\to\infty}a_n=a$，证明 $\lim\limits_{n\to\infty}\frac{1}{2^n}(a_0+C_n^1a_1+C_n^2a_2+\cdots+C_n^ka_k+\cdots+a_n)=a.$</p>
+<p>** <strong>[裴例1.2.6]</strong> 设 $\mathbb{N}$ 和 $\mathbb{N}_{1}$ 都是全体自然数组成的空间, $f:~\mathbb{N}\to\mathbb{N}_1$, 满足 $n=f(m)$, 且对所有 $n\in\mathbb{N}$, $f^{-1}(n)$ 为有限集. 证明: 若存在 $a_n\to a~(n\to\infty)$, 则</p>
+<p>$$a_{f(m)}\to a~(m\to\infty).$$</p>
+<p>**<strong>[裴例1.2.10练习1]</strong> 设数列 $\lbrace x_n\rbrace $ 满足：当 $n&lt;m$ 时，有 $|x_n-x_m|&gt;\frac{1}{n}$. 证明：$\lbrace x_n\rbrace $ 无界.</p>
+<p><strong>[裴例1.2.11]</strong> 设 $x_n=1+\frac{1}{2}+\cdots+\frac{1}{n}-\ln n$，证明：$\lbrace x_n\rbrace $ 收敛.</p>
+<p>*<strong>[裴例1.3.18]</strong> 设 $x_n=\frac{1}{2\ln 2}+\cdots+\frac{1}{n\ln n}-\ln\ln n \ \ (n=2,3,\cdots)$，证明：$\lbrace x_n\rbrace $ 收敛.</p>
+<p>*<strong>[裴例1.2.12]</strong> 设 $x_n=\sum\limits_{k=1}^n\frac{1}{\sqrt{k}}-2\sqrt{n}$，证明：$\lbrace x_n\rbrace $ 收敛.</p>
+<p>**<strong>[裴1.2.10]</strong> 设 $\lbrace x_n\rbrace $ 是无界数列，但不是无穷大量，证明：存在两个子列，一个是无穷大量，另一个是收敛子列.</p>
+<p>*<strong>[裴例1.3.7]</strong> 设 $\lim\limits_{n\to\infty}x_n=a,\lim\limits_{n\to\infty}y_n=b$，证明：$\lim\limits_{n\to\infty}\frac{x_1y_n+x_2y_{n-1}+\cdots+x_ny_1}{n}=ab.$</p>
+<p>**<strong>[裴例1.3.11]</strong> 设 $f(x)&gt;0$，且在 $[0,1]$ 上连续，证明：$\lim\limits_{n\to\infty}\sqrt[n]{\sum\limits_{i=1}^n\left[f\left(\frac{i}{n}\right)\right]^n\cdot\frac{1}{n}}=\max\limits_{0\le x\le 1}f(x).$</p>
+<p>*<strong>[裴1.3.2]</strong> 证明 Vieta 公式：$\frac{2}{\pi}=\sqrt{\frac{1}{2}}\cdot\sqrt{\frac{1}{2}+\frac{1}{2}\sqrt{\frac{1}{2}}}\cdot\sqrt{\frac{1}{2}+\frac{1}{2}\sqrt{\frac{1}{2}+\frac{1}{2}\sqrt{\frac{1}{2}}}}\cdots$</p>
+<p>**<strong>[裴例1.5.20练习2]</strong> 已知数列 $\lbrace a_n\rbrace $ 满足 $\lim\limits_{n\to\infty}\frac{a_{2n}}{2n}=a,\lim\limits_{n\to\infty}\frac{a_{2n+1}}{2n+1}=b$, 试证：$\lim\limits_{n\to\infty}\frac{a_1+a_2+\cdots+a_n}{1+2+\cdots+n}=\frac{a+b}{2}.$</p>
+<p>***<strong>[裴例1.5.23]</strong> 设 $a_1,b_1$ 为任意选定的两实数, 定义 $a_n,b_n$ 如下：<br>
+$$<br>
+a_n=\int_0^1\max\lbrace b_{n-1},x\rbrace \mathrm{~d}x,\quad b_n=\int_0^1\min\lbrace a_{n-1},x\rbrace \mathrm{~d}x\ \ (n=2,3,\cdots).<br>
+$$<br>
+证明: $\lim\limits_{n\to\infty}a_n=2-\sqrt{2},\ \lim\limits_{n\to\infty}b_n=\sqrt{2}-1.$</p>
+<p>*<strong>[裴例1.5.4]</strong> 设 $x_1=1,x_2=\frac{1}{2},x_{n+1}=\frac{1}{1+x_n}$, 求 $\lim\limits_{n\to\infty}x_n.$</p>
+<h3 id="（二）函数极限-2">（二）函数极限</h3>
+<ol>
+<li>
+<p>*<strong>[华四3.1.8]</strong> 证明: 黎曼函数 $R(x)$ 在 $[0,1]$ 的任一点处极限都存在且为 $0$ (在端点处考察单侧极限).</p>
+</li>
+<li>
+<p>*<strong>[华四3.4.4]</strong> 设 $f(x)$ 在 $U^o(x_0)$ 内有定义. 证明：对任何数列 $\lbrace x_n\rbrace \subset U^o(x_0)$ 且 $\lim\limits_{n\to\infty}x_n=x_0$, 极限 $\lim\limits_{n\to\infty}f(x_n)$ 存在，则所有这些极限都相等.<br>
+注：用反证法.</p>
+</li>
+<li>
+<p>**<strong>[华四第3章总练习题11]</strong> 设 $f$ 为 $U^o_-(x_0)$ 上的递增数列. 证明: 若存在数列 $\lbrace x_n\rbrace \subset U^o_-(x_0)$ 且 $x_n\to x_0 \ (n\to\infty)$, 使得 $\lim\limits_{n\to\infty}f(x_n)=A$, 则有 $f(x_0-0)=\sup\limits_{x\in U^o_-(x_0)}f(x)=A.$</p>
+</li>
+<li>
+<p>**<strong>[华四第3章总练习题14]</strong> 设函数 $f$ 定义在 $(a,+\infty)$ 上, $f$ 在每一个有限区间 $(a,b)$ 上有界, 并满足 $\lim\limits_{x\to+\infty}\left(f(x+1)-f(x)\right)=A$. 证明：$\lim\limits_{x\to+\infty}\frac{f(x)}{x}=A.$</p>
+</li>
+<li>
+<p>*<strong>[裴例1.2.14]</strong> 设 $f(x)$ 在 $x_0$ 的某个领域 $I$ （点 $x_0$ 可能例外）内有定义，证明：若对任意点列 $\lbrace x_n\rbrace $，满足 $x_n\in I, \ x_n\to x_0(n\to\infty), \ 0&lt;|x_{n+1}-x_0|&lt;|x_n-x_0|$，都有 $\lim\limits_{n\to\infty}f(x_n)=A$，则 $\lim\limits_{x\to x_0}f(x)=A.$<br>
+注：其实就是 <strong>Heine 定理</strong> 的证明手段</p>
+</li>
+<li>
+<p>*<strong>[裴例1.3.21]</strong> 设 $f’(x)$ 在 $[0,+\infty)$ 上连续且 $\lim\limits_{x\to+\infty}[f(x)+f’(x)]=0$，证明：$\lim\limits_{x\to+\infty}f(x)=0.$<br>
+注：强化的 $L’Hospital$ 法则</p>
+</li>
+<li>
+<p>*<strong>[裴例1.3.22]</strong> 设 $f(x)$ 在实轴上有界，且连续可微，并满足 $|f(x)-f’(x)|\le 1 \ (-\infty&lt;x&lt;+\infty)$, 证明：$|f(x)|\le1 \ (-\infty&lt;x&lt;+\infty)$.</p>
+</li>
+<li>
+<p>**<strong>[裴例1.3.23]</strong> 设 $f:(0,+\infty)\to(0,+\infty)$ 单调递增，且 $\lim\limits_{t\to+\infty}\frac{f(2t)}{f(t)}=1$. 证明：对任意 $m&gt;0$，有 $\lim\limits_{t\to+\infty}\frac{f(mt)}{t}=1.$</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag"># 数学分析</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/2.%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7/" rel="prev" title="函数的连续性">
+      <i class="fa fa-chevron-left"></i> 函数的连续性
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">极限论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%88%A4%E6%96%AD%E9%A2%98%EF%BC%88%E7%BB%99%E5%8F%8D%E4%BE%8B%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">一、判断题（给反例）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AE%A1%E7%AE%97%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">二、计算题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">（一）数列极限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90"><span class="nav-number">1.2.2.</span> <span class="nav-text">（二）函数极限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AF%81%E6%98%8E%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">三、证明题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">（一）数列极限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">（二）函数极限</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

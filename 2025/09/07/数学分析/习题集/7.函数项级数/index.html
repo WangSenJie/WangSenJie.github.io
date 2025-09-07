@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="函数项级数 【华四&#x2F;李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性  $f_n(x)&#x3D;\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n&#x3D;1,2,\cdots$; $f_n(x)&#x3D;\left(1+\f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数项级数">
+<meta property="og:url" content="https://wangsenjie.github.io/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/7.%E5%87%BD%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="函数项级数 【华四&#x2F;李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性  $f_n(x)&#x3D;\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n&#x3D;1,2,\cdots$; $f_n(x)&#x3D;\left(1+\f">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-07T15:51:48.036Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="数学分析">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/7.%E5%87%BD%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    packages: {'[+]': ['ams']},   // 关键：加载 ams（align/aligned 等）
+    tags: 'ams'
+  },
+  options: {
+    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <title>函数项级数 | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/7.%E5%87%BD%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          函数项级数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-07 00:00:00 / 修改时间：23:51:48" itemprop="dateCreated datePublished" datetime="2025-09-07T00:00:00+08:00">2025-09-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">习题集</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>函数项级数</h1>
+<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
+<ol>
+<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
+<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
+<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
+</ol>
+<p>【华四/李】考察以下函数项级数的一致收敛性</p>
+<ol>
+<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
+<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
+<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
+</ol>
+<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
+<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
+<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
+<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
+<p>【定理13.6(Abel判别法)】设<br>
+(i) $\sum u_n(x)$在区间1上一致收敛；<br>
+(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
+(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
+则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
+<p>【定理 13.7(Dirichlet判别法)】 设<br>
+(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
+(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
+(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
+则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
+<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
+<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
+<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
+<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
+<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
+<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
+<p>【华四13.2例1】设函数<br>
+$$<br>
+f_{n}(x)=\begin{cases}<br>
+2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
+2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
+0,&amp;\frac{1}{n}\le x\le 1,<br>
+\end{cases}\quad n=1,2,\cdots<br>
+$$<br>
+考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
+<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
+<p>$$<br>
+\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
+$$<br>
+【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
+<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
+<p>【华四第十三章总练习题2】证明：<br>
+(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
+(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
+<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
+(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
+(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
+<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
+<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag"># 数学分析</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/197%E4%B8%8A%E5%8D%87%E7%9A%84%E6%B8%A9%E5%BA%A6/" rel="prev" title="上升的温度">
+      <i class="fa fa-chevron-left"></i> 上升的温度
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/6.%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/" rel="next" title="数项级数">
+      数项级数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">函数项级数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
