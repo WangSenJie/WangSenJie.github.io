@@ -175,6 +175,289 @@ window.MathJax = {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/09/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%88%AC%E6%A5%BC%E6%A2%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/09/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%88%AC%E6%A5%BC%E6%A2%AF/" class="post-title-link" itemprop="url">爬楼梯</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-09 00:00:00 / 修改时间：00:26:20" itemprop="dateCreated datePublished" datetime="2025-09-09T00:00:00+08:00">2025-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">算法题</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>爬楼梯</h1>
+<h2 id="问题描述">问题描述</h2>
+<blockquote>
+<p>设你正在爬楼梯. 需要 $n$ 阶你才能到达楼顶. 每次你可以爬 $1$ 或 $2$ 个台阶. 总共有多少种不同的方法可以爬到楼顶?</p>
+</blockquote>
+<h2 id="问题解答">问题解答</h2>
+<p><strong>解析:</strong></p>
+<p>不妨设 $f(n)$ 为走到第 $n$ 级台阶的方法数, 而第 $n$ 级台阶只能通过第 $n-1$ 级台阶或第 $n-2$ 级台阶才能到达, 于是我们有递推式子:<br>
+$$<br>
+f(n)=\begin{cases}<br>
+f(n-1)+f(n-2) &amp; n\ge 3,\\<br>
+1 &amp; n=1,\\<br>
+2 &amp; n=2\\<br>
+\end{cases}<br>
+$$</p>
+<p><strong>算法:</strong></p>
+<ul>
+<li>输入台阶数量 $n$</li>
+<li>构造 $n$ 维迭代向量 $v\gets (0,\cdots,0)$</li>
+<li>如果 $n==1$ 则输出 $1$</li>
+<li>如果 $n==2$ 则输出 $2$</li>
+<li>反之
+<ul>
+<li>赋值 $v_1\gets 1,~ v_2\gets 2$</li>
+<li>对于 $i=3,4,\cdots,n$:
+<ul>
+<li>$v_i\gets v_{i-1}+v_{i-2}$</li>
+</ul>
+</li>
+<li>输出 $v_n$</li>
+</ul>
+</li>
+</ul>
+<p><strong>Python 程序:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp = [<span class="number">0</span>] * (n+<span class="number">1</span>)</span><br><span class="line">            dp[<span class="number">1</span>], dp[<span class="number">2</span>] = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n+<span class="number">1</span>):</span><br><span class="line">                dp[i] = dp[i-<span class="number">1</span>] + dp[i-<span class="number">2</span>]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/09/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%AE%8C%E5%A4%87%E7%9A%84%E6%B5%8B%E5%BA%A6%E7%A9%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/09/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%AE%8C%E5%A4%87%E7%9A%84%E6%B5%8B%E5%BA%A6%E7%A9%BA%E9%97%B4/" class="post-title-link" itemprop="url">$(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-09 00:00:00 / 修改时间：00:35:49" itemprop="dateCreated datePublished" datetime="2025-09-09T00:00:00+08:00">2025-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">测度论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
+<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
+<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+<ul>
+<li>
+<p>$\mathscr M$ 非空.<br>
+事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
+&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
+&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
+\end{aligned}<br>
+$$<br>
+即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于补集运算封闭.<br>
+事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
+\end{aligned}<br>
+$$<br>
+即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于可列并封闭.</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
+设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
+&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
+\end{aligned}<br>
+$$<br>
+即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
+</li>
+<li>
+<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
+设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
+$$<br>
+S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
+$$</p>
+<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
+&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\cdots\cdots\\<br>
+&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>令 $n\to\infty$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+</li>
+<li>
+<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+<ul>
+<li>
+<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
+</li>
+<li>
+<p>$\mu^{\ast} $ 满足可列可加性.<br>
+由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
+$$<br>
+\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
+$$<br>
+令 $E=\Omega$, 得<br>
+$$<br>
+\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
+$$<br>
+从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
+</li>
+</ul>
+<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+</li>
+</ul>
+<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
+<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/1.%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E4%B8%8E%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2314,197 +2597,6 @@ $$<br>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/196%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/196%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/" class="post-title-link" itemprop="url">删除重复的电子邮箱</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 19:43:06 / 修改时间：19:51:42" itemprop="dateCreated datePublished" datetime="2025-09-05T19:43:06+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。</p>
-<p>编写解决方案 删除 所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
-<p>（对于 <code>SQL</code> 用户，请注意你应该编写一个 <code>DELETE</code> 语句而不是 <code>SELECT</code> 语句。）</p>
-<p>（对于 <code>Pandas</code> 用户，请注意你应该直接修改 <code>Person</code> 表。）</p>
-<p>运行脚本后，显示的答案是 <code>Person</code> 表。驱动程序将首先编译并运行您的代码片段，然后再显示 <code>Person</code> <code>表。Person</code> 表的最终顺序 无关紧要 。</p>
-<p>返回结果格式如下示例所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">输出: </span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br><span class="line">解释: john@example.com重复两次。我们保留最小的Id = 1。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(196)</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/185%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E5%89%8D%E4%B8%89%E9%AB%98%E7%9A%84%E6%89%80%E6%9C%89%E5%91%98%E5%B7%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/185%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E5%89%8D%E4%B8%89%E9%AB%98%E7%9A%84%E6%89%80%E6%9C%89%E5%91%98%E5%B7%A5/" class="post-title-link" itemprop="url">部门工资前三高的所有员工</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 19:08:13 / 修改时间：19:51:27" itemprop="dateCreated datePublished" datetime="2025-09-05T19:08:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表: <code>Employee</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-<code>departmentId</code> 是 <code>Department</code> 表中 <code>ID</code> 的外键（<code>reference</code> 列）。<br>
-该表的每一行都表示员工的<code>ID</code>、姓名和工资。它还包含了他们部门的<code>ID</code>。</p>
-<p>表: <code>Department</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-该表的每一行表示部门ID和部门名。</p>
-<p>公司的主管们感兴趣的是公司每个部门中谁赚的钱最多。一个部门的 高收入者 是指一个员工的工资在该部门的 不同 工资中 排名前三 。</p>
-<p>编写解决方案，找出每个部门中 收入高的员工 。</p>
-<p>以 任意顺序 返回结果表。</p>
-<p>返回结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 85000  | 1            |</span><br><span class="line">| 2  | Henry | 80000  | 2            |</span><br><span class="line">| 3  | Sam   | 60000  | 2            |</span><br><span class="line">| 4  | Max   | 90000  | 1            |</span><br><span class="line">| 5  | Janet | 69000  | 1            |</span><br><span class="line">| 6  | Randy | 85000  | 1            |</span><br><span class="line">| 7  | Will  | 70000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department  表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">| IT         | Joe      | 85000  |</span><br><span class="line">| IT         | Randy    | 85000  |</span><br><span class="line">| IT         | Will     | 70000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| Sales      | Sam      | 60000  |</span><br><span class="line">+------------+----------+--------+</span><br></pre></td></tr></table></figure>
-<p><strong>解释:</strong><br>
-在IT部门:</p>
-<ul>
-<li>Max的工资最高</li>
-<li>兰迪和乔都赚取第二高的独特的薪水</li>
-<li>威尔的薪水是第三高的</li>
-</ul>
-<p>在销售部:</p>
-<ul>
-<li>亨利的工资最高</li>
-<li>山姆的薪水第二高</li>
-<li>没有第三高的工资，因为只有两名员工</li>
-</ul>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep&lt;=<span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(department, left_on=<span class="string">&#x27;departmentId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_dep&#x27;</span>))[[<span class="string">&#x27;name_dep&#x27;</span>,<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;salary&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(185)</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2576,20 +2668,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

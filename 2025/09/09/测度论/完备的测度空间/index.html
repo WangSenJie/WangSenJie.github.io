@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="[T0241104] (Carathéodory) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体. Proof: 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="$(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间">
+<meta property="og:url" content="https://wangsenjie.github.io/2025/09/09/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%AE%8C%E5%A4%87%E7%9A%84%E6%B5%8B%E5%BA%A6%E7%A9%BA%E9%97%B4/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="[T0241104] (Carathéodory) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体. Proof: 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-08T16:35:49.016Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="测度论">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2025/09/09/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%AE%8C%E5%A4%87%E7%9A%84%E6%B5%8B%E5%BA%A6%E7%A9%BA%E9%97%B4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    packages: {'[+]': ['ams']},   // 关键：加载 ams（align/aligned 等）
+    tags: 'ams'
+  },
+  options: {
+    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <title>$(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间 | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/09/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%AE%8C%E5%A4%87%E7%9A%84%E6%B5%8B%E5%BA%A6%E7%A9%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-09 00:00:00 / 修改时间：00:35:49" itemprop="dateCreated datePublished" datetime="2025-09-09T00:00:00+08:00">2025-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">测度论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
+<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
+<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+<ul>
+<li>
+<p>$\mathscr M$ 非空.<br>
+事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
+&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
+&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
+\end{aligned}<br>
+$$<br>
+即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于补集运算封闭.<br>
+事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
+\end{aligned}<br>
+$$<br>
+即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于可列并封闭.</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
+设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
+&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
+\end{aligned}<br>
+$$<br>
+即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
+</li>
+<li>
+<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
+设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
+$$<br>
+S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
+$$</p>
+<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
+&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\cdots\cdots\\<br>
+&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>令 $n\to\infty$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+</li>
+<li>
+<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+<ul>
+<li>
+<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
+</li>
+<li>
+<p>$\mu^{\ast} $ 满足可列可加性.<br>
+由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
+$$<br>
+\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
+$$<br>
+令 $E=\Omega$, 得<br>
+$$<br>
+\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
+$$<br>
+从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
+</li>
+</ul>
+<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+</li>
+</ul>
+<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
+<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" rel="tag"># 测度论</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/1.%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E4%B8%8E%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/" rel="prev" title="数列极限与函数极限">
+      <i class="fa fa-chevron-left"></i> 数列极限与函数极限
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/09/09/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%88%AC%E6%A5%BC%E6%A2%AF/" rel="next" title="爬楼梯">
+      爬楼梯 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
