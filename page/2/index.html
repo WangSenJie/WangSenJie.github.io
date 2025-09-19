@@ -175,6 +175,516 @@ window.MathJax = {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/6.%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/6.%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/" class="post-title-link" itemprop="url">数项级数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-07 00:00:00 / 修改时间：23:52:42" itemprop="dateCreated datePublished" datetime="2025-09-07T00:00:00+08:00">2025-09-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">习题集</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>数项级数</h1>
+<h2 id="数学常识">数学常识</h2>
+<h3 id="级数的性质">级数的性质</h3>
+<ol>
+<li>去掉、增加或改变级数的有限项并不改变级数的敛散性.</li>
+<li>对收敛级数的项任意加括号, 既不改变级数的收敛性, 也不改变级数的和.
+<ol>
+<li>若某个级数加括号后发散, 则原级数发散.</li>
+<li>若某个级数加括号后收敛, 则原级数不一定收敛, 但如果同一括号内项的符号相同, 则原级数收敛.</li>
+<li>若某个级数通项收敛于零, 同时该级数加括号后收敛且每个括号内项的个数小于某个定数, 则原级数收敛.</li>
+</ol>
+</li>
+</ol>
+<h3 id="正项级数">正项级数</h3>
+<ol>
+<li>
+<p>正项级数 $\sum u_n$ 收敛的充要条件</p>
+<ol>
+<li>Cauchy 准则</li>
+<li>部分和数列有界（单调有界原理）</li>
+</ol>
+</li>
+<li>
+<p>正项级数 $\sum u_n$ 收敛的充分条件（判别法）</p>
+<ol>
+<li>
+<p>比较判别法</p>
+</li>
+<li>
+<p>D’Alembert 判别法</p>
+<ul>
+<li>事实上, 这是将几何级数作为比较对象了（这也是证明 D’Alembert 判别法的方法）.</li>
+</ul>
+</li>
+<li>
+<p>Cauchy 判别法</p>
+<ul>
+<li>
+<p>事实上, 这也是将几何级数作为比较对象了（这也是证明 Cauchy 判别法的方法）.</p>
+</li>
+<li>
+<p>由不等式 $\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}\le\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}$ 可知凡是能用 D’Alembert 判别法的一定能能用 Cauchy 判别法判别.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>积分判别法</p>
+</li>
+<li>
+<p>Raabe 判别法</p>
+<ul>
+<li>事实上, 这是以 $p$ 级数为比较对象.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="一般项级数">一般项级数</h3>
+<ol>
+<li>
+<p>交错项级数的判别：Leibniz 判别法.</p>
+</li>
+<li>
+<p>绝对收敛的级数任意重排后得到的级数可以收敛到事先指定的任一实数, 也可以使其发散到 $+\infty$ 或 $-\infty$.</p>
+</li>
+<li>
+<p>条件收敛的级数重排后得到的新级数不一定收敛, 即使收敛了也不一定收敛到原和数.</p>
+<ul>
+<li>
+<p>考虑交错级数 $\sum(-1)^{n+1}\frac{1}{n}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}+\cdots$ 的重排: 先依次取 $p$ 个正项, 接着依次取 $p$ 个正项, 如此继续下去, 得到重排后的新级数, 可以证明新级数是收敛的, 且其和数为 $\sum a_n=\ln2+\frac{1}{2}\ln\frac{p}{q}$.</p>
+<ul>
+<li>
+<p>取 $p=q=1$, 则有<br>
+$$<br>
+1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}+\cdots=\ln2.<br>
+$$</p>
+</li>
+<li>
+<p>取 $p=2,q=1$, 则有<br>
+$$<br>
+1+\frac{1}{3}-\frac{1}{2}+\frac{1}{5}+\frac{1}{7}-\frac{1}{4}+\cdots=\frac{3}{2}\ln2.<br>
+$$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>还是考虑交错级数 $\sum(-1)^{n+1}\frac{1}{n}$ 的重排:<br>
+$$<br>
+\begin{aligned}<br>
+&amp;1-\frac{1}{2}+\frac{1}{3}-\left(\frac{1}{4}+\frac{1}{6}\right)+\left(\frac{1}{5}+\frac{1}{7}\right)-\left(\frac{1}{8}+\frac{1}{10}+\frac{1}{12}+\frac{1}{14}\right)\\<br>
+&amp;+\left(\frac{1}{9}+\frac{1}{11}+\frac{1}{13}+\frac{1}{15}\right)+\cdots-\left(\frac{1}{2^k}+\frac{1}{2^k+2}+\cdots+\frac{1}{2^{k+1}-2}\right)\\<br>
+&amp;+\left(\frac{1}{2^k+1}+\frac{1}{2^k+3}\cdots+\frac{1}{2^{k+1}-1}\right)+\cdots<br>
+\end{aligned}<br>
+$$<br>
+不难验证其加括号后的级数通项不趋于零, 从而加括号后发散, 故重排级数发散.</p>
+</li>
+<li>
+<p>把级数</p>
+<p>$$<br>
+1-\frac1{2^a}+\frac1{3^a}-\frac1{4^a}+\frac1{5^a}-\frac1{6^a}+\cdots\quad(0&lt;\alpha&lt;1)<br>
+$$</p>
+<p>的项重新安排如下：先依次取 $p$ 个正项, 接着依次取 $q$ 个负项, 再接着依次取 $p$ 个正项, 如此继续下去.证明: 所得的新级数收敛的充分必要条件为 $p=q$; 当 $p&gt;q$ 时, 新级数发散到 $+\infty$, 当 $p{&lt;}q$ 时, 新级数发散到 $-\infty$.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>级数乘积</p>
+<ol>
+<li>绝对收敛的级数 $\sum u_n,\sum v_n$ 的乘积 $\sum u_n\sum v_n$ 中的所有项 $u_iv_j$ 按任意顺序排列所得到的级数 $\sum w_n$ 也绝对收敛, 且其和为 $AB$, 其中 $\sum u_n=A,\sum v_n=B$.</li>
+<li>Abel 分布求和公式</li>
+<li>Abel 引理 $\Rightarrow$ Dirichlet 判别法、Abel 判别法</li>
+</ol>
+</li>
+</ol>
+<h2 id="无穷级数的性质">无穷级数的性质</h2>
+<p>【华四12.1定理12.4】对收敛级数的项任意加括号, 既不改变级数的收敛性, 也不改变级数的和.<br>
+<strong>注：</strong>  级数收敛等价于其部分和数列收敛, 于是部分和数列的子列必收敛, 且极限与原数列极限一致.</p>
+<p>【华四12.1.10】设级数 $\sum u_{n}$ 满足: 加括号后级数  $\sum\limits_{k=1}^{\infty}\left(u_{n_{k}+1}+\cdots+u_{n_{k+1}}\right)$  收敛  $\left(n_{1}=0\right)$ , 且在同一括号中的  $u_{n_{k}+1}, u_{n_{k}+2}, \cdots, u_{n_{k+1}}$ 符号相同，证明 $\sum u_{n}$ 亦收敛.<br>
+<strong>注：</strong>  记加括号后的级数为 $\sum v_n$, 它收敛可知 $v_n\to0$, 又因为同意括号内中项的符号相同, 故括号内前 $k$ 的和必趋于零, 注意到 $\sum u_n$ 的部分和可以表示为 $\sum v_n$ 的某个部分和加上某一个括号内的前 $k$ 项, 再利用 $\sum v_n$ 收敛即得结论.</p>
+<p>【李例5-1-2-3】若数项级数 $\sum a_n$ 满足: (i) $\lim\limits_{n\to\infty}a_n=0$; (ii) 加上括号收敛而且每个括里项的个数小于某个定数 $L$. 则原级数 $\sum a_n$ 收敛.<br>
+<strong>注：</strong>  这等价于 $\lbrace S_n\rbrace$ 有个子列 $\lbrace S_{n_k}\rbrace$ 收敛, 于是对任意 $n\in \mathbb{N}^+$, 有 $\exists k, \ s.t. \ n_k\le n&lt; n_{k+1}$, 从而 $|S_n-S_{n_k}|\le\sum\limits_{j=1}^L|a_{n_k+j}|\to0 \ (n\to\infty)$.</p>
+<h2 id="正项级数-2">正项级数</h2>
+<p>【华四/李】讨论以下级数的敛散性</p>
+<ol>
+<li>$\sum\limits_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln n)^q}$.<br>
+<strong>注：</strong> $\sum\limits_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln n)^q}\begin{cases}收敛,&amp; p&gt;1 \ 或 \ (p=1~\text{且}~q&gt;1),\\ 发散, &amp;p&lt;1 \ 或 \ (p=1 ~\text{且}~ q\le 1).\end{cases}$</li>
+<li>$\sum\frac{1}{x^{\ln n}} \ (x&gt;0)$.<br>
+<strong>注：</strong> 事实上 $\frac{1}{e^{\ln n}}=\frac{1}{n^{\ln 3}}$</li>
+<li>$\sum\frac{n!}{(x+1)(x+2)\cdots(x+n)}\quad(x&gt;0)$.<br>
+<strong>注：</strong> 利用 Raabe 判别法</li>
+<li>$\sum\left[\frac{(2n-1)!!}{(2n)!!}\right]^p, \ (p\in\mathbb{N}^+)$.<br>
+<strong>注：</strong> Raabe判别法</li>
+<li>$\sum\left[\frac{(2n-1)!!}{(2n)!!}\right]^{\frac{1}{n}}$.<br>
+<strong>注：</strong> 记 $u_n=\frac{(2n-1)!!}{(2n)!!}$, 则有 $\lim\limits_{n\to\infty}\frac{a_{n+1}}{a_n}=1$, 于是利用不等式 $\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}\le\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}$ 即得原级数通项趋于 $1\neq0$, 从而发散.</li>
+<li>$\sum\left[\frac{(2n)!!}{(2n+1)!!}\right]^p$.<br>
+<strong>注：</strong> 利用 Wails 公式: $\lim\limits_{n\to\infty}\left[\frac{(2n)!!}{(2n-1)!!}\right]^2\frac{1}{2n+1}=\frac{\pi}{2}$.</li>
+<li>$\sum\frac{a_n}{(1+a_1)(1+a_2)\cdots(1+a_n)} \ (a_n&gt;0)$.<br>
+<strong>注：</strong> 注意到 $\frac{a_n}{(1+a_1)(1+a_2)\cdots(1+a_n)}=\frac{1}{(1+a_1)(1+a_2)\cdots(1+a_{n-1})}-\frac{1}{(1+a_1)(1+a_2)\cdots(1+a_n)}$.</li>
+<li>$\sum\limits_{n=1}^{\infty}\left[1-\left(\frac{n-1}{n+1}\right)^{k}\right]^{p} \ (p,k&gt;0)$.<br>
+<strong>注：</strong> 注意到 $\left(\frac{n-1}{n+1}\right)^{k}=\left(1-\frac{1}{n}\right)^{k}\left(1+\frac{1}{n}\right)^{k}=1-\frac{2k}{n}+o(\frac{1}{n})$.</li>
+<li>$\sum\limits_{n=1}^{\infty}\frac{n^{n-2}}{e^nn!}$.<br>
+<strong>注：</strong> 可以计算 $\frac{a_{n+1}}{a_n}$. 也可以利用 Strling 公式 $n!\sim \sqrt{2n\pi}\cdot \left(\frac{n}{e}\right)^n$.</li>
+<li>$\sum\limits_{n=3}^{\infty}\frac{1}{\ln n\ln\ln n}$.<br>
+<strong>注：</strong> 积分判别法.</li>
+<li>$\sum\limits_{n=3}^{\infty}\frac{1}{(\ln n)^{\ln\ln n}}$.<br>
+<strong>注：</strong> 考虑 $\lim\limits_{n\to\infty}\frac{\ln\frac{1}{a_n}}{\ln n}$.</li>
+<li>$\sum\limits_{n=3}^{\infty}\frac{1}{(\ln\ln n)^{\ln n}}$.<br>
+<strong>注：</strong> 考虑 $\lim\limits_{n\to\infty}\frac{\ln\frac{1}{a_n}}{\ln n}$.</li>
+</ol>
+<p>【华四12.2例6】讨论级数 $1+b+bc+b^2c+b^2c^2+\cdots+b^nc^{n-1}+b^nc^n+\cdots$ 的敛散性，其中 $0&lt;b&lt;c$.<br>
+<strong>注：</strong> 注意到 $\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}=b,\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}=c$.</p>
+<p>【华四12.2例8】考察级数 $b+c+b^2+c^2+\cdots+b^n+c^n+\cdots$ 的敛散性，其中 0&lt;b&lt;c&lt;1.<br>
+<strong>注：</strong> 注意到 $\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}=\sqrt{b},\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}=\sqrt{c}$.</p>
+<p>【史定理14.3.5】设 $\lbrace u_{n}\rbrace$ 是任意的正数列, 那么<br>
+$$<br>
+\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}\le\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}.<br>
+$$<br>
+<strong>注：</strong> 只需证明右半部分, 记 $\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}=q$ 根据上极限的定义, 当 $n$ 充分大 $n\ge N$ 时有 $\frac{u_{n+1}}{u_n}&lt;q+\varepsilon$, 于是不难得到 $u_n&lt;u_N(q+\varepsilon)^{n-N}\Rightarrow \sqrt[n]{u_n}&lt;\sqrt[n]{u_N(q+\varepsilon)^{-N}}\cdot(q+\varepsilon)\Rightarrow \overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le q+\varepsilon\to q \ (\varepsilon\to0)$.</p>
+<p>【华四12.2定理12.9】 <strong>(积分判别法)</strong> 设 $f$ 为 $[1,+\infty)$ 上非负减函数，那么正项级数 $\sum f(n)$ 与反常积分 $\int_1^{+\infty}f(x)\mathrm{~d}x$ 同时收敛或同时发散.<br>
+<strong>注：</strong> 注意到 $f_n\le\int_{n-1}^nf(x)\mathrm{~d}x\le f(n-1)$.</p>
+<p>【华四12.2定理12.10】 <strong>(Raabe判别法)</strong> 设 $\sum u_n$ 为正项级数，且存在某正整数 $N_{0}$ 及常数 $r$,<br>
+(i)若对一切 $n&gt;N_0$ 成立不等式 $n\left(1-\frac{u_{n+1}}{u_{n}}\right)\geq r&gt;1$, 则级数$\sum u_n$收敛；<br>
+(ii) 若对一切 $n&gt;N_0$ 成立不等式 $n(1-\frac{u_{n+1}}{u_n})\leq1,$ 则级数$\sum u_n$发散.<br>
+<strong>注：</strong> (i) 一定能选出一个 $p, \ s.t. \ 1&lt;p&lt;r$, 只需注意到 $\lim\limits_{n\to\infty}\frac{1-\left(1-\frac{1}{n}\right)^p}{\frac{r}{n}}=\frac{p}{r}&lt;1$. 而 (ii) 更加容易.</p>
+<p>【华四12.2.3】设$\sum u$ 和 $\sum v$ 为正项级数, 且存在正数 $N_0$, 对一切 $n&gt;N_0$, 有 $\frac{u_{n+1}}{u_n}\le\frac{v_{n+1}}{v_n}$. 证明：若级数 $\sum v_n$ 收敛，则级数 $\sum u$ 也收敛; 若 $\sum u_n$ 发散, 则 $\sum v$ 也发散.<br>
+<strong>注：</strong> 证明很简单, 这个结论可以记一下.</p>
+<p>【华四12.2.6】设级数 $\sum a_n^2$ 收敛,证明 $\sum\frac{a_n}n \ (a_n&gt;0)$ 也收敛.<br>
+<strong>注：</strong> 利用基本不等式.</p>
+<p>【华四12.2.11】设 $\lbrace a_n\rbrace$ 为递减正项数列, 证明: 级数 $\sum\limits_{n=1}^{\infty}a_n$ 与 $\sum2^ma_{2^m}$ 同时收敛或同时发散.<br>
+<strong>注：</strong> 只需证明它们的部分和数列同时有界或无界.</p>
+<p>【华四第十二章练习题1】若正项级数 $\sum u_n$ 收敛, 且数列 $\lbrace u_n\rbrace$ 单调, 则 $\lim\limits_{n\to\infty}nu_n=0$.<br>
+<strong>注：</strong> 利用 Cauchy 准则不难证明.</p>
+<p>【华四第十二章练习题4(3)】判断: $\sum u_n$ 为收敛的正项级数, 是否意味着存在一个正数 $\varepsilon$, 使得 $\lim\limits_{n\to\infty}\frac{u_n}{\frac{1}{n^{1+\varepsilon}}}=c&gt;0$.<br>
+<strong>注：</strong> 反例 $u_n=\frac{1}{n^n}$.</p>
+<p>【李例5-1-1-5】设定义在 $[a,b]$ 上的连续函数列 $\lbrace \varphi_n\left(x\right)\rbrace$ 满足: $\left.\int_a^b\varphi_n\left(x\right)\varphi_m\left(x\right)\mathrm{d}x=\left\lbrace \begin{array}{cc}0,&amp;m\neq n,\\1,&amp;m=n.\end{array}\right.\right.$  对 $f\left(x\right)\in R[a,b]$, 定义 $a_n=\int_a^bf\left(x\right)\varphi_n\left(x\right)\mathrm{d}x,\quad n=1,2,\cdots$. 证明: $\sum\limits_{n=1}^{\infty}a_n^2$ 收敛.<br>
+<strong>注：</strong> 构造 $S_m(x)=\sum\limits_{n=1}^ma_n\varphi_n(x)$, 利用题目条件和 $\int_a^b\left[f(x)-S_m(x)\right]^2\mathrm{~d}x\ge0$.</p>
+<p>【李例5-1-1-6】设 $\lbrace u_n\rbrace$ 是正的单调增加的数列，证明<br>
+(1) 当 $\lbrace $u_n\rbrace$ 有界时，级数 $\sum\limits_{n=1}^\infty\left(1-\frac{u_n}{u_{n+1}}\right)$ 收敛;<br>
+(2) 当 $\lbrace u_n\rbrace$ 无界时，级数 $\sum\limits_{n=1}^{\infty}\left(1-\frac{u_n}{u_{n+1}}\right)$ 发散.<br>
+<strong>注：</strong> (1) 考虑部分和有界; (2) 根据 $\lbrace u_n\rbrace$ 单调递增且无界可知 $\exists\varepsilon_0=\frac{1}{2},\forall N&gt;0,\exists n_0&gt;N,p_0\in\mathbb{N}^+,s.t. \ \frac{u_{n_0+1}}{u_{n_0+p_0+1}}&lt;\frac{1}{2}$. 接下去只需利用 Cauchy 收敛准则.</p>
+<p>【李例5-1-1-7】设 $\sum\limits_{n=1}^{\infty}a_n$ 为正项级数，满足: (i) $\sum\limits_{n=1}^{n}(a_k-a_n)$ 对 $n$ 有界; (ii) $\lbrace a_n\rbrace$ 单调递减且 $\lim\limits_{n\to\infty}a_n=0$. 证明$\sum a_n$收敛.<br>
+<strong>注：</strong></p>
+<p>【李例5-1-1-8】设 $a_1=1,a_2=2,a_n=a_{n-1}+a_{n-2} \ (n=3,4,\cdots)$, 证明<br>
+(1) $\lim\limits_{n\to\infty}a_n=+\infty$;<br>
+(2) $\sum\limits_{n=1}^{\infty}\frac{1}{a_n}$ 收敛.</p>
+<p>【史问题14.1.5】证明存在正常数 $K$, 使得不等式 $\sum\limits_{n=1}^{\infty}\frac{n}{a_1+a_2+\cdots+a_n}\le K\sum\limits_{n=1}^{\infty}\frac{1}{a_n}$ 对任何正数列 $\lbrace a_n\rbrace$ 都成立.</p>
+<p>【李例5-1-1练习(1)】设 $a_n&gt;0$, 判断级数 $\sum\frac{a_n}{a_1+a_2+\cdots+a_n}$ 敛散性.</p>
+<p>【李例5-1-2-1】设$a_n&gt;0$, 试回答</p>
+<ul>
+<li>若 $\sum\limits_{n-1}^{\infty}a_n$ 收敛,
+<ul>
+<li>能否推出$\lim _{n\to \infty}na_n= 0$;</li>
+<li>能否推出 $\lim\limits_{n\to\infty}n\left(a_n-a_{n+1}\right)=0$?</li>
+</ul>
+</li>
+<li>若$\lim\limits_{n\to\infty}na_n=0$ 或者 $\lim\limits_{n\to\infty}n(a_n-a_{n+1})=0$, 能否推出 $\sum a_n$ 收敛?</li>
+<li>若 $\lim\limits_{n\to\infty}na_n=0$ 收敛, 证明:
+<ul>
+<li>$\sum_{n=1}^{\infty}n\left(a_n-a_{n+1}\right)$ 敛散性与 $\sum_{n=1}^{\infty}a_n$ 敛散性等价;</li>
+<li>$\sum\limits_{n=1}^{\infty}n\left(a_{n}-a_{n+1}\right)$ 与 $\sum\limits_{n=1}^{\infty}a_{n}$ 有一个收敛, 则 $\sum\limits_{n=1}^{\infty}n\left(a_{n}-a_{n+1}\right)=\sum\limits_{n=1}^{\infty}a_{n}$.</li>
+</ul>
+</li>
+</ul>
+<p>【李例5-1-2-2】若正项级数 $\sum a_n$ 收敛. 证<br>
+(1) $\lim\limits_{n\to\infty}\frac{1}{n}\sum\limits_{k=1}^nka_k=0$.<br>
+(2) 再若 $\lbrace a_n\rbrace$ 单调下降，则 $\lim\limits_{n\to\infty}na_n=0$.</p>
+<p>【李例5-1-2-5】解答下列问题:<br>
+(1) 设正项级数 $\sum\limits_{n=1}^{\infty}a_n$ 收敛，记 $r_n=\sum\limits_{k=n}^{\infty}a_k \ \left(n=1,2,\cdots\right)$, 讨论级数 $\sum\limits_{n=1}^{\infty}\frac{a_n}{r_n^p}$ 的敛散性.<br>
+(2) 设正项级数 $\sum\limits_{n=1}^{\infty}a_n$ 收敛，记 $S_n=\sum\limits_{k=1}^{\infty}a_k$, 讨论级数 $\sum\limits_{n=1}^{\infty}\frac{a_n}{S_n^p}$ 的敛散性.</p>
+<p>【李例5-1-3-16】设级数 $\sum\limits_{n=1}^{\infty}a_n^4$ 收敛, 则 $\sum\limits_{n=1}^{\infty}a_nn^{-\frac{4}{5}}$ 收敛.</p>
+<p>【李例5-1-3-17】设正项级数 $\sum\limits_{n=1}^{\infty}a_n$ 发散, 判断级数 $\sum\limits_{n=1}^{\infty}\frac{a_n}{1+a_n}$ 的敛散性.</p>
+<p>【李例5-1-3-21】设 $\varphi(x)$ 是 $(-\infty,+\infty)$ 上的连续周期函数, 周期为 $1$, 且 $\int_0^1\varphi(x)\mathrm{~d}x=0$, 函数 $f(x)$ 在 $[0,1]$ 上可微且有连续的一阶导数，令 $a_n= \int_0^1f\left ( x\right ) \varphi\left ( nx\right )\mathrm{~d}x,  \ n= 1, 2, \cdots$. 证明：<br>
+(1) $\lim\limits_{n\to\infty}a_n=0$;<br>
+(2) $\sum\limits_{n=1}^{\infty}|a_n|^p \ (p&gt;1)$ 收敛.</p>
+<p>【李例5-1-4-5】设 $\alpha\in(0,1),:\lbrace a_n\rbrace$ 为正数列且满足</p>
+<p>$$<br>
+\lim\limits_{n\to\infty}n^\alpha\left(\frac{a_n}{a_{n+1}}-1\right)=\lambda\in(0,+\infty),<br>
+$$</p>
+<p>求证： $\lim\limits_{n\to\infty} n^ka_n=0$,其中 $k&gt;0$.</p>
+<p>【李例5-1-8-3】若 $\sum a_n$ 收敛，$a_n&gt;0, \ \lbrace a_n-a_{n+1}\rbrace$ 单调下降, 则 $\lbrace a_n\rbrace$ 单调递减趋于零, 且<br>
+$$<br>
+\lim\limits_{n\to\infty}\left(\frac{1}{a_{n+1}}-\frac{1}{a_n}\right)=+\infty.<br>
+$$<br>
+【李例5-1-8-4】证明: $p&gt;1, \ \sum\limits_{n=1}^{\infty}\frac{1}{(n+1)\sqrt[p]{n}}&lt;p$.</p>
+<h2 id="一般项级数-2">一般项级数</h2>
+<p>【华四/李】讨论下列级数的敛散性</p>
+<ol>
+<li>$\sum\frac{(-1)^{n-1}}{n^{p+\frac{1}{n}}}$.</li>
+<li>$\sum\frac{(-1)^n}{n^p\ln^qn}$.</li>
+<li>$\sum\left(\frac{(-1)^n}{\sqrt{n}}+\frac{1}{n}\right)$.</li>
+<li>$\sum(-1)^n\frac{\cos^2n}{n}$.</li>
+<li>$\sum\frac{(-1)^{[\sqrt{n}]}}{n^p}$.</li>
+<li>$\sum\limits_{n=2}^{\infty}\frac{(-1)^n\sin n}{n} \ (p&gt;0)$.</li>
+<li>$\sum a_n$, 其中 $a_n=\begin{cases}\frac{1}{n^p}, &amp; n \ 为奇数\\ -\frac{1}{n^q}, &amp; n \ 为偶数\end{cases}, \ (p,q&gt;0).$</li>
+<li>$1+\frac{1}{\sqrt{3}}-\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{5}}+\frac{1}{\sqrt{7}}-\frac{1}{\sqrt{4}}+\frac{1}{\sqrt{9}}+\frac{1}{\sqrt{11}}-\frac{1}{\sqrt{6}}+\cdots$.</li>
+</ol>
+<p>【华四12.1定理12.1】 <strong>(级数收敛的柯西准则)</strong> 级数 $\sum u_n$ 收敛的充要条件是: 任给正数  $\varepsilon$ , 总存在正整数  $N$ , 使得当  $m&gt;N$  以及对任意的正整数  $p$ , 都有</p>
+<p>$$<br>
+\left|u_{m+1}+u_{m+2}+\cdots+u_{m+p}\right|&lt;\varepsilon .<br>
+$$<br>
+<strong>注：</strong> 利用级数收敛和部分和数列收敛的关系即得.</p>
+<p>【李例5-1-2-4】$\sum a_{n}$ 收敛的充分必要条件为对任意正整数列 $\lbrace r_n\rbrace$, 有</p>
+<p>$$<br>
+\lim_{n\to\infty}\left(a_{n+1}+a_{n+2}+\cdots+a_{n+r_n}\right)=0.<br>
+$$<br>
+【华四12.3定理12.11】 <strong>(Leibniz判别法)</strong> 若交错级数 $\sum(-1)^{n+1}u_n$ 满足下述两个条件：<br>
+(i)数列$\lbrace u_n\rbrace$单调递减；<br>
+(ii) $\lim\limits_{n\to \infty}u_n= 0$,<br>
+则级数 $\sum(-1)^{n+1}u_n$ 收敛.<br>
+<strong>注：</strong> 可以证明 $\lbrace [S_{2m},S_{2m-1}]\rbrace$ 是一个闭区间套. Leibniz 级数的余项估计为 $|R_n|\le u_{n+1}$.</p>
+<p>【华四12.3定理12.13】设级数 $\sum u_n$ 绝对收敛，且其和等于 $S$, 则任意重排后所得到的级数 $\sum v_n$ 也绝对收敛, 且有相同的和数.<br>
+<strong>注：</strong> 先证明对正项级数结论成立, 再构造正项级数 $p_n=\frac{|u_n|+u_n}{2}, \ q_n=\frac{|u_n|-u_n}{2}$, 于是 $\sum u_n=\sum p_n-\sum q_n$.</p>
+<p>【华四12.3定理12.14】 <strong>(Cauchy定理)</strong> 绝对收敛的级数 $\sum u_n,\sum v_n$ 的乘积 $\sum u_n\sum v_n$ 中的所有项 $u_iv_j$ 按任意顺序排列所得到的级数 $\sum w_n$ 也绝对收敛, 且其和为 $AB$, 其中 $\sum u_n=A,\sum v_n=B$.<br>
+<strong>注：</strong> 可以证明级数 $\sum |w_n|$ 的部分和有界, 再利用绝对收敛的级数任意重排后仍绝对收敛且和数不变的性质.</p>
+<p>【史引理14.4.1】 <strong>(Abel(阿贝尔，1802~1829)分部求和公式)</strong> 设$\left\lbrace a_k\right\rbrace,\left\lbrace b_k\right\rbrace$是两列实数，则对任意的正整数 $n$,有</p>
+<p>$$<br>
+\sum\limits_{k=1}^na_kb_k=\sum\limits_{k=1}^{n-1}S_k\left(b_k-b_{k+1}\right)+S_nb_n,<br>
+$$<br>
+这里 $S_k=\sum_{l=1}^ka_l$.<br>
+<strong>注：</strong> 事实上, 此公式可写作 $\sum\limits_{k=1}^nb_k\Delta S_k=S_kb_k\big\vert_0^n-\sum\limits_{k=1}^{n-1}S_k\Delta b_k$. 对应一元积分学中的分部积分.</p>
+<p>【史引理14.4.2】 <strong>(Abel 引理)</strong> 设 $b_1{\geqslant}b_2{\geqslant}…{\geqslant}b_n$ 或$b_1{\leqslant}b_2{\leqslant}…{\leqslant}b_n$,记 $S_k=$ $\sum\limits_{l=1}^k a_l$. 如果$\mid S_k\mid\leqslant M \ (k=1,2,…,n)$, 那么<br>
+$$<br>
+\left|\sum_{k=1}^{n}a_{k}b_{k}\right|\leqslant M(|b_{1}|+2|b_{n}|).<br>
+$$<br>
+【史定理14.4.3】 <strong>(Dirichlet判别法)</strong> 设 $\lbrace a_k\rbrace,\lbrace b_k\rbrace$ 是两个数列, $S_k=\sum\limits_{l=1}^ka_l$, 它们满足<br>
+(a) $\lbrace b_k\rbrace$ 单调趋于 $0$;<br>
+(b) $\lbrace S_k\rbrace$ 有界.<br>
+则级数 $\sum a_kb_k$ 收敛.<br>
+<strong>注：</strong> 利用 Abel 引理和 Cauchy 收敛准则.</p>
+<p>【史定理14.4.4】 <strong>(Abel判别法)</strong> 设 $\lbrace a_k\rbrace,\lbrace b_k\rbrace$ 是两个数列, 满足以下条件<br>
+(a) $\lbrace b_k\rbrace$ 单调有界;<br>
+(b) $\sum a_k$ 收敛.<br>
+则级数 $\sum a_kb_k$ 收敛.<br>
+<strong>注：</strong> 利用 Abel 引理和 Cauchy 收敛准则.</p>
+<p>【华四12.3例3】设递减数列 $\lbrace a_n\rbrace$ 满足 $\lim\limits_{n\to\infty}a_n=0$, 则级数 $\sum a_n\sin nx$ 和 $\sum a_n\cos nx$ 对任何 $x\in(0,2\pi)$ 都收敛.<br>
+<strong>注：</strong> 利用三角函数的和差公式不难验证当 $x\neq 2k\pi$ 时有<br>
+$$<br>
+\left|\sum\limits_{k=1}^n\cos kx\right|=\left|\frac{\sin(n+\frac{1}{2})x-\sin\frac{x}{2}}{2\sin\frac{x}{2}}\right|\le\frac{1}{\left|\sin\frac{x}{2}\right|}\<br>
+\left|\sum\limits_{k=1}^n\sin kx\right|=\left|\frac{\cos\frac{x}{2}-\cos(n+\frac{1}{2})x}{2\sin\frac{x}{2}}\right|\le\frac{1}{\left|\sin\frac{x}{2}\right|}<br>
+$$<br>
+【李例5-2-2-5(1)】设 $\sum a_n$ 发散, 证明 $\sum \left(1+\frac{1}{n}\right)a_n$ 发散.</p>
+<p>【华四12.3.5】写出下列级数的乘积 $\left(\sum\limits_{n=1}^{\infty}nx^{n-1}\right)\left(\sum\limits_{n=1}^{\infty}(-1)^{n-1}nx^{n-1}\right)$.</p>
+<p>【华四第十二章练习题5】若 $\sum a_n$ 收敛, $\sum(b_{n+1}-b_n)$ 绝对收敛, 则 $\sum a_nb_n$ 也收敛.</p>
+<p>【华四第十二章练习题7】若 $\sum a^2_n,\sum b_n^2$ 收敛, 则级数 $\sum a_nb_n$ 和 $\sum(a_n+b_n)^2$ 也收敛, 且<br>
+$$<br>
+\begin{aligned}<br>
+&amp;\left(\sum a_nb_n\right)^2\le\sum a_n^2\cdot\sum b_n^2,\<br>
+&amp;\left[\sum\left(a_n+b_n\right)^2\right]^{\frac{1}{2}}\le\left(\sum a_n^2\right)^{\frac{1}{2}}+\left(\sum b_n^2\right)^{\frac{1}{2}}.<br>
+\end{aligned}<br>
+$$<br>
+【李例5-1-7-5】举出一个发散的交错级数, 使其通项趋于零.</p>
+<p>【李例5-1-7-11】回答下列的问题。<br>
+(1) 若 $\sum a_n$ 收敛, 试问 $\sum a_n^2$ 是否收敛?<br>
+(2) 若 $\lim\limits_{n\to \infty}\frac {a_{n}}{b_{n}}=l\neq0$, 级数 $\sum a_n$ 与 $\sum b_n$ 是否同时敛散?<br>
+(3) 若 $\sum a_n$ 收敛, 而 $\lbrace b_n\rbrace$ 满足 $b_n=o(a_n) \ (n\to\infty)$, 试问 $\sum b_n^2$ 是否一定收敛?</p>
+<p>【李例5-1-8-5】设级数 $\sum\limits_{n=1}^{\infty}a_n$ 条件收敛，把这个级数的前 $n$ 项和写成两项 $s_n=\sum\limits_{k=1}^na_n=s_n^++s_n^-$, 其中 $s_n^+$ 和 $s_n^-$ 分别是正项和负项之和. 证明 $\lim\limits_{n\to\infty}\frac{s_n^+}{s_n^-}$ 存在并求其值.</p>
+<p>【李例5-1-8-7(3)】两个级数 $\sum a_n$ 与 $\sum b_n$ 收敛时，则它们的正方形乘积 $\sum d_n$ 收敛.</p>
+<p>$$<br>
+\int_a^bf’(x)\cos f(x)\mathrm{~d}x=\int_a^b(\sin f(x))'\mathrm{~d}x\le2<br>
+$$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/7.%E5%87%BD%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/7.%E5%87%BD%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/" class="post-title-link" itemprop="url">函数项级数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-07 00:00:00 / 修改时间：23:51:48" itemprop="dateCreated datePublished" datetime="2025-09-07T00:00:00+08:00">2025-09-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">习题集</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>函数项级数</h1>
+<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
+<ol>
+<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
+<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
+<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
+</ol>
+<p>【华四/李】考察以下函数项级数的一致收敛性</p>
+<ol>
+<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
+<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
+<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
+</ol>
+<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
+<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
+<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
+<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
+<p>【定理13.6(Abel判别法)】设<br>
+(i) $\sum u_n(x)$在区间1上一致收敛；<br>
+(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
+(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
+则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
+<p>【定理 13.7(Dirichlet判别法)】 设<br>
+(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
+(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
+(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
+则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
+<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
+<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
+<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
+<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
+<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
+<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
+<p>【华四13.2例1】设函数<br>
+$$<br>
+f_{n}(x)=\begin{cases}<br>
+2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
+2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
+0,&amp;\frac{1}{n}\le x\le 1,<br>
+\end{cases}\quad n=1,2,\cdots<br>
+$$<br>
+考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
+<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
+<p>$$<br>
+\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
+$$<br>
+【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
+<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
+<p>【华四第十三章总练习题2】证明：<br>
+(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
+(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
+<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
+(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
+(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
+<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
+<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/197%E4%B8%8A%E5%8D%87%E7%9A%84%E6%B8%A9%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -875,165 +1385,6 @@ window.MathJax = {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/178%E5%88%86%E6%95%B0%E6%8E%92%E5%90%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/178%E5%88%86%E6%95%B0%E6%8E%92%E5%90%8D/" class="post-title-link" itemprop="url">分数排名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 18:12:13 / 修改时间：18:18:33" itemprop="dateCreated datePublished" datetime="2025-09-05T18:12:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表: Scores</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>Score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。排名按以下规则计算:</p>
-<ul>
-<li>分数应按从高到低排列。</li>
-<li>如果两个分数相等，那么两个分数的排名应该相同。</li>
-<li>在排名相同的分数后，排名数应该是下一个连续的整数。换句话说，排名之间不应该有空缺的数字。</li>
-</ul>
-<p>按 score 降序返回结果表。查询结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<p>输入:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Scores 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | score |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | 3.50  |</span><br><span class="line">| 2  | 3.65  |</span><br><span class="line">| 3  | 4.00  |</span><br><span class="line">| 4  | 3.85  |</span><br><span class="line">| 5  | 4.00  |</span><br><span class="line">| 6  | 3.65  |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+-------+------+</span><br><span class="line">| score | rank |</span><br><span class="line">+-------+------+</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 3.85  | 2    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.50  | 4    |</span><br><span class="line">+-------+------+</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method = <span class="string">&#x27;dense&#x27;</span>, ascending = <span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/177%E7%AC%ACn%E9%AB%98%E7%9A%84%E8%96%AA%E6%B0%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/177%E7%AC%ACn%E9%AB%98%E7%9A%84%E8%96%AA%E6%B0%B4/" class="post-title-link" itemprop="url">第n高的薪水</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 18:09:13 / 修改时间：18:18:38" itemprop="dateCreated datePublished" datetime="2025-09-05T18:09:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表: Employee</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 n 高的 不同 工资。如果少于 n 个不同工资，查询结果应该为 null 。</p>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N-<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1105,20 +1456,20 @@ window.MathJax = {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
