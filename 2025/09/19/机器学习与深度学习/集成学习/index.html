@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://wangsenjie.github.io/2025/09/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/image-5.png">
 <meta property="og:image" content="https://wangsenjie.github.io/2025/09/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/image-6.png">
 <meta property="article:published_time" content="2025-09-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-19T17:33:14.859Z">
+<meta property="article:modified_time" content="2025-10-01T17:24:19.056Z">
 <meta property="article:author" content="DMH">
 <meta property="article:tag" content="集成学习">
 <meta property="article:tag" content="boosting">
@@ -220,7 +220,7 @@ window.MathJax = {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-20 01:33:14" itemprop="dateModified" datetime="2025-09-20T01:33:14+08:00">2025-09-20</time>
+                <time title="修改时间：2025-10-02 01:24:19" itemprop="dateModified" datetime="2025-10-02T01:24:19+08:00">2025-10-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,7 +264,7 @@ $$<br>
 <li>每个新模型都会关注并纠正前一轮模型预测错误的样本.</li>
 <li>最终将所有弱学习期的结果加权组合, 得到一个强学习器.</li>
 </ul>
-<h4 id="AdaBoost-Adaptive-Boosting">AdaBoost (Adaptive Boosting)</h4>
+<h3 id="AdaBoost-Adaptive-Boosting">AdaBoost (Adaptive Boosting)</h3>
 <p>AdaBoost 训练时会提高前一轮弱学习器错误分类的的样本的权重, 而降低正确分类的样本的权重.</p>
 <p>机制:</p>
 <ul>
@@ -326,7 +326,7 @@ $$F_0(x)=\arg\min\limits_{\gamma}\sum_{i}L(y_i,\gamma)$$</li>
 <li>计算损失函数对当前预测的负梯度作为残差近似:<br>
 $$r_{im}=-\left[\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\right]<em>{F(x)=F</em>{m-1}(x)}$$</li>
 <li>训练一棵 CART 树 $h_m(x)$ 拟合残差 $r_{im}$.</li>
-<li>计算叶节点的最佳输出值 $\gamma_{jm}$$.</li>
+<li>计算叶节点的最佳输出值 $\gamma_{jm}$.</li>
 <li>更新模型:<br>
 $$F_m(x)=F_{m-1}(x)+\nu\cdot h_m(x)$$<br>
 其中 $\nu$ 为学习率.</li>
@@ -342,6 +342,153 @@ $$F_M(x)=\sum_{m=1}^M\nu\cdot h_m(x).$$</li>
 <img src="./%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/image-5.png" alt=""><br>
 <img src="./%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/image-6.png" alt=""></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Test Accuracy: 0.9</span><br><span class="line"></span><br><span class="line">Classification Report:</span><br><span class="line">               precision    recall  f1-score   support</span><br><span class="line"></span><br><span class="line">           0      0.939     0.856     0.895        90</span><br><span class="line">           1      0.867     0.944     0.904        90</span><br><span class="line"></span><br><span class="line">    accuracy                          0.900       180</span><br><span class="line">   macro avg      0.903     0.900     0.900       180</span><br><span class="line">weighted avg      0.903     0.900     0.900       180</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Confusion Matrix:</span><br><span class="line"> [[77 13]</span><br><span class="line"> [ 5 85]]</span><br></pre></td></tr></table></figure>
+<h3 id="XGBoost-Extreme-Gradient-Boosting">XGBoost (Extreme Gradient Boosting)</h3>
+<p>本质上是对 GBDT 的基础上做一系列优化, 使得其更快、更准、更稳定.</p>
+<h4 id="模型的基本形式">模型的基本形式</h4>
+<p>XGBoost 是一个加法模型:<br>
+$$<br>
+\hat y_i = \sum_{k=1}^Kf_k(x_i),\quad f_k\in\mathcal F<br>
+$$<br>
+其中 $\mathcal F$ 为回归树的集合 (CART 树), 每一轮往模型里加一棵树, 去拟合残差.</p>
+<p>目标函数为:<br>
+$$<br>
+\mathcal L=\sum_i l(y_i,\hat y_i)+\sum_k\Omega(f_k),<br>
+$$<br>
+其中, $l$ 为训练误差 (如平方误差、Logistic loss).<br>
+$$<br>
+\Omega(f)=\gamma T+\frac12\lambda\Vert w\Vert^2.<br>
+$$<br>
+$T$ 为叶子节点数, $w$ 为叶子权重, $\gamma,\lambda$ 为正则化参数.</p>
+<h4 id="二阶近似">二阶近似</h4>
+<p>传统的 GBDT 只用一阶梯度 (残差) 更新, XGBoost 使用二阶 Taylor 展开. 在 $t$ 棵树时, 目标函数近似为:<br>
+$$<br>
+\mathcal L^{(t)}\approx\sum_{i=1}^n\left[g_if_t(x_i)+\frac12h_if_t(x_i)^2\right]+\Omega(f_t),<br>
+$$<br>
+其中,<br>
+$$<br>
+\begin{aligned}<br>
+g_i&amp;=\partial_{\hat y^{(t-1)}}l(y_i,\hat y^{(t-1)}),\\<br>
+h_i&amp;=\partial^2_{\hat y^{(t-1)}}l(y_i,\hat y^{(t-1)}).<br>
+\end{aligned}<br>
+$$</p>
+<h4 id="树的生长-分裂准则">树的生长 (分裂准则)</h4>
+<p>给定一个候选划分, 增益函数:<br>
+$$<br>
+Gain = \frac12\left[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}-\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}\right]-\gamma,<br>
+$$<br>
+其中, $G_L,H_L$ 为左子树的梯度和与二阶梯度和, $G_R,H_R$ 为右子树的梯度和与二阶梯度和, $\lambda,\gamma$ 为正则化参数. 分裂时选择增益最大的划分, 若增益 &lt; 0, 就不分裂 (剪枝).</p>
+<h4 id="实例-4">实例</h4>
+<p>二分类问题 (Logistic loss)</p>
+<p>假设有一个数据集:</p>
+<table>
+<thead>
+<tr>
+<th>样本 $x$</th>
+<th>标签 $y$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>损失函数:<br>
+$$<br>
+l(y,\hat y)=-\left[y\log p+(1-y)\log(1-p)\right],\quad p=\sigma(\hat y),<br>
+$$<br>
+其中 $\hat y$ 为模型输出 logit.</p>
+<ul>
+<li>第 $0$ 轮 (初始化)
+<ul>
+<li>XGBoost 初始化预测值为常数, 例如取 $logit=0$ (即 $p=\sigma(logit)=0.5$)</li>
+<li>所有样本预测 $p=0.5$</li>
+</ul>
+</li>
+<li>第 $1$ 轮建树
+<ul>
+<li>
+<p>计算一阶、二阶梯度 (对 log loss):</p>
+<ul>
+<li>一阶梯度:<br>
+$$g_i= \partial_{\hat y}l_i=-\left[y_i\frac{\partial_{\hat y} p_i}{p_i}-(1-y_i)\frac{\partial_{\hat y}p_i}{1-p_i}\right]=-\left[y_i(1-p_i)-(1-y_i)p_i\right]=p_i-y_i$$</li>
+<li>二阶梯度:<br>
+$$h_i=p_i(1-p_i)$$<br>
+代入样本:</li>
+<li>样本1 (y=0): $g_1=0.5,~h_1=0.25$</li>
+<li>样本2 (y=0): $g_2=0.5,~h_2=0.25$</li>
+<li>样本3 (y=1): $g_3=-0.5,~h_3=0.25$</li>
+<li>样本4 (y=1): $g_4=-0.5,~h_4=0.25$</li>
+</ul>
+</li>
+<li>
+<p>尝试划分特征阈值, 例如按照 $x=0.25$ 分左右</p>
+<ul>
+<li>左子集 $(x=1,2)$: $G_L=0.5+0.5=1,~H_L=0.25+0.25=0.5$</li>
+<li>右子集 $(x=3,4)$: $G_R=-0.5-0.5=-1,~H_R=0.25+0.25=0.5$</li>
+</ul>
+<p>计算增益 $\lambda=1,\gamma=0$:<br>
+$$<br>
+Gain=\frac{1}{2}\left(\frac{1^2}{0.5+1}+\frac{(-1)^2}{0.5+1}-\frac{(1-1)^2}{0.5+0.5+1}\right)\approx0.67.<br>
+$$<br>
+增益大于 $0$, 划分成立.</p>
+</li>
+<li>
+<p>确定叶子节点权重</p>
+<ul>
+<li>左叶:<br>
+$$<br>
+w_L^{\ast}=-\frac{G_L}{H_L+\lambda}=-\frac1{1.5}\approx-0.67.<br>
+$$</li>
+<li>右叶:<br>
+$$<br>
+w_R^{\ast}=-\frac{G_R}{H_R+\lambda}-\frac{-1}{1.5}\approx0.67.</li>
+</ul>
+</li>
+<li>
+<p>更新预测值 (学习率 $\eta=0.5$)</p>
+<ul>
+<li>左叶 ($x=1,2$): $\hat y_{new}=0+0.5\times(-0.67)=-0.335$.</li>
+<li>右叶 ($x=3,4$): $\hat y_{new}=0+0.5\times0.67=0.335$.</li>
+</ul>
+</li>
+<li>
+<p>更新后预测</p>
+<ul>
+<li>样本 $1,2$ (属于左叶): 预测 $logit=-0.335\to p\approx0.42$.</li>
+<li>样本 $3,4$ (属于右叶): 预测 $logit=+0.335\to p\approx0.58$.</li>
+</ul>
+</li>
+<li>
+<p>后续轮次</p>
+<ul>
+<li>第 $2$ 棵继续基于残差 (梯度 $g,h$ ) 建树.</li>
+<li>不断迭代, 每棵树都在纠正上一轮的不足.</li>
+<li>多轮之后, 左边样本概率接近 $0$, 右边样本概率接近 $1$.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="LightGBM">LightGBM</h3>
+<h4 id="原理">原理</h4>
+<p>LightGBM (Light Gradient Boosting Machine) 是微软 DMTK 团队在 2017 年开源的一个梯度提升树 (GBDT).</p>
+<p>其核心思想为 Boosting+决策树, 迭代训练多棵树, 每一棵树去拟合前一棵树的残差. 决策树所选择的基学习器为 CART.</p>
+<h4 id="实践">实践</h4>
+
     </div>
 
     
@@ -422,7 +569,7 @@ $$F_M(x)=\sum_{m=1}^M\nu\cdot h_m(x).$$</li>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">集成学习方法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Baaging"><span class="nav-number">1.1.</span> <span class="nav-text">Baaging</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boosting"><span class="nav-number">1.2.</span> <span class="nav-text">Boosting</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AdaBoost-Adaptive-Boosting"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">AdaBoost (Adaptive Boosting)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-2"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBDT-Gradient-Boosting-Decision-Tree"><span class="nav-number">1.2.1.</span> <span class="nav-text">GBDT (Gradient Boosting Decision Tree)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CART-Classification-And-Regression-Tree"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">CART (Classification And Regression Tree)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GBDT-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">GBDT 算法流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-3"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">集成学习方法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Baaging"><span class="nav-number">1.1.</span> <span class="nav-text">Baaging</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boosting"><span class="nav-number">1.2.</span> <span class="nav-text">Boosting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AdaBoost-Adaptive-Boosting"><span class="nav-number">1.2.1.</span> <span class="nav-text">AdaBoost (Adaptive Boosting)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-2"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBDT-Gradient-Boosting-Decision-Tree"><span class="nav-number">1.2.2.</span> <span class="nav-text">GBDT (Gradient Boosting Decision Tree)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CART-Classification-And-Regression-Tree"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">CART (Classification And Regression Tree)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GBDT-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">GBDT 算法流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-3"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBoost-Extreme-Gradient-Boosting"><span class="nav-number">1.2.3.</span> <span class="nav-text">XGBoost (Extreme Gradient Boosting)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">模型的基本形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E9%98%B6%E8%BF%91%E4%BC%BC"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">二阶近似</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E7%94%9F%E9%95%BF-%E5%88%86%E8%A3%82%E5%87%86%E5%88%99"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">树的生长 (分裂准则)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-4"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LightGBM"><span class="nav-number">1.2.4.</span> <span class="nav-text">LightGBM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">实践</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -438,7 +585,7 @@ $$F_M(x)=\sum_{m=1}^M\nu\cdot h_m(x).$$</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
