@@ -175,124 +175,6 @@ window.MathJax = {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/ODE/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">Picard 存在唯一性定理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：16:21:24" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
-<p><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
-$$<br>
-\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
-$$<br>
-显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
-$$<br>
-|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
-$$<br>
-于是当 $x\in[0,\frac12]$ 时, 有<br>
-$$<br>
-|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
-$$</p>
-<hr>
-<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
-<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
-$$<br>
-|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
-$$<br>
-即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
-<p>任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
-$$<br>
-x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
-$$<br>
-则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
-$$<br>
-|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
-$$<br>
-由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
-$$<br>
-x^</em>=f(x^<em>)<br>
-$$<br>
-即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
-<hr>
-<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
-$$<br>
-x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
-$$<br>
-从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
-$$<br>
-|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
-$$<br>
-这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -485,106 +367,6 @@ $$<br>
 <p><strong>[T030304]</strong> 已知 $\frac{\mathrm dy}{\mathrm dx}=(y^2-a^2)f(x,y)$, 这里 $f(x,y)$ 及 $f’_y(x,y)$ 在 $xOy$ 面上连续. 试证明: 对 $\forall x_0$ 及 $|y_0|&lt;a$, 满足初始条件 $y(x_0)=y_0$ 的解 $y(x)$ 都在区间 $(-\infty,+\infty)$ 上存在.</p>
 <p><strong>证</strong> 方程的右端函数 $(y^2-a^2)f(x,y)$ 在全平面 $\mathbb{R}^2$ 上连续可微, 因此它满足解的存在唯一性定理和延拓定理.</p>
 <p>显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\mathbb{R}^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/ODE/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/" class="post-title-link" itemprop="url">常系数齐次线性方程的待定指数函数法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:09" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T040301]</strong> 求方程 $x^2 y’‘+2x^2\tan y\cdot y’^2+xy’-\sin y\cos y=0$ 的通解.</p>
-<p><strong>解</strong> 令 $u=\tan y$, 即 $y=\arctan u$, 于是<br>
-$$<br>
-\begin{cases}<br>
-y’=\frac{1}{1+u^2}\frac{\mathrm du}{\mathrm dx},\<br>
-y’'=-\frac{2u}{(1+u^2)^2}\left(\frac{\mathrm du}{\mathrm dx}\right)^2+\frac{1}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}<br>
-\end{cases}<br>
-$$<br>
-于是原方程变为<br>
-$$<br>
-\frac{x^2}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}+\frac{x}{1+u^2}\frac{\mathrm du}{\mathrm dx}-\frac{u}{1+u^2}=0<br>
-$$<br>
-即 $x^2\frac{\mathrm d^2u}{\mathrm dx^2}+x\frac{\mathrm du}{\mathrm dx}-u=0$. 令 $x=e^t$, 即 $t=\ln x$, 令 $D=\frac{\mathrm d}{\mathrm dt}$, 则原方程可改写为<br>
-$$<br>
-D(D-1)u+Du-u=0\Longrightarrow \frac{\mathrm d^2u}{\mathrm dt^2}-u=0.<br>
-$$<br>
-其特征方程为 $\lambda^2-1=0$, 解得特征根为 $\lambda_1=1, \ \lambda_2=-1$, 故通解为<br>
-$$<br>
-u(t)=c_1e^t+c_2e^{-t}<br>
-$$<br>
-其中 $c_1,c_2$ 为任意常数. 再将 $t=\ln x$ 代入, 得<br>
-$$<br>
-u=c_1x+\frac{c_2}{x}\Rightarrow \tan y=c_1x+\frac{c_2}{x}<br>
-$$<br>
-即通解为 $y=\arctan(c_1x+\frac{c_2}{x})$, 其中 $c_1,c_2$ 为任意常数.</p>
 
       
     </div>
@@ -885,6 +667,106 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/ODE/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/" class="post-title-link" itemprop="url">常系数齐次线性方程的待定指数函数法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:09" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T040301]</strong> 求方程 $x^2 y’‘+2x^2\tan y\cdot y’^2+xy’-\sin y\cos y=0$ 的通解.</p>
+<p><strong>解</strong> 令 $u=\tan y$, 即 $y=\arctan u$, 于是<br>
+$$<br>
+\begin{cases}<br>
+y’=\frac{1}{1+u^2}\frac{\mathrm du}{\mathrm dx},\<br>
+y’'=-\frac{2u}{(1+u^2)^2}\left(\frac{\mathrm du}{\mathrm dx}\right)^2+\frac{1}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}<br>
+\end{cases}<br>
+$$<br>
+于是原方程变为<br>
+$$<br>
+\frac{x^2}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}+\frac{x}{1+u^2}\frac{\mathrm du}{\mathrm dx}-\frac{u}{1+u^2}=0<br>
+$$<br>
+即 $x^2\frac{\mathrm d^2u}{\mathrm dx^2}+x\frac{\mathrm du}{\mathrm dx}-u=0$. 令 $x=e^t$, 即 $t=\ln x$, 令 $D=\frac{\mathrm d}{\mathrm dt}$, 则原方程可改写为<br>
+$$<br>
+D(D-1)u+Du-u=0\Longrightarrow \frac{\mathrm d^2u}{\mathrm dt^2}-u=0.<br>
+$$<br>
+其特征方程为 $\lambda^2-1=0$, 解得特征根为 $\lambda_1=1, \ \lambda_2=-1$, 故通解为<br>
+$$<br>
+u(t)=c_1e^t+c_2e^{-t}<br>
+$$<br>
+其中 $c_1,c_2$ 为任意常数. 再将 $t=\ln x$ 代入, 得<br>
+$$<br>
+u=c_1x+\frac{c_2}{x}\Rightarrow \tan y=c_1x+\frac{c_2}{x}<br>
+$$<br>
+即通解为 $y=\arctan(c_1x+\frac{c_2}{x})$, 其中 $c_1,c_2$ 为任意常数.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/4.4%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%9D%9E%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E7%B3%BB%E6%95%B0%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -956,6 +838,223 @@ $$<br>
 解得 $c_1’(t)=-\frac{1}{2\sin^2t}, \ c_2’(t)=\frac{\cos t}{\sin ^3t}$. 于是 $c_1(t)=\frac{1}{2}\cot t+c_1, \ c_2(t)=-\frac{1}{2}\sin^{-2}t+c_2$, 从而通解为<br>
 $$<br>
 x(t)=c_1\cos t+c_2\sin t+\frac{1}{2}\cot t\cos t-\frac{1}{2}\frac{1}{\sin t}.<br>
+$$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/ODE/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" class="post-title-link" itemprop="url">一阶线性微分方程组</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：15:41:37" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">一阶线性微分方程组</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T050101]</strong> 设 $A$ 为 $n\times n$ 常数矩阵, $\Phi(t)$ 是方程组 $X’=AX$ 的标准基解矩阵 $(\Phi(0)=E)$, 证明 $\Phi(t)\Phi^{-1}(t_0)=\Phi(t-t_0)$, 其中 $t_0$ 是常数.</p>
+<p><strong>证</strong> 由题设可知 $\Phi’(t)=A\Phi(t)$, 将 $t$ 换为 $t-t_0$, 则 $\Phi’(t-t_0)=A\Phi(t-t_0)$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的解矩阵. 又当 $t=t_0$ 时 $\det\Phi(0)=1$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的基解矩阵. 于是存在 $n$ 阶非奇异常数矩阵 $C$, 使得 $\Phi(t-t_0)=\Phi(t)C$, 再令 $t=t_0$, 有 $E=\Phi(t_0)C$, 得 $C=\Phi^{-1}(t_0)$, 故 $\Phi(t-t_0)=\Phi(t)\Phi^{-1}(t_0)$.</p>
+<hr>
+<p><strong>[T050102]</strong> (Liouville公式) 设 $X_1(t),X_2(t),\cdots,X_n(t)$ 是齐次线性方程组 $X’(t)=A(t)X(t)$ 的任意 $n$ 个解, 则它们的 Wronski 行列式 $W(t)$ 满足一阶线性微分方程<br>
+$$<br>
+W’(t)=\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]W(t),<br>
+$$<br>
+因而有<br>
+$$<br>
+W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
+$$<br>
+<strong>证</strong> 记 $X_i(t)=\left(x_{i1}(t),\cdots,x_{in}(t)\right)^T$, 则<br>
+$$<br>
+W(t)=\left|X_1(t),\cdots,X_n(t)\right|=\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}<br>
+$$</p>
+<p>由行列式求导法则知</p>
+<p>$$<br>
+\begin{aligned}<br>
+W’(t)=&amp;\begin{vmatrix}<br>
+x’<em>{11}(t) &amp; x’</em>{21}(t) &amp; \cdots &amp; x’<em>{n1}(t)\\<br>
+x</em>{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}+<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x’<em>{12}(t) &amp; x’</em>{22}(t) &amp; \cdots &amp; x’<em>{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x</em>{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}\\<br>
+&amp;+\cdots +<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x’<em>{1n}(t) &amp; x’</em>{2n}(t) &amp; \cdots &amp; x’<em>{nn}(t)<br>
+\end{vmatrix}\\<br>
+=&amp;\begin{vmatrix}<br>
+\sum\limits</em>{i=1}^na_{1i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{1i}x_{2i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}+<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+\sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}\\<br>
+&amp;+\cdots +<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+\sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t)<br>
+\end{vmatrix}\\<br>
+=&amp;\begin{vmatrix}<br>
+a_{11}x_{11}(t) &amp; a_{11}x_{21}(t) &amp; \cdots &amp; a_{11}x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}+\cdots +<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+a_{nn}x_{1n}(t) &amp; a_{nn}x_{2n}(t) &amp; \cdots &amp; a_{nn}x_{nn}(t)<br>
+\end{vmatrix}\\<br>
+=&amp;[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).<br>
+\end{aligned}<br>
+$$</p>
+<!-- $$
+\begin{aligned}
+W'(t)=&\begin{vmatrix}
+  x'_{11}(t) & x'_{21}(t) & \cdots & x'_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}+
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  x'_{12}(t) & x'_{22}(t) & \cdots & x'_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}\\\\
+&+\cdots +
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x'_{1n}(t) & x'_{2n}(t) & \cdots & x'_{nn}(t)
+  \end{vmatrix}\\\\
+=&\begin{vmatrix}
+  \sum\limits_{i=1}^na_{1i}x_{1i}(t) & \sum\limits_{i=1}^na_{1i}x_{2i}(t) & \cdots & \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}+
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  \sum\limits_{i=1}^na_{2i}x_{1i}(t) & \sum\limits_{i=1}^na_{2i}x_{1i}(t) & \cdots & \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}\\\\
+&+\cdots +
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  \sum\limits_{i=1}^na_{ni}x_{1i}(t) & \sum\limits_{i=1}^na_{ni}x_{1i}(t) & \cdots & \sum\limits_{i=1}^na_{ni}x_{1i}(t)
+  \end{vmatrix}\\\\
+=&\begin{vmatrix}
+  a_{11}x_{11}(t) & a_{11}x_{21}(t) & \cdots & a_{11}x_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}+\cdots +
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  a_{nn}x_{1n}(t) & a_{nn}x_{2n}(t) & \cdots & a_{nn}x_{nn}(t)
+  \end{vmatrix}\\\\
+=&[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).
+\end{aligned}
+$$ -->
+<p>求解上述微分方程得<br>
+$$<br>
+W(t) = ce^{\int_{t_{0}}^t\left(a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right)\mathrm ds}<br>
+$$</p>
+<!-- $$
+W(t)=ce^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s}
+$$ -->
+<p>又 $W(t_0)=c$, 故<br>
+$$<br>
+W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
 $$</p>
 
       
@@ -1277,223 +1376,6 @@ $$</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/ODE/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" class="post-title-link" itemprop="url">一阶线性微分方程组</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：15:41:37" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">一阶线性微分方程组</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T050101]</strong> 设 $A$ 为 $n\times n$ 常数矩阵, $\Phi(t)$ 是方程组 $X’=AX$ 的标准基解矩阵 $(\Phi(0)=E)$, 证明 $\Phi(t)\Phi^{-1}(t_0)=\Phi(t-t_0)$, 其中 $t_0$ 是常数.</p>
-<p><strong>证</strong> 由题设可知 $\Phi’(t)=A\Phi(t)$, 将 $t$ 换为 $t-t_0$, 则 $\Phi’(t-t_0)=A\Phi(t-t_0)$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的解矩阵. 又当 $t=t_0$ 时 $\det\Phi(0)=1$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的基解矩阵. 于是存在 $n$ 阶非奇异常数矩阵 $C$, 使得 $\Phi(t-t_0)=\Phi(t)C$, 再令 $t=t_0$, 有 $E=\Phi(t_0)C$, 得 $C=\Phi^{-1}(t_0)$, 故 $\Phi(t-t_0)=\Phi(t)\Phi^{-1}(t_0)$.</p>
-<hr>
-<p><strong>[T050102]</strong> (Liouville公式) 设 $X_1(t),X_2(t),\cdots,X_n(t)$ 是齐次线性方程组 $X’(t)=A(t)X(t)$ 的任意 $n$ 个解, 则它们的 Wronski 行列式 $W(t)$ 满足一阶线性微分方程<br>
-$$<br>
-W’(t)=\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]W(t),<br>
-$$<br>
-因而有<br>
-$$<br>
-W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$<br>
-<strong>证</strong> 记 $X_i(t)=\left(x_{i1}(t),\cdots,x_{in}(t)\right)^T$, 则<br>
-$$<br>
-W(t)=\left|X_1(t),\cdots,X_n(t)\right|=\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}<br>
-$$</p>
-<p>由行列式求导法则知</p>
-<p>$$<br>
-\begin{aligned}<br>
-W’(t)=&amp;\begin{vmatrix}<br>
-x’<em>{11}(t) &amp; x’</em>{21}(t) &amp; \cdots &amp; x’<em>{n1}(t)\\<br>
-x</em>{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x’<em>{12}(t) &amp; x’</em>{22}(t) &amp; \cdots &amp; x’<em>{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x</em>{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}\\<br>
-&amp;+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x’<em>{1n}(t) &amp; x’</em>{2n}(t) &amp; \cdots &amp; x’<em>{nn}(t)<br>
-\end{vmatrix}\\<br>
-=&amp;\begin{vmatrix}<br>
-\sum\limits</em>{i=1}^na_{1i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{1i}x_{2i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-\sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}\\<br>
-&amp;+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-\sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t)<br>
-\end{vmatrix}\\<br>
-=&amp;\begin{vmatrix}<br>
-a_{11}x_{11}(t) &amp; a_{11}x_{21}(t) &amp; \cdots &amp; a_{11}x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-a_{nn}x_{1n}(t) &amp; a_{nn}x_{2n}(t) &amp; \cdots &amp; a_{nn}x_{nn}(t)<br>
-\end{vmatrix}\\<br>
-=&amp;[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).<br>
-\end{aligned}<br>
-$$</p>
-<!-- $$
-\begin{aligned}
-W'(t)=&\begin{vmatrix}
-  x'_{11}(t) & x'_{21}(t) & \cdots & x'_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}+
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  x'_{12}(t) & x'_{22}(t) & \cdots & x'_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}\\\\
-&+\cdots +
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x'_{1n}(t) & x'_{2n}(t) & \cdots & x'_{nn}(t)
-  \end{vmatrix}\\\\
-=&\begin{vmatrix}
-  \sum\limits_{i=1}^na_{1i}x_{1i}(t) & \sum\limits_{i=1}^na_{1i}x_{2i}(t) & \cdots & \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}+
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  \sum\limits_{i=1}^na_{2i}x_{1i}(t) & \sum\limits_{i=1}^na_{2i}x_{1i}(t) & \cdots & \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}\\\\
-&+\cdots +
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  \sum\limits_{i=1}^na_{ni}x_{1i}(t) & \sum\limits_{i=1}^na_{ni}x_{1i}(t) & \cdots & \sum\limits_{i=1}^na_{ni}x_{1i}(t)
-  \end{vmatrix}\\\\
-=&\begin{vmatrix}
-  a_{11}x_{11}(t) & a_{11}x_{21}(t) & \cdots & a_{11}x_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}+\cdots +
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  a_{nn}x_{1n}(t) & a_{nn}x_{2n}(t) & \cdots & a_{nn}x_{nn}(t)
-  \end{vmatrix}\\\\
-=&[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).
-\end{aligned}
-$$ -->
-<p>求解上述微分方程得<br>
-$$<br>
-W(t) = ce^{\int_{t_{0}}^t\left(a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right)\mathrm ds}<br>
-$$</p>
-<!-- $$
-W(t)=ce^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s}
-$$ -->
-<p>又 $W(t_0)=c$, 故<br>
-$$<br>
-W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/Carath%C3%A9odory%E6%89%A9%E5%BC%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1607,10 +1489,111 @@ $$<br>
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">单调收敛定理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-02T00:00:00+08:00">2025-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-09-03 02:27:24" itemprop="dateModified" datetime="2025-09-03T02:27:24+08:00">2025-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">测度论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
+$$<br>
+\mu(f)=\lim\limits_n\mu(f_n)<br>
+$$<br>
+<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
+$$<br>
+A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
+$$<br>
+满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
+$$<br>
+\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
+$$<br>
+因为 $g$ 是简单的, 故<br>
+$$<br>
+\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
+$$<br>
+由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
+$$<br>
+\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
+$$<br>
+可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
+$$<br>
+\lim\limits_n\mu(f_n)=\mu(f).<br>
+$$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
   </nav>
 
 
@@ -1678,7 +1661,7 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
