@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Transformer — 模型架构 1 简介  Transformer 架构主要由编码器和解码器两部分构成, 其中编码器将符号表示组成的输入序列 $x&#x3D;(x_1,\cdots,x_n)$ 映射为连续表示序列 $z&#x3D;(z_1,\cdots,z_n)$. 给定 $z$, 解码器逐个元素地生成 (自回归) 输出符号序列 $y&#x3D;(y_1,\cdots,y_m)$.  对于一个“英翻中”问题, 输入序列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformer 架构 —— Attention Is All You Need">
+<meta property="og:url" content="https://wangsenjie.github.io/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="Transformer — 模型架构 1 简介  Transformer 架构主要由编码器和解码器两部分构成, 其中编码器将符号表示组成的输入序列 $x&#x3D;(x_1,\cdots,x_n)$ 映射为连续表示序列 $z&#x3D;(z_1,\cdots,z_n)$. 给定 $z$, 解码器逐个元素地生成 (自回归) 输出符号序列 $y&#x3D;(y_1,\cdots,y_m)$.  对于一个“英翻中”问题, 输入序列">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wangsenjie.github.io/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Transformer%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://wangsenjie.github.io/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Norm.png">
+<meta property="article:published_time" content="2025-10-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-16T14:12:43.646Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="Transformer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wangsenjie.github.io/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Transformer%E7%BB%93%E6%9E%84.png">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    packages: {'[+]': ['ams']},   // 关键：加载 ams（align/aligned 等）
+    tags: 'ams'
+  },
+  options: {
+    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <title>Transformer 架构 —— Attention Is All You Need | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Transformer 架构 —— Attention Is All You Need
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-10-16 00:00:00 / 修改时间：22:12:43" itemprop="dateCreated datePublished" datetime="2025-10-16T00:00:00+08:00">2025-10-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习与深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>Transformer — 模型架构</h1>
+<h2 id="1-简介">1 简介</h2>
+<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Transformer%E7%BB%93%E6%9E%84.png" alt="Transformer结构"></p>
+<p>Transformer 架构主要由编码器和解码器两部分构成, 其中编码器将符号表示组成的输入序列 $x=(x_1,\cdots,x_n)$ 映射为连续表示序列 $z=(z_1,\cdots,z_n)$. 给定 $z$, 解码器<strong>逐个元素</strong>地生成 (自回归) 输出符号序列 $y=(y_1,\cdots,y_m)$.</p>
+<blockquote>
+<p>对于一个“英翻中”问题, 输入序列 <code>x = ['I', 'love', 'math']</code> , 模型先把它们查表成向量加上位置向量后输入到编码器, 得到序列 <code>[z1, z2, z3]</code>, 其中每个 <code>zi</code> 都是一个向量, 例如 <code>z1</code> 就是单次 <code>'I'</code> 的向量表示. 通过解码器得到输出序列 <code>['我', '爱', '数学']</code>.</p>
+</blockquote>
+<p>具体地, 编码器由 $N=6$ 个相同的层堆叠而成, 每一层包含两个子层: 其一是多头自注意力机制层, 其二是全连接前馈神经网络层. 在两个子层之后都采用残差连接, 随后用层归一化 (LayerNorm). 即每个子层的输出为<br>
+$$<br>
+\mathrm{LayerNorm}(x+\mathrm{Sublayer}(x)),<br>
+$$<br>
+其中 $\mathrm{Sublayer}(x)$ 表示该子层实现的函数. 为了便于层残差连接, 所有子层以及嵌入层的输出维度都设为 $d_{model}=512$.</p>
+<blockquote>
+<p>LayerNorm 就是对每一个样本做一个标准化, 即对于样本 $x_{i,\cdot}$, 计算它所有特征的均值 $\mu_i$ 和标准差 $\sigma_i$, 则<br>
+$$<br>
+\mathrm{LayerNorm}(x_i)=\frac{x_{i,\cdot}-\mu_i}{\sigma_i}.<br>
+$$<br>
+与之对应的有 BatchNorm, 它是对每个特征做标准化, 即对于特征列 $x_{\cdot,j}$, 计算列均值和标准差 $\mu_j,\sigma_j$, 则<br>
+$$<br>
+\mathrm{BatchNorm}(x_{\cdot,j})=\frac{x_{\cdot,j}-\mu_j}{\sigma_j}.<br>
+$$<br>
+简单来说, 对于二维的输入, LayerNorm 就是对每一行进行标准化, BatchNorm 是对每一列进行标准化.</p>
+<p>对于一个三维的输入, 可以用下面的图形象表示</p>
+<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Norm.png" alt="Norm"></p>
+<p>图片来源：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaxuexiaoab/p/18325271">https://www.cnblogs.com/xiaxuexiaoab/p/18325271</a></p>
+</blockquote>
+<p>解码器同样由 $N=6$ 个相同的层组成. 除了与编码器层相同的两个子层外, 解码器还插入了新的层: 对编码器的输出做多头注意力, 且利用掩码机制使得第 $i$ 个位置的预测只能依赖于 $i$ 之前已知的输出.</p>
+<h2 id="2-Attention">2 Attention</h2>
+<p>注意力函数可以描述为: 输入一个查询 (query)、一组键 (key) 值 (value) 对, 然后得到一个输出. 即<br>
+$$<br>
+\mathrm{Attention}:~(Q,K,V)\to \mathrm{Attention}(Q,K,V),<br>
+$$<br>
+其中 query、key、value 与输出都是向量, 输出是 value 的加权求和, 每个 value 的权重由 query 与对应 key 求得, 事实上就是 query 与 key 之间的相似度.</p>
+<h3 id="2-1-缩放点积注意力-Scaled-Dot-Product-Attention">2.1 缩放点积注意力 (Scaled Dot-Product Attention)</h3>
+<p>本架构采用的是缩放点积注意力, 即用向量的内积来衡量向量之间的相似度.</p>
+<ul>
+<li>
+<p>输入: 维数为 $d_k$ 的 query 与 key, 维数为 $d_v$ 的 value.</p>
+</li>
+<li>
+<p>一组 query 会打包为矩阵 $Q_{n\times d_k}$, key 和 value 分别打包为矩阵 $K_{m\times d_k},V_{m\times d_v}$.</p>
+</li>
+<li>
+<p>输出:<br>
+$$<br>
+\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V.<br>
+$$</p>
+</li>
+</ul>
+<p>与一般的点积注意力不同, 这里在做内积后还进行了 $1/\sqrt{d_k}$ 的缩放, 主要是为了避免当 $d_k$ 较大时, 可能导致 $QK^T$ 中每一行元素都很大或很小, 可能导致 softmax 以后很接近 $0$ 或 $1$, 这会使得梯度很小.</p>
+<p>在解码器中, 增加了 Mask 来防止在当前时间看到之后时间的数据. 具体而言, 在 $t$ 时间, 赋予 $q_t,k_t$ 及其之后的值很大的负数 (例如 $-1\times 10^{10}$), 它在进入 softmax 函数之后会变成几乎为 $0$.</p>
+<h3 id="2-2-多头注意力-Multi-Head-Attention">2.2 多头注意力 (Multi-Head Attention)</h3>
+<p>与仅用 $d_{model}$ 维度的一组 $Q,K,V$ 做一次注意力相比, 把 $Q,K,V$ 分别通过不同的可学习线性映射投影到 $h$ 组 $(d_k,d_k,d_v)$ 维度更有效.</p>
+<p>对于输入隐状态 $H\in\mathbb R^{n\times d}$ (批量维先忽略)</p>
+<ul>
+<li>
+<p>先做三组线性投影到 $h$ 个子空间 (每头维度 $d_k=d_v=d_{model}/h$):<br>
+$$<br>
+Q_i=HW_Q^{(i)},~K_i=HW_K^{(i)},~V_i=HW_V^{(i)}\in\mathbb R^{n\times d_k}.<br>
+$$</p>
+</li>
+<li>
+<p>每个头各自做一次缩放点积注意力:<br>
+$$<br>
+\mathrm{head}_i=\mathrm{softmax}\left(\frac{Q_iK_i^T}{\sqrt{d_k}}\right)V_i\in\mathbb R^{n\times d_k}.<br>
+$$</p>
+</li>
+<li>
+<p>把所有头沿特征维拼接后, 再经一个输出线性变换:<br>
+$$<br>
+\mathrm{MHA}(H)=\mathrm{Concat}(\mathrm{head}_1,\cdots,\mathrm{head}_h)W_O, \quad W_O\in\mathbb R^{(hd_k)\times d}.<br>
+$$</p>
+</li>
+</ul>
+<h2 id="3-逐位置前馈神经网络-Position-wise-Feed-Forward-Networks">3 逐位置前馈神经网络 (Position-wise Feed-Forward Networks)</h2>
+<p>除了注意力子层外, 编码器和解码器的每个层都包含一个逐位置且参数共享的全连接前馈网络:<br>
+$$<br>
+\mathrm{FFN}(x)=\max(0, xW_1+b_1)W_2+b_2<br>
+$$<br>
+事实上, 就是对每个 token 的向量 $x_t\in\mathbb R^{d_{model}}$ 执行相同的两次线性变换, 且第一次线性变换后要执行一次激活函数 ReLU. 其中输入与输出维度为 $d_{model}$, 中间层维度为 $d_{ff}=2048$.</p>
+<h2 id="4-嵌入-Embedding-与-Softmax">4 嵌入 (Embedding) 与 Softmax</h2>
+<p>用可学习的嵌入把输入/输出 token 映射到 $d_{model}$ 维向量, 并用线性变换 + softmax 把解码器输出转为下一个 token 的预测概率. 在本模型中, 两个嵌入层与 pre-softmax 线性层共用同一套权重, 在嵌入层里, 这些权重还会乘以 $\sqrt{d_{model}}$.</p>
+<h3 id="4-1-Embedding">4.1 Embedding</h3>
+<p>设词表集合 $\mathcal V$, 可训练词嵌入矩阵 $E\in\mathbb R^{|\mathcal V|\times d}$. 把序列 $(x_1,\cdots,x_n)$ 查表成矩阵 $H^{(0)}\in\mathbb R^{n\times d}$, 再遇位置向量相加:<br>
+$$<br>
+H_t^{(0)}=E[x_t]\cdot\sqrt d+P_t.<br>
+$$<br>
+乘 $\sqrt d$ 目的是让&quot;词向量的方差尺度&quot;与&quot;位置向量&quot;相当, 避免相加时位置信号被淹没或过强.</p>
+<h3 id="4-2-输出层-线性层-softmax">4.2 输出层: 线性层 + softmax</h3>
+<p>解码器最后一层输出 $H^{(L)}\in\mathbb R^{m\times d}$, 通过线性变换映射到词表维度得到 logits:<br>
+$$<br>
+\mathrm{logits}=H^{(L)}W_{lm}+b,\quad W_{lm}=E^T\in\mathbb R^{d\times |\mathcal V|}.<br>
+$$<br>
+softmax 得到下一个 token 的条件分布:<br>
+$$<br>
+p(y_t=v~\vert~ \cdot)=\mathrm{softmax}(\mathrm{logits}_t)_v, \quad v\in\mathcal V.<br>
+$$</p>
+<h2 id="5-位置编码">5 位置编码</h2>
+<p>为了让模型知道序列的顺序信息, 我们在编码器与解码器将位置编码与输入嵌入相加. 位置编码与嵌入具有相同维度 $d_{model}$, 其既可以学习也可以固定, 本模型采用不同频率的正弦/余弦函数:<br>
+$$<br>
+PE(pos,2i)=\sin\left(\frac{pos}{10000^{2i/d_{model}}}\right),\quad PE(pos,2i+1)=\cos\left(\frac{pos}{10000^{2i/d_{model}}}\right),<br>
+$$<br>
+其中 $pos$ 为位置, $i$ 为维度索引.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Transformer/" rel="tag"># Transformer</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/10/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/GBDT/" rel="prev" title="GBDT">
+      <i class="fa fa-chevron-left"></i> GBDT
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Transformer — 模型架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">1 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Attention"><span class="nav-number">1.2.</span> <span class="nav-text">2 Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E7%BC%A9%E6%94%BE%E7%82%B9%E7%A7%AF%E6%B3%A8%E6%84%8F%E5%8A%9B-Scaled-Dot-Product-Attention"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 缩放点积注意力 (Scaled Dot-Product Attention)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B-Multi-Head-Attention"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 多头注意力 (Multi-Head Attention)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%80%90%E4%BD%8D%E7%BD%AE%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-Position-wise-Feed-Forward-Networks"><span class="nav-number">1.3.</span> <span class="nav-text">3 逐位置前馈神经网络 (Position-wise Feed-Forward Networks)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%B5%8C%E5%85%A5-Embedding-%E4%B8%8E-Softmax"><span class="nav-number">1.4.</span> <span class="nav-text">4 嵌入 (Embedding) 与 Softmax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Embedding"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 Embedding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%BE%93%E5%87%BA%E5%B1%82-%E7%BA%BF%E6%80%A7%E5%B1%82-softmax"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 输出层: 线性层 + softmax</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="nav-number">1.5.</span> <span class="nav-text">5 位置编码</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

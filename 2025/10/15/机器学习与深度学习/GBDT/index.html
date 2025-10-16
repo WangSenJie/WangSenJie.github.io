@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Gradient Boosting Decision Trees 背景 Gradient Boosting Decision Tree (GBDT) 是 Boosting 算法的一种, 早期理论 (Schapire, 1990) 证明: 只要有一个稍微优于随机猜测的弱分类器 (准确率 &gt; 0.5), 就可以通过 Boosting 组合成强分类器. Freund 和 Schapire (199">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GBDT">
+<meta property="og:url" content="https://wangsenjie.github.io/2025/10/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/GBDT/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="Gradient Boosting Decision Trees 背景 Gradient Boosting Decision Tree (GBDT) 是 Boosting 算法的一种, 早期理论 (Schapire, 1990) 证明: 只要有一个稍微优于随机猜测的弱分类器 (准确率 &gt; 0.5), 就可以通过 Boosting 组合成强分类器. Freund 和 Schapire (199">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-16T14:04:53.943Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="集成学习">
+<meta property="article:tag" content="boosting">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2025/10/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/GBDT/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    packages: {'[+]': ['ams']},   // 关键：加载 ams（align/aligned 等）
+    tags: 'ams'
+  },
+  options: {
+    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <title>GBDT | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/10/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/GBDT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GBDT
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-10-15 00:00:00" itemprop="dateCreated datePublished" datetime="2025-10-15T00:00:00+08:00">2025-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-16 22:04:53" itemprop="dateModified" datetime="2025-10-16T22:04:53+08:00">2025-10-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习与深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>Gradient Boosting Decision Trees</h1>
+<h2 id="背景">背景</h2>
+<p>Gradient Boosting Decision Tree (GBDT) 是 Boosting 算法的一种, 早期理论 (Schapire, 1990) 证明: 只要有一个稍微优于随机猜测的弱分类器 (准确率 &gt; 0.5), 就可以通过 Boosting 组合成强分类器. Freund 和 Schapire (1997) 的 AdaBoost 将这一思想转化为实际算法. 在 AdaBoost 提出之后, 人们逐渐认识到 Boosting 的本质是一种加性模型, 其核心思想是在每一步逐渐叠加弱学习器以最小化某个总体损失函数. Friedman 等人在此基础上提出了更为一般的理论框架, 将 Boosting 视为在函数空间中的梯度下降 (gradient descent) 过程. Friedman (2000) 在论文 <em>Greedy Function Approximation: A Gradient Boosting Machine</em> 中首次系统地提出了 Gradient Boosting 的概念，并指出 AdaBoost 实质上是以指数损失为目标函数的特殊情形. 他进一步推广了这一思想, 允许使用任意可微损失函数, 通过迭代地拟合当前损失的负梯度方向, 构建出更强的预测模型. GBDT 正是这一框架的典型实现: 它以决策树作为基学习器, 在每一轮中利用回归树来拟合损失函数对模型预测值的负梯度, 从而逐步优化整体模型性能.  由于其能够灵活适配不同损失函数 (如平方误差、逻辑损失、Huber 损失等), GBDT 既可用于回归问题, 也可用于分类乃至排序任务. 相比 AdaBoost, GBDT 在理论上更为一般、在实践中更为稳定, 对噪声数据的鲁棒性也更强, 因此成为现代机器学习中最重要的集成学习方法之一, 并衍生出了多种高效实现, 如 XGBoost、LightGBM 与 CatBoost 等.</p>
+<h2 id="问题目标和符号设定">问题目标和符号设定</h2>
+<p>给定训练 $\lbrace(x_i,y_i)\rbrace_{i=1}^n$, 我们想要找到一个函数 $F:~\mathcal X\to\mathbb R^K$ (回归问题 $K=1$, 二分类问题常用 $K=1$ 的对数几率分数) 以最小化经验风险<br>
+$$<br>
+\min\limits_{F\in\mathcal F}\mathcal L(F)=\min\limits_{F\in\mathcal F}\sum_{i=1}^nL(y_i,F(x_i)),<br>
+$$<br>
+其中 $L$ 为损失函数. GBDT 把可行函数集 $\mathcal F$ 限制为 “加性模型” 的闭包:<br>
+$$<br>
+F_M(x)=F_0(x)+\sum_{m=1}^M\nu f_m(x),<br>
+$$<br>
+其中每个学习器 $f_m$ 是回归树, $\nu\in(0,1]$ 为学习率.</p>
+<h2 id="函数空间的梯度下降">函数空间的梯度下降</h2>
+<p>考虑第 $m$ 轮.</p>
+<p>将 $\lbrace F(x_i)\rbrace_{i=1}^n$ 看成 $\mathbb R^n$ 上的向量, 对 $\mathcal L(F)$ 在这些分量求梯度:<br>
+$$<br>
+g_i:=\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\bigg\vert_{F=F_{m-1}}<br>
+$$<br>
+则负梯度 $-g_i$ 方向指向最速下降方向.</p>
+<p>用一棵回归树 $f_m(x)$ 去拟合负梯度<br>
+$$<br>
+f_m\approx\arg\min\limits_{f}\sum_{i=1}^n\left(-g_i-f(x_i)\right)^2,<br>
+$$<br>
+在得到的树划分 $\lbrace R_{jm}\rbrace_{j=1}^{J_m}$ (叶结点区域) 上, 求每个叶子的最佳增量<br>
+$$<br>
+\gamma_{jm}\approx\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma).<br>
+$$<br>
+更新<br>
+$$<br>
+F_m(x)=F_{m-1}(x)+\nu\sum_{j=1}^{J_m}\gamma_{jm}1\lbrace x\in R_{jm}\rbrace.<br>
+$$</p>
+<h2 id="不同损失下的具体形式">不同损失下的具体形式</h2>
+<h3 id="平方损失-回归">平方损失 (回归)</h3>
+<p>$$<br>
+L(y,F)=\frac12(y-F)^2.<br>
+$$</p>
+<p>此时</p>
+<ul>
+<li>梯度 $g_i=F(x_i)-y_i$, 负梯度即为残差 $y_i-F(x_i)$.</li>
+<li>叶值闭式解 $\gamma_{jm}=\mathrm{mean}\lbrace y_i-F_{m-1}(x_i)~:~x_i\in R_{jm}\rbrace$.</li>
+<li>初始值 $F_0=\mathrm{mean}(y)$.</li>
+</ul>
+<h3 id="绝对损失-分位数损失-稳健回归">绝对损失 / 分位数损失 (稳健回归)</h3>
+<ul>
+<li>$L_1$ 损失: 叶值取中位数.</li>
+<li>分位数损失 $\tau\in(0,1)$: 叶值取 $\tau-$ 分位数.<br>
+对异常值更稳健.</li>
+</ul>
+<h3 id="二分类的-Logistic-损失">二分类的 Logistic 损失</h3>
+<p>此时 $y_i\in\lbrace0,1\rbrace$, 令模型输出为对数几率<br>
+$$<br>
+F(x)=\log\frac{p(x)}{1-p(x)},\quad p(x)=\sigma(F(x))=\frac{1}{1+e^{-F(x)}}.<br>
+$$</p>
+<ul>
+<li>
+<p>损失: 交叉熵 $L(y,F)=-\left[y\log p+(1-y)\log(1-p)\right]$.</p>
+</li>
+<li>
+<p>梯度: $g_i=-\left[y_i\frac{p_i(1-p_i)}{p_i}+(1-y_i)\frac{p_i(p_i-1)}{1-p_i}\right]=p_i-y_i$, 负梯度: $r_i=y_i-p_i$.</p>
+</li>
+<li>
+<p>叶值: 在叶 $R_{jm}$<br>
+$$<br>
+\gamma_{jm}\approx\frac{\sum_{x_i\in R_{jm}}(y_i-p_i)}{\sum_{x_i\in R_{jm}}p_i(1-p_i)}.<br>
+$$</p>
+<blockquote>
+<p>注意到 $\frac{\partial L}{\partial F}=p_i-y_i,~\frac{\partial^2 L}{\partial F^2}=p_i(1-p_i)$, 于是由 Taylor 定理<br>
+$$<br>
+L(y_i,F_{m-1}(x_i)+\gamma)\approx L(y_i,F_{m-1}(x_i))+g_i\gamma+\frac12h_i\gamma^2,<br>
+$$<br>
+其中 $g_i,h_i$ 分别为一阶导和二阶导. 因此<br>
+$$<br>
+\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)\approx \sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i))+G_{jm}\gamma+\frac12 H_{jm}\gamma^2,<br>
+$$<br>
+其中 $G_{jm}=\sum_{x_i\in R_{jm}}g_i=\sum_{x_i\in R_{jm}}(p_i-y_i),~H_{jm}=\sum_{x_i\in R_{jm}}h_i=\sum_{x_i\in R_{jm}}p_i(1-p_i)$. 故<br>
+$$<br>
+\gamma_{jm}=\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)=\arg\min\limits_{\gamma}\left(G_{jm}\gamma+\frac12 H_{jm}\gamma^2\right)=-\frac{G_{jm}}{H_{jm}}.<br>
+$$</p>
+</blockquote>
+</li>
+<li>
+<p>初始值: $F_0=\log\frac{\bar y}{1-\bar y}$, 其中 $\bar y$ 是样本中正类比例.</p>
+</li>
+</ul>
+<h3 id="多分类-softmax">多分类 softmax</h3>
+<p>输出向量 $F(x)\in\mathbb R^c,~p_k(x)=\frac{\exp(F_k(x))}{\sum_{l}\exp(F_l(x))}$. 此时损失函数为<br>
+$$<br>
+L=\sum_{i=1}^nl_i,\quad l_i=-\sum_{k=1}^cy_{ik}\log(p_{ik}),~y_{ik}=1\lbrace y_i=k\rbrace,<br>
+$$<br>
+在第 $m$ 轮通常训练 $c$ 棵树, 分别拟合每一类的负梯度<br>
+$$<br>
+r_{ik}=y_{ik}-p_{ik},\quad<br>
+$$<br>
+在叶 $R_{jmk}$ 上, 我们只更新该类的分数 $F_k\to F_k+\gamma$. 用一维二阶近似:<br>
+$$<br>
+\gamma_{jmk}\approx-\frac{G_{jmk}}{H_{jmk}},\quad G_{jmk}=\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik}),\quad H_{jmk}=\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda<br>
+$$<br>
+因此<br>
+$$<br>
+\gamma_{jmk}\approx-\frac{\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik})}{\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda}.<br>
+$$<br>
+其中 $\lambda$ 为正则项. 更新模型:<br>
+$$<br>
+F_k^{(m)}(x)=F_k^{(m-1)}(x)+\nu\sum_{j=1}^{J_{mk}}\gamma_{jmk}1\lbrace x\in R_{jmk}\rbrace,\quad k=1,2,\cdots,c.<br>
+$$<br>
+最后用 softmax 函数得到概率.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" rel="tag"># 集成学习</a>
+              <a href="/tags/boosting/" rel="tag"># boosting</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/10/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/AdaBoost/" rel="prev" title="AdaBoost">
+      <i class="fa fa-chevron-left"></i> AdaBoost
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/" rel="next" title="Transformer 架构 —— Attention Is All You Need">
+      Transformer 架构 —— Attention Is All You Need <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Gradient Boosting Decision Trees</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%9B%AE%E6%A0%87%E5%92%8C%E7%AC%A6%E5%8F%B7%E8%AE%BE%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">问题目标和符号设定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="nav-number">1.3.</span> <span class="nav-text">函数空间的梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E6%8D%9F%E5%A4%B1%E4%B8%8B%E7%9A%84%E5%85%B7%E4%BD%93%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">不同损失下的具体形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E6%96%B9%E6%8D%9F%E5%A4%B1-%E5%9B%9E%E5%BD%92"><span class="nav-number">1.4.1.</span> <span class="nav-text">平方损失 (回归)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9D%E5%AF%B9%E6%8D%9F%E5%A4%B1-%E5%88%86%E4%BD%8D%E6%95%B0%E6%8D%9F%E5%A4%B1-%E7%A8%B3%E5%81%A5%E5%9B%9E%E5%BD%92"><span class="nav-number">1.4.2.</span> <span class="nav-text">绝对损失 &#x2F; 分位数损失 (稳健回归)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E7%B1%BB%E7%9A%84-Logistic-%E6%8D%9F%E5%A4%B1"><span class="nav-number">1.4.3.</span> <span class="nav-text">二分类的 Logistic 损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%88%86%E7%B1%BB-softmax"><span class="nav-number">1.4.4.</span> <span class="nav-text">多分类 softmax</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
