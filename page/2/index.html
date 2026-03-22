@@ -216,7 +216,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/6/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -230,7 +230,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/07/6/" class="post-title-link" itemprop="url">数项级数</a>
+            <a href="/2025/09/07/4/" class="post-title-link" itemprop="url">一元微分学</a>
         </h2>
 
         <div class="post-meta">
@@ -278,447 +278,420 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>数项级数</h1>
-<h2 id="数学常识">数学常识</h2>
-<h3 id="级数的性质">级数的性质</h3>
-<ol>
-<li>去掉、增加或改变级数的有限项并不改变级数的敛散性.</li>
-<li>对收敛级数的项任意加括号, 既不改变级数的收敛性, 也不改变级数的和.
-<ol>
-<li>若某个级数加括号后发散, 则原级数发散.</li>
-<li>若某个级数加括号后收敛, 则原级数不一定收敛, 但如果同一括号内项的符号相同, 则原级数收敛.</li>
-<li>若某个级数通项收敛于零, 同时该级数加括号后收敛且每个括号内项的个数小于某个定数, 则原级数收敛.</li>
-</ol>
-</li>
-</ol>
-<h3 id="正项级数">正项级数</h3>
+          <h1>一元微分学</h1>
+<h2 id="判断题-常识">判断题/常识</h2>
 <ol>
 <li>
-<p>正项级数 $\sum u_n$ 收敛的充要条件</p>
-<ol>
-<li>Cauchy 准则</li>
-<li>部分和数列有界（单调有界原理）</li>
-</ol>
+<p>导函数至多只有第二类间断点.</p>
 </li>
 <li>
-<p>正项级数 $\sum u_n$ 收敛的充分条件（判别法）</p>
-<ol>
-<li>
-<p>比较判别法</p>
+<p>$\star$<strong>[华四5.5定义1]</strong> 设函数 $y=f(x)$ 定义在 $x_0$ 的某领域 $U(x_0)$ 上, 当给 $x_0$ 一个增量 $\Delta x, \  x+\Delta x\in U(x_0)$, 相应得到函数的增量为 $\Delta y=f(x_0+\Delta x)-f(x_0)$. 若存在常数 $A$ 使得 $\Delta y=A\Delta x+o(\Delta x)$, 则称 $f$ 在点 $x_0$ 可微, 并称 $A\Delta x$ 为 $f$ 在点 $x_0$ 的微分.<br>
+注：从定义可以看出一元函数可微与可导等价. 可微 $\Rightarrow$ 可导直接验证就行, 可导 $\Rightarrow$ 可微只需利用有限增量公式 $\Delta y=f^{\prime}(x_0)\Delta x+o(\Delta x)$.</p>
 </li>
 <li>
-<p>D’Alembert 判别法</p>
-<ul>
-<li>事实上, 这是将几何级数作为比较对象了（这也是证明 D’Alembert 判别法的方法）.</li>
-</ul>
-</li>
-<li>
-<p>Cauchy 判别法</p>
-<ul>
-<li>
-<p>事实上, 这也是将几何级数作为比较对象了（这也是证明 Cauchy 判别法的方法）.</p>
-</li>
-<li>
-<p>由不等式 $\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}\le\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}$ 可知凡是能用 D’Alembert 判别法的一定能能用 Cauchy 判别法判别.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>积分判别法</p>
-</li>
-<li>
-<p>Raabe 判别法</p>
-<ul>
-<li>事实上, 这是以 $p$ 级数为比较对象.</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="一般项级数">一般项级数</h3>
-<ol>
-<li>
-<p>交错项级数的判别：Leibniz 判别法.</p>
-</li>
-<li>
-<p>绝对收敛的级数任意重排后得到的级数可以收敛到事先指定的任一实数, 也可以使其发散到 $+\infty$ 或 $-\infty$.</p>
-</li>
-<li>
-<p>条件收敛的级数重排后得到的新级数不一定收敛, 即使收敛了也不一定收敛到原和数.</p>
-<ul>
-<li>
-<p>考虑交错级数 $\sum(-1)^{n+1}\frac{1}{n}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}+\cdots$ 的重排: 先依次取 $p$ 个正项, 接着依次取 $p$ 个正项, 如此继续下去, 得到重排后的新级数, 可以证明新级数是收敛的, 且其和数为 $\sum a_n=\ln2+\frac{1}{2}\ln\frac{p}{q}$.</p>
-<ul>
-<li>
-<p>取 $p=q=1$, 则有<br>
+<p>$\star$<strong>[华四5.5例1]</strong> 叙述一阶微分的形式不变性. 说明高阶微分不再具有形式不变性.<br>
+注：函数 $y=f(x)$ 的一阶微分是 $\mathrm{d}y=f^{\prime}(x)\mathrm{d}x$; 若 $x$ 是复合函数 $y=f(x),x=g(t)$ 的中间变量, 注意到 $\mathrm{d}x=g^{\prime}(t)\mathrm{d}t$, 则<br>
 $$<br>
-1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}+\cdots=\ln2.<br>
-$$</p>
-</li>
-<li>
-<p>取 $p=2,q=1$, 则有<br>
+\mathrm{d}y=(f(g(t)))‘\mathrm{d}t=f^{\prime}(g(t))g^{\prime}(t)\mathrm{d}t=f^{\prime}(x)\mathrm{d}x<br>
 $$<br>
-1+\frac{1}{3}-\frac{1}{2}+\frac{1}{5}+\frac{1}{7}-\frac{1}{4}+\cdots=\frac{3}{2}\ln2.<br>
-$$</p>
-</li>
-</ul>
-</li>
-<li>
-<p>还是考虑交错级数 $\sum(-1)^{n+1}\frac{1}{n}$ 的重排:<br>
+这说明无论 $x$ 作为自变量还是关于另一个可微函数的因变量, 它都满足 $\mathrm{d}y=f^{\prime}(x)\mathrm{d}x$, 这就是一阶微分形式不变性.<br>
+下面说明二阶微分形式就不具备形式不变性了. 首先 $y=f(x)$ 的二阶微分为 $\mathrm{d}^2y=f^{\prime\prime}(x)\mathrm{d}x^2$; 其次若 $x$ 是复合函数 $y=f(x),x=g(t)$ 的中间变量, 则 $\mathrm{d}x=g^{\prime}(t)\mathrm{d}t, \ \mathrm{d^2}x=g^{\prime\prime}(t)\mathrm{d}t^2$, 于是<br>
 $$<br>
 \begin{aligned}<br>
-&amp;1-\frac{1}{2}+\frac{1}{3}-\left(\frac{1}{4}+\frac{1}{6}\right)+\left(\frac{1}{5}+\frac{1}{7}\right)-\left(\frac{1}{8}+\frac{1}{10}+\frac{1}{12}+\frac{1}{14}\right)\\<br>
-&amp;+\left(\frac{1}{9}+\frac{1}{11}+\frac{1}{13}+\frac{1}{15}\right)+\cdots-\left(\frac{1}{2^k}+\frac{1}{2^k+2}+\cdots+\frac{1}{2^{k+1}-2}\right)\\<br>
-&amp;+\left(\frac{1}{2^k+1}+\frac{1}{2^k+3}\cdots+\frac{1}{2^{k+1}-1}\right)+\cdots<br>
+\mathrm{d}^2y&amp;=(f(g(t)))’‘\mathrm{d}t^2=[f^{\prime}(g(t))g^{\prime}(t)]’\mathrm{d}t^2=[f^{\prime\prime}(g(t))g^{\prime}(t)^2+f^{\prime}(g(t))g^{\prime\prime}(t)]\mathrm{d}t^2\\<br>
+&amp;=f^{\prime\prime}(x)\mathrm{d}x^2+f^{\prime}(x)\mathrm{d^2}x<br>
 \end{aligned}<br>
 $$<br>
-不难验证其加括号后的级数通项不趋于零, 从而加括号后发散, 故重排级数发散.</p>
+从而 $x$ 作为自变量和作为另一个可微函数的因变量时, 二阶微分形式不同, 即二阶微分不具有形式不变性.</p>
 </li>
 <li>
-<p>把级数</p>
-<p>$$<br>
-1-\frac1{2^a}+\frac1{3^a}-\frac1{4^a}+\frac1{5^a}-\frac1{6^a}+\cdots\quad(0&lt;\alpha&lt;1)<br>
-$$</p>
-<p>的项重新安排如下：先依次取 $p$ 个正项, 接着依次取 $q$ 个负项, 再接着依次取 $p$ 个正项, 如此继续下去.证明: 所得的新级数收敛的充分必要条件为 $p=q$; 当 $p&gt;q$ 时, 新级数发散到 $+\infty$, 当 $p{&lt;}q$ 时, 新级数发散到 $-\infty$.</p>
+<p><strong>[华四第五章总练习题3]</strong> 构造一个连续函数, 它仅在已知点 $a_1,a_2,\cdots,a_n$ 不可导; 构造一个函数, 它仅在已知点 $a_1,a_2,\cdots,a_n$ 可导.<br>
+注：$f_1(x)=|(x-a_1)(x-a_2)\cdots(x-a_n)|, \ f_2(x)=(x-a_1)^2(x-a_2)^2\cdots(x-a_n)^2D(x)$.</p>
 </li>
+<li>
+<p><strong>[华四第五章总练习题5(5)]</strong> 设 $f=\varphi\cdot\psi$, 若 $\varphi$ 在点 $x_0$ 可导, $\psi$ 在点 $x_0$ 不可导, 则 $f$ 在点 $x_0$ 一定不可导.<br>
+注：分 $\varphi(x_0)\neq0$ 和 $\varphi(x_0)=0$ 两种情况讨论.</p>
+</li>
+<li>
+<p>*<strong>[华四6.4.2]</strong> 构造函数 $f$, 它存在极值点但不满足极值第一、二充分条件.<br>
+注：$f(x)=\begin{cases}x^4\sin^2\frac{1}{x}, &amp; x\neq0,\\0, &amp; x=0.\end{cases}$ 极小值点 $x=0$.</p>
+</li>
+<li>
+<p><strong>[华四总练习题11]</strong> 若函数 $f(x)$ 在某点处可导, 则它在这个点的某个领域内单调.<br>
+注：函数 $f(x)=\begin{cases}\frac{x}{2}+x^2\sin\frac{1}{x},&amp;x\neq0,\\0,&amp;x=0.\end{cases}$ 在 $x=0$ 处可导, 但在其任意领域内都不单调.</p>
+</li>
+<li>
+<p>*<strong>[华四总练习题17]</strong> $f$ 为 $I$ 上的下凸函数 $\Longleftrightarrow$ 对任何 $x_1,x_2\in I$, 函数 $\varphi(x)=f(\lambda x_1+(1-\lambda)x_2)$ 为 $[0,1]$ 上的下凸函数.<br>
+注：用定义验证, 比较绕.</p>
+</li>
+<li>
+<p>$\star$<strong>[李例3-1-1-5]</strong> 试作一个函数 $f(x)$ 在 $\mathbb{R}$ 上二阶可导, 且 $f^{\prime\prime}(x)$ 在 $x=0$ 不连续, 其余点处处连续.<br>
+注：构造函数 $f(x)=\begin{cases}x^n\sin\frac{1}{x},&amp;x\neq0,\\0,&amp;x=0\end{cases}$ 下面只需确定 $n$ 的值以满足题设条件. 经典模型.</p>
+</li>
+<li>
+<p>*<strong>[李例3-1-1-10]</strong> $f(x)$ 在点 $a$ 连续且 $|f(x)|$ 在点 $a$ 可导, 则 $f(x)$ 在点 $a$ 可导.<br>
+注：讨论 $f(a)=0(&gt;0/&lt;0)$ 的情况, 注意到如果 $f(a)&gt;0$, 则有连续函数的保号性在 $a$ 的领域内都有 $f(x)&gt;0$, 这样我们容易证得结论是正确的.</p>
+</li>
+<li>
+<p><strong>[李例3-1-4-1]</strong> 偶函数的奇数阶导数在 $x=0$ 处的值为 $0$; 奇函数的偶数阶导数在 $x=0$ 处的值为 $0$.<br>
+注：简单的.</p>
+</li>
+<li>
+<p><strong>[李例3-2-6-5]</strong> 若 $f$ 在 $I$ 上连续且 $x_0$ 是 $f$ 在 $I$ 上唯一的极值点, 则 $x_0$ 必为最值点.<br>
+注：显然是用反证法可证得结论.</p>
+</li>
+<li>
+<p>$f$ 是区间 $I$ 上的下凸函数当且仅当对任意三点 $x_1&lt;x_2&lt;x_3$ 有 $\begin{vmatrix}1&amp;x_1&amp;f(x_0)\\1&amp;x_2&amp;f(x_2)\\1&amp;x_3&amp;f(x_3)\end{vmatrix}\ge0$.<br>
+注：用下凸函数得定义.</p>
+</li>
+<li>
+<p><strong>[李例3-2-7-1思考]</strong> 下凸函数的和仍是下凸函数; 下凸函数的差不一定是下凸函数; 下凸函数的数乘不一定是下凸函数; 下凸函数的积、商不一定是下凸函数; 两个下凸函数的 $\max$ 是下凸函数; 两个下凸函数的 $\min$ 不一定是下凸函数.<br>
+注：画画图直观点.</p>
+</li>
+<li>
+<p><strong>[李例3-2-7-7]</strong> $f$ 为 $(a,b)$ 内可导的下凸函数, 则 $x_0\in(a,b)$ 是 $f$ 的极小值点当且仅当 $f^{\prime}(x_0)=0$.<br>
+注：必要性用 Fermat 定理; 充分性利用可导的下凸函数的充要条件 $f(x)\ge f(x_0)+(x-x_0)f^{\prime}(x_0)$.</p>
+</li>
+<li>
+<p>*<strong>[李例3-2-7-8]</strong> 开区间 $(a,b)$ 内的非常值下凸函数不能取到最大值.<br>
+注：反证, 假设能取到最大值点 $x_0$, 于是一定存在 $x_1\neq x_0$ 使得 $f(x_1)&lt;f(x_0)$, 不妨 $x_1&lt;x_0$, 再取 $x_1&lt;x_0&lt;x_2$, 令 $\lambda=\frac{x_2-x_0}{x_2-x_1}\in (0,1)$, 利用下凸函数的定义导出矛盾.</p>
+</li>
+<li>
+<p>*<strong>[李例3-2-7-9]</strong> 若 $x_0$ 是区间 $I$ 上的严格下凸函数的极值点, 则 $x_0$ 一定是唯一的极小值点.<br>
+注：先证明它是极小值点再证唯一性, 都用反证法即可, 方法同上题.</p>
+</li>
+<li>
+<p>拐点的定义是什么.<br>
+注：和极值点的定义很像.</p>
+</li>
+<li>
+<p><strong>[李例3-2-8-1]</strong> 若 $f(x)$ 在 $(a,+\infty)$ 上具有连续导函数, 且 $\lim\limits_{x\to+\infty}f(x)=A$, 能否推出 $\lim\limits_{x\to+\infty}f^{\prime}(x)=0$.<br>
+注：反例: $f(x)=\frac{\sin x^2}{x}\Rightarrow f^{\prime}(x)=2\cos x^2-\frac{\sin x^2}{x^2}$.</p>
+</li>
+</ol>
+<h2 id="计算题">计算题</h2>
+<ol>
+<li><strong>[华四5.3例2]</strong> 证明: 对数螺线 $\rho=e^{\frac{\theta}{2}}$ 上所有点的切线与向径的夹角 $\varphi$ 为常量.<br>
+注：向径与切线的夹角正切为 $\tan\varphi=\frac{\rho(\theta)}{\rho’(\theta)}$.<br>
+类似可计算心性线 $r=a(1+\cos\theta)$ 的切线与切点向径之间的夹角.</li>
+<li><strong>[华四5.4.5(4)]</strong> 求 $y=\frac{\ln x}{x}$ 的 $n$ 阶导数.<br>
+注：Leibniz 公式的运用.</li>
+<li><strong>[李例3-1-5]</strong> 设 $y=\frac{1}{\sqrt{1-x^2}}\arcsin x$, 求 $y^{(n)}(0)$.<br>
+注：令 $f(x)=(\arcsin x)^2\Rightarrow f^{\prime}(x)=\frac{2}{\sqrt{1-x^2}}\arcsin x\Rightarrow (1-x^2)f^{\prime}(x)^2=4f(x)$, 再利用 Leibniz 法则即可.</li>
+</ol>
+<h2 id="证明题">证明题</h2>
+<h3 id="导数与微分">导数与微分</h3>
+<ol>
+<li>
+<p>$\star$*<strong>[华四定理5.3]</strong> 证明 <strong>Fermat 定理</strong>: 设函数 $f$ 在 $x_0$ 的某领域上有定义, 且在 $x_0$ 处可导. 若 $x_0$ 是 $f$ 的极值点, 则 $f^{\prime}(x_0)=0.$<br>
+注：反证法. 利用导数的定义和极限的保号性.</p>
+</li>
+<li>
+<p><strong>[华四5.1.10]</strong> 若 $f(x)$ 在点 $x_0$ 存在左右导数, 则 $f(x)$ 在点 $x_0$ 连续.<br>
+注：利用左右导数的定义和极限的四则运算.</p>
+</li>
+<li>
+<p><strong>[华四5.1.14]</strong> 证明: 若函数 $f$ 在 $[a,b]$ 上连续, 且 $f(a)=f(b)=K,f^{\prime}<em>{+}(a)f^{\prime}</em>{-}(b)&gt;0$, 则在 $(a,b)$ 上至少有一点 $\xi$, 使得 $f(\xi)=K$.<br>
+注：利用极限的保号性和连续函数的介值定理.</p>
+</li>
+<li>
+<p><strong>[华四5.1.17]</strong> 设 $f(x)=x^n+a_1x^{n-1}+\cdots+a_n$ 的最大零点为 $x_0$, 证明: $f^{\prime}(x_0)\ge0$.<br>
+注：注意到 $\lim\limits_{x\to+\infty}f(x)=+\infty$.</p>
+</li>
+<li>
+<p><strong>[华四定理5.5推论]</strong> 设 $f_1,f_2,\cdots,f_n$ 均可导, 证明 $(f_1f_2\cdots f_n)‘=f_1’f_2\cdots f_n+f_1f_2’f_3\cdots f_n+\cdots+f_1f_2\cdots f_n’.$<br>
+注：利用数学归纳法.</p>
+</li>
+<li>
+<p>*<strong>[华四定理5.7]</strong> 证明<strong>反函数求导法则</strong>: 设 $y=f(x)$ 为 $x=\varphi(y)$  的反函数, 若 $\varphi(y)$ 在点 $y_0$ 的领域上连续, 严格单调且 $\varphi’(y_0)\neq0$, 则 $f(x)$ 在点 $x_0(x_0=\varphi(y_0))$ 可导, 且 $f^{\prime}(x_0)=\frac{1}{\varphi’(y_0)}$.<br>
+注：$\Delta x=\varphi(y+\Delta y)-\varphi(y),\Delta y=f(x+\Delta x)-f(x)$.</p>
+</li>
+<li>
+<p>*<strong>[华四定理5.8引理]</strong> $f(x)$ 在点 $x_0$ 可导 $\Longleftrightarrow$ 在 $x_0$ 的某领域 $U(x_0)$ 上, 存在一个在点 $x_0$ 连续的函数 $H(x)$, 使得 $f(x)-f(x_0)=H(x)(x-x_0)$, 从而 $f^{\prime}(x_0)=H(x_0)$.<br>
+注：利用此引理可证明复合函数求导法则.</p>
+</li>
+<li>
+<p>*<strong>[华四5.4.10]</strong> 设 $y=\arcsin x$. 证明:<br>
+(1) 它满足方程: $(1-x^2)y^{(n+2)}-(2n+1)xy^{(n+1)}-n^2y^{(n)}$;<br>
+(2) 求 $y^{(n)}|_{x=0}$.<br>
+注：$y^{\prime}=\frac{1}{\sqrt{1-x^2}}\Rightarrow y^{\prime\prime}=\frac{x}{(1-x^2)^{3/2}}=y^{\prime}\cdot\frac{x}{1-x^2}$.</p>
+</li>
+<li>
+<p>*<strong>[华四5.4.11]</strong> 证明函数 $f(x)=\begin{cases}e^{-1/x^2}, &amp;x\neq0\\0,&amp;x=0\end{cases}$ 在 $x=0$ 处 $n$ 阶可导且 $f^{(n)}(0)=0$, 其中 $n$ 为任意正整数.<br>
+注：利用数学归纳法. 注意到 $(e^{-1/x^2})^{(n)}=P_n(1/x)e^{-1/x^2}$.</p>
+</li>
+<li>
+<p><strong>[李例3-1-1-2]</strong> 设 $f(x)$ 连续, $f^{\prime}(0)$ 存在, 且 $\forall x,y\in\mathbb{R}$, 有 $f(x+y)=\frac{f(x)+f(y)}{1-4f(x)f(y)}$. 求证 $f(x)$ 在 $\mathbb{R}$ 上可微, 且若 $f^{\prime}(0)=\frac{1}{2}$, 求 $f(x)$ 的表达式.<br>
+注：一元函数可微与可导等价, 因此只需用定义证明导数存在.</p>
+</li>
+<li>
+<p><strong>[李例3-1-1-8]</strong> 已知 $f(x)\in C[0,1]$ 且 $f(0)=0$. 证明: 若存在 $\alpha&gt;\beta&gt;0$ 使得<br>
+$$<br>
+\lim\limits_{x\to 0+}\frac{f(\alpha x)-f(\beta x)}{x}=c,\quad (c\in\mathbb{R}为常数)<br>
+$$<br>
+则 $f(x)$ 在 $x=0$ 处可导.<br>
+注：事实上通过变量换元可知 $f\left(\frac{\beta^k}{\alpha^{k}}t\right)-f\left(\frac{\beta^{k+1}}{\alpha^{k+1}}t\right)=\frac{c\beta^k}{\alpha^{k+1}}t+o\left(\frac{\beta^k}{\alpha^k}t\right), \ k=0,1,2,\cdots$.</p>
+</li>
+<li>
+<p>*<strong>[李例3-1-2-2]</strong> 设函数 $f(y)$ 的反函数 $f^{-1}(x)$ 以及 $f^{\prime}[f^{-1}(x)],f^{\prime\prime}[f^{-1}(x)]$ 都存在, 且 $f^{\prime}[f^{-1}(x)]\neq0$. 证明 $\frac{\mathrm{d^2}f^{-1}(x)}{\mathrm{d}x^2}=-\frac{f^{\prime\prime}[f^{-1}(x)]}{\left[f^{\prime}[f^{-1}(x)]\right]^3}$.</p>
+<p>注：令 $f^{-1}(x)=t$, 转为对 $t$ 的导数.</p>
+</li>
+</ol>
+<h3 id="微分中值定理">微分中值定理</h3>
+<ol>
+<li>
+<p>$\star$<strong>[华四6.1定理6.1]</strong> 证明 <strong>Rolle 中值定理</strong>.<br>
+注：利用 Fermat 定理, 也就是要找到极值点. Rolle 中值定理的推广为: 设 $f(x)$ 在 $(a,b)$ (有穷或无穷区间) 中任意点有有限导数, 且 $f(a+0)=f(b-0)$, 则存在 $\xi\in(a,b)$ 使得 $f^{\prime}(\xi)=0$. 此定理的证明需分情况讨论, 当 $(a,b)$ 是有限区间时可以延拓 $f(x)$, 构造出闭区间上的连续函数再利用 Rolle 中值定理即得; 当 $(a,b)$ 为无限区间时, 可以换元 $x=\tan t$, 于是 $f(\tan t)$ 就是有限区间上的函数, 再利用先前的结论即得.</p>
+</li>
+<li>
+<p>$\star$<strong>[华四6.1定理6.2]</strong> 证明 <strong>Lagrange 中值定理</strong>.<br>
+注：$K$ 值法, 令 $K=\frac{f(b)-f(a)}{b-a}$, 构造 $g(x)=f(x)-f(a)-K(x-a)$, 则 $g(a)=g(b)=0$, 再利用 Rolle 中值定理即得结论. 或者考虑由 $(a,f(a)),(b,f(b)),(x,f(x))$ 三点组成的三角形的面积 $S(x)$, 事实上, 有<br>
+$$<br>
+S(x)=\frac{1}{2}\begin{vmatrix}<br>
+a &amp; f(a) &amp; 1\<br>
+b &amp; f(b) &amp; 1\<br>
+x &amp; f(x) &amp; 1<br>
+\end{vmatrix}<br>
+$$<br>
+则 $S(a)=S(b)=0$, 在利用 Rolle 中值定理即得结论.</p>
+</li>
+<li>
+<p>$\star$<strong>[华四6.1推论3]</strong> 证明<strong>导函数的极限定理</strong>: 设 $f$ 在点 $x_0$ 的某领域 $U(x_0)$ 上连续, 在 $U^o(x_0)$ 内可导, 且极限 $\lim\limits_{x\to x_0}f^{\prime}(x)$ 存在, 则 $f$ 在点 $x_0$ 可导, 且 $f^{\prime}(x_0)=\lim\limits_{x\to x_0}f^{\prime}(x)$.<br>
+注：考虑左右导数, 利用 Lagrange 中值定理, 类似于证明导函数至多只有第二类间断点的方法.</p>
+</li>
+<li>
+<p>$\star$*<strong>[华四6.1定理6.5]</strong> 证明 <strong>Darboux 定理</strong>: 若函数 $f$ 在 $[a,b]$ 上可导, 且 $f^{\prime}<em>+(a)\neq f^{\prime}</em>-(b), \ k$ 为介于 $f^{\prime}<em>{+}(a),f^{\prime}</em>{-}(b)$ 之间的任一实数, 则至少存在一点 $\xi\in(a,b)$, 使得 $f^{\prime}(\xi)=k$.<br>
+注：构造 $F(x)=f(x)-kx$, 利用 Fermat 定理. 此定理也成为导函数的介值定理.<br>
+换个说法就是：若函数 $f(x)$ 在 $[a,b]$ 上可导, 则 $f^{\prime}(x)$ 可取得介于 $f^{\prime}(a)$ 与 $f^{\prime}(b)$ 之间的任何值.</p>
+</li>
+<li>
+<p><strong>[华四6.1.10]</strong> 设 $f$ 在 $(a,b)$ 上可导, 且 $f^{\prime}$ 单调. 证明: $f^{\prime}$ 在 $(a,b)$ 上连续.<br>
+注：事实上, 单调函数至多只有跳跃间断点, 导函数至多只有第二类间断点, 因此单调的导函数无间断点.</p>
+</li>
+<li>
+<p>$\star$*<strong>[华四6.2定理6.6]</strong> 证明 <strong>Cauchy 中值定理</strong>.<br>
+注：类似于 Lagrange 中值定理的证明方法. 也可以构造 $F(x)=\begin{vmatrix}f(a)&amp;g(a)&amp;1\\ f(b)&amp;g(b)&amp;1\\ f(x)&amp;g(x)&amp;1\end{vmatrix}$, 则 $F(a)=F(b)=0$, 由 Rolle 中值定理可导出 Cauchy 中值定理.</p>
+</li>
+<li>
+<p>*<strong>[华四6.2.6]</strong> 设函数 $f$ 在点 $a$ 的某个领域上具有二阶导数. 证明: 对充分小的 $h$, 存在 $\theta,0&lt;\theta&lt;1$, 使得<br>
+$$<br>
+\frac{f(a+h)+f(a-h)-2f(a)}{h^2}=\frac{f^{\prime\prime}(a+\theta h)+f^{\prime\prime}(a-\theta h)}{2}<br>
+$$<br>
+注：利用 Cauchy 中值定理, $F(h)=f(a+h)+f(a-h)-2f(a), \ G(h)=h^2$.</p>
+</li>
+<li>
+<p>*<strong>[华四第六章总练习题4]</strong> 设 $f$ 在 $[a,b]$ 上三阶可导, 证明存在 $\xi\in(a,b)$, 使得<br>
+$$<br>
+f(b)=f(a)+\frac{1}{2}(b-a)[f^{\prime}(a)+f^{\prime}(b)]-\frac{1}{12}(b-a)^3f^{\prime\prime\prime}(\xi).<br>
+$$<br>
+注：构造 $F(x)=f(x)-f(a)-\frac{1}{2}(x-a)[f^{\prime}(a)+f^{\prime}(x)], \ G(x)=(x-a)^3$, 接着应用 Cauchy 中值定理.<br>
+或用 $K$ 值法, 令 $F(x)=f(x)-f(a)-\frac{1}{2}(x-a)[f^{\prime}(a)+f^{\prime}(x)]+\frac{1}{12}(x-a)^3K$.</p>
+</li>
+<li>
+<p>$\star$*<strong>[华四6.2定理6.7]</strong> 证明 $\frac{0}{0}$ 型不定式极限的<strong>L’Hospital 法则</strong>.<br>
+注：事实上，这是 Cauchy 中值定理的直接应用.</p>
+</li>
+<li>
+<p>$\star$*<strong>[华四6.2定理6.8]</strong> 证明<strong>强化的 L’Hospital 法则</strong>: $\frac{\bullet}{\infty}$若函数 $f$ 和 $g$ 满足:<br>
+(i) 在 $x_0$ 的某个右领域 $U_+^o(x_0)$ 上两者可导, 且 $g^{\prime}(x)\neq0$;<br>
+(ii) $\lim\limits_{x\to x_0^+}g(x)=\infty$;<br>
+(iii) $\lim\limits_{x\to x_0^+}\frac{f^{\prime}(x)}{g^{\prime}(x)}=A$ ($A$ 可以是实数, 也可为 $\pm\infty,\infty$),<br>
+则 $\lim\limits_{x\to x_0^+}\frac{f(x)}{g(x)}=A$.<br>
+注：此定理常用.</p>
+</li>
+<li>
+<p>$\star$*<strong>[华四6.3定理6.10]</strong> 证明 <strong>Taylor 定理</strong>: 若函数 $f$ 在 $[a,b]$ 上存在直至 $n$ 阶的连续导函数, 在 $(a,b)$ 上存在 $(n+1)$ 阶导函数, 则对任意给定的 $x,x_0\in[a,b]$, 至少存在一点 $\xi\in(a,b)$, 使得<br>
+$$<br>
+f(x)=f(x_0)+f^{\prime}(x_0)(x-x_0)+\frac{f^{\prime\prime}(x_0)}{2!}(x-x_0)^2+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}.<br>
+$$<br>
+注：构造 $F(t)=f(x)-\left[f(t)+f^{\prime}(t)(x-t)+\frac{f^{\prime\prime}(t)}{2!}(x-t)^2+\cdots+\frac{f^{(n)}(t)}{n!}(x-t)^n\right]$, $G(t)=(x-t)^{n+1}$, 注意到 $F(x)=G(x)=0$, 利用 Cauchy 中值定理即得结论.</p>
+</li>
+<li>
+<p><strong>[华四第六章总练习题8]</strong> 设 $h&gt;0$, 函数 $f$ 在 $U(a;h)$ 上具有 $n+2$ 阶连续导数, 且 $f^{(n+2)}(a)\neq0$, $f$ 在 $U(a;h)$ 上的 Taylor 公式为<br>
+$$<br>
+f(a+h)=f(a)+f^{\prime}(a)h+\cdots+\frac{f^{(n)}(a)}{n!}h^n+\frac{f^{(n+1)}(a+\theta h)}{(n+1)!}h^{n+1}, \ 0&lt;\theta&lt;1.<br>
+$$<br>
+证明 $\lim\limits_{h\to0}\theta=\frac{1}{n+2}$.<br>
+注：根据条件利用 Taylor 定理展开至 $n+2$ 阶导. 接着比较两式写出 $\theta$ 的表达式即得结论.</p>
+</li>
+<li>
+<p><strong>[华四第六章总练习题12]</strong> 设函数 $f$ 在 $[a,b]$ 上二阶可导, $f^{\prime}(a)=f^{\prime}(b)=0$. 证明存在一点 $\xi\in(a,b)$, 使得<br>
+$$<br>
+|f^{\prime\prime}(\xi)|\ge\frac{4}{(b-a)^2}|f(b)-f(a)|.<br>
+$$<br>
+注：分别以 $a,b$ 两点为起始点 Taylor 展开.</p>
+</li>
+<li>
+<p><strong>[华四第六章总练习题13]</strong> 设函数 $f$ 在 $[0,a]$ 上具有二阶导数, 且 $|f^{\prime\prime}(x)|\le M$, $f$ 在 $(0,a)$ 上取得最大值. 证明 $|f^{\prime}(0)|+|f^{\prime}(a)|\le Ma$.<br>
+注：有条件可知 $f$ 在 $(0,a)$ 上存在极大值, 依次为突破口不难证明结论.</p>
+</li>
+<li>
+<p>*<strong>[华四第六章总练习题15]</strong> 设 $f(x)$ 满足 $f^{\prime\prime}(x)+f^{\prime}(x)g(x)-f(x)=0$, 其中 $g(x)$ 为任一函数. 证明: 若 $f(x_0)=f(x_1)=0 \ (x_0&lt;x_1)$, 则 $f$ 在 $[x_0,x_1]$ 上恒等于零.<br>
+注：用反证法, 推出存在极值点, 在利用极值与导数的关系推出矛盾.</p>
+</li>
+<li>
+<p>$\star$*<strong>[李例3-2-8-1]</strong> $f$ 在 $(a,+\infty)$ 上有连续导函数, 若 $\lim\limits_{x\to +\infty}f(x)=A$, 则满足下列两个条件之一就有 $\lim\limits_{x\to+\infty}f^{\prime}(x)=0$.<br>
+(1) $f^{\prime\prime}$ 在 $(a,+\infty)$ 上有界;    (2) $\lim\limits_{x\to+\infty}f^{\prime}(x)$ 存在.<br>
+注：对 (1), 只需验证 $|f^{\prime}(x)|&lt;\varepsilon$, 构造 $F(x)=f(x)-A$, 则 $x$ 充分大时 $F$ 趋于零, 因此可在 $x$ 充分大处进行 Taylor 展开 (展开至二阶导), 此时 $F$ 是一个无穷小, 而 $F’'$ 有界, 因此只需控制 Taylor 展开的步长.<br>
+对 (2), 有四种处理方法: I. 与上面目标一致, 利用 Cauchy 收敛准则可知 $x$ 充分大时 $f,f^{\prime}$ 在两点的距离都是无穷小, 这样再利用 Lagrange 中值定理容易得到结论; II. 用反证法; III. 考虑 $f(n+1)-f(n)=f^{\prime}(\xi_n)$, 再利用 Heine 定理即得结论; IV. 用 L’Hospital 法则.</p>
+</li>
+<li>
+<p>*<strong>[李例3-2-8-2]</strong> $f(x)$ 在 $(a,+\infty)$ 具有连续导函数,若 $\lim\limits_{x\to+\infty}f(x)=A$, 则<br>
+(1) 存在 $x_n\in(a,+\infty)$ 使得$\lim\limits_{n\to + \infty}x_n= + \infty, $且$\lim\limits_{n\to + \infty}f^{\prime}( x_n) = 0$；<br>
+(2) 再若 $f(x)$ 在 ($a,+\infty)$ 具有二阶连续导函数, 且 $\lim\limits_{x\to+\infty}f(x)=\lim\limits_{x\to a^+}f(x)$, 则存在 $\xi\in(a,+\infty)$ 使得 $f^{\prime\prime}(\xi)=0.$<br>
+注：对于 (1) 只需考虑 $f(n+1)-f(n)=f^{\prime}(\xi_n)$; 对于 (2) 用反证法即可.</p>
+</li>
+<li>
+<p>**<strong>[华四第六章总练习题18]</strong> 设 $f$ 在 $(a,+\infty)$ 上 $n$ 阶可导. 若 $\lim\limits_{x\to+\infty}f(x)$ 和 $\lim\limits_{x\to+\infty}f^{(n)}(x)$ 都存在, 则 $\lim\limits_{x\to+\infty}f^{(k)}(x)=0 \ (k=1,2,\cdots,n)$.<br>
+注：利用数学归纳法.</p>
+</li>
+<li>
+<p>*<strong>[华四第六章总练习题19]</strong> 设 $f$ 为 $\mathbb{R}$ 上的二阶可导函数. 若 $f$ 在 $\mathbb{R}$ 上有界, 则存在 $\xi\in\mathbb{R},s.t. \ f^{\prime\prime}(\xi)=0$.<br>
+注：只需证存在 $x_1,x_2\in\mathbb{R}, \ s.t. \ f^{\prime\prime}(x_1)f^{\prime\prime}(x_2)&lt;0$, 接着利用 Darboux 定理即得. 需要注意到 $f^{\prime}(\xi_x)=\frac{f(2x)-f(x)}{x}\to0(x\to\infty)$, 这是因为 $f$ 有界.</p>
+</li>
+<li>
+<p><strong>[李例3-1-3-1]</strong> 设 $g(x)$ 是 $[-1,1]$ 上无穷次可微函数, $\exists M&gt;0$ 使得 $|g^{(n)}(x)|\le M$, 且 $g\left(\frac{1}{n}\right)=\ln(1+2n)-\ln n, \ n=1,2,\cdots$. 求 $g^{(k)}(0), \ k=0,1,\cdots$.<br>
+注：利用 Taylor 展开式的唯一性.</p>
+</li>
+<li>
+<p>**<strong>[李例3-1-3-2]</strong> 设 $f(x)$ 在 $(-\infty,+\infty)$ 上无穷次可微且满足<br>
+(1) $\exists M&gt;0$, 对 $\forall x\in\mathbb{R}$, 有 $|f^{(k)}(x)|\le M \ (k=0,1,2,\cdots)$;<br>
+(2) $f\left(\frac{1}{2^n}\right)=0,\forall \ (n=1,2,\cdots)$.<br>
+证明: $f(x)\equiv0,\forall x\in(-\infty,+\infty)$.<br>
+注：利用 Taylor 公式.</p>
+</li>
+<li>
+<p><strong>[李例3-2-1-5]</strong> 设 $f(x)\in C[0,1]\cap D(0,1)$, 且 $f(0)=f(1)=0,f\left(\frac{1}{2}\right)=1$. 证明: $\forall\lambda,\exists\eta\in(0,1)$, 使得 $f^{\prime}(\eta)-\lambda[f(\eta)-\eta]=1$.<br>
+注：构造 $g(x)=e^{-\lambda x}[f(x)-x]$.</p>
+</li>
+<li>
+<p>*<strong>[李例3-2-1-12]</strong> 设 $f_n(x)=1+x+\frac{x^2}{2!}+\cdots+\frac{x^n}{n!}$, 其中 $x\in\mathbb{N}^+$, 求证: 方程 $f_n(x)f_{n+1}(x)=0$ 在 $\mathbb{R}$ 上有唯一实根.<br>
+注：讨论 $n$ 的奇偶性.</p>
+</li>
+<li>
+<p>**<strong>[李例3-2-2-5]</strong> 设 $f(x)$ 在 $[0,1]$ 上可微, $f(0)=0,f(1)=1,k_1,k_2,\cdots,k_n$ 为 $n$ 个正数. 证明: 在 $[0,1]$ 上存在一组互不相同的点 $x_1,x_2,\cdots,x_n$ 使得 $\sum\limits_{i=1}^n\frac{k_i}{f^{\prime}(x_i)}=\sum\limits_{i=1}^nk_i$.<br>
+注：即证 $\sum\limits_{i=1}^n\frac{a_i}{f^{\prime}(x_i)}=1$, 其中 $a_i=\frac{k_i}{\sum\limits_{i=1}^nk_i}$, $a_i\in(0,1),\sum\limits_{i=1}^na_i=1$. 根据连续函数的介值定理, 对每个 $a_1+\cdots+a_i$ 都能找到一个 $b_i\in(b_{i-1},1)$, 使得 $f(b_i)=a_1+\cdots+a_i$. 接着对每个 $[b_{i-1},b_i]$ 上应用 Lagrange 中值定理.</p>
+</li>
+<li>
+<p><strong>[李例3-2-2-8]</strong> 设 $f(x)$ 在 $(-\infty,+\infty)$ 上具有二阶导数, 且 $f^{\prime\prime}(x)&gt;0,\lim\limits_{x\to+\infty}f^{\prime}(x)=\alpha&gt;0$,$\lim\limits_{x\to-\infty}f^{\prime}(x)=\beta&lt;0,$ 又存在 $x_0$, 使得 $f(x_0)&lt;0$. 证明: 方程 $f(x)=0$ 在 $(-\infty,+\infty)$ 上仅有两个实根.<br>
+注：有条件值当 $x$ 充分大时一定有 $f(x)&gt;0$, 当 $x$ 充分小时也一定有 $f(x)&gt;0$, 因此在 $(-\infty,x_0)$ 和 $(x_0,+\infty)$ 上各有一个零点, 利用反证法不难证明只有两个实根.</p>
+</li>
+<li>
+<p><strong>[李例3-2-2-10]</strong> 设 $f(x)$ 在 $[0,+\infty)$ 上可微且 $f(0)=0$, 并假设有实数 $A$ 使得 $|f^{\prime}(x)|\le A|f(x)|,x\in(0,+\infty)$. 证明: $f(x)\equiv0,x\in(0,+\infty)$.<br>
+注：类似可证</p>
+<ul>
+<li>设 $f(x),g(x)$ 在 $[a,b]$ 上连续, $g(x)$ 在 $(a,b)$ 上可导,且 $g(a)=0$, 若有实数 $\lambda&gt;0$ 使得 $|g(x)f(x)+\lambda g^{\prime}(x)|\leqslant|g(x)|,x\in(a,b)$.证明: $g(x)\equiv0$.</li>
+<li>若 $f(x)$ 在 [0,1] 上连续,且 $\forall x\in[0,1]$ 有 $\int_0^xf(t)\mathrm{d}t \geqslant f( x) \geqslant 0$.证明: $f(x)\equiv0.$</li>
 </ul>
 </li>
 <li>
-<p>级数乘积</p>
-<ol>
-<li>绝对收敛的级数 $\sum u_n,\sum v_n$ 的乘积 $\sum u_n\sum v_n$ 中的所有项 $u_iv_j$ 按任意顺序排列所得到的级数 $\sum w_n$ 也绝对收敛, 且其和为 $AB$, 其中 $\sum u_n=A,\sum v_n=B$.</li>
-<li>Abel 分布求和公式</li>
-<li>Abel 引理 $\Rightarrow$ Dirichlet 判别法、Abel 判别法</li>
-</ol>
+<p>**<strong>[李例3-2-2-14]</strong> 设$f(x)$ 在 $[0,1]$ 上有连续的二阶导数, $f(0)=f(1)=0$ 且 $f(x)\neq0,\forall x\in(0,1)$. 证明:$\int_0^1\left|\frac{f^{\prime\prime}(x)}{f(x)}\right|\mathrm{~d}x\ge4$.<br>
+注：$|f(x)|$ 在 $[0,1]$ 上有最大值. 利用这个最大值点分成两段看问题.</p>
+</li>
+<li>
+<p>**<strong>[李例3-2-2-21]</strong> 证明: 当 $s&gt;0$ 时, $\frac{n^{s+1}}{s+1}&lt;1^s+2^s+\cdots+n^s&lt;\frac{(n+1)^{s+1}}{s+1}$.<br>
+注：令 $f(x)=x^{s+1}$, 则 $f^{\prime}(x)=(s+1)x^s$, 分别在 $[0,1],[1,2],\cdots,[n-1,n],[n,n+1]$ 上应用 Lagrange 中值定理. 类似可证 $\frac{h}{1+h^2}&lt;\arctan h&lt;h,h&gt;0$. 利用上述结论可求极限 $\lim\limits_{n\to\infty}\frac{1}{n^{\beta}}(1^{\alpha}+2^{\alpha}+\cdots+n^{\alpha})$.</p>
+</li>
+<li>
+<p>*<strong>[李例3-2-3-2]</strong> 设 $f(x)$ 在 $[a,b]$ 上连续,在 $(a,b)$ 内可微, $b&gt;a&gt;0,f(a)\neq f(b)$. 证明: 存在 $\xi,\eta\in(a,b)$ 使得 $f^{\prime}(\xi)=\frac{a+b}{2n}f^{\prime}(\eta)$.<br>
+注：利用 Lagrange 中值定理和 Cauchy 中值定理.</p>
+</li>
+<li>
+<p><strong>[李例3-2-3练习(5)]</strong> 设 $f(0)=0,f(x)$ 在 $U(0)$ 内连续可导, 且 $f^{\prime}(0)=0$. 求 $\lim\limits_{x\to0^+}x^{f(x)}$.<br>
+注：取对数后 $f(x)\ln x=[f(0)+f^{\prime}(0)x+o(x)]\ln x=\frac{o(x)}{x}x\ln x\to0(x\to0+)$.</p>
+</li>
+<li>
+<p><strong>[李例3-2-4-3]</strong> 设 $f(x)$ 在 $[a,b]$ 上连续,在 $(a,b)$ 上有二阶导数. 证明: 存在 $\xi\in(a,b)$ 使得<br>
+$$<br>
+f(b)-2f\left(\frac{a+b}2\right)+f(a)=\frac{(b-a)^2}4f^{\prime\prime}(\xi).<br>
+$$<br>
+注：I. 在 $\frac{a+b}{2}$ 处 Taylor 展开; II. 构造 $F(x)=f(x+\frac{b-a}{2})-f(x)$, 利用两次 Lagrange 中值定理即可; III. K 值法; IV. 令 $F(x)=f(x)-2f\left(\frac{a+x}2\right)+f(a),G(x)=(x-a)^2$, 应用 Cauchy 中值定理.</p>
+</li>
+<li>
+<p><strong>[李例3-2-4-6]</strong> 设 $f(x)$ 在 [0,2] 上二次可微,且 $|f(x)|\leqslant1,|f^{\prime\prime}(x)|\leqslant1$. 证明: $|f^{\prime}(x)|\leqslant2$.<br>
+注：利用 Taylor 公式, 没什么难的.</p>
+</li>
+<li>
+<p><strong>[李例3-2-4-7]</strong> 设 $f(x)$ 在 $(0,+\infty)$ 内二次可导, $M_0,M_1,M_2$ 分别为 $|f(x)|,|f^{\prime}(x)|,|f^{\prime\prime}(x)|$ 的上确界证明: $M_1^2\leqslant4M_0M_2.$<br>
+注：利用 Taylor 公式, 没什么难的.</p>
+</li>
+<li>
+<p><strong>[李例3-2-4-9]</strong> 设$f(x)$ 在[0,1] 上两次可导,$|f^{\prime\prime}(x)|\leqslant M,x\in[0,1],M&gt;0,f(0)=f(1)=f\left(\frac{1}{2}\right)=0$. 证明: $|f^{\prime}(x)|&lt;\frac{M}{2}$.<br>
+注：利用 Taylor 公式, 没什么难的.</p>
+</li>
+<li>
+<p>*<strong>[李例3-2-4-12]</strong> 设 $f(x)$ 在 [0,1] 上二次连续可导, $f(0)=f(1)=0,\min\limits_{0\leqslant x\leqslant1}f(x)=-1$. 证明: $\max\limits_{0\leqslant x\leqslant1}f^{\prime\prime}(x)\geqslant8.$<br>
+注：由题设, 存在极小值点 $x_0$, 由 Fermat 定理得 $f^{\prime}(x_0)=0$, 再利用 Taylor 公式.<br>
+类似的习题：[李例3-2-4-13] 设 $g(x)$ 在 $[a,b]$ 上连续,在 $(a,b)$ 上二阶可导,且 $|g^{\prime\prime}(x)|\geqslant m&gt;0(m$ 为常数),又 $g(a)=g(b)=0$. 证明 $\max\limits_{[a,b]}|g(x)|\ge\frac{m}{8}(b-a)^2$.</p>
+</li>
+<li>
+<p>*<strong>[李例3-2-4-14]</strong> 设 $f(x)$ 在 R 上有二阶导函数, 且 $f(x),f^{\prime}(x),f^{\prime\prime}(x)$ 均大于零,假设存在正常数 $a,b$ 使得 $f^{\prime\prime}(x)\leqslant af(x)+bf^{\prime}(x)$ 对一切 $x\in\mathbb{R}$ 成立.<br>
+(1) 求证$\lim\limits_{x\to-\infty}f^{\prime}(x)=0;$<br>
+(2) 求证: 存在常数 c 使得 $f^{\prime}(x)\leqslant cf(x);$<br>
+注：(1) $f,f^{\prime}$ 单调增有下界, 因此极限存在; (2) 设 $f^{\prime\prime}-cf^{\prime}(x)\le\alpha(f^{\prime}(x)-cf(x))$, 用待机系数法求出 $\alpha,c$.</p>
+</li>
+<li>
+<p><strong>[李例3-2-4练习(7)]</strong> 证明 $e$ 时无理数.<br>
+注：反证法, 利用 $e^x$ 的麦克劳林公式.</p>
+</li>
+<li>
+<p><strong>[李例3-2-5-11]</strong> 已知在 $x&gt;-1$ 上定义的可微函数 $f(x)$ 满足条件<br>
+$$<br>
+f^{\prime}(x)+f(x)-\frac{1}{x+1}\int_0^xf(t)\mathrm{d}t=0,\quad f(0)=1.<br>
+$$<br>
+(1) 求 $f^{\prime}(x);$<br>
+(2) 证明:当 $x\geqslant0$ 时,$\mathrm{e}^{-x}\leqslant f(x)\leqslant1.$<br>
+注：主要就是解一个微分方程.</p>
+</li>
+<li>
+<p><strong>[李例3-2-5-12]</strong> 设 $f(x)$ 在 $[a,b]$ 上连续,在 ($a,b)$ 内可微, $f(x)$ 不是线性函数,且 $f(b)&gt;f(a)$. 证明:<br>
+存在 $\xi\in(a,b)$ 使得 $f^{\prime}(\xi)&gt;\frac{f(b)-f(a)}{b-a}$.<br>
+注：反证法. 构造 $F(x)=f(x)-f(a)-(x-a)\frac{f(b)-f(a)}{b-a}$, 利用 $f$ 不是线性函数导出矛盾.</p>
+</li>
+<li>
+<p><strong>[李例3-2-5-13]</strong> 设 $f(x)$ 在 $(0,+\infty)$ 上单调下降且可微,若当 $x\in(0,+\infty)$ 时, $0&lt;f(x)&lt;|f^{\prime}(x)|$ 成立,则当$0&lt;x&lt;1$时,有$xf(x)&gt;\frac1xf\left(\frac1x\right)$.<br>
+注：可以看出 $F(x):=f(x)e^x$ 单调递减.</p>
+</li>
+<li>
+<p>**[李例3-2-5-19]**设 $f(x)$ 在 $[a,+\infty)$ 上一阶可微,且 $f(0)=0,f^{\prime}(x)$ 在 $(0,+\infty)$ 上单调递减. 证明:<br>
+$\frac{f(x)}{x}$在 $(0,+\infty)$ 上单调递减.<br>
+注：注意到 $f(x)=f(x)-f(0)=xf^{\prime}(\xi)\ge xf^{\prime}(x)\Rightarrow F(x):=\frac{f(x)}{x} \downarrow$.</p>
 </li>
 </ol>
-<h2 id="无穷级数的性质">无穷级数的性质</h2>
-<p>【华四12.1定理12.4】对收敛级数的项任意加括号, 既不改变级数的收敛性, 也不改变级数的和.<br>
-<strong>注：</strong>  级数收敛等价于其部分和数列收敛, 于是部分和数列的子列必收敛, 且极限与原数列极限一致.</p>
-<p>【华四12.1.10】设级数 $\sum u_{n}$ 满足: 加括号后级数  $\sum\limits_{k=1}^{\infty}\left(u_{n_{k}+1}+\cdots+u_{n_{k+1}}\right)$  收敛  $\left(n_{1}=0\right)$ , 且在同一括号中的  $u_{n_{k}+1}, u_{n_{k}+2}, \cdots, u_{n_{k+1}}$ 符号相同，证明 $\sum u_{n}$ 亦收敛.<br>
-<strong>注：</strong>  记加括号后的级数为 $\sum v_n$, 它收敛可知 $v_n\to0$, 又因为同意括号内中项的符号相同, 故括号内前 $k$ 的和必趋于零, 注意到 $\sum u_n$ 的部分和可以表示为 $\sum v_n$ 的某个部分和加上某一个括号内的前 $k$ 项, 再利用 $\sum v_n$ 收敛即得结论.</p>
-<p>【李例5-1-2-3】若数项级数 $\sum a_n$ 满足: (i) $\lim\limits_{n\to\infty}a_n=0$; (ii) 加上括号收敛而且每个括里项的个数小于某个定数 $L$. 则原级数 $\sum a_n$ 收敛.<br>
-<strong>注：</strong>  这等价于 $\lbrace S_n\rbrace$ 有个子列 $\lbrace S_{n_k}\rbrace$ 收敛, 于是对任意 $n\in \mathbb{N}^+$, 有 $\exists k, \ s.t. \ n_k\le n&lt; n_{k+1}$, 从而 $|S_n-S_{n_k}|\le\sum\limits_{j=1}^L|a_{n_k+j}|\to0 \ (n\to\infty)$.</p>
-<h2 id="正项级数-2">正项级数</h2>
-<p>【华四/李】讨论以下级数的敛散性</p>
+<h3 id="凹凸性">凹凸性</h3>
 <ol>
-<li>$\sum\limits_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln n)^q}$.<br>
-<strong>注：</strong> $\sum\limits_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln n)^q}\begin{cases}收敛,&amp; p&gt;1 \ 或 \ (p=1~\text{且}~q&gt;1),\\ 发散, &amp;p&lt;1 \ 或 \ (p=1 ~\text{且}~ q\le 1).\end{cases}$</li>
-<li>$\sum\frac{1}{x^{\ln n}} \ (x&gt;0)$.<br>
-<strong>注：</strong> 事实上 $\frac{1}{e^{\ln n}}=\frac{1}{n^{\ln 3}}$</li>
-<li>$\sum\frac{n!}{(x+1)(x+2)\cdots(x+n)}\quad(x&gt;0)$.<br>
-<strong>注：</strong> 利用 Raabe 判别法</li>
-<li>$\sum\left[\frac{(2n-1)!!}{(2n)!!}\right]^p, \ (p\in\mathbb{N}^+)$.<br>
-<strong>注：</strong> Raabe判别法</li>
-<li>$\sum\left[\frac{(2n-1)!!}{(2n)!!}\right]^{\frac{1}{n}}$.<br>
-<strong>注：</strong> 记 $u_n=\frac{(2n-1)!!}{(2n)!!}$, 则有 $\lim\limits_{n\to\infty}\frac{a_{n+1}}{a_n}=1$, 于是利用不等式 $\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}\le\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}$ 即得原级数通项趋于 $1\neq0$, 从而发散.</li>
-<li>$\sum\left[\frac{(2n)!!}{(2n+1)!!}\right]^p$.<br>
-<strong>注：</strong> 利用 Wails 公式: $\lim\limits_{n\to\infty}\left[\frac{(2n)!!}{(2n-1)!!}\right]^2\frac{1}{2n+1}=\frac{\pi}{2}$.</li>
-<li>$\sum\frac{a_n}{(1+a_1)(1+a_2)\cdots(1+a_n)} \ (a_n&gt;0)$.<br>
-<strong>注：</strong> 注意到 $\frac{a_n}{(1+a_1)(1+a_2)\cdots(1+a_n)}=\frac{1}{(1+a_1)(1+a_2)\cdots(1+a_{n-1})}-\frac{1}{(1+a_1)(1+a_2)\cdots(1+a_n)}$.</li>
-<li>$\sum\limits_{n=1}^{\infty}\left[1-\left(\frac{n-1}{n+1}\right)^{k}\right]^{p} \ (p,k&gt;0)$.<br>
-<strong>注：</strong> 注意到 $\left(\frac{n-1}{n+1}\right)^{k}=\left(1-\frac{1}{n}\right)^{k}\left(1+\frac{1}{n}\right)^{k}=1-\frac{2k}{n}+o(\frac{1}{n})$.</li>
-<li>$\sum\limits_{n=1}^{\infty}\frac{n^{n-2}}{e^nn!}$.<br>
-<strong>注：</strong> 可以计算 $\frac{a_{n+1}}{a_n}$. 也可以利用 Strling 公式 $n!\sim \sqrt{2n\pi}\cdot \left(\frac{n}{e}\right)^n$.</li>
-<li>$\sum\limits_{n=3}^{\infty}\frac{1}{\ln n\ln\ln n}$.<br>
-<strong>注：</strong> 积分判别法.</li>
-<li>$\sum\limits_{n=3}^{\infty}\frac{1}{(\ln n)^{\ln\ln n}}$.<br>
-<strong>注：</strong> 考虑 $\lim\limits_{n\to\infty}\frac{\ln\frac{1}{a_n}}{\ln n}$.</li>
-<li>$\sum\limits_{n=3}^{\infty}\frac{1}{(\ln\ln n)^{\ln n}}$.<br>
-<strong>注：</strong> 考虑 $\lim\limits_{n\to\infty}\frac{\ln\frac{1}{a_n}}{\ln n}$.</li>
-</ol>
-<p>【华四12.2例6】讨论级数 $1+b+bc+b^2c+b^2c^2+\cdots+b^nc^{n-1}+b^nc^n+\cdots$ 的敛散性，其中 $0&lt;b&lt;c$.<br>
-<strong>注：</strong> 注意到 $\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}=b,\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}=c$.</p>
-<p>【华四12.2例8】考察级数 $b+c+b^2+c^2+\cdots+b^n+c^n+\cdots$ 的敛散性，其中 0&lt;b&lt;c&lt;1.<br>
-<strong>注：</strong> 注意到 $\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}=\sqrt{b},\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}=\sqrt{c}$.</p>
-<p>【史定理14.3.5】设 $\lbrace u_{n}\rbrace$ 是任意的正数列, 那么<br>
-$$<br>
-\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}\le\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}.<br>
-$$<br>
-<strong>注：</strong> 只需证明右半部分, 记 $\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}=q$ 根据上极限的定义, 当 $n$ 充分大 $n\ge N$ 时有 $\frac{u_{n+1}}{u_n}&lt;q+\varepsilon$, 于是不难得到 $u_n&lt;u_N(q+\varepsilon)^{n-N}\Rightarrow \sqrt[n]{u_n}&lt;\sqrt[n]{u_N(q+\varepsilon)^{-N}}\cdot(q+\varepsilon)\Rightarrow \overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le q+\varepsilon\to q \ (\varepsilon\to0)$.</p>
-<p>【华四12.2定理12.9】 <strong>(积分判别法)</strong> 设 $f$ 为 $[1,+\infty)$ 上非负减函数，那么正项级数 $\sum f(n)$ 与反常积分 $\int_1^{+\infty}f(x)\mathrm{~d}x$ 同时收敛或同时发散.<br>
-<strong>注：</strong> 注意到 $f_n\le\int_{n-1}^nf(x)\mathrm{~d}x\le f(n-1)$.</p>
-<p>【华四12.2定理12.10】 <strong>(Raabe判别法)</strong> 设 $\sum u_n$ 为正项级数，且存在某正整数 $N_{0}$ 及常数 $r$,<br>
-(i)若对一切 $n&gt;N_0$ 成立不等式 $n\left(1-\frac{u_{n+1}}{u_{n}}\right)\geq r&gt;1$, 则级数$\sum u_n$收敛；<br>
-(ii) 若对一切 $n&gt;N_0$ 成立不等式 $n(1-\frac{u_{n+1}}{u_n})\leq1,$ 则级数$\sum u_n$发散.<br>
-<strong>注：</strong> (i) 一定能选出一个 $p, \ s.t. \ 1&lt;p&lt;r$, 只需注意到 $\lim\limits_{n\to\infty}\frac{1-\left(1-\frac{1}{n}\right)^p}{\frac{r}{n}}=\frac{p}{r}&lt;1$. 而 (ii) 更加容易.</p>
-<p>【华四12.2.3】设$\sum u$ 和 $\sum v$ 为正项级数, 且存在正数 $N_0$, 对一切 $n&gt;N_0$, 有 $\frac{u_{n+1}}{u_n}\le\frac{v_{n+1}}{v_n}$. 证明：若级数 $\sum v_n$ 收敛，则级数 $\sum u$ 也收敛; 若 $\sum u_n$ 发散, 则 $\sum v$ 也发散.<br>
-<strong>注：</strong> 证明很简单, 这个结论可以记一下.</p>
-<p>【华四12.2.6】设级数 $\sum a_n^2$ 收敛,证明 $\sum\frac{a_n}n \ (a_n&gt;0)$ 也收敛.<br>
-<strong>注：</strong> 利用基本不等式.</p>
-<p>【华四12.2.11】设 $\lbrace a_n\rbrace$ 为递减正项数列, 证明: 级数 $\sum\limits_{n=1}^{\infty}a_n$ 与 $\sum2^ma_{2^m}$ 同时收敛或同时发散.<br>
-<strong>注：</strong> 只需证明它们的部分和数列同时有界或无界.</p>
-<p>【华四第十二章练习题1】若正项级数 $\sum u_n$ 收敛, 且数列 $\lbrace u_n\rbrace$ 单调, 则 $\lim\limits_{n\to\infty}nu_n=0$.<br>
-<strong>注：</strong> 利用 Cauchy 准则不难证明.</p>
-<p>【华四第十二章练习题4(3)】判断: $\sum u_n$ 为收敛的正项级数, 是否意味着存在一个正数 $\varepsilon$, 使得 $\lim\limits_{n\to\infty}\frac{u_n}{\frac{1}{n^{1+\varepsilon}}}=c&gt;0$.<br>
-<strong>注：</strong> 反例 $u_n=\frac{1}{n^n}$.</p>
-<p>【李例5-1-1-5】设定义在 $[a,b]$ 上的连续函数列 $\lbrace \varphi_n\left(x\right)\rbrace$ 满足: $\left.\int_a^b\varphi_n\left(x\right)\varphi_m\left(x\right)\mathrm{d}x=\left\lbrace \begin{array}{cc}0,&amp;m\neq n,\\1,&amp;m=n.\end{array}\right.\right.$  对 $f\left(x\right)\in R[a,b]$, 定义 $a_n=\int_a^bf\left(x\right)\varphi_n\left(x\right)\mathrm{d}x,\quad n=1,2,\cdots$. 证明: $\sum\limits_{n=1}^{\infty}a_n^2$ 收敛.<br>
-<strong>注：</strong> 构造 $S_m(x)=\sum\limits_{n=1}^ma_n\varphi_n(x)$, 利用题目条件和 $\int_a^b\left[f(x)-S_m(x)\right]^2\mathrm{~d}x\ge0$.</p>
-<p>【李例5-1-1-6】设 $\lbrace u_n\rbrace$ 是正的单调增加的数列，证明<br>
-(1) 当 $\lbrace $u_n\rbrace$ 有界时，级数 $\sum\limits_{n=1}^\infty\left(1-\frac{u_n}{u_{n+1}}\right)$ 收敛;<br>
-(2) 当 $\lbrace u_n\rbrace$ 无界时，级数 $\sum\limits_{n=1}^{\infty}\left(1-\frac{u_n}{u_{n+1}}\right)$ 发散.<br>
-<strong>注：</strong> (1) 考虑部分和有界; (2) 根据 $\lbrace u_n\rbrace$ 单调递增且无界可知 $\exists\varepsilon_0=\frac{1}{2},\forall N&gt;0,\exists n_0&gt;N,p_0\in\mathbb{N}^+,s.t. \ \frac{u_{n_0+1}}{u_{n_0+p_0+1}}&lt;\frac{1}{2}$. 接下去只需利用 Cauchy 收敛准则.</p>
-<p>【李例5-1-1-7】设 $\sum\limits_{n=1}^{\infty}a_n$ 为正项级数，满足: (i) $\sum\limits_{n=1}^{n}(a_k-a_n)$ 对 $n$ 有界; (ii) $\lbrace a_n\rbrace$ 单调递减且 $\lim\limits_{n\to\infty}a_n=0$. 证明$\sum a_n$收敛.<br>
-<strong>注：</strong></p>
-<p>【李例5-1-1-8】设 $a_1=1,a_2=2,a_n=a_{n-1}+a_{n-2} \ (n=3,4,\cdots)$, 证明<br>
-(1) $\lim\limits_{n\to\infty}a_n=+\infty$;<br>
-(2) $\sum\limits_{n=1}^{\infty}\frac{1}{a_n}$ 收敛.</p>
-<p>【史问题14.1.5】证明存在正常数 $K$, 使得不等式 $\sum\limits_{n=1}^{\infty}\frac{n}{a_1+a_2+\cdots+a_n}\le K\sum\limits_{n=1}^{\infty}\frac{1}{a_n}$ 对任何正数列 $\lbrace a_n\rbrace$ 都成立.</p>
-<p>【李例5-1-1练习(1)】设 $a_n&gt;0$, 判断级数 $\sum\frac{a_n}{a_1+a_2+\cdots+a_n}$ 敛散性.</p>
-<p>【李例5-1-2-1】设$a_n&gt;0$, 试回答</p>
-<ul>
-<li>若 $\sum\limits_{n-1}^{\infty}a_n$ 收敛,
-<ul>
-<li>能否推出$\lim _{n\to \infty}na_n= 0$;</li>
-<li>能否推出 $\lim\limits_{n\to\infty}n\left(a_n-a_{n+1}\right)=0$?</li>
-</ul>
+<li>
+<p>$\star$**<strong>[华四6.5例5]</strong> 证明 <strong>Jensen 不等式</strong>: 若 $f$ 为 $[a,b]$ 上的下凸函数, 则对任意 $x_i\in[a,b],\lambda_i&gt;0 \ (i=1,2,\cdots,n),\sum\limits_{i=1}^n\lambda_i=1$, 有 $f\left(\sum\limits_{i=1}^n\lambda_ix_i\right)\le\sum\limits_{i=1}^n\lambda_if(x_i)$.<br>
+注：利用数学归纳法. 若 $f$ 在 $(a,b)$ 内二次可导, 还可以利用 Taylor 公式证明, 此时将 $\alpha=\sum\limits_{i=1}^n\lambda_i x_i$ 视为 Taylor 的初始点写出 Taylor 展开式, 将每个 $x_i$ 点代入后相加即可.</p>
 </li>
-<li>若$\lim\limits_{n\to\infty}na_n=0$ 或者 $\lim\limits_{n\to\infty}n(a_n-a_{n+1})=0$, 能否推出 $\sum a_n$ 收敛?</li>
-<li>若 $\lim\limits_{n\to\infty}na_n=0$ 收敛, 证明:
-<ul>
-<li>$\sum_{n=1}^{\infty}n\left(a_n-a_{n+1}\right)$ 敛散性与 $\sum_{n=1}^{\infty}a_n$ 敛散性等价;</li>
-<li>$\sum\limits_{n=1}^{\infty}n\left(a_{n}-a_{n+1}\right)$ 与 $\sum\limits_{n=1}^{\infty}a_{n}$ 有一个收敛, 则 $\sum\limits_{n=1}^{\infty}n\left(a_{n}-a_{n+1}\right)=\sum\limits_{n=1}^{\infty}a_{n}$.</li>
-</ul>
+<li>
+<p>$\star$**<strong>[华四6.5.9]</strong> 证明 <strong>Young 不等式</strong>: 设 $a,b&gt;0, \ p,q&gt;1, \ \frac{1}{p}+\frac{1}{q}=1$, 则 $ab\le\frac{1}{p}a^p+\frac{1}{q}b^q$.<br>
+注：令 $f(x)=-\ln x$, 这是一个下凸函数, 利用 Jensen 不等式即得.</p>
 </li>
-</ul>
-<p>【李例5-1-2-2】若正项级数 $\sum a_n$ 收敛. 证<br>
-(1) $\lim\limits_{n\to\infty}\frac{1}{n}\sum\limits_{k=1}^nka_k=0$.<br>
-(2) 再若 $\lbrace a_n\rbrace$ 单调下降，则 $\lim\limits_{n\to\infty}na_n=0$.</p>
-<p>【李例5-1-2-5】解答下列问题:<br>
-(1) 设正项级数 $\sum\limits_{n=1}^{\infty}a_n$ 收敛，记 $r_n=\sum\limits_{k=n}^{\infty}a_k \ \left(n=1,2,\cdots\right)$, 讨论级数 $\sum\limits_{n=1}^{\infty}\frac{a_n}{r_n^p}$ 的敛散性.<br>
-(2) 设正项级数 $\sum\limits_{n=1}^{\infty}a_n$ 收敛，记 $S_n=\sum\limits_{k=1}^{\infty}a_k$, 讨论级数 $\sum\limits_{n=1}^{\infty}\frac{a_n}{S_n^p}$ 的敛散性.</p>
-<p>【李例5-1-3-16】设级数 $\sum\limits_{n=1}^{\infty}a_n^4$ 收敛, 则 $\sum\limits_{n=1}^{\infty}a_nn^{-\frac{4}{5}}$ 收敛.</p>
-<p>【李例5-1-3-17】设正项级数 $\sum\limits_{n=1}^{\infty}a_n$ 发散, 判断级数 $\sum\limits_{n=1}^{\infty}\frac{a_n}{1+a_n}$ 的敛散性.</p>
-<p>【李例5-1-3-21】设 $\varphi(x)$ 是 $(-\infty,+\infty)$ 上的连续周期函数, 周期为 $1$, 且 $\int_0^1\varphi(x)\mathrm{~d}x=0$, 函数 $f(x)$ 在 $[0,1]$ 上可微且有连续的一阶导数，令 $a_n= \int_0^1f\left ( x\right ) \varphi\left ( nx\right )\mathrm{~d}x,  \ n= 1, 2, \cdots$. 证明：<br>
-(1) $\lim\limits_{n\to\infty}a_n=0$;<br>
-(2) $\sum\limits_{n=1}^{\infty}|a_n|^p \ (p&gt;1)$ 收敛.</p>
-<p>【李例5-1-4-5】设 $\alpha\in(0,1),:\lbrace a_n\rbrace$ 为正数列且满足</p>
-<p>$$<br>
-\lim\limits_{n\to\infty}n^\alpha\left(\frac{a_n}{a_{n+1}}-1\right)=\lambda\in(0,+\infty),<br>
-$$</p>
-<p>求证： $\lim\limits_{n\to\infty} n^ka_n=0$,其中 $k&gt;0$.</p>
-<p>【李例5-1-8-3】若 $\sum a_n$ 收敛，$a_n&gt;0, \ \lbrace a_n-a_{n+1}\rbrace$ 单调下降, 则 $\lbrace a_n\rbrace$ 单调递减趋于零, 且<br>
+<li>
+<p>$\star$**<strong>[华四6.5.9]</strong> 证明 <strong>H$\pmb{\ddot{\text{o}}}$lder 不等式</strong>: 设 $a_i,b_i&gt;0 \ (i=1,2,\cdots,n)$, 有 $\sum\limits_{i=1}^na_ib_i\le\left(\sum\limits_{i=1}^na_i^p\right)^{1/p}\left(\sum\limits_{i=1}^nb_i^q\right)^{1/q}$. 其中 $p,q&gt;1,\frac{1}{p}+\frac{1}{q}=1$.<br>
+注：令 $A=\left(\sum\limits_{i=1}^na_i^p\right)^{1/p}, B=\left(\sum\limits_{i=1}^nb_i^q\right)^{1/q}$, 即证 $\sum\frac{a_i}{A}\frac{b_i}{B}\le1$. 再利用 Young 不等式即得.</p>
+</li>
+<li>
+<p>*<strong>[华四6.5例6]</strong> 证明不等式 $(abc)^{\frac{a+b+c}{3}}\le a^ab^bc^c$, 其中 $a,b,c$ 均为正数.<br>
+注：利用 Jensen 不等式.</p>
+</li>
+<li>
+<p>*<strong>[华四6.5例7]</strong> 设 $f$ 为开区间 $I$ 内的下凸(上凸)函数, 证明 $f$ 在 $I$ 内的任一点 $x_0$ 都存在左、右导数.<br>
+注：构造 $F(h)=\frac{f(x_0+h)-f(x_0)}{h}, h&gt;0$, 这是一个增函数且在 $U^o_+(x_0)$ 上有界, 从而有单调有界原理即得结论.</p>
+</li>
+<li>
+<p>*<strong>[华四6.5.4]</strong> 设 $f$ 为区间 $I$ 上的严格下凸函数. 证明: 若 $x_0\in I$ 为 $f$ 的极小值点, 则 $x_0$ 为 $f$ 在 $I$ 上唯一的极小值点.<br>
+注：反证法, 利用严格下凸的定义推出矛盾.</p>
+</li>
+<li>
+<p><strong>[李例3-2-7-6]</strong> 设 $f(x)$ 在 $[a,b]$ 上连续,且对 $\forall x_1,x_2\in[a,b],\lambda\in(0,1)$ 恒有 $f(\lambda x_1+(1-\lambda)x_2)\leqslant\lambda f(x_1)+(1-\lambda)f(x_2).$ 证明<br>
 $$<br>
-\lim\limits_{n\to\infty}\left(\frac{1}{a_{n+1}}-\frac{1}{a_n}\right)=+\infty.<br>
+f\left(\frac{a+b}{2}\right)\leqslant\frac{1}{b-a}\int_a^bf(x)\mathrm{d}x\leqslant\frac{f(a)+f(b)}{2}<br>
 $$<br>
-【李例5-1-8-4】证明: $p&gt;1, \ \sum\limits_{n=1}^{\infty}\frac{1}{(n+1)\sqrt[p]{n}}&lt;p$.</p>
-<h2 id="一般项级数-2">一般项级数</h2>
-<p>【华四/李】讨论下列级数的敛散性</p>
-<ol>
-<li>$\sum\frac{(-1)^{n-1}}{n^{p+\frac{1}{n}}}$.</li>
-<li>$\sum\frac{(-1)^n}{n^p\ln^qn}$.</li>
-<li>$\sum\left(\frac{(-1)^n}{\sqrt{n}}+\frac{1}{n}\right)$.</li>
-<li>$\sum(-1)^n\frac{\cos^2n}{n}$.</li>
-<li>$\sum\frac{(-1)^{[\sqrt{n}]}}{n^p}$.</li>
-<li>$\sum\limits_{n=2}^{\infty}\frac{(-1)^n\sin n}{n} \ (p&gt;0)$.</li>
-<li>$\sum a_n$, 其中 $a_n=\begin{cases}\frac{1}{n^p}, &amp; n \ 为奇数\\ -\frac{1}{n^q}, &amp; n \ 为偶数\end{cases}, \ (p,q&gt;0).$</li>
-<li>$1+\frac{1}{\sqrt{3}}-\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{5}}+\frac{1}{\sqrt{7}}-\frac{1}{\sqrt{4}}+\frac{1}{\sqrt{9}}+\frac{1}{\sqrt{11}}-\frac{1}{\sqrt{6}}+\cdots$.</li>
+注：事实上, $x=a+t(b-a)=(1-t)a+tb, \ t\in(0,1)$.</p>
+</li>
 </ol>
-<p>【华四12.1定理12.1】 <strong>(级数收敛的柯西准则)</strong> 级数 $\sum u_n$ 收敛的充要条件是: 任给正数  $\varepsilon$ , 总存在正整数  $N$ , 使得当  $m&gt;N$  以及对任意的正整数  $p$ , 都有</p>
-<p>$$<br>
-\left|u_{m+1}+u_{m+2}+\cdots+u_{m+p}\right|&lt;\varepsilon .<br>
-$$<br>
-<strong>注：</strong> 利用级数收敛和部分和数列收敛的关系即得.</p>
-<p>【李例5-1-2-4】$\sum a_{n}$ 收敛的充分必要条件为对任意正整数列 $\lbrace r_n\rbrace$, 有</p>
-<p>$$<br>
-\lim_{n\to\infty}\left(a_{n+1}+a_{n+2}+\cdots+a_{n+r_n}\right)=0.<br>
-$$<br>
-【华四12.3定理12.11】 <strong>(Leibniz判别法)</strong> 若交错级数 $\sum(-1)^{n+1}u_n$ 满足下述两个条件：<br>
-(i)数列$\lbrace u_n\rbrace$单调递减；<br>
-(ii) $\lim\limits_{n\to \infty}u_n= 0$,<br>
-则级数 $\sum(-1)^{n+1}u_n$ 收敛.<br>
-<strong>注：</strong> 可以证明 $\lbrace [S_{2m},S_{2m-1}]\rbrace$ 是一个闭区间套. Leibniz 级数的余项估计为 $|R_n|\le u_{n+1}$.</p>
-<p>【华四12.3定理12.13】设级数 $\sum u_n$ 绝对收敛，且其和等于 $S$, 则任意重排后所得到的级数 $\sum v_n$ 也绝对收敛, 且有相同的和数.<br>
-<strong>注：</strong> 先证明对正项级数结论成立, 再构造正项级数 $p_n=\frac{|u_n|+u_n}{2}, \ q_n=\frac{|u_n|-u_n}{2}$, 于是 $\sum u_n=\sum p_n-\sum q_n$.</p>
-<p>【华四12.3定理12.14】 <strong>(Cauchy定理)</strong> 绝对收敛的级数 $\sum u_n,\sum v_n$ 的乘积 $\sum u_n\sum v_n$ 中的所有项 $u_iv_j$ 按任意顺序排列所得到的级数 $\sum w_n$ 也绝对收敛, 且其和为 $AB$, 其中 $\sum u_n=A,\sum v_n=B$.<br>
-<strong>注：</strong> 可以证明级数 $\sum |w_n|$ 的部分和有界, 再利用绝对收敛的级数任意重排后仍绝对收敛且和数不变的性质.</p>
-<p>【史引理14.4.1】 <strong>(Abel(阿贝尔，1802~1829)分部求和公式)</strong> 设$\left\lbrace a_k\right\rbrace,\left\lbrace b_k\right\rbrace$是两列实数，则对任意的正整数 $n$,有</p>
-<p>$$<br>
-\sum\limits_{k=1}^na_kb_k=\sum\limits_{k=1}^{n-1}S_k\left(b_k-b_{k+1}\right)+S_nb_n,<br>
-$$<br>
-这里 $S_k=\sum_{l=1}^ka_l$.<br>
-<strong>注：</strong> 事实上, 此公式可写作 $\sum\limits_{k=1}^nb_k\Delta S_k=S_kb_k\big\vert_0^n-\sum\limits_{k=1}^{n-1}S_k\Delta b_k$. 对应一元积分学中的分部积分.</p>
-<p>【史引理14.4.2】 <strong>(Abel 引理)</strong> 设 $b_1{\geqslant}b_2{\geqslant}…{\geqslant}b_n$ 或$b_1{\leqslant}b_2{\leqslant}…{\leqslant}b_n$,记 $S_k=$ $\sum\limits_{l=1}^k a_l$. 如果$\mid S_k\mid\leqslant M \ (k=1,2,…,n)$, 那么<br>
-$$<br>
-\left|\sum_{k=1}^{n}a_{k}b_{k}\right|\leqslant M(|b_{1}|+2|b_{n}|).<br>
-$$<br>
-【史定理14.4.3】 <strong>(Dirichlet判别法)</strong> 设 $\lbrace a_k\rbrace,\lbrace b_k\rbrace$ 是两个数列, $S_k=\sum\limits_{l=1}^ka_l$, 它们满足<br>
-(a) $\lbrace b_k\rbrace$ 单调趋于 $0$;<br>
-(b) $\lbrace S_k\rbrace$ 有界.<br>
-则级数 $\sum a_kb_k$ 收敛.<br>
-<strong>注：</strong> 利用 Abel 引理和 Cauchy 收敛准则.</p>
-<p>【史定理14.4.4】 <strong>(Abel判别法)</strong> 设 $\lbrace a_k\rbrace,\lbrace b_k\rbrace$ 是两个数列, 满足以下条件<br>
-(a) $\lbrace b_k\rbrace$ 单调有界;<br>
-(b) $\sum a_k$ 收敛.<br>
-则级数 $\sum a_kb_k$ 收敛.<br>
-<strong>注：</strong> 利用 Abel 引理和 Cauchy 收敛准则.</p>
-<p>【华四12.3例3】设递减数列 $\lbrace a_n\rbrace$ 满足 $\lim\limits_{n\to\infty}a_n=0$, 则级数 $\sum a_n\sin nx$ 和 $\sum a_n\cos nx$ 对任何 $x\in(0,2\pi)$ 都收敛.<br>
-<strong>注：</strong> 利用三角函数的和差公式不难验证当 $x\neq 2k\pi$ 时有<br>
-$$<br>
-\left|\sum\limits_{k=1}^n\cos kx\right|=\left|\frac{\sin(n+\frac{1}{2})x-\sin\frac{x}{2}}{2\sin\frac{x}{2}}\right|\le\frac{1}{\left|\sin\frac{x}{2}\right|}\<br>
-\left|\sum\limits_{k=1}^n\sin kx\right|=\left|\frac{\cos\frac{x}{2}-\cos(n+\frac{1}{2})x}{2\sin\frac{x}{2}}\right|\le\frac{1}{\left|\sin\frac{x}{2}\right|}<br>
-$$<br>
-【李例5-2-2-5(1)】设 $\sum a_n$ 发散, 证明 $\sum \left(1+\frac{1}{n}\right)a_n$ 发散.</p>
-<p>【华四12.3.5】写出下列级数的乘积 $\left(\sum\limits_{n=1}^{\infty}nx^{n-1}\right)\left(\sum\limits_{n=1}^{\infty}(-1)^{n-1}nx^{n-1}\right)$.</p>
-<p>【华四第十二章练习题5】若 $\sum a_n$ 收敛, $\sum(b_{n+1}-b_n)$ 绝对收敛, 则 $\sum a_nb_n$ 也收敛.</p>
-<p>【华四第十二章练习题7】若 $\sum a^2_n,\sum b_n^2$ 收敛, 则级数 $\sum a_nb_n$ 和 $\sum(a_n+b_n)^2$ 也收敛, 且<br>
-$$<br>
-\begin{aligned}<br>
-&amp;\left(\sum a_nb_n\right)^2\le\sum a_n^2\cdot\sum b_n^2,\<br>
-&amp;\left[\sum\left(a_n+b_n\right)^2\right]^{\frac{1}{2}}\le\left(\sum a_n^2\right)^{\frac{1}{2}}+\left(\sum b_n^2\right)^{\frac{1}{2}}.<br>
-\end{aligned}<br>
-$$<br>
-【李例5-1-7-5】举出一个发散的交错级数, 使其通项趋于零.</p>
-<p>【李例5-1-7-11】回答下列的问题。<br>
-(1) 若 $\sum a_n$ 收敛, 试问 $\sum a_n^2$ 是否收敛?<br>
-(2) 若 $\lim\limits_{n\to \infty}\frac {a_{n}}{b_{n}}=l\neq0$, 级数 $\sum a_n$ 与 $\sum b_n$ 是否同时敛散?<br>
-(3) 若 $\sum a_n$ 收敛, 而 $\lbrace b_n\rbrace$ 满足 $b_n=o(a_n) \ (n\to\infty)$, 试问 $\sum b_n^2$ 是否一定收敛?</p>
-<p>【李例5-1-8-5】设级数 $\sum\limits_{n=1}^{\infty}a_n$ 条件收敛，把这个级数的前 $n$ 项和写成两项 $s_n=\sum\limits_{k=1}^na_n=s_n^++s_n^-$, 其中 $s_n^+$ 和 $s_n^-$ 分别是正项和负项之和. 证明 $\lim\limits_{n\to\infty}\frac{s_n^+}{s_n^-}$ 存在并求其值.</p>
-<p>【李例5-1-8-7(3)】两个级数 $\sum a_n$ 与 $\sum b_n$ 收敛时，则它们的正方形乘积 $\sum d_n$ 收敛.</p>
-<p>$$<br>
-\int_a^bf’(x)\cos f(x)\mathrm{~d}x=\int_a^b(\sin f(x))'\mathrm{~d}x\le2<br>
-$$</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/07/7/" class="post-title-link" itemprop="url">函数项级数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-07T00:00:00+08:00">2025-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">习题集</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1>函数项级数</h1>
-<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
-<ol>
-<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
-<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
-<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
-</ol>
-<p>【华四/李】考察以下函数项级数的一致收敛性</p>
-<ol>
-<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
-<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
-<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
-</ol>
-<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
-<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
-<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
-<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
-<p>【定理13.6(Abel判别法)】设<br>
-(i) $\sum u_n(x)$在区间1上一致收敛；<br>
-(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
-(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
-则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
-<p>【定理 13.7(Dirichlet判别法)】 设<br>
-(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
-(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
-(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
-则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
-<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
-<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
-<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
-<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
-<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
-<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
-<p>【华四13.2例1】设函数<br>
-$$<br>
-f_{n}(x)=\begin{cases}<br>
-2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
-2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
-0,&amp;\frac{1}{n}\le x\le 1,<br>
-\end{cases}\quad n=1,2,\cdots<br>
-$$<br>
-考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
-<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
-<p>$$<br>
-\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
-$$<br>
-【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
-<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
-<p>【华四第十三章总练习题2】证明：<br>
-(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
-(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
-<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
-(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
-(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
-<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
-<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
 
       
     </div>
@@ -1152,6 +1125,528 @@ $$<br>
 接着就用分割+求极限的方法即可.</p>
 <p><strong>[华四10.1.11]</strong> 证明：对于由上、下两条连续曲线 $y=f_2(x)$ 与 $y=f_1(x)$ 以及两条直线$x=a$ 与 $x=b(a&lt;$ $b$)所围的平面图形 $A( $图10-1$) $ ,存在包含$A$ 的多边形${U_n}$ 以及被$A$包含的多边形${ W_n} $,使得当$n\to\infty$时，它们的面积的极限存在且相等.<br>
 <strong>注：</strong> 利用每个小区间上的上下确界即可.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/07/7/" class="post-title-link" itemprop="url">函数项级数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-07T00:00:00+08:00">2025-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">习题集</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>函数项级数</h1>
+<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
+<ol>
+<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
+<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
+<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
+</ol>
+<p>【华四/李】考察以下函数项级数的一致收敛性</p>
+<ol>
+<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
+<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
+<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
+</ol>
+<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
+<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
+<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
+<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
+<p>【定理13.6(Abel判别法)】设<br>
+(i) $\sum u_n(x)$在区间1上一致收敛；<br>
+(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
+(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
+则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
+<p>【定理 13.7(Dirichlet判别法)】 设<br>
+(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
+(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
+(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
+则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
+<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
+<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
+<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
+<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
+<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
+<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
+<p>【华四13.2例1】设函数<br>
+$$<br>
+f_{n}(x)=\begin{cases}<br>
+2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
+2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
+0,&amp;\frac{1}{n}\le x\le 1,<br>
+\end{cases}\quad n=1,2,\cdots<br>
+$$<br>
+考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
+<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
+<p>$$<br>
+\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
+$$<br>
+【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
+<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
+<p>【华四第十三章总练习题2】证明：<br>
+(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
+(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
+<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
+(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
+(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
+<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
+<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/07/6/" class="post-title-link" itemprop="url">数项级数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-07T00:00:00+08:00">2025-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">习题集</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>数项级数</h1>
+<h2 id="数学常识">数学常识</h2>
+<h3 id="级数的性质">级数的性质</h3>
+<ol>
+<li>去掉、增加或改变级数的有限项并不改变级数的敛散性.</li>
+<li>对收敛级数的项任意加括号, 既不改变级数的收敛性, 也不改变级数的和.
+<ol>
+<li>若某个级数加括号后发散, 则原级数发散.</li>
+<li>若某个级数加括号后收敛, 则原级数不一定收敛, 但如果同一括号内项的符号相同, 则原级数收敛.</li>
+<li>若某个级数通项收敛于零, 同时该级数加括号后收敛且每个括号内项的个数小于某个定数, 则原级数收敛.</li>
+</ol>
+</li>
+</ol>
+<h3 id="正项级数">正项级数</h3>
+<ol>
+<li>
+<p>正项级数 $\sum u_n$ 收敛的充要条件</p>
+<ol>
+<li>Cauchy 准则</li>
+<li>部分和数列有界（单调有界原理）</li>
+</ol>
+</li>
+<li>
+<p>正项级数 $\sum u_n$ 收敛的充分条件（判别法）</p>
+<ol>
+<li>
+<p>比较判别法</p>
+</li>
+<li>
+<p>D’Alembert 判别法</p>
+<ul>
+<li>事实上, 这是将几何级数作为比较对象了（这也是证明 D’Alembert 判别法的方法）.</li>
+</ul>
+</li>
+<li>
+<p>Cauchy 判别法</p>
+<ul>
+<li>
+<p>事实上, 这也是将几何级数作为比较对象了（这也是证明 Cauchy 判别法的方法）.</p>
+</li>
+<li>
+<p>由不等式 $\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}\le\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}$ 可知凡是能用 D’Alembert 判别法的一定能能用 Cauchy 判别法判别.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>积分判别法</p>
+</li>
+<li>
+<p>Raabe 判别法</p>
+<ul>
+<li>事实上, 这是以 $p$ 级数为比较对象.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="一般项级数">一般项级数</h3>
+<ol>
+<li>
+<p>交错项级数的判别：Leibniz 判别法.</p>
+</li>
+<li>
+<p>绝对收敛的级数任意重排后得到的级数可以收敛到事先指定的任一实数, 也可以使其发散到 $+\infty$ 或 $-\infty$.</p>
+</li>
+<li>
+<p>条件收敛的级数重排后得到的新级数不一定收敛, 即使收敛了也不一定收敛到原和数.</p>
+<ul>
+<li>
+<p>考虑交错级数 $\sum(-1)^{n+1}\frac{1}{n}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}+\cdots$ 的重排: 先依次取 $p$ 个正项, 接着依次取 $p$ 个正项, 如此继续下去, 得到重排后的新级数, 可以证明新级数是收敛的, 且其和数为 $\sum a_n=\ln2+\frac{1}{2}\ln\frac{p}{q}$.</p>
+<ul>
+<li>
+<p>取 $p=q=1$, 则有<br>
+$$<br>
+1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}+\cdots=\ln2.<br>
+$$</p>
+</li>
+<li>
+<p>取 $p=2,q=1$, 则有<br>
+$$<br>
+1+\frac{1}{3}-\frac{1}{2}+\frac{1}{5}+\frac{1}{7}-\frac{1}{4}+\cdots=\frac{3}{2}\ln2.<br>
+$$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>还是考虑交错级数 $\sum(-1)^{n+1}\frac{1}{n}$ 的重排:<br>
+$$<br>
+\begin{aligned}<br>
+&amp;1-\frac{1}{2}+\frac{1}{3}-\left(\frac{1}{4}+\frac{1}{6}\right)+\left(\frac{1}{5}+\frac{1}{7}\right)-\left(\frac{1}{8}+\frac{1}{10}+\frac{1}{12}+\frac{1}{14}\right)\\<br>
+&amp;+\left(\frac{1}{9}+\frac{1}{11}+\frac{1}{13}+\frac{1}{15}\right)+\cdots-\left(\frac{1}{2^k}+\frac{1}{2^k+2}+\cdots+\frac{1}{2^{k+1}-2}\right)\\<br>
+&amp;+\left(\frac{1}{2^k+1}+\frac{1}{2^k+3}\cdots+\frac{1}{2^{k+1}-1}\right)+\cdots<br>
+\end{aligned}<br>
+$$<br>
+不难验证其加括号后的级数通项不趋于零, 从而加括号后发散, 故重排级数发散.</p>
+</li>
+<li>
+<p>把级数</p>
+<p>$$<br>
+1-\frac1{2^a}+\frac1{3^a}-\frac1{4^a}+\frac1{5^a}-\frac1{6^a}+\cdots\quad(0&lt;\alpha&lt;1)<br>
+$$</p>
+<p>的项重新安排如下：先依次取 $p$ 个正项, 接着依次取 $q$ 个负项, 再接着依次取 $p$ 个正项, 如此继续下去.证明: 所得的新级数收敛的充分必要条件为 $p=q$; 当 $p&gt;q$ 时, 新级数发散到 $+\infty$, 当 $p{&lt;}q$ 时, 新级数发散到 $-\infty$.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>级数乘积</p>
+<ol>
+<li>绝对收敛的级数 $\sum u_n,\sum v_n$ 的乘积 $\sum u_n\sum v_n$ 中的所有项 $u_iv_j$ 按任意顺序排列所得到的级数 $\sum w_n$ 也绝对收敛, 且其和为 $AB$, 其中 $\sum u_n=A,\sum v_n=B$.</li>
+<li>Abel 分布求和公式</li>
+<li>Abel 引理 $\Rightarrow$ Dirichlet 判别法、Abel 判别法</li>
+</ol>
+</li>
+</ol>
+<h2 id="无穷级数的性质">无穷级数的性质</h2>
+<p>【华四12.1定理12.4】对收敛级数的项任意加括号, 既不改变级数的收敛性, 也不改变级数的和.<br>
+<strong>注：</strong>  级数收敛等价于其部分和数列收敛, 于是部分和数列的子列必收敛, 且极限与原数列极限一致.</p>
+<p>【华四12.1.10】设级数 $\sum u_{n}$ 满足: 加括号后级数  $\sum\limits_{k=1}^{\infty}\left(u_{n_{k}+1}+\cdots+u_{n_{k+1}}\right)$  收敛  $\left(n_{1}=0\right)$ , 且在同一括号中的  $u_{n_{k}+1}, u_{n_{k}+2}, \cdots, u_{n_{k+1}}$ 符号相同，证明 $\sum u_{n}$ 亦收敛.<br>
+<strong>注：</strong>  记加括号后的级数为 $\sum v_n$, 它收敛可知 $v_n\to0$, 又因为同意括号内中项的符号相同, 故括号内前 $k$ 的和必趋于零, 注意到 $\sum u_n$ 的部分和可以表示为 $\sum v_n$ 的某个部分和加上某一个括号内的前 $k$ 项, 再利用 $\sum v_n$ 收敛即得结论.</p>
+<p>【李例5-1-2-3】若数项级数 $\sum a_n$ 满足: (i) $\lim\limits_{n\to\infty}a_n=0$; (ii) 加上括号收敛而且每个括里项的个数小于某个定数 $L$. 则原级数 $\sum a_n$ 收敛.<br>
+<strong>注：</strong>  这等价于 $\lbrace S_n\rbrace$ 有个子列 $\lbrace S_{n_k}\rbrace$ 收敛, 于是对任意 $n\in \mathbb{N}^+$, 有 $\exists k, \ s.t. \ n_k\le n&lt; n_{k+1}$, 从而 $|S_n-S_{n_k}|\le\sum\limits_{j=1}^L|a_{n_k+j}|\to0 \ (n\to\infty)$.</p>
+<h2 id="正项级数-2">正项级数</h2>
+<p>【华四/李】讨论以下级数的敛散性</p>
+<ol>
+<li>$\sum\limits_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln n)^q}$.<br>
+<strong>注：</strong> $\sum\limits_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln n)^q}\begin{cases}收敛,&amp; p&gt;1 \ 或 \ (p=1~\text{且}~q&gt;1),\\ 发散, &amp;p&lt;1 \ 或 \ (p=1 ~\text{且}~ q\le 1).\end{cases}$</li>
+<li>$\sum\frac{1}{x^{\ln n}} \ (x&gt;0)$.<br>
+<strong>注：</strong> 事实上 $\frac{1}{e^{\ln n}}=\frac{1}{n^{\ln 3}}$</li>
+<li>$\sum\frac{n!}{(x+1)(x+2)\cdots(x+n)}\quad(x&gt;0)$.<br>
+<strong>注：</strong> 利用 Raabe 判别法</li>
+<li>$\sum\left[\frac{(2n-1)!!}{(2n)!!}\right]^p, \ (p\in\mathbb{N}^+)$.<br>
+<strong>注：</strong> Raabe判别法</li>
+<li>$\sum\left[\frac{(2n-1)!!}{(2n)!!}\right]^{\frac{1}{n}}$.<br>
+<strong>注：</strong> 记 $u_n=\frac{(2n-1)!!}{(2n)!!}$, 则有 $\lim\limits_{n\to\infty}\frac{a_{n+1}}{a_n}=1$, 于是利用不等式 $\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}\le\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}$ 即得原级数通项趋于 $1\neq0$, 从而发散.</li>
+<li>$\sum\left[\frac{(2n)!!}{(2n+1)!!}\right]^p$.<br>
+<strong>注：</strong> 利用 Wails 公式: $\lim\limits_{n\to\infty}\left[\frac{(2n)!!}{(2n-1)!!}\right]^2\frac{1}{2n+1}=\frac{\pi}{2}$.</li>
+<li>$\sum\frac{a_n}{(1+a_1)(1+a_2)\cdots(1+a_n)} \ (a_n&gt;0)$.<br>
+<strong>注：</strong> 注意到 $\frac{a_n}{(1+a_1)(1+a_2)\cdots(1+a_n)}=\frac{1}{(1+a_1)(1+a_2)\cdots(1+a_{n-1})}-\frac{1}{(1+a_1)(1+a_2)\cdots(1+a_n)}$.</li>
+<li>$\sum\limits_{n=1}^{\infty}\left[1-\left(\frac{n-1}{n+1}\right)^{k}\right]^{p} \ (p,k&gt;0)$.<br>
+<strong>注：</strong> 注意到 $\left(\frac{n-1}{n+1}\right)^{k}=\left(1-\frac{1}{n}\right)^{k}\left(1+\frac{1}{n}\right)^{k}=1-\frac{2k}{n}+o(\frac{1}{n})$.</li>
+<li>$\sum\limits_{n=1}^{\infty}\frac{n^{n-2}}{e^nn!}$.<br>
+<strong>注：</strong> 可以计算 $\frac{a_{n+1}}{a_n}$. 也可以利用 Strling 公式 $n!\sim \sqrt{2n\pi}\cdot \left(\frac{n}{e}\right)^n$.</li>
+<li>$\sum\limits_{n=3}^{\infty}\frac{1}{\ln n\ln\ln n}$.<br>
+<strong>注：</strong> 积分判别法.</li>
+<li>$\sum\limits_{n=3}^{\infty}\frac{1}{(\ln n)^{\ln\ln n}}$.<br>
+<strong>注：</strong> 考虑 $\lim\limits_{n\to\infty}\frac{\ln\frac{1}{a_n}}{\ln n}$.</li>
+<li>$\sum\limits_{n=3}^{\infty}\frac{1}{(\ln\ln n)^{\ln n}}$.<br>
+<strong>注：</strong> 考虑 $\lim\limits_{n\to\infty}\frac{\ln\frac{1}{a_n}}{\ln n}$.</li>
+</ol>
+<p>【华四12.2例6】讨论级数 $1+b+bc+b^2c+b^2c^2+\cdots+b^nc^{n-1}+b^nc^n+\cdots$ 的敛散性，其中 $0&lt;b&lt;c$.<br>
+<strong>注：</strong> 注意到 $\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}=b,\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}=c$.</p>
+<p>【华四12.2例8】考察级数 $b+c+b^2+c^2+\cdots+b^n+c^n+\cdots$ 的敛散性，其中 0&lt;b&lt;c&lt;1.<br>
+<strong>注：</strong> 注意到 $\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}=\sqrt{b},\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}=\sqrt{c}$.</p>
+<p>【史定理14.3.5】设 $\lbrace u_{n}\rbrace$ 是任意的正数列, 那么<br>
+$$<br>
+\underline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}\le\underline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}.<br>
+$$<br>
+<strong>注：</strong> 只需证明右半部分, 记 $\overline{\lim}\limits_{n\to\infty}\frac{u_{n+1}}{u_n}=q$ 根据上极限的定义, 当 $n$ 充分大 $n\ge N$ 时有 $\frac{u_{n+1}}{u_n}&lt;q+\varepsilon$, 于是不难得到 $u_n&lt;u_N(q+\varepsilon)^{n-N}\Rightarrow \sqrt[n]{u_n}&lt;\sqrt[n]{u_N(q+\varepsilon)^{-N}}\cdot(q+\varepsilon)\Rightarrow \overline{\lim}\limits_{n\to\infty}\sqrt[n]{u_n}\le q+\varepsilon\to q \ (\varepsilon\to0)$.</p>
+<p>【华四12.2定理12.9】 <strong>(积分判别法)</strong> 设 $f$ 为 $[1,+\infty)$ 上非负减函数，那么正项级数 $\sum f(n)$ 与反常积分 $\int_1^{+\infty}f(x)\mathrm{~d}x$ 同时收敛或同时发散.<br>
+<strong>注：</strong> 注意到 $f_n\le\int_{n-1}^nf(x)\mathrm{~d}x\le f(n-1)$.</p>
+<p>【华四12.2定理12.10】 <strong>(Raabe判别法)</strong> 设 $\sum u_n$ 为正项级数，且存在某正整数 $N_{0}$ 及常数 $r$,<br>
+(i)若对一切 $n&gt;N_0$ 成立不等式 $n\left(1-\frac{u_{n+1}}{u_{n}}\right)\geq r&gt;1$, 则级数$\sum u_n$收敛；<br>
+(ii) 若对一切 $n&gt;N_0$ 成立不等式 $n(1-\frac{u_{n+1}}{u_n})\leq1,$ 则级数$\sum u_n$发散.<br>
+<strong>注：</strong> (i) 一定能选出一个 $p, \ s.t. \ 1&lt;p&lt;r$, 只需注意到 $\lim\limits_{n\to\infty}\frac{1-\left(1-\frac{1}{n}\right)^p}{\frac{r}{n}}=\frac{p}{r}&lt;1$. 而 (ii) 更加容易.</p>
+<p>【华四12.2.3】设$\sum u$ 和 $\sum v$ 为正项级数, 且存在正数 $N_0$, 对一切 $n&gt;N_0$, 有 $\frac{u_{n+1}}{u_n}\le\frac{v_{n+1}}{v_n}$. 证明：若级数 $\sum v_n$ 收敛，则级数 $\sum u$ 也收敛; 若 $\sum u_n$ 发散, 则 $\sum v$ 也发散.<br>
+<strong>注：</strong> 证明很简单, 这个结论可以记一下.</p>
+<p>【华四12.2.6】设级数 $\sum a_n^2$ 收敛,证明 $\sum\frac{a_n}n \ (a_n&gt;0)$ 也收敛.<br>
+<strong>注：</strong> 利用基本不等式.</p>
+<p>【华四12.2.11】设 $\lbrace a_n\rbrace$ 为递减正项数列, 证明: 级数 $\sum\limits_{n=1}^{\infty}a_n$ 与 $\sum2^ma_{2^m}$ 同时收敛或同时发散.<br>
+<strong>注：</strong> 只需证明它们的部分和数列同时有界或无界.</p>
+<p>【华四第十二章练习题1】若正项级数 $\sum u_n$ 收敛, 且数列 $\lbrace u_n\rbrace$ 单调, 则 $\lim\limits_{n\to\infty}nu_n=0$.<br>
+<strong>注：</strong> 利用 Cauchy 准则不难证明.</p>
+<p>【华四第十二章练习题4(3)】判断: $\sum u_n$ 为收敛的正项级数, 是否意味着存在一个正数 $\varepsilon$, 使得 $\lim\limits_{n\to\infty}\frac{u_n}{\frac{1}{n^{1+\varepsilon}}}=c&gt;0$.<br>
+<strong>注：</strong> 反例 $u_n=\frac{1}{n^n}$.</p>
+<p>【李例5-1-1-5】设定义在 $[a,b]$ 上的连续函数列 $\lbrace \varphi_n\left(x\right)\rbrace$ 满足: $\left.\int_a^b\varphi_n\left(x\right)\varphi_m\left(x\right)\mathrm{d}x=\left\lbrace \begin{array}{cc}0,&amp;m\neq n,\\1,&amp;m=n.\end{array}\right.\right.$  对 $f\left(x\right)\in R[a,b]$, 定义 $a_n=\int_a^bf\left(x\right)\varphi_n\left(x\right)\mathrm{d}x,\quad n=1,2,\cdots$. 证明: $\sum\limits_{n=1}^{\infty}a_n^2$ 收敛.<br>
+<strong>注：</strong> 构造 $S_m(x)=\sum\limits_{n=1}^ma_n\varphi_n(x)$, 利用题目条件和 $\int_a^b\left[f(x)-S_m(x)\right]^2\mathrm{~d}x\ge0$.</p>
+<p>【李例5-1-1-6】设 $\lbrace u_n\rbrace$ 是正的单调增加的数列，证明<br>
+(1) 当 $\lbrace $u_n\rbrace$ 有界时，级数 $\sum\limits_{n=1}^\infty\left(1-\frac{u_n}{u_{n+1}}\right)$ 收敛;<br>
+(2) 当 $\lbrace u_n\rbrace$ 无界时，级数 $\sum\limits_{n=1}^{\infty}\left(1-\frac{u_n}{u_{n+1}}\right)$ 发散.<br>
+<strong>注：</strong> (1) 考虑部分和有界; (2) 根据 $\lbrace u_n\rbrace$ 单调递增且无界可知 $\exists\varepsilon_0=\frac{1}{2},\forall N&gt;0,\exists n_0&gt;N,p_0\in\mathbb{N}^+,s.t. \ \frac{u_{n_0+1}}{u_{n_0+p_0+1}}&lt;\frac{1}{2}$. 接下去只需利用 Cauchy 收敛准则.</p>
+<p>【李例5-1-1-7】设 $\sum\limits_{n=1}^{\infty}a_n$ 为正项级数，满足: (i) $\sum\limits_{n=1}^{n}(a_k-a_n)$ 对 $n$ 有界; (ii) $\lbrace a_n\rbrace$ 单调递减且 $\lim\limits_{n\to\infty}a_n=0$. 证明$\sum a_n$收敛.<br>
+<strong>注：</strong></p>
+<p>【李例5-1-1-8】设 $a_1=1,a_2=2,a_n=a_{n-1}+a_{n-2} \ (n=3,4,\cdots)$, 证明<br>
+(1) $\lim\limits_{n\to\infty}a_n=+\infty$;<br>
+(2) $\sum\limits_{n=1}^{\infty}\frac{1}{a_n}$ 收敛.</p>
+<p>【史问题14.1.5】证明存在正常数 $K$, 使得不等式 $\sum\limits_{n=1}^{\infty}\frac{n}{a_1+a_2+\cdots+a_n}\le K\sum\limits_{n=1}^{\infty}\frac{1}{a_n}$ 对任何正数列 $\lbrace a_n\rbrace$ 都成立.</p>
+<p>【李例5-1-1练习(1)】设 $a_n&gt;0$, 判断级数 $\sum\frac{a_n}{a_1+a_2+\cdots+a_n}$ 敛散性.</p>
+<p>【李例5-1-2-1】设$a_n&gt;0$, 试回答</p>
+<ul>
+<li>若 $\sum\limits_{n-1}^{\infty}a_n$ 收敛,
+<ul>
+<li>能否推出$\lim _{n\to \infty}na_n= 0$;</li>
+<li>能否推出 $\lim\limits_{n\to\infty}n\left(a_n-a_{n+1}\right)=0$?</li>
+</ul>
+</li>
+<li>若$\lim\limits_{n\to\infty}na_n=0$ 或者 $\lim\limits_{n\to\infty}n(a_n-a_{n+1})=0$, 能否推出 $\sum a_n$ 收敛?</li>
+<li>若 $\lim\limits_{n\to\infty}na_n=0$ 收敛, 证明:
+<ul>
+<li>$\sum_{n=1}^{\infty}n\left(a_n-a_{n+1}\right)$ 敛散性与 $\sum_{n=1}^{\infty}a_n$ 敛散性等价;</li>
+<li>$\sum\limits_{n=1}^{\infty}n\left(a_{n}-a_{n+1}\right)$ 与 $\sum\limits_{n=1}^{\infty}a_{n}$ 有一个收敛, 则 $\sum\limits_{n=1}^{\infty}n\left(a_{n}-a_{n+1}\right)=\sum\limits_{n=1}^{\infty}a_{n}$.</li>
+</ul>
+</li>
+</ul>
+<p>【李例5-1-2-2】若正项级数 $\sum a_n$ 收敛. 证<br>
+(1) $\lim\limits_{n\to\infty}\frac{1}{n}\sum\limits_{k=1}^nka_k=0$.<br>
+(2) 再若 $\lbrace a_n\rbrace$ 单调下降，则 $\lim\limits_{n\to\infty}na_n=0$.</p>
+<p>【李例5-1-2-5】解答下列问题:<br>
+(1) 设正项级数 $\sum\limits_{n=1}^{\infty}a_n$ 收敛，记 $r_n=\sum\limits_{k=n}^{\infty}a_k \ \left(n=1,2,\cdots\right)$, 讨论级数 $\sum\limits_{n=1}^{\infty}\frac{a_n}{r_n^p}$ 的敛散性.<br>
+(2) 设正项级数 $\sum\limits_{n=1}^{\infty}a_n$ 收敛，记 $S_n=\sum\limits_{k=1}^{\infty}a_k$, 讨论级数 $\sum\limits_{n=1}^{\infty}\frac{a_n}{S_n^p}$ 的敛散性.</p>
+<p>【李例5-1-3-16】设级数 $\sum\limits_{n=1}^{\infty}a_n^4$ 收敛, 则 $\sum\limits_{n=1}^{\infty}a_nn^{-\frac{4}{5}}$ 收敛.</p>
+<p>【李例5-1-3-17】设正项级数 $\sum\limits_{n=1}^{\infty}a_n$ 发散, 判断级数 $\sum\limits_{n=1}^{\infty}\frac{a_n}{1+a_n}$ 的敛散性.</p>
+<p>【李例5-1-3-21】设 $\varphi(x)$ 是 $(-\infty,+\infty)$ 上的连续周期函数, 周期为 $1$, 且 $\int_0^1\varphi(x)\mathrm{~d}x=0$, 函数 $f(x)$ 在 $[0,1]$ 上可微且有连续的一阶导数，令 $a_n= \int_0^1f\left ( x\right ) \varphi\left ( nx\right )\mathrm{~d}x,  \ n= 1, 2, \cdots$. 证明：<br>
+(1) $\lim\limits_{n\to\infty}a_n=0$;<br>
+(2) $\sum\limits_{n=1}^{\infty}|a_n|^p \ (p&gt;1)$ 收敛.</p>
+<p>【李例5-1-4-5】设 $\alpha\in(0,1),:\lbrace a_n\rbrace$ 为正数列且满足</p>
+<p>$$<br>
+\lim\limits_{n\to\infty}n^\alpha\left(\frac{a_n}{a_{n+1}}-1\right)=\lambda\in(0,+\infty),<br>
+$$</p>
+<p>求证： $\lim\limits_{n\to\infty} n^ka_n=0$,其中 $k&gt;0$.</p>
+<p>【李例5-1-8-3】若 $\sum a_n$ 收敛，$a_n&gt;0, \ \lbrace a_n-a_{n+1}\rbrace$ 单调下降, 则 $\lbrace a_n\rbrace$ 单调递减趋于零, 且<br>
+$$<br>
+\lim\limits_{n\to\infty}\left(\frac{1}{a_{n+1}}-\frac{1}{a_n}\right)=+\infty.<br>
+$$<br>
+【李例5-1-8-4】证明: $p&gt;1, \ \sum\limits_{n=1}^{\infty}\frac{1}{(n+1)\sqrt[p]{n}}&lt;p$.</p>
+<h2 id="一般项级数-2">一般项级数</h2>
+<p>【华四/李】讨论下列级数的敛散性</p>
+<ol>
+<li>$\sum\frac{(-1)^{n-1}}{n^{p+\frac{1}{n}}}$.</li>
+<li>$\sum\frac{(-1)^n}{n^p\ln^qn}$.</li>
+<li>$\sum\left(\frac{(-1)^n}{\sqrt{n}}+\frac{1}{n}\right)$.</li>
+<li>$\sum(-1)^n\frac{\cos^2n}{n}$.</li>
+<li>$\sum\frac{(-1)^{[\sqrt{n}]}}{n^p}$.</li>
+<li>$\sum\limits_{n=2}^{\infty}\frac{(-1)^n\sin n}{n} \ (p&gt;0)$.</li>
+<li>$\sum a_n$, 其中 $a_n=\begin{cases}\frac{1}{n^p}, &amp; n \ 为奇数\\ -\frac{1}{n^q}, &amp; n \ 为偶数\end{cases}, \ (p,q&gt;0).$</li>
+<li>$1+\frac{1}{\sqrt{3}}-\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{5}}+\frac{1}{\sqrt{7}}-\frac{1}{\sqrt{4}}+\frac{1}{\sqrt{9}}+\frac{1}{\sqrt{11}}-\frac{1}{\sqrt{6}}+\cdots$.</li>
+</ol>
+<p>【华四12.1定理12.1】 <strong>(级数收敛的柯西准则)</strong> 级数 $\sum u_n$ 收敛的充要条件是: 任给正数  $\varepsilon$ , 总存在正整数  $N$ , 使得当  $m&gt;N$  以及对任意的正整数  $p$ , 都有</p>
+<p>$$<br>
+\left|u_{m+1}+u_{m+2}+\cdots+u_{m+p}\right|&lt;\varepsilon .<br>
+$$<br>
+<strong>注：</strong> 利用级数收敛和部分和数列收敛的关系即得.</p>
+<p>【李例5-1-2-4】$\sum a_{n}$ 收敛的充分必要条件为对任意正整数列 $\lbrace r_n\rbrace$, 有</p>
+<p>$$<br>
+\lim_{n\to\infty}\left(a_{n+1}+a_{n+2}+\cdots+a_{n+r_n}\right)=0.<br>
+$$<br>
+【华四12.3定理12.11】 <strong>(Leibniz判别法)</strong> 若交错级数 $\sum(-1)^{n+1}u_n$ 满足下述两个条件：<br>
+(i)数列$\lbrace u_n\rbrace$单调递减；<br>
+(ii) $\lim\limits_{n\to \infty}u_n= 0$,<br>
+则级数 $\sum(-1)^{n+1}u_n$ 收敛.<br>
+<strong>注：</strong> 可以证明 $\lbrace [S_{2m},S_{2m-1}]\rbrace$ 是一个闭区间套. Leibniz 级数的余项估计为 $|R_n|\le u_{n+1}$.</p>
+<p>【华四12.3定理12.13】设级数 $\sum u_n$ 绝对收敛，且其和等于 $S$, 则任意重排后所得到的级数 $\sum v_n$ 也绝对收敛, 且有相同的和数.<br>
+<strong>注：</strong> 先证明对正项级数结论成立, 再构造正项级数 $p_n=\frac{|u_n|+u_n}{2}, \ q_n=\frac{|u_n|-u_n}{2}$, 于是 $\sum u_n=\sum p_n-\sum q_n$.</p>
+<p>【华四12.3定理12.14】 <strong>(Cauchy定理)</strong> 绝对收敛的级数 $\sum u_n,\sum v_n$ 的乘积 $\sum u_n\sum v_n$ 中的所有项 $u_iv_j$ 按任意顺序排列所得到的级数 $\sum w_n$ 也绝对收敛, 且其和为 $AB$, 其中 $\sum u_n=A,\sum v_n=B$.<br>
+<strong>注：</strong> 可以证明级数 $\sum |w_n|$ 的部分和有界, 再利用绝对收敛的级数任意重排后仍绝对收敛且和数不变的性质.</p>
+<p>【史引理14.4.1】 <strong>(Abel(阿贝尔，1802~1829)分部求和公式)</strong> 设$\left\lbrace a_k\right\rbrace,\left\lbrace b_k\right\rbrace$是两列实数，则对任意的正整数 $n$,有</p>
+<p>$$<br>
+\sum\limits_{k=1}^na_kb_k=\sum\limits_{k=1}^{n-1}S_k\left(b_k-b_{k+1}\right)+S_nb_n,<br>
+$$<br>
+这里 $S_k=\sum_{l=1}^ka_l$.<br>
+<strong>注：</strong> 事实上, 此公式可写作 $\sum\limits_{k=1}^nb_k\Delta S_k=S_kb_k\big\vert_0^n-\sum\limits_{k=1}^{n-1}S_k\Delta b_k$. 对应一元积分学中的分部积分.</p>
+<p>【史引理14.4.2】 <strong>(Abel 引理)</strong> 设 $b_1{\geqslant}b_2{\geqslant}…{\geqslant}b_n$ 或$b_1{\leqslant}b_2{\leqslant}…{\leqslant}b_n$,记 $S_k=$ $\sum\limits_{l=1}^k a_l$. 如果$\mid S_k\mid\leqslant M \ (k=1,2,…,n)$, 那么<br>
+$$<br>
+\left|\sum_{k=1}^{n}a_{k}b_{k}\right|\leqslant M(|b_{1}|+2|b_{n}|).<br>
+$$<br>
+【史定理14.4.3】 <strong>(Dirichlet判别法)</strong> 设 $\lbrace a_k\rbrace,\lbrace b_k\rbrace$ 是两个数列, $S_k=\sum\limits_{l=1}^ka_l$, 它们满足<br>
+(a) $\lbrace b_k\rbrace$ 单调趋于 $0$;<br>
+(b) $\lbrace S_k\rbrace$ 有界.<br>
+则级数 $\sum a_kb_k$ 收敛.<br>
+<strong>注：</strong> 利用 Abel 引理和 Cauchy 收敛准则.</p>
+<p>【史定理14.4.4】 <strong>(Abel判别法)</strong> 设 $\lbrace a_k\rbrace,\lbrace b_k\rbrace$ 是两个数列, 满足以下条件<br>
+(a) $\lbrace b_k\rbrace$ 单调有界;<br>
+(b) $\sum a_k$ 收敛.<br>
+则级数 $\sum a_kb_k$ 收敛.<br>
+<strong>注：</strong> 利用 Abel 引理和 Cauchy 收敛准则.</p>
+<p>【华四12.3例3】设递减数列 $\lbrace a_n\rbrace$ 满足 $\lim\limits_{n\to\infty}a_n=0$, 则级数 $\sum a_n\sin nx$ 和 $\sum a_n\cos nx$ 对任何 $x\in(0,2\pi)$ 都收敛.<br>
+<strong>注：</strong> 利用三角函数的和差公式不难验证当 $x\neq 2k\pi$ 时有<br>
+$$<br>
+\left|\sum\limits_{k=1}^n\cos kx\right|=\left|\frac{\sin(n+\frac{1}{2})x-\sin\frac{x}{2}}{2\sin\frac{x}{2}}\right|\le\frac{1}{\left|\sin\frac{x}{2}\right|}\<br>
+\left|\sum\limits_{k=1}^n\sin kx\right|=\left|\frac{\cos\frac{x}{2}-\cos(n+\frac{1}{2})x}{2\sin\frac{x}{2}}\right|\le\frac{1}{\left|\sin\frac{x}{2}\right|}<br>
+$$<br>
+【李例5-2-2-5(1)】设 $\sum a_n$ 发散, 证明 $\sum \left(1+\frac{1}{n}\right)a_n$ 发散.</p>
+<p>【华四12.3.5】写出下列级数的乘积 $\left(\sum\limits_{n=1}^{\infty}nx^{n-1}\right)\left(\sum\limits_{n=1}^{\infty}(-1)^{n-1}nx^{n-1}\right)$.</p>
+<p>【华四第十二章练习题5】若 $\sum a_n$ 收敛, $\sum(b_{n+1}-b_n)$ 绝对收敛, 则 $\sum a_nb_n$ 也收敛.</p>
+<p>【华四第十二章练习题7】若 $\sum a^2_n,\sum b_n^2$ 收敛, 则级数 $\sum a_nb_n$ 和 $\sum(a_n+b_n)^2$ 也收敛, 且<br>
+$$<br>
+\begin{aligned}<br>
+&amp;\left(\sum a_nb_n\right)^2\le\sum a_n^2\cdot\sum b_n^2,\<br>
+&amp;\left[\sum\left(a_n+b_n\right)^2\right]^{\frac{1}{2}}\le\left(\sum a_n^2\right)^{\frac{1}{2}}+\left(\sum b_n^2\right)^{\frac{1}{2}}.<br>
+\end{aligned}<br>
+$$<br>
+【李例5-1-7-5】举出一个发散的交错级数, 使其通项趋于零.</p>
+<p>【李例5-1-7-11】回答下列的问题。<br>
+(1) 若 $\sum a_n$ 收敛, 试问 $\sum a_n^2$ 是否收敛?<br>
+(2) 若 $\lim\limits_{n\to \infty}\frac {a_{n}}{b_{n}}=l\neq0$, 级数 $\sum a_n$ 与 $\sum b_n$ 是否同时敛散?<br>
+(3) 若 $\sum a_n$ 收敛, 而 $\lbrace b_n\rbrace$ 满足 $b_n=o(a_n) \ (n\to\infty)$, 试问 $\sum b_n^2$ 是否一定收敛?</p>
+<p>【李例5-1-8-5】设级数 $\sum\limits_{n=1}^{\infty}a_n$ 条件收敛，把这个级数的前 $n$ 项和写成两项 $s_n=\sum\limits_{k=1}^na_n=s_n^++s_n^-$, 其中 $s_n^+$ 和 $s_n^-$ 分别是正项和负项之和. 证明 $\lim\limits_{n\to\infty}\frac{s_n^+}{s_n^-}$ 存在并求其值.</p>
+<p>【李例5-1-8-7(3)】两个级数 $\sum a_n$ 与 $\sum b_n$ 收敛时，则它们的正方形乘积 $\sum d_n$ 收敛.</p>
+<p>$$<br>
+\int_a^bf’(x)\cos f(x)\mathrm{~d}x=\int_a^b(\sin f(x))'\mathrm{~d}x\le2<br>
+$$</p>
 
       
     </div>
@@ -1720,88 +2215,6 @@ $$<br>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/181/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/181/" class="post-title-link" itemprop="url">超过经理收入的员工</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 18:28:13 / 修改时间：18:29:40" itemprop="dateCreated datePublished" datetime="2025-09-05T18:28:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表：Employee</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（具有唯一值的列）。该表的每一行都表示雇员的ID、姓名、工资和经理的ID。编写解决方案，找出收入比经理高的员工。以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| id | name  | salary | managerId |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| 1  | Joe   | 70000  | 3         |</span><br><span class="line">| 2  | Henry | 80000  | 4         |</span><br><span class="line">| 3  | Sam   | 60000  | Null      |</span><br><span class="line">| 4  | Max   | 90000  | Null      |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">输出: </span><br><span class="line">+----------+</span><br><span class="line">| Employee |</span><br><span class="line">+----------+</span><br><span class="line">| Joe      |</span><br><span class="line">+----------+</span><br><span class="line">解释: Joe 是唯一挣得比经理多的雇员。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on = <span class="string">&#x27;managerId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(181)</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1873,20 +2286,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

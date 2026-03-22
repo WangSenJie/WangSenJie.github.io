@@ -216,6 +216,129 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/02/caratheodory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/02/caratheodory/" class="post-title-link" itemprop="url">Carathéodory扩张</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-02T00:00:00+08:00">2025-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">测度论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
+<strong>Proof:</strong> 只需证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致.<br>
+<strong>(Step1.)</strong> 先证明 $\mu^{\ast}$ 在 $\mathscr F_0$ 上与 $\mu$ 一致, 即证 $\forall A\in\mathscr F_0$, 满足 $\mu^{\ast}(A)=\mu(A)$. 注意到</p>
+<p>$$<br>
+\mu^{\ast}(A) = \inf\Bigl\lbrace\sum_n\mu(A_n): A_n\in\mathscr{F}_0,~ \bigcup_n A_n\supset A \Bigr\rbrace.<br>
+$$</p>
+<p>而 $A\cup\varnothing\cup\varnothing\cup\cdots\supset A$, 因此<br>
+$$<br>
+\mu^{\ast}(A)\le \mu(A)+\mu(\varnothing)+\mu(\varnothing)+\cdots=\mu(A).<br>
+$$<br>
+另一方面, 若 $\mu^{\ast}(A)&lt;+\infty$, 则对 $\forall\varepsilon&gt;0, ~\exists~A_n\in\mathscr F_0$, 使得 $\bigcup\limits_nA_n\supset A$, 且<br>
+$$<br>
+\sum_n\mu(A_n)&lt;\mu^{\ast}(A)+\varepsilon.<br>
+$$<br>
+由 $\mu$ 的可列可加性和单调性知<br>
+$$<br>
+% \begin{aligned}<br>
+% \mu(A) &amp;\le \mu\left(\bigcup_{n} A_n\right) \<br>
+%        &amp;= \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \<br>
+%        &amp;= \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \<br>
+%        &amp;\le \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+% \end{aligned}<br>
+\begin{array}{rcl}<br>
+\mu(A) &amp;\le&amp; \mu\left(\bigcup_{n} A_n\right) \\<br>
+&amp;=&amp; \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \\<br>
+&amp;=&amp; \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \\<br>
+&amp;\le&amp; \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+\end{array}<br>
+$$<br>
+再由 $\varepsilon$ 的任意性可知 $\mu(A)\le\mu^{\ast}(A)$. 综上, $\mu(A)=\mu^{\ast}(A)$.<br>
+<strong>(Step2.)</strong> 再证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度, 只需证明 $\mathscr F=\sigma(\mathscr F_0)\subset\mathscr M$, 其中 $\mathscr M$ 是 $\mu^{\ast}$ 可测子集全体构成的 $\sigma$ 代数.</p>
+<blockquote>
+<p>见“$(\Omega,\mathscr M,\mu^{\ast})$ 是完备测度空间”</p>
+</blockquote>
+<p>对 $\forall A\in\mathscr F_0$, 要证明 $A\in\mathscr M$. 对 $\forall E\subset\Omega$, 不妨设 $\mu^{\ast}(E)&lt;\infty$, 则对 $\forall \varepsilon&gt;0$, 存在子集列 ${A_n}\subset\mathscr F_0$ 满足 $\cup_nA_n\supset E$ 且 $\sum\limits_n\mu(A_n)&lt;\mu^{\ast}(E)+\varepsilon$, 因而<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)&amp;\le\mu^{\ast}\left(\bigcup_n(A_n\cap A)\right)+\mu^{\ast}\left(\bigcup_n(A_n\cap A^c)\right)\\<br>
+(\text{外测度的次可列可加性})~&amp;\le\sum_n\left[\mu^{\ast}(A_n\cap A)+\mu^{\ast}(A_n\cap A^c)\right]\\<br>
+(\text{Step1.})~&amp;=\sum_n\left[\mu(A_n\cap A)+\mu(A_n\cap A^c)\right]\\<br>
+(\text{预测度的可列可加性})~&amp;=\sum_n\mu(A_n)\\<br>
+&amp;&lt;\mu^{\ast}(E)+\varepsilon<br>
+\end{aligned}<br>
+$$<br>
+由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
+综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/02/post-20250902-2e2bd7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -384,20 +507,20 @@ $$</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
