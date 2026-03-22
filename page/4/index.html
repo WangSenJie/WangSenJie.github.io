@@ -17,15 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
+<meta property="og:type" content="website">
 <meta property="og:title" content="DMH&#39;s Blog">
 <meta property="og:url" content="https://wangsenjie.github.io/page/4/index.html">
 <meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="DMH">
+<meta property="article:tag" content="数学, 机器学习, 深度学习, 算法, Python, 数据分析, Hexo, NexT">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://wangsenjie.github.io/page/4/">
@@ -40,23 +43,9 @@
     lang   : 'zh-CN'
   };
 </script>
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\\[','\\]']],
-    packages: {'[+]': ['ams']},   // 关键：加载 ams（align/aligned 等）
-    tags: 'ams'
-  },
-  options: {
-    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
-  }
-};
-</script>
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-  <title>DMH's Blog</title>
+
+  <title>DMH's Blog - 数学、机器学习与编程笔记</title>
   
 
 
@@ -87,6 +76,7 @@ window.MathJax = {
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -110,10 +100,12 @@ window.MathJax = {
       <h1 class="site-title">DMH's Blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
   </div>
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -148,11 +140,43 @@ window.MathJax = {
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -162,6 +186,7 @@ window.MathJax = {
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -175,12 +200,12 @@ window.MathJax = {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/2.1%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -189,7 +214,7 @@ window.MathJax = {
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/ODE/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">Picard 存在唯一性定理</a>
+            <a href="/2025/09/03/ODE/2.1%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E6%B3%95/" class="post-title-link" itemprop="url">分离变量法</a>
         </h2>
 
         <div class="post-meta">
@@ -198,10 +223,16 @@ window.MathJax = {
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：16:21:24" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -216,7 +247,7 @@ window.MathJax = {
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
                 </span>
             </span>
 
@@ -231,167 +262,16 @@ window.MathJax = {
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
-<p><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
+          <p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
+<p><strong>解</strong> 令 $x=y=0$, 则 $f(0)=\frac{2f(0)}{1-f(0)^2}$, 得 $f(0)=0$. 注意到<br>
 $$<br>
-\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
+f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}<br>
 $$<br>
-显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
+因为 $f’(0)$ 存在, 故由导数的 定义可知<br>
 $$<br>
-|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
+f’(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f’(0)[1+f(x)^2]<br>
 $$<br>
-于是当 $x\in[0,\frac12]$ 时, 有<br>
-$$<br>
-|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
-$$</p>
-<hr>
-<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
-<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
-$$<br>
-|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
-$$<br>
-即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
-<p>任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
-$$<br>
-x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
-$$<br>
-则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
-$$<br>
-|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
-$$<br>
-由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
-$$<br>
-x^</em>=f(x^<em>)<br>
-$$<br>
-即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
-<hr>
-<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
-$$<br>
-x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
-$$<br>
-从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
-$$<br>
-|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
-$$<br>
-这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/ODE/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/" class="post-title-link" itemprop="url">不动点定理与解的存在性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:54:26" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
-<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
-$$<br>
-T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
-$$<br>
-在 $X$ 上引入距离<br>
-$$<br>
-\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
-$$<br>
-注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
-$$<br>
-\begin{aligned}<br>
-\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
-&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
-&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
-&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
-\end{aligned}<br>
-$$<br>
-由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
-<hr>
-<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
-<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
-$$<br>
-||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
-$$<br>
-在 $\mathbb{R}^n$ 上定义距离<br>
-$$<br>
-\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
-$$<br>
-在 $\mathbb{R}^n$ 上定义映射<br>
-$$<br>
-T:\quad Tx=b+(I_n-A)x.<br>
-$$<br>
-则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
-&amp;=||(I_n-A)(x_1-x_2)||\\<br>
-&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
-&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
-\end{aligned}<br>
-$$<br>
-注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
+即 $f(x)$ 满足微分方程 $f’(x)=f’(0)[1+f(x)^2], f(0)=0$. 利用分离变量法求得其解为 $y=\tan\left(f’(0)x\right)$.</p>
 
       
     </div>
@@ -416,7 +296,7 @@ $$<br>
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -434,10 +314,16 @@ $$<br>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:54:34" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -504,121 +390,12 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/ODE/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/" class="post-title-link" itemprop="url">解对初值与参数的连续性与可微性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:54:42" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
-$$<br>
-|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty&lt;y&lt;+\infty<br>
-$$<br>
-那么方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 的经过点 $(x_0,\xi_0)$ 的积分曲线 $y=\eta(x)$ 也必在 $[x_0,X]$ 上有定义, 且在 $[x_0,X]$ 上满足不等式<br>
-$$<br>
-|\eta(x)-\xi(x)|&lt; \varepsilon,\quad x_0\le x\le X.<br>
-$$<br>
-<strong>证</strong> 因为 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 $y\mid_{x=x_0}=\xi_0$ 的解 $y=\xi(x)$ 存在且唯一. 记积分曲线 $y=\xi(x)$ 为 $l_1$, 则 $l_1: \ y=\xi(x),x\in[x_0,X]$ 为 $xOy$ 平面上的有界闭集. 对 $l_1$ 上的任一点 $(x,y)$, 必存在以该点为圆心的开圆 $C\subset D$, 使在其内的函数 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 $C_i \ (i=1,2,\cdots,N)$, 且它们的全体可以覆盖整个积分曲线段 $l_1$. 设 $C_i$ 的半径为 $\varepsilon_i$, Lipschitz 常数为 $L$. 再记 $\varepsilon_0=\min\limits_{1\le i\le N}\lbrace\varepsilon_i\rbrace$, 令 $\Omega=\bigcup\limits_{i=1}^NC_i$, 则 $l_1\subset \Omega\subset D$, 且 $\Omega$ 的边界 $\partial \Omega$ 到 $l_1$ 的距离为 $0&lt;\rho\le\varepsilon_0$.<br>
-设方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 经过点 $(x_0,\xi_0)$ 的积分曲线为 $l_2:\ y=\eta(x)$. 注意到 $\xi(x)$ 与 $\eta(x)$ 满足积分方程<br>
-$$<br>
-\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t<br>
-$$<br>
-则<br>
-$$<br>
-\begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\\<br>
-&amp;=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\\<br>
-&amp;\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\\<br>
-&amp;=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t<br>
-\end{aligned}<br>
-$$<br>
-由 Gronwall 不等式可知<br>
-$$<br>
-|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t<br>
-$$<br>
- 取 $\bar\varepsilon=\min{\varepsilon,\rho}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}$, 则有<br>
-$$<br>
-\begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\\<br>
-&amp;\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}&lt;\rho<br>
-\end{aligned}<br>
-$$<br>
-即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -636,10 +413,16 @@ $$<br>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:07" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -785,12 +568,136 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/ODE/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/" class="post-title-link" itemprop="url">不动点定理与解的存在性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
+<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
+$$<br>
+T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
+$$<br>
+在 $X$ 上引入距离<br>
+$$<br>
+\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
+$$<br>
+注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
+$$<br>
+\begin{aligned}<br>
+\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
+&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
+&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
+&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
+\end{aligned}<br>
+$$<br>
+由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
+<hr>
+<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
+<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
+$$<br>
+||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
+$$<br>
+在 $\mathbb{R}^n$ 上定义距离<br>
+$$<br>
+\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
+$$<br>
+在 $\mathbb{R}^n$ 上定义映射<br>
+$$<br>
+T:\quad Tx=b+(I_n-A)x.<br>
+$$<br>
+则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
+&amp;=||(I_n-A)(x_1-x_2)||\\<br>
+&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
+&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
+\end{aligned}<br>
+$$<br>
+注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -808,10 +715,16 @@ $$<br>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:09" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -885,12 +798,127 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/ODE/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/" class="post-title-link" itemprop="url">解对初值与参数的连续性与可微性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
+$$<br>
+|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty&lt;y&lt;+\infty<br>
+$$<br>
+那么方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 的经过点 $(x_0,\xi_0)$ 的积分曲线 $y=\eta(x)$ 也必在 $[x_0,X]$ 上有定义, 且在 $[x_0,X]$ 上满足不等式<br>
+$$<br>
+|\eta(x)-\xi(x)|&lt; \varepsilon,\quad x_0\le x\le X.<br>
+$$<br>
+<strong>证</strong> 因为 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 $y\mid_{x=x_0}=\xi_0$ 的解 $y=\xi(x)$ 存在且唯一. 记积分曲线 $y=\xi(x)$ 为 $l_1$, 则 $l_1: \ y=\xi(x),x\in[x_0,X]$ 为 $xOy$ 平面上的有界闭集. 对 $l_1$ 上的任一点 $(x,y)$, 必存在以该点为圆心的开圆 $C\subset D$, 使在其内的函数 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 $C_i \ (i=1,2,\cdots,N)$, 且它们的全体可以覆盖整个积分曲线段 $l_1$. 设 $C_i$ 的半径为 $\varepsilon_i$, Lipschitz 常数为 $L$. 再记 $\varepsilon_0=\min\limits_{1\le i\le N}\lbrace\varepsilon_i\rbrace$, 令 $\Omega=\bigcup\limits_{i=1}^NC_i$, 则 $l_1\subset \Omega\subset D$, 且 $\Omega$ 的边界 $\partial \Omega$ 到 $l_1$ 的距离为 $0&lt;\rho\le\varepsilon_0$.<br>
+设方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 经过点 $(x_0,\xi_0)$ 的积分曲线为 $l_2:\ y=\eta(x)$. 注意到 $\xi(x)$ 与 $\eta(x)$ 满足积分方程<br>
+$$<br>
+\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t<br>
+$$<br>
+则<br>
+$$<br>
+\begin{aligned}<br>
+|\xi(x)-\eta(x)|&amp;=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\\<br>
+&amp;=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\\<br>
+&amp;\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\\<br>
+&amp;=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t<br>
+\end{aligned}<br>
+$$<br>
+由 Gronwall 不等式可知<br>
+$$<br>
+|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t<br>
+$$<br>
+ 取 $\bar\varepsilon=\min{\varepsilon,\rho}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}$, 则有<br>
+$$<br>
+\begin{aligned}<br>
+|\xi(x)-\eta(x)|&amp;\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\\<br>
+&amp;\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}&lt;\rho<br>
+\end{aligned}<br>
+$$<br>
+即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/4.4%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%9D%9E%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E7%B3%BB%E6%95%B0%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -908,10 +936,16 @@ $$<br>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:27:13" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -981,7 +1015,7 @@ $$</p>
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -999,10 +1033,16 @@ $$</p>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：15:41:37" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1198,7 +1238,7 @@ $$</p>
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1216,10 +1256,16 @@ $$</p>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：15:32:19" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1499,7 +1545,7 @@ $$</p>
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1517,10 +1563,16 @@ $$</p>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-02 00:00:00 / 修改时间：23:56:25" itemprop="dateCreated datePublished" datetime="2025-09-02T00:00:00+08:00">2025-09-02</time>
+              <time title="创建时间：2025-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-02T00:00:00+08:00">2025-09-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1671,7 +1723,7 @@ $$<br>
     <img class="site-author-image" itemprop="image" alt="DMH"
       src="/images/tx.jpg">
   <p class="site-author-name" itemprop="name">DMH</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -1696,6 +1748,11 @@ $$<br>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -1718,7 +1775,7 @@ $$<br>
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2025</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1761,6 +1818,10 @@ $$<br>
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 

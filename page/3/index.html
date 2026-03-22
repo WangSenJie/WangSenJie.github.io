@@ -17,15 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
+<meta property="og:type" content="website">
 <meta property="og:title" content="DMH&#39;s Blog">
 <meta property="og:url" content="https://wangsenjie.github.io/page/3/index.html">
 <meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="DMH">
+<meta property="article:tag" content="数学, 机器学习, 深度学习, 算法, Python, 数据分析, Hexo, NexT">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://wangsenjie.github.io/page/3/">
@@ -40,23 +43,9 @@
     lang   : 'zh-CN'
   };
 </script>
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\\[','\\]']],
-    packages: {'[+]': ['ams']},   // 关键：加载 ams（align/aligned 等）
-    tags: 'ams'
-  },
-  options: {
-    skipHtmlTags: ['script','noscript','style','textarea','pre','code']
-  }
-};
-</script>
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-  <title>DMH's Blog</title>
+
+  <title>DMH's Blog - 数学、机器学习与编程笔记</title>
   
 
 
@@ -87,6 +76,7 @@ window.MathJax = {
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -110,10 +100,12 @@ window.MathJax = {
       <h1 class="site-title">DMH's Blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
   </div>
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -148,11 +140,43 @@ window.MathJax = {
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -162,6 +186,7 @@ window.MathJax = {
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -180,7 +205,7 @@ window.MathJax = {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -261,7 +286,7 @@ window.MathJax = {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -345,7 +370,7 @@ window.MathJax = {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -420,7 +445,7 @@ window.MathJax = {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -511,7 +536,7 @@ window.MathJax = {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -612,7 +637,7 @@ window.MathJax = {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -700,12 +725,12 @@ Person表:</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/2.1%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -714,7 +739,7 @@ Person表:</p>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/ODE/2.1%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E6%B3%95/" class="post-title-link" itemprop="url">分离变量法</a>
+            <a href="/2025/09/03/ODE/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/" class="post-title-link" itemprop="url">变量替换法</a>
         </h2>
 
         <div class="post-meta">
@@ -723,10 +748,16 @@ Person表:</p>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：02:16:37" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -756,16 +787,32 @@ Person表:</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
-<p><strong>解</strong> 令 $x=y=0$, 则 $f(0)=\frac{2f(0)}{1-f(0)^2}$, 得 $f(0)=0$. 注意到<br>
-$$<br>
-f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}<br>
-$$<br>
-因为 $f’(0)$ 存在, 故由导数的 定义可知<br>
-$$<br>
-f’(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f’(0)[1+f(x)^2]<br>
-$$<br>
-即 $f(x)$ 满足微分方程 $f’(x)=f’(0)[1+f(x)^2], f(0)=0$. 利用分离变量法求得其解为 $y=\tan\left(f’(0)x\right)$.</p>
+          <p><strong>[T020201]</strong> 若 $y=y^{\ast}(x)$ 是一阶齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y$ 的非零解, 而 $y=\bar y$ 是一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的解. 证明: 一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
+<p><strong>证</strong> 设 $y=\bar y+z$, 两边对 $x$ 求导, 得</p>
+<p>$$<br>
+\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z<br>
+$$</p>
+<p>由题意可知上述方程得通解为 $z=cy^{\ast}$, 故原方程的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
+<hr>
+<p><strong>[T020202]</strong> 设 $y(x)$ 是方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y$ 的满足 $y(0)=0$ 的解, 其中 $p(x)$ 是 $(-\infty,+\infty)$ 上的连续函数. 证明 $y(x)\equiv0$.</p>
+<p><strong>证</strong> 注意到</p>
+<p>$$<br>
+\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}<br>
+$$</p>
+<p>解得</p>
+<p>$$<br>
+\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}<br>
+$$</p>
+<p>将 $y(0)=0$ 代入可得 $c=0$, 故 $y(x)\equiv0$.</p>
+<hr>
+<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 $P$ 的切线方向 $\overrightarrow{PQ}$ 与向径 $\overrightarrow{OP}$ 的交角等于 $45^{\circ}$.</p>
+<p><strong>解</strong> 由题设可知</p>
+<p>$$<br>
+1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow<br>
+\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}<br>
+$$</p>
+<p>令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
+$2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
 
       
     </div>
@@ -790,7 +837,7 @@ $$<br>
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -808,10 +855,16 @@ $$<br>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:53:29" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -894,113 +947,12 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/ODE/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/" class="post-title-link" itemprop="url">变量替换法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:52:51" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T020201]</strong> 若 $y=y^{\ast}(x)$ 是一阶齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y$ 的非零解, 而 $y=\bar y$ 是一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的解. 证明: 一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<p><strong>证</strong> 设 $y=\bar y+z$, 两边对 $x$ 求导, 得</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z<br>
-$$</p>
-<p>由题意可知上述方程得通解为 $z=cy^{\ast}$, 故原方程的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<hr>
-<p><strong>[T020202]</strong> 设 $y(x)$ 是方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y$ 的满足 $y(0)=0$ 的解, 其中 $p(x)$ 是 $(-\infty,+\infty)$ 上的连续函数. 证明 $y(x)\equiv0$.</p>
-<p><strong>证</strong> 注意到</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}<br>
-$$</p>
-<p>解得</p>
-<p>$$<br>
-\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}<br>
-$$</p>
-<p>将 $y(0)=0$ 代入可得 $c=0$, 故 $y(x)\equiv0$.</p>
-<hr>
-<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 $P$ 的切线方向 $\overrightarrow{PQ}$ 与向径 $\overrightarrow{OP}$ 的交角等于 $45^{\circ}$.</p>
-<p><strong>解</strong> 由题设可知</p>
-<p>$$<br>
-1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}<br>
-$$</p>
-<p>令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
-$2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/2.4%E5%8F%82%E6%95%B0%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
       <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1018,10 +970,16 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-03 00:00:00 / 修改时间：13:53:42" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1111,6 +1069,130 @@ $$<br>
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/ODE/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/ODE/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">Picard 存在唯一性定理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
+<p><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
+$$<br>
+\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
+$$<br>
+显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
+$$<br>
+|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
+$$<br>
+于是当 $x\in[0,\frac12]$ 时, 有<br>
+$$<br>
+|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
+$$</p>
+<hr>
+<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
+<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
+$$<br>
+|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
+$$<br>
+即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
+<p>任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
+$$<br>
+x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
+$$<br>
+则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
+$$<br>
+|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
+$$<br>
+由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
+$$<br>
+x^</em>=f(x^<em>)<br>
+$$<br>
+即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
+<hr>
+<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
+$$<br>
+x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
+$$<br>
+从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
+$$<br>
+|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
+$$<br>
+这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1175,7 +1257,7 @@ $$<br>
     <img class="site-author-image" itemprop="image" alt="DMH"
       src="/images/tx.jpg">
   <p class="site-author-name" itemprop="name">DMH</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -1200,6 +1282,11 @@ $$<br>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -1222,7 +1309,7 @@ $$<br>
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2025</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1265,6 +1352,10 @@ $$<br>
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
