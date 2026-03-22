@@ -46,1273 +46,6 @@
       </tags>
   </entry>
   <entry>
-    <title>分离变量法</title>
-    <url>/2025/09/03/ODE/2.1%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E6%B3%95/</url>
-    <content><![CDATA[<p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
-<p><strong>解</strong> 令 $x=y=0$, 则 $f(0)=\frac{2f(0)}{1-f(0)^2}$, 得 $f(0)=0$. 注意到<br>
-$$<br>
-f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}<br>
-$$<br>
-因为 $f’(0)$ 存在, 故由导数的 定义可知<br>
-$$<br>
-f’(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f’(0)[1+f(x)^2]<br>
-$$<br>
-即 $f(x)$ 满足微分方程 $f’(x)=f’(0)[1+f(x)^2], f(0)=0$. 利用分离变量法求得其解为 $y=\tan\left(f’(0)x\right)$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>初等积分法</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>参数法</title>
-    <url>/2025/09/03/ODE/2.4%E5%8F%82%E6%95%B0%E6%B3%95/</url>
-    <content><![CDATA[<p><strong>[T020401]</strong> 求微分方程的通解 $y’^2=4y^3(1-y)$.</p>
-<p><strong>解</strong> 将方程化为 $y’=\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1/2}=\pm x+c$, 从而原方程的通解为 $y=\frac{1}{1+(\mp x+c)^2}$, 其中 $c$ 为任意常数. 此外, $y=0$ 和 $y=1$ 也是方程的解.</p>
-<hr>
-<p><strong>[T020402]</strong> 求微分方程的通解 $y’^3+y^3-3yy’=0$.</p>
-<p><strong>解</strong> 令 $y’=p, \ y=pt$, 其中 $p,t$ 都是参数, 则 $p^3+p^3t^3-3p^2t=0$. 当 $p\neq0$ 时,<br>
-$$<br>
-p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}<br>
-$$<br>
-(此时 $t\neq 0,-1$, 否则 $p=0$) 从而 $y=\frac{3t^2}{1+t^3}$. 注意到<br>
-$$<br>
-\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt<br>
-$$<br>
-两边积分可得 $x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c$, 故原方程的通解为<br>
-$$<br>
-\begin{cases}<br>
-x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\<br>
-y=\frac{3t^2}{1+t^3}<br>
-\end{cases}<br>
-$$<br>
-其中 $c$ 为任意常数.</p>
-<p>当 $p=0$ 时, $y=0$ 也是方程的解.</p>
-<hr>
-<p><strong>[T020403]</strong> 求微分方程的通解 $y’^3+y’^2-y’+1=0$.</p>
-<p><strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 $y’=a \ (\neq0)$, 则 $y=ax+c$ 为原方程的解, 从而 $a=\frac{y-c}{x}$, 于是 $y’=\frac{y-c}{x}$, 故方程的通解为<br>
-$$<br>
-\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.<br>
-$$</p>
-<hr>
-<p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
-<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.</p>
-<p><strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
-$$<br>
-\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
-$$<br>
-\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
-$$<br>
-\mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>初等积分法</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>积分因子法</title>
-    <url>/2025/09/03/ODE/2.3%E7%A7%AF%E5%88%86%E5%9B%A0%E5%AD%90%E6%B3%95/</url>
-    <content><![CDATA[<p><strong>[T020301]</strong> 求微分方程通解: $\left(\frac{y^2}{(x-y)^2}-\frac{1}{x}\right)\mathrm dx+\left(\frac{1}{y}-\frac{x^2}{(x-y)^2}\right)\mathrm dx=0$.</p>
-<p><strong>解</strong> 设 $M=\frac{y^2}{(x-y)^2}-\frac{1}{x}, \ N=\frac{1}{y}-\frac{x^2}{(x-y)^2}$, 注意到<br>
-$$<br>
-\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}=\frac{2xy}{(x-y)^3},<br>
-$$<br>
-于是原方程为全微分方程, 又注意到<br>
-$$<br>
-\begin{aligned}<br>
-\left(\frac1y\mathrm dy-\frac1x\mathrm dx\right)+\frac{y^2\mathrm dx-x^2\mathrm dy}{(x-y)^2}&amp;=0\\<br>
-\mathrm d\left(\ln\left|\frac{y}{x}\right|\right)-\mathrm d\left(\frac{xy}{x-y}\right)&amp;=0\\<br>
-\mathrm d\left(\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}\right)&amp;=0<br>
-\end{aligned}<br>
-$$<br>
-从而原方程的通解为 $\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}=c$, 其中 $c$ 为任意常数.</p>
-<hr>
-<p><strong>[T020302]</strong> 求 Bernoulli 方程的积分因子.</p>
-<p><strong>解</strong> 因为 Bernoulli 方程可化为一阶线性微分方程, 因此可先求解一阶线性微分方程的积分因子. 设有一阶线性微分方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 其中 $P(x),Q(x)$ 连续. 将方程变形为 $\left(P(x)y+Q(x)\right)\mathrm dx-\mathrm dy=0$, 设 $M=P(x)y+Q(x),  N=-1$, 则 $\frac{\partial M}{\partial y}=P(x), \ \frac{\partial N}{\partial x}=0$, 于是<br>
-$$<br>
-\frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{N}=-P(x),<br>
-$$<br>
-故线性方程有一个只依赖于 $x$ 的积分因子 $\mu(x)=e^{-\int P(x)\mathrm dx}$. 将此积分因子乘到原方程的两边可得全微分方程<br>
-$$<br>
-e^{-\int P(x)\mathrm dx}\left(P(x)y+Q(x)\right)\mathrm dx-e^{-\int P(x)\mathrm dx}\mathrm dy=0,<br>
-$$<br>
-不难求得其通解为 $y=ce^{\int P(x)\mathrm dx}+e^{\int P(x)\mathrm dx}\displaystyle\int Q(x)e^{-\int P(x)\mathrm dx}\mathrm dx$.</p>
-<p>现设有 Bernoulli 方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)y^n$, 其中 $n\neq 0,1$ 且 $p(x),q(x)$ 连续. 方程两边同除 $y^n \ (y\neq0)$ 有<br>
-$$<br>
-y^{-n}\frac{\mathrm dy}{\mathrm dx}=y^{1-n}p(x)+q(x)\Longrightarrow \frac{\mathrm dy^{1-n}}{\mathrm dx}=(1-n)p(x)y^{1-n}+(1-n)q(x),<br>
-$$<br>
-这是以 $y^{1-n}$ 为未知函数的一阶线性微分方程, 由上面的讨论可知其积分因子为 $e^{-(1-n)\int  p(x)\mathrm dx}$, 从而原方程的积分因子为 $y^{-n}e^{-(1-n)\int  p(x)\mathrm dx}$, 且原方程的通解为<br>
-$$<br>
-y^{1-n}=ce^{(1-n)\int p(x)\mathrm dx}+(1-n)e^{(1-n)\int p(x)\mathrm dx}\displaystyle\int q(x)e^{-(1-n)\int p(x)\mathrm dx}\mathrm dx.<br>
-$$<br>
-此外, 若 $n&gt;0$, 则 $y=0$ 也是方程的解.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>初等积分法</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>变量替换法</title>
-    <url>/2025/09/03/ODE/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/</url>
-    <content><![CDATA[<p><strong>[T020201]</strong> 若 $y=y^{\ast}(x)$ 是一阶齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y$ 的非零解, 而 $y=\bar y$ 是一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的解. 证明: 一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<p><strong>证</strong> 设 $y=\bar y+z$, 两边对 $x$ 求导, 得</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z<br>
-$$</p>
-<p>由题意可知上述方程得通解为 $z=cy^{\ast}$, 故原方程的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<hr>
-<p><strong>[T020202]</strong> 设 $y(x)$ 是方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y$ 的满足 $y(0)=0$ 的解, 其中 $p(x)$ 是 $(-\infty,+\infty)$ 上的连续函数. 证明 $y(x)\equiv0$.</p>
-<p><strong>证</strong> 注意到</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}<br>
-$$</p>
-<p>解得</p>
-<p>$$<br>
-\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}<br>
-$$</p>
-<p>将 $y(0)=0$ 代入可得 $c=0$, 故 $y(x)\equiv0$.</p>
-<hr>
-<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 $P$ 的切线方向 $\overrightarrow{PQ}$ 与向径 $\overrightarrow{OP}$ 的交角等于 $45^{\circ}$.</p>
-<p><strong>解</strong> 由题设可知</p>
-<p>$$<br>
-1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}<br>
-$$</p>
-<p>令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
-$2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>初等积分法</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Picard 存在唯一性定理</title>
-    <url>/2025/09/03/ODE/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/</url>
-    <content><![CDATA[<p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
-<p><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
-$$<br>
-\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
-$$<br>
-显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
-$$<br>
-|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
-$$<br>
-于是当 $x\in[0,\frac12]$ 时, 有<br>
-$$<br>
-|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
-$$</p>
-<hr>
-<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
-<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
-$$<br>
-|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
-$$<br>
-即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
-<p>任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
-$$<br>
-x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
-$$<br>
-则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
-$$<br>
-|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
-$$<br>
-由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
-$$<br>
-x^</em>=f(x^<em>)<br>
-$$<br>
-即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
-<hr>
-<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
-$$<br>
-x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
-$$<br>
-从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
-$$<br>
-|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
-$$<br>
-这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>定解问题与适定性</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>不动点定理与解的存在性</title>
-    <url>/2025/09/03/ODE/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/</url>
-    <content><![CDATA[<p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
-<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
-$$<br>
-T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
-$$<br>
-在 $X$ 上引入距离<br>
-$$<br>
-\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
-$$<br>
-注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
-$$<br>
-\begin{aligned}<br>
-\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
-&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
-&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
-&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
-\end{aligned}<br>
-$$<br>
-由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
-<hr>
-<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
-<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
-$$<br>
-||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
-$$<br>
-在 $\mathbb{R}^n$ 上定义距离<br>
-$$<br>
-\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
-$$<br>
-在 $\mathbb{R}^n$ 上定义映射<br>
-$$<br>
-T:\quad Tx=b+(I_n-A)x.<br>
-$$<br>
-则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
-&amp;=||(I_n-A)(x_1-x_2)||\\<br>
-&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
-&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
-\end{aligned}<br>
-$$<br>
-注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>定解问题与适定性</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解的延拓</title>
-    <url>/2025/09/03/ODE/3.3%E8%A7%A3%E7%9A%84%E5%BB%B6%E6%8B%93/</url>
-    <content><![CDATA[<p><strong>[T030301]</strong> 设 $f(x,y)$ 在整个平面上连续有界, 且 $\frac{\partial f}{\partial y}(x,y)$ 也连续. 证明方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的每一个解 $y=\varphi(x)$ 的饱和区间为 $-\infty&lt;x&lt;+\infty$.</p>
-<p><strong>证</strong> 因为 $\frac{\partial f}{\partial y}(x,y)$ 在整个平面 $\mathbb{R}^2$ 上连续, 故 $f$ 在 $\mathbb{R}^2$ 上满足关于 $y$ 的局部 Lipschitz 条件. 又 $f(x,y)$ 在 $\mathbb{R}^2$ 上连续, 故方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 满足延拓定理, 及其一切解都可延拓到 $\mathbb{R}^2$ 的边界(即无穷远处).</p>
-<p>考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\mathbb{R}^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\mathbb{R}^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y=\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y=\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.</p>
-<hr>
-<p><strong>[T030303]</strong> 证明: 对一阶线性方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 若 $P(x),Q(x)\in C[a,b]$ , 则对任意 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 方程有唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上连续.</p>
-<p><strong>证</strong> 设 $f(x,y)=P(x)y+Q(x)$, 由条件知 $f(x,y)$ 在 $R=[a,b]\times(-\infty,+\infty)$ 上连续, 又 $\frac{\partial f}{\partial y}=P(x)$ 在 $[a,b]$ 上连续, 从而 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件, 故方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$ 满足延拓定理, 即对任意的 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 通过 $(x_0,y_0)$ 的解 $y=\varphi(x)$ 可延拓到 $R$ 的边界. 设 $\left|\frac{\partial f}{\partial y}\right|\le M, \ x\in[a,b]$. 对任意 $x\in[a,b]$, 作逐步迭代<br>
-$$<br>
-y_1(x_0)=y_0,\quad y_n(x)=y_0+\int_{x_0}^xf(t,y_{n-1}(t))\mathrm{~d}t, \ n=2,3,\cdots<br>
-$$<br>
-由 Lipschitz 条件可知<br>
-$$<br>
-\left|y_n(x)-y_{n-1}(x)\right|\le\frac{(x-x_0)^{n-1}M^{n-1}}{n!}<br>
-$$<br>
-于是 $y_0(x)+\sum\limits_{n=1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y=\varphi(x)$, 即方程的唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.</p>
-<hr>
-<p><strong>[T030304]</strong> 已知 $\frac{\mathrm dy}{\mathrm dx}=(y^2-a^2)f(x,y)$, 这里 $f(x,y)$ 及 $f’_y(x,y)$ 在 $xOy$ 面上连续. 试证明: 对 $\forall x_0$ 及 $|y_0|&lt;a$, 满足初始条件 $y(x_0)=y_0$ 的解 $y(x)$ 都在区间 $(-\infty,+\infty)$ 上存在.</p>
-<p><strong>证</strong> 方程的右端函数 $(y^2-a^2)f(x,y)$ 在全平面 $\mathbb{R}^2$ 上连续可微, 因此它满足解的存在唯一性定理和延拓定理.</p>
-<p>显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\mathbb{R}^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>定解问题与适定性</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>高阶线性微分方程的一般理论</title>
-    <url>/2025/09/03/ODE/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/</url>
-    <content><![CDATA[<p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
-<p><strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
-$$<br>
-\left\lbrace<br>
-\begin{array}{cccc}<br>
-x_1(t_0)=1, &amp; x’_1(t_0)=0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)=0,\\<br>
-x_2(t_0)=0, &amp; x’_2(t_0)=1, &amp; \cdots, &amp; x_2^{(n-2)}(t_0)=0,\\<br>
-\vdots &amp; \vdots &amp; &amp; \vdots\\<br>
-x_n(t_0)=0, &amp; x_n’(t_0)=0, &amp; \cdots, &amp; x_n^{(n-1)}(t_0)=1<br>
-\end{array}<br>
-\right.<br>
-$$<br>
-的解 $x_1(t),x_2(t),\cdots,x_n(t)$ 一定存在且唯一, 注意到它们的 Wronski 行列式<br>
-$$<br>
-W(x_1(t_0),x_2(t_0),\cdots,x_n(t_0))=1\neq0<br>
-$$<br>
-故这 $n$ 个解必线性无关.</p>
-<hr>
-<p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
-<p><strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
-显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\\<br>
-\Longrightarrow&amp;(c_1x_1+c_2x_2+\cdots+c_nx_n)+(c_1+c_2+\cdots+c_{n+1})\bar x=0<br>
-\end{aligned}<br>
-$$<br>
-此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
-再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\\<br>
-\Longrightarrow&amp;c_1x_1+c_2x_2+\cdots+c_{n+1}x_{n+1}-(c_1+c_2+\cdots+c_{n+1})x_{n+2}=0<br>
-\end{aligned}<br>
-$$<br>
-故这 $n+2$ 个解在 $[a,b]$ 上线性相关, 产生矛盾!</p>
-<hr>
-<p><strong>[T040203]</strong> (Liouville 公式) 设 $x_1(t),x_2(t),\cdots,x_n(t)$ 是齐次线性方程 $L[x]=0$ 的任意 $n$ 个解, $W(t)$ 是它们的 Wronski 行列式, 则 $W(t)$ 满足一阶线性微分方程 $W’(t)=-a_1(t)W(t)$, 因而有<br>
-$$<br>
-W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$<br>
-<strong>证</strong> 由行列式求导法则可知<br>
-$$<br>
-W’(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
-x_1^{(n)}&amp;x_2^{(n)}&amp;\cdots&amp;x_n^{(n)}<br>
-\end{vmatrix}<br>
-$$<br>
-于是<br>
-$$<br>
-W’(t)+a_1(t)W(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}&amp;x_2^{(n)}+a_1(t)x_2^{(n-1)}&amp;\cdots&amp;x_n^{(n)}+a_1(t)x_n^{(n-1)}<br>
-\end{vmatrix}<br>
-$$<br>
-注意到<br>
-$$<br>
-\begin{cases}<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}=-a_2(t)x_1^{(n-2)}-\cdots-a_n(t)x_1,\\<br>
-x_2^{(n)}+a_1(t)x_2^{(n-1)}=-a_2(t)x_2^{(n-2)}-\cdots-a_n(t)x_2,\\<br>
-\quad\quad\quad\quad\quad\quad\quad~ …\\<br>
-x_n^{(n)}+a_1(t)x_n^{(n-1)}=-a_2(t)x_n^{(n-2)}-\cdots-a_n(t)x_n,\\<br>
-\end{cases}<br>
-$$<br>
-因此 $W’(t)+a_1(t)W(t)=0, \ t\in[a,b]$. 解得<br>
-$$<br>
-W(t)=ce^{-\int_{t_0}^ta_1(s)\mathrm{~d}s}<br>
-$$<br>
-注意到 $W(t_0)=c$, 于是 $W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b]$.</p>
-<hr>
-<p><strong>[T040204]</strong> 设 $x=x_1(t), \ x=x_2(t)$ 是微分方程 $x’‘+x=0$ 的满足初始条件<br>
-$$<br>
-x_1(0)=0,\quad x_1’(0)=1,\\<br>
-x_2(0)=1,\quad x_2’(0)=0<br>
-$$<br>
-的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
-<p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
-<p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.</p>
-<p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
-$$<br>
-\begin{vmatrix}<br>
-x_1(t) &amp; x_2(t)\\<br>
-x_1’(t) &amp; x_2’(t)<br>
-\end{vmatrix}=<br>
-\begin{vmatrix}<br>
-x_1(0) &amp; x_2(0)\\<br>
-x_1’(0) &amp; x_2’(0)<br>
-\end{vmatrix}=-1<br>
-$$<br>
-又 $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$, 故 $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>高阶微分方程</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解对初值与参数的连续性与可微性</title>
-    <url>/2025/09/03/ODE/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/</url>
-    <content><![CDATA[<p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
-$$<br>
-|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty&lt;y&lt;+\infty<br>
-$$<br>
-那么方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 的经过点 $(x_0,\xi_0)$ 的积分曲线 $y=\eta(x)$ 也必在 $[x_0,X]$ 上有定义, 且在 $[x_0,X]$ 上满足不等式<br>
-$$<br>
-|\eta(x)-\xi(x)|&lt; \varepsilon,\quad x_0\le x\le X.<br>
-$$<br>
-<strong>证</strong> 因为 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 $y\mid_{x=x_0}=\xi_0$ 的解 $y=\xi(x)$ 存在且唯一. 记积分曲线 $y=\xi(x)$ 为 $l_1$, 则 $l_1: \ y=\xi(x),x\in[x_0,X]$ 为 $xOy$ 平面上的有界闭集. 对 $l_1$ 上的任一点 $(x,y)$, 必存在以该点为圆心的开圆 $C\subset D$, 使在其内的函数 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 $C_i \ (i=1,2,\cdots,N)$, 且它们的全体可以覆盖整个积分曲线段 $l_1$. 设 $C_i$ 的半径为 $\varepsilon_i$, Lipschitz 常数为 $L$. 再记 $\varepsilon_0=\min\limits_{1\le i\le N}\lbrace\varepsilon_i\rbrace$, 令 $\Omega=\bigcup\limits_{i=1}^NC_i$, 则 $l_1\subset \Omega\subset D$, 且 $\Omega$ 的边界 $\partial \Omega$ 到 $l_1$ 的距离为 $0&lt;\rho\le\varepsilon_0$.<br>
-设方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 经过点 $(x_0,\xi_0)$ 的积分曲线为 $l_2:\ y=\eta(x)$. 注意到 $\xi(x)$ 与 $\eta(x)$ 满足积分方程<br>
-$$<br>
-\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t<br>
-$$<br>
-则<br>
-$$<br>
-\begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\\<br>
-&amp;=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\\<br>
-&amp;\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\\<br>
-&amp;=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t<br>
-\end{aligned}<br>
-$$<br>
-由 Gronwall 不等式可知<br>
-$$<br>
-|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t<br>
-$$<br>
- 取 $\bar\varepsilon=\min{\varepsilon,\rho}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}$, 则有<br>
-$$<br>
-\begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\\<br>
-&amp;\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}&lt;\rho<br>
-\end{aligned}<br>
-$$<br>
-即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>定解问题与适定性</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常系数齐次线性方程的待定指数函数法</title>
-    <url>/2025/09/03/ODE/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/</url>
-    <content><![CDATA[<p><strong>[T040301]</strong> 求方程 $x^2 y’‘+2x^2\tan y\cdot y’^2+xy’-\sin y\cos y=0$ 的通解.</p>
-<p><strong>解</strong> 令 $u=\tan y$, 即 $y=\arctan u$, 于是<br>
-$$<br>
-\begin{cases}<br>
-y’=\frac{1}{1+u^2}\frac{\mathrm du}{\mathrm dx},\<br>
-y’'=-\frac{2u}{(1+u^2)^2}\left(\frac{\mathrm du}{\mathrm dx}\right)^2+\frac{1}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}<br>
-\end{cases}<br>
-$$<br>
-于是原方程变为<br>
-$$<br>
-\frac{x^2}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}+\frac{x}{1+u^2}\frac{\mathrm du}{\mathrm dx}-\frac{u}{1+u^2}=0<br>
-$$<br>
-即 $x^2\frac{\mathrm d^2u}{\mathrm dx^2}+x\frac{\mathrm du}{\mathrm dx}-u=0$. 令 $x=e^t$, 即 $t=\ln x$, 令 $D=\frac{\mathrm d}{\mathrm dt}$, 则原方程可改写为<br>
-$$<br>
-D(D-1)u+Du-u=0\Longrightarrow \frac{\mathrm d^2u}{\mathrm dt^2}-u=0.<br>
-$$<br>
-其特征方程为 $\lambda^2-1=0$, 解得特征根为 $\lambda_1=1, \ \lambda_2=-1$, 故通解为<br>
-$$<br>
-u(t)=c_1e^t+c_2e^{-t}<br>
-$$<br>
-其中 $c_1,c_2$ 为任意常数. 再将 $t=\ln x$ 代入, 得<br>
-$$<br>
-u=c_1x+\frac{c_2}{x}\Rightarrow \tan y=c_1x+\frac{c_2}{x}<br>
-$$<br>
-即通解为 $y=\arctan(c_1x+\frac{c_2}{x})$, 其中 $c_1,c_2$ 为任意常数.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>高阶微分方程</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一阶线性微分方程组</title>
-    <url>/2025/09/03/ODE/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/</url>
-    <content><![CDATA[<p><strong>[T050101]</strong> 设 $A$ 为 $n\times n$ 常数矩阵, $\Phi(t)$ 是方程组 $X’=AX$ 的标准基解矩阵 $(\Phi(0)=E)$, 证明 $\Phi(t)\Phi^{-1}(t_0)=\Phi(t-t_0)$, 其中 $t_0$ 是常数.</p>
-<p><strong>证</strong> 由题设可知 $\Phi’(t)=A\Phi(t)$, 将 $t$ 换为 $t-t_0$, 则 $\Phi’(t-t_0)=A\Phi(t-t_0)$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的解矩阵. 又当 $t=t_0$ 时 $\det\Phi(0)=1$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的基解矩阵. 于是存在 $n$ 阶非奇异常数矩阵 $C$, 使得 $\Phi(t-t_0)=\Phi(t)C$, 再令 $t=t_0$, 有 $E=\Phi(t_0)C$, 得 $C=\Phi^{-1}(t_0)$, 故 $\Phi(t-t_0)=\Phi(t)\Phi^{-1}(t_0)$.</p>
-<hr>
-<p><strong>[T050102]</strong> (Liouville公式) 设 $X_1(t),X_2(t),\cdots,X_n(t)$ 是齐次线性方程组 $X’(t)=A(t)X(t)$ 的任意 $n$ 个解, 则它们的 Wronski 行列式 $W(t)$ 满足一阶线性微分方程<br>
-$$<br>
-W’(t)=\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]W(t),<br>
-$$<br>
-因而有<br>
-$$<br>
-W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$<br>
-<strong>证</strong> 记 $X_i(t)=\left(x_{i1}(t),\cdots,x_{in}(t)\right)^T$, 则<br>
-$$<br>
-W(t)=\left|X_1(t),\cdots,X_n(t)\right|=\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}<br>
-$$</p>
-<p>由行列式求导法则知</p>
-<p>$$<br>
-\begin{aligned}<br>
-W’(t)=&amp;\begin{vmatrix}<br>
-x’<em>{11}(t) &amp; x’</em>{21}(t) &amp; \cdots &amp; x’<em>{n1}(t)\\<br>
-x</em>{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x’<em>{12}(t) &amp; x’</em>{22}(t) &amp; \cdots &amp; x’<em>{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x</em>{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}\\<br>
-&amp;+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x’<em>{1n}(t) &amp; x’</em>{2n}(t) &amp; \cdots &amp; x’<em>{nn}(t)<br>
-\end{vmatrix}\\<br>
-=&amp;\begin{vmatrix}<br>
-\sum\limits</em>{i=1}^na_{1i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{1i}x_{2i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-\sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}\\<br>
-&amp;+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-\sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t)<br>
-\end{vmatrix}\\<br>
-=&amp;\begin{vmatrix}<br>
-a_{11}x_{11}(t) &amp; a_{11}x_{21}(t) &amp; \cdots &amp; a_{11}x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
-\end{vmatrix}+\cdots +<br>
-\begin{vmatrix}<br>
-x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
-x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-a_{nn}x_{1n}(t) &amp; a_{nn}x_{2n}(t) &amp; \cdots &amp; a_{nn}x_{nn}(t)<br>
-\end{vmatrix}\\<br>
-=&amp;[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).<br>
-\end{aligned}<br>
-$$</p>
-<!-- $$
-\begin{aligned}
-W'(t)=&\begin{vmatrix}
-  x'_{11}(t) & x'_{21}(t) & \cdots & x'_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}+
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  x'_{12}(t) & x'_{22}(t) & \cdots & x'_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}\\\\
-&+\cdots +
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x'_{1n}(t) & x'_{2n}(t) & \cdots & x'_{nn}(t)
-  \end{vmatrix}\\\\
-=&\begin{vmatrix}
-  \sum\limits_{i=1}^na_{1i}x_{1i}(t) & \sum\limits_{i=1}^na_{1i}x_{2i}(t) & \cdots & \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}+
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  \sum\limits_{i=1}^na_{2i}x_{1i}(t) & \sum\limits_{i=1}^na_{2i}x_{1i}(t) & \cdots & \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}\\\\
-&+\cdots +
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  \sum\limits_{i=1}^na_{ni}x_{1i}(t) & \sum\limits_{i=1}^na_{ni}x_{1i}(t) & \cdots & \sum\limits_{i=1}^na_{ni}x_{1i}(t)
-  \end{vmatrix}\\\\
-=&\begin{vmatrix}
-  a_{11}x_{11}(t) & a_{11}x_{21}(t) & \cdots & a_{11}x_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
-  \end{vmatrix}+\cdots +
-  \begin{vmatrix}
-  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
-  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
-  \vdots&\vdots&&\vdots\\\\
-  a_{nn}x_{1n}(t) & a_{nn}x_{2n}(t) & \cdots & a_{nn}x_{nn}(t)
-  \end{vmatrix}\\\\
-=&[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).
-\end{aligned}
-$$ -->
-<p>求解上述微分方程得<br>
-$$<br>
-W(t) = ce^{\int_{t_{0}}^t\left(a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right)\mathrm ds}<br>
-$$</p>
-<!-- $$
-W(t)=ce^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s}
-$$ -->
-<p>又 $W(t_0)=c$, 故<br>
-$$<br>
-W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>一阶线性微分方程组</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常系数非齐次线性方程的待定系数法</title>
-    <url>/2025/09/03/ODE/4.4%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%9D%9E%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E7%B3%BB%E6%95%B0%E6%B3%95/</url>
-    <content><![CDATA[<p><strong>[T040401]</strong> 求微分方程通解: $\frac{\mathrm d^2x}{\mathrm dt^2}+x=\frac{1}{\sin^3t}$.</p>
-<p><strong>解</strong> 对应的常系数齐次线性微分方程的特征方程为 $\lambda^2+1=0$, 得特征根为 $\lambda_1=i,\ \lambda_2=-i$. 故对应的常系数齐次线性微分方程的通解为 $x(t)=c_1\cos t+c_2\sin t$. 设原方程的通解为<br>
-$$<br>
-x(t)=c_1(t)\cos t+c_2(t)\sin t<br>
-$$<br>
-利用常数变易法, 得到关于 $c_1’(t)$ 和 $c_2’(t)$ 的两个方程:<br>
-$$<br>
-\begin{cases}<br>
-c_1’(t)\cos t+c_2’(t)\sin t=0\<br>
--c_1’(t)\sin t+c_2’(t)\cos t=\frac{1}{\sin^3t}<br>
-\end{cases}<br>
-$$<br>
-解得 $c_1’(t)=-\frac{1}{2\sin^2t}, \ c_2’(t)=\frac{\cos t}{\sin ^3t}$. 于是 $c_1(t)=\frac{1}{2}\cot t+c_1, \ c_2(t)=-\frac{1}{2}\sin^{-2}t+c_2$, 从而通解为<br>
-$$<br>
-x(t)=c_1\cos t+c_2\sin t+\frac{1}{2}\cot t\cos t-\frac{1}{2}\frac{1}{\sin t}.<br>
-$$</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>高阶微分方程</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一阶常系数线性微分方程组</title>
-    <url>/2025/09/03/ODE/5.2%20%E4%B8%80%E9%98%B6%E5%B8%B8%E7%B3%BB%E6%95%B0%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/</url>
-    <content><![CDATA[<p><strong>[T050201]</strong> 求方程组 $\begin{cases}x’+y’=y+z\\ y’+z’=z+x\\ z’+x’=x+y\end{cases}$ 的通解.</p>
-<p><strong>解</strong> 将方程组写成矩阵形式:<br>
-$$<br>
-\begin{aligned}<br>
-&amp;\begin{pmatrix}<br>
-1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
-\end{pmatrix}<br>
-\begin{pmatrix}<br>
-x’\\y’\\z’<br>
-\end{pmatrix}=<br>
-\begin{pmatrix}<br>
-0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
-\end{pmatrix}<br>
-\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}\\ \\<br>
-\Longrightarrow<br>
-&amp;\begin{pmatrix}<br>
-x’\\y’\\z’<br>
-\end{pmatrix}=\begin{pmatrix}<br>
-1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
-\end{pmatrix}^{-1}\begin{pmatrix}<br>
-0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
-\end{pmatrix}\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}=\begin{pmatrix}<br>
-0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0<br>
-\end{pmatrix}\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}<br>
-:=A\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-则 $|\lambda E-A|=\begin{vmatrix}\lambda&amp;-1&amp;0\\0&amp;\lambda&amp;-1\\-1&amp;0&amp;\lambda\end{vmatrix}=\lambda^3-1=0\Longrightarrow \lambda_1=1,\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i,\lambda_3=-\frac{1}{2}-\frac{\sqrt3}{2}i$.<br>
-对于特征值 $\lambda_1=1$, 有<br>
-$$<br>
-A-\lambda_1E=<br>
-\begin{pmatrix}<br>
--1&amp;1&amp;0\\0&amp;-1&amp;1\\1&amp;0&amp;-1<br>
-\end{pmatrix}\xrightarrow{初等行变换}<br>
-\begin{pmatrix}<br>
-1&amp;0&amp;-1\\0&amp;1&amp;-1\\0&amp;0&amp;0<br>
-\end{pmatrix}<br>
-$$<br>
-于是可取特征向量 $v_1=(1,1,1)^T$, 从而常系数齐次线性方程组有一个解 $X_1(t)=e^tv_1$.<br>
-对于特征值 $\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i$, 有<br>
-$$<br>
-A-\lambda_2E=<br>
-\begin{pmatrix}<br>
-\frac12-\frac{\sqrt{3}}{2}i&amp;1&amp;0\\0&amp;\frac12-\frac{\sqrt3}{2}i&amp;1\\1&amp;0&amp;\frac12-\frac{\sqrt{3}}{2}i<br>
-\end{pmatrix}<br>
-\xrightarrow{初等行变换}<br>
-\begin{pmatrix}<br>
-1&amp;0&amp;\frac12-\frac{\sqrt3}{2}i\\0&amp;1&amp;\frac12+\frac{\sqrt3}{2}i\\0&amp;0&amp;0<br>
-\end{pmatrix}<br>
-$$<br>
-于是可取特征向量 $v_2=\left(-\frac12-\frac{\sqrt3}{2}i,-\frac12+\frac{\sqrt3}{2}i,1\right)^T$. 注意到<br>
-$$<br>
-\begin{aligned}<br>
-e^{(-\frac{1}{2}+\frac{\sqrt3}{2}i)t}v_2&amp;=e^{-\frac12t}<br>
-\begin{pmatrix}<br>
-(-\frac{1}{2}+\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
-(-\frac{1}{2}-\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
-e^{\frac{\sqrt3}{2}it}<br>
-\end{pmatrix}\\<br>
-&amp;=e^{-\frac12t}<br>
-\left\lbrace<br>
-\begin{pmatrix}<br>
--\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
--\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
-\cos\frac{\sqrt3}{2}t<br>
-\end{pmatrix}+i<br>
-\begin{pmatrix}<br>
--\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
--\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
-\sin\frac{\sqrt3}{2}t<br>
-\end{pmatrix}<br>
-\right\rbrace<br>
-\end{aligned}<br>
-$$<br>
-于是另两个线性无关的解为<br>
-$$<br>
-X_2(t)=e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
--\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
-\cos\frac{\sqrt3}{2}t<br>
-\end{pmatrix},\quad<br>
-X_3(t)=e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
--\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
-\sin\frac{\sqrt3}{2}t<br>
-\end{pmatrix}<br>
-$$<br>
-注意到 $X_1(t),X_2(t),X_3(t)$ 是常系数齐次线性方程组的三个线性无关解, 故通解为<br>
-$$<br>
-\begin{aligned}<br>
-X(t)&amp;=c_1X_1(t)+c_2X_2(t)+c_3X_3(t)\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1\\1\\1<br>
-\end{pmatrix}+<br>
-c_2e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
--\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
-\cos\frac{\sqrt3}{2}t<br>
-\end{pmatrix}+<br>
-c_3e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
--\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
-\sin\frac{\sqrt3}{2}t<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-其中 $c_1,c_2,c_3$ 为任意常数.</p>
-<hr>
-<p><strong>[T050202]</strong> 求常系数非齐次线性方程组的通解:<br>
-$$<br>
-X’=\begin{pmatrix}<br>
--1&amp;2\\-2&amp;3<br>
-\end{pmatrix}X+\begin{pmatrix}<br>
-1\\0<br>
-\end{pmatrix}.<br>
-$$<br>
-<strong>解</strong> 记 $X’=AX+F$, 于是<br>
-$$<br>
-|\lambda E-A|=\begin{vmatrix}<br>
-\lambda+1&amp;-2\\2&amp;\lambda-3<br>
-\end{vmatrix}=(\lambda-1)^2\Longrightarrow \lambda=1 \ (二 \ 重)<br>
-$$<br>
-从而对应的常系数齐次线性方程组有两个解形如 $X(t)=(R_0+R_1t)e^t$, 其中 $R_0,R_1$ 满足<br>
-$$<br>
-\begin{cases}<br>
-(A-E)R_0=R_1\\<br>
-(A-E)^2R_0=0<br>
-\end{cases}<br>
-$$<br>
-注意到<br>
-$$<br>
-(A-E)^2=\begin{pmatrix}<br>
--2&amp;2\\-2&amp;2<br>
-\end{pmatrix}^2=<br>
-O<br>
-$$<br>
-故可取 $R_0=(1,0)^T$ 和 $(0,1)^T$, 从而 $R_1=(-2,-2)^T$ 和 $(2,2)$, 从而对应的常系数齐次线性方程组有两个线性无关解</p>
-<p>$$<br>
-\begin{aligned}<br>
-X_1(t)&amp;=<br>
-\begin{pmatrix}<br>
-1\\<br>
-0<br>
-\end{pmatrix}+<br>
-\begin{pmatrix}<br>
--2\\<br>
--2<br>
-\end{pmatrix}t<br>
-e^t=e^t\begin{pmatrix}<br>
-1-2t\\<br>
--2t<br>
-\end{pmatrix}\\</p>
-<p>X_2(t)&amp;=\begin{pmatrix}<br>
-0\\1<br>
-\end{pmatrix}+<br>
-\begin{pmatrix}<br>
-2\\2<br>
-\end{pmatrix}t<br>
-e^t=e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-由此可得对应的常系数齐次线性方程组的基解矩阵为</p>
-<p>$$<br>
-\Phi(t)=e^t<br>
-\begin{pmatrix}<br>
-1-2t&amp;2t\\<br>
--2t&amp;1+2t<br>
-\end{pmatrix},<br>
-\Phi^{-1}(t)=e^{-t}<br>
-\begin{pmatrix}<br>
-1+2t&amp;-2t\\<br>
-2t&amp;1-2t<br>
-\end{pmatrix},<br>
-$$</p>
-<p>于是原常系数非齐次线性方程组有特解</p>
-<p>$$<br>
-\begin{aligned}<br>
-\bar X(t)&amp;=\Phi(t)\int_0^t\Phi^{-1}(s)F\mathrm{~d}s=e^t\begin{pmatrix}<br>
-1-2t&amp;2t\\-2t&amp;1+2t<br>
-\end{pmatrix}\begin{pmatrix}<br>
--3e^{-t}-2te^{-t}+3\\-2e^{-t}-2te^{-t}+2<br>
-\end{pmatrix}\\<br>
-&amp;=e^t\begin{pmatrix}<br>
--3e^{-t}+3-2t\\-2e^{-t}+2-2t<br>
-\end{pmatrix}=\begin{pmatrix}<br>
--3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-故原方程组的通解<br>
-$$<br>
-\begin{aligned}<br>
-X(t)&amp;=c_1X_1(t)+c_2X_2(t)+\bar X(t)\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1-2t\\-2t<br>
-\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}+\begin{pmatrix}<br>
--3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
-\end{pmatrix}\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1-2t\\-2t<br>
-\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}+\begin{pmatrix}<br>
--3+2e^t\\-2+2e^t<br>
-\end{pmatrix}\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1-2t\\-2t<br>
-\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}+\begin{pmatrix}<br>
--3\\-2<br>
-\end{pmatrix}.<br>
-\end{aligned}<br>
-$$</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>一阶线性微分方程组</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>组合两张表</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/175%E7%BB%84%E5%90%88%E4%B8%A4%E5%BC%A0%E8%A1%A8/</url>
-    <content><![CDATA[<p><strong>[leetcode 175]</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>personId 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
-<p>表: Address</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
-<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code> 。<br>
-以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p>示例 1:</p>
-<p>输入:<br>
-Person表:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br></pre></td></tr></table></figure>
-<p>Address表:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
-<p>输出:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| firstName | lastName | city          | state    |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| Allen     | Wang     | Null          | Null     |</span><br><span class="line">| Bob       | Alice    | New York City | New York |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br></pre></td></tr></table></figure>
-<p>解释:<br>
-地址表中没有 <code>personId = 1</code> 的地址，所以它们的城市和州返回 <code>null</code>。<code>addressId = 1</code> 包含了 <code>personId = 2</code> 的地址信息。</p>
-<p><strong>解：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on = <span class="string">&#x27;personId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-<p>此题主要考察“左连接”。</p>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第n高的薪水</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/177%E7%AC%ACn%E9%AB%98%E7%9A%84%E8%96%AA%E6%B0%B4/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: Employee</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 n 高的 不同 工资。如果少于 n 个不同工资，查询结果应该为 null 。</p>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N-<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第二高的薪水</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/176%E7%AC%AC%E4%BA%8C%E9%AB%98%E7%9A%84%E8%96%AA%E6%B0%B4/</url>
-    <content><![CDATA[<p><strong>题目描述：</strong> <code>Employee</code> 表：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是这个表的主键。表的每一行包含员工的工资信息。查询并返回 Employee 表中第二高的不同薪水 。如果不存在第二高的薪水，查询应该返回 <code>null</code>(Pandas 则返回 <code>None</code>) 。查询结果如下例所示。</p>
-<ul>
-<li>示例 1：<br>
-输入：<br>
-<code>Employee</code> 表：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">| 2  | 200    |</span><br><span class="line">| 3  | 300    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| 200                 |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
-<ul>
-<li>示例 2：<br>
-输入：<br>
-<code>Employee</code> 表：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| null                |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">second_highest_salary</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;SecondHighestSalary&#x27;</span> : out&#125;)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分数排名</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/178%E5%88%86%E6%95%B0%E6%8E%92%E5%90%8D/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: Scores</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>Score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。排名按以下规则计算:</p>
-<ul>
-<li>分数应按从高到低排列。</li>
-<li>如果两个分数相等，那么两个分数的排名应该相同。</li>
-<li>在排名相同的分数后，排名数应该是下一个连续的整数。换句话说，排名之间不应该有空缺的数字。</li>
-</ul>
-<p>按 score 降序返回结果表。查询结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<p>输入:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Scores 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | score |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | 3.50  |</span><br><span class="line">| 2  | 3.65  |</span><br><span class="line">| 3  | 4.00  |</span><br><span class="line">| 4  | 3.85  |</span><br><span class="line">| 5  | 4.00  |</span><br><span class="line">| 6  | 3.65  |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+-------+------+</span><br><span class="line">| score | rank |</span><br><span class="line">+-------+------+</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 3.85  | 2    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.50  | 4    |</span><br><span class="line">+-------+------+</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method = <span class="string">&#x27;dense&#x27;</span>, ascending = <span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>连续出现的数</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/180%E8%BF%9E%E7%BB%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%95%B0/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表：<code>Logs</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。返回的结果表中的数据可以按任意顺序排列。结果格式如下面的例子所示：</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Logs 表：</span><br><span class="line">+----+-----+</span><br><span class="line">| id | num |</span><br><span class="line">+----+-----+</span><br><span class="line">| 1  | 1   |</span><br><span class="line">| 2  | 1   |</span><br><span class="line">| 3  | 1   |</span><br><span class="line">| 4  | 2   |</span><br><span class="line">| 5  | 1   |</span><br><span class="line">| 6  | 2   |</span><br><span class="line">| 7  | 2   |</span><br><span class="line">+----+-----+</span><br><span class="line">输出：</span><br><span class="line">Result 表：</span><br><span class="line">+-----------------+</span><br><span class="line">| ConsecutiveNums |</span><br><span class="line">+-----------------+</span><br><span class="line">| 1               |</span><br><span class="line">+-----------------+</span><br><span class="line">解释：1 是唯一连续出现至少三次的数字。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(180)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>超过经理收入的员工</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/181%E8%B6%85%E8%BF%87%E7%BB%8F%E7%90%86%E6%94%B6%E5%85%A5%E7%9A%84%E5%91%98%E5%B7%A5/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表：Employee</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（具有唯一值的列）。该表的每一行都表示雇员的ID、姓名、工资和经理的ID。编写解决方案，找出收入比经理高的员工。以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| id | name  | salary | managerId |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| 1  | Joe   | 70000  | 3         |</span><br><span class="line">| 2  | Henry | 80000  | 4         |</span><br><span class="line">| 3  | Sam   | 60000  | Null      |</span><br><span class="line">| 4  | Max   | 90000  | Null      |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">输出: </span><br><span class="line">+----------+</span><br><span class="line">| Employee |</span><br><span class="line">+----------+</span><br><span class="line">| Joe      |</span><br><span class="line">+----------+</span><br><span class="line">解释: Joe 是唯一挣得比经理多的雇员。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on = <span class="string">&#x27;managerId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(181)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>查找重复的电子邮箱</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/182%E6%9F%A5%E6%89%BE%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（具有唯一值的列）。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。</p>
-<p>编写解决方案来报告所有重复的电子邮件。 请注意，可以保证电子邮件字段不为 NULL。以任意顺序返回结果表。</p>
-<p>结果格式如下例。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+---------+</span><br><span class="line">| id | email   |</span><br><span class="line">+----+---------+</span><br><span class="line">| 1  | a@b.com |</span><br><span class="line">| 2  | c@d.com |</span><br><span class="line">| 3  | a@b.com |</span><br><span class="line">+----+---------+</span><br><span class="line">输出: </span><br><span class="line">+---------+</span><br><span class="line">| Email   |</span><br><span class="line">+---------+</span><br><span class="line">| a@b.com |</span><br><span class="line">+---------+</span><br><span class="line">解释: a@b.com 出现了两次。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<p>解法一：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>]&gt;=<span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
-<p>解法二：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name = <span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(182)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从不订购的客户</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/183%E4%BB%8E%E4%B8%8D%E8%AE%A2%E8%B4%AD%E7%9A%84%E5%AE%A2%E6%88%B7/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> Customers 表：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 SQL 中，<code>id</code> 是该表的主键。该表的每一行都表示客户的 <code>ID</code> 和名称。</p>
-<p>Orders 表：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| customerId  | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p>在 <code>SQL</code> 中，<code>id </code>是该表的主键。<code>customerId</code> 是 <code>Customers</code> 表中 <code>ID</code> 的外键( <code>Pandas</code> 中的连接键)。该表的每一行都表示订单的 ID 和订购该订单的客户的 <code>ID</code>。</p>
-<p>找出所有从不点任何东西的顾客。以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Customers table:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | Joe   |</span><br><span class="line">| 2  | Henry |</span><br><span class="line">| 3  | Sam   |</span><br><span class="line">| 4  | Max   |</span><br><span class="line">+----+-------+</span><br><span class="line">Orders table:</span><br><span class="line">+----+------------+</span><br><span class="line">| id | customerId |</span><br><span class="line">+----+------------+</span><br><span class="line">| 1  | 3          |</span><br><span class="line">| 2  | 1          |</span><br><span class="line">+----+------------+</span><br><span class="line">输出：</span><br><span class="line">+-----------+</span><br><span class="line">| Customers |</span><br><span class="line">+-----------+</span><br><span class="line">| Henry     |</span><br><span class="line">| Max       |</span><br><span class="line">+-----------+</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = customers.merge(orders[[<span class="string">&#x27;customerId&#x27;</span>]], left_on = <span class="string">&#x27;id&#x27;</span>, right_on = <span class="string">&#x27;customerId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_merge.loc[df_merge[<span class="string">&#x27;customerId&#x27;</span>].isna(), [<span class="string">&#x27;name&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Customers&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(183)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>部门工资最高的员工</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/184%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E6%9C%80%E9%AB%98%E7%9A%84%E5%91%98%E5%B7%A5/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong><br>
-表： <code>Employee</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| 列名          | 类型    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 <code>SQL</code> 中，<code>id</code>是此表的主键。<br>
-<code>departmentId</code> 是 <code>Department</code> 表中 <code>id</code> 的外键（在 <code>Pandas</code> 中称为 <code>join key</code>）。<br>
-此表的每一行都表示员工的 <code>id</code>、姓名和工资。它还包含他们所在部门的 <code>id</code>。</p>
-<p>表： <code>Department</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 <code>SQL</code> 中，<code>id</code> 是此表的主键列。<br>
-此表的每一行都表示一个部门的 id 及其名称。</p>
-<p>查找出每个部门中薪资最高的员工。<br>
-按 任意顺序 返回结果表。<br>
-查询结果格式如下例所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 70000  | 1            |</span><br><span class="line">| 2  | Jim   | 90000  | 1            |</span><br><span class="line">| 3  | Henry | 80000  | 2            |</span><br><span class="line">| 4  | Sam   | 60000  | 2            |</span><br><span class="line">| 5  | Max   | 90000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出：</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Jim      | 90000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">解释：Max 和 Jim 在 IT 部门的工资都是最高的，Henry 在销售部的工资最高。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>]==max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(department, left_on = <span class="string">&#x27;departmentId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_d&#x27;</span>))[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(184)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>部门工资前三高的所有员工</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/185%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E5%89%8D%E4%B8%89%E9%AB%98%E7%9A%84%E6%89%80%E6%9C%89%E5%91%98%E5%B7%A5/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: <code>Employee</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-<code>departmentId</code> 是 <code>Department</code> 表中 <code>ID</code> 的外键（<code>reference</code> 列）。<br>
-该表的每一行都表示员工的<code>ID</code>、姓名和工资。它还包含了他们部门的<code>ID</code>。</p>
-<p>表: <code>Department</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-该表的每一行表示部门ID和部门名。</p>
-<p>公司的主管们感兴趣的是公司每个部门中谁赚的钱最多。一个部门的 高收入者 是指一个员工的工资在该部门的 不同 工资中 排名前三 。</p>
-<p>编写解决方案，找出每个部门中 收入高的员工 。</p>
-<p>以 任意顺序 返回结果表。</p>
-<p>返回结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 85000  | 1            |</span><br><span class="line">| 2  | Henry | 80000  | 2            |</span><br><span class="line">| 3  | Sam   | 60000  | 2            |</span><br><span class="line">| 4  | Max   | 90000  | 1            |</span><br><span class="line">| 5  | Janet | 69000  | 1            |</span><br><span class="line">| 6  | Randy | 85000  | 1            |</span><br><span class="line">| 7  | Will  | 70000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department  表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">| IT         | Joe      | 85000  |</span><br><span class="line">| IT         | Randy    | 85000  |</span><br><span class="line">| IT         | Will     | 70000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| Sales      | Sam      | 60000  |</span><br><span class="line">+------------+----------+--------+</span><br></pre></td></tr></table></figure>
-<p><strong>解释:</strong><br>
-在IT部门:</p>
-<ul>
-<li>Max的工资最高</li>
-<li>兰迪和乔都赚取第二高的独特的薪水</li>
-<li>威尔的薪水是第三高的</li>
-</ul>
-<p>在销售部:</p>
-<ul>
-<li>亨利的工资最高</li>
-<li>山姆的薪水第二高</li>
-<li>没有第三高的工资，因为只有两名员工</li>
-</ul>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep&lt;=<span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(department, left_on=<span class="string">&#x27;departmentId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_dep&#x27;</span>))[[<span class="string">&#x27;name_dep&#x27;</span>,<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;salary&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(185)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>删除重复的电子邮箱</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/196%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。</p>
-<p>编写解决方案 删除 所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
-<p>（对于 <code>SQL</code> 用户，请注意你应该编写一个 <code>DELETE</code> 语句而不是 <code>SELECT</code> 语句。）</p>
-<p>（对于 <code>Pandas</code> 用户，请注意你应该直接修改 <code>Person</code> 表。）</p>
-<p>运行脚本后，显示的答案是 <code>Person</code> 表。驱动程序将首先编译并运行您的代码片段，然后再显示 <code>Person</code> <code>表。Person</code> 表的最终顺序 无关紧要 。</p>
-<p>返回结果格式如下示例所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">输出: </span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br><span class="line">解释: john@example.com重复两次。我们保留最小的Id = 1。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(196)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>上升的温度</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/197%E4%B8%8A%E5%8D%87%E7%9A%84%E6%B8%A9%E5%BA%A6/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong><br>
-表： Weather</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------+---------+</span><br><span class="line">| Column Name   | Type    |</span><br><span class="line">+---------------+---------+</span><br><span class="line">| id            | int     |</span><br><span class="line">| recordDate    | date    |</span><br><span class="line">| temperature   | int     |</span><br><span class="line">+---------------+---------+</span><br></pre></td></tr></table></figure>
-<p>id 是该表具有唯一值的列。<br>
-没有具有相同 recordDate 的不同行。<br>
-该表包含特定日期的温度信息</p>
-<p>编写解决方案，找出与之前（昨天的）日期相比温度更高的所有日期的 id 。</p>
-<p>返回结果 无顺序要求 。</p>
-<p>结果格式如下例子所示。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Weather 表：</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| id | recordDate | Temperature |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| 1  | 2015-01-01 | 10          |</span><br><span class="line">| 2  | 2015-01-02 | 25          |</span><br><span class="line">| 3  | 2015-01-03 | 20          |</span><br><span class="line">| 4  | 2015-01-04 | 30          |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">输出：</span><br><span class="line">+----+</span><br><span class="line">| id |</span><br><span class="line">+----+</span><br><span class="line">| 2  |</span><br><span class="line">| 4  |</span><br><span class="line">+----+</span><br><span class="line">解释：</span><br><span class="line">2015-01-02 的温度比前一天高（10 -&gt; 25）</span><br><span class="line">2015-01-04 的温度比前一天高（20 -&gt; 30）</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rising_temperature</span>(<span class="params">weather: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    weather.sort_values(<span class="string">&#x27;recordDate&#x27;</span>, inplace = <span class="literal">True</span>)</span><br><span class="line">    weather_diff = weather.diff()</span><br><span class="line">    <span class="keyword">return</span> weather.loc[(weather_diff[<span class="string">&#x27;recordDate&#x27;</span>] == datetime.timedelta(<span class="number">1</span>)) &amp; (weather_diff[<span class="string">&#x27;temperature&#x27;</span>]&gt;<span class="number">0</span>), [<span class="string">&#x27;id&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(197)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GBDT</title>
     <url>/2025/10/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/GBDT/</url>
     <content><![CDATA[<h1>Gradient Boosting Decision Trees</h1>
@@ -1429,120 +162,6 @@ $$<br>
       <tags>
         <tag>集成学习</tag>
         <tag>boosting</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Transformer 架构 —— Attention Is All You Need</title>
-    <url>/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/</url>
-    <content><![CDATA[<h1>Transformer — 模型架构</h1>
-<h2 id="1-简介">1 简介</h2>
-<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Transformer%E7%BB%93%E6%9E%84.png" alt="Transformer结构"></p>
-<p>Transformer 架构主要由编码器和解码器两部分构成, 其中编码器将符号表示组成的输入序列 $x=(x_1,\cdots,x_n)$ 映射为连续表示序列 $z=(z_1,\cdots,z_n)$. 给定 $z$, 解码器<strong>逐个元素</strong>地生成 (自回归) 输出符号序列 $y=(y_1,\cdots,y_m)$.</p>
-<blockquote>
-<p>对于一个“英翻中”问题, 输入序列 <code>x = ['I', 'love', 'math']</code> , 模型先把它们查表成向量加上位置向量后输入到编码器, 得到序列 <code>[z1, z2, z3]</code>, 其中每个 <code>zi</code> 都是一个向量, 例如 <code>z1</code> 就是单次 <code>'I'</code> 的向量表示. 通过解码器得到输出序列 <code>['我', '爱', '数学']</code>.</p>
-</blockquote>
-<p>具体地, 编码器由 $N=6$ 个相同的层堆叠而成, 每一层包含两个子层: 其一是多头自注意力机制层, 其二是全连接前馈神经网络层. 在两个子层之后都采用残差连接, 随后用层归一化 (LayerNorm). 即每个子层的输出为<br>
-$$<br>
-\mathrm{LayerNorm}(x+\mathrm{Sublayer}(x)),<br>
-$$<br>
-其中 $\mathrm{Sublayer}(x)$ 表示该子层实现的函数. 为了便于层残差连接, 所有子层以及嵌入层的输出维度都设为 $d_{model}=512$.</p>
-<blockquote>
-<p>LayerNorm 就是对每一个样本做一个标准化, 即对于样本 $x_{i,\cdot}$, 计算它所有特征的均值 $\mu_i$ 和标准差 $\sigma_i$, 则<br>
-$$<br>
-\mathrm{LayerNorm}(x_i)=\frac{x_{i,\cdot}-\mu_i}{\sigma_i}.<br>
-$$<br>
-与之对应的有 BatchNorm, 它是对每个特征做标准化, 即对于特征列 $x_{\cdot,j}$, 计算列均值和标准差 $\mu_j,\sigma_j$, 则<br>
-$$<br>
-\mathrm{BatchNorm}(x_{\cdot,j})=\frac{x_{\cdot,j}-\mu_j}{\sigma_j}.<br>
-$$<br>
-简单来说, 对于二维的输入, LayerNorm 就是对每一行进行标准化, BatchNorm 是对每一列进行标准化.</p>
-<p>对于一个三维的输入, 可以用下面的图形象表示</p>
-<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Norm.png" alt="Norm"></p>
-<p>图片来源：<a href="https://www.cnblogs.com/xiaxuexiaoab/p/18325271">https://www.cnblogs.com/xiaxuexiaoab/p/18325271</a></p>
-</blockquote>
-<p>解码器同样由 $N=6$ 个相同的层组成. 除了与编码器层相同的两个子层外, 解码器还插入了新的层: 对编码器的输出做多头注意力, 且利用掩码机制使得第 $i$ 个位置的预测只能依赖于 $i$ 之前已知的输出.</p>
-<h2 id="2-Attention">2 Attention</h2>
-<p>注意力函数可以描述为: 输入一个查询 (query)、一组键 (key) 值 (value) 对, 然后得到一个输出. 即<br>
-$$<br>
-\mathrm{Attention}:~(Q,K,V)\to \mathrm{Attention}(Q,K,V),<br>
-$$<br>
-其中 query、key、value 与输出都是向量, 输出是 value 的加权求和, 每个 value 的权重由 query 与对应 key 求得, 事实上就是 query 与 key 之间的相似度.</p>
-<h3 id="2-1-缩放点积注意力-Scaled-Dot-Product-Attention">2.1 缩放点积注意力 (Scaled Dot-Product Attention)</h3>
-<p>本架构采用的是缩放点积注意力, 即用向量的内积来衡量向量之间的相似度.</p>
-<ul>
-<li>
-<p>输入: 维数为 $d_k$ 的 query 与 key, 维数为 $d_v$ 的 value.</p>
-</li>
-<li>
-<p>一组 query 会打包为矩阵 $Q_{n\times d_k}$, key 和 value 分别打包为矩阵 $K_{m\times d_k},V_{m\times d_v}$.</p>
-</li>
-<li>
-<p>输出:<br>
-$$<br>
-\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V.<br>
-$$</p>
-</li>
-</ul>
-<p>与一般的点积注意力不同, 这里在做内积后还进行了 $1/\sqrt{d_k}$ 的缩放, 主要是为了避免当 $d_k$ 较大时, 可能导致 $QK^T$ 中每一行元素都很大或很小, 可能导致 softmax 以后很接近 $0$ 或 $1$, 这会使得梯度很小.</p>
-<p>在解码器中, 增加了 Mask 来防止在当前时间看到之后时间的数据. 具体而言, 在 $t$ 时间, 赋予 $q_t,k_t$ 及其之后的值很大的负数 (例如 $-1\times 10^{10}$), 它在进入 softmax 函数之后会变成几乎为 $0$.</p>
-<h3 id="2-2-多头注意力-Multi-Head-Attention">2.2 多头注意力 (Multi-Head Attention)</h3>
-<p>与仅用 $d_{model}$ 维度的一组 $Q,K,V$ 做一次注意力相比, 把 $Q,K,V$ 分别通过不同的可学习线性映射投影到 $h$ 组 $(d_k,d_k,d_v)$ 维度更有效.</p>
-<p>对于输入隐状态 $H\in\mathbb R^{n\times d}$ (批量维先忽略)</p>
-<ul>
-<li>
-<p>先做三组线性投影到 $h$ 个子空间 (每头维度 $d_k=d_v=d_{model}/h$):<br>
-$$<br>
-Q_i=HW_Q^{(i)},~K_i=HW_K^{(i)},~V_i=HW_V^{(i)}\in\mathbb R^{n\times d_k}.<br>
-$$</p>
-</li>
-<li>
-<p>每个头各自做一次缩放点积注意力:<br>
-$$<br>
-\mathrm{head}_i=\mathrm{softmax}\left(\frac{Q_iK_i^T}{\sqrt{d_k}}\right)V_i\in\mathbb R^{n\times d_k}.<br>
-$$</p>
-</li>
-<li>
-<p>把所有头沿特征维拼接后, 再经一个输出线性变换:<br>
-$$<br>
-\mathrm{MHA}(H)=\mathrm{Concat}(\mathrm{head}_1,\cdots,\mathrm{head}_h)W_O, \quad W_O\in\mathbb R^{(hd_k)\times d}.<br>
-$$</p>
-</li>
-</ul>
-<h2 id="3-逐位置前馈神经网络-Position-wise-Feed-Forward-Networks">3 逐位置前馈神经网络 (Position-wise Feed-Forward Networks)</h2>
-<p>除了注意力子层外, 编码器和解码器的每个层都包含一个逐位置且参数共享的全连接前馈网络:<br>
-$$<br>
-\mathrm{FFN}(x)=\max(0, xW_1+b_1)W_2+b_2<br>
-$$<br>
-事实上, 就是对每个 token 的向量 $x_t\in\mathbb R^{d_{model}}$ 执行相同的两次线性变换, 且第一次线性变换后要执行一次激活函数 ReLU. 其中输入与输出维度为 $d_{model}$, 中间层维度为 $d_{ff}=2048$.</p>
-<h2 id="4-嵌入-Embedding-与-Softmax">4 嵌入 (Embedding) 与 Softmax</h2>
-<p>用可学习的嵌入把输入/输出 token 映射到 $d_{model}$ 维向量, 并用线性变换 + softmax 把解码器输出转为下一个 token 的预测概率. 在本模型中, 两个嵌入层与 pre-softmax 线性层共用同一套权重, 在嵌入层里, 这些权重还会乘以 $\sqrt{d_{model}}$.</p>
-<h3 id="4-1-Embedding">4.1 Embedding</h3>
-<p>设词表集合 $\mathcal V$, 可训练词嵌入矩阵 $E\in\mathbb R^{|\mathcal V|\times d}$. 把序列 $(x_1,\cdots,x_n)$ 查表成矩阵 $H^{(0)}\in\mathbb R^{n\times d}$, 再遇位置向量相加:<br>
-$$<br>
-H_t^{(0)}=E[x_t]\cdot\sqrt d+P_t.<br>
-$$<br>
-乘 $\sqrt d$ 目的是让&quot;词向量的方差尺度&quot;与&quot;位置向量&quot;相当, 避免相加时位置信号被淹没或过强.</p>
-<h3 id="4-2-输出层-线性层-softmax">4.2 输出层: 线性层 + softmax</h3>
-<p>解码器最后一层输出 $H^{(L)}\in\mathbb R^{m\times d}$, 通过线性变换映射到词表维度得到 logits:<br>
-$$<br>
-\mathrm{logits}=H^{(L)}W_{lm}+b,\quad W_{lm}=E^T\in\mathbb R^{d\times |\mathcal V|}.<br>
-$$<br>
-softmax 得到下一个 token 的条件分布:<br>
-$$<br>
-p(y_t=v~\vert~ \cdot)=\mathrm{softmax}(\mathrm{logits}_t)_v, \quad v\in\mathcal V.<br>
-$$</p>
-<h2 id="5-位置编码">5 位置编码</h2>
-<p>为了让模型知道序列的顺序信息, 我们在编码器与解码器将位置编码与输入嵌入相加. 位置编码与嵌入具有相同维度 $d_{model}$, 其既可以学习也可以固定, 本模型采用不同频率的正弦/余弦函数:<br>
-$$<br>
-PE(pos,2i)=\sin\left(\frac{pos}{10000^{2i/d_{model}}}\right),\quad PE(pos,2i+1)=\cos\left(\frac{pos}{10000^{2i/d_{model}}}\right),<br>
-$$<br>
-其中 $pos$ 为位置, $i$ 为维度索引.</p>
-]]></content>
-      <categories>
-        <category>机器学习与深度学习</category>
-      </categories>
-      <tags>
-        <tag>Transformer</tag>
       </tags>
   </entry>
   <entry>
@@ -1838,6 +457,156 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>Transformer 架构 —— Attention Is All You Need</title>
+    <url>/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/</url>
+    <content><![CDATA[<h1>Transformer — 模型架构</h1>
+<h2 id="1-简介">1 简介</h2>
+<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Transformer%E7%BB%93%E6%9E%84.png" alt="Transformer结构"></p>
+<p>Transformer 架构主要由编码器和解码器两部分构成, 其中编码器将符号表示组成的输入序列 $x=(x_1,\cdots,x_n)$ 映射为连续表示序列 $z=(z_1,\cdots,z_n)$. 给定 $z$, 解码器<strong>逐个元素</strong>地生成 (自回归) 输出符号序列 $y=(y_1,\cdots,y_m)$.</p>
+<blockquote>
+<p>对于一个“英翻中”问题, 输入序列 <code>x = ['I', 'love', 'math']</code> , 模型先把它们查表成向量加上位置向量后输入到编码器, 得到序列 <code>[z1, z2, z3]</code>, 其中每个 <code>zi</code> 都是一个向量, 例如 <code>z1</code> 就是单次 <code>'I'</code> 的向量表示. 通过解码器得到输出序列 <code>['我', '爱', '数学']</code>.</p>
+</blockquote>
+<p>具体地, 编码器由 $N=6$ 个相同的层堆叠而成, 每一层包含两个子层: 其一是多头自注意力机制层, 其二是全连接前馈神经网络层. 在两个子层之后都采用残差连接, 随后用层归一化 (LayerNorm). 即每个子层的输出为<br>
+$$<br>
+\mathrm{LayerNorm}(x+\mathrm{Sublayer}(x)),<br>
+$$<br>
+其中 $\mathrm{Sublayer}(x)$ 表示该子层实现的函数. 为了便于层残差连接, 所有子层以及嵌入层的输出维度都设为 $d_{model}=512$.</p>
+<blockquote>
+<p>LayerNorm 就是对每一个样本做一个标准化, 即对于样本 $x_{i,\cdot}$, 计算它所有特征的均值 $\mu_i$ 和标准差 $\sigma_i$, 则<br>
+$$<br>
+\mathrm{LayerNorm}(x_i)=\frac{x_{i,\cdot}-\mu_i}{\sigma_i}.<br>
+$$<br>
+与之对应的有 BatchNorm, 它是对每个特征做标准化, 即对于特征列 $x_{\cdot,j}$, 计算列均值和标准差 $\mu_j,\sigma_j$, 则<br>
+$$<br>
+\mathrm{BatchNorm}(x_{\cdot,j})=\frac{x_{\cdot,j}-\mu_j}{\sigma_j}.<br>
+$$<br>
+简单来说, 对于二维的输入, LayerNorm 就是对每一行进行标准化, BatchNorm 是对每一列进行标准化.</p>
+<p>对于一个三维的输入, 可以用下面的图形象表示</p>
+<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Norm.png" alt="Norm"></p>
+<p>图片来源：<a href="https://www.cnblogs.com/xiaxuexiaoab/p/18325271">https://www.cnblogs.com/xiaxuexiaoab/p/18325271</a></p>
+</blockquote>
+<p>解码器同样由 $N=6$ 个相同的层组成. 除了与编码器层相同的两个子层外, 解码器还插入了新的层: 对编码器的输出做多头注意力, 且利用掩码机制使得第 $i$ 个位置的预测只能依赖于 $i$ 之前已知的输出.</p>
+<h2 id="2-Attention">2 Attention</h2>
+<p>注意力函数可以描述为: 输入一个查询 (query)、一组键 (key) 值 (value) 对, 然后得到一个输出. 即<br>
+$$<br>
+\mathrm{Attention}:~(Q,K,V)\to \mathrm{Attention}(Q,K,V),<br>
+$$<br>
+其中 query、key、value 与输出都是向量, 输出是 value 的加权求和, 每个 value 的权重由 query 与对应 key 求得, 事实上就是 query 与 key 之间的相似度.</p>
+<h3 id="2-1-缩放点积注意力-Scaled-Dot-Product-Attention">2.1 缩放点积注意力 (Scaled Dot-Product Attention)</h3>
+<p>本架构采用的是缩放点积注意力, 即用向量的内积来衡量向量之间的相似度.</p>
+<ul>
+<li>
+<p>输入: 维数为 $d_k$ 的 query 与 key, 维数为 $d_v$ 的 value.</p>
+</li>
+<li>
+<p>一组 query 会打包为矩阵 $Q_{n\times d_k}$, key 和 value 分别打包为矩阵 $K_{m\times d_k},V_{m\times d_v}$.</p>
+</li>
+<li>
+<p>输出:<br>
+$$<br>
+\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V.<br>
+$$</p>
+</li>
+</ul>
+<p>与一般的点积注意力不同, 这里在做内积后还进行了 $1/\sqrt{d_k}$ 的缩放, 主要是为了避免当 $d_k$ 较大时, 可能导致 $QK^T$ 中每一行元素都很大或很小, 可能导致 softmax 以后很接近 $0$ 或 $1$, 这会使得梯度很小.</p>
+<p>在解码器中, 增加了 Mask 来防止在当前时间看到之后时间的数据. 具体而言, 在 $t$ 时间, 赋予 $q_t,k_t$ 及其之后的值很大的负数 (例如 $-1\times 10^{10}$), 它在进入 softmax 函数之后会变成几乎为 $0$.</p>
+<h3 id="2-2-多头注意力-Multi-Head-Attention">2.2 多头注意力 (Multi-Head Attention)</h3>
+<p>与仅用 $d_{model}$ 维度的一组 $Q,K,V$ 做一次注意力相比, 把 $Q,K,V$ 分别通过不同的可学习线性映射投影到 $h$ 组 $(d_k,d_k,d_v)$ 维度更有效.</p>
+<p>对于输入隐状态 $H\in\mathbb R^{n\times d}$ (批量维先忽略)</p>
+<ul>
+<li>
+<p>先做三组线性投影到 $h$ 个子空间 (每头维度 $d_k=d_v=d_{model}/h$):<br>
+$$<br>
+Q_i=HW_Q^{(i)},~K_i=HW_K^{(i)},~V_i=HW_V^{(i)}\in\mathbb R^{n\times d_k}.<br>
+$$</p>
+</li>
+<li>
+<p>每个头各自做一次缩放点积注意力:<br>
+$$<br>
+\mathrm{head}_i=\mathrm{softmax}\left(\frac{Q_iK_i^T}{\sqrt{d_k}}\right)V_i\in\mathbb R^{n\times d_k}.<br>
+$$</p>
+</li>
+<li>
+<p>把所有头沿特征维拼接后, 再经一个输出线性变换:<br>
+$$<br>
+\mathrm{MHA}(H)=\mathrm{Concat}(\mathrm{head}_1,\cdots,\mathrm{head}_h)W_O, \quad W_O\in\mathbb R^{(hd_k)\times d}.<br>
+$$</p>
+</li>
+</ul>
+<h2 id="3-逐位置前馈神经网络-Position-wise-Feed-Forward-Networks">3 逐位置前馈神经网络 (Position-wise Feed-Forward Networks)</h2>
+<p>除了注意力子层外, 编码器和解码器的每个层都包含一个逐位置且参数共享的全连接前馈网络:<br>
+$$<br>
+\mathrm{FFN}(x)=\max(0, xW_1+b_1)W_2+b_2<br>
+$$<br>
+事实上, 就是对每个 token 的向量 $x_t\in\mathbb R^{d_{model}}$ 执行相同的两次线性变换, 且第一次线性变换后要执行一次激活函数 ReLU. 其中输入与输出维度为 $d_{model}$, 中间层维度为 $d_{ff}=2048$.</p>
+<h2 id="4-嵌入-Embedding-与-Softmax">4 嵌入 (Embedding) 与 Softmax</h2>
+<p>用可学习的嵌入把输入/输出 token 映射到 $d_{model}$ 维向量, 并用线性变换 + softmax 把解码器输出转为下一个 token 的预测概率. 在本模型中, 两个嵌入层与 pre-softmax 线性层共用同一套权重, 在嵌入层里, 这些权重还会乘以 $\sqrt{d_{model}}$.</p>
+<h3 id="4-1-Embedding">4.1 Embedding</h3>
+<p>设词表集合 $\mathcal V$, 可训练词嵌入矩阵 $E\in\mathbb R^{|\mathcal V|\times d}$. 把序列 $(x_1,\cdots,x_n)$ 查表成矩阵 $H^{(0)}\in\mathbb R^{n\times d}$, 再遇位置向量相加:<br>
+$$<br>
+H_t^{(0)}=E[x_t]\cdot\sqrt d+P_t.<br>
+$$<br>
+乘 $\sqrt d$ 目的是让&quot;词向量的方差尺度&quot;与&quot;位置向量&quot;相当, 避免相加时位置信号被淹没或过强.</p>
+<h3 id="4-2-输出层-线性层-softmax">4.2 输出层: 线性层 + softmax</h3>
+<p>解码器最后一层输出 $H^{(L)}\in\mathbb R^{m\times d}$, 通过线性变换映射到词表维度得到 logits:<br>
+$$<br>
+\mathrm{logits}=H^{(L)}W_{lm}+b,\quad W_{lm}=E^T\in\mathbb R^{d\times |\mathcal V|}.<br>
+$$<br>
+softmax 得到下一个 token 的条件分布:<br>
+$$<br>
+p(y_t=v~\vert~ \cdot)=\mathrm{softmax}(\mathrm{logits}_t)_v, \quad v\in\mathcal V.<br>
+$$</p>
+<h2 id="5-位置编码">5 位置编码</h2>
+<p>为了让模型知道序列的顺序信息, 我们在编码器与解码器将位置编码与输入嵌入相加. 位置编码与嵌入具有相同维度 $d_{model}$, 其既可以学习也可以固定, 本模型采用不同频率的正弦/余弦函数:<br>
+$$<br>
+PE(pos,2i)=\sin\left(\frac{pos}{10000^{2i/d_{model}}}\right),\quad PE(pos,2i+1)=\cos\left(\frac{pos}{10000^{2i/d_{model}}}\right),<br>
+$$<br>
+其中 $pos$ 为位置, $i$ 为维度索引.</p>
+]]></content>
+      <categories>
+        <category>机器学习与深度学习</category>
+      </categories>
+      <tags>
+        <tag>Transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单调收敛定理</title>
+    <url>/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/</url>
+    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
+$$<br>
+\mu(f)=\lim\limits_n\mu(f_n)<br>
+$$<br>
+<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
+$$<br>
+A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
+$$<br>
+满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
+$$<br>
+\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
+$$<br>
+因为 $g$ 是简单的, 故<br>
+$$<br>
+\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
+$$<br>
+由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
+$$<br>
+\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
+$$<br>
+可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
+$$<br>
+\lim\limits_n\mu(f_n)=\mu(f).<br>
+$$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Carathéodory扩张</title>
     <url>/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/Carath%C3%A9odory%E6%89%A9%E5%BC%A0/</url>
     <content><![CDATA[<p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
@@ -2014,39 +783,1270 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>单调收敛定理</title>
-    <url>/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/</url>
-    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
+    <title>组合两张表</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/175%E7%BB%84%E5%90%88%E4%B8%A4%E5%BC%A0%E8%A1%A8/</url>
+    <content><![CDATA[<p><strong>[leetcode 175]</strong> 表: Person</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>personId 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
+<p>表: Address</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
+<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code> 。<br>
+以任意顺序返回结果表。</p>
+<p>结果格式如下所示。</p>
+<p>示例 1:</p>
+<p>输入:<br>
+Person表:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br></pre></td></tr></table></figure>
+<p>Address表:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
+<p>输出:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| firstName | lastName | city          | state    |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| Allen     | Wang     | Null          | Null     |</span><br><span class="line">| Bob       | Alice    | New York City | New York |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br></pre></td></tr></table></figure>
+<p>解释:<br>
+地址表中没有 <code>personId = 1</code> 的地址，所以它们的城市和州返回 <code>null</code>。<code>addressId = 1</code> 包含了 <code>personId = 2</code> 的地址信息。</p>
+<p><strong>解：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on = <span class="string">&#x27;personId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+<p>此题主要考察“左连接”。</p>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第二高的薪水</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/176%E7%AC%AC%E4%BA%8C%E9%AB%98%E7%9A%84%E8%96%AA%E6%B0%B4/</url>
+    <content><![CDATA[<p><strong>题目描述：</strong> <code>Employee</code> 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是这个表的主键。表的每一行包含员工的工资信息。查询并返回 Employee 表中第二高的不同薪水 。如果不存在第二高的薪水，查询应该返回 <code>null</code>(Pandas 则返回 <code>None</code>) 。查询结果如下例所示。</p>
+<ul>
+<li>示例 1：<br>
+输入：<br>
+<code>Employee</code> 表：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">| 2  | 200    |</span><br><span class="line">| 3  | 300    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| 200                 |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
+<ul>
+<li>示例 2：<br>
+输入：<br>
+<code>Employee</code> 表：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| null                |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">second_highest_salary</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;SecondHighestSalary&#x27;</span> : out&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第n高的薪水</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/177%E7%AC%ACn%E9%AB%98%E7%9A%84%E8%96%AA%E6%B0%B4/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: Employee</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 n 高的 不同 工资。如果少于 n 个不同工资，查询结果应该为 null 。</p>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N-<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分数排名</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/178%E5%88%86%E6%95%B0%E6%8E%92%E5%90%8D/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: Scores</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>Score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。排名按以下规则计算:</p>
+<ul>
+<li>分数应按从高到低排列。</li>
+<li>如果两个分数相等，那么两个分数的排名应该相同。</li>
+<li>在排名相同的分数后，排名数应该是下一个连续的整数。换句话说，排名之间不应该有空缺的数字。</li>
+</ul>
+<p>按 score 降序返回结果表。查询结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<p>输入:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Scores 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | score |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | 3.50  |</span><br><span class="line">| 2  | 3.65  |</span><br><span class="line">| 3  | 4.00  |</span><br><span class="line">| 4  | 3.85  |</span><br><span class="line">| 5  | 4.00  |</span><br><span class="line">| 6  | 3.65  |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+-------+------+</span><br><span class="line">| score | rank |</span><br><span class="line">+-------+------+</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 3.85  | 2    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.50  | 4    |</span><br><span class="line">+-------+------+</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method = <span class="string">&#x27;dense&#x27;</span>, ascending = <span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>连续出现的数</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/180%E8%BF%9E%E7%BB%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%95%B0/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表：<code>Logs</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。返回的结果表中的数据可以按任意顺序排列。结果格式如下面的例子所示：</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Logs 表：</span><br><span class="line">+----+-----+</span><br><span class="line">| id | num |</span><br><span class="line">+----+-----+</span><br><span class="line">| 1  | 1   |</span><br><span class="line">| 2  | 1   |</span><br><span class="line">| 3  | 1   |</span><br><span class="line">| 4  | 2   |</span><br><span class="line">| 5  | 1   |</span><br><span class="line">| 6  | 2   |</span><br><span class="line">| 7  | 2   |</span><br><span class="line">+----+-----+</span><br><span class="line">输出：</span><br><span class="line">Result 表：</span><br><span class="line">+-----------------+</span><br><span class="line">| ConsecutiveNums |</span><br><span class="line">+-----------------+</span><br><span class="line">| 1               |</span><br><span class="line">+-----------------+</span><br><span class="line">解释：1 是唯一连续出现至少三次的数字。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(180)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>超过经理收入的员工</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/181%E8%B6%85%E8%BF%87%E7%BB%8F%E7%90%86%E6%94%B6%E5%85%A5%E7%9A%84%E5%91%98%E5%B7%A5/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表：Employee</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（具有唯一值的列）。该表的每一行都表示雇员的ID、姓名、工资和经理的ID。编写解决方案，找出收入比经理高的员工。以任意顺序返回结果表。</p>
+<p>结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| id | name  | salary | managerId |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| 1  | Joe   | 70000  | 3         |</span><br><span class="line">| 2  | Henry | 80000  | 4         |</span><br><span class="line">| 3  | Sam   | 60000  | Null      |</span><br><span class="line">| 4  | Max   | 90000  | Null      |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">输出: </span><br><span class="line">+----------+</span><br><span class="line">| Employee |</span><br><span class="line">+----------+</span><br><span class="line">| Joe      |</span><br><span class="line">+----------+</span><br><span class="line">解释: Joe 是唯一挣得比经理多的雇员。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on = <span class="string">&#x27;managerId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(181)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查找重复的电子邮箱</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/182%E6%9F%A5%E6%89%BE%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（具有唯一值的列）。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。</p>
+<p>编写解决方案来报告所有重复的电子邮件。 请注意，可以保证电子邮件字段不为 NULL。以任意顺序返回结果表。</p>
+<p>结果格式如下例。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+---------+</span><br><span class="line">| id | email   |</span><br><span class="line">+----+---------+</span><br><span class="line">| 1  | a@b.com |</span><br><span class="line">| 2  | c@d.com |</span><br><span class="line">| 3  | a@b.com |</span><br><span class="line">+----+---------+</span><br><span class="line">输出: </span><br><span class="line">+---------+</span><br><span class="line">| Email   |</span><br><span class="line">+---------+</span><br><span class="line">| a@b.com |</span><br><span class="line">+---------+</span><br><span class="line">解释: a@b.com 出现了两次。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<p>解法一：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>]&gt;=<span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
+<p>解法二：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name = <span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(182)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从不订购的客户</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/183%E4%BB%8E%E4%B8%8D%E8%AE%A2%E8%B4%AD%E7%9A%84%E5%AE%A2%E6%88%B7/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> Customers 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 SQL 中，<code>id</code> 是该表的主键。该表的每一行都表示客户的 <code>ID</code> 和名称。</p>
+<p>Orders 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| customerId  | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p>在 <code>SQL</code> 中，<code>id </code>是该表的主键。<code>customerId</code> 是 <code>Customers</code> 表中 <code>ID</code> 的外键( <code>Pandas</code> 中的连接键)。该表的每一行都表示订单的 ID 和订购该订单的客户的 <code>ID</code>。</p>
+<p>找出所有从不点任何东西的顾客。以任意顺序返回结果表。</p>
+<p>结果格式如下所示。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Customers table:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | Joe   |</span><br><span class="line">| 2  | Henry |</span><br><span class="line">| 3  | Sam   |</span><br><span class="line">| 4  | Max   |</span><br><span class="line">+----+-------+</span><br><span class="line">Orders table:</span><br><span class="line">+----+------------+</span><br><span class="line">| id | customerId |</span><br><span class="line">+----+------------+</span><br><span class="line">| 1  | 3          |</span><br><span class="line">| 2  | 1          |</span><br><span class="line">+----+------------+</span><br><span class="line">输出：</span><br><span class="line">+-----------+</span><br><span class="line">| Customers |</span><br><span class="line">+-----------+</span><br><span class="line">| Henry     |</span><br><span class="line">| Max       |</span><br><span class="line">+-----------+</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = customers.merge(orders[[<span class="string">&#x27;customerId&#x27;</span>]], left_on = <span class="string">&#x27;id&#x27;</span>, right_on = <span class="string">&#x27;customerId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_merge.loc[df_merge[<span class="string">&#x27;customerId&#x27;</span>].isna(), [<span class="string">&#x27;name&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Customers&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(183)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>部门工资最高的员工</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/184%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E6%9C%80%E9%AB%98%E7%9A%84%E5%91%98%E5%B7%A5/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong><br>
+表： <code>Employee</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| 列名          | 类型    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 <code>SQL</code> 中，<code>id</code>是此表的主键。<br>
+<code>departmentId</code> 是 <code>Department</code> 表中 <code>id</code> 的外键（在 <code>Pandas</code> 中称为 <code>join key</code>）。<br>
+此表的每一行都表示员工的 <code>id</code>、姓名和工资。它还包含他们所在部门的 <code>id</code>。</p>
+<p>表： <code>Department</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 <code>SQL</code> 中，<code>id</code> 是此表的主键列。<br>
+此表的每一行都表示一个部门的 id 及其名称。</p>
+<p>查找出每个部门中薪资最高的员工。<br>
+按 任意顺序 返回结果表。<br>
+查询结果格式如下例所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 70000  | 1            |</span><br><span class="line">| 2  | Jim   | 90000  | 1            |</span><br><span class="line">| 3  | Henry | 80000  | 2            |</span><br><span class="line">| 4  | Sam   | 60000  | 2            |</span><br><span class="line">| 5  | Max   | 90000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出：</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Jim      | 90000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">解释：Max 和 Jim 在 IT 部门的工资都是最高的，Henry 在销售部的工资最高。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>]==max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(department, left_on = <span class="string">&#x27;departmentId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_d&#x27;</span>))[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(184)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>部门工资前三高的所有员工</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/185%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E5%89%8D%E4%B8%89%E9%AB%98%E7%9A%84%E6%89%80%E6%9C%89%E5%91%98%E5%B7%A5/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: <code>Employee</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+<code>departmentId</code> 是 <code>Department</code> 表中 <code>ID</code> 的外键（<code>reference</code> 列）。<br>
+该表的每一行都表示员工的<code>ID</code>、姓名和工资。它还包含了他们部门的<code>ID</code>。</p>
+<p>表: <code>Department</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+该表的每一行表示部门ID和部门名。</p>
+<p>公司的主管们感兴趣的是公司每个部门中谁赚的钱最多。一个部门的 高收入者 是指一个员工的工资在该部门的 不同 工资中 排名前三 。</p>
+<p>编写解决方案，找出每个部门中 收入高的员工 。</p>
+<p>以 任意顺序 返回结果表。</p>
+<p>返回结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 85000  | 1            |</span><br><span class="line">| 2  | Henry | 80000  | 2            |</span><br><span class="line">| 3  | Sam   | 60000  | 2            |</span><br><span class="line">| 4  | Max   | 90000  | 1            |</span><br><span class="line">| 5  | Janet | 69000  | 1            |</span><br><span class="line">| 6  | Randy | 85000  | 1            |</span><br><span class="line">| 7  | Will  | 70000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department  表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">| IT         | Joe      | 85000  |</span><br><span class="line">| IT         | Randy    | 85000  |</span><br><span class="line">| IT         | Will     | 70000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| Sales      | Sam      | 60000  |</span><br><span class="line">+------------+----------+--------+</span><br></pre></td></tr></table></figure>
+<p><strong>解释:</strong><br>
+在IT部门:</p>
+<ul>
+<li>Max的工资最高</li>
+<li>兰迪和乔都赚取第二高的独特的薪水</li>
+<li>威尔的薪水是第三高的</li>
+</ul>
+<p>在销售部:</p>
+<ul>
+<li>亨利的工资最高</li>
+<li>山姆的薪水第二高</li>
+<li>没有第三高的工资，因为只有两名员工</li>
+</ul>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep&lt;=<span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(department, left_on=<span class="string">&#x27;departmentId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_dep&#x27;</span>))[[<span class="string">&#x27;name_dep&#x27;</span>,<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;salary&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(185)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除重复的电子邮箱</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/196%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。</p>
+<p>编写解决方案 删除 所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
+<p>（对于 <code>SQL</code> 用户，请注意你应该编写一个 <code>DELETE</code> 语句而不是 <code>SELECT</code> 语句。）</p>
+<p>（对于 <code>Pandas</code> 用户，请注意你应该直接修改 <code>Person</code> 表。）</p>
+<p>运行脚本后，显示的答案是 <code>Person</code> 表。驱动程序将首先编译并运行您的代码片段，然后再显示 <code>Person</code> <code>表。Person</code> 表的最终顺序 无关紧要 。</p>
+<p>返回结果格式如下示例所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">输出: </span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br><span class="line">解释: john@example.com重复两次。我们保留最小的Id = 1。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(196)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>上升的温度</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/197%E4%B8%8A%E5%8D%87%E7%9A%84%E6%B8%A9%E5%BA%A6/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong><br>
+表： Weather</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------+---------+</span><br><span class="line">| Column Name   | Type    |</span><br><span class="line">+---------------+---------+</span><br><span class="line">| id            | int     |</span><br><span class="line">| recordDate    | date    |</span><br><span class="line">| temperature   | int     |</span><br><span class="line">+---------------+---------+</span><br></pre></td></tr></table></figure>
+<p>id 是该表具有唯一值的列。<br>
+没有具有相同 recordDate 的不同行。<br>
+该表包含特定日期的温度信息</p>
+<p>编写解决方案，找出与之前（昨天的）日期相比温度更高的所有日期的 id 。</p>
+<p>返回结果 无顺序要求 。</p>
+<p>结果格式如下例子所示。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Weather 表：</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| id | recordDate | Temperature |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| 1  | 2015-01-01 | 10          |</span><br><span class="line">| 2  | 2015-01-02 | 25          |</span><br><span class="line">| 3  | 2015-01-03 | 20          |</span><br><span class="line">| 4  | 2015-01-04 | 30          |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">输出：</span><br><span class="line">+----+</span><br><span class="line">| id |</span><br><span class="line">+----+</span><br><span class="line">| 2  |</span><br><span class="line">| 4  |</span><br><span class="line">+----+</span><br><span class="line">解释：</span><br><span class="line">2015-01-02 的温度比前一天高（10 -&gt; 25）</span><br><span class="line">2015-01-04 的温度比前一天高（20 -&gt; 30）</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rising_temperature</span>(<span class="params">weather: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    weather.sort_values(<span class="string">&#x27;recordDate&#x27;</span>, inplace = <span class="literal">True</span>)</span><br><span class="line">    weather_diff = weather.diff()</span><br><span class="line">    <span class="keyword">return</span> weather.loc[(weather_diff[<span class="string">&#x27;recordDate&#x27;</span>] == datetime.timedelta(<span class="number">1</span>)) &amp; (weather_diff[<span class="string">&#x27;temperature&#x27;</span>]&gt;<span class="number">0</span>), [<span class="string">&#x27;id&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(197)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分离变量法</title>
+    <url>/2025/09/03/ODE/2.1%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E6%B3%95/</url>
+    <content><![CDATA[<p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
+<p><strong>解</strong> 令 $x=y=0$, 则 $f(0)=\frac{2f(0)}{1-f(0)^2}$, 得 $f(0)=0$. 注意到<br>
 $$<br>
-\mu(f)=\lim\limits_n\mu(f_n)<br>
+f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}<br>
 $$<br>
-<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
+因为 $f’(0)$ 存在, 故由导数的 定义可知<br>
 $$<br>
-A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
+f’(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f’(0)[1+f(x)^2]<br>
 $$<br>
-满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
+即 $f(x)$ 满足微分方程 $f’(x)=f’(0)[1+f(x)^2], f(0)=0$. 利用分离变量法求得其解为 $y=\tan\left(f’(0)x\right)$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>初等积分法</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>变量替换法</title>
+    <url>/2025/09/03/ODE/2.2%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%B3%95/</url>
+    <content><![CDATA[<p><strong>[T020201]</strong> 若 $y=y^{\ast}(x)$ 是一阶齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y$ 的非零解, 而 $y=\bar y$ 是一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的解. 证明: 一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
+<p><strong>证</strong> 设 $y=\bar y+z$, 两边对 $x$ 求导, 得</p>
+<p>$$<br>
+\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z<br>
+$$</p>
+<p>由题意可知上述方程得通解为 $z=cy^{\ast}$, 故原方程的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
+<hr>
+<p><strong>[T020202]</strong> 设 $y(x)$ 是方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y$ 的满足 $y(0)=0$ 的解, 其中 $p(x)$ 是 $(-\infty,+\infty)$ 上的连续函数. 证明 $y(x)\equiv0$.</p>
+<p><strong>证</strong> 注意到</p>
+<p>$$<br>
+\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}<br>
+$$</p>
+<p>解得</p>
+<p>$$<br>
+\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}<br>
+$$</p>
+<p>将 $y(0)=0$ 代入可得 $c=0$, 故 $y(x)\equiv0$.</p>
+<hr>
+<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 $P$ 的切线方向 $\overrightarrow{PQ}$ 与向径 $\overrightarrow{OP}$ 的交角等于 $45^{\circ}$.</p>
+<p><strong>解</strong> 由题设可知</p>
+<p>$$<br>
+1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow<br>
+\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}<br>
+$$</p>
+<p>令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
+$2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>初等积分法</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>积分因子法</title>
+    <url>/2025/09/03/ODE/2.3%E7%A7%AF%E5%88%86%E5%9B%A0%E5%AD%90%E6%B3%95/</url>
+    <content><![CDATA[<p><strong>[T020301]</strong> 求微分方程通解: $\left(\frac{y^2}{(x-y)^2}-\frac{1}{x}\right)\mathrm dx+\left(\frac{1}{y}-\frac{x^2}{(x-y)^2}\right)\mathrm dx=0$.</p>
+<p><strong>解</strong> 设 $M=\frac{y^2}{(x-y)^2}-\frac{1}{x}, \ N=\frac{1}{y}-\frac{x^2}{(x-y)^2}$, 注意到<br>
 $$<br>
-\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
+\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}=\frac{2xy}{(x-y)^3},<br>
 $$<br>
-因为 $g$ 是简单的, 故<br>
+于是原方程为全微分方程, 又注意到<br>
 $$<br>
-\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
+\begin{aligned}<br>
+\left(\frac1y\mathrm dy-\frac1x\mathrm dx\right)+\frac{y^2\mathrm dx-x^2\mathrm dy}{(x-y)^2}&amp;=0\\<br>
+\mathrm d\left(\ln\left|\frac{y}{x}\right|\right)-\mathrm d\left(\frac{xy}{x-y}\right)&amp;=0\\<br>
+\mathrm d\left(\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}\right)&amp;=0<br>
+\end{aligned}<br>
 $$<br>
-由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
+从而原方程的通解为 $\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}=c$, 其中 $c$ 为任意常数.</p>
+<hr>
+<p><strong>[T020302]</strong> 求 Bernoulli 方程的积分因子.</p>
+<p><strong>解</strong> 因为 Bernoulli 方程可化为一阶线性微分方程, 因此可先求解一阶线性微分方程的积分因子. 设有一阶线性微分方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 其中 $P(x),Q(x)$ 连续. 将方程变形为 $\left(P(x)y+Q(x)\right)\mathrm dx-\mathrm dy=0$, 设 $M=P(x)y+Q(x),  N=-1$, 则 $\frac{\partial M}{\partial y}=P(x), \ \frac{\partial N}{\partial x}=0$, 于是<br>
 $$<br>
-\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
+\frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{N}=-P(x),<br>
 $$<br>
-可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
+故线性方程有一个只依赖于 $x$ 的积分因子 $\mu(x)=e^{-\int P(x)\mathrm dx}$. 将此积分因子乘到原方程的两边可得全微分方程<br>
 $$<br>
-\lim\limits_n\mu(f_n)=\mu(f).<br>
+e^{-\int P(x)\mathrm dx}\left(P(x)y+Q(x)\right)\mathrm dx-e^{-\int P(x)\mathrm dx}\mathrm dy=0,<br>
+$$<br>
+不难求得其通解为 $y=ce^{\int P(x)\mathrm dx}+e^{\int P(x)\mathrm dx}\displaystyle\int Q(x)e^{-\int P(x)\mathrm dx}\mathrm dx$.</p>
+<p>现设有 Bernoulli 方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)y^n$, 其中 $n\neq 0,1$ 且 $p(x),q(x)$ 连续. 方程两边同除 $y^n \ (y\neq0)$ 有<br>
+$$<br>
+y^{-n}\frac{\mathrm dy}{\mathrm dx}=y^{1-n}p(x)+q(x)\Longrightarrow \frac{\mathrm dy^{1-n}}{\mathrm dx}=(1-n)p(x)y^{1-n}+(1-n)q(x),<br>
+$$<br>
+这是以 $y^{1-n}$ 为未知函数的一阶线性微分方程, 由上面的讨论可知其积分因子为 $e^{-(1-n)\int  p(x)\mathrm dx}$, 从而原方程的积分因子为 $y^{-n}e^{-(1-n)\int  p(x)\mathrm dx}$, 且原方程的通解为<br>
+$$<br>
+y^{1-n}=ce^{(1-n)\int p(x)\mathrm dx}+(1-n)e^{(1-n)\int p(x)\mathrm dx}\displaystyle\int q(x)e^{-(1-n)\int p(x)\mathrm dx}\mathrm dx.<br>
+$$<br>
+此外, 若 $n&gt;0$, 则 $y=0$ 也是方程的解.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>初等积分法</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>参数法</title>
+    <url>/2025/09/03/ODE/2.4%E5%8F%82%E6%95%B0%E6%B3%95/</url>
+    <content><![CDATA[<p><strong>[T020401]</strong> 求微分方程的通解 $y’^2=4y^3(1-y)$.</p>
+<p><strong>解</strong> 将方程化为 $y’=\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1/2}=\pm x+c$, 从而原方程的通解为 $y=\frac{1}{1+(\mp x+c)^2}$, 其中 $c$ 为任意常数. 此外, $y=0$ 和 $y=1$ 也是方程的解.</p>
+<hr>
+<p><strong>[T020402]</strong> 求微分方程的通解 $y’^3+y^3-3yy’=0$.</p>
+<p><strong>解</strong> 令 $y’=p, \ y=pt$, 其中 $p,t$ 都是参数, 则 $p^3+p^3t^3-3p^2t=0$. 当 $p\neq0$ 时,<br>
+$$<br>
+p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}<br>
+$$<br>
+(此时 $t\neq 0,-1$, 否则 $p=0$) 从而 $y=\frac{3t^2}{1+t^3}$. 注意到<br>
+$$<br>
+\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt<br>
+$$<br>
+两边积分可得 $x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c$, 故原方程的通解为<br>
+$$<br>
+\begin{cases}<br>
+x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\<br>
+y=\frac{3t^2}{1+t^3}<br>
+\end{cases}<br>
+$$<br>
+其中 $c$ 为任意常数.</p>
+<p>当 $p=0$ 时, $y=0$ 也是方程的解.</p>
+<hr>
+<p><strong>[T020403]</strong> 求微分方程的通解 $y’^3+y’^2-y’+1=0$.</p>
+<p><strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 $y’=a \ (\neq0)$, 则 $y=ax+c$ 为原方程的解, 从而 $a=\frac{y-c}{x}$, 于是 $y’=\frac{y-c}{x}$, 故方程的通解为<br>
+$$<br>
+\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.<br>
+$$</p>
+<hr>
+<p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
+<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.</p>
+<p><strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
+$$<br>
+\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+<p><strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
+$$<br>
+\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+<p><strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
+$$<br>
+\mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>初等积分法</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Picard 存在唯一性定理</title>
+    <url>/2025/09/03/ODE/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/</url>
+    <content><![CDATA[<p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
+<p><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
+$$<br>
+\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
+$$<br>
+显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
+$$<br>
+|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
+$$<br>
+于是当 $x\in[0,\frac12]$ 时, 有<br>
+$$<br>
+|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
+$$</p>
+<hr>
+<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
+<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
+$$<br>
+|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
+$$<br>
+即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
+<p>任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
+$$<br>
+x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
+$$<br>
+则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
+$$<br>
+|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
+$$<br>
+由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
+$$<br>
+x^</em>=f(x^<em>)<br>
+$$<br>
+即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
+<hr>
+<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
+$$<br>
+x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
+$$<br>
+从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
+$$<br>
+|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
+$$<br>
+这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>定解问题与适定性</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>不动点定理与解的存在性</title>
+    <url>/2025/09/03/ODE/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/</url>
+    <content><![CDATA[<p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
+<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
+$$<br>
+T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
+$$<br>
+在 $X$ 上引入距离<br>
+$$<br>
+\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
+$$<br>
+注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
+$$<br>
+\begin{aligned}<br>
+\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
+&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
+&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
+&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
+\end{aligned}<br>
+$$<br>
+由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
+<hr>
+<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
+<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
+$$<br>
+||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
+$$<br>
+在 $\mathbb{R}^n$ 上定义距离<br>
+$$<br>
+\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
+$$<br>
+在 $\mathbb{R}^n$ 上定义映射<br>
+$$<br>
+T:\quad Tx=b+(I_n-A)x.<br>
+$$<br>
+则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
+&amp;=||(I_n-A)(x_1-x_2)||\\<br>
+&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
+&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
+\end{aligned}<br>
+$$<br>
+注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>定解问题与适定性</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解的延拓</title>
+    <url>/2025/09/03/ODE/3.3%E8%A7%A3%E7%9A%84%E5%BB%B6%E6%8B%93/</url>
+    <content><![CDATA[<p><strong>[T030301]</strong> 设 $f(x,y)$ 在整个平面上连续有界, 且 $\frac{\partial f}{\partial y}(x,y)$ 也连续. 证明方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的每一个解 $y=\varphi(x)$ 的饱和区间为 $-\infty&lt;x&lt;+\infty$.</p>
+<p><strong>证</strong> 因为 $\frac{\partial f}{\partial y}(x,y)$ 在整个平面 $\mathbb{R}^2$ 上连续, 故 $f$ 在 $\mathbb{R}^2$ 上满足关于 $y$ 的局部 Lipschitz 条件. 又 $f(x,y)$ 在 $\mathbb{R}^2$ 上连续, 故方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 满足延拓定理, 及其一切解都可延拓到 $\mathbb{R}^2$ 的边界(即无穷远处).</p>
+<p>考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\mathbb{R}^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\mathbb{R}^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y=\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y=\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.</p>
+<hr>
+<p><strong>[T030303]</strong> 证明: 对一阶线性方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 若 $P(x),Q(x)\in C[a,b]$ , 则对任意 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 方程有唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上连续.</p>
+<p><strong>证</strong> 设 $f(x,y)=P(x)y+Q(x)$, 由条件知 $f(x,y)$ 在 $R=[a,b]\times(-\infty,+\infty)$ 上连续, 又 $\frac{\partial f}{\partial y}=P(x)$ 在 $[a,b]$ 上连续, 从而 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件, 故方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$ 满足延拓定理, 即对任意的 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 通过 $(x_0,y_0)$ 的解 $y=\varphi(x)$ 可延拓到 $R$ 的边界. 设 $\left|\frac{\partial f}{\partial y}\right|\le M, \ x\in[a,b]$. 对任意 $x\in[a,b]$, 作逐步迭代<br>
+$$<br>
+y_1(x_0)=y_0,\quad y_n(x)=y_0+\int_{x_0}^xf(t,y_{n-1}(t))\mathrm{~d}t, \ n=2,3,\cdots<br>
+$$<br>
+由 Lipschitz 条件可知<br>
+$$<br>
+\left|y_n(x)-y_{n-1}(x)\right|\le\frac{(x-x_0)^{n-1}M^{n-1}}{n!}<br>
+$$<br>
+于是 $y_0(x)+\sum\limits_{n=1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y=\varphi(x)$, 即方程的唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.</p>
+<hr>
+<p><strong>[T030304]</strong> 已知 $\frac{\mathrm dy}{\mathrm dx}=(y^2-a^2)f(x,y)$, 这里 $f(x,y)$ 及 $f’_y(x,y)$ 在 $xOy$ 面上连续. 试证明: 对 $\forall x_0$ 及 $|y_0|&lt;a$, 满足初始条件 $y(x_0)=y_0$ 的解 $y(x)$ 都在区间 $(-\infty,+\infty)$ 上存在.</p>
+<p><strong>证</strong> 方程的右端函数 $(y^2-a^2)f(x,y)$ 在全平面 $\mathbb{R}^2$ 上连续可微, 因此它满足解的存在唯一性定理和延拓定理.</p>
+<p>显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\mathbb{R}^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>定解问题与适定性</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解对初值与参数的连续性与可微性</title>
+    <url>/2025/09/03/ODE/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/</url>
+    <content><![CDATA[<p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
+$$<br>
+|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty&lt;y&lt;+\infty<br>
+$$<br>
+那么方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 的经过点 $(x_0,\xi_0)$ 的积分曲线 $y=\eta(x)$ 也必在 $[x_0,X]$ 上有定义, 且在 $[x_0,X]$ 上满足不等式<br>
+$$<br>
+|\eta(x)-\xi(x)|&lt; \varepsilon,\quad x_0\le x\le X.<br>
+$$<br>
+<strong>证</strong> 因为 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 $y\mid_{x=x_0}=\xi_0$ 的解 $y=\xi(x)$ 存在且唯一. 记积分曲线 $y=\xi(x)$ 为 $l_1$, 则 $l_1: \ y=\xi(x),x\in[x_0,X]$ 为 $xOy$ 平面上的有界闭集. 对 $l_1$ 上的任一点 $(x,y)$, 必存在以该点为圆心的开圆 $C\subset D$, 使在其内的函数 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 $C_i \ (i=1,2,\cdots,N)$, 且它们的全体可以覆盖整个积分曲线段 $l_1$. 设 $C_i$ 的半径为 $\varepsilon_i$, Lipschitz 常数为 $L$. 再记 $\varepsilon_0=\min\limits_{1\le i\le N}\lbrace\varepsilon_i\rbrace$, 令 $\Omega=\bigcup\limits_{i=1}^NC_i$, 则 $l_1\subset \Omega\subset D$, 且 $\Omega$ 的边界 $\partial \Omega$ 到 $l_1$ 的距离为 $0&lt;\rho\le\varepsilon_0$.<br>
+设方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 经过点 $(x_0,\xi_0)$ 的积分曲线为 $l_2:\ y=\eta(x)$. 注意到 $\xi(x)$ 与 $\eta(x)$ 满足积分方程<br>
+$$<br>
+\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t<br>
+$$<br>
+则<br>
+$$<br>
+\begin{aligned}<br>
+|\xi(x)-\eta(x)|&amp;=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\\<br>
+&amp;=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\\<br>
+&amp;\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\\<br>
+&amp;=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t<br>
+\end{aligned}<br>
+$$<br>
+由 Gronwall 不等式可知<br>
+$$<br>
+|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t<br>
+$$<br>
+ 取 $\bar\varepsilon=\min{\varepsilon,\rho}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}$, 则有<br>
+$$<br>
+\begin{aligned}<br>
+|\xi(x)-\eta(x)|&amp;\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\\<br>
+&amp;\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}&lt;\rho<br>
+\end{aligned}<br>
+$$<br>
+即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>定解问题与适定性</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高阶线性微分方程的一般理论</title>
+    <url>/2025/09/03/ODE/4.2%20%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E7%90%86%E8%AE%BA/</url>
+    <content><![CDATA[<p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
+<p><strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
+$$<br>
+\left\lbrace<br>
+\begin{array}{cccc}<br>
+x_1(t_0)=1, &amp; x’_1(t_0)=0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)=0,\\<br>
+x_2(t_0)=0, &amp; x’_2(t_0)=1, &amp; \cdots, &amp; x_2^{(n-2)}(t_0)=0,\\<br>
+\vdots &amp; \vdots &amp; &amp; \vdots\\<br>
+x_n(t_0)=0, &amp; x_n’(t_0)=0, &amp; \cdots, &amp; x_n^{(n-1)}(t_0)=1<br>
+\end{array}<br>
+\right.<br>
+$$<br>
+的解 $x_1(t),x_2(t),\cdots,x_n(t)$ 一定存在且唯一, 注意到它们的 Wronski 行列式<br>
+$$<br>
+W(x_1(t_0),x_2(t_0),\cdots,x_n(t_0))=1\neq0<br>
+$$<br>
+故这 $n$ 个解必线性无关.</p>
+<hr>
+<p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
+<p><strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
+显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
+$$<br>
+\begin{aligned}<br>
+&amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\\<br>
+\Longrightarrow&amp;(c_1x_1+c_2x_2+\cdots+c_nx_n)+(c_1+c_2+\cdots+c_{n+1})\bar x=0<br>
+\end{aligned}<br>
+$$<br>
+此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
+再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
+$$<br>
+\begin{aligned}<br>
+&amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\\<br>
+\Longrightarrow&amp;c_1x_1+c_2x_2+\cdots+c_{n+1}x_{n+1}-(c_1+c_2+\cdots+c_{n+1})x_{n+2}=0<br>
+\end{aligned}<br>
+$$<br>
+故这 $n+2$ 个解在 $[a,b]$ 上线性相关, 产生矛盾!</p>
+<hr>
+<p><strong>[T040203]</strong> (Liouville 公式) 设 $x_1(t),x_2(t),\cdots,x_n(t)$ 是齐次线性方程 $L[x]=0$ 的任意 $n$ 个解, $W(t)$ 是它们的 Wronski 行列式, 则 $W(t)$ 满足一阶线性微分方程 $W’(t)=-a_1(t)W(t)$, 因而有<br>
+$$<br>
+W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
+$$<br>
+<strong>证</strong> 由行列式求导法则可知<br>
+$$<br>
+W’(t)=\begin{vmatrix}<br>
+x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
+x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
+x_1^{(n)}&amp;x_2^{(n)}&amp;\cdots&amp;x_n^{(n)}<br>
+\end{vmatrix}<br>
+$$<br>
+于是<br>
+$$<br>
+W’(t)+a_1(t)W(t)=\begin{vmatrix}<br>
+x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
+x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
+x_1^{(n)}+a_1(t)x_1^{(n-1)}&amp;x_2^{(n)}+a_1(t)x_2^{(n-1)}&amp;\cdots&amp;x_n^{(n)}+a_1(t)x_n^{(n-1)}<br>
+\end{vmatrix}<br>
+$$<br>
+注意到<br>
+$$<br>
+\begin{cases}<br>
+x_1^{(n)}+a_1(t)x_1^{(n-1)}=-a_2(t)x_1^{(n-2)}-\cdots-a_n(t)x_1,\\<br>
+x_2^{(n)}+a_1(t)x_2^{(n-1)}=-a_2(t)x_2^{(n-2)}-\cdots-a_n(t)x_2,\\<br>
+\quad\quad\quad\quad\quad\quad\quad~ …\\<br>
+x_n^{(n)}+a_1(t)x_n^{(n-1)}=-a_2(t)x_n^{(n-2)}-\cdots-a_n(t)x_n,\\<br>
+\end{cases}<br>
+$$<br>
+因此 $W’(t)+a_1(t)W(t)=0, \ t\in[a,b]$. 解得<br>
+$$<br>
+W(t)=ce^{-\int_{t_0}^ta_1(s)\mathrm{~d}s}<br>
+$$<br>
+注意到 $W(t_0)=c$, 于是 $W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b]$.</p>
+<hr>
+<p><strong>[T040204]</strong> 设 $x=x_1(t), \ x=x_2(t)$ 是微分方程 $x’‘+x=0$ 的满足初始条件<br>
+$$<br>
+x_1(0)=0,\quad x_1’(0)=1,\\<br>
+x_2(0)=1,\quad x_2’(0)=0<br>
+$$<br>
+的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
+<p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
+<p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
+<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.</p>
+<p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
+$$<br>
+\begin{vmatrix}<br>
+x_1(t) &amp; x_2(t)\\<br>
+x_1’(t) &amp; x_2’(t)<br>
+\end{vmatrix}=<br>
+\begin{vmatrix}<br>
+x_1(0) &amp; x_2(0)\\<br>
+x_1’(0) &amp; x_2’(0)<br>
+\end{vmatrix}=-1<br>
+$$<br>
+又 $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$, 故 $x_1^2(t)+x_2^2(t)\equiv1$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>高阶微分方程</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常系数齐次线性方程的待定指数函数法</title>
+    <url>/2025/09/03/ODE/4.3%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E6%B3%95/</url>
+    <content><![CDATA[<p><strong>[T040301]</strong> 求方程 $x^2 y’‘+2x^2\tan y\cdot y’^2+xy’-\sin y\cos y=0$ 的通解.</p>
+<p><strong>解</strong> 令 $u=\tan y$, 即 $y=\arctan u$, 于是<br>
+$$<br>
+\begin{cases}<br>
+y’=\frac{1}{1+u^2}\frac{\mathrm du}{\mathrm dx},\<br>
+y’'=-\frac{2u}{(1+u^2)^2}\left(\frac{\mathrm du}{\mathrm dx}\right)^2+\frac{1}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}<br>
+\end{cases}<br>
+$$<br>
+于是原方程变为<br>
+$$<br>
+\frac{x^2}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}+\frac{x}{1+u^2}\frac{\mathrm du}{\mathrm dx}-\frac{u}{1+u^2}=0<br>
+$$<br>
+即 $x^2\frac{\mathrm d^2u}{\mathrm dx^2}+x\frac{\mathrm du}{\mathrm dx}-u=0$. 令 $x=e^t$, 即 $t=\ln x$, 令 $D=\frac{\mathrm d}{\mathrm dt}$, 则原方程可改写为<br>
+$$<br>
+D(D-1)u+Du-u=0\Longrightarrow \frac{\mathrm d^2u}{\mathrm dt^2}-u=0.<br>
+$$<br>
+其特征方程为 $\lambda^2-1=0$, 解得特征根为 $\lambda_1=1, \ \lambda_2=-1$, 故通解为<br>
+$$<br>
+u(t)=c_1e^t+c_2e^{-t}<br>
+$$<br>
+其中 $c_1,c_2$ 为任意常数. 再将 $t=\ln x$ 代入, 得<br>
+$$<br>
+u=c_1x+\frac{c_2}{x}\Rightarrow \tan y=c_1x+\frac{c_2}{x}<br>
+$$<br>
+即通解为 $y=\arctan(c_1x+\frac{c_2}{x})$, 其中 $c_1,c_2$ 为任意常数.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>高阶微分方程</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一阶线性微分方程组</title>
+    <url>/2025/09/03/ODE/5.1%20%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/</url>
+    <content><![CDATA[<p><strong>[T050101]</strong> 设 $A$ 为 $n\times n$ 常数矩阵, $\Phi(t)$ 是方程组 $X’=AX$ 的标准基解矩阵 $(\Phi(0)=E)$, 证明 $\Phi(t)\Phi^{-1}(t_0)=\Phi(t-t_0)$, 其中 $t_0$ 是常数.</p>
+<p><strong>证</strong> 由题设可知 $\Phi’(t)=A\Phi(t)$, 将 $t$ 换为 $t-t_0$, 则 $\Phi’(t-t_0)=A\Phi(t-t_0)$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的解矩阵. 又当 $t=t_0$ 时 $\det\Phi(0)=1$, 故 $\Phi(t-t_0)$ 是方程组 $X’=AX$ 的基解矩阵. 于是存在 $n$ 阶非奇异常数矩阵 $C$, 使得 $\Phi(t-t_0)=\Phi(t)C$, 再令 $t=t_0$, 有 $E=\Phi(t_0)C$, 得 $C=\Phi^{-1}(t_0)$, 故 $\Phi(t-t_0)=\Phi(t)\Phi^{-1}(t_0)$.</p>
+<hr>
+<p><strong>[T050102]</strong> (Liouville公式) 设 $X_1(t),X_2(t),\cdots,X_n(t)$ 是齐次线性方程组 $X’(t)=A(t)X(t)$ 的任意 $n$ 个解, 则它们的 Wronski 行列式 $W(t)$ 满足一阶线性微分方程<br>
+$$<br>
+W’(t)=\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]W(t),<br>
+$$<br>
+因而有<br>
+$$<br>
+W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
+$$<br>
+<strong>证</strong> 记 $X_i(t)=\left(x_{i1}(t),\cdots,x_{in}(t)\right)^T$, 则<br>
+$$<br>
+W(t)=\left|X_1(t),\cdots,X_n(t)\right|=\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}<br>
+$$</p>
+<p>由行列式求导法则知</p>
+<p>$$<br>
+\begin{aligned}<br>
+W’(t)=&amp;\begin{vmatrix}<br>
+x’<em>{11}(t) &amp; x’</em>{21}(t) &amp; \cdots &amp; x’<em>{n1}(t)\\<br>
+x</em>{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}+<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x’<em>{12}(t) &amp; x’</em>{22}(t) &amp; \cdots &amp; x’<em>{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x</em>{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}\\<br>
+&amp;+\cdots +<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x’<em>{1n}(t) &amp; x’</em>{2n}(t) &amp; \cdots &amp; x’<em>{nn}(t)<br>
+\end{vmatrix}\\<br>
+=&amp;\begin{vmatrix}<br>
+\sum\limits</em>{i=1}^na_{1i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{1i}x_{2i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}+<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+\sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}\\<br>
+&amp;+\cdots +<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+\sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t) &amp; \cdots &amp; \sum\limits_{i=1}^na_{ni}x_{1i}(t)<br>
+\end{vmatrix}\\<br>
+=&amp;\begin{vmatrix}<br>
+a_{11}x_{11}(t) &amp; a_{11}x_{21}(t) &amp; \cdots &amp; a_{11}x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_{1n}(t) &amp; x_{2n}(t) &amp; \cdots &amp; x_{nn}(t)<br>
+\end{vmatrix}+\cdots +<br>
+\begin{vmatrix}<br>
+x_{11}(t) &amp; x_{21}(t) &amp; \cdots &amp; x_{n1}(t)\\<br>
+x_{12}(t) &amp; x_{22}(t) &amp; \cdots &amp; x_{n2}(t)\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+a_{nn}x_{1n}(t) &amp; a_{nn}x_{2n}(t) &amp; \cdots &amp; a_{nn}x_{nn}(t)<br>
+\end{vmatrix}\\<br>
+=&amp;[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).<br>
+\end{aligned}<br>
+$$</p>
+<!-- $$
+\begin{aligned}
+W'(t)=&\begin{vmatrix}
+  x'_{11}(t) & x'_{21}(t) & \cdots & x'_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}+
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  x'_{12}(t) & x'_{22}(t) & \cdots & x'_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}\\\\
+&+\cdots +
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x'_{1n}(t) & x'_{2n}(t) & \cdots & x'_{nn}(t)
+  \end{vmatrix}\\\\
+=&\begin{vmatrix}
+  \sum\limits_{i=1}^na_{1i}x_{1i}(t) & \sum\limits_{i=1}^na_{1i}x_{2i}(t) & \cdots & \sum\limits_{i=1}^na_{1i}x_{ni}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}+
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  \sum\limits_{i=1}^na_{2i}x_{1i}(t) & \sum\limits_{i=1}^na_{2i}x_{1i}(t) & \cdots & \sum\limits_{i=1}^na_{2i}x_{1i}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}\\\\
+&+\cdots +
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  \sum\limits_{i=1}^na_{ni}x_{1i}(t) & \sum\limits_{i=1}^na_{ni}x_{1i}(t) & \cdots & \sum\limits_{i=1}^na_{ni}x_{1i}(t)
+  \end{vmatrix}\\\\
+=&\begin{vmatrix}
+  a_{11}x_{11}(t) & a_{11}x_{21}(t) & \cdots & a_{11}x_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  x_{1n}(t) & x_{2n}(t) & \cdots & x_{nn}(t)
+  \end{vmatrix}+\cdots +
+  \begin{vmatrix}
+  x_{11}(t) & x_{21}(t) & \cdots & x_{n1}(t)\\\\
+  x_{12}(t) & x_{22}(t) & \cdots & x_{n2}(t)\\\\
+  \vdots&\vdots&&\vdots\\\\
+  a_{nn}x_{1n}(t) & a_{nn}x_{2n}(t) & \cdots & a_{nn}x_{nn}(t)
+  \end{vmatrix}\\\\
+=&[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)]W(t).
+\end{aligned}
+$$ -->
+<p>求解上述微分方程得<br>
+$$<br>
+W(t) = ce^{\int_{t_{0}}^t\left(a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right)\mathrm ds}<br>
+$$</p>
+<!-- $$
+W(t)=ce^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s}
+$$ -->
+<p>又 $W(t_0)=c$, 故<br>
+$$<br>
+W(t)=W(t_0)\cdot e^{\int_{t_0}^t\left[a_{11}(t)+a_{22}(t)+\cdots+a_{nn}(t)\right]\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
 $$</p>
 ]]></content>
       <categories>
         <category>数学</category>
-        <category>测度论</category>
+        <category>常微分方程</category>
+        <category>一阶线性微分方程组</category>
       </categories>
       <tags>
-        <tag>测度论</tag>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一阶常系数线性微分方程组</title>
+    <url>/2025/09/03/ODE/5.2%20%E4%B8%80%E9%98%B6%E5%B8%B8%E7%B3%BB%E6%95%B0%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/</url>
+    <content><![CDATA[<p><strong>[T050201]</strong> 求方程组 $\begin{cases}x’+y’=y+z\\ y’+z’=z+x\\ z’+x’=x+y\end{cases}$ 的通解.</p>
+<p><strong>解</strong> 将方程组写成矩阵形式:<br>
+$$<br>
+\begin{aligned}<br>
+&amp;\begin{pmatrix}<br>
+1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
+\end{pmatrix}<br>
+\begin{pmatrix}<br>
+x’\\y’\\z’<br>
+\end{pmatrix}=<br>
+\begin{pmatrix}<br>
+0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
+\end{pmatrix}<br>
+\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}\\ \\<br>
+\Longrightarrow<br>
+&amp;\begin{pmatrix}<br>
+x’\\y’\\z’<br>
+\end{pmatrix}=\begin{pmatrix}<br>
+1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
+\end{pmatrix}^{-1}\begin{pmatrix}<br>
+0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
+\end{pmatrix}\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}=\begin{pmatrix}<br>
+0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0<br>
+\end{pmatrix}\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}<br>
+:=A\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+则 $|\lambda E-A|=\begin{vmatrix}\lambda&amp;-1&amp;0\\0&amp;\lambda&amp;-1\\-1&amp;0&amp;\lambda\end{vmatrix}=\lambda^3-1=0\Longrightarrow \lambda_1=1,\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i,\lambda_3=-\frac{1}{2}-\frac{\sqrt3}{2}i$.<br>
+对于特征值 $\lambda_1=1$, 有<br>
+$$<br>
+A-\lambda_1E=<br>
+\begin{pmatrix}<br>
+-1&amp;1&amp;0\\0&amp;-1&amp;1\\1&amp;0&amp;-1<br>
+\end{pmatrix}\xrightarrow{初等行变换}<br>
+\begin{pmatrix}<br>
+1&amp;0&amp;-1\\0&amp;1&amp;-1\\0&amp;0&amp;0<br>
+\end{pmatrix}<br>
+$$<br>
+于是可取特征向量 $v_1=(1,1,1)^T$, 从而常系数齐次线性方程组有一个解 $X_1(t)=e^tv_1$.<br>
+对于特征值 $\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i$, 有<br>
+$$<br>
+A-\lambda_2E=<br>
+\begin{pmatrix}<br>
+\frac12-\frac{\sqrt{3}}{2}i&amp;1&amp;0\\0&amp;\frac12-\frac{\sqrt3}{2}i&amp;1\\1&amp;0&amp;\frac12-\frac{\sqrt{3}}{2}i<br>
+\end{pmatrix}<br>
+\xrightarrow{初等行变换}<br>
+\begin{pmatrix}<br>
+1&amp;0&amp;\frac12-\frac{\sqrt3}{2}i\\0&amp;1&amp;\frac12+\frac{\sqrt3}{2}i\\0&amp;0&amp;0<br>
+\end{pmatrix}<br>
+$$<br>
+于是可取特征向量 $v_2=\left(-\frac12-\frac{\sqrt3}{2}i,-\frac12+\frac{\sqrt3}{2}i,1\right)^T$. 注意到<br>
+$$<br>
+\begin{aligned}<br>
+e^{(-\frac{1}{2}+\frac{\sqrt3}{2}i)t}v_2&amp;=e^{-\frac12t}<br>
+\begin{pmatrix}<br>
+(-\frac{1}{2}+\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
+(-\frac{1}{2}-\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
+e^{\frac{\sqrt3}{2}it}<br>
+\end{pmatrix}\\<br>
+&amp;=e^{-\frac12t}<br>
+\left\lbrace<br>
+\begin{pmatrix}<br>
+-\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+-\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+\cos\frac{\sqrt3}{2}t<br>
+\end{pmatrix}+i<br>
+\begin{pmatrix}<br>
+-\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+-\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+\sin\frac{\sqrt3}{2}t<br>
+\end{pmatrix}<br>
+\right\rbrace<br>
+\end{aligned}<br>
+$$<br>
+于是另两个线性无关的解为<br>
+$$<br>
+X_2(t)=e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+-\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+\cos\frac{\sqrt3}{2}t<br>
+\end{pmatrix},\quad<br>
+X_3(t)=e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+-\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+\sin\frac{\sqrt3}{2}t<br>
+\end{pmatrix}<br>
+$$<br>
+注意到 $X_1(t),X_2(t),X_3(t)$ 是常系数齐次线性方程组的三个线性无关解, 故通解为<br>
+$$<br>
+\begin{aligned}<br>
+X(t)&amp;=c_1X_1(t)+c_2X_2(t)+c_3X_3(t)\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1\\1\\1<br>
+\end{pmatrix}+<br>
+c_2e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+-\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+\cos\frac{\sqrt3}{2}t<br>
+\end{pmatrix}+<br>
+c_3e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+-\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+\sin\frac{\sqrt3}{2}t<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+其中 $c_1,c_2,c_3$ 为任意常数.</p>
+<hr>
+<p><strong>[T050202]</strong> 求常系数非齐次线性方程组的通解:<br>
+$$<br>
+X’=\begin{pmatrix}<br>
+-1&amp;2\\-2&amp;3<br>
+\end{pmatrix}X+\begin{pmatrix}<br>
+1\\0<br>
+\end{pmatrix}.<br>
+$$<br>
+<strong>解</strong> 记 $X’=AX+F$, 于是<br>
+$$<br>
+|\lambda E-A|=\begin{vmatrix}<br>
+\lambda+1&amp;-2\\2&amp;\lambda-3<br>
+\end{vmatrix}=(\lambda-1)^2\Longrightarrow \lambda=1 \ (二 \ 重)<br>
+$$<br>
+从而对应的常系数齐次线性方程组有两个解形如 $X(t)=(R_0+R_1t)e^t$, 其中 $R_0,R_1$ 满足<br>
+$$<br>
+\begin{cases}<br>
+(A-E)R_0=R_1\\<br>
+(A-E)^2R_0=0<br>
+\end{cases}<br>
+$$<br>
+注意到<br>
+$$<br>
+(A-E)^2=\begin{pmatrix}<br>
+-2&amp;2\\-2&amp;2<br>
+\end{pmatrix}^2=<br>
+O<br>
+$$<br>
+故可取 $R_0=(1,0)^T$ 和 $(0,1)^T$, 从而 $R_1=(-2,-2)^T$ 和 $(2,2)$, 从而对应的常系数齐次线性方程组有两个线性无关解</p>
+<p>$$<br>
+\begin{aligned}<br>
+X_1(t)&amp;=<br>
+\begin{pmatrix}<br>
+1\\<br>
+0<br>
+\end{pmatrix}+<br>
+\begin{pmatrix}<br>
+-2\\<br>
+-2<br>
+\end{pmatrix}t<br>
+e^t=e^t\begin{pmatrix}<br>
+1-2t\\<br>
+-2t<br>
+\end{pmatrix}\\</p>
+<p>X_2(t)&amp;=\begin{pmatrix}<br>
+0\\1<br>
+\end{pmatrix}+<br>
+\begin{pmatrix}<br>
+2\\2<br>
+\end{pmatrix}t<br>
+e^t=e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+由此可得对应的常系数齐次线性方程组的基解矩阵为</p>
+<p>$$<br>
+\Phi(t)=e^t<br>
+\begin{pmatrix}<br>
+1-2t&amp;2t\\<br>
+-2t&amp;1+2t<br>
+\end{pmatrix},<br>
+\Phi^{-1}(t)=e^{-t}<br>
+\begin{pmatrix}<br>
+1+2t&amp;-2t\\<br>
+2t&amp;1-2t<br>
+\end{pmatrix},<br>
+$$</p>
+<p>于是原常系数非齐次线性方程组有特解</p>
+<p>$$<br>
+\begin{aligned}<br>
+\bar X(t)&amp;=\Phi(t)\int_0^t\Phi^{-1}(s)F\mathrm{~d}s=e^t\begin{pmatrix}<br>
+1-2t&amp;2t\\-2t&amp;1+2t<br>
+\end{pmatrix}\begin{pmatrix}<br>
+-3e^{-t}-2te^{-t}+3\\-2e^{-t}-2te^{-t}+2<br>
+\end{pmatrix}\\<br>
+&amp;=e^t\begin{pmatrix}<br>
+-3e^{-t}+3-2t\\-2e^{-t}+2-2t<br>
+\end{pmatrix}=\begin{pmatrix}<br>
+-3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+故原方程组的通解<br>
+$$<br>
+\begin{aligned}<br>
+X(t)&amp;=c_1X_1(t)+c_2X_2(t)+\bar X(t)\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}+\begin{pmatrix}<br>
+-3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
+\end{pmatrix}\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}+\begin{pmatrix}<br>
+-3+2e^t\\-2+2e^t<br>
+\end{pmatrix}\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}+\begin{pmatrix}<br>
+-3\\-2<br>
+\end{pmatrix}.<br>
+\end{aligned}<br>
+$$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>一阶线性微分方程组</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常系数非齐次线性方程的待定系数法</title>
+    <url>/2025/09/03/ODE/4.4%20%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%9D%9E%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BE%85%E5%AE%9A%E7%B3%BB%E6%95%B0%E6%B3%95/</url>
+    <content><![CDATA[<p><strong>[T040401]</strong> 求微分方程通解: $\frac{\mathrm d^2x}{\mathrm dt^2}+x=\frac{1}{\sin^3t}$.</p>
+<p><strong>解</strong> 对应的常系数齐次线性微分方程的特征方程为 $\lambda^2+1=0$, 得特征根为 $\lambda_1=i,\ \lambda_2=-i$. 故对应的常系数齐次线性微分方程的通解为 $x(t)=c_1\cos t+c_2\sin t$. 设原方程的通解为<br>
+$$<br>
+x(t)=c_1(t)\cos t+c_2(t)\sin t<br>
+$$<br>
+利用常数变易法, 得到关于 $c_1’(t)$ 和 $c_2’(t)$ 的两个方程:<br>
+$$<br>
+\begin{cases}<br>
+c_1’(t)\cos t+c_2’(t)\sin t=0\<br>
+-c_1’(t)\sin t+c_2’(t)\cos t=\frac{1}{\sin^3t}<br>
+\end{cases}<br>
+$$<br>
+解得 $c_1’(t)=-\frac{1}{2\sin^2t}, \ c_2’(t)=\frac{\cos t}{\sin ^3t}$. 于是 $c_1(t)=\frac{1}{2}\cot t+c_1, \ c_2(t)=-\frac{1}{2}\sin^{-2}t+c_2$, 从而通解为<br>
+$$<br>
+x(t)=c_1\cos t+c_2\sin t+\frac{1}{2}\cot t\cos t-\frac{1}{2}\frac{1}{\sin t}.<br>
+$$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>高阶微分方程</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
       </tags>
   </entry>
   <entry>
@@ -2148,53 +2148,6 @@ F(0)<br>
 $$<br>
 注意到矩阵 $D$ 代表先交换向量 $\alpha$ 的上下两行, 再将向量的第 $2$ 行加到第 $1$ 行上去. 因此 $F(n)$ 就是上述操作执行 $n-1$ 次以后得到的向量的第 $1$ 行元素.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        a, b = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>):</span><br><span class="line">            a, b = b, a</span><br><span class="line">            a += b</span><br><span class="line">        <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法题</category>
-        <category>动态规划</category>
-      </categories>
-      <tags>
-        <tag>动态规划</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爬楼梯</title>
-    <url>/2025/09/09/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%88%AC%E6%A5%BC%E6%A2%AF/</url>
-    <content><![CDATA[<h1>爬楼梯</h1>
-<h2 id="问题描述">问题描述</h2>
-<blockquote>
-<p>设你正在爬楼梯. 需要 $n$ 阶你才能到达楼顶. 每次你可以爬 $1$ 或 $2$ 个台阶. 总共有多少种不同的方法可以爬到楼顶?</p>
-</blockquote>
-<h2 id="问题解答">问题解答</h2>
-<p><strong>解析:</strong></p>
-<p>不妨设 $f(n)$ 为走到第 $n$ 级台阶的方法数, 而第 $n$ 级台阶只能通过第 $n-1$ 级台阶或第 $n-2$ 级台阶才能到达, 于是我们有递推式子:<br>
-$$<br>
-f(n)=\begin{cases}<br>
-f(n-1)+f(n-2) &amp; n\ge 3,\\<br>
-1 &amp; n=1,\\<br>
-2 &amp; n=2\\<br>
-\end{cases}<br>
-$$</p>
-<p><strong>算法:</strong></p>
-<ul>
-<li>输入台阶数量 $n$</li>
-<li>构造 $n$ 维迭代向量 $v\gets (0,\cdots,0)$</li>
-<li>如果 $n==1$ 则输出 $1$</li>
-<li>如果 $n==2$ 则输出 $2$</li>
-<li>反之
-<ul>
-<li>赋值 $v_1\gets 1,~ v_2\gets 2$</li>
-<li>对于 $i=3,4,\cdots,n$:
-<ul>
-<li>$v_i\gets v_{i-1}+v_{i-2}$</li>
-</ul>
-</li>
-<li>输出 $v_n$</li>
-</ul>
-</li>
-</ul>
-<p><strong>Python 程序:</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp = [<span class="number">0</span>] * (n+<span class="number">1</span>)</span><br><span class="line">            dp[<span class="number">1</span>], dp[<span class="number">2</span>] = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n+<span class="number">1</span>):</span><br><span class="line">                dp[i] = dp[i-<span class="number">1</span>] + dp[i-<span class="number">2</span>]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
-]]></content>
       <categories>
         <category>算法题</category>
         <category>动态规划</category>
@@ -3811,6 +3764,53 @@ $$<br>
       </categories>
       <tags>
         <tag>数学分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爬楼梯</title>
+    <url>/2025/09/09/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%88%AC%E6%A5%BC%E6%A2%AF/</url>
+    <content><![CDATA[<h1>爬楼梯</h1>
+<h2 id="问题描述">问题描述</h2>
+<blockquote>
+<p>设你正在爬楼梯. 需要 $n$ 阶你才能到达楼顶. 每次你可以爬 $1$ 或 $2$ 个台阶. 总共有多少种不同的方法可以爬到楼顶?</p>
+</blockquote>
+<h2 id="问题解答">问题解答</h2>
+<p><strong>解析:</strong></p>
+<p>不妨设 $f(n)$ 为走到第 $n$ 级台阶的方法数, 而第 $n$ 级台阶只能通过第 $n-1$ 级台阶或第 $n-2$ 级台阶才能到达, 于是我们有递推式子:<br>
+$$<br>
+f(n)=\begin{cases}<br>
+f(n-1)+f(n-2) &amp; n\ge 3,\\<br>
+1 &amp; n=1,\\<br>
+2 &amp; n=2\\<br>
+\end{cases}<br>
+$$</p>
+<p><strong>算法:</strong></p>
+<ul>
+<li>输入台阶数量 $n$</li>
+<li>构造 $n$ 维迭代向量 $v\gets (0,\cdots,0)$</li>
+<li>如果 $n==1$ 则输出 $1$</li>
+<li>如果 $n==2$ 则输出 $2$</li>
+<li>反之
+<ul>
+<li>赋值 $v_1\gets 1,~ v_2\gets 2$</li>
+<li>对于 $i=3,4,\cdots,n$:
+<ul>
+<li>$v_i\gets v_{i-1}+v_{i-2}$</li>
+</ul>
+</li>
+<li>输出 $v_n$</li>
+</ul>
+</li>
+</ul>
+<p><strong>Python 程序:</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp = [<span class="number">0</span>] * (n+<span class="number">1</span>)</span><br><span class="line">            dp[<span class="number">1</span>], dp[<span class="number">2</span>] = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n+<span class="number">1</span>):</span><br><span class="line">                dp[i] = dp[i-<span class="number">1</span>] + dp[i-<span class="number">2</span>]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法题</category>
+        <category>动态规划</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
       </tags>
   </entry>
 </search>
