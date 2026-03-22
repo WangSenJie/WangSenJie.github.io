@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="梳理 AdaBoost 的核心思想、指数损失推导、参数估计过程与边际理论直觉。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AdaBoost">
+<meta property="og:url" content="https://wangsenjie.github.io/2025/10/02/adaboost/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="梳理 AdaBoost 的核心思想、指数损失推导、参数估计过程与边际理论直觉。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-22T16:56:57.029Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="集成学习">
+<meta property="article:tag" content="boosting">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2025/10/02/adaboost/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/ada-f1.png">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/ada-f1.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="梳理 AdaBoost 的核心思想、指数损失推导、参数估计过程与边际理论直觉。">
+
+<meta name="twitter:title" content="AdaBoost">
+
+  <title>AdaBoost | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/10/02/adaboost/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AdaBoost
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-10-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-10-02T00:00:00+08:00">2025-10-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:56:57" itemprop="dateModified" datetime="2026-03-23T00:56:57+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习与深度学习</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">梳理 AdaBoost 的核心思想、指数损失推导、参数估计过程与边际理论直觉。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>Adaptive Boosting</h1>
+<h2 id="1-背景介绍">1 背景介绍</h2>
+<p>AdaBoost (Adaptive Boosting) 是一个 Boosting 算法. Robert Schapire (1990) 在 <em>The Strength of Weak Learnability</em> 中提出了第一个 Boosting 算法, 证明弱学习器可以组合成强学习器. 随后 Freund &amp; Schapire (1997) 在论文 <em>A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting</em> 中提出了 AdaBoost. 进一步地，Schapire 等人 (1998) 在 <em>Boosting the Margin</em> 中提出了&quot;边际理论&quot;, 解释了 AdaBoost 在训练误差为零后仍能持续降低测试误差的现象，为理解其泛化性能提供了新的理论框架.</p>
+<h2 id="2-算法原理">2 算法原理</h2>
+<h3 id="2-1-研究目标与符号说明">2.1 研究目标与符号说明</h3>
+<p>设有训练集 $\lbrace(x_i,y_i)\rbrace_{i=1}^{n},~ y_i\in\lbrace-1,+1\rbrace$. 我们要构造一个二分类模型预测 $y$. 设第 $m$ 轮选练的弱学习器为 $h_m:~\mathcal X\to\lbrace-1,+1\rbrace$. 模型总共训练 $M$ 轮. 我们想要构造分类器:<br>
+$$<br>
+F_M(x)=\sum_{m=1}^M\alpha_mh_m(x),\quad \hat y(x)=\text{sign}(F_M(x)).<br>
+$$<br>
+采用最小化指数损失:<br>
+$$<br>
+J(F)=\sum_{i=1}^n\exp\left(-y_iF(x_i)\right).<br>
+$$</p>
+<h3 id="2-2-参数估计">2.2 参数估计</h3>
+<p>假定已有上一轮模型 $F_{m-1}$, 下面要找 $(\alpha_m,h_m)$ 以降低 $J(F)$:<br>
+$$<br>
+\min\limits_{\alpha,h}\sum_{i=1}^n\exp\left(-y_i(F_{m-1}(x_i)+\alpha h(x_i))\right).<br>
+$$<br>
+记<br>
+$$<br>
+w_i^{(m)}:=\exp\left(-y_iF_{m-1}(x_i)\right),<br>
+$$<br>
+则目标转化为<br>
+$$<br>
+\min\sum_{i=1}^nw_i^{(m)}\exp(-\alpha y_ih(x_i))).<br>
+$$<br>
+注意到 $h(x_i)\in\lbrace-1,+1\rbrace$, 因此<br>
+$$<br>
+\exp(-\alpha y_ih(x_i))=\begin{cases}<br>
+\exp(-\alpha),&amp;\text{样本分类正确},\\<br>
+\exp(\alpha),&amp;\text{样本分类错误}.<br>
+\end{cases}<br>
+$$<br>
+再令加权误差<br>
+$$<br>
+\varepsilon_m:=\frac{\sum_{i:~h(x_i)\neq y_i}w_i^{(m)}}{\sum_iw_i^{(m)}},\quad 1-\varepsilon_m:=\frac{\sum_{i:~h(x_i)= y_i}w_i^{(m)}}{\sum_iw_i^{(m)}}.<br>
+$$<br>
+于是<br>
+$$<br>
+\begin{aligned}<br>
+J(F_m)&amp;=\left(\sum_{i:~h(x_i)\neq y_i}+\sum_{i:~h(x_i)= y_i}\right)\left(w_i^{(m)}\exp(-\alpha y_ih(x_i)))\right)\\<br>
+&amp;=\exp(\alpha)\sum_{i:~h(x_i)\neq y_i}w_i^{(m)}+\exp(-\alpha)\sum_{i:~h(x_i)= y_i}w_i^{(m)}\\<br>
+&amp;=\exp(\alpha)\varepsilon_m\sum_iw_i^{(m)}+\exp(-\alpha)(1-\varepsilon_m)\sum_iw_i^{(m)}\\<br>
+&amp;=\left(\sum_iw_i^{(m)}\right)\left(\varepsilon_me^{\alpha}+(1-\varepsilon_m)e^{-\alpha}\right).<br>
+\end{aligned}<br>
+$$<br>
+令<br>
+$$<br>
+\begin{aligned}<br>
+&amp;\frac{\partial}{\partial\alpha}J(F_m)=\left(\sum_iw_i^{(m)}\right)\left(\varepsilon \alpha e^{\alpha}-(1-\varepsilon)\alpha e^{-\alpha}\right)=0.\\<br>
+\Rightarrow &amp; \varepsilon \alpha e^{\alpha}-(1-\varepsilon)\alpha e^{-\alpha}=0.\\<br>
+\Rightarrow &amp; \varepsilon\alpha e^{2\alpha}=1-\varepsilon<br>
+\end{aligned}<br>
+$$<br>
+解得<br>
+$$<br>
+\alpha_m=\frac12\ln\frac{1-\varepsilon}{\varepsilon}.<br>
+$$<br>
+由 $\varepsilon_m$ 的定义可知选择 $h_m$ 等价于最小化加权误差 $\varepsilon_m$:<br>
+$$<br>
+h_m=\arg\min\limits_{h}\varepsilon_m(h).<br>
+$$<br>
+最常见的方法是用决策桩: 遍历特征和切分点, 计算加权分类误差, 选误差最小的划分作为 $h_m$.</p>
+<h3 id="2-3-训练误差上界">2.3 训练误差上界</h3>
+<p>令<br>
+$$<br>
+Z_m:=\frac{\sum_i w_i^{(m)}\exp(-\alpha_my_ih_m(x_i))}{\sum_iw_i^{(m)}},<br>
+$$<br>
+不难看出<br>
+$$<br>
+Z_m = \varepsilon_me^{\alpha_m}+(1-\varepsilon_m)e^{-\alpha_m}.<br>
+$$<br>
+代入 $\alpha_m$ 的最优值, 得<br>
+$$<br>
+Z_m=\varepsilon_m\sqrt{\frac{1-\varepsilon_m}{\varepsilon_m}}+(1-\varepsilon_m)\sqrt{\frac{\varepsilon_m}{1-\varepsilon_m}}=2\sqrt{\varepsilon_m(1-\varepsilon_m)}:=\sqrt{1-\gamma_m^2},<br>
+$$<br>
+其中 $\gamma_m=1-2\varepsilon_m$.</p>
+<p>注意到 $1\lbrace y_i\neq\hat y_i\rbrace\le \exp(-y_i F_M(x_i))$, 可得训练误差的上界:<br>
+$$<br>
+\begin{aligned}<br>
+\frac{1}{n}\sum_{i=1}^n1\lbrace y_i\neq\hat y_i\rbrace&amp;\le\frac1n\sum_{i=1}^n\exp(-y_i F_M(x_i))\\<br>
+&amp;=\frac1n\sum_{i=1}^n\exp\left(-y_i \sum_{m=1}^M\alpha_mh_m(x_i)\right)\\<br>
+&amp;=\frac1n\sum_{i=1}^n\prod_{m=1}^M\exp(-y_i\alpha_mh_m(x_i))<br>
+\end{aligned}<br>
+$$</p>
+<p>注意到<br>
+$$<br>
+w_i^{(m)}=\exp\left(-y_iF_{m-1}(x_i)\right)=\exp\left(-y_i(F_{m-2}(x_i)+\alpha_{m-1}h_{m-1}(x_i))\right)=w_i^{(m-1)}\exp(\alpha_{m-1}y_ih_{m-1}(x_i))<br>
+$$</p>
+<p>而 $w_i^{(1)}=1$, 故<br>
+$$<br>
+\prod_{m=1}^M\exp(-y_i\alpha_mh_m(x_i))=w_i^{(M+1)}.<br>
+$$</p>
+<p>因此<br>
+$$<br>
+\frac{1}{n}\sum_{i=1}^n1\lbrace y_i\neq\hat y_i\rbrace\le\frac1n\sum_{i=1}^nw_i^{(M+1)}=\frac1n\sum_{i=1}^nw_i^{(M)}\exp(\alpha_My_ih_M(x_i))=\frac1nZ_M\sum_{i=1}^nw_i^{(M)},<br>
+$$</p>
+<p>继续向前递推可得<br>
+$$<br>
+\frac1n\sum_{i=1}^nw_i^{(M+1)}=\frac1nZ_M\sum_{i=1}^nw_i^{(M)}=\frac1nZ_MZ_{M-1}\sum_{i=1}^nw_i^{(M-1)}=\cdots=\prod_{m=1}^MZ_m.<br>
+$$<br>
+故<br>
+$$<br>
+\begin{aligned}<br>
+\frac{1}{n}\sum_{i=1}^n1\lbrace y_i\neq\hat y_i\rbrace\le\prod_{m=1}^MZ_m&amp;=\prod_{m=1}^M\sqrt{1-\gamma_m^2}\\<br>
+&amp;=\exp\left(\ln\prod_{m=1}^M\sqrt{1-\gamma_m^2}\right)\\<br>
+&amp;=\exp\left(\frac12\sum_{m=1}^M\ln(1-\gamma_m^2)\right)\\<br>
+&amp;\le\exp\left(-\frac12\sum_{m=1}^M\gamma_m^2\right).<br>
+\end{aligned}<br>
+$$<br>
+因此训练误差随 $M$ 呈指数下降.</p>
+<h3 id="2-4-Margin-理论">2.4 Margin 理论</h3>
+<h4 id="2-4-1-Margin-定义">2.4.1 Margin 定义</h4>
+<p>对于样本 $(x_i,y_i)$, AdaBoost 的加法模型为<br>
+$$<br>
+F_M(x)=\sum_{m=1}^M\alpha_mh_m(x).<br>
+$$<br>
+定义样本 $i$ 的间隔 (Margin) 为:<br>
+$$<br>
+\rho_i:=\frac{y_iF_M(x_i)}{\sum_{m=1}^M\vert\alpha_m\vert}.<br>
+$$</p>
+<blockquote>
+<p>【性质】$\rho_i\in[-1,1]$.</p>
+</blockquote>
+<p><strong>证:</strong><br>
+$$<br>
+\begin{aligned}<br>
+\rho_i&amp;=\frac{y_iF_M(x_i)}{\sum_{m=1}^M\vert\alpha_m\vert}=\frac{y_i\sum_{m=1}^M\alpha_mh_m(x_i)}{\sum_{m=1}^M\vert\alpha_m\vert}\\<br>
+&amp;=\frac{\sum_{m=1}^M\alpha_my_ih_m(x_i)}{\sum_{m=1}^M\vert\alpha_m\vert}<br>
+\end{aligned}<br>
+$$<br>
+注意到 $y_ih_m(x_i)\in\lbrace-1,+1\rbrace$, 故<br>
+$$<br>
+\sum_{m=1}^M-|\alpha_m|\le\sum_{m=1}^M\alpha_my_ih_m(x_i)\le\sum_{m=1}^M|\alpha_m|,<br>
+$$<br>
+因此 $\rho_i\in[-1,1]$.</p>
+<p>显然当$\rho_i&gt;0$ 时, 说明样本被正确分类; $\rho&lt;0$ 时样本被错误分类. 并且, $|\rho_i|$ 越大表明分类越&quot;自信&quot;.</p>
+<p>事实上, Margin 就是把函数值 $F_M(x_i)$ 做了一个归一化 (防止系数 $\alpha_m$ 规模影响), 然后和真实标签 $y_i$ 相乘, 看它们方向是否一致.</p>
+<h4 id="2-4-2-泛化误差">2.4.2 泛化误差</h4>
+<blockquote>
+<p>[定理] (Schapire, Freund, Bartlett, &amp; Lee, 1998) 当基分类器 $\mathcal H$ 有限时, 对于 $\forall \theta&gt;0$, 以至少 $1-\delta$ 的概率成立<br>
+$$<br>
+\underset{(x,y)\sim\mathcal D}{\mathrm{P}}\left(yF_M(x)\le0\right)\le\underset{i=1,\cdots,n}{\mathrm{P}}(\rho_i\le\theta)+O\left(\sqrt{\frac{\log n\cdot\log|\mathcal H|+\log(1/\delta)}{n\theta^2}}\right),<br>
+$$</p>
+</blockquote>
+<p><strong>证:</strong> (1) 令 $A:=\sum_{m=1}^M\vert\alpha_m\vert$, 定义分布 $\alpha$ 为<br>
+$$<br>
+P(h=h_m)=\frac{\alpha_m}{A}.<br>
+$$<br>
+于是<br>
+$$<br>
+\frac1AF_M(x)=\sum_{m=1}^M\frac{\alpha_m}{A}h_m(x)=\mathbb E_{h\sim\alpha}[h(x)].<br>
+$$<br>
+构造辅助函数集<br>
+$$<br>
+\mathcal C_N:=\left\lbrace g(x)=\frac1N\sum_{j=1}^Nh_j(x)~:~h_j\in\mathcal H\right\rbrace.<br>
+$$<br>
+在分布 $\alpha$ 上独立采样 $N$ 次, 得到 $h_1,\cdots,h_N$, 定义 $g(x)=\frac1N\sum_{j=1}^Nh_j(x)$, 不难得到<br>
+$$<br>
+\mathbb E_{g\sim\mathcal Q}[g(x)]=\frac1AF_M(x):=f(x).<br>
+$$<br>
+(2) 对任意 $\theta&gt;0$, 有<br>
+$$<br>
+\begin{aligned}<br>
+P_{\mathcal D}(yF_M(x)\le0)&amp;=P_{\mathcal D}(yf(x)\le0)\\<br>
+&amp;\le P_{\mathcal D}(yg(x)\le\theta/2)+P_{\mathcal D}(yg(x)&gt;\theta/2,~yf(x)\le 0),<br>
+\end{aligned}<br>
+$$<br>
+注意到<br>
+$$<br>
+\begin{aligned}<br>
+P_{\mathcal D}(yg(x)\le\theta/2) &amp;=\mathbb E[1_{P_{\mathcal D}(yg(x)\le\theta/2)}]=\mathbb E\left[\mathbb E[1_{P_{\mathcal D}(yg(x)\le\theta/2)}]\mid \mathcal g\right]\\<br>
+&amp;=\mathbb E\left[P_{\mathcal D}(yg(x)\le\theta/2)\right],\\<br>
+\\<br>
+P_{\mathcal D}(yg(x)&gt;\theta/2,~yf(x)\le 0)&amp;\overset{同上}{=}\mathbb E\left[P_{\mathcal D}(yg(x)&gt;\theta/2,~yf(x)\le 0)\right].<br>
+\end{aligned}<br>
+$$<br>
+于是<br>
+$$<br>
+\begin{aligned}<br>
+P_{\mathcal D}(yF_M(x)\le0)&amp;=\mathbb E\left[P_{\mathcal D}(yg(x)\le\theta/2)\right]+\mathbb E\left[P_{\mathcal D}(yg(x)&gt;\theta/2,~yf(x)\le 0)\right]\\<br>
+&amp;\le\mathbb E\left[P_{\mathcal D}(yg(x)\le\theta/2)\right]+\mathbb E\left[P_{\mathcal D}(yg(x)&gt;\theta/2\mid yf(x)\le 0)\right].<br>
+\end{aligned}<br>
+$$<br>
+(3) 利用 Chernoff 界可知<br>
+$$<br>
+P_{\mathcal g\sim\mathcal Q}(yg(x)&gt;\theta/2\mid yf(x)\le 0)\le\exp(-N\theta^2/8).<br>
+$$<br>
+下面使用并合界控制第一项, 注意到 $g$ 可以取 $\mathcal C_N$ 中的任何函数, 有 $|\mathcal H|^N$ 种情况; 且 $yg(x)$ 只可能取 $\lbrace-1,-1+\frac2N,\cdots,1\rbrace$ 这 $N+1$ 个值, 因此总共有 $(N+1)|\mathcal H|^N$ 种情况. 设<br>
+$$<br>
+\delta’=\frac{\delta_N}{(N+1)|\mathcal H|^N},<br>
+$$<br>
+其中 $\delta_N$ 与 $N$ 有关, 待定. 那么如果每个事件 “失败” 的概率 $\le\delta’$, 则所有事件都成立的概率至少有 $1-\delta_N$. 由 Hoeffding 不等式可知在大小为 $n$ 的训练集 $S$ 上, 以至少 $1-\delta_N$ 的概率, 对所有 $g\in\mathcal C_N$ 和阈值 $\theta$ 成立<br>
+$$<br>
+P_{\mathcal D}(yg(x)\le\theta/2)\le P_{S}(yg(x)\le\theta/2)+\epsilon_N,<br>
+$$<br>
+其中,<br>
+$$<br>
+\epsilon_N=\sqrt{\frac{1}{2n}\ln\left(\frac{(N+1)|\mathcal H|^N}{\delta_N}\right)}.<br>
+$$<br>
+再由 Chernoff 界可知<br>
+$$<br>
+\begin{aligned}<br>
+P_{S}(yg(x)\le\theta/2)&amp;=P_{S}(yg(x)\le\theta/2\mid yF_M(x)\le\theta)+P_{S}(yg(x)\le\theta/2\mid yF_M(x)&gt;\theta)\\<br>
+&amp;\le P_{S}(yF_M(x)\le\theta)+P_{S}(yg(x)\le\theta/2\mid yF_M(x)&gt;\theta)\\<br>
+&amp;\le P_{S}(yF_M(x)\le\theta)+\exp(-N\theta^2/8).<br>
+\end{aligned}<br>
+$$<br>
+(4 ) 综上, 我们有<br>
+$$<br>
+P_{\mathcal D}(yF_M(x)\le0)\le P_{S}(yF_M(x)\le\theta)+2\exp(-N\theta^2/8)+\sqrt{\frac{1}{2n}\ln\left(\frac{(N+1)|\mathcal H|^N}{\delta_N}\right)}.<br>
+$$<br>
+其中, 选取 $\delta_N=\frac{\delta}{N(N+1)}$. 则<br>
+$$<br>
+P_{\mathcal D}(yF_M(x)\le0)\le P_{S}(yF_M(x)\le\theta)+2\exp(-N\theta^2/8)+\sqrt{\frac{1}{2n}\ln\left(\frac{N(N+1)^2|\mathcal H|^N}{\delta}\right)}.<br>
+$$<br>
+取<br>
+$$<br>
+N=\frac1{\theta^2}\ln\left(\frac{n}{\ln|\mathcal H|}\right),<br>
+$$<br>
+就有<br>
+$$<br>
+P_{\mathcal D}\left(yF_M(x)\le0\right)\le\underset{i=1,\cdots,n}(\rho_i\le\theta)+O\left(\sqrt{\frac{\log n\cdot\log|\mathcal H|+\log(1/\delta)}{n\theta^2}}\right).<br>
+$$<br>
+证毕.</p>
+<h3 id="2-5-算法">2.5 算法</h3>
+<p>根据以上内容，整理 AdaBoost 算法如下：</p>
+<p>【输入】训练集 $S=\lbrace(x_i,y_i)\rbrace_{i=1}^n$, 其中 $x_i\in\mathcal X\subset\mathbb R^k,~y_i\in\lbrace-1,+1\rbrace$. 弱学习算法 $h$.</p>
+<p>【输出】分类器 $H(x)$</p>
+<ul>
+<li>初始化训练数据的权值分布</li>
+</ul>
+<p>$$<br>
+D_1=(w_{1}^{(1)},w_{2}^{(1)},\cdots,w_{n}^{(1)}),~w_{i}^{(1)}=\frac1n,~i=1,2,\cdots,n<br>
+$$</p>
+<ul>
+<li>
+<p>对 $m=1,2,\cdots,M$</p>
+<ul>
+<li>
+<p>使用具有权值分布 $D_m$ 的训练数据学习, 得到基本分类器<br>
+$$<br>
+h_m(x):~\mathcal X \to \lbrace-1,+1\rbrace.<br>
+$$</p>
+</li>
+<li>
+<p>计算加权误差<br>
+$$<br>
+\varepsilon_m=\frac{\sum_{i:~h(x_i)\neq y_i}w_i^{(m)}}{\sum_iw_i^{(m)}}.<br>
+$$</p>
+</li>
+<li>
+<p>计算 $h_m(x)$ 的系数 $\alpha_m$<br>
+$$<br>
+\alpha_m=\frac12\ln\frac{1-\varepsilon_m}{\varepsilon_m}.<br>
+$$</p>
+</li>
+<li>
+<p>更新权值分布<br>
+$$<br>
+D_{m+1}=\left(w_1^{(m+1)},w_2^{(m+1)},\cdots,w_n^{(m+1)}\right),\\<br>
+w_i^{(m+1)}=\exp\left(-y_iF_{m}(x_i)\right)=\exp\left(-y_i(F_{m-1}(x_i)+\alpha_mh_m(x_i))\right)=w_i^{(m)}\exp\left(-\alpha_my_ih_m(x_i)\right).<br>
+$$</p>
+</li>
+<li>
+<p>构造基本分类器的线性组合<br>
+$$<br>
+F_M(x)=\sum_{m=1}^M\alpha_mh_m(x)<br>
+$$<br>
+得到最终分类器:<br>
+$$<br>
+H(x)=\text{sign}(F_M(x))=\text{sign}\left(\sum_{m=1}^M\alpha_mh_m(x)\right).<br>
+$$</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考">参考</h2>
+<p>[1] 李航, 机器学习方法</p>
+<p>[2] Schapire, R. E., Freund, Y., Bartlett, P., &amp; Lee, W. S. (1998). Boosting the margin: A new explanation for the effectiveness of voting methods. <em>The Annals of Statistics, 26</em>(5), 1651–1686. <a target="_blank" rel="noopener" href="https://doi.org/10.1214/aos/1024691352">https://doi.org/10.1214/aos/1024691352</a></p>
+
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2025/10/02/adaboost/" data-share-title="AdaBoost">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">分享到朋友圈时，建议先复制链接，再到微信里粘贴发送。</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" rel="tag"># 集成学习</a>
+              <a href="/tags/boosting/" rel="tag"># boosting</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/09/09/omega-mathscr-m-mu-ast/" rel="prev" title="$(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间">
+      <i class="fa fa-chevron-left"></i> $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/10/15/gbdt/" rel="next" title="GBDT">
+      GBDT <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Adaptive Boosting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">1 背景介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">2 算法原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E7%A0%94%E7%A9%B6%E7%9B%AE%E6%A0%87%E4%B8%8E%E7%AC%A6%E5%8F%B7%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 研究目标与符号说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 参数估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E8%AE%AD%E7%BB%83%E8%AF%AF%E5%B7%AE%E4%B8%8A%E7%95%8C"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 训练误差上界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Margin-%E7%90%86%E8%AE%BA"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 Margin 理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-Margin-%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">2.4.1 Margin 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-%E6%B3%9B%E5%8C%96%E8%AF%AF%E5%B7%AE"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">2.4.2 泛化误差</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学分析、常微分方程、测度论、机器学习、算法与 Python 数据分析的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+
+</body>
+</html>
