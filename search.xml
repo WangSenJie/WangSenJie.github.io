@@ -37,224 +37,13 @@
 <p>在站点 package.json 加：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;start&quot;</span>: <span class="string">&quot;hexo s -o&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build&quot;</span>: <span class="string">&quot;hexo g&quot;</span>,</span><br><span class="line">    <span class="string">&quot;deploy&quot;</span>: <span class="string">&quot;hexo d -g&quot;</span>,</span><br><span class="line">    <span class="string">&quot;clean&quot;</span>: <span class="string">&quot;hexo clean&quot;</span>,</span><br><span class="line">    <span class="string">&quot;new&quot;</span>: <span class="string">&quot;hexo new&quot;</span>           // 用法：npm run new \&quot;标题\&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以后可用：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm run start</span><br><span class="line">npm run deploy</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm run start</span><br><span class="line">npm run deploy</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>Hexo 教程</category>
       </categories>
       <tags>
         <tag>Hexo 教程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Carathéodory扩张</title>
-    <url>/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/Carath%C3%A9odory%E6%89%A9%E5%BC%A0/</url>
-    <content><![CDATA[<p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
-<strong>Proof:</strong> 只需证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致.<br>
-<strong>(Step1.)</strong> 先证明 $\mu^{\ast}$ 在 $\mathscr F_0$ 上与 $\mu$ 一致, 即证 $\forall A\in\mathscr F_0$, 满足 $\mu^{\ast}(A)=\mu(A)$. 注意到</p>
-<p>$$<br>
-\mu^{\ast}(A) = \inf\Bigl\lbrace\sum_n\mu(A_n): A_n\in\mathscr{F}_0,~ \bigcup_n A_n\supset A \Bigr\rbrace.<br>
-$$</p>
-<p>而 $A\cup\varnothing\cup\varnothing\cup\cdots\supset A$, 因此<br>
-$$<br>
-\mu^{\ast}(A)\le \mu(A)+\mu(\varnothing)+\mu(\varnothing)+\cdots=\mu(A).<br>
-$$<br>
-另一方面, 若 $\mu^{\ast}(A)&lt;+\infty$, 则对 $\forall\varepsilon&gt;0, ~\exists~A_n\in\mathscr F_0$, 使得 $\bigcup\limits_nA_n\supset A$, 且<br>
-$$<br>
-\sum_n\mu(A_n)&lt;\mu^{\ast}(A)+\varepsilon.<br>
-$$<br>
-由 $\mu$ 的可列可加性和单调性知<br>
-$$<br>
-% \begin{aligned}<br>
-% \mu(A) &amp;\le \mu\left(\bigcup_{n} A_n\right) \<br>
-%        &amp;= \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \<br>
-%        &amp;= \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \<br>
-%        &amp;\le \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
-% \end{aligned}<br>
-\begin{array}{rcl}<br>
-\mu(A) &amp;\le&amp; \mu\left(\bigcup_{n} A_n\right) \\<br>
-&amp;=&amp; \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \\<br>
-&amp;=&amp; \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \\<br>
-&amp;\le&amp; \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
-\end{array}<br>
-$$<br>
-再由 $\varepsilon$ 的任意性可知 $\mu(A)\le\mu^{\ast}(A)$. 综上, $\mu(A)=\mu^{\ast}(A)$.<br>
-<strong>(Step2.)</strong> 再证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度, 只需证明 $\mathscr F=\sigma(\mathscr F_0)\subset\mathscr M$, 其中 $\mathscr M$ 是 $\mu^{\ast}$ 可测子集全体构成的 $\sigma$ 代数.</p>
-<blockquote>
-<p>见“$(\Omega,\mathscr M,\mu^{\ast})$ 是完备测度空间”</p>
-</blockquote>
-<p>对 $\forall A\in\mathscr F_0$, 要证明 $A\in\mathscr M$. 对 $\forall E\subset\Omega$, 不妨设 $\mu^{\ast}(E)&lt;\infty$, 则对 $\forall \varepsilon&gt;0$, 存在子集列 ${A_n}\subset\mathscr F_0$ 满足 $\cup_nA_n\supset E$ 且 $\sum\limits_n\mu(A_n)&lt;\mu^{\ast}(E)+\varepsilon$, 因而<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)&amp;\le\mu^{\ast}\left(\bigcup_n(A_n\cap A)\right)+\mu^{\ast}\left(\bigcup_n(A_n\cap A^c)\right)\\<br>
-(\text{外测度的次可列可加性})~&amp;\le\sum_n\left[\mu^{\ast}(A_n\cap A)+\mu^{\ast}(A_n\cap A^c)\right]\\<br>
-(\text{Step1.})~&amp;=\sum_n\left[\mu(A_n\cap A)+\mu(A_n\cap A^c)\right]\\<br>
-(\text{预测度的可列可加性})~&amp;=\sum_n\mu(A_n)\\<br>
-&amp;&lt;\mu^{\ast}(E)+\varepsilon<br>
-\end{aligned}<br>
-$$<br>
-由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
-综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>单调收敛定理</title>
-    <url>/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/</url>
-    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
-$$<br>
-\mu(f)=\lim\limits_n\mu(f_n)<br>
-$$<br>
-<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
-$$<br>
-A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
-$$<br>
-满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
-$$<br>
-\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
-$$<br>
-因为 $g$ 是简单的, 故<br>
-$$<br>
-\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
-$$<br>
-由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
-$$<br>
-\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
-$$<br>
-可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
-$$<br>
-\lim\limits_n\mu(f_n)=\mu(f).<br>
-$$</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>$(&#92;Omega,&#92;mathscr M,&#92;mu^{&#92;ast} )$ 是完备测度空间</title>
-    <url>/2025/09/09/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%AE%8C%E5%A4%87%E7%9A%84%E6%B5%8B%E5%BA%A6%E7%A9%BA%E9%97%B4/</url>
-    <content><![CDATA[<p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
-<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
-<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
-<ul>
-<li>
-<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
-<ul>
-<li>
-<p>$\mathscr M$ 非空.<br>
-事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
-&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
-&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
-\end{aligned}<br>
-$$<br>
-即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
-</li>
-<li>
-<p>$\mathscr M$ 对于补集运算封闭.<br>
-事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
-\end{aligned}<br>
-$$<br>
-即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
-</li>
-<li>
-<p>$\mathscr M$ 对于可列并封闭.</p>
-<ul>
-<li>
-<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
-设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
-=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
-&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
-\end{aligned}<br>
-$$<br>
-即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
-</li>
-<li>
-<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
-设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
-$$<br>
-S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
-$$</p>
-<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
-&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\cdots\cdots\\<br>
-&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
-\end{aligned}<br>
-$$</p>
-<p>令 $n\to\infty$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
-\end{aligned}<br>
-$$</p>
-<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
-</li>
-<li>
-<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
-<ul>
-<li>
-<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
-</li>
-<li>
-<p>$\mu^{\ast} $ 满足可列可加性.<br>
-由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
-$$<br>
-\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
-$$<br>
-令 $E=\Omega$, 得<br>
-$$<br>
-\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
-$$<br>
-从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
-</li>
-</ul>
-<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
-</li>
-</ul>
-<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
-<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
       </tags>
   </entry>
   <entry>
@@ -537,37 +326,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>解的延拓</title>
-    <url>/2025/09/03/ODE/3.3%E8%A7%A3%E7%9A%84%E5%BB%B6%E6%8B%93/</url>
-    <content><![CDATA[<p><strong>[T030301]</strong> 设 $f(x,y)$ 在整个平面上连续有界, 且 $\frac{\partial f}{\partial y}(x,y)$ 也连续. 证明方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的每一个解 $y=\varphi(x)$ 的饱和区间为 $-\infty&lt;x&lt;+\infty$.</p>
-<p><strong>证</strong> 因为 $\frac{\partial f}{\partial y}(x,y)$ 在整个平面 $\mathbb{R}^2$ 上连续, 故 $f$ 在 $\mathbb{R}^2$ 上满足关于 $y$ 的局部 Lipschitz 条件. 又 $f(x,y)$ 在 $\mathbb{R}^2$ 上连续, 故方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 满足延拓定理, 及其一切解都可延拓到 $\mathbb{R}^2$ 的边界(即无穷远处).</p>
-<p>考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\mathbb{R}^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\mathbb{R}^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y=\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y=\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.</p>
-<hr>
-<p><strong>[T030303]</strong> 证明: 对一阶线性方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 若 $P(x),Q(x)\in C[a,b]$ , 则对任意 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 方程有唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上连续.</p>
-<p><strong>证</strong> 设 $f(x,y)=P(x)y+Q(x)$, 由条件知 $f(x,y)$ 在 $R=[a,b]\times(-\infty,+\infty)$ 上连续, 又 $\frac{\partial f}{\partial y}=P(x)$ 在 $[a,b]$ 上连续, 从而 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件, 故方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$ 满足延拓定理, 即对任意的 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 通过 $(x_0,y_0)$ 的解 $y=\varphi(x)$ 可延拓到 $R$ 的边界. 设 $\left|\frac{\partial f}{\partial y}\right|\le M, \ x\in[a,b]$. 对任意 $x\in[a,b]$, 作逐步迭代<br>
-$$<br>
-y_1(x_0)=y_0,\quad y_n(x)=y_0+\int_{x_0}^xf(t,y_{n-1}(t))\mathrm{~d}t, \ n=2,3,\cdots<br>
-$$<br>
-由 Lipschitz 条件可知<br>
-$$<br>
-\left|y_n(x)-y_{n-1}(x)\right|\le\frac{(x-x_0)^{n-1}M^{n-1}}{n!}<br>
-$$<br>
-于是 $y_0(x)+\sum\limits_{n=1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y=\varphi(x)$, 即方程的唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.</p>
-<hr>
-<p><strong>[T030304]</strong> 已知 $\frac{\mathrm dy}{\mathrm dx}=(y^2-a^2)f(x,y)$, 这里 $f(x,y)$ 及 $f’_y(x,y)$ 在 $xOy$ 面上连续. 试证明: 对 $\forall x_0$ 及 $|y_0|&lt;a$, 满足初始条件 $y(x_0)=y_0$ 的解 $y(x)$ 都在区间 $(-\infty,+\infty)$ 上存在.</p>
-<p><strong>证</strong> 方程的右端函数 $(y^2-a^2)f(x,y)$ 在全平面 $\mathbb{R}^2$ 上连续可微, 因此它满足解的存在唯一性定理和延拓定理.</p>
-<p>显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\mathbb{R}^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>定解问题与适定性</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解对初值与参数的连续性与可微性</title>
     <url>/2025/09/03/ODE/3.4%20%E8%A7%A3%E5%AF%B9%E5%88%9D%E5%80%BC%E4%B8%8E%E5%8F%82%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%BE%AE%E6%80%A7/</url>
     <content><![CDATA[<p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
@@ -719,6 +477,37 @@ $$<br>
         <category>数学</category>
         <category>常微分方程</category>
         <category>高阶微分方程</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解的延拓</title>
+    <url>/2025/09/03/ODE/3.3%E8%A7%A3%E7%9A%84%E5%BB%B6%E6%8B%93/</url>
+    <content><![CDATA[<p><strong>[T030301]</strong> 设 $f(x,y)$ 在整个平面上连续有界, 且 $\frac{\partial f}{\partial y}(x,y)$ 也连续. 证明方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的每一个解 $y=\varphi(x)$ 的饱和区间为 $-\infty&lt;x&lt;+\infty$.</p>
+<p><strong>证</strong> 因为 $\frac{\partial f}{\partial y}(x,y)$ 在整个平面 $\mathbb{R}^2$ 上连续, 故 $f$ 在 $\mathbb{R}^2$ 上满足关于 $y$ 的局部 Lipschitz 条件. 又 $f(x,y)$ 在 $\mathbb{R}^2$ 上连续, 故方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 满足延拓定理, 及其一切解都可延拓到 $\mathbb{R}^2$ 的边界(即无穷远处).</p>
+<p>考虑过任一点 $P(x_0,y_0)$ 的解. 由 $f(x,y)$ 在 $\mathbb{R}^2$ 上有界可知存在 $M&gt;0$, 使得对任意 $(x,y)\in\mathbb{R}^2$, 有 $|f(x,y)|&lt;M$. 过点 $P$ 作斜率为 $-M$ 与 $M$ 的直线, 由 $|f(x,y)|&lt;M$ 知积分曲线 $y=\varphi(x)$ 必在两条直线所围的对角区域之内, 向左向右无限延拓, 即方程的每一个解 $y=\varphi(x)$ 的饱和区间为 $(-\infty,+\infty)$.</p>
+<hr>
+<p><strong>[T030303]</strong> 证明: 对一阶线性方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 若 $P(x),Q(x)\in C[a,b]$ , 则对任意 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 方程有唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上连续.</p>
+<p><strong>证</strong> 设 $f(x,y)=P(x)y+Q(x)$, 由条件知 $f(x,y)$ 在 $R=[a,b]\times(-\infty,+\infty)$ 上连续, 又 $\frac{\partial f}{\partial y}=P(x)$ 在 $[a,b]$ 上连续, 从而 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件, 故方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$ 满足延拓定理, 即对任意的 $x_0\in[a,b],y_0\in(-\infty,+\infty)$, 通过 $(x_0,y_0)$ 的解 $y=\varphi(x)$ 可延拓到 $R$ 的边界. 设 $\left|\frac{\partial f}{\partial y}\right|\le M, \ x\in[a,b]$. 对任意 $x\in[a,b]$, 作逐步迭代<br>
+$$<br>
+y_1(x_0)=y_0,\quad y_n(x)=y_0+\int_{x_0}^xf(t,y_{n-1}(t))\mathrm{~d}t, \ n=2,3,\cdots<br>
+$$<br>
+由 Lipschitz 条件可知<br>
+$$<br>
+\left|y_n(x)-y_{n-1}(x)\right|\le\frac{(x-x_0)^{n-1}M^{n-1}}{n!}<br>
+$$<br>
+于是 $y_0(x)+\sum\limits_{n=1}^{\infty}\left(y_n(x)-y_{n-1}(x)\right)$ 是 $[a,b]$ 上的绝对一致收敛级数, 从而连续函数列 ${y_n(x)}$ 在 $[a,b]$ 上一致收敛于初值问题 $y=\varphi(x)$, 即方程的唯一解 $y=\varphi(x)$ 在 $[a,b]$ 上有定义, 显然在 $[a,b]$ 上连续.</p>
+<hr>
+<p><strong>[T030304]</strong> 已知 $\frac{\mathrm dy}{\mathrm dx}=(y^2-a^2)f(x,y)$, 这里 $f(x,y)$ 及 $f’_y(x,y)$ 在 $xOy$ 面上连续. 试证明: 对 $\forall x_0$ 及 $|y_0|&lt;a$, 满足初始条件 $y(x_0)=y_0$ 的解 $y(x)$ 都在区间 $(-\infty,+\infty)$ 上存在.</p>
+<p><strong>证</strong> 方程的右端函数 $(y^2-a^2)f(x,y)$ 在全平面 $\mathbb{R}^2$ 上连续可微, 因此它满足解的存在唯一性定理和延拓定理.</p>
+<p>显然 $y=\pm a$ 是方程的解, 由延拓定理知满足 $y(x_0)=y_0$ 的解可无限远离原点, 延拓到 $\mathbb{R}^2$ 的边界. 又由解的唯一性知 $y=y(x)$ 不能穿过直线 $y=\pm a$, 故只能是向两侧延拓而无限远离原点, 从而解 $y(x)$ 在 $(-\infty,+\infty)$ 上存在.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>定解问题与适定性</category>
       </categories>
       <tags>
         <tag>常微分方程</tag>
@@ -1315,29 +1104,6 @@ Person表:</p>
       </tags>
   </entry>
   <entry>
-    <title>超过经理收入的员工</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/181%E8%B6%85%E8%BF%87%E7%BB%8F%E7%90%86%E6%94%B6%E5%85%A5%E7%9A%84%E5%91%98%E5%B7%A5/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表：Employee</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（具有唯一值的列）。该表的每一行都表示雇员的ID、姓名、工资和经理的ID。编写解决方案，找出收入比经理高的员工。以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| id | name  | salary | managerId |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| 1  | Joe   | 70000  | 3         |</span><br><span class="line">| 2  | Henry | 80000  | 4         |</span><br><span class="line">| 3  | Sam   | 60000  | Null      |</span><br><span class="line">| 4  | Max   | 90000  | Null      |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">输出: </span><br><span class="line">+----------+</span><br><span class="line">| Employee |</span><br><span class="line">+----------+</span><br><span class="line">| Joe      |</span><br><span class="line">+----------+</span><br><span class="line">解释: Joe 是唯一挣得比经理多的雇员。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on = <span class="string">&#x27;managerId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(181)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>查找重复的电子邮箱</title>
     <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/182%E6%9F%A5%E6%89%BE%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/</url>
     <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
@@ -1392,6 +1158,29 @@ Person表:</p>
       </tags>
   </entry>
   <entry>
+    <title>超过经理收入的员工</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/181%E8%B6%85%E8%BF%87%E7%BB%8F%E7%90%86%E6%94%B6%E5%85%A5%E7%9A%84%E5%91%98%E5%B7%A5/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表：Employee</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（具有唯一值的列）。该表的每一行都表示雇员的ID、姓名、工资和经理的ID。编写解决方案，找出收入比经理高的员工。以任意顺序返回结果表。</p>
+<p>结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| id | name  | salary | managerId |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| 1  | Joe   | 70000  | 3         |</span><br><span class="line">| 2  | Henry | 80000  | 4         |</span><br><span class="line">| 3  | Sam   | 60000  | Null      |</span><br><span class="line">| 4  | Max   | 90000  | Null      |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">输出: </span><br><span class="line">+----------+</span><br><span class="line">| Employee |</span><br><span class="line">+----------+</span><br><span class="line">| Joe      |</span><br><span class="line">+----------+</span><br><span class="line">解释: Joe 是唯一挣得比经理多的雇员。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on = <span class="string">&#x27;managerId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(181)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>部门工资最高的员工</title>
     <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/184%E9%83%A8%E9%97%A8%E5%B7%A5%E8%B5%84%E6%9C%80%E9%AB%98%E7%9A%84%E5%91%98%E5%B7%A5/</url>
     <content><![CDATA[<p><strong>问题描述：</strong><br>
@@ -1413,6 +1202,34 @@ Person表:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>]==max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(department, left_on = <span class="string">&#x27;departmentId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_d&#x27;</span>))[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>来自 leetcode(184)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除重复的电子邮箱</title>
+    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/196%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。</p>
+<p>编写解决方案 删除 所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
+<p>（对于 <code>SQL</code> 用户，请注意你应该编写一个 <code>DELETE</code> 语句而不是 <code>SELECT</code> 语句。）</p>
+<p>（对于 <code>Pandas</code> 用户，请注意你应该直接修改 <code>Person</code> 表。）</p>
+<p>运行脚本后，显示的答案是 <code>Person</code> 表。驱动程序将首先编译并运行您的代码片段，然后再显示 <code>Person</code> <code>表。Person</code> 表的最终顺序 无关紧要 。</p>
+<p>返回结果格式如下示例所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">输出: </span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br><span class="line">解释: john@example.com重复两次。我们保留最小的Id = 1。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(196)</p>
 </blockquote>
 ]]></content>
       <categories>
@@ -1469,34 +1286,6 @@ Person表:</p>
       </tags>
   </entry>
   <entry>
-    <title>删除重复的电子邮箱</title>
-    <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/196%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。</p>
-<p>编写解决方案 删除 所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
-<p>（对于 <code>SQL</code> 用户，请注意你应该编写一个 <code>DELETE</code> 语句而不是 <code>SELECT</code> 语句。）</p>
-<p>（对于 <code>Pandas</code> 用户，请注意你应该直接修改 <code>Person</code> 表。）</p>
-<p>运行脚本后，显示的答案是 <code>Person</code> 表。驱动程序将首先编译并运行您的代码片段，然后再显示 <code>Person</code> <code>表。Person</code> 表的最终顺序 无关紧要 。</p>
-<p>返回结果格式如下示例所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">输出: </span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br><span class="line">解释: john@example.com重复两次。我们保留最小的Id = 1。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(196)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>上升的温度</title>
     <url>/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/197%E4%B8%8A%E5%8D%87%E7%9A%84%E6%B8%A9%E5%BA%A6/</url>
     <content><![CDATA[<p><strong>问题描述：</strong><br>
@@ -1522,6 +1311,218 @@ Person表:</p>
       </categories>
       <tags>
         <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Carathéodory扩张</title>
+    <url>/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/Carath%C3%A9odory%E6%89%A9%E5%BC%A0/</url>
+    <content><![CDATA[<p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
+<strong>Proof:</strong> 只需证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致.<br>
+<strong>(Step1.)</strong> 先证明 $\mu^{\ast}$ 在 $\mathscr F_0$ 上与 $\mu$ 一致, 即证 $\forall A\in\mathscr F_0$, 满足 $\mu^{\ast}(A)=\mu(A)$. 注意到</p>
+<p>$$<br>
+\mu^{\ast}(A) = \inf\Bigl\lbrace\sum_n\mu(A_n): A_n\in\mathscr{F}_0,~ \bigcup_n A_n\supset A \Bigr\rbrace.<br>
+$$</p>
+<p>而 $A\cup\varnothing\cup\varnothing\cup\cdots\supset A$, 因此<br>
+$$<br>
+\mu^{\ast}(A)\le \mu(A)+\mu(\varnothing)+\mu(\varnothing)+\cdots=\mu(A).<br>
+$$<br>
+另一方面, 若 $\mu^{\ast}(A)&lt;+\infty$, 则对 $\forall\varepsilon&gt;0, ~\exists~A_n\in\mathscr F_0$, 使得 $\bigcup\limits_nA_n\supset A$, 且<br>
+$$<br>
+\sum_n\mu(A_n)&lt;\mu^{\ast}(A)+\varepsilon.<br>
+$$<br>
+由 $\mu$ 的可列可加性和单调性知<br>
+$$<br>
+% \begin{aligned}<br>
+% \mu(A) &amp;\le \mu\left(\bigcup_{n} A_n\right) \<br>
+%        &amp;= \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \<br>
+%        &amp;= \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \<br>
+%        &amp;\le \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+% \end{aligned}<br>
+\begin{array}{rcl}<br>
+\mu(A) &amp;\le&amp; \mu\left(\bigcup_{n} A_n\right) \\<br>
+&amp;=&amp; \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \\<br>
+&amp;=&amp; \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \\<br>
+&amp;\le&amp; \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+\end{array}<br>
+$$<br>
+再由 $\varepsilon$ 的任意性可知 $\mu(A)\le\mu^{\ast}(A)$. 综上, $\mu(A)=\mu^{\ast}(A)$.<br>
+<strong>(Step2.)</strong> 再证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度, 只需证明 $\mathscr F=\sigma(\mathscr F_0)\subset\mathscr M$, 其中 $\mathscr M$ 是 $\mu^{\ast}$ 可测子集全体构成的 $\sigma$ 代数.</p>
+<blockquote>
+<p>见“$(\Omega,\mathscr M,\mu^{\ast})$ 是完备测度空间”</p>
+</blockquote>
+<p>对 $\forall A\in\mathscr F_0$, 要证明 $A\in\mathscr M$. 对 $\forall E\subset\Omega$, 不妨设 $\mu^{\ast}(E)&lt;\infty$, 则对 $\forall \varepsilon&gt;0$, 存在子集列 ${A_n}\subset\mathscr F_0$ 满足 $\cup_nA_n\supset E$ 且 $\sum\limits_n\mu(A_n)&lt;\mu^{\ast}(E)+\varepsilon$, 因而<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)&amp;\le\mu^{\ast}\left(\bigcup_n(A_n\cap A)\right)+\mu^{\ast}\left(\bigcup_n(A_n\cap A^c)\right)\\<br>
+(\text{外测度的次可列可加性})~&amp;\le\sum_n\left[\mu^{\ast}(A_n\cap A)+\mu^{\ast}(A_n\cap A^c)\right]\\<br>
+(\text{Step1.})~&amp;=\sum_n\left[\mu(A_n\cap A)+\mu(A_n\cap A^c)\right]\\<br>
+(\text{预测度的可列可加性})~&amp;=\sum_n\mu(A_n)\\<br>
+&amp;&lt;\mu^{\ast}(E)+\varepsilon<br>
+\end{aligned}<br>
+$$<br>
+由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
+综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单调收敛定理</title>
+    <url>/2025/09/02/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%8D%95%E8%B0%83%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/</url>
+    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
+$$<br>
+\mu(f)=\lim\limits_n\mu(f_n)<br>
+$$<br>
+<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
+$$<br>
+A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
+$$<br>
+满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
+$$<br>
+\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
+$$<br>
+因为 $g$ 是简单的, 故<br>
+$$<br>
+\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
+$$<br>
+由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
+$$<br>
+\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
+$$<br>
+可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
+$$<br>
+\lim\limits_n\mu(f_n)=\mu(f).<br>
+$$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>$(&#92;Omega,&#92;mathscr M,&#92;mu^{&#92;ast} )$ 是完备测度空间</title>
+    <url>/2025/09/09/%E6%B5%8B%E5%BA%A6%E8%AE%BA/%E5%AE%8C%E5%A4%87%E7%9A%84%E6%B5%8B%E5%BA%A6%E7%A9%BA%E9%97%B4/</url>
+    <content><![CDATA[<p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
+<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
+<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+<ul>
+<li>
+<p>$\mathscr M$ 非空.<br>
+事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
+&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
+&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
+\end{aligned}<br>
+$$<br>
+即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于补集运算封闭.<br>
+事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
+\end{aligned}<br>
+$$<br>
+即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于可列并封闭.</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
+设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
+&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
+\end{aligned}<br>
+$$<br>
+即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
+</li>
+<li>
+<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
+设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
+$$<br>
+S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
+$$</p>
+<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
+&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\cdots\cdots\\<br>
+&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>令 $n\to\infty$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+</li>
+<li>
+<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+<ul>
+<li>
+<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
+</li>
+<li>
+<p>$\mu^{\ast} $ 满足可列可加性.<br>
+由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
+$$<br>
+\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
+$$<br>
+令 $E=\Omega$, 得<br>
+$$<br>
+\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
+$$<br>
+从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
+</li>
+</ul>
+<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+</li>
+</ul>
+<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
+<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
       </tags>
   </entry>
   <entry>
@@ -1817,6 +1818,120 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>Transformer 架构 —— Attention Is All You Need</title>
+    <url>/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/</url>
+    <content><![CDATA[<h1>Transformer — 模型架构</h1>
+<h2 id="1-简介">1 简介</h2>
+<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Transformer%E7%BB%93%E6%9E%84.png" alt="Transformer结构"></p>
+<p>Transformer 架构主要由编码器和解码器两部分构成, 其中编码器将符号表示组成的输入序列 $x=(x_1,\cdots,x_n)$ 映射为连续表示序列 $z=(z_1,\cdots,z_n)$. 给定 $z$, 解码器<strong>逐个元素</strong>地生成 (自回归) 输出符号序列 $y=(y_1,\cdots,y_m)$.</p>
+<blockquote>
+<p>对于一个“英翻中”问题, 输入序列 <code>x = ['I', 'love', 'math']</code> , 模型先把它们查表成向量加上位置向量后输入到编码器, 得到序列 <code>[z1, z2, z3]</code>, 其中每个 <code>zi</code> 都是一个向量, 例如 <code>z1</code> 就是单次 <code>'I'</code> 的向量表示. 通过解码器得到输出序列 <code>['我', '爱', '数学']</code>.</p>
+</blockquote>
+<p>具体地, 编码器由 $N=6$ 个相同的层堆叠而成, 每一层包含两个子层: 其一是多头自注意力机制层, 其二是全连接前馈神经网络层. 在两个子层之后都采用残差连接, 随后用层归一化 (LayerNorm). 即每个子层的输出为<br>
+$$<br>
+\mathrm{LayerNorm}(x+\mathrm{Sublayer}(x)),<br>
+$$<br>
+其中 $\mathrm{Sublayer}(x)$ 表示该子层实现的函数. 为了便于层残差连接, 所有子层以及嵌入层的输出维度都设为 $d_{model}=512$.</p>
+<blockquote>
+<p>LayerNorm 就是对每一个样本做一个标准化, 即对于样本 $x_{i,\cdot}$, 计算它所有特征的均值 $\mu_i$ 和标准差 $\sigma_i$, 则<br>
+$$<br>
+\mathrm{LayerNorm}(x_i)=\frac{x_{i,\cdot}-\mu_i}{\sigma_i}.<br>
+$$<br>
+与之对应的有 BatchNorm, 它是对每个特征做标准化, 即对于特征列 $x_{\cdot,j}$, 计算列均值和标准差 $\mu_j,\sigma_j$, 则<br>
+$$<br>
+\mathrm{BatchNorm}(x_{\cdot,j})=\frac{x_{\cdot,j}-\mu_j}{\sigma_j}.<br>
+$$<br>
+简单来说, 对于二维的输入, LayerNorm 就是对每一行进行标准化, BatchNorm 是对每一列进行标准化.</p>
+<p>对于一个三维的输入, 可以用下面的图形象表示</p>
+<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Norm.png" alt="Norm"></p>
+<p>图片来源：<a href="https://www.cnblogs.com/xiaxuexiaoab/p/18325271">https://www.cnblogs.com/xiaxuexiaoab/p/18325271</a></p>
+</blockquote>
+<p>解码器同样由 $N=6$ 个相同的层组成. 除了与编码器层相同的两个子层外, 解码器还插入了新的层: 对编码器的输出做多头注意力, 且利用掩码机制使得第 $i$ 个位置的预测只能依赖于 $i$ 之前已知的输出.</p>
+<h2 id="2-Attention">2 Attention</h2>
+<p>注意力函数可以描述为: 输入一个查询 (query)、一组键 (key) 值 (value) 对, 然后得到一个输出. 即<br>
+$$<br>
+\mathrm{Attention}:~(Q,K,V)\to \mathrm{Attention}(Q,K,V),<br>
+$$<br>
+其中 query、key、value 与输出都是向量, 输出是 value 的加权求和, 每个 value 的权重由 query 与对应 key 求得, 事实上就是 query 与 key 之间的相似度.</p>
+<h3 id="2-1-缩放点积注意力-Scaled-Dot-Product-Attention">2.1 缩放点积注意力 (Scaled Dot-Product Attention)</h3>
+<p>本架构采用的是缩放点积注意力, 即用向量的内积来衡量向量之间的相似度.</p>
+<ul>
+<li>
+<p>输入: 维数为 $d_k$ 的 query 与 key, 维数为 $d_v$ 的 value.</p>
+</li>
+<li>
+<p>一组 query 会打包为矩阵 $Q_{n\times d_k}$, key 和 value 分别打包为矩阵 $K_{m\times d_k},V_{m\times d_v}$.</p>
+</li>
+<li>
+<p>输出:<br>
+$$<br>
+\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V.<br>
+$$</p>
+</li>
+</ul>
+<p>与一般的点积注意力不同, 这里在做内积后还进行了 $1/\sqrt{d_k}$ 的缩放, 主要是为了避免当 $d_k$ 较大时, 可能导致 $QK^T$ 中每一行元素都很大或很小, 可能导致 softmax 以后很接近 $0$ 或 $1$, 这会使得梯度很小.</p>
+<p>在解码器中, 增加了 Mask 来防止在当前时间看到之后时间的数据. 具体而言, 在 $t$ 时间, 赋予 $q_t,k_t$ 及其之后的值很大的负数 (例如 $-1\times 10^{10}$), 它在进入 softmax 函数之后会变成几乎为 $0$.</p>
+<h3 id="2-2-多头注意力-Multi-Head-Attention">2.2 多头注意力 (Multi-Head Attention)</h3>
+<p>与仅用 $d_{model}$ 维度的一组 $Q,K,V$ 做一次注意力相比, 把 $Q,K,V$ 分别通过不同的可学习线性映射投影到 $h$ 组 $(d_k,d_k,d_v)$ 维度更有效.</p>
+<p>对于输入隐状态 $H\in\mathbb R^{n\times d}$ (批量维先忽略)</p>
+<ul>
+<li>
+<p>先做三组线性投影到 $h$ 个子空间 (每头维度 $d_k=d_v=d_{model}/h$):<br>
+$$<br>
+Q_i=HW_Q^{(i)},~K_i=HW_K^{(i)},~V_i=HW_V^{(i)}\in\mathbb R^{n\times d_k}.<br>
+$$</p>
+</li>
+<li>
+<p>每个头各自做一次缩放点积注意力:<br>
+$$<br>
+\mathrm{head}_i=\mathrm{softmax}\left(\frac{Q_iK_i^T}{\sqrt{d_k}}\right)V_i\in\mathbb R^{n\times d_k}.<br>
+$$</p>
+</li>
+<li>
+<p>把所有头沿特征维拼接后, 再经一个输出线性变换:<br>
+$$<br>
+\mathrm{MHA}(H)=\mathrm{Concat}(\mathrm{head}_1,\cdots,\mathrm{head}_h)W_O, \quad W_O\in\mathbb R^{(hd_k)\times d}.<br>
+$$</p>
+</li>
+</ul>
+<h2 id="3-逐位置前馈神经网络-Position-wise-Feed-Forward-Networks">3 逐位置前馈神经网络 (Position-wise Feed-Forward Networks)</h2>
+<p>除了注意力子层外, 编码器和解码器的每个层都包含一个逐位置且参数共享的全连接前馈网络:<br>
+$$<br>
+\mathrm{FFN}(x)=\max(0, xW_1+b_1)W_2+b_2<br>
+$$<br>
+事实上, 就是对每个 token 的向量 $x_t\in\mathbb R^{d_{model}}$ 执行相同的两次线性变换, 且第一次线性变换后要执行一次激活函数 ReLU. 其中输入与输出维度为 $d_{model}$, 中间层维度为 $d_{ff}=2048$.</p>
+<h2 id="4-嵌入-Embedding-与-Softmax">4 嵌入 (Embedding) 与 Softmax</h2>
+<p>用可学习的嵌入把输入/输出 token 映射到 $d_{model}$ 维向量, 并用线性变换 + softmax 把解码器输出转为下一个 token 的预测概率. 在本模型中, 两个嵌入层与 pre-softmax 线性层共用同一套权重, 在嵌入层里, 这些权重还会乘以 $\sqrt{d_{model}}$.</p>
+<h3 id="4-1-Embedding">4.1 Embedding</h3>
+<p>设词表集合 $\mathcal V$, 可训练词嵌入矩阵 $E\in\mathbb R^{|\mathcal V|\times d}$. 把序列 $(x_1,\cdots,x_n)$ 查表成矩阵 $H^{(0)}\in\mathbb R^{n\times d}$, 再遇位置向量相加:<br>
+$$<br>
+H_t^{(0)}=E[x_t]\cdot\sqrt d+P_t.<br>
+$$<br>
+乘 $\sqrt d$ 目的是让&quot;词向量的方差尺度&quot;与&quot;位置向量&quot;相当, 避免相加时位置信号被淹没或过强.</p>
+<h3 id="4-2-输出层-线性层-softmax">4.2 输出层: 线性层 + softmax</h3>
+<p>解码器最后一层输出 $H^{(L)}\in\mathbb R^{m\times d}$, 通过线性变换映射到词表维度得到 logits:<br>
+$$<br>
+\mathrm{logits}=H^{(L)}W_{lm}+b,\quad W_{lm}=E^T\in\mathbb R^{d\times |\mathcal V|}.<br>
+$$<br>
+softmax 得到下一个 token 的条件分布:<br>
+$$<br>
+p(y_t=v~\vert~ \cdot)=\mathrm{softmax}(\mathrm{logits}_t)_v, \quad v\in\mathcal V.<br>
+$$</p>
+<h2 id="5-位置编码">5 位置编码</h2>
+<p>为了让模型知道序列的顺序信息, 我们在编码器与解码器将位置编码与输入嵌入相加. 位置编码与嵌入具有相同维度 $d_{model}$, 其既可以学习也可以固定, 本模型采用不同频率的正弦/余弦函数:<br>
+$$<br>
+PE(pos,2i)=\sin\left(\frac{pos}{10000^{2i/d_{model}}}\right),\quad PE(pos,2i+1)=\cos\left(\frac{pos}{10000^{2i/d_{model}}}\right),<br>
+$$<br>
+其中 $pos$ 为位置, $i$ 为维度索引.</p>
+]]></content>
+      <categories>
+        <category>机器学习与深度学习</category>
+      </categories>
+      <tags>
+        <tag>Transformer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GBDT</title>
     <url>/2025/10/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/GBDT/</url>
     <content><![CDATA[<h1>Gradient Boosting Decision Trees</h1>
@@ -1933,120 +2048,6 @@ $$<br>
       <tags>
         <tag>集成学习</tag>
         <tag>boosting</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Transformer 架构 —— Attention Is All You Need</title>
-    <url>/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/</url>
-    <content><![CDATA[<h1>Transformer — 模型架构</h1>
-<h2 id="1-简介">1 简介</h2>
-<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Transformer%E7%BB%93%E6%9E%84.png" alt="Transformer结构"></p>
-<p>Transformer 架构主要由编码器和解码器两部分构成, 其中编码器将符号表示组成的输入序列 $x=(x_1,\cdots,x_n)$ 映射为连续表示序列 $z=(z_1,\cdots,z_n)$. 给定 $z$, 解码器<strong>逐个元素</strong>地生成 (自回归) 输出符号序列 $y=(y_1,\cdots,y_m)$.</p>
-<blockquote>
-<p>对于一个“英翻中”问题, 输入序列 <code>x = ['I', 'love', 'math']</code> , 模型先把它们查表成向量加上位置向量后输入到编码器, 得到序列 <code>[z1, z2, z3]</code>, 其中每个 <code>zi</code> 都是一个向量, 例如 <code>z1</code> 就是单次 <code>'I'</code> 的向量表示. 通过解码器得到输出序列 <code>['我', '爱', '数学']</code>.</p>
-</blockquote>
-<p>具体地, 编码器由 $N=6$ 个相同的层堆叠而成, 每一层包含两个子层: 其一是多头自注意力机制层, 其二是全连接前馈神经网络层. 在两个子层之后都采用残差连接, 随后用层归一化 (LayerNorm). 即每个子层的输出为<br>
-$$<br>
-\mathrm{LayerNorm}(x+\mathrm{Sublayer}(x)),<br>
-$$<br>
-其中 $\mathrm{Sublayer}(x)$ 表示该子层实现的函数. 为了便于层残差连接, 所有子层以及嵌入层的输出维度都设为 $d_{model}=512$.</p>
-<blockquote>
-<p>LayerNorm 就是对每一个样本做一个标准化, 即对于样本 $x_{i,\cdot}$, 计算它所有特征的均值 $\mu_i$ 和标准差 $\sigma_i$, 则<br>
-$$<br>
-\mathrm{LayerNorm}(x_i)=\frac{x_{i,\cdot}-\mu_i}{\sigma_i}.<br>
-$$<br>
-与之对应的有 BatchNorm, 它是对每个特征做标准化, 即对于特征列 $x_{\cdot,j}$, 计算列均值和标准差 $\mu_j,\sigma_j$, 则<br>
-$$<br>
-\mathrm{BatchNorm}(x_{\cdot,j})=\frac{x_{\cdot,j}-\mu_j}{\sigma_j}.<br>
-$$<br>
-简单来说, 对于二维的输入, LayerNorm 就是对每一行进行标准化, BatchNorm 是对每一列进行标准化.</p>
-<p>对于一个三维的输入, 可以用下面的图形象表示</p>
-<p><img src="/2025/10/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Transformer%E6%9E%B6%E6%9E%84/Norm.png" alt="Norm"></p>
-<p>图片来源：<a href="https://www.cnblogs.com/xiaxuexiaoab/p/18325271">https://www.cnblogs.com/xiaxuexiaoab/p/18325271</a></p>
-</blockquote>
-<p>解码器同样由 $N=6$ 个相同的层组成. 除了与编码器层相同的两个子层外, 解码器还插入了新的层: 对编码器的输出做多头注意力, 且利用掩码机制使得第 $i$ 个位置的预测只能依赖于 $i$ 之前已知的输出.</p>
-<h2 id="2-Attention">2 Attention</h2>
-<p>注意力函数可以描述为: 输入一个查询 (query)、一组键 (key) 值 (value) 对, 然后得到一个输出. 即<br>
-$$<br>
-\mathrm{Attention}:~(Q,K,V)\to \mathrm{Attention}(Q,K,V),<br>
-$$<br>
-其中 query、key、value 与输出都是向量, 输出是 value 的加权求和, 每个 value 的权重由 query 与对应 key 求得, 事实上就是 query 与 key 之间的相似度.</p>
-<h3 id="2-1-缩放点积注意力-Scaled-Dot-Product-Attention">2.1 缩放点积注意力 (Scaled Dot-Product Attention)</h3>
-<p>本架构采用的是缩放点积注意力, 即用向量的内积来衡量向量之间的相似度.</p>
-<ul>
-<li>
-<p>输入: 维数为 $d_k$ 的 query 与 key, 维数为 $d_v$ 的 value.</p>
-</li>
-<li>
-<p>一组 query 会打包为矩阵 $Q_{n\times d_k}$, key 和 value 分别打包为矩阵 $K_{m\times d_k},V_{m\times d_v}$.</p>
-</li>
-<li>
-<p>输出:<br>
-$$<br>
-\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V.<br>
-$$</p>
-</li>
-</ul>
-<p>与一般的点积注意力不同, 这里在做内积后还进行了 $1/\sqrt{d_k}$ 的缩放, 主要是为了避免当 $d_k$ 较大时, 可能导致 $QK^T$ 中每一行元素都很大或很小, 可能导致 softmax 以后很接近 $0$ 或 $1$, 这会使得梯度很小.</p>
-<p>在解码器中, 增加了 Mask 来防止在当前时间看到之后时间的数据. 具体而言, 在 $t$ 时间, 赋予 $q_t,k_t$ 及其之后的值很大的负数 (例如 $-1\times 10^{10}$), 它在进入 softmax 函数之后会变成几乎为 $0$.</p>
-<h3 id="2-2-多头注意力-Multi-Head-Attention">2.2 多头注意力 (Multi-Head Attention)</h3>
-<p>与仅用 $d_{model}$ 维度的一组 $Q,K,V$ 做一次注意力相比, 把 $Q,K,V$ 分别通过不同的可学习线性映射投影到 $h$ 组 $(d_k,d_k,d_v)$ 维度更有效.</p>
-<p>对于输入隐状态 $H\in\mathbb R^{n\times d}$ (批量维先忽略)</p>
-<ul>
-<li>
-<p>先做三组线性投影到 $h$ 个子空间 (每头维度 $d_k=d_v=d_{model}/h$):<br>
-$$<br>
-Q_i=HW_Q^{(i)},~K_i=HW_K^{(i)},~V_i=HW_V^{(i)}\in\mathbb R^{n\times d_k}.<br>
-$$</p>
-</li>
-<li>
-<p>每个头各自做一次缩放点积注意力:<br>
-$$<br>
-\mathrm{head}_i=\mathrm{softmax}\left(\frac{Q_iK_i^T}{\sqrt{d_k}}\right)V_i\in\mathbb R^{n\times d_k}.<br>
-$$</p>
-</li>
-<li>
-<p>把所有头沿特征维拼接后, 再经一个输出线性变换:<br>
-$$<br>
-\mathrm{MHA}(H)=\mathrm{Concat}(\mathrm{head}_1,\cdots,\mathrm{head}_h)W_O, \quad W_O\in\mathbb R^{(hd_k)\times d}.<br>
-$$</p>
-</li>
-</ul>
-<h2 id="3-逐位置前馈神经网络-Position-wise-Feed-Forward-Networks">3 逐位置前馈神经网络 (Position-wise Feed-Forward Networks)</h2>
-<p>除了注意力子层外, 编码器和解码器的每个层都包含一个逐位置且参数共享的全连接前馈网络:<br>
-$$<br>
-\mathrm{FFN}(x)=\max(0, xW_1+b_1)W_2+b_2<br>
-$$<br>
-事实上, 就是对每个 token 的向量 $x_t\in\mathbb R^{d_{model}}$ 执行相同的两次线性变换, 且第一次线性变换后要执行一次激活函数 ReLU. 其中输入与输出维度为 $d_{model}$, 中间层维度为 $d_{ff}=2048$.</p>
-<h2 id="4-嵌入-Embedding-与-Softmax">4 嵌入 (Embedding) 与 Softmax</h2>
-<p>用可学习的嵌入把输入/输出 token 映射到 $d_{model}$ 维向量, 并用线性变换 + softmax 把解码器输出转为下一个 token 的预测概率. 在本模型中, 两个嵌入层与 pre-softmax 线性层共用同一套权重, 在嵌入层里, 这些权重还会乘以 $\sqrt{d_{model}}$.</p>
-<h3 id="4-1-Embedding">4.1 Embedding</h3>
-<p>设词表集合 $\mathcal V$, 可训练词嵌入矩阵 $E\in\mathbb R^{|\mathcal V|\times d}$. 把序列 $(x_1,\cdots,x_n)$ 查表成矩阵 $H^{(0)}\in\mathbb R^{n\times d}$, 再遇位置向量相加:<br>
-$$<br>
-H_t^{(0)}=E[x_t]\cdot\sqrt d+P_t.<br>
-$$<br>
-乘 $\sqrt d$ 目的是让&quot;词向量的方差尺度&quot;与&quot;位置向量&quot;相当, 避免相加时位置信号被淹没或过强.</p>
-<h3 id="4-2-输出层-线性层-softmax">4.2 输出层: 线性层 + softmax</h3>
-<p>解码器最后一层输出 $H^{(L)}\in\mathbb R^{m\times d}$, 通过线性变换映射到词表维度得到 logits:<br>
-$$<br>
-\mathrm{logits}=H^{(L)}W_{lm}+b,\quad W_{lm}=E^T\in\mathbb R^{d\times |\mathcal V|}.<br>
-$$<br>
-softmax 得到下一个 token 的条件分布:<br>
-$$<br>
-p(y_t=v~\vert~ \cdot)=\mathrm{softmax}(\mathrm{logits}_t)_v, \quad v\in\mathcal V.<br>
-$$</p>
-<h2 id="5-位置编码">5 位置编码</h2>
-<p>为了让模型知道序列的顺序信息, 我们在编码器与解码器将位置编码与输入嵌入相加. 位置编码与嵌入具有相同维度 $d_{model}$, 其既可以学习也可以固定, 本模型采用不同频率的正弦/余弦函数:<br>
-$$<br>
-PE(pos,2i)=\sin\left(\frac{pos}{10000^{2i/d_{model}}}\right),\quad PE(pos,2i+1)=\cos\left(\frac{pos}{10000^{2i/d_{model}}}\right),<br>
-$$<br>
-其中 $pos$ 为位置, $i$ 为维度索引.</p>
-]]></content>
-      <categories>
-        <category>机器学习与深度学习</category>
-      </categories>
-      <tags>
-        <tag>Transformer</tag>
       </tags>
   </entry>
   <entry>
@@ -2190,6 +2191,120 @@ $$<br>
 <li>
 <p>**<strong>[裴例1.3.23]</strong> 设 $f:(0,+\infty)\to(0,+\infty)$ 单调递增，且 $\lim\limits_{t\to+\infty}\frac{f(2t)}{f(t)}=1$. 证明：对任意 $m&gt;0$，有 $\lim\limits_{t\to+\infty}\frac{f(mt)}{t}=1.$</p>
 </li>
+</ol>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>习题集</category>
+      </categories>
+      <tags>
+        <tag>数学分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>函数的连续性</title>
+    <url>/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/2.%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7/</url>
+    <content><![CDATA[<h1>函数的连续性</h1>
+<h2 id="判断题">判断题</h2>
+<ol>
+<li><strong>[华四4.1.4]</strong> 若 $|f|$ 或 $f^2$ 在 $I$ 上连续, 则 $f$ 也在 $I$ 上不一定连续.<br>
+注：类似的, $f$ 在 $I$ 上可导不能推出 $|f|$ 在 $I$ 上可导.</li>
+<li>*<strong>[华四4.1.9]</strong> 构造仅在有限个点连续的函数; 构造仅在 $\frac{1}{n} \ (n=1,2,\cdots)$ 上间断的函数; 构造仅在 $x=0$ 右连续而在其他点都不连续的函数; 构造无限多个点连续和无限多个点不连续的函数<br>
+注：利用 Dirichlet 在任意点处都不连续; Riemann 函数在有理点处不连续, 在无理点处连续.</li>
+<li>*<strong>[李例2-1-2-3]</strong> 设 ${f_n(x)}$ 是 $[a,b]$ 上的连续函数序列, 对 $\forall n\in\mathbb{N},\forall x\in[a,b]$ 有 $|f_n(x)|\le M$, 问 $F(x)=\inf\limits_n{f_n(x)}$ 在 $[a,b]$ 上是否连续.<br>
+注：$f_n(x)=x^n,x\in[0,1]$.</li>
+<li>*<strong>[李例2-1-2-8]</strong> 设 $f(x)\in C[a,b]$, 是否存在定义在 $(0,+\infty)$ 上的函数 $\varphi(x)$, 满足:<br>
+(1) $\varphi(x)$ 单调递增, 且当 $t\ge b-a$ 时, $\varphi(t)\equiv$ 常数;<br>
+(2) $\forall x’,x’‘\in[a,b]$, 有 $|f(x’)-f(x’‘)|\le\varphi(|x’-x’'|)$;<br>
+(3) $\lim\limits_{t\to0+}\varphi(t)=0.$<br>
+注：令 $\varphi(t)=\begin{cases}\sup\limits_{[a,b]} f(x)-\inf\limits_{[a,b]} f(x), &amp; t\ge b-a,\\  \sup\limits_{|t_1-t_2|\le t}{|f(t_2)-f(t_1)|}, &amp; 0&lt;t&lt;b-a \end{cases}$.</li>
+<li>*<strong>[李例2-1-2思考]</strong> 是否存在一个函数, 它在无理点处不连续, 而在有理点处连续.</li>
+<li><strong>[李例2-1-6注]</strong> 导函数有界一定一致连续, 但导函数无界不一定不一致连续.<br>
+注：$f(x)=\sqrt{x}\ln x, x\in(0,1]$.</li>
+<li><strong>[李例2-2-1-8]</strong> 对平面上椭圆内的任一点 $P$, 存在过点 $P$ 的弦使得 $P$ 为弦中点.<br>
+注：令 $f(\theta)=L_1(\theta)+L_2(\theta)$, 其中 $L_1,L_2$ 为两段弦的长度, 从而 $f(0)f(\pi)\le0$, 再用介值定理即得结论.</li>
+<li><strong>[李例2-2-3-2]</strong> 若 $f(x)$ 在 $I$ 上处处连续且为一一映射, 则 $f(x)$ 必为严格单调函数.<br>
+注：反证法</li>
+<li><strong>[李例2-2-3-3]</strong> 是否存在 $\mathbb{R}$ 上的连续函数 $f(x)$ 使得 $f(f(x))=e^{-x}$.<br>
+注：单调函数的自复合是单调递增函数.</li>
+<li><strong>[李例2-2-5-1]</strong> 非常数的连续周期函数必有最小正周期.<br>
+注：否则将是常值函数. 用反证法证明, 此时 $\sup{f的正周期}=0$, 接着构造数列 ${x_n}, \ s.t. \ x_n\to0(n\to\infty)$, 再根据函数连续的性质可得 $f(x)\equiv f(0).$</li>
+</ol>
+<h2 id="证明题">证明题</h2>
+<ol>
+<li>*<strong>[华四4.1例3]</strong> 证明 Riemann 函数在 $(0,1)$ 上的任何无理点处连续, 而在任何有理点处不连续, 并讨论间断点的类型.<br>
+注：在任何有理点处不连续可用连续的定义；无理点处连续用到的思想就是处理 Riemann 函数问题的经典方法，即给定一个界限，则 Riemann 在这个界限以上的点只有有限多个.</li>
+<li><strong>[华四4.1.6]</strong> 证明: 区间 $I$ 上的单调函数 $f$ 的间断点必是跳跃间断点.<br>
+注：利用单调有界原理可证明最多只有第一类间断点, 再用反证法可证必是跳跃间断点.</li>
+<li>证明: 导函数至多只有第二类间断点.</li>
+<li><strong>[华四4.2.18]</strong> 设 $f$ 为 $[a,b]$ 上的增函数, 其值域为 $[f(a),f(b)]$. 证明: $f$ 在 $[a,b]$ 上连续.<br>
+注：反证法，如果 $f$ 有间断点，则一定是跳跃间断点，这将与值域构成矛盾！</li>
+<li><strong>[华四4.1.7]</strong> 设函数 $f$ 只有可去间断点, 定义 $g(x)=\lim\limits_{y\to x}f(y)$. 证明 $g(x)$ 为连续函数.</li>
+<li>*<strong>[华四4.2定理4.6]</strong> 证明闭区间上的连续函数能取到最大值和最小值.<br>
+注：利用反证法、确界原理，根据确界的定义引出矛盾.</li>
+<li>*<strong>[华四4.2例10]</strong> 函数 $f(x)$ 定义在区间 $I$ 上, 试证 $f(x)$ 在 $I$ 上一致连续的充分必要条件为: 对任何数列 ${x_n’},{x_n’‘}\subset I$, 若 $\lim\limits_{n\to\infty}(x_n’-x_n’‘)=0$, 则 $\lim\limits_{n\to\infty}\left[f(x_n’)-f(x_n’')\right]=0.$<br>
+注：必要性的证明是显然的；充分性的证明要用反证法，构造数列引出矛盾. 利用这个一致连续判断的等价命题，可以轻松解决一些非一致连续的证明问题，例如 $f(x)=\sin\frac{1}{x}$ 在 $(0,1)$ 上不一致连续; $f(x)=x^2$ 在 $\mathbb{R}$ 上不一致连续; $f(x)=\sin x^2$ 在 $\mathbb{R}$ 上不一致连续.</li>
+<li><strong>[华四4.2例12]</strong> 设区间 $I_1$ 的右端点为 $c\in I_1$, 区间 $I_2$ 的左端点也为 $c\in I_2$ ($I_1,I_2$ 可分别为有限或无限区间). 证明: 若 $f$ 分别在 $I_1$ 和 $I_2$ 上一致连续, 则 $f$ 在 $I=I_1\cup I_2$ 上也一致连续.<br>
+注：区间 $I_1$ 的右端点为 $c\in I_1$, 区间 $I_2$ 的左端点也为 $c\in I_2$ 条件不可少, 否则 $f$ 在 $I$ 上不一定一致连续, 例如 $f(x)=\begin{cases}x, &amp; x\in(0,1), \\  2, &amp; x\in[1,2)\end{cases}.$</li>
+<li><strong>[华四4.2.4]</strong> 设 $f\in C(\mathbb{R}),\ c&gt;0$. 记 $F(x)=\begin{cases}<br>
+-c, &amp; f(x)&lt;-c\\<br>
+f(x), &amp; |f(x)|\le c\\<br>
+c, &amp; f(x)&gt;c<br>
+\end{cases},$ 证明 $F$ 在 $\mathbb{R}$ 上连续.<br>
+注：$F(x)=\frac{1}{2}\left(|f(x)+c|-|f(x)-c|\right)$.</li>
+<li>**<strong>[华四2.3定理4.10]</strong> 设 $a&gt;0,\alpha,\beta$ 为任意两个实数, 则有 $a^{\alpha}\cdot a^{\beta}=a^{\alpha+\beta}; \ (a^{\alpha})^{\beta}=a^{\alpha\beta}.$</li>
+<li>*<strong>[华四第二章总练习题3(2)]</strong> 设 $f$ 在区间 $I$ 上连续, 若对任意两个有理数 $r_1,r_2,r_1&lt;r_2$, 有 $f(r_1)&lt;f(r_2)$, 证明: $f$ 在 $I$ 上严格增.</li>
+<li><strong>[华四第二章总练习题8]</strong> 设 $f\in C[0,1],f(0)=f(1).$ 证明: 对任何正整数 $n$, 存在 $\xi\in[0,1]$, 使得 $f(\xi+\frac{1}{n})=f(\xi)$.</li>
+<li>**<strong>[华四第二章总练习题9]</strong> 设 $f$ 在 $x=0$ 连续, 且对任何 $x,y\in\mathbb{R}$ 有 $f(x+y)=f(x)+f(y)$. 证明: (1) $f$ 在 $\mathbb{R}$ 上连续; (2) $f(x)=f(1)x.$<br>
+注：事实上，可以验证 $f$ 是一维实列向量空间上的线性变换. 类似方法可以处理 $f(x+y)=f(x)f(y)$ 型问题, 无非是取对数将乘法转为加法, 事实上这时 $f$ 就是指数函数.</li>
+<li>**<strong>[华四第二章总练习题12]</strong> 设 $f(x)$ 是区间 $[a,b]$ 上的一个非常数的连续函数, $M,m$ 分别是最大、最小值. 求证: 存在 $[\alpha,\beta]\in[a,b]$, 使得: (i) $m&lt;f(x)&lt;M, \ x\in(\alpha,\beta)$; (ii) $f(\alpha),f(\beta)$ 恰是 $f(x)$ 上的最大、最小值（最小、最大值）.<br>
+注：构造 $S={x\in[a,b]|f(x)=m}, \ T={x\in[a,b]|f(x)=M}.$</li>
+<li><strong>[李例2-1-1-3]</strong> 讨论函数 $f(x)=\begin{cases}x(1-x), &amp; x\in\mathbb{Q},\\  x(1+x) &amp; x\in\overline{\mathbb{Q}}\end{cases}$ 的连续性和可微性.</li>
+<li><strong>[李例2-1-1-5]</strong> 已知 $f(x)=\begin{cases}x, &amp; 0\le x&lt;1\\  k+1 &amp; k\le x&lt;k+1 \ (k=1,2,\cdots)\end{cases}.$ 求函数 $g(y)=\sup\limits_{f(x)&lt;y}x$ 在 $y\ge0$ 时的具体表达式, 并讨论其各点的连续性.<br>
+注：画图好分析.</li>
+<li><strong>[李例2-1-1-6]</strong> 设 $f_1(x),f_2(x),f_3(x)$ 均为 $[a,b]$ 上的连续函数, 若 $h(x)$ 为 $f_1(x),f_2(x),f_3(x)$ 三者中间值, 证明 $h(x)$ 在 $[a,b]$ 上的连续函数.<br>
+注：$h(x)=f_1(x)+f_2(x)+f_3(x)-\max{f_1,f_2,f_3}-\min{f_1,f_2,f_3}.$</li>
+<li>**<strong>[李例2-1-2-2]</strong> 若 $f(x)\in C[a,b]$, 证明函数 $m(x)=\min\limits_{a\le \xi\le x}{f(\xi)}\in C[a,b].$<br>
+注：注意到 $m(x)$ 是单调递减函数, 对 $\forall x_0\in[a,b]$, 分别讨论在 $x_0$ 处的左右连续性 (利用 $f$ 在 $x_0$ 处的连续性).</li>
+<li>*<strong>[李例2-1-4-3]</strong> 设 $f(x),g(x)$ 在区间 $I$ 上一致连续, 试问:<br>
+(1) $f,g$ 是否在 $I$ 上有界?<br>
+(2) $f,g$ 是否在 $I$ 上能取得最值?<br>
+(3) $f\cdot g$ 是否在 $I$ 上一致连续?<br>
+注：将区间 $I$ 分有限区间和无限区间讨论.</li>
+<li>$\star$<strong>[李例2-1-5-2]</strong> 若 $f(x)$ 在 $[a,+\infty]$ 上连续, $\lim\limits_{x\to+\infty}f(x)=A$. 证明:<br>
+(1) $f$ 在 $[a,+\infty)$ 上一致连续;<br>
+(2) $f$ 在 $[a,+\infty]$ 上有界;<br>
+(3) $f$ 在 $[a,+\infty)$ 上必有最大值或最小值.</li>
+<li><strong>[李例2-1-5-练习(11)]</strong> 证明 $f(x)=\frac{x^{k}}{e^{x^2}} \ (k&gt;0)$ 在 $\mathbb{R}$ 上一致连续且有界.<br>
+注：注意到 $\lim\limits_{x\to\infty}f(x)=0$, 用同样的方法可证 $f(x)=\frac{1}{x},\ x\in[a,+\infty); \ f(x)=\frac{\sin x}{x}, \ x\in(0,\pi); \ f(x)=xe^{-x^2}\int_0^xe^{t^2}\mathrm{~d}x, \ x\in[0,+\infty)$<br>
+一致连续.</li>
+<li>*<strong>[李例2-1-5-练习(7)]</strong> 证明函数 $f(x)=\frac{|\sin x|}{x}$ 在 $J={x|0&lt;|x|&lt;1}$ 上不一致连续.<br>
+注：在 $x=0$ 处的左右极限不等，以此为突破口.</li>
+<li>$\star$<strong>[李例2-1-6-1]</strong> 函数 $f(x)$ 在 $(a,b)$ 上有连续的导函数, 且 $\lim\limits_{x\to a+}f’(x)$ 与 $\lim\limits_{x\to b-}f’(x)$ 均存在有限, 证明:<br>
+(1) $f(x)$ 在 $(a,b)$ 上一致连续;  (2) $\lim\limits_{x\to a+}f(x)$ 与 $\lim\limits_{x\to b-}f(x)$ 均存在.<br>
+注：利用此命题可以证明 $f(x)=\sqrt{x}\ln x, x\in[1,+\infty)$ 上一致连续 (<strong>导函数有界</strong>).<br>
+考察在无穷区间 $[a,+\infty)$ 上连续的函数是否一致连续:
+<ul>
+<li>考察 $\lim\limits_{x\to+\infty}f(x)$ 是否存在且有限, 若存在且有限即得 $f(x)$ 在 $[a,+\infty)$ 上一致连续;</li>
+<li>考察导函数是否有界, 有界则一致连续.</li>
+</ul>
+</li>
+<li>$\star$<strong>[李例2-1-6-5]</strong> 设函数 $f(x)$ 在 $[0,+\infty]$ 上连续, 在 $(0,+\infty)$ 内可微, 且 $\lim\limits_{x\to+\infty}|f’(x)|=A$, 证明: $f(x)$ 在 $[0,+\infty)$ 上一致连续当且仅当 $A&lt;+\infty.$</li>
+<li><strong>[李例2-2-1-5]</strong> 设 $f_n(x)=x+x^2+\cdots+x^n \ (n=2,3,\cdots).$ 证明<br>
+(1) 方程 $f_n(x)=1$ 在 $[0,+\infty)$ 上有且仅有一个实根 $x_n$;<br>
+(2) 数列 ${x_n}$ 有极限, 并求 $\lim\limits_{n\to\infty}x_n.$</li>
+<li>*<strong>[李例2-2-2-2]</strong> 设 $f(x)$ 满足 $f([a,b])\subset[a,b]$, 且 $|f(x)-f(y)|\le|x-y|,\forall x,y\in[a,b].$ $\forall x_1\in[a,b]$, 令 $x_{n+1}=\frac{x_n+f(x_n)}{2},n=1,2,\cdots$. 证明数列 ${x_n}$ 有极限 $x_0$, 且 $f(x_0)=x_0.$<br>
+注：归纳法+单调有界.</li>
+<li>*<strong>[李例2-2-2-4]</strong> 若 $f(x)$ 在 $\mathbb{R}$ 上可微, 且 $|f’(x)|\le r&lt;1$, 证明: 存在 $a$ 使得 $f(a)=a$.<br>
+注：构造 $x_n=f(x_{n-1})$.</li>
+<li>$\star$*<strong>[李例2-2-3-1]</strong> 设 $f(x)\in C[0,1]$. 证明: $\lim\limits_{t\to +\infty}\int_0^1te^{-t^2x^2}f(x)\mathrm{~d}x=\frac{\sqrt{\pi}}{2}f(0).$<br>
+注：$\frac{\sqrt{\pi}}{2}=\int_0^{+\infty}e^{-x^2}\mathrm{~d}x.$</li>
+<li>**<strong>[李例2-2-7-1]</strong> 设 $f(x)$ 在 $[0,+\infty)$ 上一致连续, 且 $\forall x&gt;0$, 有 $\lim\limits_{n\to\infty}f(x+n)=0  (n\in\mathbb{N}^+).$ 证明: $\lim\limits_{x\to+\infty}f(x)=0.$<br>
+注：注意到对 $\forall x&gt;0,\exists \hat{x}\in[0,1],n\in\mathbb{N},x.t. x=\hat{x}+n$. 对区间 $[0,1]$ 进行划分即可.</li>
+<li>$\star$**<strong>[李例2-2-7-2]</strong> 设 $f(x)$ 在 $\mathbb{R}$ 上一致连续, 则存在 $a,b\in\mathbb{R}^+$ 使得 $|f(x)|\le a|x|+b,\forall x\in\mathbb{R}$.<br>
+注：利用此方法可证明：当 $f(x)$ 在 $[1,+\infty)$ 上一致连续时, $\frac{f(x)}{x}$ 在 $[1,+\infty)$ 上有界.</li>
+<li><strong>[李例2-2-7连续2]</strong> 设 $f(x)$ 在 $[0,+\infty)$ 上一致连续, 且对 $\forall \delta&gt;0, \ \lim\limits_{n\to\infty}f(n\delta)=0$, 求证 $\lim\limits_{x\to+\infty}f(x)=0.$</li>
 </ol>
 ]]></content>
       <categories>
@@ -2795,120 +2910,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>函数的连续性</title>
-    <url>/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/2.%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7/</url>
-    <content><![CDATA[<h1>函数的连续性</h1>
-<h2 id="判断题">判断题</h2>
-<ol>
-<li><strong>[华四4.1.4]</strong> 若 $|f|$ 或 $f^2$ 在 $I$ 上连续, 则 $f$ 也在 $I$ 上不一定连续.<br>
-注：类似的, $f$ 在 $I$ 上可导不能推出 $|f|$ 在 $I$ 上可导.</li>
-<li>*<strong>[华四4.1.9]</strong> 构造仅在有限个点连续的函数; 构造仅在 $\frac{1}{n} \ (n=1,2,\cdots)$ 上间断的函数; 构造仅在 $x=0$ 右连续而在其他点都不连续的函数; 构造无限多个点连续和无限多个点不连续的函数<br>
-注：利用 Dirichlet 在任意点处都不连续; Riemann 函数在有理点处不连续, 在无理点处连续.</li>
-<li>*<strong>[李例2-1-2-3]</strong> 设 ${f_n(x)}$ 是 $[a,b]$ 上的连续函数序列, 对 $\forall n\in\mathbb{N},\forall x\in[a,b]$ 有 $|f_n(x)|\le M$, 问 $F(x)=\inf\limits_n{f_n(x)}$ 在 $[a,b]$ 上是否连续.<br>
-注：$f_n(x)=x^n,x\in[0,1]$.</li>
-<li>*<strong>[李例2-1-2-8]</strong> 设 $f(x)\in C[a,b]$, 是否存在定义在 $(0,+\infty)$ 上的函数 $\varphi(x)$, 满足:<br>
-(1) $\varphi(x)$ 单调递增, 且当 $t\ge b-a$ 时, $\varphi(t)\equiv$ 常数;<br>
-(2) $\forall x’,x’‘\in[a,b]$, 有 $|f(x’)-f(x’‘)|\le\varphi(|x’-x’'|)$;<br>
-(3) $\lim\limits_{t\to0+}\varphi(t)=0.$<br>
-注：令 $\varphi(t)=\begin{cases}\sup\limits_{[a,b]} f(x)-\inf\limits_{[a,b]} f(x), &amp; t\ge b-a,\\  \sup\limits_{|t_1-t_2|\le t}{|f(t_2)-f(t_1)|}, &amp; 0&lt;t&lt;b-a \end{cases}$.</li>
-<li>*<strong>[李例2-1-2思考]</strong> 是否存在一个函数, 它在无理点处不连续, 而在有理点处连续.</li>
-<li><strong>[李例2-1-6注]</strong> 导函数有界一定一致连续, 但导函数无界不一定不一致连续.<br>
-注：$f(x)=\sqrt{x}\ln x, x\in(0,1]$.</li>
-<li><strong>[李例2-2-1-8]</strong> 对平面上椭圆内的任一点 $P$, 存在过点 $P$ 的弦使得 $P$ 为弦中点.<br>
-注：令 $f(\theta)=L_1(\theta)+L_2(\theta)$, 其中 $L_1,L_2$ 为两段弦的长度, 从而 $f(0)f(\pi)\le0$, 再用介值定理即得结论.</li>
-<li><strong>[李例2-2-3-2]</strong> 若 $f(x)$ 在 $I$ 上处处连续且为一一映射, 则 $f(x)$ 必为严格单调函数.<br>
-注：反证法</li>
-<li><strong>[李例2-2-3-3]</strong> 是否存在 $\mathbb{R}$ 上的连续函数 $f(x)$ 使得 $f(f(x))=e^{-x}$.<br>
-注：单调函数的自复合是单调递增函数.</li>
-<li><strong>[李例2-2-5-1]</strong> 非常数的连续周期函数必有最小正周期.<br>
-注：否则将是常值函数. 用反证法证明, 此时 $\sup{f的正周期}=0$, 接着构造数列 ${x_n}, \ s.t. \ x_n\to0(n\to\infty)$, 再根据函数连续的性质可得 $f(x)\equiv f(0).$</li>
-</ol>
-<h2 id="证明题">证明题</h2>
-<ol>
-<li>*<strong>[华四4.1例3]</strong> 证明 Riemann 函数在 $(0,1)$ 上的任何无理点处连续, 而在任何有理点处不连续, 并讨论间断点的类型.<br>
-注：在任何有理点处不连续可用连续的定义；无理点处连续用到的思想就是处理 Riemann 函数问题的经典方法，即给定一个界限，则 Riemann 在这个界限以上的点只有有限多个.</li>
-<li><strong>[华四4.1.6]</strong> 证明: 区间 $I$ 上的单调函数 $f$ 的间断点必是跳跃间断点.<br>
-注：利用单调有界原理可证明最多只有第一类间断点, 再用反证法可证必是跳跃间断点.</li>
-<li>证明: 导函数至多只有第二类间断点.</li>
-<li><strong>[华四4.2.18]</strong> 设 $f$ 为 $[a,b]$ 上的增函数, 其值域为 $[f(a),f(b)]$. 证明: $f$ 在 $[a,b]$ 上连续.<br>
-注：反证法，如果 $f$ 有间断点，则一定是跳跃间断点，这将与值域构成矛盾！</li>
-<li><strong>[华四4.1.7]</strong> 设函数 $f$ 只有可去间断点, 定义 $g(x)=\lim\limits_{y\to x}f(y)$. 证明 $g(x)$ 为连续函数.</li>
-<li>*<strong>[华四4.2定理4.6]</strong> 证明闭区间上的连续函数能取到最大值和最小值.<br>
-注：利用反证法、确界原理，根据确界的定义引出矛盾.</li>
-<li>*<strong>[华四4.2例10]</strong> 函数 $f(x)$ 定义在区间 $I$ 上, 试证 $f(x)$ 在 $I$ 上一致连续的充分必要条件为: 对任何数列 ${x_n’},{x_n’‘}\subset I$, 若 $\lim\limits_{n\to\infty}(x_n’-x_n’‘)=0$, 则 $\lim\limits_{n\to\infty}\left[f(x_n’)-f(x_n’')\right]=0.$<br>
-注：必要性的证明是显然的；充分性的证明要用反证法，构造数列引出矛盾. 利用这个一致连续判断的等价命题，可以轻松解决一些非一致连续的证明问题，例如 $f(x)=\sin\frac{1}{x}$ 在 $(0,1)$ 上不一致连续; $f(x)=x^2$ 在 $\mathbb{R}$ 上不一致连续; $f(x)=\sin x^2$ 在 $\mathbb{R}$ 上不一致连续.</li>
-<li><strong>[华四4.2例12]</strong> 设区间 $I_1$ 的右端点为 $c\in I_1$, 区间 $I_2$ 的左端点也为 $c\in I_2$ ($I_1,I_2$ 可分别为有限或无限区间). 证明: 若 $f$ 分别在 $I_1$ 和 $I_2$ 上一致连续, 则 $f$ 在 $I=I_1\cup I_2$ 上也一致连续.<br>
-注：区间 $I_1$ 的右端点为 $c\in I_1$, 区间 $I_2$ 的左端点也为 $c\in I_2$ 条件不可少, 否则 $f$ 在 $I$ 上不一定一致连续, 例如 $f(x)=\begin{cases}x, &amp; x\in(0,1), \\  2, &amp; x\in[1,2)\end{cases}.$</li>
-<li><strong>[华四4.2.4]</strong> 设 $f\in C(\mathbb{R}),\ c&gt;0$. 记 $F(x)=\begin{cases}<br>
--c, &amp; f(x)&lt;-c\\<br>
-f(x), &amp; |f(x)|\le c\\<br>
-c, &amp; f(x)&gt;c<br>
-\end{cases},$ 证明 $F$ 在 $\mathbb{R}$ 上连续.<br>
-注：$F(x)=\frac{1}{2}\left(|f(x)+c|-|f(x)-c|\right)$.</li>
-<li>**<strong>[华四2.3定理4.10]</strong> 设 $a&gt;0,\alpha,\beta$ 为任意两个实数, 则有 $a^{\alpha}\cdot a^{\beta}=a^{\alpha+\beta}; \ (a^{\alpha})^{\beta}=a^{\alpha\beta}.$</li>
-<li>*<strong>[华四第二章总练习题3(2)]</strong> 设 $f$ 在区间 $I$ 上连续, 若对任意两个有理数 $r_1,r_2,r_1&lt;r_2$, 有 $f(r_1)&lt;f(r_2)$, 证明: $f$ 在 $I$ 上严格增.</li>
-<li><strong>[华四第二章总练习题8]</strong> 设 $f\in C[0,1],f(0)=f(1).$ 证明: 对任何正整数 $n$, 存在 $\xi\in[0,1]$, 使得 $f(\xi+\frac{1}{n})=f(\xi)$.</li>
-<li>**<strong>[华四第二章总练习题9]</strong> 设 $f$ 在 $x=0$ 连续, 且对任何 $x,y\in\mathbb{R}$ 有 $f(x+y)=f(x)+f(y)$. 证明: (1) $f$ 在 $\mathbb{R}$ 上连续; (2) $f(x)=f(1)x.$<br>
-注：事实上，可以验证 $f$ 是一维实列向量空间上的线性变换. 类似方法可以处理 $f(x+y)=f(x)f(y)$ 型问题, 无非是取对数将乘法转为加法, 事实上这时 $f$ 就是指数函数.</li>
-<li>**<strong>[华四第二章总练习题12]</strong> 设 $f(x)$ 是区间 $[a,b]$ 上的一个非常数的连续函数, $M,m$ 分别是最大、最小值. 求证: 存在 $[\alpha,\beta]\in[a,b]$, 使得: (i) $m&lt;f(x)&lt;M, \ x\in(\alpha,\beta)$; (ii) $f(\alpha),f(\beta)$ 恰是 $f(x)$ 上的最大、最小值（最小、最大值）.<br>
-注：构造 $S={x\in[a,b]|f(x)=m}, \ T={x\in[a,b]|f(x)=M}.$</li>
-<li><strong>[李例2-1-1-3]</strong> 讨论函数 $f(x)=\begin{cases}x(1-x), &amp; x\in\mathbb{Q},\\  x(1+x) &amp; x\in\overline{\mathbb{Q}}\end{cases}$ 的连续性和可微性.</li>
-<li><strong>[李例2-1-1-5]</strong> 已知 $f(x)=\begin{cases}x, &amp; 0\le x&lt;1\\  k+1 &amp; k\le x&lt;k+1 \ (k=1,2,\cdots)\end{cases}.$ 求函数 $g(y)=\sup\limits_{f(x)&lt;y}x$ 在 $y\ge0$ 时的具体表达式, 并讨论其各点的连续性.<br>
-注：画图好分析.</li>
-<li><strong>[李例2-1-1-6]</strong> 设 $f_1(x),f_2(x),f_3(x)$ 均为 $[a,b]$ 上的连续函数, 若 $h(x)$ 为 $f_1(x),f_2(x),f_3(x)$ 三者中间值, 证明 $h(x)$ 在 $[a,b]$ 上的连续函数.<br>
-注：$h(x)=f_1(x)+f_2(x)+f_3(x)-\max{f_1,f_2,f_3}-\min{f_1,f_2,f_3}.$</li>
-<li>**<strong>[李例2-1-2-2]</strong> 若 $f(x)\in C[a,b]$, 证明函数 $m(x)=\min\limits_{a\le \xi\le x}{f(\xi)}\in C[a,b].$<br>
-注：注意到 $m(x)$ 是单调递减函数, 对 $\forall x_0\in[a,b]$, 分别讨论在 $x_0$ 处的左右连续性 (利用 $f$ 在 $x_0$ 处的连续性).</li>
-<li>*<strong>[李例2-1-4-3]</strong> 设 $f(x),g(x)$ 在区间 $I$ 上一致连续, 试问:<br>
-(1) $f,g$ 是否在 $I$ 上有界?<br>
-(2) $f,g$ 是否在 $I$ 上能取得最值?<br>
-(3) $f\cdot g$ 是否在 $I$ 上一致连续?<br>
-注：将区间 $I$ 分有限区间和无限区间讨论.</li>
-<li>$\star$<strong>[李例2-1-5-2]</strong> 若 $f(x)$ 在 $[a,+\infty]$ 上连续, $\lim\limits_{x\to+\infty}f(x)=A$. 证明:<br>
-(1) $f$ 在 $[a,+\infty)$ 上一致连续;<br>
-(2) $f$ 在 $[a,+\infty]$ 上有界;<br>
-(3) $f$ 在 $[a,+\infty)$ 上必有最大值或最小值.</li>
-<li><strong>[李例2-1-5-练习(11)]</strong> 证明 $f(x)=\frac{x^{k}}{e^{x^2}} \ (k&gt;0)$ 在 $\mathbb{R}$ 上一致连续且有界.<br>
-注：注意到 $\lim\limits_{x\to\infty}f(x)=0$, 用同样的方法可证 $f(x)=\frac{1}{x},\ x\in[a,+\infty); \ f(x)=\frac{\sin x}{x}, \ x\in(0,\pi); \ f(x)=xe^{-x^2}\int_0^xe^{t^2}\mathrm{~d}x, \ x\in[0,+\infty)$<br>
-一致连续.</li>
-<li>*<strong>[李例2-1-5-练习(7)]</strong> 证明函数 $f(x)=\frac{|\sin x|}{x}$ 在 $J={x|0&lt;|x|&lt;1}$ 上不一致连续.<br>
-注：在 $x=0$ 处的左右极限不等，以此为突破口.</li>
-<li>$\star$<strong>[李例2-1-6-1]</strong> 函数 $f(x)$ 在 $(a,b)$ 上有连续的导函数, 且 $\lim\limits_{x\to a+}f’(x)$ 与 $\lim\limits_{x\to b-}f’(x)$ 均存在有限, 证明:<br>
-(1) $f(x)$ 在 $(a,b)$ 上一致连续;  (2) $\lim\limits_{x\to a+}f(x)$ 与 $\lim\limits_{x\to b-}f(x)$ 均存在.<br>
-注：利用此命题可以证明 $f(x)=\sqrt{x}\ln x, x\in[1,+\infty)$ 上一致连续 (<strong>导函数有界</strong>).<br>
-考察在无穷区间 $[a,+\infty)$ 上连续的函数是否一致连续:
-<ul>
-<li>考察 $\lim\limits_{x\to+\infty}f(x)$ 是否存在且有限, 若存在且有限即得 $f(x)$ 在 $[a,+\infty)$ 上一致连续;</li>
-<li>考察导函数是否有界, 有界则一致连续.</li>
-</ul>
-</li>
-<li>$\star$<strong>[李例2-1-6-5]</strong> 设函数 $f(x)$ 在 $[0,+\infty]$ 上连续, 在 $(0,+\infty)$ 内可微, 且 $\lim\limits_{x\to+\infty}|f’(x)|=A$, 证明: $f(x)$ 在 $[0,+\infty)$ 上一致连续当且仅当 $A&lt;+\infty.$</li>
-<li><strong>[李例2-2-1-5]</strong> 设 $f_n(x)=x+x^2+\cdots+x^n \ (n=2,3,\cdots).$ 证明<br>
-(1) 方程 $f_n(x)=1$ 在 $[0,+\infty)$ 上有且仅有一个实根 $x_n$;<br>
-(2) 数列 ${x_n}$ 有极限, 并求 $\lim\limits_{n\to\infty}x_n.$</li>
-<li>*<strong>[李例2-2-2-2]</strong> 设 $f(x)$ 满足 $f([a,b])\subset[a,b]$, 且 $|f(x)-f(y)|\le|x-y|,\forall x,y\in[a,b].$ $\forall x_1\in[a,b]$, 令 $x_{n+1}=\frac{x_n+f(x_n)}{2},n=1,2,\cdots$. 证明数列 ${x_n}$ 有极限 $x_0$, 且 $f(x_0)=x_0.$<br>
-注：归纳法+单调有界.</li>
-<li>*<strong>[李例2-2-2-4]</strong> 若 $f(x)$ 在 $\mathbb{R}$ 上可微, 且 $|f’(x)|\le r&lt;1$, 证明: 存在 $a$ 使得 $f(a)=a$.<br>
-注：构造 $x_n=f(x_{n-1})$.</li>
-<li>$\star$*<strong>[李例2-2-3-1]</strong> 设 $f(x)\in C[0,1]$. 证明: $\lim\limits_{t\to +\infty}\int_0^1te^{-t^2x^2}f(x)\mathrm{~d}x=\frac{\sqrt{\pi}}{2}f(0).$<br>
-注：$\frac{\sqrt{\pi}}{2}=\int_0^{+\infty}e^{-x^2}\mathrm{~d}x.$</li>
-<li>**<strong>[李例2-2-7-1]</strong> 设 $f(x)$ 在 $[0,+\infty)$ 上一致连续, 且 $\forall x&gt;0$, 有 $\lim\limits_{n\to\infty}f(x+n)=0  (n\in\mathbb{N}^+).$ 证明: $\lim\limits_{x\to+\infty}f(x)=0.$<br>
-注：注意到对 $\forall x&gt;0,\exists \hat{x}\in[0,1],n\in\mathbb{N},x.t. x=\hat{x}+n$. 对区间 $[0,1]$ 进行划分即可.</li>
-<li>$\star$**<strong>[李例2-2-7-2]</strong> 设 $f(x)$ 在 $\mathbb{R}$ 上一致连续, 则存在 $a,b\in\mathbb{R}^+$ 使得 $|f(x)|\le a|x|+b,\forall x\in\mathbb{R}$.<br>
-注：利用此方法可证明：当 $f(x)$ 在 $[1,+\infty)$ 上一致连续时, $\frac{f(x)}{x}$ 在 $[1,+\infty)$ 上有界.</li>
-<li><strong>[李例2-2-7连续2]</strong> 设 $f(x)$ 在 $[0,+\infty)$ 上一致连续, 且对 $\forall \delta&gt;0, \ \lim\limits_{n\to\infty}f(n\delta)=0$, 求证 $\lim\limits_{x\to+\infty}f(x)=0.$</li>
-</ol>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>习题集</category>
-      </categories>
-      <tags>
-        <tag>数学分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一元积分学</title>
     <url>/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/5.%E4%B8%80%E5%85%83%E7%A7%AF%E5%88%86%E5%AD%A6/</url>
     <content><![CDATA[<h1>一元积分学</h1>
@@ -3274,79 +3275,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>函数项级数</title>
-    <url>/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/7.%E5%87%BD%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/</url>
-    <content><![CDATA[<h1>函数项级数</h1>
-<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
-<ol>
-<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
-<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
-<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
-</ol>
-<p>【华四/李】考察以下函数项级数的一致收敛性</p>
-<ol>
-<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
-<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
-<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
-</ol>
-<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
-<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
-<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
-<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
-<p>【定理13.6(Abel判别法)】设<br>
-(i) $\sum u_n(x)$在区间1上一致收敛；<br>
-(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
-(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
-则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
-<p>【定理 13.7(Dirichlet判别法)】 设<br>
-(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
-(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
-(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
-则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
-<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
-<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
-<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
-<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
-<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
-<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
-<p>【华四13.2例1】设函数<br>
-$$<br>
-f_{n}(x)=\begin{cases}<br>
-2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
-2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
-0,&amp;\frac{1}{n}\le x\le 1,<br>
-\end{cases}\quad n=1,2,\cdots<br>
-$$<br>
-考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
-<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
-<p>$$<br>
-\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
-$$<br>
-【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
-<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
-<p>【华四第十三章总练习题2】证明：<br>
-(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
-(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
-<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
-(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
-(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
-<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
-<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>习题集</category>
-      </categories>
-      <tags>
-        <tag>数学分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数项级数</title>
     <url>/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/6.%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/</url>
     <content><![CDATA[<h1>数项级数</h1>
@@ -3649,6 +3577,79 @@ $$<br>
 <p>$$<br>
 \int_a^bf’(x)\cos f(x)\mathrm{~d}x=\int_a^b(\sin f(x))'\mathrm{~d}x\le2<br>
 $$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>习题集</category>
+      </categories>
+      <tags>
+        <tag>数学分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>函数项级数</title>
+    <url>/2025/09/07/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/7.%E5%87%BD%E6%95%B0%E9%A1%B9%E7%BA%A7%E6%95%B0/</url>
+    <content><![CDATA[<h1>函数项级数</h1>
+<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
+<ol>
+<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
+<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
+<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
+</ol>
+<p>【华四/李】考察以下函数项级数的一致收敛性</p>
+<ol>
+<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
+<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
+<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
+</ol>
+<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
+<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
+<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
+<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
+<p>【定理13.6(Abel判别法)】设<br>
+(i) $\sum u_n(x)$在区间1上一致收敛；<br>
+(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
+(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
+则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
+<p>【定理 13.7(Dirichlet判别法)】 设<br>
+(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
+(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
+(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
+则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
+<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
+<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
+<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
+<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
+<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
+<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
+<p>【华四13.2例1】设函数<br>
+$$<br>
+f_{n}(x)=\begin{cases}<br>
+2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
+2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
+0,&amp;\frac{1}{n}\le x\le 1,<br>
+\end{cases}\quad n=1,2,\cdots<br>
+$$<br>
+考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
+<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
+<p>$$<br>
+\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
+$$<br>
+【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
+<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
+<p>【华四第十三章总练习题2】证明：<br>
+(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
+(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
+<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
+(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
+(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
+<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
+<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
 ]]></content>
       <categories>
         <category>数学</category>
