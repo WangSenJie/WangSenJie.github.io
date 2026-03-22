@@ -279,25 +279,15 @@
 
     
     
-    
-        
-
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
-
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-        </div>
-    </div>
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2025/09/05/Python%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/177%E7%AC%ACn%E9%AB%98%E7%9A%84%E8%96%AA%E6%B0%B4/" data-share-title="第n高的薪水">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
   </div>
+  <p class="post-share-hint">分享到朋友圈时，建议先复制链接，再到微信里粘贴发送。</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
 
 
       <footer class="post-footer">
@@ -499,6 +489,58 @@
   
 
   
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
 
 </body>
 </html>

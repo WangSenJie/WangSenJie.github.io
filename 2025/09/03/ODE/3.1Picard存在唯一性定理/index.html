@@ -328,25 +328,15 @@ $$<br>
 
     
     
-    
-        
-
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
-
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-        </div>
-    </div>
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2025/09/03/ODE/3.1Picard%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86/" data-share-title="Picard 存在唯一性定理">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
   </div>
+  <p class="post-share-hint">分享到朋友圈时，建议先复制链接，再到微信里粘贴发送。</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
 
 
       <footer class="post-footer">
@@ -360,8 +350,8 @@ $$<br>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/09/03/ODE/3.2%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86%E4%B8%8E%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/" rel="prev" title="不动点定理与解的存在性">
-      <i class="fa fa-chevron-left"></i> 不动点定理与解的存在性
+    <a href="/2025/09/03/ODE/3.3%E8%A7%A3%E7%9A%84%E5%BB%B6%E6%8B%93/" rel="prev" title="解的延拓">
+      <i class="fa fa-chevron-left"></i> 解的延拓
     </a></div>
       <div class="post-nav-item">
     <a href="/2025/09/03/ODE/2.4%E5%8F%82%E6%95%B0%E6%B3%95/" rel="next" title="参数法">
@@ -601,6 +591,58 @@ $$<br>
     
 
   
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
 
 </body>
 </html>
