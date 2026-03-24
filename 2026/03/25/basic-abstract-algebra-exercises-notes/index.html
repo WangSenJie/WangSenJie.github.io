@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Basic Abstract Algebra 习题笔记汇总，覆盖集合、映射、关系、同余、群、子群、正规子群、同态、商群与同构定理等基础内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Abstract Algebra Exercises Notes">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/03/25/basic-abstract-algebra-exercises-notes/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="Basic Abstract Algebra 习题笔记汇总，覆盖集合、映射、关系、同余、群、子群、正规子群、同态、商群与同构定理等基础内容。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-25T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-24T17:18:17.057Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="Abstract Algebra">
+<meta property="article:tag" content="Group Theory">
+<meta property="article:tag" content="Notes">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/03/25/basic-abstract-algebra-exercises-notes/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="Basic Abstract Algebra 习题笔记汇总，覆盖集合、映射、关系、同余、群、子群、正规子群、同态、商群与同构定理等基础内容。">
+
+<meta name="twitter:title" content="Basic Abstract Algebra Exercises Notes">
+
+  <title>Basic Abstract Algebra Exercises Notes | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/03/25/basic-abstract-algebra-exercises-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Basic Abstract Algebra Exercises Notes
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-03-25 12:00:00 / 修改时间：01:18:17" itemprop="dateCreated datePublished" datetime="2026-03-25T12:00:00+08:00">2026-03-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">抽象代数</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Basic Abstract Algebra 习题笔记汇总，覆盖集合、映射、关系、同余、群、子群、正规子群、同态、商群与同构定理等基础内容。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这篇笔记把 <code>Basic Abstract Algebra</code> 目录下的习题解答集中整理到一篇文章中，方便统一查阅和后续维护。</p>
+<p>说明：</p>
+<ul>
+<li>原目录下的单篇 <code>.md</code> 已统一设为 <code>published: false</code></li>
+<li><code>Exercises for Section 1.1 copy.md</code> 是 <code>Section 1.1</code> 的重复副本，所以没有在这里重复收录</li>
+</ul>
+<h2 id="Exercises-for-Section-1-1">Exercises for Section 1.1</h2>
+<ol>
+<li>Let $A,B$ and $C$ be sets. Show that
+<ul>
+<li>$(A\cap B)\text{\} B=\empty$.<br>
+<strong>Proof:</strong> Let $x\in(A\cap B)\text{\} B$, that means $x\in A\cap B$ and $x\not\in B$. Thus, we have $x\in B$ and $x\not\in B$. Therefore  $(A\cap B)\text{\} B$ must be the $\empty$.  #</li>
+<li>$(A\cup B)\text{\}B=A\text{\}B$.<br>
+<strong>Proof:</strong> On the one hand, let $x\in (A\cup B)\text{\} B$, that means $x\in A\cup B$ and $x\not\in B$. This implies that $x\in A$ and $x\not\in B$, Thus, $x\in A\text{\}B$, therefore $(A\cup B)\text{\} B\subseteq A\text{\}B$. On the other hand, let $x\in A\text{\}B$, we have $x\in A$ and $x\not\in B$. Since $x\in A$, it is also in $A\cup B$. Thus, $x\in A\cup B$ and $x\not\in B$. That is $x\in (A\cup B)\text{\}B$. Therefore $A\text{\}B\subseteq (A\cup B)\text{\}B$. In a Word, $(A\cup B)\text{\}B=A\text{\}B$.  #</li>
+<li>$(B\cup C)\text{\}A=(B\text{\}A)\cup(C\text{\}A)$.<br>
+<strong>Proof:</strong> On the one hand, let $x\in (B\cup C)\text{\} A$, that means $x\in B\cup C$ and $x\not\in A$. This implies that $x\in B$ or $x\in C$ and $x\not\in A$, i.e., $x\in(B\text{\}A)$ or $x\in (C\text{\}A)$. Thus, we have $x\in(B\text{\}A)\cup(C\text{\}A)$, Therefore $(B\cup C)\text{\}A\subseteq(B\text{\}A)\cup(C\text{\}A)$. On the other hand, let $x\in(B\text{\}A)\cup(C\text{\}A)$, we have $x\in(B\text{\}A)$ or $x\in (C\text{\}A)$. That is $x\in B$ and $x\notin A$ or $x\in C$ and $x\notin A$. We have $x\in B\cup C$ and $x\notin A$, i.e. $x\in(B\cup C)\text{\}A$. Therefore $(B\text{\}A)\cup(C\text{\}A)\subseteq(B\cup C)\text{\}A$. In a Word, $(B\cup C)\text{\}A=(B\text{\}A)\cup(C\text{\}A)$.  #</li>
+</ul>
+</li>
+<li>Let $A,B,C$ be sets. Prove that $A\text{\}(B\text{\}C)=(A\text{\}B)\cup(A\cap C)$.<br>
+<strong>Proof:</strong> Let $x\in A\text{\}(B\text{\}C)$, then $x\in A$ and $x\notin B\text{\}C$. That means $x\in A$ and ($x\notin B$ or $x\in C$). Thus, $x\in (A\text{\}B)\cup(A\cap C)$， therefore $A\text{\}(B\text{\}C)\subseteq(A\text{\}B)\cup(A\cap C)$.<br>
+On the other hand, let $x\in (A\text{\}B)\cup(A\cap C)$, then we have $x\in A\text{\}B$ or $x\in A\cap C$. That means $x\in A$ and $x\notin B$ or $x\in A$ and $x\in C$. Thus, $x\in A$ and ($x\notin B$ or $x\in C$), which means $x\in A\text{\}(B\text{\}C)$, therefore $(A\text{\}B)\cup(A\cap C)\subseteq A\text{\}(B\text{\}C)$.<br>
+In a word, $A\text{\}(B\text{\}C)=(A\text{\}B)\cup(A\cap C)$.</li>
+<li>Let $X,Y$ be finite sets. Prove that $|X\cup Y|+|X\cap Y|=|X|+|Y|$.<br>
+<strong>Proof:</strong> Note that<br>
+$$<br>
+\begin{aligned}<br>
+|X\cup Y|&amp;=|[X\text{\}(X\cap Y)]\cup[Y\text{\}(X\cap Y)]\cup(X\cap Y)|\<br>
+&amp;=|X\text{\}(X\cap Y)|+|Y\text{\}(X\cap Y)|+|X\cap Y|\<br>
+&amp;=|X|-|X\cap Y|+|Y|-|X\cap Y|+|X\cap Y|\<br>
+&amp;=|X|+|Y|-|X\cap Y|.<br>
+\end{aligned}<br>
+$$<br>
+Therefore $|X\cup Y|+|X\cap Y|=|X|+|Y|$.	#</li>
+</ol>
+<h2 id="Exercises-for-Section-1-2">Exercises for Section 1.2</h2>
+<ol start="3">
+<li>
+<p>Show that a map is invertible if and only if it is both injective and surjective.<br>
+<strong>Proof:</strong> $(\Longrightarrow)$ Assume that a map<br>
+$$<br>
+\begin{aligned}<br>
+f:X&amp;\to Y\<br>
+x&amp;\mapsto y<br>
+\end{aligned}<br>
+$$<br>
+is invertible, then exists a map $f^{-1}:Y\to X$, such that<br>
+$$<br>
+f\circ f^{-1}=1_{Y},\quad f^{-1}\circ f=1_X.<br>
+$$<br>
+We need to show that $f$ is both injective and surjective.</p>
+<ul>
+<li>
+<p>Let $x_1,x_2\in X$ and $x_1\neq x_2$. Since $f^{-1}\circ f=1_X$, we have<br>
+$$<br>
+f^{-1}\circ f(x_1)=x_1\neq x_2=f^{-1}\circ f(x_2),<br>
+$$<br>
+i.e. $f^{-1}(f(x_1))\neq f^{-1}(f(x_2))$. Thus $f(x_1)\neq f(x_2)$, $f$ is injective.</p>
+</li>
+<li>
+<p>Let $y \in Y$, note that<br>
+$$<br>
+y=f\circ f^{-1}(y)=f(f^{-1}(y)).<br>
+$$<br>
+There we find $x:=f^{-1}(y)\in X$, such that $f(x)=y$. Thus $f$ is surjective.  ■</p>
+</li>
+</ul>
+<p>$(\Longleftarrow)$ If $f$ is both injective and surjective i.e. $f$ is bijective, then $f$ has a unique two-sided inverse $f^{-1}$ from <strong>Corollary 1.2.20</strong>, i.e. $f$ is invertible.</p>
+</li>
+<li>
+<p>Let $X$ be a set, $A$ be a subset of $X$. Is $f:P(X)\to P(X),~A\to A’$ a bijection? Why?<br>
+<strong>Solution:</strong> Obviously, $f$ is a map since for each $A\in P(X)$, there exists a unique $A’$ corresponding to it through the correspondence rule. Therefore, we only need to check if $f$ is both injective and surjective.</p>
+<ul>
+<li>Let $A, B\in P(X)$ and $A\neq B$. Since $A\neq B$, there must $\exists ~x\in A$ and $x\notin B$ or $\exists ~y\in B$ and $y\notin A$. Without loss of generality, suppose that $\exists ~x\in A$ and $x\notin B$, i.e. $x\in A\text{\}B$. Note that $A\text{\}B\subseteq X\text{\}B=B’$, so $x\in B’$. And it is also evident that $x\notin A’$ since $x\in A$. Thus $A’\neq B’$, i.e. $f$ is injective.</li>
+<li>Let $A\in P(X)$, we have $A’=X\text{\}A\in P(X)$ and $f(A’)=(A’)'=A$. Thus $f$ is surjective.</li>
+</ul>
+<p>In summary, $f$ is bijective.</p>
+</li>
+</ol>
+<p><strong>Reference</strong>: 王艳华 《抽象代数基础》- Section 1.2</p>
+<h2 id="Exercises-for-Section-1-3">Exercises for Section 1.3</h2>
+<ol start="2">
+<li>Define a relation $R$ on $\mathbb R^2$ by stating that $(a,b)\sim(c,d)$ if and only if $a^2+b^2\le c^2+d^2$. Show that $\sim$ is reflexive and transitive, but itis not symmetric.<br>
+<strong>Solution:</strong> (1) Obviously, $(a,b)\sim(a,b)$, so $\sim$ is reflexive.<br>
+(2) If $(a,b)\sim(c,d),~(c,d)\sim(e,f)$, then we have $a^2+b^2\le c^2+d^2,~c^2+d^2\le e^2+f^2$. So $a^2+b^2\le e^2+f^2$. Thus $(a,b)\sim(e,f)$, so $\sim$ is transitive.<br>
+(3) Suppose $(a,b),~(c,d)\in \mathbb R^2$ and $a^2+b^2&lt; c^2+d^2$. Thus $(a,b)\sim (c,d)$. Since $c^2+d^2&gt;a^2+b^2$, $(c,d)\not\sim(a,b)$. Therefore, $\sim$ is not symmetric.  #</li>
+</ol>
+<h2 id="Exercises-for-Section-1-4">Exercises for Section 1.4</h2>
+<ol start="4">
+<li>
+<p>Let $X$ be a set and $R$ is a relation $X$. Define $xRy$ if $x|y$. Is $R$ an equivalence relation, partial ordering relation or totally ordering relation?<br>
+<strong>Solution:</strong><br>
+(1) equivalence?</p>
+<ul>
+<li><strong>Reflexivity</strong>:<br>
+$x\mid x$ is true for any $x\in X$, so $R$ is reflexive.</li>
+<li><strong>Symmetry</strong>:<br>
+If $x\mid y$, it does not necessarily imply $y \mid x$. For example, if  $x = 2$ and $y = 4$, $2 \mid 4$, but $4 \nmid 2$. Thus, $R$ is not symmetric.</li>
+<li><strong>Transitivity</strong>:<br>
+If $x\mid y,~y\mid z\Rightarrow x\mid z$, so $R$ is transitive.</li>
+</ul>
+<p>Since $R$ is not symmetric, it is not an equivalence relation.</p>
+<p>(2) partial ordering relation?</p>
+<ul>
+<li>
+<p><strong>Reflexivity</strong>:</p>
+<p>As shown earlier, $R$ is reflexive.</p>
+</li>
+<li>
+<p><strong>Antisymmetry</strong>:<br>
+If $x \mid y$ and $y \mid x$, then $x = y$ (since $x \mid y$ and $y \mid x$ imply $x$ and $y$ have the same absolute value). Thus, $R$ is antisymmetric.</p>
+</li>
+<li>
+<p><strong>Transitivity</strong>:<br>
+As shown earlier, $R$ is transitive.</p>
+<p>Since $R$ satisfies reflexivity, antisymmetry, and transitivity, it is a partial ordering relation.</p>
+</li>
+</ul>
+<p>(3) totally ordering relation?</p>
+<ul>
+<li>For some $x, y \in X$, neither $x \mid y$ nor $y \mid x$ may hold. For example, if $x = 2$ and $y = 3$, $2 \nmid 3$ and $3 \nmid 2$. Thus, $R$ is not a total ordering relation.</li>
+</ul>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-1-5">Exercises for Section 1.5</h2>
+<ol>
+<li>
+<p>Let $a$ be a nonzero integer and $n\neq 0$ be a natural number. Then $\gcd(a,n)=1$ if and only if there exists a multiplication inverse $b$ such that $ab\equiv1 (\mod n)$.<br>
+<strong>Proof:</strong> $(\Longrightarrow)$ Let $\gcd(a,b)=1$, then $\exists r,s\in \mathbb Z,~s.t.~ar+ns=1\Rightarrow ar=n(-s)+1$. Let $b=r$, then $ab=n(-s)+1\equiv 1(\mod n)$.<br>
+$(\Longleftarrow)$ Suppose $\exists b\in\mathbb Z,~s.t.~ab\equiv1(\mod n)$. Then there exists $p\in\mathbb Z$, such that $ab=np+1$. Thus $ab+n(-p)=1$, that is $\gcd(a,n)=1$.  #</p>
+</li>
+<li>
+<p>$a=165,~b=234$. Calculate $\gcd(a,b)$ and find integers $r$ and $s$ such that $\gcd(a,b)=ar+bs$.<br>
+<strong>Solution:</strong> Using the Euclidean algorithm:<br>
+$$<br>
+\begin{cases}<br>
+234=165\times1+69,\<br>
+165=69\times2+27,\<br>
+69=27\times2+15,\<br>
+27=15\times1+12,\<br>
+15=12\times1+3,\<br>
+12=3\times4+0<br>
+\end{cases}<br>
+\Rightarrow \gcd(a,b)=3<br>
+$$<br>
+Note that<br>
+$$<br>
+\begin{aligned}<br>
+3&amp;=15-12=15-(27-15)=-27+2\times15\<br>
+&amp;=-27+2\times(69-2\times27)=2\times69+(-5)\times27\<br>
+&amp;=2\times69+(-5)\times(165-2\times69)=(-5)\times165+12\times69\<br>
+&amp;=(-5)\times165+12\times(234-165)=(-17)\times165+12\times234.	\quad#<br>
+\end{aligned}<br>
+$$</p>
+</li>
+<li>
+<p>Show that $\text{lcm}(a,b)=ab\Longleftrightarrow \gcd(a,b)=1$.<br>
+<strong>Proof:</strong> $(\Longrightarrow)$ Let $\text{lcm}(a,b)=ab$, we want to show that $\gcd(a,b)=1$. Suppose that $\gcd(a,b)=d&gt;1$, then $\exists k,l\in\mathbb Z,~s.t.~ a=dk,~b=dl$. It shows that $dkl$ is a common multiple of $a$ and $b$, and $dkl&lt;d^2kl=ab$. It is contradicts the fact that $\text{lcm}(a,b)=ab$.<br>
+$(\Longleftarrow)$ Let $\gcd(a,b)=1$, we want to show that $\text{lcm}(a,b)=ab$. Since $\gcd(a,b)=1$, $\exists r,s\in\mathbb Z$, such that $1=ar+bs$. Suppose that $m$ is a common multiple of  $a$ and $b$, we want to show that $ab\mid m$. Since $m$ is a common multiple of  $a$ and $b$, we have $m=ap=bq,~ p,q\in\mathbb Z$. Note that<br>
+$$<br>
+m=ap=ap\cdot1=ap(ar+bs)=(ap)(ar)+abps=(bq)(ar)+abps=ab(ps+qr),<br>
+$$<br>
+that is $ab\mid m$. Thus $\text{lcm}(a,b)=ab$.</p>
+</li>
+<li>
+<p>If $d=\gcd(a,b)$ and $m=\text{lcm}(a,b)$. Prove that $dm=|ab|$.<br>
+<strong>Proof:</strong> Without loss of generality, Let $a,b\in\mathbb Z_+$. Since $d=\gcd(a,b)$, $\exists r,s\in\mathbb Z$, such that $d=ar+bs$. Since $m=\text{lcm}(a,b)$, it follows that $\exists p,q\in\mathbb Z$, such that $m=ap=bq$. Therefore,<br>
+$$<br>
+dm=(ar+bs)(ap)=(ar)(ap)+absp=(ar)(bq)+absp=ab(ps+qr).<br>
+$$<br>
+We want to show that $ps+qr=1$, i.e. $\gcd(p,q)=1$. Suppose that $\gcd(p,q)=d’&gt;1$. Then $\exists k,l\in\mathbb Z$, such that $p=kd’,q=ld’$. Therefore, $ap=bq\Longleftrightarrow ak=bl:=m’$ and $m’&lt;m$. It contradicts that $m=\text{lcm}(a,b)$.  #</p>
+</li>
+<li>
+<p>If $p$ and $q$ are distinct primes, the $\sqrt{pq}$ is not a rational number.<br>
+<strong>Proof:</strong> Suppose that $\sqrt{pq}=\frac{n}{m}$, $m,n\in\mathbb N_+$ and $\gcd(m,n)=1$. Then $pq=\frac{n^2}{m^2}\Rightarrow n^2=pqm^2\Rightarrow p\mid n^2\Rightarrow p\mid n$. Write $n=pr,~r\in\mathbb Z$. Then $p^2r^2=pqm^2\Rightarrow pr^2=qm^2$. So $p\mid qm^2$. Since $p$ and $q$ are distinct primes, we have $\gcd(p,q)=1$. Thus $p\mid m^2\Rightarrow p\mid m$. Since $p\mid m,~p\mid n$ and $p&gt;1$, it follows that $\gcd(m,n)\ge p&gt;1$. $\to\leftarrow$.   #</p>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-1-6">Exercises for Section 1.6</h2>
+<ol>
+<li>
+<p>Find the smallest positive solution $x$ of the system of congruences<br>
+$$<br>
+\begin{aligned}<br>
+x&amp;\equiv 4(\mod 3),\<br>
+x&amp;\equiv5(\mod 7),\<br>
+x&amp;\equiv6(\mod 11).<br>
+\end{aligned}<br>
+$$<br>
+<strong>Solution:</strong> Using the Chinese Remainder Theorem. $m=3\times7\times11=231\Rightarrow \hat m_1=\frac{231}{3}=77,\hat m_1=\frac{231}{7}=33,\hat m_3=\frac{231}{11}=21$.</p>
+<ul>
+<li>$77\equiv 2(\mod 3),~2\times 2\equiv1(\mod 3)\Rightarrow l_1=2$;</li>
+<li>$33\equiv 5(\mod 7),~5\times3\equiv1(\mod7)\Rightarrow l_2=3$;</li>
+<li>$21\equiv10(\mod 11),~10\times10\equiv1(\mod 11)\Rightarrow l_3=10$.</li>
+</ul>
+<p>Put $x=4\times77\times2+5\times33\times3+6\times21\times10(\mod231)=2371(\mod 231)=61(\mod 231)$. Thus the smallest positive solution $x=61$.  #</p>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-2-1">Exercises for Section 2.1</h2>
+<ol>
+<li>
+<p>Let $G$ be a finite group. Then the order of an element $g$ is the smallest number $n$ such that $g^n=e$. Show that the order of  $g\in G$ is finite group.<br>
+<strong>Proof:</strong> Since $G$ is a finite group, then $|G|&lt;\infty$. Let<br>
+$$<br>
+S=\left{g^k\mid k\in\mathbb N\right}.<br>
+$$<br>
+We have $S\subseteq G$, so $S$ is finite. Thus there must exists $p,q\in\mathbb N,p&lt;q$, such that $g^p=g^q\Rightarrow g^{q-p}=e$, where $e$ is the identity of $G$. Therefore, we have $n\le q-p$ by the definition of the order of an element $g$. Since $q-p$ is finite, the order of $g$ is finite.  #</p>
+</li>
+<li>
+<p>Let $G$ be a group with order $|G|=n$. $S$ is a subset of $G$, with $|S|&gt;\frac{n}{2}$. Show that for any $g\in G$, there exists $a,b\in S$ such that $g=ab$.<br>
+<strong>Proof:</strong> For any $g\in G$, construct a map<br>
+$$<br>
+\begin{aligned}<br>
+\mathscr l:~~&amp;G\to G\<br>
+&amp;h\mapsto h^{-1}g.<br>
+\end{aligned}<br>
+$$<br>
+Note that for any $h_1,h_2\in G$, let $\mathscr l(h_1)=\mathscr l(h_2)$, we have<br>
+$$<br>
+h_1^{-1}g=h_2^{-1}g\Rightarrow h_1^{-1}=h_2^{-1}\Rightarrow h_1=h_2.<br>
+$$<br>
+Thus $\mathscr l$ is injective. On the other hand, for any $\mathscr h\in G$, $\exists g\mathscr h^{-1}$, such that $\mathscr l(g\mathscr h^{-1})=(g\mathscr h^{-1})^{-1}g=\mathscr hg^{-1}g=\mathscr h$. So $\mathscr l$ is surjective. Therefore, $\mathscr l$ is bijective.</p>
+<p>Suppose that $\mathscr l(S)\cap S^{-1}=\varnothing$, then $|\mathscr l(S)\cup S^{-1}|=|\mathscr l(S)|+|S^{-1}|=2|S|$. However, $\mathscr l(S)\cup S^{-1}\subseteq G$, it follows that $2|S|=|\mathscr l(S)\cup S^{-1}|\le |G|=n\Rightarrow |S|\le \frac{n}{2}$. $\to\leftarrow$.</p>
+<p>Therefore, $\mathscr l(S)\cap S^{-1}\neq\varnothing$. Let $b\in\mathscr l(S)\cap S^{-1}$. Clearly, $b\in S$. Then exists $a\in S$, such that $\mathscr l(a)=b\Rightarrow a^{-1}g=b$, i.e. $g=ab$.  #</p>
+</li>
+<li>
+<p>Let $a,b$ be two elements of a group $G$, and $aba=ba^2b,~a^3=1,~b^{2n-1}$. Then $b=1$.<br>
+<strong>Proof:</strong> $aba=ba^2b\Rightarrow aba^3=ba^2ba^2\Rightarrow ab=ba^2ba^2\Rightarrow ab^2=ba^2ba^2b=ba^2aba=b^2a$. i.e. The element $a$ commutes with $b^2$. Thus<br>
+$$<br>
+ab^{2n}=a \underbrace{b^2b^2\cdots b^2}<em>{n个}=b^2a\underbrace{b^2\cdots b^2}</em>{n-1个}=\cdots=\underbrace{b^2b^2\cdots b^2}_{n个}a=b^{2n}a.<br>
+$$<br>
+Therefore, $ab=ab^{2n-1}b=b^{2n-1}ba=ba\Rightarrow ba^2b=aba=ba^2\Rightarrow(ba^2)^{-1}(ba^2)b=(ba^2)^{-1}(ba^2)=1$, i.e. $b=1$.   #</p>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-2-2">Exercises for Section 2.2</h2>
+<ol>
+<li>
+<p>Let $H$ be a subgroup of $G$, if $g\in G$, show tha<br>
+$$<br>
+gHg^{-1}={g^{-1}hg\mid h\in H}<br>
+$$<br>
+is also a subgroup of $G$.<br>
+<strong>Proof:</strong> Since $e~(\text{identity})\in gHg^{-1}\subseteq G$, $gHg^{-1}$ is nonempty. For any $g^{-1}h_1g,~g^{-1}h_2g\in gHg^{-1}$, note that<br>
+$$<br>
+(g^{-1}h_1g)(g^{-1}h_2g)^{-1}=g^{-1}h_1gg^{-1}h_2^{-1}g=g^{-1}h_1h_2^{-1}g,<br>
+$$<br>
+and $h_1h_2^{-1}\in H$ by $h_1,h_2\in H\le G$. It follows that $(g^{-1}h_1g)(g^{-1}h_2g)^{-1}\in gHg^{-1}$. Thus $gHg^{-1}\le G$.</p>
+</li>
+<li>
+<p>Let $G$ be a group and $g\in G$. Show that the center of $G$: $\mathcal Z(G)={x\in G\mid gx=xg,~g\in G}$ is a subgroup of $G$. And compute the center of $GL_n(\mathbb R),SL_n(\mathbb R)$.<br>
+<strong>Proof:</strong> Clearly, the identity $e\in\mathcal  Z(G)$, i.e. $\mathcal Z(G)$ is not empty. For any $x_1,x_2\in\mathcal Z(G)$, we have $gx_1=x_1g,~gx_2=x_2g$. Then<br>
+$$<br>
+g(x_1x_2^{-1})=x_1gx_2^{-1}=x_1gx_2^{-1}g^{-1}g=x_1g(gx_2)^{-1}g=x_1g(x_2g)^{-1}g=x_1gg^{-1}x_2^{-1}g=(x_1x_2^{-1})g.<br>
+$$<br>
+So $x_1x_2^{-1}\in \mathcal Z(G)$. Thus $\mathcal Z(G)\le G$.</p>
+<p>(1) The center of $GL_n(\mathbb R):~\mathcal Z(GL_n(\mathbb R))={cE\mid c\in\mathbb R,E ~\text{is the identity matrix}}$.</p>
+<ul>
+<li>Let $P\in\mathcal Z(GL_n(\mathbb R))$, then for any $A\in GL_n(\mathbb R)$, we have $AP=PA$. Suppose that $A=\left(\begin{matrix} -1&amp;0&amp;\cdots&amp;0\0&amp;1&amp;\cdots&amp;0\\vdots&amp;\vdots&amp;&amp;\vdots\0&amp;0&amp;\cdots&amp;1\end{matrix}\right)\in GL_n(\mathbb R)$, then by $AP=PA$, we obtain that the first row and the first column of $P$ are all $0$ except the main diagonal element. Similarly, let $A=(e_1,-e_2,\cdots,e_n),\cdots,(e_1,e_2,\cdots,-e_n)$, we can obtain that $P$ is a diagonal matrix.</li>
+<li>Moreover, let $A$ be a permutation elementary matrix. By simple calculation, we can obtain $P=cE$, where $E$ is the identity matrix and $c\in\mathbb R$.</li>
+</ul>
+<p>(2) The center of $SL_n(\mathbb R):~\mathcal Z(SL_n(\mathbb R))=E$.</p>
+<ul>
+<li>$|cE|=1\Rightarrow c=1$.</li>
+</ul>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-2-3">Exercises for Section 2.3</h2>
+<ol>
+<li>
+<p>Let $G$ be a group, $a,b\in G$, and $ab=ba,~|a|=m,~|b|=n,~\gcd(m,n)=1$. Show that $|ab|=mn$.<br>
+<strong>Proof:</strong> Since $|a|=m,~|b|=n$, we have $a^m=b^n=e$, where $e$ is the identity of $G$. Because $\gcd(m,n)=1$, so $\text{lcm}(m,n)=mn$. For any $k\in\mathbb Z$, we have $(ab)^k=a^kb^k$ since $ab=ba$. Note that $(ab)^{mn}=a^{mn}b^{mn}=(a^m)^n(b^n)^m=e$, then $|ab|\mid mn$, it follows that $|ab|=mn$, or ($|ab|\mid m$ and $|ab|\not\mid n$) or ($|ab|\not\mid m$ and $|ab|\mid n$) since $\gcd(m,n)=1$. Suppose that $|ab|\mid m$ and $|ab|\not\mid n$, then $(ab)^m=a^mb^m=b^m=1\Rightarrow |b|\mid m\Rightarrow n\mid m~\to\leftarrow$. Similarly, $|ab|\not\mid m$ and $|ab|\mid n\Rightarrow ~\to\leftarrow$. Thus, $|ab|=mn$.  #</p>
+</li>
+<li>
+<p>Show that the group with prime order is a cyclic group.<br>
+<strong>Proof:</strong> Let $G$ be a group, $p$ be a prime, and $|G|=p$, which means $G$ has $p$ elements. Let $g\in G$ and $g\neq e$ (identity). Since $|G|=p$, then $|g|\mid p$. Therefore, $|g|=1$ or $p$. If $|g|=1$, then $g=e~\to\leftarrow$. Thus, $|G|=p$, and $\langle g\rangle={e,g,g^2,\cdots,g^{p-1}}$ has $p$ elements. Because $G$ has also $p$ elements and $\langle g\rang\le G$, we have $\lang g\rang=G$, i.e. $G$ is a cyclic group.  #</p>
+</li>
+<li>
+<p>Let $G$ be a group, $g$ in $G$, $|g|=mn$, and $\gcd(m,n)=1$, then $g=ab$ where $|a|=m$, $|b|=n$, and $a,b\in G$.<br>
+<strong>Proof:</strong> Since $\gcd(m,n)=1$, then $\exists ~u,v\in\mathbb Z,~s.t.~um+vn=1$. Let $a = g^{vn},~b=g^{um}$, then</p>
+<p>$$<br>
+ab=g^{vn}\cdot g^{um}=g^{vn+um}=g^1=g<br>
+$$</p>
+<p>We want to show that $|a|=m,~|b|=n$. Since $|g|=mn$, then $g^{mn}=e$ (identity). Thus, $a^m={g^{vn}}^m=g^{mn\cdot v}=e^v=e$, so $|a|\mid m$. Let $0&lt;k&lt; m$, if $a^k=a^{kvn}=e$, then $mn\mid kvn\Rightarrow m\mid kv\Rightarrow m\mid v$. Then $\exists~x\in\mathbb Z,~s.t. ~v=xm$ $\Rightarrow m(u+xn)=1\Rightarrow m=1$, then we can not find a $0&lt;k&lt;m$, such that $a^k=e$. So $|a|=m$. Similarly, $|b|=n$.  #</p>
+</li>
+<li>
+<p>Let $a,b$ be elements of group $G$ such that $a^3=b^2=e,~(ab)^2=e,~a^2\neq e,~b\neq e$. What is $\lang a,b\rang$.<br>
+<strong>Solution:</strong> Since $a^3=b^2=e,~a^2\neq e,~b\neq e$, we have $|a|=3,~|b|=2$. Then</p>
+<p>$$<br>
+\lang a\rang={e,a,a^2},\quad \lang b\rang={e,b}<br>
+$$</p>
+<p>If $ab=e$, then $ab\cdot b=b\Rightarrow a=b\Rightarrow a^2=b^2=e$, it is contradicts to the fact that $a^2\neq e$. Therefore, $ab\neq e$. Thus, $|ab|=2$ since $(ab)^2=e$. Clearly, $a\neq b$. And $aba=(ab)^2b^{-1}=b^{-1}=b,~bab=a^{-1}(ab)^2=a^{-1}=a^2$. Therefore, $\lang a,b\rang={e,a,b,a^2,ab,ba,a^2b}$.</p>
+</li>
+<li>
+<p>Let $a,b$ be elements of a group $G$ such that $a^3=b^2=e,~ab=ba,~a^2\neq e,~b\neq e$. What is $\lang a,b\rang$.<br>
+<strong>Solution:</strong> $|a|=3,~|b|=2$. Since $ab=ba$, we have $\lang a,b\rang={e,a,b,ab,a^2,a^2b}$.</p>
+</li>
+<li>
+<p>Let $G$ be a finite abellian group. Prove that the product of all the elements of $G$ equals the product of all the elements of $G$ of order $2$.<br>
+<strong>Proof:</strong> Let $g\in G$, and $|g|\neq2$. If $|g|=1$, then $g=e$ (identity). Suppose that $|g|&gt;2$. Since $G$ is a group, we can find $g^{-1}\in G,~s.t.~ gg^{-1}=g^{-1}g=e$. We want to show that $|g^{-1}|&gt;2$. Suppose that $|g^{-1}|=2$, i.e. $(g^{-1})^2=e$. Therefore,<br>
+$$<br>
+g^{-1}=g^{-1}\cdot e=g^{-1}\cdot(gg^{-1})=(g^{-1}g)g=g.<br>
+$$<br>
+It follows that $|g|=2,~\to\leftarrow$. Thus, $|g^{-1}|&gt;2$. Which means that for any $g\in G$ and $|g|&gt;2$, we can find a $g^{-1}\in G,$ s.t. $gg^{-1}=g^{-1}g=e$ and $|g^{-1}|&gt;2$. Thus,<br>
+$$<br>
+\prod_{g\in G}g=e\cdot\left(\prod_{g\in G~&amp;~|g|=2}g\right)\cdot\left(\prod_{g\in G~&amp;~|g|&gt;2}g\right)=\left(\prod_{g\in G~&amp;~|g|=2}g\right)\cdot e=\left(\prod_{g\in G~&amp;~|g|=2}g\right).<br>
+$$</p>
+</li>
+<li>
+<p>Use the conclusion of the previous question to show the Wilson’s Theorem: If $p$ is a prime, then $(p-1)!=-1(\mod p)$.<br>
+<strong>Proof:</strong> Consider the group $(\mathbb Z_p/{\bar 0},\times):=(G,\times)$, where $G$ consists of all nonzero integers modulo $p$, i.e., the set ${ \bar 1, \bar 2, \cdots, \overline{p-1} }$. We now show that $G$ is a abelian group.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\times~(\mod p)$</th>
+<th style="text-align:center">$\bar 1$</th>
+<th style="text-align:center">$\bar2$</th>
+<th>$\cdots$</th>
+<th style="text-align:center">$\overline{p-1}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$\bar 1$</td>
+<td style="text-align:center">$\bar1$</td>
+<td style="text-align:center">$\bar2$</td>
+<td>$\cdots$</td>
+<td style="text-align:center">$\overline{p-1}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$\bar2$</td>
+<td style="text-align:center">$\bar2$</td>
+<td style="text-align:center">$\bar4$</td>
+<td>$\cdots$</td>
+<td style="text-align:center">$\overline{p-2}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$\vdots$</td>
+<td style="text-align:center">$\vdots$</td>
+<td style="text-align:center">$\vdots$</td>
+<td></td>
+<td style="text-align:center">$\vdots$</td>
+</tr>
+<tr>
+<td style="text-align:center">$\overline{p-1}$</td>
+<td style="text-align:center">$\overline{p-1}$</td>
+<td style="text-align:center">$\overline{p-2}$</td>
+<td>$\cdots$</td>
+<td style="text-align:center">$\bar1$</td>
+</tr>
+</tbody>
+</table>
+<p>Clearly, for any $\bar a,\bar b\in G$, we have $\bar a\times \bar b \in G$.</p>
+<ul>
+<li>For any $\bar a,\bar b,\bar c\in G$, since $(a\times b)\times c=a\times(b\times c)$, we have $(\bar a\times \bar b)\times \bar c= \bar a\times(\bar b\times \bar c)$.</li>
+<li>The identity of $G$ is $\bar1$ since $\bar 1\times \bar a=\bar a\times \bar 1$ for any $\bar a\in G$.</li>
+<li>By the Fermat Little Theorem, for any $\bar a\in G$, $\bar a^{p-1}=\bar 1$, hence $\bar a^{p-2}$ is the inverse of $\bar a$.</li>
+</ul>
+<p>Therefore, $G$ is a group. And $G$ is an abelian group since $\bar a\times \bar b=\bar b\times \bar a$ for any $\bar a,\bar b\in G$. For any $\bar x\in G$, let $\bar x^2=1$, then  there $\exists n\in\mathbb Z$, s.t. $x^2=np+1$. Note that $x\in{1,2,\cdots,p-1}$, then $0\le n\le p-2$. Let $n=p-k,~2\le k\le p$, then $np+1=p^2-kp+1$. $x^2=p^2-kp+1\Rightarrow k^2-4=0$ or $k=p$, i.e. $k=2$ or $k=p$. Thus $x=p-1$ or $x=1$. By the conclusion of the previous question, we have<br>
+$$<br>
+\bar 1\times \bar 2\times\cdots\times \overline{p-1}=\bar 1\times\overline{p-1},<br>
+$$<br>
+i.e.<br>
+$$<br>
+(p-1)!\equiv p-1~(\mod p)\Rightarrow (p-1)!\equiv -1(\mod p).\quad #<br>
+$$</p>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-2-4-Permutation-groups">Exercises for Section 2.4 Permutation groups</h2>
+<ol>
+<li>
+<p>Compute the inverse of $(465312)$.<br>
+<strong>Solution:</strong> Since $(465312)=(42)(41)(43)(45)(46)$, we have $(465312)^{-1}=(46)(45)(43)(41)(42)=(421356)$.  #</p>
+</li>
+<li>
+<p>Let $G$ be a group and define a map $\lambda_g:G\to G$ by $\lambda_g(a)=ga$. Prove that $\lambda_g$ is a permutation of $G$.<br>
+<strong>Proof:</strong> We just need to show that $\lambda_g$ is bijective.</p>
+<ul>
+<li>$\lambda_g$ is injective.<br>
+Suppose that $\lambda_g(a)=\lambda_g(b)$, then $ga=gb\Rightarrow g^{-1}ga=g^{-1}gb\Rightarrow a=b$. Thus $\lambda_g$ is injective.</li>
+<li>$\lambda_g$ is surjective.<br>
+For any $\alpha\in G$, then $g^{-1}\alpha\in G$ since $G$ is a group. Note that $\lambda_g(g^{-1}\alpha)=gg^{-1}\alpha=\alpha$. Thus $\lambda_g$ is surjective.</li>
+</ul>
+<p>Therefore, $\lambda_g$ is bijective.  #</p>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-2-5">Exercises for Section 2.5</h2>
+<ol>
+<li>
+<p>Write down the dihedral group $D_5$.<br>
+<strong>Solution:</strong> $D_5=\lang r,s\mid s^2=r^5=1,~srs=r^{-1}\rang$, where $r=(12345),~s=(15)(24)$, i.e. $D_5={\text{id},s,r,r^2,r^3,r^4,rs,r^2s,r^3s,r^4s}$. We have<br>
+$$<br>
+\begin{aligned}<br>
+&amp;r^2=(13524),~r^3=(14253),~r^4=(15432),\<br>
+&amp;rs=(25)(34),~r^2s=(12)(35),\<br>
+&amp;r^3s=(13)(45),~r^4s=(14)(23).<br>
+\end{aligned}<br>
+$$<br>
+Thus<br>
+$$<br>
+D_5={(1),(12)(35),(12345),(13524),(14253),(15432),(25)(34),(12)(35),(13)(45),(14)(23)}.  \quad #<br>
+$$</p>
+</li>
+<li>
+<p>Prove that $D_n$ is a proper subgroup of $S_n$ for $n&gt;3$.<br>
+<strong>Proof:</strong> By Thm2.5.2, we have $D_n\subseteq S_n$ and $| D_n |=2n,~|S_n|=n!~(n\ge 3)$. If $D_n$ is a proper subgroup of $S_n$, then $n!&gt;2n\Rightarrow (n-1)!&gt;2\Rightarrow n&gt;3$.  #</p>
+</li>
+<li>
+<p>Show that $r^ks=sr^{-k}$.<br>
+<strong>Proof:</strong> mathematical induction.  #</p>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-3-1">Exercises for Section 3.1</h2>
+<ol>
+<li>
+<p>Let $G$ be a finite group and $H&lt;G$. If $[G:H]=2$, then $gH=Hg$ for any $\in G$.<br>
+<strong>Proof:</strong> If $[G:H]=2$, then there are only two cosets of $H$ in $G$, and one of the cosets is $H$ itself, i.e.,<br>
+$$<br>
+G=H\cup g_0H=H\cup Hg_0,<br>
+$$<br>
+for some $g_0\in G$, where $H\cap g_0H=\varnothing,~H\cap Hg_0=\varnothing$. For any $g\in G$. If $g\in H$, it is obviously that $gH=H=Hg$. Else if $g\notin H$, then $gH\neq H,~Hg\neq H$. Since $[G:H]=2$, we have $G=H\cup gH=H\cup Hg$ and $H\cap gH=\varnothing,~H\cap Hg=\varnothing$. Thus $gH=Hg$.  #</p>
+</li>
+<li>
+<p>Suppose that $[G:H]=2$. If $a,b\notin H$, show that $ab\in H$.<br>
+<strong>Proof:</strong> If $[G:H]=2$, then $G=H\cup gH$ and $H\cap gH=\varnothing$. If $a,b\notin H$, then $a,b\in gH$, i.e., $\exists h_1,h_2\in H$, such that $a=gh_1,~b=gh_2$. Then $ab=gh_1gh_2\in G$. Assume that $ab\notin H$, then $ab\in gH$, i.e., $\exists h_3\in H$, s.t. $ab=gh_3$, i,e, $gh_1gh_2=gh_3$, then $h_1gh_2=h_3\Rightarrow g=h_1^{-1}h_3h_2^{-1}\in H\Rightarrow gH=H$. Since $H\cap gH=\varnothing$, we have $H=gH=\varnothing=G$, it contradicts to the fact that $[G:H]=2$. Thus, $ab\in H$.  #</p>
+</li>
+<li>
+<p>Let $H,K&lt;G$ and $|H|=12,|K|=35$. What is $H\cap K$.<br>
+<strong>Solution:</strong> Since $H\cap K&lt;H$ and $H\cap K&lt;K$, we have $|H\cap K|\mid |H|$ and $|H\cap K|\mid |K|$ by the Lagrange’s Theorem. Note that $\gcd(12,35)=1$, so $|H\cap K|=1\Rightarrow H\cap K={\text{Identity}}$.  #</p>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-3-2">Exercises for Section 3.2</h2>
+<ol>
+<li>
+<p>If $H&lt;G$ and $[G:H]=2$, show that $H\triangleleft G$.<br>
+<strong>Proof:</strong> If $[G:H]=2$, then $gH=Hg$ for all $g\in G$, so $H\triangleleft G$.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sufewsj/p/18622102">【Basic Abstract Algebra】Exercises for Section 3.1 — Cosets and Lagrange’s Theorem - 只会加减乘除 - 博客园 (cnblogs.com)</a><br>
+If $[G:H]=2$, then $gH=Hg$ for all $g\in G$.</p>
+</blockquote>
+</li>
+<li>
+<p>Find out all normal subgroup of $A_4$, and give all factor groups of $A_4$ over its normal group.</p>
+<p><strong>Solution:</strong> $A_4={(1),(123),(132),(124),(142),(134),(143),(234),(243),(12)(34),(13)(24),(14)(23)}$, and $|A_4|=4!=24$. By the Lagrange’s Theorem, the possible order of subgroup of $A_4$ are $1,2,3,4,6,12$.<br>
+Find subgroups:</p>
+<ul>
+<li>order $1$: ${(1)}$;</li>
+<li>order $2$: ${(1),(12)(34)},~{(1),(13)(24)},~{(1),(14)(23)}$;</li>
+<li>order $3$: ${(1),(123),(132)},~{(1),(124),(142)},~{(1),(134),(143)},~{(1),(234),(243)}$;</li>
+<li>order $4$: ${(1),(12)(34),(13)(24),(14)(23)}$;</li>
+<li>order $6$: Does not exist. Assume $H&lt;A_4$ and $|H|=6$, then $[A_4:H]=2$. We will show that $(123)\in H$. Since $[A_4:H]=2$, we have $A_4=H\cup gH$ for some $g\in A_4$ and $H\triangleleft A_4$. If $(123)\notin H$, then $(132)=(123)^{-1}\notin H$ and $A_4=H\cup (123)H$ &amp; $H\cap(123)H=\varnothing$. Then $\exists h\in H$, s.t. $(132)=(123)h\Rightarrow h=(123)$, it is contradict to $(123)\notin H$. Thus $(123)\in H$. Similarly, $(123),(132),(124),(142),(134),(143),(234),(243)\in H$, then $|H|\ge 9$, $\to\leftarrow$.</li>
+<li>order $12$: $A_4$.</li>
+</ul>
+<p>Find normal subgroups:</p>
+<ul>
+<li>order $1$: ${(1)}$;
+<ul>
+<li>factor group: $A_4/{(1)}\cong A_4$.</li>
+</ul>
+</li>
+<li>order $4$: $V_4={(1),(12)(34),(13)(24),(14)(23)}$;
+<ul>
+<li>factor group: $A_4/V_4={V_4,(123)V_4,(132)V_4}$.</li>
+</ul>
+</li>
+<li>order $12$: $A_4$.
+<ul>
+<li>factor group: $A_4/A_4={A_4}$.  #</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-3-3">Exercises for Section 3.3</h2>
+<ol>
+<li>
+<p>Find out all possible homomorphism from $\mathbb Z_7\to\mathbb Z_{12}$.<br>
+<strong>Solution:</strong> Let $\varphi$ be such a homomorphism. Since $\mathbb Z_7$ is a cyclic group, so $\varphi$ is specified by $\varphi(\bar1)$. Since $o(\bar 1)=7$, we have $o(\varphi(\bar 1))\mid 7$. And $o(\varphi(\bar1))\mid 12$ by Lagrange’s Theorem. Thus, $o(\varphi(\bar 1))\mid\gcd(7,12)=1$, i.e., $o(\varphi(\bar 1))=1$, $\varphi(\bar1)=\bar0$. Therefore, $\varphi(\bar x)=\bar0$.  #</p>
+</li>
+<li>
+<p>Let $A$ be $m\times n$ matrix. Show that map<br>
+$$<br>
+\begin{aligned}<br>
+\varphi:~\mathbb R^n&amp;\to\mathbb R^m\<br>
+a&amp;\mapsto Aa<br>
+\end{aligned}<br>
+$$<br>
+is a homomorphism.<br>
+<strong>Proof:</strong> Clearly, the map is well defined since for any $a\in\mathbb R^n$, $\exists! Aa\in\mathbb R^m$, s.t. $\varphi(a)=Aa$. Note that<br>
+$$<br>
+\varphi(a+b)=A(a+b)=Aa+Ab=\varphi(a)+\varphi(b).<br>
+$$<br>
+Thus, $\varphi$ is a homomorphism.  #</p>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-3-4">Exercises for Section 3.4</h2>
+<ol>
+<li>
+<p>Prove or disprove $U(8)\cong \mathbb Z_4$.<br>
+<strong>Sol:</strong> Since $\mathbb Z_4$ is a cyclic group and $U(8)$ is not a cyclic, we have $U(8)\not\cong \mathbb Z_4$.  #</p>
+</li>
+<li>
+<p>Prove or disprove $S_4/A_4\cong \mathbb Z_2$.<br>
+<strong>Sol:</strong> By the Lagrange’s  Theorem, $|S_4/A_4|=[S_4:A_4]=\frac{|S_4|}{|A_4|}=2$. Suppose $S_4/A_4={e,a}$ and $a^2=e$. Let $\varphi$ be a map<br>
+$$<br>
+\begin{aligned}<br>
+\varphi:~S_4/A_4&amp;\to \mathbb Z_2\<br>
+e&amp;\mapsto\bar 0\<br>
+a&amp;\mapsto\bar 1<br>
+\end{aligned}<br>
+$$<br>
+Then<br>
+$$<br>
+\begin{aligned}<br>
+&amp;\varphi(e\cdot e)=\varphi(e)=\bar0=\bar0+\bar0=\varphi(e)+\varphi(e)\<br>
+&amp;\varphi(e\cdot a)=\varphi(a)=\bar1=\bar0+\bar1=\varphi(e)+\varphi(a)\<br>
+&amp;\varphi(a\cdot e)=\varphi(a)=\bar1=\bar1+\bar0=\varphi(a)+\varphi(e)\<br>
+&amp;\varphi(a\cdot a)=\varphi(e)=\bar0=\bar1+\bar1=\varphi(a)+\varphi(a)\<br>
+\end{aligned}<br>
+$$<br>
+Thus, $\varphi$ is an isomorphism, $S_4/A_4\cong \mathbb Z_2$.  #</p>
+</li>
+<li>
+<p>Prove $S_4\not\cong D_{12}$.<br>
+<strong>Pf:</strong></p>
+</li>
+</ol>
+<h2 id="Exercises-for-Section-3-5-Fundamental-Isomorphism-theorem-of-group">Exercises for Section 3.5 Fundamental Isomorphism theorem of group</h2>
+<ol>
+<li>
+<p>Let $G={(a,b)\mid a,b\in\mathbb R,~a\neq0}$ with $(a,b)(c,d)=(ac,ad+b)$ be a group, $K={(1,b)\mid b\in\mathbb R}$. Show that $G/K\cong\mathbb R^<em>$.<br>
+<strong>Proof:</strong> Let<br>
+$$<br>
+\begin{aligned}<br>
+\varphi:\quad G&amp;\to\mathbb R^</em>\<br>
+(a,b)&amp;\to a^2<br>
+\end{aligned}<br>
+$$<br>
+be a map. For any $(a,b),~(c,d)\in G$, we have<br>
+$$<br>
+\varphi((a,b)(c,d))=\varphi((ac,ad+b))=(ac)^2=a^2c^2=\varphi((a,b))\varphi((c,d)),<br>
+$$<br>
+thus $\varphi$ is a homomorphism. For any $y\in\mathbb R^<em>$, there exist $(\sqrt y,c)\in G$, s.t. $\varphi((\sqrt{y},c))=y$. Thus, $\text{Im}\varphi=\mathbb R^</em>$. By the First Isomorphism Theorem, we have $G/\ker\varphi\cong\text{Im}\varphi=\mathbb R^*$.  #</p>
+</li>
+<li>
+<p>Let $m\in\mathbb Z$ and $m&gt;1$, $\begin{aligned}\varphi:\quad\mathbb Z&amp;\to\mathbb Z_m\a&amp;\mapsto\bar a\end{aligned}$. Prove that $\mathbb Z/\lang m\rang\cong\mathbb Z_m$.<br>
+<strong>Proof:</strong> For any $a,b\in\mathbb Z$, we have<br>
+$$<br>
+\varphi(a+b)=\overline{a+b}=\bar a+\bar b=\varphi(a)+\varphi(b),<br>
+$$<br>
+so $\varphi$ is a homomorphism. Let $x\in\ker\varphi$, i.e., $\varphi(x)=\bar 0$, then $x=km\in\lang m\rang,~k\in\mathbb Z\Rightarrow \ker\varphi\subseteq\lang m\rang$. For any $x\in\lang m\rang$, we have $x=km,~k\in\mathbb Z$, so $\varphi(x)=\overline{km}=\bar 0\Rightarrow \lang m\rang\subseteq \ker\varphi$. Thus, $\ker\varphi=\lang m\rang$. And $\text{Im}\varphi=\mathbb Z_m$. By the First Isomorphism Theorem, we have $\mathbb Z/\lang m\rang\cong\mathbb Z_m$.  #</p>
+</li>
+<li>
+<p>Let $H,K\triangleleft G$, show that $G/HK\cong(G/H)/(HK/H)$.<br>
+<strong>Proof:</strong> For any $hk\in HK$, where $h\in H,~k\in K$. For any $g\in G$, we have $g(hk)g^{-1}=(ghg^{-1})(gkg^{-1})$. Since $H\triangleleft G$ and $K\triangleleft G$, we have $ghg^{-1}\in H$ and $gkg^{-1}\in K$, thus $g(hk)g^{-1}\in HK$. Therefore, $HK\triangleleft G$. Since $H\triangleleft G$ , $HK\triangleleft G$ and $H\subseteq HK$, by the Third Isomorphism Theorem of groups, we have<br>
+$$<br>
+G/HK\cong(G/H)/(HK/H).\quad#<br>
+$$</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/03/25/basic-abstract-algebra-exercises-notes/" data-share-title="Basic Abstract Algebra Exercises Notes">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Abstract-Algebra/" rel="tag"># Abstract Algebra</a>
+              <a href="/tags/Group-Theory/" rel="tag"># Group Theory</a>
+              <a href="/tags/Notes/" rel="tag"># Notes</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/03/24/leetcode-hot100/" rel="prev" title="LeetCode Hot100 —— 二叉树">
+      <i class="fa fa-chevron-left"></i> LeetCode Hot100 —— 二叉树
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-1-1"><span class="nav-number">1.</span> <span class="nav-text">Exercises for Section 1.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-1-2"><span class="nav-number">2.</span> <span class="nav-text">Exercises for Section 1.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-1-3"><span class="nav-number">3.</span> <span class="nav-text">Exercises for Section 1.3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-1-4"><span class="nav-number">4.</span> <span class="nav-text">Exercises for Section 1.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-1-5"><span class="nav-number">5.</span> <span class="nav-text">Exercises for Section 1.5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-1-6"><span class="nav-number">6.</span> <span class="nav-text">Exercises for Section 1.6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-2-1"><span class="nav-number">7.</span> <span class="nav-text">Exercises for Section 2.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-2-2"><span class="nav-number">8.</span> <span class="nav-text">Exercises for Section 2.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-2-3"><span class="nav-number">9.</span> <span class="nav-text">Exercises for Section 2.3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-2-4-Permutation-groups"><span class="nav-number">10.</span> <span class="nav-text">Exercises for Section 2.4 Permutation groups</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-2-5"><span class="nav-number">11.</span> <span class="nav-text">Exercises for Section 2.5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-3-1"><span class="nav-number">12.</span> <span class="nav-text">Exercises for Section 3.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-3-2"><span class="nav-number">13.</span> <span class="nav-text">Exercises for Section 3.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-3-3"><span class="nav-number">14.</span> <span class="nav-text">Exercises for Section 3.3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-3-4"><span class="nav-number">15.</span> <span class="nav-text">Exercises for Section 3.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exercises-for-Section-3-5-Fundamental-Isomorphism-theorem-of-group"><span class="nav-number">16.</span> <span class="nav-text">Exercises for Section 3.5 Fundamental Isomorphism theorem of group</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+
+</body>
+</html>
