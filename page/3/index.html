@@ -216,7 +216,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/182/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -230,506 +230,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/05/182/" class="post-title-link" itemprop="url">查找重复的电子邮箱</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 18:31:13 / 修改时间：19:49:51" itemprop="dateCreated datePublished" datetime="2025-09-05T18:31:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（具有唯一值的列）。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。</p>
-<p>编写解决方案来报告所有重复的电子邮件。 请注意，可以保证电子邮件字段不为 NULL。以任意顺序返回结果表。</p>
-<p>结果格式如下例。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+---------+</span><br><span class="line">| id | email   |</span><br><span class="line">+----+---------+</span><br><span class="line">| 1  | a@b.com |</span><br><span class="line">| 2  | c@d.com |</span><br><span class="line">| 3  | a@b.com |</span><br><span class="line">+----+---------+</span><br><span class="line">输出: </span><br><span class="line">+---------+</span><br><span class="line">| Email   |</span><br><span class="line">+---------+</span><br><span class="line">| a@b.com |</span><br><span class="line">+---------+</span><br><span class="line">解释: a@b.com 出现了两次。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<p>解法一：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>]&gt;=<span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
-<p>解法二：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name = <span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(182)</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/181/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/181/" class="post-title-link" itemprop="url">超过经理收入的员工</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 18:28:13 / 修改时间：18:29:40" itemprop="dateCreated datePublished" datetime="2025-09-05T18:28:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表：Employee</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（具有唯一值的列）。该表的每一行都表示雇员的ID、姓名、工资和经理的ID。编写解决方案，找出收入比经理高的员工。以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| id | name  | salary | managerId |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| 1  | Joe   | 70000  | 3         |</span><br><span class="line">| 2  | Henry | 80000  | 4         |</span><br><span class="line">| 3  | Sam   | 60000  | Null      |</span><br><span class="line">| 4  | Max   | 90000  | Null      |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">输出: </span><br><span class="line">+----------+</span><br><span class="line">| Employee |</span><br><span class="line">+----------+</span><br><span class="line">| Joe      |</span><br><span class="line">+----------+</span><br><span class="line">解释: Joe 是唯一挣得比经理多的雇员。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on = <span class="string">&#x27;managerId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(181)</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/180/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/180/" class="post-title-link" itemprop="url">连续出现的数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 18:21:13 / 修改时间：18:26:55" itemprop="dateCreated datePublished" datetime="2025-09-05T18:21:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表：<code>Logs</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。返回的结果表中的数据可以按任意顺序排列。结果格式如下面的例子所示：</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">Logs 表：</span><br><span class="line">+----+-----+</span><br><span class="line">| id | num |</span><br><span class="line">+----+-----+</span><br><span class="line">| 1  | 1   |</span><br><span class="line">| 2  | 1   |</span><br><span class="line">| 3  | 1   |</span><br><span class="line">| 4  | 2   |</span><br><span class="line">| 5  | 1   |</span><br><span class="line">| 6  | 2   |</span><br><span class="line">| 7  | 2   |</span><br><span class="line">+----+-----+</span><br><span class="line">输出：</span><br><span class="line">Result 表：</span><br><span class="line">+-----------------+</span><br><span class="line">| ConsecutiveNums |</span><br><span class="line">+-----------------+</span><br><span class="line">| 1               |</span><br><span class="line">+-----------------+</span><br><span class="line">解释：1 是唯一连续出现至少三次的数字。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(180)</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/178/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/178/" class="post-title-link" itemprop="url">分数排名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 18:12:13 / 修改时间：18:18:33" itemprop="dateCreated datePublished" datetime="2025-09-05T18:12:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表: Scores</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>Score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。排名按以下规则计算:</p>
-<ul>
-<li>分数应按从高到低排列。</li>
-<li>如果两个分数相等，那么两个分数的排名应该相同。</li>
-<li>在排名相同的分数后，排名数应该是下一个连续的整数。换句话说，排名之间不应该有空缺的数字。</li>
-</ul>
-<p>按 score 降序返回结果表。查询结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<p>输入:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Scores 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | score |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | 3.50  |</span><br><span class="line">| 2  | 3.65  |</span><br><span class="line">| 3  | 4.00  |</span><br><span class="line">| 4  | 3.85  |</span><br><span class="line">| 5  | 4.00  |</span><br><span class="line">| 6  | 3.65  |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+-------+------+</span><br><span class="line">| score | rank |</span><br><span class="line">+-------+------+</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 3.85  | 2    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.50  | 4    |</span><br><span class="line">+-------+------+</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method = <span class="string">&#x27;dense&#x27;</span>, ascending = <span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/177-n/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/177-n/" class="post-title-link" itemprop="url">第n高的薪水</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 18:09:13 / 修改时间：18:18:38" itemprop="dateCreated datePublished" datetime="2025-09-05T18:09:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>问题描述：</strong> 表: Employee</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 n 高的 不同 工资。如果少于 n 个不同工资，查询结果应该为 null 。</p>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N-<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/176/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/176/" class="post-title-link" itemprop="url">第二高的薪水</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-05 18:00:13 / 修改时间：18:09:43" itemprop="dateCreated datePublished" datetime="2025-09-05T18:00:13+08:00">2025-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>题目描述：</strong> <code>Employee</code> 表：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是这个表的主键。表的每一行包含员工的工资信息。查询并返回 Employee 表中第二高的不同薪水 。如果不存在第二高的薪水，查询应该返回 <code>null</code>(Pandas 则返回 <code>None</code>) 。查询结果如下例所示。</p>
-<ul>
-<li>示例 1：<br>
-输入：<br>
-<code>Employee</code> 表：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">| 2  | 200    |</span><br><span class="line">| 3  | 300    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| 200                 |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
-<ul>
-<li>示例 2：<br>
-输入：<br>
-<code>Employee</code> 表：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| null                |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">second_highest_salary</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;SecondHighestSalary&#x27;</span> : out&#125;)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/05/hexo/" class="post-title-link" itemprop="url">Hexo 指令</a>
+            <a href="/2025/09/03/3-2/" class="post-title-link" itemprop="url">不动点定理与解的存在性</a>
         </h2>
 
         <div class="post-meta">
@@ -739,14 +240,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2025-09-05 02:41:39" itemprop="dateCreated datePublished" datetime="2025-09-05T02:41:39+08:00">2025-09-05</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-03-23 00:56:57" itemprop="dateModified" datetime="2026-03-23T00:56:57+08:00">2026-03-23</time>
+                <time title="修改时间：2026-03-24 18:27:10" itemprop="dateModified" datetime="2026-03-24T18:27:10+08:00">2026-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -754,7 +255,15 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo-%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">Hexo 教程</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
                 </span>
             </span>
 
@@ -769,13 +278,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="post-cover">
-          <img src="/images/tx.jpg" alt="Hexo 指令" itemprop="image" loading="lazy">
-        </div>
-          <p>收录 Hexo 常用命令、分类标签页面创建、图片资源管理与 SSH 部署方法。</p>
+          <p>不动点定理与解的存在性题解</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2025/09/05/hexo/">
+              <a class="btn" href="/2025/09/03/3-2/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -799,7 +305,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/05/175/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -813,7 +319,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/05/175/" class="post-title-link" itemprop="url">组合两张表</a>
+            <a href="/2025/09/03/3-3/" class="post-title-link" itemprop="url">解的延拓</a>
         </h2>
 
         <div class="post-meta">
@@ -822,21 +328,31 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-09-05 02:28:13 / 修改时间：18:18:41" itemprop="dateCreated datePublished" datetime="2025-09-05T02:28:13+08:00">2025-09-05</time>
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-24 18:27:34" itemprop="dateModified" datetime="2026-03-24T18:27:34+08:00">2026-03-24</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Python 数据分析</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Pandas/" itemprop="url" rel="index"><span itemprop="name">Pandas</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
                 </span>
             </span>
 
@@ -851,29 +367,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[leetcode 175]</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>personId 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
-<p>表: Address</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
-<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code> 。<br>
-以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p>示例 1:</p>
-<p>输入:<br>
-Person表:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br></pre></td></tr></table></figure>
-<p>Address表:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
-<p>输出:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| firstName | lastName | city          | state    |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| Allen     | Wang     | Null          | Null     |</span><br><span class="line">| Bob       | Alice    | New York City | New York |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br></pre></td></tr></table></figure>
-<p>解释:<br>
-地址表中没有 <code>personId = 1</code> 的地址，所以它们的城市和州返回 <code>null</code>。<code>addressId = 1</code> 包含了 <code>personId = 2</code> 的地址信息。</p>
-<p><strong>解：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on = <span class="string">&#x27;personId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-<p>此题主要考察“左连接”。</p>
-
+          <p>解的延拓题解</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/03/3-3/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -892,7 +394,7 @@ Person表:</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2-1/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -906,7 +408,7 @@ Person表:</p>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/2-1/" class="post-title-link" itemprop="url">分离变量法</a>
+            <a href="/2025/09/03/3-4/" class="post-title-link" itemprop="url">解对初值与参数的连续性与可微性</a>
         </h2>
 
         <div class="post-meta">
@@ -923,7 +425,7 @@ Person表:</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+                <time title="修改时间：2026-03-24 18:27:43" itemprop="dateModified" datetime="2026-03-24T18:27:43+08:00">2026-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -939,7 +441,7 @@ Person表:</p>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
                 </span>
             </span>
 
@@ -954,17 +456,15 @@ Person表:</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
-<p><strong>解</strong> 令 $x=y=0$, 则 $f(0)=\frac{2f(0)}{1-f(0)^2}$, 得 $f(0)=0$. 注意到<br>
-$$<br>
-f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}<br>
-$$<br>
-因为 $f’(0)$ 存在, 故由导数的 定义可知<br>
-$$<br>
-f’(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f’(0)[1+f(x)^2]<br>
-$$<br>
-即 $f(x)$ 满足微分方程 $f’(x)=f’(0)[1+f(x)^2], f(0)=0$. 利用分离变量法求得其解为 $y=\tan\left(f’(0)x\right)$.</p>
-
+          <p>解对初值与参数的连续性与可微性题解</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/03/3-4/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -983,7 +483,7 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2-2/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/4-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -997,7 +497,7 @@ $$<br>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/09/03/2-2/" class="post-title-link" itemprop="url">变量替换法</a>
+            <a href="/2025/09/03/4-2/" class="post-title-link" itemprop="url">高阶线性微分方程的一般理论</a>
         </h2>
 
         <div class="post-meta">
@@ -1014,7 +514,7 @@ $$<br>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+                <time title="修改时间：2026-03-24 18:28:04" itemprop="dateModified" datetime="2026-03-24T18:28:04+08:00">2026-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1030,7 +530,7 @@ $$<br>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
                 </span>
             </span>
 
@@ -1045,33 +545,524 @@ $$<br>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>[T020201]</strong> 若 $y=y^{\ast}(x)$ 是一阶齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y$ 的非零解, 而 $y=\bar y$ 是一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的解. 证明: 一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<p><strong>证</strong> 设 $y=\bar y+z$, 两边对 $x$ 求导, 得</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z<br>
-$$</p>
-<p>由题意可知上述方程得通解为 $z=cy^{\ast}$, 故原方程的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<hr>
-<p><strong>[T020202]</strong> 设 $y(x)$ 是方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y$ 的满足 $y(0)=0$ 的解, 其中 $p(x)$ 是 $(-\infty,+\infty)$ 上的连续函数. 证明 $y(x)\equiv0$.</p>
-<p><strong>证</strong> 注意到</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}<br>
-$$</p>
-<p>解得</p>
-<p>$$<br>
-\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}<br>
-$$</p>
-<p>将 $y(0)=0$ 代入可得 $c=0$, 故 $y(x)\equiv0$.</p>
-<hr>
-<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 $P$ 的切线方向 $\overrightarrow{PQ}$ 与向径 $\overrightarrow{OP}$ 的交角等于 $45^{\circ}$.</p>
-<p><strong>解</strong> 由题设可知</p>
-<p>$$<br>
-1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}<br>
-$$</p>
-<p>令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
-$2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
+          <p>高阶线性微分方程的一般理论题解</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/03/4-2/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/4-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/4-3/" class="post-title-link" itemprop="url">常系数齐次线性方程的待定指数函数法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-24 18:28:16" itemprop="dateModified" datetime="2026-03-24T18:28:16+08:00">2026-03-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>常系数齐次线性方程的待定指数函数法题解 - 数学 - 常微分方程 - 高阶微分方程</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/03/4-3/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/4-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/4-4/" class="post-title-link" itemprop="url">常系数非齐次线性方程的待定系数法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-24 18:28:30" itemprop="dateModified" datetime="2026-03-24T18:28:30+08:00">2026-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">高阶微分方程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>常系数非齐次线性方程的待定系数法题解</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/03/4-4/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/5-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/5-1/" class="post-title-link" itemprop="url">一阶线性微分方程组</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-24 18:28:45" itemprop="dateModified" datetime="2026-03-24T18:28:45+08:00">2026-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">一阶线性微分方程组</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一阶线性微分方程组题解</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/03/5-1/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/5-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/5-2/" class="post-title-link" itemprop="url">一阶常系数线性微分方程组</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-24 18:28:56" itemprop="dateModified" datetime="2026-03-24T18:28:56+08:00">2026-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">一阶线性微分方程组</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一阶常系数线性微分方程组题解</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/03/5-2/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/02/caratheodory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/02/caratheodory/" class="post-title-link" itemprop="url">Carathéodory扩张</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-02T00:00:00+08:00">2025-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-24 18:31:11" itemprop="dateModified" datetime="2026-03-24T18:31:11+08:00">2026-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">测度论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Carathéodory扩张定理的证明</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/02/caratheodory/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/02/post-20250902-2e2bd7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/02/post-20250902-2e2bd7/" class="post-title-link" itemprop="url">单调收敛定理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-02T00:00:00+08:00">2025-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-24 18:30:03" itemprop="dateModified" datetime="2026-03-24T18:30:03+08:00">2026-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%B5%8B%E5%BA%A6%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">测度论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>单调收敛定理的证明</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/02/post-20250902-2e2bd7/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1089,7 +1080,7 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1157,20 +1148,20 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
