@@ -47,218 +47,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Carathéodory扩张</title>
-    <url>/2025/09/02/caratheodory/</url>
-    <content><![CDATA[<p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
-<strong>Proof:</strong> 只需证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致.<br>
-<strong>(Step1.)</strong> 先证明 $\mu^{\ast}$ 在 $\mathscr F_0$ 上与 $\mu$ 一致, 即证 $\forall A\in\mathscr F_0$, 满足 $\mu^{\ast}(A)=\mu(A)$. 注意到</p>
-<p>$$<br>
-\mu^{\ast}(A) = \inf\Bigl\lbrace\sum_n\mu(A_n): A_n\in\mathscr{F}_0,~ \bigcup_n A_n\supset A \Bigr\rbrace.<br>
-$$</p>
-<p>而 $A\cup\varnothing\cup\varnothing\cup\cdots\supset A$, 因此<br>
-$$<br>
-\mu^{\ast}(A)\le \mu(A)+\mu(\varnothing)+\mu(\varnothing)+\cdots=\mu(A).<br>
-$$<br>
-另一方面, 若 $\mu^{\ast}(A)&lt;+\infty$, 则对 $\forall\varepsilon&gt;0, ~\exists~A_n\in\mathscr F_0$, 使得 $\bigcup\limits_nA_n\supset A$, 且<br>
-$$<br>
-\sum_n\mu(A_n)&lt;\mu^{\ast}(A)+\varepsilon.<br>
-$$<br>
-由 $\mu$ 的可列可加性和单调性知<br>
-$$<br>
-% \begin{aligned}<br>
-% \mu(A) &amp;\le \mu\left(\bigcup_{n} A_n\right) \<br>
-%        &amp;= \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \<br>
-%        &amp;= \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \<br>
-%        &amp;\le \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
-% \end{aligned}<br>
-\begin{array}{rcl}<br>
-\mu(A) &amp;\le&amp; \mu\left(\bigcup_{n} A_n\right) \\<br>
-&amp;=&amp; \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \\<br>
-&amp;=&amp; \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \\<br>
-&amp;\le&amp; \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
-\end{array}<br>
-$$<br>
-再由 $\varepsilon$ 的任意性可知 $\mu(A)\le\mu^{\ast}(A)$. 综上, $\mu(A)=\mu^{\ast}(A)$.<br>
-<strong>(Step2.)</strong> 再证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度, 只需证明 $\mathscr F=\sigma(\mathscr F_0)\subset\mathscr M$, 其中 $\mathscr M$ 是 $\mu^{\ast}$ 可测子集全体构成的 $\sigma$ 代数.</p>
-<blockquote>
-<p>见“$(\Omega,\mathscr M,\mu^{\ast})$ 是完备测度空间”</p>
-</blockquote>
-<p>对 $\forall A\in\mathscr F_0$, 要证明 $A\in\mathscr M$. 对 $\forall E\subset\Omega$, 不妨设 $\mu^{\ast}(E)&lt;\infty$, 则对 $\forall \varepsilon&gt;0$, 存在子集列 ${A_n}\subset\mathscr F_0$ 满足 $\cup_nA_n\supset E$ 且 $\sum\limits_n\mu(A_n)&lt;\mu^{\ast}(E)+\varepsilon$, 因而<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)&amp;\le\mu^{\ast}\left(\bigcup_n(A_n\cap A)\right)+\mu^{\ast}\left(\bigcup_n(A_n\cap A^c)\right)\\<br>
-(\text{外测度的次可列可加性})~&amp;\le\sum_n\left[\mu^{\ast}(A_n\cap A)+\mu^{\ast}(A_n\cap A^c)\right]\\<br>
-(\text{Step1.})~&amp;=\sum_n\left[\mu(A_n\cap A)+\mu(A_n\cap A^c)\right]\\<br>
-(\text{预测度的可列可加性})~&amp;=\sum_n\mu(A_n)\\<br>
-&amp;&lt;\mu^{\ast}(E)+\varepsilon<br>
-\end{aligned}<br>
-$$<br>
-由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
-综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>单调收敛定理</title>
-    <url>/2025/09/02/post-20250902-2e2bd7/</url>
-    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
-$$<br>
-\mu(f)=\lim\limits_n\mu(f_n)<br>
-$$<br>
-<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
-$$<br>
-A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
-$$<br>
-满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
-$$<br>
-\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
-$$<br>
-因为 $g$ 是简单的, 故<br>
-$$<br>
-\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
-$$<br>
-由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
-$$<br>
-\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
-$$<br>
-可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
-$$<br>
-\lim\limits_n\mu(f_n)=\mu(f).<br>
-$$</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>$(&#92;Omega,&#92;mathscr M,&#92;mu^{&#92;ast} )$ 是完备测度空间</title>
-    <url>/2025/09/09/omega-mathscr-m-mu-ast/</url>
-    <content><![CDATA[<p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
-<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
-<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
-<ul>
-<li>
-<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
-<ul>
-<li>
-<p>$\mathscr M$ 非空.<br>
-事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
-&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
-&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
-\end{aligned}<br>
-$$<br>
-即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
-</li>
-<li>
-<p>$\mathscr M$ 对于补集运算封闭.<br>
-事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
-\end{aligned}<br>
-$$<br>
-即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
-</li>
-<li>
-<p>$\mathscr M$ 对于可列并封闭.</p>
-<ul>
-<li>
-<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
-设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
-=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
-&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
-\end{aligned}<br>
-$$<br>
-即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
-</li>
-<li>
-<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
-设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
-$$<br>
-S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
-$$</p>
-<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
-&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\cdots\cdots\\<br>
-&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
-\end{aligned}<br>
-$$</p>
-<p>令 $n\to\infty$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
-\end{aligned}<br>
-$$</p>
-<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
-</li>
-<li>
-<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
-<ul>
-<li>
-<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
-</li>
-<li>
-<p>$\mu^{\ast} $ 满足可列可加性.<br>
-由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
-$$<br>
-\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
-$$<br>
-令 $E=\Omega$, 得<br>
-$$<br>
-\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
-$$<br>
-从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
-</li>
-</ul>
-<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
-</li>
-</ul>
-<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
-<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>分离变量法</title>
     <url>/2025/09/03/2-1/</url>
     <content><![CDATA[<p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
@@ -310,53 +98,6 @@ $$</p>
 $$</p>
 <p>令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
 $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>初等积分法</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>积分因子法</title>
-    <url>/2025/09/03/2-3/</url>
-    <content><![CDATA[<p><strong>[T020301]</strong> 求微分方程通解: $\left(\frac{y^2}{(x-y)^2}-\frac{1}{x}\right)\mathrm dx+\left(\frac{1}{y}-\frac{x^2}{(x-y)^2}\right)\mathrm dx=0$.</p>
-<p><strong>解</strong> 设 $M=\frac{y^2}{(x-y)^2}-\frac{1}{x}, \ N=\frac{1}{y}-\frac{x^2}{(x-y)^2}$, 注意到<br>
-$$<br>
-\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}=\frac{2xy}{(x-y)^3},<br>
-$$<br>
-于是原方程为全微分方程, 又注意到<br>
-$$<br>
-\begin{aligned}<br>
-\left(\frac1y\mathrm dy-\frac1x\mathrm dx\right)+\frac{y^2\mathrm dx-x^2\mathrm dy}{(x-y)^2}&amp;=0\\<br>
-\mathrm d\left(\ln\left|\frac{y}{x}\right|\right)-\mathrm d\left(\frac{xy}{x-y}\right)&amp;=0\\<br>
-\mathrm d\left(\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}\right)&amp;=0<br>
-\end{aligned}<br>
-$$<br>
-从而原方程的通解为 $\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}=c$, 其中 $c$ 为任意常数.</p>
-<hr>
-<p><strong>[T020302]</strong> 求 Bernoulli 方程的积分因子.</p>
-<p><strong>解</strong> 因为 Bernoulli 方程可化为一阶线性微分方程, 因此可先求解一阶线性微分方程的积分因子. 设有一阶线性微分方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 其中 $P(x),Q(x)$ 连续. 将方程变形为 $\left(P(x)y+Q(x)\right)\mathrm dx-\mathrm dy=0$, 设 $M=P(x)y+Q(x),  N=-1$, 则 $\frac{\partial M}{\partial y}=P(x), \ \frac{\partial N}{\partial x}=0$, 于是<br>
-$$<br>
-\frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{N}=-P(x),<br>
-$$<br>
-故线性方程有一个只依赖于 $x$ 的积分因子 $\mu(x)=e^{-\int P(x)\mathrm dx}$. 将此积分因子乘到原方程的两边可得全微分方程<br>
-$$<br>
-e^{-\int P(x)\mathrm dx}\left(P(x)y+Q(x)\right)\mathrm dx-e^{-\int P(x)\mathrm dx}\mathrm dy=0,<br>
-$$<br>
-不难求得其通解为 $y=ce^{\int P(x)\mathrm dx}+e^{\int P(x)\mathrm dx}\displaystyle\int Q(x)e^{-\int P(x)\mathrm dx}\mathrm dx$.</p>
-<p>现设有 Bernoulli 方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)y^n$, 其中 $n\neq 0,1$ 且 $p(x),q(x)$ 连续. 方程两边同除 $y^n \ (y\neq0)$ 有<br>
-$$<br>
-y^{-n}\frac{\mathrm dy}{\mathrm dx}=y^{1-n}p(x)+q(x)\Longrightarrow \frac{\mathrm dy^{1-n}}{\mathrm dx}=(1-n)p(x)y^{1-n}+(1-n)q(x),<br>
-$$<br>
-这是以 $y^{1-n}$ 为未知函数的一阶线性微分方程, 由上面的讨论可知其积分因子为 $e^{-(1-n)\int  p(x)\mathrm dx}$, 从而原方程的积分因子为 $y^{-n}e^{-(1-n)\int  p(x)\mathrm dx}$, 且原方程的通解为<br>
-$$<br>
-y^{1-n}=ce^{(1-n)\int p(x)\mathrm dx}+(1-n)e^{(1-n)\int p(x)\mathrm dx}\displaystyle\int q(x)e^{-(1-n)\int p(x)\mathrm dx}\mathrm dx.<br>
-$$<br>
-此外, 若 $n&gt;0$, 则 $y=0$ 也是方程的解.</p>
 ]]></content>
       <categories>
         <category>数学</category>
@@ -420,6 +161,62 @@ $$<br>
         <category>数学</category>
         <category>常微分方程</category>
         <category>初等积分法</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>不动点定理与解的存在性</title>
+    <url>/2025/09/03/3-2/</url>
+    <content><![CDATA[<p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
+<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
+$$<br>
+T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
+$$<br>
+在 $X$ 上引入距离<br>
+$$<br>
+\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
+$$<br>
+注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
+$$<br>
+\begin{aligned}<br>
+\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
+&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
+&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
+&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
+\end{aligned}<br>
+$$<br>
+由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
+<hr>
+<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
+<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
+$$<br>
+||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
+$$<br>
+在 $\mathbb{R}^n$ 上定义距离<br>
+$$<br>
+\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
+$$<br>
+在 $\mathbb{R}^n$ 上定义映射<br>
+$$<br>
+T:\quad Tx=b+(I_n-A)x.<br>
+$$<br>
+则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
+&amp;=||(I_n-A)(x_1-x_2)||\\<br>
+&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
+&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
+\end{aligned}<br>
+$$<br>
+注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>定解问题与适定性</category>
       </categories>
       <tags>
         <tag>常微分方程</tag>
@@ -513,56 +310,47 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>不动点定理与解的存在性</title>
-    <url>/2025/09/03/3-2/</url>
-    <content><![CDATA[<p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
-<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
+    <title>积分因子法</title>
+    <url>/2025/09/03/2-3/</url>
+    <content><![CDATA[<p><strong>[T020301]</strong> 求微分方程通解: $\left(\frac{y^2}{(x-y)^2}-\frac{1}{x}\right)\mathrm dx+\left(\frac{1}{y}-\frac{x^2}{(x-y)^2}\right)\mathrm dx=0$.</p>
+<p><strong>解</strong> 设 $M=\frac{y^2}{(x-y)^2}-\frac{1}{x}, \ N=\frac{1}{y}-\frac{x^2}{(x-y)^2}$, 注意到<br>
 $$<br>
-T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
+\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}=\frac{2xy}{(x-y)^3},<br>
 $$<br>
-在 $X$ 上引入距离<br>
-$$<br>
-\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
-$$<br>
-注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
+于是原方程为全微分方程, 又注意到<br>
 $$<br>
 \begin{aligned}<br>
-\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
-&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
-&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
-&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
+\left(\frac1y\mathrm dy-\frac1x\mathrm dx\right)+\frac{y^2\mathrm dx-x^2\mathrm dy}{(x-y)^2}&amp;=0\\<br>
+\mathrm d\left(\ln\left|\frac{y}{x}\right|\right)-\mathrm d\left(\frac{xy}{x-y}\right)&amp;=0\\<br>
+\mathrm d\left(\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}\right)&amp;=0<br>
 \end{aligned}<br>
 $$<br>
-由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
+从而原方程的通解为 $\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}=c$, 其中 $c$ 为任意常数.</p>
 <hr>
-<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
-<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
+<p><strong>[T020302]</strong> 求 Bernoulli 方程的积分因子.</p>
+<p><strong>解</strong> 因为 Bernoulli 方程可化为一阶线性微分方程, 因此可先求解一阶线性微分方程的积分因子. 设有一阶线性微分方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 其中 $P(x),Q(x)$ 连续. 将方程变形为 $\left(P(x)y+Q(x)\right)\mathrm dx-\mathrm dy=0$, 设 $M=P(x)y+Q(x),  N=-1$, 则 $\frac{\partial M}{\partial y}=P(x), \ \frac{\partial N}{\partial x}=0$, 于是<br>
 $$<br>
-||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
+\frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{N}=-P(x),<br>
 $$<br>
-在 $\mathbb{R}^n$ 上定义距离<br>
+故线性方程有一个只依赖于 $x$ 的积分因子 $\mu(x)=e^{-\int P(x)\mathrm dx}$. 将此积分因子乘到原方程的两边可得全微分方程<br>
 $$<br>
-\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
+e^{-\int P(x)\mathrm dx}\left(P(x)y+Q(x)\right)\mathrm dx-e^{-\int P(x)\mathrm dx}\mathrm dy=0,<br>
 $$<br>
-在 $\mathbb{R}^n$ 上定义映射<br>
+不难求得其通解为 $y=ce^{\int P(x)\mathrm dx}+e^{\int P(x)\mathrm dx}\displaystyle\int Q(x)e^{-\int P(x)\mathrm dx}\mathrm dx$.</p>
+<p>现设有 Bernoulli 方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)y^n$, 其中 $n\neq 0,1$ 且 $p(x),q(x)$ 连续. 方程两边同除 $y^n \ (y\neq0)$ 有<br>
 $$<br>
-T:\quad Tx=b+(I_n-A)x.<br>
+y^{-n}\frac{\mathrm dy}{\mathrm dx}=y^{1-n}p(x)+q(x)\Longrightarrow \frac{\mathrm dy^{1-n}}{\mathrm dx}=(1-n)p(x)y^{1-n}+(1-n)q(x),<br>
 $$<br>
-则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
+这是以 $y^{1-n}$ 为未知函数的一阶线性微分方程, 由上面的讨论可知其积分因子为 $e^{-(1-n)\int  p(x)\mathrm dx}$, 从而原方程的积分因子为 $y^{-n}e^{-(1-n)\int  p(x)\mathrm dx}$, 且原方程的通解为<br>
 $$<br>
-\begin{aligned}<br>
-\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
-&amp;=||(I_n-A)(x_1-x_2)||\\<br>
-&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
-&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
-\end{aligned}<br>
+y^{1-n}=ce^{(1-n)\int p(x)\mathrm dx}+(1-n)e^{(1-n)\int p(x)\mathrm dx}\displaystyle\int q(x)e^{-(1-n)\int p(x)\mathrm dx}\mathrm dx.<br>
 $$<br>
-注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
+此外, 若 $n&gt;0$, 则 $y=0$ 也是方程的解.</p>
 ]]></content>
       <categories>
         <category>数学</category>
         <category>常微分方程</category>
-        <category>定解问题与适定性</category>
+        <category>初等积分法</category>
       </categories>
       <tags>
         <tag>常微分方程</tag>
@@ -610,6 +398,116 @@ $$<br>
         <category>数学</category>
         <category>常微分方程</category>
         <category>定解问题与适定性</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高阶线性微分方程的一般理论</title>
+    <url>/2025/09/03/4-2/</url>
+    <content><![CDATA[<p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
+<p><strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
+$$<br>
+\left\lbrace<br>
+\begin{array}{cccc}<br>
+x_1(t_0)=1, &amp; x’_1(t_0)=0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)=0,\\<br>
+x_2(t_0)=0, &amp; x’_2(t_0)=1, &amp; \cdots, &amp; x_2^{(n-2)}(t_0)=0,\\<br>
+\vdots &amp; \vdots &amp; &amp; \vdots\\<br>
+x_n(t_0)=0, &amp; x_n’(t_0)=0, &amp; \cdots, &amp; x_n^{(n-1)}(t_0)=1<br>
+\end{array}<br>
+\right.<br>
+$$<br>
+的解 $x_1(t),x_2(t),\cdots,x_n(t)$ 一定存在且唯一, 注意到它们的 Wronski 行列式<br>
+$$<br>
+W(x_1(t_0),x_2(t_0),\cdots,x_n(t_0))=1\neq0<br>
+$$<br>
+故这 $n$ 个解必线性无关.</p>
+<hr>
+<p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
+<p><strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
+显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
+$$<br>
+\begin{aligned}<br>
+&amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\\<br>
+\Longrightarrow&amp;(c_1x_1+c_2x_2+\cdots+c_nx_n)+(c_1+c_2+\cdots+c_{n+1})\bar x=0<br>
+\end{aligned}<br>
+$$<br>
+此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
+再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
+$$<br>
+\begin{aligned}<br>
+&amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\\<br>
+\Longrightarrow&amp;c_1x_1+c_2x_2+\cdots+c_{n+1}x_{n+1}-(c_1+c_2+\cdots+c_{n+1})x_{n+2}=0<br>
+\end{aligned}<br>
+$$<br>
+故这 $n+2$ 个解在 $[a,b]$ 上线性相关, 产生矛盾!</p>
+<hr>
+<p><strong>[T040203]</strong> (Liouville 公式) 设 $x_1(t),x_2(t),\cdots,x_n(t)$ 是齐次线性方程 $L[x]=0$ 的任意 $n$ 个解, $W(t)$ 是它们的 Wronski 行列式, 则 $W(t)$ 满足一阶线性微分方程 $W’(t)=-a_1(t)W(t)$, 因而有<br>
+$$<br>
+W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
+$$<br>
+<strong>证</strong> 由行列式求导法则可知<br>
+$$<br>
+W’(t)=\begin{vmatrix}<br>
+x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
+x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
+x_1^{(n)}&amp;x_2^{(n)}&amp;\cdots&amp;x_n^{(n)}<br>
+\end{vmatrix}<br>
+$$<br>
+于是<br>
+$$<br>
+W’(t)+a_1(t)W(t)=\begin{vmatrix}<br>
+x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
+x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
+x_1^{(n)}+a_1(t)x_1^{(n-1)}&amp;x_2^{(n)}+a_1(t)x_2^{(n-1)}&amp;\cdots&amp;x_n^{(n)}+a_1(t)x_n^{(n-1)}<br>
+\end{vmatrix}<br>
+$$<br>
+注意到<br>
+$$<br>
+\begin{cases}<br>
+x_1^{(n)}+a_1(t)x_1^{(n-1)}=-a_2(t)x_1^{(n-2)}-\cdots-a_n(t)x_1,\\<br>
+x_2^{(n)}+a_1(t)x_2^{(n-1)}=-a_2(t)x_2^{(n-2)}-\cdots-a_n(t)x_2,\\<br>
+\quad\quad\quad\quad\quad\quad\quad~ …\\<br>
+x_n^{(n)}+a_1(t)x_n^{(n-1)}=-a_2(t)x_n^{(n-2)}-\cdots-a_n(t)x_n,\\<br>
+\end{cases}<br>
+$$<br>
+因此 $W’(t)+a_1(t)W(t)=0, \ t\in[a,b]$. 解得<br>
+$$<br>
+W(t)=ce^{-\int_{t_0}^ta_1(s)\mathrm{~d}s}<br>
+$$<br>
+注意到 $W(t_0)=c$, 于是 $W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b]$.</p>
+<hr>
+<p><strong>[T040204]</strong> 设 $x=x_1(t), \ x=x_2(t)$ 是微分方程 $x’‘+x=0$ 的满足初始条件<br>
+$$<br>
+x_1(0)=0,\quad x_1’(0)=1,\\<br>
+x_2(0)=1,\quad x_2’(0)=0<br>
+$$<br>
+的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
+<p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
+<p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
+<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.</p>
+<p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
+$$<br>
+\begin{vmatrix}<br>
+x_1(t) &amp; x_2(t)\\<br>
+x_1’(t) &amp; x_2’(t)<br>
+\end{vmatrix}=<br>
+\begin{vmatrix}<br>
+x_1(0) &amp; x_2(0)\\<br>
+x_1’(0) &amp; x_2’(0)<br>
+\end{vmatrix}=-1<br>
+$$<br>
+又 $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$, 故 $x_1^2(t)+x_2^2(t)\equiv1$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>高阶微分方程</category>
       </categories>
       <tags>
         <tag>常微分方程</tag>
@@ -1069,224 +967,6 @@ $$</p>
       </categories>
       <tags>
         <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>高阶线性微分方程的一般理论</title>
-    <url>/2025/09/03/4-2/</url>
-    <content><![CDATA[<p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
-<p><strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
-$$<br>
-\left\lbrace<br>
-\begin{array}{cccc}<br>
-x_1(t_0)=1, &amp; x’_1(t_0)=0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)=0,\\<br>
-x_2(t_0)=0, &amp; x’_2(t_0)=1, &amp; \cdots, &amp; x_2^{(n-2)}(t_0)=0,\\<br>
-\vdots &amp; \vdots &amp; &amp; \vdots\\<br>
-x_n(t_0)=0, &amp; x_n’(t_0)=0, &amp; \cdots, &amp; x_n^{(n-1)}(t_0)=1<br>
-\end{array}<br>
-\right.<br>
-$$<br>
-的解 $x_1(t),x_2(t),\cdots,x_n(t)$ 一定存在且唯一, 注意到它们的 Wronski 行列式<br>
-$$<br>
-W(x_1(t_0),x_2(t_0),\cdots,x_n(t_0))=1\neq0<br>
-$$<br>
-故这 $n$ 个解必线性无关.</p>
-<hr>
-<p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
-<p><strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
-显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\\<br>
-\Longrightarrow&amp;(c_1x_1+c_2x_2+\cdots+c_nx_n)+(c_1+c_2+\cdots+c_{n+1})\bar x=0<br>
-\end{aligned}<br>
-$$<br>
-此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
-再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\\<br>
-\Longrightarrow&amp;c_1x_1+c_2x_2+\cdots+c_{n+1}x_{n+1}-(c_1+c_2+\cdots+c_{n+1})x_{n+2}=0<br>
-\end{aligned}<br>
-$$<br>
-故这 $n+2$ 个解在 $[a,b]$ 上线性相关, 产生矛盾!</p>
-<hr>
-<p><strong>[T040203]</strong> (Liouville 公式) 设 $x_1(t),x_2(t),\cdots,x_n(t)$ 是齐次线性方程 $L[x]=0$ 的任意 $n$ 个解, $W(t)$ 是它们的 Wronski 行列式, 则 $W(t)$ 满足一阶线性微分方程 $W’(t)=-a_1(t)W(t)$, 因而有<br>
-$$<br>
-W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$<br>
-<strong>证</strong> 由行列式求导法则可知<br>
-$$<br>
-W’(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
-x_1^{(n)}&amp;x_2^{(n)}&amp;\cdots&amp;x_n^{(n)}<br>
-\end{vmatrix}<br>
-$$<br>
-于是<br>
-$$<br>
-W’(t)+a_1(t)W(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}&amp;x_2^{(n)}+a_1(t)x_2^{(n-1)}&amp;\cdots&amp;x_n^{(n)}+a_1(t)x_n^{(n-1)}<br>
-\end{vmatrix}<br>
-$$<br>
-注意到<br>
-$$<br>
-\begin{cases}<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}=-a_2(t)x_1^{(n-2)}-\cdots-a_n(t)x_1,\\<br>
-x_2^{(n)}+a_1(t)x_2^{(n-1)}=-a_2(t)x_2^{(n-2)}-\cdots-a_n(t)x_2,\\<br>
-\quad\quad\quad\quad\quad\quad\quad~ …\\<br>
-x_n^{(n)}+a_1(t)x_n^{(n-1)}=-a_2(t)x_n^{(n-2)}-\cdots-a_n(t)x_n,\\<br>
-\end{cases}<br>
-$$<br>
-因此 $W’(t)+a_1(t)W(t)=0, \ t\in[a,b]$. 解得<br>
-$$<br>
-W(t)=ce^{-\int_{t_0}^ta_1(s)\mathrm{~d}s}<br>
-$$<br>
-注意到 $W(t_0)=c$, 于是 $W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b]$.</p>
-<hr>
-<p><strong>[T040204]</strong> 设 $x=x_1(t), \ x=x_2(t)$ 是微分方程 $x’‘+x=0$ 的满足初始条件<br>
-$$<br>
-x_1(0)=0,\quad x_1’(0)=1,\\<br>
-x_2(0)=1,\quad x_2’(0)=0<br>
-$$<br>
-的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
-<p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
-<p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.</p>
-<p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
-$$<br>
-\begin{vmatrix}<br>
-x_1(t) &amp; x_2(t)\\<br>
-x_1’(t) &amp; x_2’(t)<br>
-\end{vmatrix}=<br>
-\begin{vmatrix}<br>
-x_1(0) &amp; x_2(0)\\<br>
-x_1’(0) &amp; x_2’(0)<br>
-\end{vmatrix}=-1<br>
-$$<br>
-又 $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$, 故 $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>高阶微分方程</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas数据分析题解汇总</title>
-    <url>/2026/03/24/pandas/</url>
-    <content><![CDATA[<p>这篇笔记把 <code>Python 数据分析</code> 目录下的基础 Pandas 题解合并到了一起，方便集中查阅。内容主要覆盖连接、分组聚合、去重、排序排名以及简单的时间序列比较。</p>
-<h2 id="LeetCode-175-组合两张表">LeetCode 175 组合两张表</h2>
-<p>表: Person</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>personId</code> 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
-<p>表: Address</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
-<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code>。以任意顺序返回结果表。</p>
-<p>示例：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Person 表:</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line"></span><br><span class="line">Address 表:</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on=<span class="string">&#x27;personId&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-<p>此题主要考察“左连接”。</p>
-<h2 id="LeetCode-176-第二高的薪水">LeetCode 176 第二高的薪水</h2>
-<p><code>Employee</code> 表：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是这个表的主键。表的每一行包含员工的工资信息。查询并返回 Employee 表中第二高的不同薪水。如果不存在第二高的薪水，查询应该返回 <code>null</code>，Pandas 则返回 <code>None</code>。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">second_highest_salary</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;SecondHighestSalary&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-177-第-n-高的薪水">LeetCode 177 第 n 高的薪水</h2>
-<p>表: Employee</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 <code>n</code> 高的不同工资。如果少于 <code>n</code> 个不同工资，查询结果应该为 <code>null</code>。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N - <span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-178-分数排名">LeetCode 178 分数排名</h2>
-<p>表: Scores</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。</p>
-<p>排名规则：</p>
-<ul>
-<li>分数按从高到低排列</li>
-<li>如果两个分数相等，那么两个分数的排名应该相同</li>
-<li>排名之间不应该有空缺的数字</li>
-</ul>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-180-连续出现的数">LeetCode 180 连续出现的数</h2>
-<p>表: <code>Logs</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-181-超过经理收入的员工">LeetCode 181 超过经理收入的员工</h2>
-<p>表: Employee</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键。该表的每一行都表示雇员的 ID、姓名、工资和经理的 ID。编写解决方案，找出收入比经理高的员工。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on=<span class="string">&#x27;managerId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns=&#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-182-查找重复的电子邮箱">LeetCode 182 查找重复的电子邮箱</h2>
-<p>表: Person</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。编写解决方案来报告所有重复的电子邮件。</p>
-<p>解法一：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns=&#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>] &gt;= <span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
-<p>解法二：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name=<span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-183-从不订购的客户">LeetCode 183 从不订购的客户</h2>
-<p>Customers 表：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>Orders 表：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| customerId  | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p>找出所有从不点任何东西的顾客。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = customers.merge(orders[[<span class="string">&#x27;customerId&#x27;</span>]], left_on=<span class="string">&#x27;id&#x27;</span>, right_on=<span class="string">&#x27;customerId&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_merge.loc[df_merge[<span class="string">&#x27;customerId&#x27;</span>].isna(), [<span class="string">&#x27;name&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Customers&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-184-部门工资最高的员工">LeetCode 184 部门工资最高的员工</h2>
-<p>表：<code>Employee</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| 列名          | 类型    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
-<p>表：<code>Department</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>查找出每个部门中薪资最高的员工。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>] == max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(</span><br><span class="line">        department,</span><br><span class="line">        left_on=<span class="string">&#x27;departmentId&#x27;</span>,</span><br><span class="line">        right_on=<span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">        suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_d&#x27;</span>)</span><br><span class="line">    )[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(</span><br><span class="line">        columns=&#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;</span><br><span class="line">    ).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-185-部门工资前三高的所有员工">LeetCode 185 部门工资前三高的所有员工</h2>
-<p>表: <code>Employee</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
-<p>表: <code>Department</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>找出每个部门中收入高的员工。一个部门的高收入者，是指工资在该部门不同工资中排名前三的员工。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep &lt;= <span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(</span><br><span class="line">        department,</span><br><span class="line">        left_on=<span class="string">&#x27;departmentId&#x27;</span>,</span><br><span class="line">        right_on=<span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">        how=<span class="string">&#x27;left&#x27;</span>,</span><br><span class="line">        suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_dep&#x27;</span>)</span><br><span class="line">    )[[<span class="string">&#x27;name_dep&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(</span><br><span class="line">        columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;</span><br><span class="line">    ).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-196-删除重复的电子邮箱">LeetCode 196 删除重复的电子邮箱</h2>
-<p>表: Person</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>编写解决方案删除所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-197-上升的温度">LeetCode 197 上升的温度</h2>
-<p>表：Weather</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+---------------+---------+</span><br><span class="line">| Column Name   | Type    |</span><br><span class="line">+---------------+---------+</span><br><span class="line">| id            | int     |</span><br><span class="line">| recordDate    | date    |</span><br><span class="line">| temperature   | int     |</span><br><span class="line">+---------------+---------+</span><br></pre></td></tr></table></figure>
-<p>找出与之前一天相比温度更高的所有日期的 <code>id</code>。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rising_temperature</span>(<span class="params">weather: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    weather.sort_values(<span class="string">&#x27;recordDate&#x27;</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">    weather_diff = weather.diff()</span><br><span class="line">    <span class="keyword">return</span> weather.loc[</span><br><span class="line">        (weather_diff[<span class="string">&#x27;recordDate&#x27;</span>] == datetime.timedelta(<span class="number">1</span>)) &amp; (weather_diff[<span class="string">&#x27;temperature&#x27;</span>] &gt; <span class="number">0</span>),</span><br><span class="line">        [<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-        <tag>Pandas</tag>
-        <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -1812,6 +1492,326 @@ $$<br>
       </categories>
       <tags>
         <tag>Transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas数据分析题解汇总</title>
+    <url>/2025/09/05/pandas/</url>
+    <content><![CDATA[<p>这篇笔记把 <code>Python 数据分析</code> 目录下的基础 Pandas 题解合并到了一起，方便集中查阅。内容主要覆盖连接、分组聚合、去重、排序排名以及简单的时间序列比较。</p>
+<h2 id="LeetCode-175-组合两张表">LeetCode 175 组合两张表</h2>
+<p>表: Person</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>personId</code> 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
+<p>表: Address</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
+<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code>。以任意顺序返回结果表。</p>
+<p>示例：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Person 表:</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line"></span><br><span class="line">Address 表:</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on=<span class="string">&#x27;personId&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+<p>此题主要考察“左连接”。</p>
+<h2 id="LeetCode-176-第二高的薪水">LeetCode 176 第二高的薪水</h2>
+<p><code>Employee</code> 表：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是这个表的主键。表的每一行包含员工的工资信息。查询并返回 Employee 表中第二高的不同薪水。如果不存在第二高的薪水，查询应该返回 <code>null</code>，Pandas 则返回 <code>None</code>。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">second_highest_salary</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;SecondHighestSalary&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-177-第-n-高的薪水">LeetCode 177 第 n 高的薪水</h2>
+<p>表: Employee</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 <code>n</code> 高的不同工资。如果少于 <code>n</code> 个不同工资，查询结果应该为 <code>null</code>。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N - <span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-178-分数排名">LeetCode 178 分数排名</h2>
+<p>表: Scores</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。</p>
+<p>排名规则：</p>
+<ul>
+<li>分数按从高到低排列</li>
+<li>如果两个分数相等，那么两个分数的排名应该相同</li>
+<li>排名之间不应该有空缺的数字</li>
+</ul>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-180-连续出现的数">LeetCode 180 连续出现的数</h2>
+<p>表: <code>Logs</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-181-超过经理收入的员工">LeetCode 181 超过经理收入的员工</h2>
+<p>表: Employee</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键。该表的每一行都表示雇员的 ID、姓名、工资和经理的 ID。编写解决方案，找出收入比经理高的员工。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on=<span class="string">&#x27;managerId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns=&#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-182-查找重复的电子邮箱">LeetCode 182 查找重复的电子邮箱</h2>
+<p>表: Person</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。编写解决方案来报告所有重复的电子邮件。</p>
+<p>解法一：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns=&#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>] &gt;= <span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
+<p>解法二：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name=<span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-183-从不订购的客户">LeetCode 183 从不订购的客户</h2>
+<p>Customers 表：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>Orders 表：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| customerId  | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p>找出所有从不点任何东西的顾客。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = customers.merge(orders[[<span class="string">&#x27;customerId&#x27;</span>]], left_on=<span class="string">&#x27;id&#x27;</span>, right_on=<span class="string">&#x27;customerId&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_merge.loc[df_merge[<span class="string">&#x27;customerId&#x27;</span>].isna(), [<span class="string">&#x27;name&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Customers&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-184-部门工资最高的员工">LeetCode 184 部门工资最高的员工</h2>
+<p>表：<code>Employee</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| 列名          | 类型    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p>表：<code>Department</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>查找出每个部门中薪资最高的员工。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>] == max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(</span><br><span class="line">        department,</span><br><span class="line">        left_on=<span class="string">&#x27;departmentId&#x27;</span>,</span><br><span class="line">        right_on=<span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">        suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_d&#x27;</span>)</span><br><span class="line">    )[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(</span><br><span class="line">        columns=&#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;</span><br><span class="line">    ).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-185-部门工资前三高的所有员工">LeetCode 185 部门工资前三高的所有员工</h2>
+<p>表: <code>Employee</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p>表: <code>Department</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>找出每个部门中收入高的员工。一个部门的高收入者，是指工资在该部门不同工资中排名前三的员工。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep &lt;= <span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(</span><br><span class="line">        department,</span><br><span class="line">        left_on=<span class="string">&#x27;departmentId&#x27;</span>,</span><br><span class="line">        right_on=<span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">        how=<span class="string">&#x27;left&#x27;</span>,</span><br><span class="line">        suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_dep&#x27;</span>)</span><br><span class="line">    )[[<span class="string">&#x27;name_dep&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(</span><br><span class="line">        columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;</span><br><span class="line">    ).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-196-删除重复的电子邮箱">LeetCode 196 删除重复的电子邮箱</h2>
+<p>表: Person</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>编写解决方案删除所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-197-上升的温度">LeetCode 197 上升的温度</h2>
+<p>表：Weather</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+---------------+---------+</span><br><span class="line">| Column Name   | Type    |</span><br><span class="line">+---------------+---------+</span><br><span class="line">| id            | int     |</span><br><span class="line">| recordDate    | date    |</span><br><span class="line">| temperature   | int     |</span><br><span class="line">+---------------+---------+</span><br></pre></td></tr></table></figure>
+<p>找出与之前一天相比温度更高的所有日期的 <code>id</code>。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rising_temperature</span>(<span class="params">weather: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    weather.sort_values(<span class="string">&#x27;recordDate&#x27;</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">    weather_diff = weather.diff()</span><br><span class="line">    <span class="keyword">return</span> weather.loc[</span><br><span class="line">        (weather_diff[<span class="string">&#x27;recordDate&#x27;</span>] == datetime.timedelta(<span class="number">1</span>)) &amp; (weather_diff[<span class="string">&#x27;temperature&#x27;</span>] &gt; <span class="number">0</span>),</span><br><span class="line">        [<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+        <tag>Pandas</tag>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Carathéodory扩张</title>
+    <url>/2025/09/02/caratheodory/</url>
+    <content><![CDATA[<p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
+<strong>Proof:</strong> 只需证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致.<br>
+<strong>(Step1.)</strong> 先证明 $\mu^{\ast}$ 在 $\mathscr F_0$ 上与 $\mu$ 一致, 即证 $\forall A\in\mathscr F_0$, 满足 $\mu^{\ast}(A)=\mu(A)$. 注意到</p>
+<p>$$<br>
+\mu^{\ast}(A) = \inf\Bigl\lbrace\sum_n\mu(A_n): A_n\in\mathscr{F}_0,~ \bigcup_n A_n\supset A \Bigr\rbrace.<br>
+$$</p>
+<p>而 $A\cup\varnothing\cup\varnothing\cup\cdots\supset A$, 因此<br>
+$$<br>
+\mu^{\ast}(A)\le \mu(A)+\mu(\varnothing)+\mu(\varnothing)+\cdots=\mu(A).<br>
+$$<br>
+另一方面, 若 $\mu^{\ast}(A)&lt;+\infty$, 则对 $\forall\varepsilon&gt;0, ~\exists~A_n\in\mathscr F_0$, 使得 $\bigcup\limits_nA_n\supset A$, 且<br>
+$$<br>
+\sum_n\mu(A_n)&lt;\mu^{\ast}(A)+\varepsilon.<br>
+$$<br>
+由 $\mu$ 的可列可加性和单调性知<br>
+$$<br>
+% \begin{aligned}<br>
+% \mu(A) &amp;\le \mu\left(\bigcup_{n} A_n\right) \<br>
+%        &amp;= \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \<br>
+%        &amp;= \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \<br>
+%        &amp;\le \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+% \end{aligned}<br>
+\begin{array}{rcl}<br>
+\mu(A) &amp;\le&amp; \mu\left(\bigcup_{n} A_n\right) \\<br>
+&amp;=&amp; \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \\<br>
+&amp;=&amp; \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \\<br>
+&amp;\le&amp; \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+\end{array}<br>
+$$<br>
+再由 $\varepsilon$ 的任意性可知 $\mu(A)\le\mu^{\ast}(A)$. 综上, $\mu(A)=\mu^{\ast}(A)$.<br>
+<strong>(Step2.)</strong> 再证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度, 只需证明 $\mathscr F=\sigma(\mathscr F_0)\subset\mathscr M$, 其中 $\mathscr M$ 是 $\mu^{\ast}$ 可测子集全体构成的 $\sigma$ 代数.</p>
+<blockquote>
+<p>见“$(\Omega,\mathscr M,\mu^{\ast})$ 是完备测度空间”</p>
+</blockquote>
+<p>对 $\forall A\in\mathscr F_0$, 要证明 $A\in\mathscr M$. 对 $\forall E\subset\Omega$, 不妨设 $\mu^{\ast}(E)&lt;\infty$, 则对 $\forall \varepsilon&gt;0$, 存在子集列 ${A_n}\subset\mathscr F_0$ 满足 $\cup_nA_n\supset E$ 且 $\sum\limits_n\mu(A_n)&lt;\mu^{\ast}(E)+\varepsilon$, 因而<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)&amp;\le\mu^{\ast}\left(\bigcup_n(A_n\cap A)\right)+\mu^{\ast}\left(\bigcup_n(A_n\cap A^c)\right)\\<br>
+(\text{外测度的次可列可加性})~&amp;\le\sum_n\left[\mu^{\ast}(A_n\cap A)+\mu^{\ast}(A_n\cap A^c)\right]\\<br>
+(\text{Step1.})~&amp;=\sum_n\left[\mu(A_n\cap A)+\mu(A_n\cap A^c)\right]\\<br>
+(\text{预测度的可列可加性})~&amp;=\sum_n\mu(A_n)\\<br>
+&amp;&lt;\mu^{\ast}(E)+\varepsilon<br>
+\end{aligned}<br>
+$$<br>
+由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
+综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单调收敛定理</title>
+    <url>/2025/09/02/post-20250902-2e2bd7/</url>
+    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
+$$<br>
+\mu(f)=\lim\limits_n\mu(f_n)<br>
+$$<br>
+<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
+$$<br>
+A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
+$$<br>
+满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
+$$<br>
+\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
+$$<br>
+因为 $g$ 是简单的, 故<br>
+$$<br>
+\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
+$$<br>
+由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
+$$<br>
+\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
+$$<br>
+可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
+$$<br>
+\lim\limits_n\mu(f_n)=\mu(f).<br>
+$$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>$(&#92;Omega,&#92;mathscr M,&#92;mu^{&#92;ast} )$ 是完备测度空间</title>
+    <url>/2025/09/09/omega-mathscr-m-mu-ast/</url>
+    <content><![CDATA[<p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
+<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
+<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+<ul>
+<li>
+<p>$\mathscr M$ 非空.<br>
+事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
+&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
+&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
+\end{aligned}<br>
+$$<br>
+即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于补集运算封闭.<br>
+事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
+\end{aligned}<br>
+$$<br>
+即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于可列并封闭.</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
+设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
+&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
+\end{aligned}<br>
+$$<br>
+即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
+</li>
+<li>
+<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
+设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
+$$<br>
+S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
+$$</p>
+<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
+&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\cdots\cdots\\<br>
+&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>令 $n\to\infty$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+</li>
+<li>
+<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+<ul>
+<li>
+<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
+</li>
+<li>
+<p>$\mu^{\ast} $ 满足可列可加性.<br>
+由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
+$$<br>
+\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
+$$<br>
+令 $E=\Omega$, 得<br>
+$$<br>
+\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
+$$<br>
+从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
+</li>
+</ul>
+<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+</li>
+</ul>
+<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
+<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
       </tags>
   </entry>
   <entry>
@@ -3425,37 +3425,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>LeetCode Hot100 —— 二叉树</title>
-    <url>/2026/03/24/leetcode-hot100/</url>
-    <content><![CDATA[<h2 id="二叉树的中序遍历">二叉树的中序遍历</h2>
-<h3 id="思路">思路</h3>
-<p>递归</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">order</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            order(root.left)</span><br><span class="line">            res.append(root.val)</span><br><span class="line">            order(root.right)</span><br><span class="line">        order(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<h2 id="二叉树的深度">二叉树的深度</h2>
-<h3 id="思路-2">思路</h3>
-<p>递归，后序遍历/深度优先搜索BFS</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(<span class="variable language_">self</span>.maxDepth(root.left), <span class="variable language_">self</span>.maxDepth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h2 id="翻转二叉树">翻转二叉树</h2>
-<h3 id="思路-3">思路</h3>
-<p>递归</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">invertTree</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        root.left, root.right = root.right, root.left</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.invertTree(root.left)</span><br><span class="line">        <span class="variable language_">self</span>.invertTree(root.right)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-<h2 id="对称二叉树">对称二叉树</h2>
-<h3 id="思路-4">思路</h3>
-<p>DFS递归</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isSymmetric</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">left, right</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (left <span class="keyword">or</span> right):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (left <span class="keyword">and</span> right):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> left.val != right.val:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> dfs(left.left, right.right) <span class="keyword">and</span> dfs(left.right, right.left)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dfs(root.left, root.right)</span><br></pre></td></tr></table></figure>
-<h2 id="二叉树的最大链长">二叉树的最大链长</h2>
-<h3 id="思路-5">思路</h3>
-<p>DFS递归</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">diameterOfBinaryTree</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">t</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            leftlen = dfs(t.left)+<span class="number">1</span> <span class="comment"># 到 t.left 的最大链长+1</span></span><br><span class="line">            rightlen = dfs(t.right)+<span class="number">1</span></span><br><span class="line">            <span class="keyword">nonlocal</span> res <span class="comment"># 可以修改外层函数变量，注意与全局变量 global 的区别</span></span><br><span class="line">            res = <span class="built_in">max</span>(res, leftlen+rightlen)</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(leftlen, rightlen) <span class="comment"># 返回到当前节点的最大链长</span></span><br><span class="line"></span><br><span class="line">        dfs(root)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法题</category>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>二叉树</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>斐波那契数列</title>
     <url>/2025/03/24/leetcode/</url>
     <content><![CDATA[<h1>动态规划</h1>
@@ -3620,6 +3589,37 @@ $$</p>
       </categories>
       <tags>
         <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode Hot100 —— 二叉树</title>
+    <url>/2026/03/24/leetcode-hot100/</url>
+    <content><![CDATA[<h2 id="二叉树的中序遍历">二叉树的中序遍历</h2>
+<h3 id="思路">思路</h3>
+<p>递归</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">order</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            order(root.left)</span><br><span class="line">            res.append(root.val)</span><br><span class="line">            order(root.right)</span><br><span class="line">        order(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="二叉树的深度">二叉树的深度</h2>
+<h3 id="思路-2">思路</h3>
+<p>递归，后序遍历/深度优先搜索BFS</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(<span class="variable language_">self</span>.maxDepth(root.left), <span class="variable language_">self</span>.maxDepth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="翻转二叉树">翻转二叉树</h2>
+<h3 id="思路-3">思路</h3>
+<p>递归</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">invertTree</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        root.left, root.right = root.right, root.left</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.invertTree(root.left)</span><br><span class="line">        <span class="variable language_">self</span>.invertTree(root.right)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+<h2 id="对称二叉树">对称二叉树</h2>
+<h3 id="思路-4">思路</h3>
+<p>DFS递归</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isSymmetric</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">left, right</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (left <span class="keyword">or</span> right):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (left <span class="keyword">and</span> right):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> left.val != right.val:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> dfs(left.left, right.right) <span class="keyword">and</span> dfs(left.right, right.left)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dfs(root.left, root.right)</span><br></pre></td></tr></table></figure>
+<h2 id="二叉树的最大链长">二叉树的最大链长</h2>
+<h3 id="思路-5">思路</h3>
+<p>DFS递归</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">diameterOfBinaryTree</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">t</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            leftlen = dfs(t.left)+<span class="number">1</span> <span class="comment"># 到 t.left 的最大链长+1</span></span><br><span class="line">            rightlen = dfs(t.right)+<span class="number">1</span></span><br><span class="line">            <span class="keyword">nonlocal</span> res <span class="comment"># 可以修改外层函数变量，注意与全局变量 global 的区别</span></span><br><span class="line">            res = <span class="built_in">max</span>(res, leftlen+rightlen)</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(leftlen, rightlen) <span class="comment"># 返回到当前节点的最大链长</span></span><br><span class="line"></span><br><span class="line">        dfs(root)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法题</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
       </tags>
   </entry>
   <entry>
