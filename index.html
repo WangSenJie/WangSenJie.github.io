@@ -239,10 +239,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2026-03-23 00:00:00 / 修改时间：01:59:55" itemprop="dateCreated datePublished" datetime="2026-03-23T00:00:00+08:00">2026-03-23</time>
+              <time title="创建时间：2026-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-23T00:00:00+08:00">2026-03-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-24 12:53:39" itemprop="dateModified" datetime="2026-03-24T12:53:39+08:00">2026-03-24</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -268,16 +274,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>LeetCode Hot100 —— 链表</h1>
-<h2 id="K-个一组翻转链表">$K$ 个一组翻转链表</h2>
-<p>给你链表的头节点 <code>head</code>, 每 <code>k</code> 个节点一组进行翻转, 请你返回修改后的链表.</p>
-<ul>
-<li><code>k</code> 是一个正整数,它的值小于或等于链表的长度.</li>
-<li>如果节点总数不是 <code>k</code> 的整数倍,那么请将最后剩余的节点保持原有顺序.</li>
-</ul>
-<h3 id="算法——利用栈">算法——利用栈</h3>
-<p>依次将<code>k</code>个节点放入栈中, 然后再一个个<code>pop</code>出来, 这样就实现了反转.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseKGroup</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode], k: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        new_list = ListNode(<span class="number">0</span>)</span><br><span class="line">        p = new_list</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            count = k</span><br><span class="line">            stack = []</span><br><span class="line">            tmp = head</span><br><span class="line">            <span class="comment"># 只要 count&gt;0 且 tmp 不是 None, 就把结点放到栈里</span></span><br><span class="line">            <span class="keyword">while</span> count <span class="keyword">and</span> tmp:</span><br><span class="line">                stack.append(tmp)</span><br><span class="line">                tmp = tmp.<span class="built_in">next</span></span><br><span class="line">                count -= <span class="number">1</span></span><br><span class="line">            <span class="comment"># 注意：如果count=0, 那么此时 tmp 对应 k 个结点之后的结点</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 如果剩余链表的长度不足 k, 拿着剩下的链表不用再反转了，直接接上就行, 然后退出整个循环</span></span><br><span class="line">            <span class="keyword">if</span> count:</span><br><span class="line">                p.<span class="built_in">next</span> = head</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="comment"># 利用栈的 `pop` 实现反转</span></span><br><span class="line">            <span class="keyword">while</span> stack:</span><br><span class="line">                p.<span class="built_in">next</span> = stack.pop()</span><br><span class="line">                p = p.<span class="built_in">next</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 更新 head</span></span><br><span class="line">            head = tmp</span><br></pre></td></tr></table></figure>
+          <p>LeetCode-hot100 中链表部分的题解</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/23/leetcode-hot100/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -722,6 +727,118 @@ $$<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/09/post-20250909-a14dc7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/09/post-20250909-a14dc7/" class="post-title-link" itemprop="url">爬楼梯</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-09 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-09T00:00:00+08:00">2025-09-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">算法题</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>爬楼梯</h1>
+<h2 id="问题描述">问题描述</h2>
+<blockquote>
+<p>设你正在爬楼梯. 需要 $n$ 阶你才能到达楼顶. 每次你可以爬 $1$ 或 $2$ 个台阶. 总共有多少种不同的方法可以爬到楼顶?</p>
+</blockquote>
+<h2 id="问题解答">问题解答</h2>
+<p><strong>解析:</strong></p>
+<p>不妨设 $f(n)$ 为走到第 $n$ 级台阶的方法数, 而第 $n$ 级台阶只能通过第 $n-1$ 级台阶或第 $n-2$ 级台阶才能到达, 于是我们有递推式子:<br>
+$$<br>
+f(n)=\begin{cases}<br>
+f(n-1)+f(n-2) &amp; n\ge 3,\\<br>
+1 &amp; n=1,\\<br>
+2 &amp; n=2\\<br>
+\end{cases}<br>
+$$</p>
+<p><strong>算法:</strong></p>
+<ul>
+<li>输入台阶数量 $n$</li>
+<li>构造 $n$ 维迭代向量 $v\gets (0,\cdots,0)$</li>
+<li>如果 $n==1$ 则输出 $1$</li>
+<li>如果 $n==2$ 则输出 $2$</li>
+<li>反之
+<ul>
+<li>赋值 $v_1\gets 1,~ v_2\gets 2$</li>
+<li>对于 $i=3,4,\cdots,n$:
+<ul>
+<li>$v_i\gets v_{i-1}+v_{i-2}$</li>
+</ul>
+</li>
+<li>输出 $v_n$</li>
+</ul>
+</li>
+</ul>
+<p><strong>Python 程序:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp = [<span class="number">0</span>] * (n+<span class="number">1</span>)</span><br><span class="line">            dp[<span class="number">1</span>], dp[<span class="number">2</span>] = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n+<span class="number">1</span>):</span><br><span class="line">                dp[i] = dp[i-<span class="number">1</span>] + dp[i-<span class="number">2</span>]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/09/post-20250909-397896/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -876,118 +993,6 @@ F(0)<br>
 $$<br>
 注意到矩阵 $D$ 代表先交换向量 $\alpha$ 的上下两行, 再将向量的第 $2$ 行加到第 $1$ 行上去. 因此 $F(n)$ 就是上述操作执行 $n-1$ 次以后得到的向量的第 $1$ 行元素.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        a, b = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>):</span><br><span class="line">            a, b = b, a</span><br><span class="line">            a += b</span><br><span class="line">        <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/09/post-20250909-a14dc7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/09/post-20250909-a14dc7/" class="post-title-link" itemprop="url">爬楼梯</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-09-09 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-09T00:00:00+08:00">2025-09-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">算法题</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1>爬楼梯</h1>
-<h2 id="问题描述">问题描述</h2>
-<blockquote>
-<p>设你正在爬楼梯. 需要 $n$ 阶你才能到达楼顶. 每次你可以爬 $1$ 或 $2$ 个台阶. 总共有多少种不同的方法可以爬到楼顶?</p>
-</blockquote>
-<h2 id="问题解答">问题解答</h2>
-<p><strong>解析:</strong></p>
-<p>不妨设 $f(n)$ 为走到第 $n$ 级台阶的方法数, 而第 $n$ 级台阶只能通过第 $n-1$ 级台阶或第 $n-2$ 级台阶才能到达, 于是我们有递推式子:<br>
-$$<br>
-f(n)=\begin{cases}<br>
-f(n-1)+f(n-2) &amp; n\ge 3,\\<br>
-1 &amp; n=1,\\<br>
-2 &amp; n=2\\<br>
-\end{cases}<br>
-$$</p>
-<p><strong>算法:</strong></p>
-<ul>
-<li>输入台阶数量 $n$</li>
-<li>构造 $n$ 维迭代向量 $v\gets (0,\cdots,0)$</li>
-<li>如果 $n==1$ 则输出 $1$</li>
-<li>如果 $n==2$ 则输出 $2$</li>
-<li>反之
-<ul>
-<li>赋值 $v_1\gets 1,~ v_2\gets 2$</li>
-<li>对于 $i=3,4,\cdots,n$:
-<ul>
-<li>$v_i\gets v_{i-1}+v_{i-2}$</li>
-</ul>
-</li>
-<li>输出 $v_n$</li>
-</ul>
-</li>
-</ul>
-<p><strong>Python 程序:</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp = [<span class="number">0</span>] * (n+<span class="number">1</span>)</span><br><span class="line">            dp[<span class="number">1</span>], dp[<span class="number">2</span>] = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n+<span class="number">1</span>):</span><br><span class="line">                dp[i] = dp[i-<span class="number">1</span>] + dp[i-<span class="number">2</span>]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
-
       
     </div>
 
