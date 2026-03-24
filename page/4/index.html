@@ -216,6 +216,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/2-3/" class="post-title-link" itemprop="url">积分因子法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%88%9D%E7%AD%89%E7%A7%AF%E5%88%86%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">初等积分法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T020301]</strong> 求微分方程通解: $\left(\frac{y^2}{(x-y)^2}-\frac{1}{x}\right)\mathrm dx+\left(\frac{1}{y}-\frac{x^2}{(x-y)^2}\right)\mathrm dx=0$.</p>
+<p><strong>解</strong> 设 $M=\frac{y^2}{(x-y)^2}-\frac{1}{x}, \ N=\frac{1}{y}-\frac{x^2}{(x-y)^2}$, 注意到<br>
+$$<br>
+\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}=\frac{2xy}{(x-y)^3},<br>
+$$<br>
+于是原方程为全微分方程, 又注意到<br>
+$$<br>
+\begin{aligned}<br>
+\left(\frac1y\mathrm dy-\frac1x\mathrm dx\right)+\frac{y^2\mathrm dx-x^2\mathrm dy}{(x-y)^2}&amp;=0\\<br>
+\mathrm d\left(\ln\left|\frac{y}{x}\right|\right)-\mathrm d\left(\frac{xy}{x-y}\right)&amp;=0\\<br>
+\mathrm d\left(\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}\right)&amp;=0<br>
+\end{aligned}<br>
+$$<br>
+从而原方程的通解为 $\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}=c$, 其中 $c$ 为任意常数.</p>
+<hr>
+<p><strong>[T020302]</strong> 求 Bernoulli 方程的积分因子.</p>
+<p><strong>解</strong> 因为 Bernoulli 方程可化为一阶线性微分方程, 因此可先求解一阶线性微分方程的积分因子. 设有一阶线性微分方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 其中 $P(x),Q(x)$ 连续. 将方程变形为 $\left(P(x)y+Q(x)\right)\mathrm dx-\mathrm dy=0$, 设 $M=P(x)y+Q(x),  N=-1$, 则 $\frac{\partial M}{\partial y}=P(x), \ \frac{\partial N}{\partial x}=0$, 于是<br>
+$$<br>
+\frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{N}=-P(x),<br>
+$$<br>
+故线性方程有一个只依赖于 $x$ 的积分因子 $\mu(x)=e^{-\int P(x)\mathrm dx}$. 将此积分因子乘到原方程的两边可得全微分方程<br>
+$$<br>
+e^{-\int P(x)\mathrm dx}\left(P(x)y+Q(x)\right)\mathrm dx-e^{-\int P(x)\mathrm dx}\mathrm dy=0,<br>
+$$<br>
+不难求得其通解为 $y=ce^{\int P(x)\mathrm dx}+e^{\int P(x)\mathrm dx}\displaystyle\int Q(x)e^{-\int P(x)\mathrm dx}\mathrm dx$.</p>
+<p>现设有 Bernoulli 方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)y^n$, 其中 $n\neq 0,1$ 且 $p(x),q(x)$ 连续. 方程两边同除 $y^n \ (y\neq0)$ 有<br>
+$$<br>
+y^{-n}\frac{\mathrm dy}{\mathrm dx}=y^{1-n}p(x)+q(x)\Longrightarrow \frac{\mathrm dy^{1-n}}{\mathrm dx}=(1-n)p(x)y^{1-n}+(1-n)q(x),<br>
+$$<br>
+这是以 $y^{1-n}$ 为未知函数的一阶线性微分方程, 由上面的讨论可知其积分因子为 $e^{-(1-n)\int  p(x)\mathrm dx}$, 从而原方程的积分因子为 $y^{-n}e^{-(1-n)\int  p(x)\mathrm dx}$, 且原方程的通解为<br>
+$$<br>
+y^{1-n}=ce^{(1-n)\int p(x)\mathrm dx}+(1-n)e^{(1-n)\int p(x)\mathrm dx}\displaystyle\int q(x)e^{-(1-n)\int p(x)\mathrm dx}\mathrm dx.<br>
+$$<br>
+此外, 若 $n&gt;0$, 则 $y=0$ 也是方程的解.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/2-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -323,6 +438,130 @@ $$<br>
 \mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
 $$<br>
 故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3-1picard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/03/3-1picard/" class="post-title-link" itemprop="url">Picard 存在唯一性定理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
+<p><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
+$$<br>
+\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
+$$<br>
+显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
+$$<br>
+|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
+$$<br>
+于是当 $x\in[0,\frac12]$ 时, 有<br>
+$$<br>
+|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
+$$</p>
+<hr>
+<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
+<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
+$$<br>
+|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
+$$<br>
+即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
+<p>任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
+$$<br>
+x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
+$$<br>
+则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
+$$<br>
+|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
+$$<br>
+由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
+$$<br>
+x^</em>=f(x^<em>)<br>
+$$<br>
+即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
+<hr>
+<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
+$$<br>
+x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
+$$<br>
+从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
+$$<br>
+|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
+$$<br>
+这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
 
       
     </div>
@@ -661,130 +900,6 @@ $$<br>
 \end{aligned}<br>
 $$<br>
 即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/3-1picard/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/3-1picard/" class="post-title-link" itemprop="url">Picard 存在唯一性定理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%AE%9A%E8%A7%A3%E9%97%AE%E9%A2%98%E4%B8%8E%E9%80%82%E5%AE%9A%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">定解问题与适定性</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
-<p><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
-$$<br>
-\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
-$$<br>
-显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
-$$<br>
-|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
-$$<br>
-于是当 $x\in[0,\frac12]$ 时, 有<br>
-$$<br>
-|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
-$$</p>
-<hr>
-<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
-<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
-$$<br>
-|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
-$$<br>
-即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
-<p>任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
-$$<br>
-x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
-$$<br>
-则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
-$$<br>
-|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
-$$<br>
-由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
-$$<br>
-x^</em>=f(x^<em>)<br>
-$$<br>
-即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
-<hr>
-<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
-$$<br>
-x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
-$$<br>
-从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
-$$<br>
-|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
-$$<br>
-这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
 
       
     </div>
@@ -1404,313 +1519,6 @@ $$</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/03/5-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/03/5-2/" class="post-title-link" itemprop="url">一阶常系数线性微分方程组</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-03T00:00:00+08:00">2025-09-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">常微分方程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84/" itemprop="url" rel="index"><span itemprop="name">一阶线性微分方程组</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>[T050201]</strong> 求方程组 $\begin{cases}x’+y’=y+z\\ y’+z’=z+x\\ z’+x’=x+y\end{cases}$ 的通解.</p>
-<p><strong>解</strong> 将方程组写成矩阵形式:<br>
-$$<br>
-\begin{aligned}<br>
-&amp;\begin{pmatrix}<br>
-1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
-\end{pmatrix}<br>
-\begin{pmatrix}<br>
-x’\\y’\\z’<br>
-\end{pmatrix}=<br>
-\begin{pmatrix}<br>
-0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
-\end{pmatrix}<br>
-\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}\\ \\<br>
-\Longrightarrow<br>
-&amp;\begin{pmatrix}<br>
-x’\\y’\\z’<br>
-\end{pmatrix}=\begin{pmatrix}<br>
-1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
-\end{pmatrix}^{-1}\begin{pmatrix}<br>
-0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
-\end{pmatrix}\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}=\begin{pmatrix}<br>
-0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0<br>
-\end{pmatrix}\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}<br>
-:=A\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-则 $|\lambda E-A|=\begin{vmatrix}\lambda&amp;-1&amp;0\\0&amp;\lambda&amp;-1\\-1&amp;0&amp;\lambda\end{vmatrix}=\lambda^3-1=0\Longrightarrow \lambda_1=1,\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i,\lambda_3=-\frac{1}{2}-\frac{\sqrt3}{2}i$.<br>
-对于特征值 $\lambda_1=1$, 有<br>
-$$<br>
-A-\lambda_1E=<br>
-\begin{pmatrix}<br>
--1&amp;1&amp;0\\0&amp;-1&amp;1\\1&amp;0&amp;-1<br>
-\end{pmatrix}\xrightarrow{初等行变换}<br>
-\begin{pmatrix}<br>
-1&amp;0&amp;-1\\0&amp;1&amp;-1\\0&amp;0&amp;0<br>
-\end{pmatrix}<br>
-$$<br>
-于是可取特征向量 $v_1=(1,1,1)^T$, 从而常系数齐次线性方程组有一个解 $X_1(t)=e^tv_1$.<br>
-对于特征值 $\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i$, 有<br>
-$$<br>
-A-\lambda_2E=<br>
-\begin{pmatrix}<br>
-\frac12-\frac{\sqrt{3}}{2}i&amp;1&amp;0\\0&amp;\frac12-\frac{\sqrt3}{2}i&amp;1\\1&amp;0&amp;\frac12-\frac{\sqrt{3}}{2}i<br>
-\end{pmatrix}<br>
-\xrightarrow{初等行变换}<br>
-\begin{pmatrix}<br>
-1&amp;0&amp;\frac12-\frac{\sqrt3}{2}i\\0&amp;1&amp;\frac12+\frac{\sqrt3}{2}i\\0&amp;0&amp;0<br>
-\end{pmatrix}<br>
-$$<br>
-于是可取特征向量 $v_2=\left(-\frac12-\frac{\sqrt3}{2}i,-\frac12+\frac{\sqrt3}{2}i,1\right)^T$. 注意到<br>
-$$<br>
-\begin{aligned}<br>
-e^{(-\frac{1}{2}+\frac{\sqrt3}{2}i)t}v_2&amp;=e^{-\frac12t}<br>
-\begin{pmatrix}<br>
-(-\frac{1}{2}+\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
-(-\frac{1}{2}-\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
-e^{\frac{\sqrt3}{2}it}<br>
-\end{pmatrix}\\<br>
-&amp;=e^{-\frac12t}<br>
-\left\lbrace<br>
-\begin{pmatrix}<br>
--\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
--\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
-\cos\frac{\sqrt3}{2}t<br>
-\end{pmatrix}+i<br>
-\begin{pmatrix}<br>
--\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
--\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
-\sin\frac{\sqrt3}{2}t<br>
-\end{pmatrix}<br>
-\right\rbrace<br>
-\end{aligned}<br>
-$$<br>
-于是另两个线性无关的解为<br>
-$$<br>
-X_2(t)=e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
--\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
-\cos\frac{\sqrt3}{2}t<br>
-\end{pmatrix},\quad<br>
-X_3(t)=e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
--\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
-\sin\frac{\sqrt3}{2}t<br>
-\end{pmatrix}<br>
-$$<br>
-注意到 $X_1(t),X_2(t),X_3(t)$ 是常系数齐次线性方程组的三个线性无关解, 故通解为<br>
-$$<br>
-\begin{aligned}<br>
-X(t)&amp;=c_1X_1(t)+c_2X_2(t)+c_3X_3(t)\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1\\1\\1<br>
-\end{pmatrix}+<br>
-c_2e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
--\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
-\cos\frac{\sqrt3}{2}t<br>
-\end{pmatrix}+<br>
-c_3e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
--\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
-\sin\frac{\sqrt3}{2}t<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-其中 $c_1,c_2,c_3$ 为任意常数.</p>
-<hr>
-<p><strong>[T050202]</strong> 求常系数非齐次线性方程组的通解:<br>
-$$<br>
-X’=\begin{pmatrix}<br>
--1&amp;2\\-2&amp;3<br>
-\end{pmatrix}X+\begin{pmatrix}<br>
-1\\0<br>
-\end{pmatrix}.<br>
-$$<br>
-<strong>解</strong> 记 $X’=AX+F$, 于是<br>
-$$<br>
-|\lambda E-A|=\begin{vmatrix}<br>
-\lambda+1&amp;-2\\2&amp;\lambda-3<br>
-\end{vmatrix}=(\lambda-1)^2\Longrightarrow \lambda=1 \ (二 \ 重)<br>
-$$<br>
-从而对应的常系数齐次线性方程组有两个解形如 $X(t)=(R_0+R_1t)e^t$, 其中 $R_0,R_1$ 满足<br>
-$$<br>
-\begin{cases}<br>
-(A-E)R_0=R_1\\<br>
-(A-E)^2R_0=0<br>
-\end{cases}<br>
-$$<br>
-注意到<br>
-$$<br>
-(A-E)^2=\begin{pmatrix}<br>
--2&amp;2\\-2&amp;2<br>
-\end{pmatrix}^2=<br>
-O<br>
-$$<br>
-故可取 $R_0=(1,0)^T$ 和 $(0,1)^T$, 从而 $R_1=(-2,-2)^T$ 和 $(2,2)$, 从而对应的常系数齐次线性方程组有两个线性无关解</p>
-<p>$$<br>
-\begin{aligned}<br>
-X_1(t)&amp;=<br>
-\begin{pmatrix}<br>
-1\\<br>
-0<br>
-\end{pmatrix}+<br>
-\begin{pmatrix}<br>
--2\\<br>
--2<br>
-\end{pmatrix}t<br>
-e^t=e^t\begin{pmatrix}<br>
-1-2t\\<br>
--2t<br>
-\end{pmatrix}\\</p>
-<p>X_2(t)&amp;=\begin{pmatrix}<br>
-0\\1<br>
-\end{pmatrix}+<br>
-\begin{pmatrix}<br>
-2\\2<br>
-\end{pmatrix}t<br>
-e^t=e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-由此可得对应的常系数齐次线性方程组的基解矩阵为</p>
-<p>$$<br>
-\Phi(t)=e^t<br>
-\begin{pmatrix}<br>
-1-2t&amp;2t\\<br>
--2t&amp;1+2t<br>
-\end{pmatrix},<br>
-\Phi^{-1}(t)=e^{-t}<br>
-\begin{pmatrix}<br>
-1+2t&amp;-2t\\<br>
-2t&amp;1-2t<br>
-\end{pmatrix},<br>
-$$</p>
-<p>于是原常系数非齐次线性方程组有特解</p>
-<p>$$<br>
-\begin{aligned}<br>
-\bar X(t)&amp;=\Phi(t)\int_0^t\Phi^{-1}(s)F\mathrm{~d}s=e^t\begin{pmatrix}<br>
-1-2t&amp;2t\\-2t&amp;1+2t<br>
-\end{pmatrix}\begin{pmatrix}<br>
--3e^{-t}-2te^{-t}+3\\-2e^{-t}-2te^{-t}+2<br>
-\end{pmatrix}\\<br>
-&amp;=e^t\begin{pmatrix}<br>
--3e^{-t}+3-2t\\-2e^{-t}+2-2t<br>
-\end{pmatrix}=\begin{pmatrix}<br>
--3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-故原方程组的通解<br>
-$$<br>
-\begin{aligned}<br>
-X(t)&amp;=c_1X_1(t)+c_2X_2(t)+\bar X(t)\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1-2t\\-2t<br>
-\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}+\begin{pmatrix}<br>
--3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
-\end{pmatrix}\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1-2t\\-2t<br>
-\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}+\begin{pmatrix}<br>
--3+2e^t\\-2+2e^t<br>
-\end{pmatrix}\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1-2t\\-2t<br>
-\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}+\begin{pmatrix}<br>
--3\\-2<br>
-\end{pmatrix}.<br>
-\end{aligned}<br>
-$$</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1782,7 +1590,7 @@ $$</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1795,7 +1603,7 @@ $$</p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
