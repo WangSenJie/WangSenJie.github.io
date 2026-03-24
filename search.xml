@@ -47,6 +47,125 @@
       </tags>
   </entry>
   <entry>
+    <title>GBDT</title>
+    <url>/2025/10/15/gbdt/</url>
+    <content><![CDATA[<h1>Gradient Boosting Decision Trees</h1>
+<h2 id="背景">背景</h2>
+<p>Gradient Boosting Decision Tree (GBDT) 是 Boosting 算法的一种, 早期理论 (Schapire, 1990) 证明: 只要有一个稍微优于随机猜测的弱分类器 (准确率 &gt; 0.5), 就可以通过 Boosting 组合成强分类器. Freund 和 Schapire (1997) 的 AdaBoost 将这一思想转化为实际算法. 在 AdaBoost 提出之后, 人们逐渐认识到 Boosting 的本质是一种加性模型, 其核心思想是在每一步逐渐叠加弱学习器以最小化某个总体损失函数. Friedman 等人在此基础上提出了更为一般的理论框架, 将 Boosting 视为在函数空间中的梯度下降 (gradient descent) 过程. Friedman (2000) 在论文 <em>Greedy Function Approximation: A Gradient Boosting Machine</em> 中首次系统地提出了 Gradient Boosting 的概念，并指出 AdaBoost 实质上是以指数损失为目标函数的特殊情形. 他进一步推广了这一思想, 允许使用任意可微损失函数, 通过迭代地拟合当前损失的负梯度方向, 构建出更强的预测模型. GBDT 正是这一框架的典型实现: 它以决策树作为基学习器, 在每一轮中利用回归树来拟合损失函数对模型预测值的负梯度, 从而逐步优化整体模型性能.  由于其能够灵活适配不同损失函数 (如平方误差、逻辑损失、Huber 损失等), GBDT 既可用于回归问题, 也可用于分类乃至排序任务. 相比 AdaBoost, GBDT 在理论上更为一般、在实践中更为稳定, 对噪声数据的鲁棒性也更强, 因此成为现代机器学习中最重要的集成学习方法之一, 并衍生出了多种高效实现, 如 XGBoost、LightGBM 与 CatBoost 等.</p>
+<h2 id="问题目标和符号设定">问题目标和符号设定</h2>
+<p>给定训练 $\lbrace(x_i,y_i)\rbrace_{i=1}^n$, 我们想要找到一个函数 $F:~\mathcal X\to\mathbb R^K$ (回归问题 $K=1$, 二分类问题常用 $K=1$ 的对数几率分数) 以最小化经验风险<br>
+$$<br>
+\min\limits_{F\in\mathcal F}\mathcal L(F)=\min\limits_{F\in\mathcal F}\sum_{i=1}^nL(y_i,F(x_i)),<br>
+$$<br>
+其中 $L$ 为损失函数. GBDT 把可行函数集 $\mathcal F$ 限制为 “加性模型” 的闭包:<br>
+$$<br>
+F_M(x)=F_0(x)+\sum_{m=1}^M\nu f_m(x),<br>
+$$<br>
+其中每个学习器 $f_m$ 是回归树, $\nu\in(0,1]$ 为学习率.</p>
+<h2 id="函数空间的梯度下降">函数空间的梯度下降</h2>
+<p>考虑第 $m$ 轮.</p>
+<p>将 $\lbrace F(x_i)\rbrace_{i=1}^n$ 看成 $\mathbb R^n$ 上的向量, 对 $\mathcal L(F)$ 在这些分量求梯度:<br>
+$$<br>
+g_i:=\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\bigg\vert_{F=F_{m-1}}<br>
+$$<br>
+则负梯度 $-g_i$ 方向指向最速下降方向.</p>
+<p>用一棵回归树 $f_m(x)$ 去拟合负梯度<br>
+$$<br>
+f_m\approx\arg\min\limits_{f}\sum_{i=1}^n\left(-g_i-f(x_i)\right)^2,<br>
+$$<br>
+在得到的树划分 $\lbrace R_{jm}\rbrace_{j=1}^{J_m}$ (叶结点区域) 上, 求每个叶子的最佳增量<br>
+$$<br>
+\gamma_{jm}\approx\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma).<br>
+$$<br>
+更新<br>
+$$<br>
+F_m(x)=F_{m-1}(x)+\nu\sum_{j=1}^{J_m}\gamma_{jm}1\lbrace x\in R_{jm}\rbrace.<br>
+$$</p>
+<h2 id="不同损失下的具体形式">不同损失下的具体形式</h2>
+<h3 id="平方损失-回归">平方损失 (回归)</h3>
+<p>$$<br>
+L(y,F)=\frac12(y-F)^2.<br>
+$$</p>
+<p>此时</p>
+<ul>
+<li>梯度 $g_i=F(x_i)-y_i$, 负梯度即为残差 $y_i-F(x_i)$.</li>
+<li>叶值闭式解 $\gamma_{jm}=\mathrm{mean}\lbrace y_i-F_{m-1}(x_i)~:~x_i\in R_{jm}\rbrace$.</li>
+<li>初始值 $F_0=\mathrm{mean}(y)$.</li>
+</ul>
+<h3 id="绝对损失-分位数损失-稳健回归">绝对损失 / 分位数损失 (稳健回归)</h3>
+<ul>
+<li>$L_1$ 损失: 叶值取中位数.</li>
+<li>分位数损失 $\tau\in(0,1)$: 叶值取 $\tau-$ 分位数.<br>
+对异常值更稳健.</li>
+</ul>
+<h3 id="二分类的-Logistic-损失">二分类的 Logistic 损失</h3>
+<p>此时 $y_i\in\lbrace0,1\rbrace$, 令模型输出为对数几率<br>
+$$<br>
+F(x)=\log\frac{p(x)}{1-p(x)},\quad p(x)=\sigma(F(x))=\frac{1}{1+e^{-F(x)}}.<br>
+$$</p>
+<ul>
+<li>
+<p>损失: 交叉熵 $L(y,F)=-\left[y\log p+(1-y)\log(1-p)\right]$.</p>
+</li>
+<li>
+<p>梯度: $g_i=-\left[y_i\frac{p_i(1-p_i)}{p_i}+(1-y_i)\frac{p_i(p_i-1)}{1-p_i}\right]=p_i-y_i$, 负梯度: $r_i=y_i-p_i$.</p>
+</li>
+<li>
+<p>叶值: 在叶 $R_{jm}$<br>
+$$<br>
+\gamma_{jm}\approx\frac{\sum_{x_i\in R_{jm}}(y_i-p_i)}{\sum_{x_i\in R_{jm}}p_i(1-p_i)}.<br>
+$$</p>
+<blockquote>
+<p>注意到 $\frac{\partial L}{\partial F}=p_i-y_i,~\frac{\partial^2 L}{\partial F^2}=p_i(1-p_i)$, 于是由 Taylor 定理<br>
+$$<br>
+L(y_i,F_{m-1}(x_i)+\gamma)\approx L(y_i,F_{m-1}(x_i))+g_i\gamma+\frac12h_i\gamma^2,<br>
+$$<br>
+其中 $g_i,h_i$ 分别为一阶导和二阶导. 因此<br>
+$$<br>
+\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)\approx \sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i))+G_{jm}\gamma+\frac12 H_{jm}\gamma^2,<br>
+$$<br>
+其中 $G_{jm}=\sum_{x_i\in R_{jm}}g_i=\sum_{x_i\in R_{jm}}(p_i-y_i),~H_{jm}=\sum_{x_i\in R_{jm}}h_i=\sum_{x_i\in R_{jm}}p_i(1-p_i)$. 故<br>
+$$<br>
+\gamma_{jm}=\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)=\arg\min\limits_{\gamma}\left(G_{jm}\gamma+\frac12 H_{jm}\gamma^2\right)=-\frac{G_{jm}}{H_{jm}}.<br>
+$$</p>
+</blockquote>
+</li>
+<li>
+<p>初始值: $F_0=\log\frac{\bar y}{1-\bar y}$, 其中 $\bar y$ 是样本中正类比例.</p>
+</li>
+</ul>
+<h3 id="多分类-softmax">多分类 softmax</h3>
+<p>输出向量 $F(x)\in\mathbb R^c,~p_k(x)=\frac{\exp(F_k(x))}{\sum_{l}\exp(F_l(x))}$. 此时损失函数为<br>
+$$<br>
+L=\sum_{i=1}^nl_i,\quad l_i=-\sum_{k=1}^cy_{ik}\log(p_{ik}),~y_{ik}=1\lbrace y_i=k\rbrace,<br>
+$$<br>
+在第 $m$ 轮通常训练 $c$ 棵树, 分别拟合每一类的负梯度<br>
+$$<br>
+r_{ik}=y_{ik}-p_{ik},\quad<br>
+$$<br>
+在叶 $R_{jmk}$ 上, 我们只更新该类的分数 $F_k\to F_k+\gamma$. 用一维二阶近似:<br>
+$$<br>
+\gamma_{jmk}\approx-\frac{G_{jmk}}{H_{jmk}},\quad G_{jmk}=\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik}),\quad H_{jmk}=\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda<br>
+$$<br>
+因此<br>
+$$<br>
+\gamma_{jmk}\approx-\frac{\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik})}{\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda}.<br>
+$$<br>
+其中 $\lambda$ 为正则项. 更新模型:<br>
+$$<br>
+F_k^{(m)}(x)=F_k^{(m-1)}(x)+\nu\sum_{j=1}^{J_{mk}}\gamma_{jmk}1\lbrace x\in R_{jmk}\rbrace,\quad k=1,2,\cdots,c.<br>
+$$<br>
+最后用 softmax 函数得到概率.</p>
+]]></content>
+      <categories>
+        <category>机器学习与深度学习</category>
+      </categories>
+      <tags>
+        <tag>集成学习</tag>
+        <tag>boosting</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AdaBoost</title>
     <url>/2025/10/02/adaboost/</url>
     <content><![CDATA[<h1>Adaptive Boosting</h1>
@@ -339,125 +458,6 @@ $$</p>
       </tags>
   </entry>
   <entry>
-    <title>GBDT</title>
-    <url>/2025/10/15/gbdt/</url>
-    <content><![CDATA[<h1>Gradient Boosting Decision Trees</h1>
-<h2 id="背景">背景</h2>
-<p>Gradient Boosting Decision Tree (GBDT) 是 Boosting 算法的一种, 早期理论 (Schapire, 1990) 证明: 只要有一个稍微优于随机猜测的弱分类器 (准确率 &gt; 0.5), 就可以通过 Boosting 组合成强分类器. Freund 和 Schapire (1997) 的 AdaBoost 将这一思想转化为实际算法. 在 AdaBoost 提出之后, 人们逐渐认识到 Boosting 的本质是一种加性模型, 其核心思想是在每一步逐渐叠加弱学习器以最小化某个总体损失函数. Friedman 等人在此基础上提出了更为一般的理论框架, 将 Boosting 视为在函数空间中的梯度下降 (gradient descent) 过程. Friedman (2000) 在论文 <em>Greedy Function Approximation: A Gradient Boosting Machine</em> 中首次系统地提出了 Gradient Boosting 的概念，并指出 AdaBoost 实质上是以指数损失为目标函数的特殊情形. 他进一步推广了这一思想, 允许使用任意可微损失函数, 通过迭代地拟合当前损失的负梯度方向, 构建出更强的预测模型. GBDT 正是这一框架的典型实现: 它以决策树作为基学习器, 在每一轮中利用回归树来拟合损失函数对模型预测值的负梯度, 从而逐步优化整体模型性能.  由于其能够灵活适配不同损失函数 (如平方误差、逻辑损失、Huber 损失等), GBDT 既可用于回归问题, 也可用于分类乃至排序任务. 相比 AdaBoost, GBDT 在理论上更为一般、在实践中更为稳定, 对噪声数据的鲁棒性也更强, 因此成为现代机器学习中最重要的集成学习方法之一, 并衍生出了多种高效实现, 如 XGBoost、LightGBM 与 CatBoost 等.</p>
-<h2 id="问题目标和符号设定">问题目标和符号设定</h2>
-<p>给定训练 $\lbrace(x_i,y_i)\rbrace_{i=1}^n$, 我们想要找到一个函数 $F:~\mathcal X\to\mathbb R^K$ (回归问题 $K=1$, 二分类问题常用 $K=1$ 的对数几率分数) 以最小化经验风险<br>
-$$<br>
-\min\limits_{F\in\mathcal F}\mathcal L(F)=\min\limits_{F\in\mathcal F}\sum_{i=1}^nL(y_i,F(x_i)),<br>
-$$<br>
-其中 $L$ 为损失函数. GBDT 把可行函数集 $\mathcal F$ 限制为 “加性模型” 的闭包:<br>
-$$<br>
-F_M(x)=F_0(x)+\sum_{m=1}^M\nu f_m(x),<br>
-$$<br>
-其中每个学习器 $f_m$ 是回归树, $\nu\in(0,1]$ 为学习率.</p>
-<h2 id="函数空间的梯度下降">函数空间的梯度下降</h2>
-<p>考虑第 $m$ 轮.</p>
-<p>将 $\lbrace F(x_i)\rbrace_{i=1}^n$ 看成 $\mathbb R^n$ 上的向量, 对 $\mathcal L(F)$ 在这些分量求梯度:<br>
-$$<br>
-g_i:=\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\bigg\vert_{F=F_{m-1}}<br>
-$$<br>
-则负梯度 $-g_i$ 方向指向最速下降方向.</p>
-<p>用一棵回归树 $f_m(x)$ 去拟合负梯度<br>
-$$<br>
-f_m\approx\arg\min\limits_{f}\sum_{i=1}^n\left(-g_i-f(x_i)\right)^2,<br>
-$$<br>
-在得到的树划分 $\lbrace R_{jm}\rbrace_{j=1}^{J_m}$ (叶结点区域) 上, 求每个叶子的最佳增量<br>
-$$<br>
-\gamma_{jm}\approx\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma).<br>
-$$<br>
-更新<br>
-$$<br>
-F_m(x)=F_{m-1}(x)+\nu\sum_{j=1}^{J_m}\gamma_{jm}1\lbrace x\in R_{jm}\rbrace.<br>
-$$</p>
-<h2 id="不同损失下的具体形式">不同损失下的具体形式</h2>
-<h3 id="平方损失-回归">平方损失 (回归)</h3>
-<p>$$<br>
-L(y,F)=\frac12(y-F)^2.<br>
-$$</p>
-<p>此时</p>
-<ul>
-<li>梯度 $g_i=F(x_i)-y_i$, 负梯度即为残差 $y_i-F(x_i)$.</li>
-<li>叶值闭式解 $\gamma_{jm}=\mathrm{mean}\lbrace y_i-F_{m-1}(x_i)~:~x_i\in R_{jm}\rbrace$.</li>
-<li>初始值 $F_0=\mathrm{mean}(y)$.</li>
-</ul>
-<h3 id="绝对损失-分位数损失-稳健回归">绝对损失 / 分位数损失 (稳健回归)</h3>
-<ul>
-<li>$L_1$ 损失: 叶值取中位数.</li>
-<li>分位数损失 $\tau\in(0,1)$: 叶值取 $\tau-$ 分位数.<br>
-对异常值更稳健.</li>
-</ul>
-<h3 id="二分类的-Logistic-损失">二分类的 Logistic 损失</h3>
-<p>此时 $y_i\in\lbrace0,1\rbrace$, 令模型输出为对数几率<br>
-$$<br>
-F(x)=\log\frac{p(x)}{1-p(x)},\quad p(x)=\sigma(F(x))=\frac{1}{1+e^{-F(x)}}.<br>
-$$</p>
-<ul>
-<li>
-<p>损失: 交叉熵 $L(y,F)=-\left[y\log p+(1-y)\log(1-p)\right]$.</p>
-</li>
-<li>
-<p>梯度: $g_i=-\left[y_i\frac{p_i(1-p_i)}{p_i}+(1-y_i)\frac{p_i(p_i-1)}{1-p_i}\right]=p_i-y_i$, 负梯度: $r_i=y_i-p_i$.</p>
-</li>
-<li>
-<p>叶值: 在叶 $R_{jm}$<br>
-$$<br>
-\gamma_{jm}\approx\frac{\sum_{x_i\in R_{jm}}(y_i-p_i)}{\sum_{x_i\in R_{jm}}p_i(1-p_i)}.<br>
-$$</p>
-<blockquote>
-<p>注意到 $\frac{\partial L}{\partial F}=p_i-y_i,~\frac{\partial^2 L}{\partial F^2}=p_i(1-p_i)$, 于是由 Taylor 定理<br>
-$$<br>
-L(y_i,F_{m-1}(x_i)+\gamma)\approx L(y_i,F_{m-1}(x_i))+g_i\gamma+\frac12h_i\gamma^2,<br>
-$$<br>
-其中 $g_i,h_i$ 分别为一阶导和二阶导. 因此<br>
-$$<br>
-\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)\approx \sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i))+G_{jm}\gamma+\frac12 H_{jm}\gamma^2,<br>
-$$<br>
-其中 $G_{jm}=\sum_{x_i\in R_{jm}}g_i=\sum_{x_i\in R_{jm}}(p_i-y_i),~H_{jm}=\sum_{x_i\in R_{jm}}h_i=\sum_{x_i\in R_{jm}}p_i(1-p_i)$. 故<br>
-$$<br>
-\gamma_{jm}=\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)=\arg\min\limits_{\gamma}\left(G_{jm}\gamma+\frac12 H_{jm}\gamma^2\right)=-\frac{G_{jm}}{H_{jm}}.<br>
-$$</p>
-</blockquote>
-</li>
-<li>
-<p>初始值: $F_0=\log\frac{\bar y}{1-\bar y}$, 其中 $\bar y$ 是样本中正类比例.</p>
-</li>
-</ul>
-<h3 id="多分类-softmax">多分类 softmax</h3>
-<p>输出向量 $F(x)\in\mathbb R^c,~p_k(x)=\frac{\exp(F_k(x))}{\sum_{l}\exp(F_l(x))}$. 此时损失函数为<br>
-$$<br>
-L=\sum_{i=1}^nl_i,\quad l_i=-\sum_{k=1}^cy_{ik}\log(p_{ik}),~y_{ik}=1\lbrace y_i=k\rbrace,<br>
-$$<br>
-在第 $m$ 轮通常训练 $c$ 棵树, 分别拟合每一类的负梯度<br>
-$$<br>
-r_{ik}=y_{ik}-p_{ik},\quad<br>
-$$<br>
-在叶 $R_{jmk}$ 上, 我们只更新该类的分数 $F_k\to F_k+\gamma$. 用一维二阶近似:<br>
-$$<br>
-\gamma_{jmk}\approx-\frac{G_{jmk}}{H_{jmk}},\quad G_{jmk}=\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik}),\quad H_{jmk}=\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda<br>
-$$<br>
-因此<br>
-$$<br>
-\gamma_{jmk}\approx-\frac{\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik})}{\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda}.<br>
-$$<br>
-其中 $\lambda$ 为正则项. 更新模型:<br>
-$$<br>
-F_k^{(m)}(x)=F_k^{(m-1)}(x)+\nu\sum_{j=1}^{J_{mk}}\gamma_{jmk}1\lbrace x\in R_{jmk}\rbrace,\quad k=1,2,\cdots,c.<br>
-$$<br>
-最后用 softmax 函数得到概率.</p>
-]]></content>
-      <categories>
-        <category>机器学习与深度学习</category>
-      </categories>
-      <tags>
-        <tag>集成学习</tag>
-        <tag>boosting</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Transformer 架构 —— Attention Is All You Need</title>
     <url>/2025/10/16/transformer-architecture/</url>
     <content><![CDATA[<h1>Transformer — 模型架构</h1>
@@ -572,6 +572,218 @@ $$<br>
       </tags>
   </entry>
   <entry>
+    <title>Carathéodory扩张</title>
+    <url>/2025/09/02/caratheodory/</url>
+    <content><![CDATA[<p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
+<strong>Proof:</strong> 只需证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致.<br>
+<strong>(Step1.)</strong> 先证明 $\mu^{\ast}$ 在 $\mathscr F_0$ 上与 $\mu$ 一致, 即证 $\forall A\in\mathscr F_0$, 满足 $\mu^{\ast}(A)=\mu(A)$. 注意到</p>
+<p>$$<br>
+\mu^{\ast}(A) = \inf\Bigl\lbrace\sum_n\mu(A_n): A_n\in\mathscr{F}_0,~ \bigcup_n A_n\supset A \Bigr\rbrace.<br>
+$$</p>
+<p>而 $A\cup\varnothing\cup\varnothing\cup\cdots\supset A$, 因此<br>
+$$<br>
+\mu^{\ast}(A)\le \mu(A)+\mu(\varnothing)+\mu(\varnothing)+\cdots=\mu(A).<br>
+$$<br>
+另一方面, 若 $\mu^{\ast}(A)&lt;+\infty$, 则对 $\forall\varepsilon&gt;0, ~\exists~A_n\in\mathscr F_0$, 使得 $\bigcup\limits_nA_n\supset A$, 且<br>
+$$<br>
+\sum_n\mu(A_n)&lt;\mu^{\ast}(A)+\varepsilon.<br>
+$$<br>
+由 $\mu$ 的可列可加性和单调性知<br>
+$$<br>
+% \begin{aligned}<br>
+% \mu(A) &amp;\le \mu\left(\bigcup_{n} A_n\right) \<br>
+%        &amp;= \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \<br>
+%        &amp;= \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \<br>
+%        &amp;\le \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+% \end{aligned}<br>
+\begin{array}{rcl}<br>
+\mu(A) &amp;\le&amp; \mu\left(\bigcup_{n} A_n\right) \\<br>
+&amp;=&amp; \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \\<br>
+&amp;=&amp; \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \\<br>
+&amp;\le&amp; \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+\end{array}<br>
+$$<br>
+再由 $\varepsilon$ 的任意性可知 $\mu(A)\le\mu^{\ast}(A)$. 综上, $\mu(A)=\mu^{\ast}(A)$.<br>
+<strong>(Step2.)</strong> 再证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度, 只需证明 $\mathscr F=\sigma(\mathscr F_0)\subset\mathscr M$, 其中 $\mathscr M$ 是 $\mu^{\ast}$ 可测子集全体构成的 $\sigma$ 代数.</p>
+<blockquote>
+<p>见“$(\Omega,\mathscr M,\mu^{\ast})$ 是完备测度空间”</p>
+</blockquote>
+<p>对 $\forall A\in\mathscr F_0$, 要证明 $A\in\mathscr M$. 对 $\forall E\subset\Omega$, 不妨设 $\mu^{\ast}(E)&lt;\infty$, 则对 $\forall \varepsilon&gt;0$, 存在子集列 ${A_n}\subset\mathscr F_0$ 满足 $\cup_nA_n\supset E$ 且 $\sum\limits_n\mu(A_n)&lt;\mu^{\ast}(E)+\varepsilon$, 因而<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)&amp;\le\mu^{\ast}\left(\bigcup_n(A_n\cap A)\right)+\mu^{\ast}\left(\bigcup_n(A_n\cap A^c)\right)\\<br>
+(\text{外测度的次可列可加性})~&amp;\le\sum_n\left[\mu^{\ast}(A_n\cap A)+\mu^{\ast}(A_n\cap A^c)\right]\\<br>
+(\text{Step1.})~&amp;=\sum_n\left[\mu(A_n\cap A)+\mu(A_n\cap A^c)\right]\\<br>
+(\text{预测度的可列可加性})~&amp;=\sum_n\mu(A_n)\\<br>
+&amp;&lt;\mu^{\ast}(E)+\varepsilon<br>
+\end{aligned}<br>
+$$<br>
+由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
+综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单调收敛定理</title>
+    <url>/2025/09/02/post-20250902-2e2bd7/</url>
+    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
+$$<br>
+\mu(f)=\lim\limits_n\mu(f_n)<br>
+$$<br>
+<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
+$$<br>
+A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
+$$<br>
+满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
+$$<br>
+\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
+$$<br>
+因为 $g$ 是简单的, 故<br>
+$$<br>
+\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
+$$<br>
+由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
+$$<br>
+\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
+$$<br>
+可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
+$$<br>
+\lim\limits_n\mu(f_n)=\mu(f).<br>
+$$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>$(&#92;Omega,&#92;mathscr M,&#92;mu^{&#92;ast} )$ 是完备测度空间</title>
+    <url>/2025/09/09/omega-mathscr-m-mu-ast/</url>
+    <content><![CDATA[<p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
+<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
+<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+<ul>
+<li>
+<p>$\mathscr M$ 非空.<br>
+事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
+&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
+&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
+\end{aligned}<br>
+$$<br>
+即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于补集运算封闭.<br>
+事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
+\end{aligned}<br>
+$$<br>
+即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于可列并封闭.</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
+设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
+&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
+\end{aligned}<br>
+$$<br>
+即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
+</li>
+<li>
+<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
+设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
+$$<br>
+S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
+$$</p>
+<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
+&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\cdots\cdots\\<br>
+&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>令 $n\to\infty$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+</li>
+<li>
+<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+<ul>
+<li>
+<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
+</li>
+<li>
+<p>$\mu^{\ast} $ 满足可列可加性.<br>
+由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
+$$<br>
+\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
+$$<br>
+令 $E=\Omega$, 得<br>
+$$<br>
+\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
+$$<br>
+从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
+</li>
+</ul>
+<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+</li>
+</ul>
+<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
+<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>分离变量法</title>
     <url>/2025/09/03/2-1/</url>
     <content><![CDATA[<p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
@@ -681,6 +893,64 @@ $$<br>
       </tags>
   </entry>
   <entry>
+    <title>参数法</title>
+    <url>/2025/09/03/2-4/</url>
+    <content><![CDATA[<p><strong>[T020401]</strong> 求微分方程的通解 $y’^2=4y^3(1-y)$.</p>
+<p><strong>解</strong> 将方程化为 $y’=\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1/2}=\pm x+c$, 从而原方程的通解为 $y=\frac{1}{1+(\mp x+c)^2}$, 其中 $c$ 为任意常数. 此外, $y=0$ 和 $y=1$ 也是方程的解.</p>
+<hr>
+<p><strong>[T020402]</strong> 求微分方程的通解 $y’^3+y^3-3yy’=0$.</p>
+<p><strong>解</strong> 令 $y’=p, \ y=pt$, 其中 $p,t$ 都是参数, 则 $p^3+p^3t^3-3p^2t=0$. 当 $p\neq0$ 时,<br>
+$$<br>
+p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}<br>
+$$<br>
+(此时 $t\neq 0,-1$, 否则 $p=0$) 从而 $y=\frac{3t^2}{1+t^3}$. 注意到<br>
+$$<br>
+\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt<br>
+$$<br>
+两边积分可得 $x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c$, 故原方程的通解为<br>
+$$<br>
+\begin{cases}<br>
+x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\<br>
+y=\frac{3t^2}{1+t^3}<br>
+\end{cases}<br>
+$$<br>
+其中 $c$ 为任意常数.</p>
+<p>当 $p=0$ 时, $y=0$ 也是方程的解.</p>
+<hr>
+<p><strong>[T020403]</strong> 求微分方程的通解 $y’^3+y’^2-y’+1=0$.</p>
+<p><strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 $y’=a \ (\neq0)$, 则 $y=ax+c$ 为原方程的解, 从而 $a=\frac{y-c}{x}$, 于是 $y’=\frac{y-c}{x}$, 故方程的通解为<br>
+$$<br>
+\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.<br>
+$$</p>
+<hr>
+<p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
+<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.</p>
+<p><strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
+$$<br>
+\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+<p><strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
+$$<br>
+\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+<p><strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
+$$<br>
+\mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
+$$<br>
+故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>初等积分法</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Picard 存在唯一性定理</title>
     <url>/2025/09/03/3-1picard/</url>
     <content><![CDATA[<p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
@@ -726,6 +996,62 @@ $$<br>
 |y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
 $$<br>
 这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>定解问题与适定性</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>不动点定理与解的存在性</title>
+    <url>/2025/09/03/3-2/</url>
+    <content><![CDATA[<p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
+<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
+$$<br>
+T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
+$$<br>
+在 $X$ 上引入距离<br>
+$$<br>
+\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
+$$<br>
+注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
+$$<br>
+\begin{aligned}<br>
+\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
+&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
+&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
+&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
+\end{aligned}<br>
+$$<br>
+由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
+<hr>
+<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
+<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
+$$<br>
+||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
+$$<br>
+在 $\mathbb{R}^n$ 上定义距离<br>
+$$<br>
+\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
+$$<br>
+在 $\mathbb{R}^n$ 上定义映射<br>
+$$<br>
+T:\quad Tx=b+(I_n-A)x.<br>
+$$<br>
+则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
+&amp;=||(I_n-A)(x_1-x_2)||\\<br>
+&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
+&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
+\end{aligned}<br>
+$$<br>
+注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
 ]]></content>
       <categories>
         <category>数学</category>
@@ -809,120 +1135,6 @@ $$<br>
         <category>数学</category>
         <category>常微分方程</category>
         <category>定解问题与适定性</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>不动点定理与解的存在性</title>
-    <url>/2025/09/03/3-2/</url>
-    <content><![CDATA[<p><strong>[T030201]</strong> 利用压缩映象原理证明: 当 $|\lambda|$ 充分小时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解, 这里 $F(x,t)$ 在 $a\le x,t\le b$ 上连续.</p>
-<p><strong>证</strong> 用 $X$ 表示区间 $[a,b]$ 上所有连续函数组成的空间, 在 $X$ 内定义映射<br>
-$$<br>
-T:\quad(T\varphi)(x)=\lambda\int_a^bF(x,t)\varphi(t)\mathrm{~d}t, \quad \forall\varphi\in X.<br>
-$$<br>
-在 $X$ 上引入距离<br>
-$$<br>
-\rho(\varphi_1,\varphi_2):=\max\limits_{x\in[a,b]}|\varphi_1(x)-\varphi_2(x)|,\quad \forall\varphi_1,\varphi_2\in X.<br>
-$$<br>
-注意到 $F(x,t)$ 在有界闭域 $[a,b]\times[a,b]$ 上连续, 故存在 $M&gt;0$, 对任意 $(x,t)\in[a,b]^2$, 都有 $|F(x,t)|\le M$. 于是<br>
-$$<br>
-\begin{aligned}<br>
-\rho(T\varphi_1,T\varphi_2)&amp;=\max\limits_{x\in[a,b]}\left|\lambda\int_a^bF(x,t)\left(\varphi_1(t)-\varphi_2(t)\right)\mathrm{~d}t\right|\\<br>
-&amp;\le M|\lambda|\int_a^b|\varphi_1(t)-\varphi_2(t)|\mathrm{~d}t\\<br>
-&amp;\le M|\lambda|(b-a)\cdot\max\limits_{t\in[a,b]}|\varphi_1(t)-\varphi_2(t)|\\<br>
-&amp;=M|\lambda|(b-a)\cdot\rho(\varphi_1,\varphi_2)<br>
-\end{aligned}<br>
-$$<br>
-由压缩映象原理, 当 $0\le M|\lambda|(b-a)&lt;1$ 即 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, $T$ 在 $X$ 中存在唯一的函数 $\varphi_0(x)$, 使得 $T\varphi_0=\varphi_0$, 即当 $0\le |\lambda|&lt;\frac{1}{M(b-a)}$ 时, 积分方程 $\varphi(x)=\lambda\displaystyle\int_a^b F(x,t)\varphi(t)\mathrm dt$ 存在唯一解 $\varphi_0(x)$.</p>
-<hr>
-<p><strong>[T030202]</strong> 利用压缩映象原理讨论线性方程组 $Ax=b$ 有唯一解的条件.</p>
-<p><strong>解</strong> 记 $\mathbb{R}^n$ 为 $n$ 维列向量空间. 定义 $||x||$ 为 $\mathbb{R}^n$ 上的向量范数, $||A||$ 为矩阵 $A_{n\times n}$ 的算子范数, 满足<br>
-$$<br>
-||A||=\max\limits_{0\neq x\in\mathbb{R}^n}\frac{||Ax||}{||x||}.<br>
-$$<br>
-在 $\mathbb{R}^n$ 上定义距离<br>
-$$<br>
-\rho(x_1,x_2):=||x_1-x_2||, \quad \forall x_1,x_2\in\mathbb{R}^n.<br>
-$$<br>
-在 $\mathbb{R}^n$ 上定义映射<br>
-$$<br>
-T:\quad Tx=b+(I_n-A)x.<br>
-$$<br>
-则对任意的 $x_1,x_2\in\mathbb{R}^n$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\rho(Tx_1,Tx_2)&amp;=\left|\left|\left(b+(I_n-A)x_1\right)-\left(b+(I_n-A)x_2\right)\right|\right|\\<br>
-&amp;=||(I_n-A)(x_1-x_2)||\\<br>
-&amp;\le||I_n-A||\cdot||x_1-x_2||\\<br>
-&amp;=||I_n-A||\cdot\rho(x_1,x_2)<br>
-\end{aligned}<br>
-$$<br>
-注意到 $Ax=b$ 有唯一解等价于 $x=b+(I_n-A)x$ 有唯一解. 由压缩映像原理, 要使 $x=b+(I_n-A)x$ 有唯一解, 只需 $||I_n-A||&lt;1$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>定解问题与适定性</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>参数法</title>
-    <url>/2025/09/03/2-4/</url>
-    <content><![CDATA[<p><strong>[T020401]</strong> 求微分方程的通解 $y’^2=4y^3(1-y)$.</p>
-<p><strong>解</strong> 将方程化为 $y’=\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1/2}=\pm x+c$, 从而原方程的通解为 $y=\frac{1}{1+(\mp x+c)^2}$, 其中 $c$ 为任意常数. 此外, $y=0$ 和 $y=1$ 也是方程的解.</p>
-<hr>
-<p><strong>[T020402]</strong> 求微分方程的通解 $y’^3+y^3-3yy’=0$.</p>
-<p><strong>解</strong> 令 $y’=p, \ y=pt$, 其中 $p,t$ 都是参数, 则 $p^3+p^3t^3-3p^2t=0$. 当 $p\neq0$ 时,<br>
-$$<br>
-p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}<br>
-$$<br>
-(此时 $t\neq 0,-1$, 否则 $p=0$) 从而 $y=\frac{3t^2}{1+t^3}$. 注意到<br>
-$$<br>
-\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt<br>
-$$<br>
-两边积分可得 $x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c$, 故原方程的通解为<br>
-$$<br>
-\begin{cases}<br>
-x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\<br>
-y=\frac{3t^2}{1+t^3}<br>
-\end{cases}<br>
-$$<br>
-其中 $c$ 为任意常数.</p>
-<p>当 $p=0$ 时, $y=0$ 也是方程的解.</p>
-<hr>
-<p><strong>[T020403]</strong> 求微分方程的通解 $y’^3+y’^2-y’+1=0$.</p>
-<p><strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 $y’=a \ (\neq0)$, 则 $y=ax+c$ 为原方程的解, 从而 $a=\frac{y-c}{x}$, 于是 $y’=\frac{y-c}{x}$, 故方程的通解为<br>
-$$<br>
-\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.<br>
-$$</p>
-<hr>
-<p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
-<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.</p>
-<p><strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
-$$<br>
-\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
-$$<br>
-\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
-$$<br>
-\mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>初等积分法</category>
       </categories>
       <tags>
         <tag>常微分方程</tag>
@@ -1261,557 +1473,6 @@ $$</p>
       </tags>
   </entry>
   <entry>
-    <title>单调收敛定理</title>
-    <url>/2025/09/02/post-20250902-2e2bd7/</url>
-    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
-$$<br>
-\mu(f)=\lim\limits_n\mu(f_n)<br>
-$$<br>
-<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
-$$<br>
-A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
-$$<br>
-满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
-$$<br>
-\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
-$$<br>
-因为 $g$ 是简单的, 故<br>
-$$<br>
-\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
-$$<br>
-由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
-$$<br>
-\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
-$$<br>
-可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
-$$<br>
-\lim\limits_n\mu(f_n)=\mu(f).<br>
-$$</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Carathéodory扩张</title>
-    <url>/2025/09/02/caratheodory/</url>
-    <content><![CDATA[<p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
-<strong>Proof:</strong> 只需证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致.<br>
-<strong>(Step1.)</strong> 先证明 $\mu^{\ast}$ 在 $\mathscr F_0$ 上与 $\mu$ 一致, 即证 $\forall A\in\mathscr F_0$, 满足 $\mu^{\ast}(A)=\mu(A)$. 注意到</p>
-<p>$$<br>
-\mu^{\ast}(A) = \inf\Bigl\lbrace\sum_n\mu(A_n): A_n\in\mathscr{F}_0,~ \bigcup_n A_n\supset A \Bigr\rbrace.<br>
-$$</p>
-<p>而 $A\cup\varnothing\cup\varnothing\cup\cdots\supset A$, 因此<br>
-$$<br>
-\mu^{\ast}(A)\le \mu(A)+\mu(\varnothing)+\mu(\varnothing)+\cdots=\mu(A).<br>
-$$<br>
-另一方面, 若 $\mu^{\ast}(A)&lt;+\infty$, 则对 $\forall\varepsilon&gt;0, ~\exists~A_n\in\mathscr F_0$, 使得 $\bigcup\limits_nA_n\supset A$, 且<br>
-$$<br>
-\sum_n\mu(A_n)&lt;\mu^{\ast}(A)+\varepsilon.<br>
-$$<br>
-由 $\mu$ 的可列可加性和单调性知<br>
-$$<br>
-% \begin{aligned}<br>
-% \mu(A) &amp;\le \mu\left(\bigcup_{n} A_n\right) \<br>
-%        &amp;= \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \<br>
-%        &amp;= \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \<br>
-%        &amp;\le \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
-% \end{aligned}<br>
-\begin{array}{rcl}<br>
-\mu(A) &amp;\le&amp; \mu\left(\bigcup_{n} A_n\right) \\<br>
-&amp;=&amp; \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \\<br>
-&amp;=&amp; \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \\<br>
-&amp;\le&amp; \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
-\end{array}<br>
-$$<br>
-再由 $\varepsilon$ 的任意性可知 $\mu(A)\le\mu^{\ast}(A)$. 综上, $\mu(A)=\mu^{\ast}(A)$.<br>
-<strong>(Step2.)</strong> 再证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度, 只需证明 $\mathscr F=\sigma(\mathscr F_0)\subset\mathscr M$, 其中 $\mathscr M$ 是 $\mu^{\ast}$ 可测子集全体构成的 $\sigma$ 代数.</p>
-<blockquote>
-<p>见“$(\Omega,\mathscr M,\mu^{\ast})$ 是完备测度空间”</p>
-</blockquote>
-<p>对 $\forall A\in\mathscr F_0$, 要证明 $A\in\mathscr M$. 对 $\forall E\subset\Omega$, 不妨设 $\mu^{\ast}(E)&lt;\infty$, 则对 $\forall \varepsilon&gt;0$, 存在子集列 ${A_n}\subset\mathscr F_0$ 满足 $\cup_nA_n\supset E$ 且 $\sum\limits_n\mu(A_n)&lt;\mu^{\ast}(E)+\varepsilon$, 因而<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)&amp;\le\mu^{\ast}\left(\bigcup_n(A_n\cap A)\right)+\mu^{\ast}\left(\bigcup_n(A_n\cap A^c)\right)\\<br>
-(\text{外测度的次可列可加性})~&amp;\le\sum_n\left[\mu^{\ast}(A_n\cap A)+\mu^{\ast}(A_n\cap A^c)\right]\\<br>
-(\text{Step1.})~&amp;=\sum_n\left[\mu(A_n\cap A)+\mu(A_n\cap A^c)\right]\\<br>
-(\text{预测度的可列可加性})~&amp;=\sum_n\mu(A_n)\\<br>
-&amp;&lt;\mu^{\ast}(E)+\varepsilon<br>
-\end{aligned}<br>
-$$<br>
-由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
-综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>组合两张表</title>
-    <url>/2025/09/05/175/</url>
-    <content><![CDATA[<p><strong>[leetcode 175]</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>personId 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
-<p>表: Address</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
-<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code> 。<br>
-以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p>示例 1:</p>
-<p>输入:<br>
-Person表:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br></pre></td></tr></table></figure>
-<p>Address表:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
-<p>输出:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| firstName | lastName | city          | state    |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| Allen     | Wang     | Null          | Null     |</span><br><span class="line">| Bob       | Alice    | New York City | New York |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br></pre></td></tr></table></figure>
-<p>解释:<br>
-地址表中没有 <code>personId = 1</code> 的地址，所以它们的城市和州返回 <code>null</code>。<code>addressId = 1</code> 包含了 <code>personId = 2</code> 的地址信息。</p>
-<p><strong>解：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on = <span class="string">&#x27;personId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-<p>此题主要考察“左连接”。</p>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第二高的薪水</title>
-    <url>/2025/09/05/176/</url>
-    <content><![CDATA[<p><strong>题目描述：</strong> <code>Employee</code> 表：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是这个表的主键。表的每一行包含员工的工资信息。查询并返回 Employee 表中第二高的不同薪水 。如果不存在第二高的薪水，查询应该返回 <code>null</code>(Pandas 则返回 <code>None</code>) 。查询结果如下例所示。</p>
-<ul>
-<li>示例 1：<br>
-输入：<br>
-<code>Employee</code> 表：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">| 2  | 200    |</span><br><span class="line">| 3  | 300    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| 200                 |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
-<ul>
-<li>示例 2：<br>
-输入：<br>
-<code>Employee</code> 表：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| null                |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">second_highest_salary</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;SecondHighestSalary&#x27;</span> : out&#125;)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第n高的薪水</title>
-    <url>/2025/09/05/177-n/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: Employee</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 n 高的 不同 工资。如果少于 n 个不同工资，查询结果应该为 null 。</p>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N-<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分数排名</title>
-    <url>/2025/09/05/178/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: Scores</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>Score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。排名按以下规则计算:</p>
-<ul>
-<li>分数应按从高到低排列。</li>
-<li>如果两个分数相等，那么两个分数的排名应该相同。</li>
-<li>在排名相同的分数后，排名数应该是下一个连续的整数。换句话说，排名之间不应该有空缺的数字。</li>
-</ul>
-<p>按 score 降序返回结果表。查询结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<p>输入:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Scores 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | score |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | 3.50  |</span><br><span class="line">| 2  | 3.65  |</span><br><span class="line">| 3  | 4.00  |</span><br><span class="line">| 4  | 3.85  |</span><br><span class="line">| 5  | 4.00  |</span><br><span class="line">| 6  | 3.65  |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+-------+------+</span><br><span class="line">| score | rank |</span><br><span class="line">+-------+------+</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 3.85  | 2    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.50  | 4    |</span><br><span class="line">+-------+------+</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method = <span class="string">&#x27;dense&#x27;</span>, ascending = <span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>连续出现的数</title>
-    <url>/2025/09/05/180/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表：<code>Logs</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。返回的结果表中的数据可以按任意顺序排列。结果格式如下面的例子所示：</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Logs 表：</span><br><span class="line">+----+-----+</span><br><span class="line">| id | num |</span><br><span class="line">+----+-----+</span><br><span class="line">| 1  | 1   |</span><br><span class="line">| 2  | 1   |</span><br><span class="line">| 3  | 1   |</span><br><span class="line">| 4  | 2   |</span><br><span class="line">| 5  | 1   |</span><br><span class="line">| 6  | 2   |</span><br><span class="line">| 7  | 2   |</span><br><span class="line">+----+-----+</span><br><span class="line">输出：</span><br><span class="line">Result 表：</span><br><span class="line">+-----------------+</span><br><span class="line">| ConsecutiveNums |</span><br><span class="line">+-----------------+</span><br><span class="line">| 1               |</span><br><span class="line">+-----------------+</span><br><span class="line">解释：1 是唯一连续出现至少三次的数字。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(180)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>超过经理收入的员工</title>
-    <url>/2025/09/05/181/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表：Employee</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（具有唯一值的列）。该表的每一行都表示雇员的ID、姓名、工资和经理的ID。编写解决方案，找出收入比经理高的员工。以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| id | name  | salary | managerId |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| 1  | Joe   | 70000  | 3         |</span><br><span class="line">| 2  | Henry | 80000  | 4         |</span><br><span class="line">| 3  | Sam   | 60000  | Null      |</span><br><span class="line">| 4  | Max   | 90000  | Null      |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">输出: </span><br><span class="line">+----------+</span><br><span class="line">| Employee |</span><br><span class="line">+----------+</span><br><span class="line">| Joe      |</span><br><span class="line">+----------+</span><br><span class="line">解释: Joe 是唯一挣得比经理多的雇员。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on = <span class="string">&#x27;managerId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(181)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>查找重复的电子邮箱</title>
-    <url>/2025/09/05/182/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（具有唯一值的列）。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。</p>
-<p>编写解决方案来报告所有重复的电子邮件。 请注意，可以保证电子邮件字段不为 NULL。以任意顺序返回结果表。</p>
-<p>结果格式如下例。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+---------+</span><br><span class="line">| id | email   |</span><br><span class="line">+----+---------+</span><br><span class="line">| 1  | a@b.com |</span><br><span class="line">| 2  | c@d.com |</span><br><span class="line">| 3  | a@b.com |</span><br><span class="line">+----+---------+</span><br><span class="line">输出: </span><br><span class="line">+---------+</span><br><span class="line">| Email   |</span><br><span class="line">+---------+</span><br><span class="line">| a@b.com |</span><br><span class="line">+---------+</span><br><span class="line">解释: a@b.com 出现了两次。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<p>解法一：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>]&gt;=<span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
-<p>解法二：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name = <span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自leetcode(182)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从不订购的客户</title>
-    <url>/2025/09/05/183/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> Customers 表：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 SQL 中，<code>id</code> 是该表的主键。该表的每一行都表示客户的 <code>ID</code> 和名称。</p>
-<p>Orders 表：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| customerId  | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p>在 <code>SQL</code> 中，<code>id </code>是该表的主键。<code>customerId</code> 是 <code>Customers</code> 表中 <code>ID</code> 的外键( <code>Pandas</code> 中的连接键)。该表的每一行都表示订单的 ID 和订购该订单的客户的 <code>ID</code>。</p>
-<p>找出所有从不点任何东西的顾客。以任意顺序返回结果表。</p>
-<p>结果格式如下所示。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Customers table:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | Joe   |</span><br><span class="line">| 2  | Henry |</span><br><span class="line">| 3  | Sam   |</span><br><span class="line">| 4  | Max   |</span><br><span class="line">+----+-------+</span><br><span class="line">Orders table:</span><br><span class="line">+----+------------+</span><br><span class="line">| id | customerId |</span><br><span class="line">+----+------------+</span><br><span class="line">| 1  | 3          |</span><br><span class="line">| 2  | 1          |</span><br><span class="line">+----+------------+</span><br><span class="line">输出：</span><br><span class="line">+-----------+</span><br><span class="line">| Customers |</span><br><span class="line">+-----------+</span><br><span class="line">| Henry     |</span><br><span class="line">| Max       |</span><br><span class="line">+-----------+</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = customers.merge(orders[[<span class="string">&#x27;customerId&#x27;</span>]], left_on = <span class="string">&#x27;id&#x27;</span>, right_on = <span class="string">&#x27;customerId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_merge.loc[df_merge[<span class="string">&#x27;customerId&#x27;</span>].isna(), [<span class="string">&#x27;name&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Customers&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(183)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>$(&#92;Omega,&#92;mathscr M,&#92;mu^{&#92;ast} )$ 是完备测度空间</title>
-    <url>/2025/09/09/omega-mathscr-m-mu-ast/</url>
-    <content><![CDATA[<p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
-<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
-<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
-<ul>
-<li>
-<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
-<ul>
-<li>
-<p>$\mathscr M$ 非空.<br>
-事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
-&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
-&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
-\end{aligned}<br>
-$$<br>
-即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
-</li>
-<li>
-<p>$\mathscr M$ 对于补集运算封闭.<br>
-事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
-\end{aligned}<br>
-$$<br>
-即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
-</li>
-<li>
-<p>$\mathscr M$ 对于可列并封闭.</p>
-<ul>
-<li>
-<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
-设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
-=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
-&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
-\end{aligned}<br>
-$$<br>
-即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
-</li>
-<li>
-<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
-设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
-$$<br>
-S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
-$$</p>
-<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
-&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\cdots\cdots\\<br>
-&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
-\end{aligned}<br>
-$$</p>
-<p>令 $n\to\infty$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
-\end{aligned}<br>
-$$</p>
-<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
-</li>
-<li>
-<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
-<ul>
-<li>
-<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
-</li>
-<li>
-<p>$\mu^{\ast} $ 满足可列可加性.<br>
-由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
-$$<br>
-\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
-$$<br>
-令 $E=\Omega$, 得<br>
-$$<br>
-\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
-$$<br>
-从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
-</li>
-</ul>
-<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
-</li>
-</ul>
-<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
-<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>部门工资最高的员工</title>
-    <url>/2025/09/05/184/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong><br>
-表： <code>Employee</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| 列名          | 类型    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 <code>SQL</code> 中，<code>id</code>是此表的主键。<br>
-<code>departmentId</code> 是 <code>Department</code> 表中 <code>id</code> 的外键（在 <code>Pandas</code> 中称为 <code>join key</code>）。<br>
-此表的每一行都表示员工的 <code>id</code>、姓名和工资。它还包含他们所在部门的 <code>id</code>。</p>
-<p>表： <code>Department</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 <code>SQL</code> 中，<code>id</code> 是此表的主键列。<br>
-此表的每一行都表示一个部门的 id 及其名称。</p>
-<p>查找出每个部门中薪资最高的员工。<br>
-按 任意顺序 返回结果表。<br>
-查询结果格式如下例所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 70000  | 1            |</span><br><span class="line">| 2  | Jim   | 90000  | 1            |</span><br><span class="line">| 3  | Henry | 80000  | 2            |</span><br><span class="line">| 4  | Sam   | 60000  | 2            |</span><br><span class="line">| 5  | Max   | 90000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出：</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Jim      | 90000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">解释：Max 和 Jim 在 IT 部门的工资都是最高的，Henry 在销售部的工资最高。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>]==max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(department, left_on = <span class="string">&#x27;departmentId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_d&#x27;</span>))[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(184)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>部门工资前三高的所有员工</title>
-    <url>/2025/09/05/185/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: <code>Employee</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-<code>departmentId</code> 是 <code>Department</code> 表中 <code>ID</code> 的外键（<code>reference</code> 列）。<br>
-该表的每一行都表示员工的<code>ID</code>、姓名和工资。它还包含了他们部门的<code>ID</code>。</p>
-<p>表: <code>Department</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-该表的每一行表示部门ID和部门名。</p>
-<p>公司的主管们感兴趣的是公司每个部门中谁赚的钱最多。一个部门的 高收入者 是指一个员工的工资在该部门的 不同 工资中 排名前三 。</p>
-<p>编写解决方案，找出每个部门中 收入高的员工 。</p>
-<p>以 任意顺序 返回结果表。</p>
-<p>返回结果格式如下所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 85000  | 1            |</span><br><span class="line">| 2  | Henry | 80000  | 2            |</span><br><span class="line">| 3  | Sam   | 60000  | 2            |</span><br><span class="line">| 4  | Max   | 90000  | 1            |</span><br><span class="line">| 5  | Janet | 69000  | 1            |</span><br><span class="line">| 6  | Randy | 85000  | 1            |</span><br><span class="line">| 7  | Will  | 70000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department  表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">| IT         | Joe      | 85000  |</span><br><span class="line">| IT         | Randy    | 85000  |</span><br><span class="line">| IT         | Will     | 70000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| Sales      | Sam      | 60000  |</span><br><span class="line">+------------+----------+--------+</span><br></pre></td></tr></table></figure>
-<p><strong>解释:</strong><br>
-在IT部门:</p>
-<ul>
-<li>Max的工资最高</li>
-<li>兰迪和乔都赚取第二高的独特的薪水</li>
-<li>威尔的薪水是第三高的</li>
-</ul>
-<p>在销售部:</p>
-<ul>
-<li>亨利的工资最高</li>
-<li>山姆的薪水第二高</li>
-<li>没有第三高的工资，因为只有两名员工</li>
-</ul>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep&lt;=<span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(department, left_on=<span class="string">&#x27;departmentId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_dep&#x27;</span>))[[<span class="string">&#x27;name_dep&#x27;</span>,<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;salary&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(185)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>删除重复的电子邮箱</title>
-    <url>/2025/09/05/196/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
-该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。</p>
-<p>编写解决方案 删除 所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
-<p>（对于 <code>SQL</code> 用户，请注意你应该编写一个 <code>DELETE</code> 语句而不是 <code>SELECT</code> 语句。）</p>
-<p>（对于 <code>Pandas</code> 用户，请注意你应该直接修改 <code>Person</code> 表。）</p>
-<p>运行脚本后，显示的答案是 <code>Person</code> 表。驱动程序将首先编译并运行您的代码片段，然后再显示 <code>Person</code> <code>表。Person</code> 表的最终顺序 无关紧要 。</p>
-<p>返回结果格式如下示例所示。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">输出: </span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br><span class="line">解释: john@example.com重复两次。我们保留最小的Id = 1。</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(196)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>上升的温度</title>
-    <url>/2025/09/05/197/</url>
-    <content><![CDATA[<p><strong>问题描述：</strong><br>
-表： Weather</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------+---------+</span><br><span class="line">| Column Name   | Type    |</span><br><span class="line">+---------------+---------+</span><br><span class="line">| id            | int     |</span><br><span class="line">| recordDate    | date    |</span><br><span class="line">| temperature   | int     |</span><br><span class="line">+---------------+---------+</span><br></pre></td></tr></table></figure>
-<p>id 是该表具有唯一值的列。<br>
-没有具有相同 recordDate 的不同行。<br>
-该表包含特定日期的温度信息</p>
-<p>编写解决方案，找出与之前（昨天的）日期相比温度更高的所有日期的 id 。</p>
-<p>返回结果 无顺序要求 。</p>
-<p>结果格式如下例子所示。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Weather 表：</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| id | recordDate | Temperature |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| 1  | 2015-01-01 | 10          |</span><br><span class="line">| 2  | 2015-01-02 | 25          |</span><br><span class="line">| 3  | 2015-01-03 | 20          |</span><br><span class="line">| 4  | 2015-01-04 | 30          |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">输出：</span><br><span class="line">+----+</span><br><span class="line">| id |</span><br><span class="line">+----+</span><br><span class="line">| 2  |</span><br><span class="line">| 4  |</span><br><span class="line">+----+</span><br><span class="line">解释：</span><br><span class="line">2015-01-02 的温度比前一天高（10 -&gt; 25）</span><br><span class="line">2015-01-04 的温度比前一天高（20 -&gt; 30）</span><br></pre></td></tr></table></figure>
-<p><strong>解答：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rising_temperature</span>(<span class="params">weather: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    weather.sort_values(<span class="string">&#x27;recordDate&#x27;</span>, inplace = <span class="literal">True</span>)</span><br><span class="line">    weather_diff = weather.diff()</span><br><span class="line">    <span class="keyword">return</span> weather.loc[(weather_diff[<span class="string">&#x27;recordDate&#x27;</span>] == datetime.timedelta(<span class="number">1</span>)) &amp; (weather_diff[<span class="string">&#x27;temperature&#x27;</span>]&gt;<span class="number">0</span>), [<span class="string">&#x27;id&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>来自 leetcode(197)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一阶常系数线性微分方程组</title>
     <url>/2025/09/03/5-2/</url>
     <content><![CDATA[<p><strong>[T050201]</strong> 求方程组 $\begin{cases}x’+y’=y+z\\ y’+z’=z+x\\ z’+x’=x+y\end{cases}$ 的通解.</p>
@@ -2051,6 +1712,345 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>组合两张表</title>
+    <url>/2025/09/05/175/</url>
+    <content><![CDATA[<p><strong>[leetcode 175]</strong> 表: Person</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>personId 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
+<p>表: Address</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
+<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code> 。<br>
+以任意顺序返回结果表。</p>
+<p>结果格式如下所示。</p>
+<p>示例 1:</p>
+<p>输入:<br>
+Person表:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br></pre></td></tr></table></figure>
+<p>Address表:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
+<p>输出:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| firstName | lastName | city          | state    |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br><span class="line">| Allen     | Wang     | Null          | Null     |</span><br><span class="line">| Bob       | Alice    | New York City | New York |</span><br><span class="line">+-----------+----------+---------------+----------+</span><br></pre></td></tr></table></figure>
+<p>解释:<br>
+地址表中没有 <code>personId = 1</code> 的地址，所以它们的城市和州返回 <code>null</code>。<code>addressId = 1</code> 包含了 <code>personId = 2</code> 的地址信息。</p>
+<p><strong>解：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on = <span class="string">&#x27;personId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+<p>此题主要考察“左连接”。</p>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第二高的薪水</title>
+    <url>/2025/09/05/176/</url>
+    <content><![CDATA[<p><strong>题目描述：</strong> <code>Employee</code> 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是这个表的主键。表的每一行包含员工的工资信息。查询并返回 Employee 表中第二高的不同薪水 。如果不存在第二高的薪水，查询应该返回 <code>null</code>(Pandas 则返回 <code>None</code>) 。查询结果如下例所示。</p>
+<ul>
+<li>示例 1：<br>
+输入：<br>
+<code>Employee</code> 表：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">| 2  | 200    |</span><br><span class="line">| 3  | 300    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| 200                 |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
+<ul>
+<li>示例 2：<br>
+输入：<br>
+<code>Employee</code> 表：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">| id | salary |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  | 100    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------------+</span><br><span class="line">| SecondHighestSalary |</span><br><span class="line">+---------------------+</span><br><span class="line">| null                |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">second_highest_salary</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;SecondHighestSalary&#x27;</span> : out&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第n高的薪水</title>
+    <url>/2025/09/05/177-n/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: Employee</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 n 高的 不同 工资。如果少于 n 个不同工资，查询结果应该为 null 。</p>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending = <span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N-<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分数排名</title>
+    <url>/2025/09/05/178/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: Scores</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>Score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。排名按以下规则计算:</p>
+<ul>
+<li>分数应按从高到低排列。</li>
+<li>如果两个分数相等，那么两个分数的排名应该相同。</li>
+<li>在排名相同的分数后，排名数应该是下一个连续的整数。换句话说，排名之间不应该有空缺的数字。</li>
+</ul>
+<p>按 score 降序返回结果表。查询结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<p>输入:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Scores 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | score |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | 3.50  |</span><br><span class="line">| 2  | 3.65  |</span><br><span class="line">| 3  | 4.00  |</span><br><span class="line">| 4  | 3.85  |</span><br><span class="line">| 5  | 4.00  |</span><br><span class="line">| 6  | 3.65  |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+-------+------+</span><br><span class="line">| score | rank |</span><br><span class="line">+-------+------+</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 4.00  | 1    |</span><br><span class="line">| 3.85  | 2    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.65  | 3    |</span><br><span class="line">| 3.50  | 4    |</span><br><span class="line">+-------+------+</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method = <span class="string">&#x27;dense&#x27;</span>, ascending = <span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>连续出现的数</title>
+    <url>/2025/09/05/180/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表：<code>Logs</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。返回的结果表中的数据可以按任意顺序排列。结果格式如下面的例子所示：</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Logs 表：</span><br><span class="line">+----+-----+</span><br><span class="line">| id | num |</span><br><span class="line">+----+-----+</span><br><span class="line">| 1  | 1   |</span><br><span class="line">| 2  | 1   |</span><br><span class="line">| 3  | 1   |</span><br><span class="line">| 4  | 2   |</span><br><span class="line">| 5  | 1   |</span><br><span class="line">| 6  | 2   |</span><br><span class="line">| 7  | 2   |</span><br><span class="line">+----+-----+</span><br><span class="line">输出：</span><br><span class="line">Result 表：</span><br><span class="line">+-----------------+</span><br><span class="line">| ConsecutiveNums |</span><br><span class="line">+-----------------+</span><br><span class="line">| 1               |</span><br><span class="line">+-----------------+</span><br><span class="line">解释：1 是唯一连续出现至少三次的数字。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(180)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>超过经理收入的员工</title>
+    <url>/2025/09/05/181/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表：Employee</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（具有唯一值的列）。该表的每一行都表示雇员的ID、姓名、工资和经理的ID。编写解决方案，找出收入比经理高的员工。以任意顺序返回结果表。</p>
+<p>结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| id | name  | salary | managerId |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">| 1  | Joe   | 70000  | 3         |</span><br><span class="line">| 2  | Henry | 80000  | 4         |</span><br><span class="line">| 3  | Sam   | 60000  | Null      |</span><br><span class="line">| 4  | Max   | 90000  | Null      |</span><br><span class="line">+----+-------+--------+-----------+</span><br><span class="line">输出: </span><br><span class="line">+----------+</span><br><span class="line">| Employee |</span><br><span class="line">+----------+</span><br><span class="line">| Joe      |</span><br><span class="line">+----------+</span><br><span class="line">解释: Joe 是唯一挣得比经理多的雇员。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on = <span class="string">&#x27;managerId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(181)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查找重复的电子邮箱</title>
+    <url>/2025/09/05/182/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（具有唯一值的列）。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。</p>
+<p>编写解决方案来报告所有重复的电子邮件。 请注意，可以保证电子邮件字段不为 NULL。以任意顺序返回结果表。</p>
+<p>结果格式如下例。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+---------+</span><br><span class="line">| id | email   |</span><br><span class="line">+----+---------+</span><br><span class="line">| 1  | a@b.com |</span><br><span class="line">| 2  | c@d.com |</span><br><span class="line">| 3  | a@b.com |</span><br><span class="line">+----+---------+</span><br><span class="line">输出: </span><br><span class="line">+---------+</span><br><span class="line">| Email   |</span><br><span class="line">+---------+</span><br><span class="line">| a@b.com |</span><br><span class="line">+---------+</span><br><span class="line">解释: a@b.com 出现了两次。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<p>解法一：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>]&gt;=<span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
+<p>解法二：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name = <span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自leetcode(182)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从不订购的客户</title>
+    <url>/2025/09/05/183/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> Customers 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 SQL 中，<code>id</code> 是该表的主键。该表的每一行都表示客户的 <code>ID</code> 和名称。</p>
+<p>Orders 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| customerId  | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p>在 <code>SQL</code> 中，<code>id </code>是该表的主键。<code>customerId</code> 是 <code>Customers</code> 表中 <code>ID</code> 的外键( <code>Pandas</code> 中的连接键)。该表的每一行都表示订单的 ID 和订购该订单的客户的 <code>ID</code>。</p>
+<p>找出所有从不点任何东西的顾客。以任意顺序返回结果表。</p>
+<p>结果格式如下所示。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Customers table:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | Joe   |</span><br><span class="line">| 2  | Henry |</span><br><span class="line">| 3  | Sam   |</span><br><span class="line">| 4  | Max   |</span><br><span class="line">+----+-------+</span><br><span class="line">Orders table:</span><br><span class="line">+----+------------+</span><br><span class="line">| id | customerId |</span><br><span class="line">+----+------------+</span><br><span class="line">| 1  | 3          |</span><br><span class="line">| 2  | 1          |</span><br><span class="line">+----+------------+</span><br><span class="line">输出：</span><br><span class="line">+-----------+</span><br><span class="line">| Customers |</span><br><span class="line">+-----------+</span><br><span class="line">| Henry     |</span><br><span class="line">| Max       |</span><br><span class="line">+-----------+</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = customers.merge(orders[[<span class="string">&#x27;customerId&#x27;</span>]], left_on = <span class="string">&#x27;id&#x27;</span>, right_on = <span class="string">&#x27;customerId&#x27;</span>, how = <span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_merge.loc[df_merge[<span class="string">&#x27;customerId&#x27;</span>].isna(), [<span class="string">&#x27;name&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Customers&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(183)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>部门工资最高的员工</title>
+    <url>/2025/09/05/184/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong><br>
+表： <code>Employee</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| 列名          | 类型    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 <code>SQL</code> 中，<code>id</code>是此表的主键。<br>
+<code>departmentId</code> 是 <code>Department</code> 表中 <code>id</code> 的外键（在 <code>Pandas</code> 中称为 <code>join key</code>）。<br>
+此表的每一行都表示员工的 <code>id</code>、姓名和工资。它还包含他们所在部门的 <code>id</code>。</p>
+<p>表： <code>Department</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 <code>SQL</code> 中，<code>id</code> 是此表的主键列。<br>
+此表的每一行都表示一个部门的 id 及其名称。</p>
+<p>查找出每个部门中薪资最高的员工。<br>
+按 任意顺序 返回结果表。<br>
+查询结果格式如下例所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 70000  | 1            |</span><br><span class="line">| 2  | Jim   | 90000  | 1            |</span><br><span class="line">| 3  | Henry | 80000  | 2            |</span><br><span class="line">| 4  | Sam   | 60000  | 2            |</span><br><span class="line">| 5  | Max   | 90000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department 表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出：</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Jim      | 90000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">解释：Max 和 Jim 在 IT 部门的工资都是最高的，Henry 在销售部的工资最高。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>]==max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(department, left_on = <span class="string">&#x27;departmentId&#x27;</span>, right_on = <span class="string">&#x27;id&#x27;</span>, suffixes = (<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_d&#x27;</span>))[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(columns = &#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(184)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>部门工资前三高的所有员工</title>
+    <url>/2025/09/05/185/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: <code>Employee</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+<code>departmentId</code> 是 <code>Department</code> 表中 <code>ID</code> 的外键（<code>reference</code> 列）。<br>
+该表的每一行都表示员工的<code>ID</code>、姓名和工资。它还包含了他们部门的<code>ID</code>。</p>
+<p>表: <code>Department</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+该表的每一行表示部门ID和部门名。</p>
+<p>公司的主管们感兴趣的是公司每个部门中谁赚的钱最多。一个部门的 高收入者 是指一个员工的工资在该部门的 不同 工资中 排名前三 。</p>
+<p>编写解决方案，找出每个部门中 收入高的员工 。</p>
+<p>以 任意顺序 返回结果表。</p>
+<p>返回结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Employee 表:</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| id | name  | salary | departmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 85000  | 1            |</span><br><span class="line">| 2  | Henry | 80000  | 2            |</span><br><span class="line">| 3  | Sam   | 60000  | 2            |</span><br><span class="line">| 4  | Max   | 90000  | 1            |</span><br><span class="line">| 5  | Janet | 69000  | 1            |</span><br><span class="line">| 6  | Randy | 85000  | 1            |</span><br><span class="line">| 7  | Will  | 70000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">Department  表:</span><br><span class="line">+----+-------+</span><br><span class="line">| id | name  |</span><br><span class="line">+----+-------+</span><br><span class="line">| 1  | IT    |</span><br><span class="line">| 2  | Sales |</span><br><span class="line">+----+-------+</span><br><span class="line">输出: </span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| Department | Employee | Salary |</span><br><span class="line">+------------+----------+--------+</span><br><span class="line">| IT         | Max      | 90000  |</span><br><span class="line">| IT         | Joe      | 85000  |</span><br><span class="line">| IT         | Randy    | 85000  |</span><br><span class="line">| IT         | Will     | 70000  |</span><br><span class="line">| Sales      | Henry    | 80000  |</span><br><span class="line">| Sales      | Sam      | 60000  |</span><br><span class="line">+------------+----------+--------+</span><br></pre></td></tr></table></figure>
+<p><strong>解释:</strong><br>
+在IT部门:</p>
+<ul>
+<li>Max的工资最高</li>
+<li>兰迪和乔都赚取第二高的独特的薪水</li>
+<li>威尔的薪水是第三高的</li>
+</ul>
+<p>在销售部:</p>
+<ul>
+<li>亨利的工资最高</li>
+<li>山姆的薪水第二高</li>
+<li>没有第三高的工资，因为只有两名员工</li>
+</ul>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep&lt;=<span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(department, left_on=<span class="string">&#x27;departmentId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;_dep&#x27;</span>))[[<span class="string">&#x27;name_dep&#x27;</span>,<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;salary&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;).reset_index(drop = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(185)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除重复的电子邮箱</title>
+    <url>/2025/09/05/196/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong> 表: Person</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键列(具有唯一值的列)。<br>
+该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。</p>
+<p>编写解决方案 删除 所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
+<p>（对于 <code>SQL</code> 用户，请注意你应该编写一个 <code>DELETE</code> 语句而不是 <code>SELECT</code> 语句。）</p>
+<p>（对于 <code>Pandas</code> 用户，请注意你应该直接修改 <code>Person</code> 表。）</p>
+<p>运行脚本后，显示的答案是 <code>Person</code> 表。驱动程序将首先编译并运行您的代码片段，然后再显示 <code>Person</code> <code>表。Person</code> 表的最终顺序 无关紧要 。</p>
+<p>返回结果格式如下示例所示。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: </span><br><span class="line">Person 表:</span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">输出: </span><br><span class="line">+----+------------------+</span><br><span class="line">| id | email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br><span class="line">解释: john@example.com重复两次。我们保留最小的Id = 1。</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(196)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>上升的温度</title>
+    <url>/2025/09/05/197/</url>
+    <content><![CDATA[<p><strong>问题描述：</strong><br>
+表： Weather</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+---------------+---------+</span><br><span class="line">| Column Name   | Type    |</span><br><span class="line">+---------------+---------+</span><br><span class="line">| id            | int     |</span><br><span class="line">| recordDate    | date    |</span><br><span class="line">| temperature   | int     |</span><br><span class="line">+---------------+---------+</span><br></pre></td></tr></table></figure>
+<p>id 是该表具有唯一值的列。<br>
+没有具有相同 recordDate 的不同行。<br>
+该表包含特定日期的温度信息</p>
+<p>编写解决方案，找出与之前（昨天的）日期相比温度更高的所有日期的 id 。</p>
+<p>返回结果 无顺序要求 。</p>
+<p>结果格式如下例子所示。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">Weather 表：</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| id | recordDate | Temperature |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">| 1  | 2015-01-01 | 10          |</span><br><span class="line">| 2  | 2015-01-02 | 25          |</span><br><span class="line">| 3  | 2015-01-03 | 20          |</span><br><span class="line">| 4  | 2015-01-04 | 30          |</span><br><span class="line">+----+------------+-------------+</span><br><span class="line">输出：</span><br><span class="line">+----+</span><br><span class="line">| id |</span><br><span class="line">+----+</span><br><span class="line">| 2  |</span><br><span class="line">| 4  |</span><br><span class="line">+----+</span><br><span class="line">解释：</span><br><span class="line">2015-01-02 的温度比前一天高（10 -&gt; 25）</span><br><span class="line">2015-01-04 的温度比前一天高（20 -&gt; 30）</span><br></pre></td></tr></table></figure>
+<p><strong>解答：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rising_temperature</span>(<span class="params">weather: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    weather.sort_values(<span class="string">&#x27;recordDate&#x27;</span>, inplace = <span class="literal">True</span>)</span><br><span class="line">    weather_diff = weather.diff()</span><br><span class="line">    <span class="keyword">return</span> weather.loc[(weather_diff[<span class="string">&#x27;recordDate&#x27;</span>] == datetime.timedelta(<span class="number">1</span>)) &amp; (weather_diff[<span class="string">&#x27;temperature&#x27;</span>]&gt;<span class="number">0</span>), [<span class="string">&#x27;id&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来自 leetcode(197)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode Hot100 —— 二叉树</title>
     <url>/2026/03/24/leetcode-hot100/</url>
     <content><![CDATA[<h2 id="二叉树的中序遍历">二叉树的中序遍历</h2>
@@ -2232,6 +2232,53 @@ $$<br>
       </tags>
   </entry>
   <entry>
+    <title>爬楼梯</title>
+    <url>/2025/09/09/post-20250909-a14dc7/</url>
+    <content><![CDATA[<h1>爬楼梯</h1>
+<h2 id="问题描述">问题描述</h2>
+<blockquote>
+<p>设你正在爬楼梯. 需要 $n$ 阶你才能到达楼顶. 每次你可以爬 $1$ 或 $2$ 个台阶. 总共有多少种不同的方法可以爬到楼顶?</p>
+</blockquote>
+<h2 id="问题解答">问题解答</h2>
+<p><strong>解析:</strong></p>
+<p>不妨设 $f(n)$ 为走到第 $n$ 级台阶的方法数, 而第 $n$ 级台阶只能通过第 $n-1$ 级台阶或第 $n-2$ 级台阶才能到达, 于是我们有递推式子:<br>
+$$<br>
+f(n)=\begin{cases}<br>
+f(n-1)+f(n-2) &amp; n\ge 3,\\<br>
+1 &amp; n=1,\\<br>
+2 &amp; n=2\\<br>
+\end{cases}<br>
+$$</p>
+<p><strong>算法:</strong></p>
+<ul>
+<li>输入台阶数量 $n$</li>
+<li>构造 $n$ 维迭代向量 $v\gets (0,\cdots,0)$</li>
+<li>如果 $n==1$ 则输出 $1$</li>
+<li>如果 $n==2$ 则输出 $2$</li>
+<li>反之
+<ul>
+<li>赋值 $v_1\gets 1,~ v_2\gets 2$</li>
+<li>对于 $i=3,4,\cdots,n$:
+<ul>
+<li>$v_i\gets v_{i-1}+v_{i-2}$</li>
+</ul>
+</li>
+<li>输出 $v_n$</li>
+</ul>
+</li>
+</ul>
+<p><strong>Python 程序:</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp = [<span class="number">0</span>] * (n+<span class="number">1</span>)</span><br><span class="line">            dp[<span class="number">1</span>], dp[<span class="number">2</span>] = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n+<span class="number">1</span>):</span><br><span class="line">                dp[i] = dp[i-<span class="number">1</span>] + dp[i-<span class="number">2</span>]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法题</category>
+        <category>动态规划</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数列极限与函数极限</title>
     <url>/2025/09/07/1/</url>
     <content><![CDATA[<h1>极限论</h1>
@@ -2384,53 +2431,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>爬楼梯</title>
-    <url>/2025/09/09/post-20250909-a14dc7/</url>
-    <content><![CDATA[<h1>爬楼梯</h1>
-<h2 id="问题描述">问题描述</h2>
-<blockquote>
-<p>设你正在爬楼梯. 需要 $n$ 阶你才能到达楼顶. 每次你可以爬 $1$ 或 $2$ 个台阶. 总共有多少种不同的方法可以爬到楼顶?</p>
-</blockquote>
-<h2 id="问题解答">问题解答</h2>
-<p><strong>解析:</strong></p>
-<p>不妨设 $f(n)$ 为走到第 $n$ 级台阶的方法数, 而第 $n$ 级台阶只能通过第 $n-1$ 级台阶或第 $n-2$ 级台阶才能到达, 于是我们有递推式子:<br>
-$$<br>
-f(n)=\begin{cases}<br>
-f(n-1)+f(n-2) &amp; n\ge 3,\\<br>
-1 &amp; n=1,\\<br>
-2 &amp; n=2\\<br>
-\end{cases}<br>
-$$</p>
-<p><strong>算法:</strong></p>
-<ul>
-<li>输入台阶数量 $n$</li>
-<li>构造 $n$ 维迭代向量 $v\gets (0,\cdots,0)$</li>
-<li>如果 $n==1$ 则输出 $1$</li>
-<li>如果 $n==2$ 则输出 $2$</li>
-<li>反之
-<ul>
-<li>赋值 $v_1\gets 1,~ v_2\gets 2$</li>
-<li>对于 $i=3,4,\cdots,n$:
-<ul>
-<li>$v_i\gets v_{i-1}+v_{i-2}$</li>
-</ul>
-</li>
-<li>输出 $v_n$</li>
-</ul>
-</li>
-</ul>
-<p><strong>Python 程序:</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp = [<span class="number">0</span>] * (n+<span class="number">1</span>)</span><br><span class="line">            dp[<span class="number">1</span>], dp[<span class="number">2</span>] = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n+<span class="number">1</span>):</span><br><span class="line">                dp[i] = dp[i-<span class="number">1</span>] + dp[i-<span class="number">2</span>]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>算法题</category>
-        <category>动态规划</category>
-      </categories>
-      <tags>
-        <tag>动态规划</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>函数的连续性</title>
     <url>/2025/09/07/2/</url>
     <content><![CDATA[<h1>函数的连续性</h1>
@@ -2533,6 +2533,172 @@ c, &amp; f(x)&gt;c<br>
 <li>$\star$**<strong>[李例2-2-7-2]</strong> 设 $f(x)$ 在 $\mathbb{R}$ 上一致连续, 则存在 $a,b\in\mathbb{R}^+$ 使得 $|f(x)|\le a|x|+b,\forall x\in\mathbb{R}$.<br>
 注：利用此方法可证明：当 $f(x)$ 在 $[1,+\infty)$ 上一致连续时, $\frac{f(x)}{x}$ 在 $[1,+\infty)$ 上有界.</li>
 <li><strong>[李例2-2-7连续2]</strong> 设 $f(x)$ 在 $[0,+\infty)$ 上一致连续, 且对 $\forall \delta&gt;0, \ \lim\limits_{n\to\infty}f(n\delta)=0$, 求证 $\lim\limits_{x\to+\infty}f(x)=0.$</li>
+</ol>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>习题集</category>
+      </categories>
+      <tags>
+        <tag>数学分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>实数完备性</title>
+    <url>/2025/09/07/3/</url>
+    <content><![CDATA[<h1>实数完备性</h1>
+<h2 id="相关概念">相关概念</h2>
+<h3 id="实数基本性质：">实数基本性质：</h3>
+<ol>
+<li>有序性</li>
+<li>传递性</li>
+<li>Archimedes 性（对 $\forall a,b\in\mathbb{R}$, 若 $b&gt;a&gt;0$, 则 $\exists n\in\mathbb{N}^+$, 使得 $na&gt;b.$</li>
+<li>稠密性</li>
+</ol>
+<h3 id="实数系基本定理：">实数系基本定理：</h3>
+<ol>
+<li>
+<p>确界原理：设 $S$ 为非空数集. 若 $S$ 有上界，则 $S$ 必有上确界；若 $S$ 有下界，则 $S$ 必有下确界.</p>
+</li>
+<li>
+<p>单调有界定理：在实数系中，有界的单调数列必有极限.</p>
+</li>
+<li>
+<p>区间套定理：若 ${[a_n,b_n]}$ 是一个区间套，则在实数系中存在唯一的一点 $\xi$，使得 $\xi \in [a_n,b_n], \ n=1,2,\cdots,$ 即	<br>
+$$<br>
+a_n \leq \xi \leq b_n, \quad n=1,2,\cdots.<br>
+$$</p>
+</li>
+<li>
+<p>Heine-Borel 有限覆盖定理：设 $H$ 为闭区间 $[a,b]$ 的一个（无限）开覆盖，则从 $H$ 中可选出有限个开区间来覆盖 $[a,b]$.</p>
+</li>
+<li>
+<p>Weierstrass 聚点定理：实轴上的任一有界无限点集 $S$ 至少有一个聚点.<br>
+<strong>推论：</strong>（致密性定理）任何有界数列必有收敛的子列.</p>
+</li>
+<li>
+<p>Cauchy 收敛准则：数列 ${a_n}$ 收敛的充要条件是：对任给的 $\varepsilon &gt;0$，存在正整数 $N$，使得当 $n,m&gt;N$ 时有 $|a_n-a_m|&lt;\varepsilon.$</p>
+</li>
+</ol>
+<h2 id="判断题">判断题</h2>
+<ol>
+<li>设 $f(x)$ 定义在 $[-a,a]$ 上，则 $f$ 一定能表示成某个奇函数与某个偶函数之和.</li>
+<li><strong>[华四7.1.4]</strong> 在有理数集上确界原理、单调有界定理、聚点定理和柯西收敛准则也成立.</li>
+<li><strong>[华四7.1.1]</strong> 数集 ${(-1)^n+\frac{1}{n}}$ 有且只有两个聚点.</li>
+<li>如果一个开区间 $(a,b)$ 被一族开区间所覆盖，则 $(a,b)$ 不一定能被这一族开区间中的有限个开区间所覆盖.<br>
+注：$(0,1), \ I={(\frac{1}{n},1)|n=1,2,\cdots}$.</li>
+<li>如果一个无穷限区间 $[1,+\infty)$ 能被一族开区间所覆盖，则 $[1,+\infty)$ 也不一定能被其中的有限个开区间所覆盖.</li>
+<li>存在数列 ${x_n}$ 的聚点为 $(0,1)$.</li>
+<li>设有数列 $a_n=\begin{cases}1, &amp; n=3k,\\ -k, &amp; n=3k+1,\\ 2, &amp; n=3k+2\end{cases}$ 则 ${a_n}$ 的上极限为 $2$, 下极限为 $1$.</li>
+</ol>
+<h2 id="证明题">证明题</h2>
+<ol>
+<li>
+<p><strong>[华四1.1例1]</strong> 证明：两个不相等的实数之间必有一个有理数.<br>
+注：实数的 Archimedes 性.</p>
+</li>
+<li>
+<p><strong>[华四1.1.8]</strong> 设 $p$ 是正整数. 证明: 若 $p$ 不是完全平方数, 则 $\sqrt{p}$ 是无理数.<br>
+注：用反证法.</p>
+</li>
+<li>
+<p><strong>[华四1.4例6]</strong> 证明: $y=a^x$ 当 $a&gt;1$ 时在 $\mathbb{R}$ 上严格递增; 当 $0&lt;a&lt;1$ 时在 $\mathbb{R}$ 上严格递减.<br>
+注：实数集上指数函数的定义.<br>
+$$<br>
+a^x=\begin{cases}<br>
+\sup\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; a&gt;1\\<br>
+\inf\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; 0&lt;a&lt;1<br>
+\end{cases}<br>
+$$</p>
+</li>
+<li>
+<p><strong>[华四1.4.10]</strong> 证明：任意有理数都是 Dirichlet 函数的周期，任意无理数都不是 Dirichlet 函数的周期.<br>
+注：有理数集对四则运算封闭.</p>
+</li>
+<li>
+<p><strong>[华四第一章总练习题12]</strong> 设 $f,g$ 为 $D$ 上的有界函数. 证明: $\inf\limits_D{f+g}\le\inf\limits_Df+\sup\limits_D g.$</p>
+</li>
+<li>
+<p><strong>[华四第一章总练习题17]</strong> 证明 Riemann 函数在 $(0,1)$ 上任意点的任意领域内无界.</p>
+</li>
+<li>
+<p><strong>[华四定理2.9]</strong> 用确界原理证明单调有界定理.<br>
+注：7~12为实数系六大定理的等价性证明</p>
+</li>
+<li>
+<p>*<strong>[华四定理7.1]</strong> 用单调有界定理证明区间套定理.</p>
+</li>
+<li>
+<p>**<strong>[华四定理7.3]</strong> 用区间套定理证明 Heine-Borel 有限覆盖定理.</p>
+</li>
+<li>
+<p>*<strong>[华四7.1.8]</strong> 用 Heine-Borel 有限覆盖定理定理证明 Weierstrass 聚点定理.</p>
+</li>
+<li>
+<p>**<strong>[华四7.1.9]</strong> 用聚点定理证明 Cauchy 收敛准则.</p>
+</li>
+<li>
+<p>**<strong>[华四7.1例3]</strong> 用 Cauchy 收敛准则证明确界原理.</p>
+</li>
+<li>
+<p>*<strong>[华四7.1例1]</strong> 用区间套定理证明连续函数根的存在性定理.</p>
+</li>
+<li>
+<p>*<strong>[华四7.1定理7.2]</strong> 用区间套定理证明 Weierstrass 聚点定理。</p>
+</li>
+<li>
+<p>*<strong>[华四7.2定理7.4]</strong> 用区间套定理证明：有界无限点列（数列）${x_n}$ 至少有一个聚点，且存在最大聚点与最小聚点.<br>
+注：这只是对定理7.2证明过程的一个调整.</p>
+</li>
+<li>
+<p>*<strong>[华四2.3例5]</strong> 任何数列都有单调子列.</p>
+</li>
+<li>
+<p><strong>[华四定理2.10]</strong> 用单调有界定理证明致密性定理.</p>
+</li>
+<li>
+<p>*<strong>[华四定理2.11]</strong> 用致密性定理证明 Cauchy 收敛准则.</p>
+</li>
+<li>
+<p><strong>[华四定理7.2]</strong> 用致密性定理证明 Weierstrass 聚点定理.</p>
+</li>
+<li>
+<p>**<strong>[华四第七章总练习题2]</strong> 用确界原理证明有限覆盖定理.<br>
+注：构造集合 $S={c|c\in(a,b],s.t. [a,c] 能被有限覆盖}$.</p>
+</li>
+<li>
+<p>*<strong>[华四7.1例2]</strong> 用有限覆盖定理证明闭区间上连续函数的有界性.<br>
+注：利用连续函数的局部有界性.</p>
+</li>
+<li>
+<p>**<strong>[华四7.1.10]</strong> 用有限覆盖定理证明根的存在性定理.<br>
+注：反证法，利用连续函数的保号性.</p>
+</li>
+<li>
+<p>**<strong>[华四7.1.11]</strong> 用有限覆盖定理证明连续函数的一致连续性定理.<br>
+注：开区间列半径的有意减半.</p>
+</li>
+<li>
+<p><strong>[华四7.2.2(4)]</strong> 设 $a_n&gt;0,\underline{\lim}\limits_{n\to\infty}a_n&gt;0$, 证明 $\overline{\lim}\limits_{n\to\infty}\frac{1}{a_n}=\frac{1}{\underline{\lim}\limits_{n\to\infty}a_n}.$</p>
+</li>
+<li>
+<p>**<strong>[华四第七章总练习题3]</strong> 设 $\underline{\lim}\limits_{n\to\infty}x_n=A&lt;B=\overline{\lim}\limits_{n\to\infty}x_n, \ \lim\limits_{n\to\infty}(x_{n+1}-x_n)=0$. 证明: 数列 ${x_n}$ 的聚点全体恰为闭区间 $[A,B].$<br>
+注：反证法.</p>
+</li>
+<li>
+<p>***[华四7.1.7]**设 ${x_n}$ 是单调数列. 证明: 若 ${x_n}$ 存在聚点, 则必是唯一的, 且为 ${x_n}$ 的上确界.</p>
+</li>
+<li>
+<p>*<strong>[裴1.1.9]</strong> 设 $A,B$ 是两个由非负数组成的任意数集，证明：$\sup\limits_{x\in A}x\cdot\sup\limits_{y\in B}y=\sup\limits_{x\in A, \ y\in B}xy$.</p>
+</li>
+<li>
+<p>**<strong>[裴1.1.11]</strong> 设 $f,g$ 是 $\mathbb{R}$ 上的实函数，且 $f(x+y)+f(x-y)=2f(x)g(y), \ \ \forall x,y\in\mathbb{R}.$ 在 $\mathbb{R}$ 上 $f(x)$ 不恒等于零，但有界，证明：$|g(y)|\le1 \ (\forall y\in\mathbb{R}).$</p>
+</li>
+<li>
+<p>**<strong>[裴1.1.12]</strong> 设 $f$ 是闭区间 $[a,b]$ 上的增函数，若 $f(a)\ge a,f(b)\le b$，证明：$\exists x_0\in[a,b]$，使得 $f(x_0)=x_0$.<br>
+注：构造集合利用确界原理或者二等分区间利用闭区间套原理.</p>
+</li>
 </ol>
 ]]></content>
       <categories>
@@ -2972,172 +3138,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>实数完备性</title>
-    <url>/2025/09/07/3/</url>
-    <content><![CDATA[<h1>实数完备性</h1>
-<h2 id="相关概念">相关概念</h2>
-<h3 id="实数基本性质：">实数基本性质：</h3>
-<ol>
-<li>有序性</li>
-<li>传递性</li>
-<li>Archimedes 性（对 $\forall a,b\in\mathbb{R}$, 若 $b&gt;a&gt;0$, 则 $\exists n\in\mathbb{N}^+$, 使得 $na&gt;b.$</li>
-<li>稠密性</li>
-</ol>
-<h3 id="实数系基本定理：">实数系基本定理：</h3>
-<ol>
-<li>
-<p>确界原理：设 $S$ 为非空数集. 若 $S$ 有上界，则 $S$ 必有上确界；若 $S$ 有下界，则 $S$ 必有下确界.</p>
-</li>
-<li>
-<p>单调有界定理：在实数系中，有界的单调数列必有极限.</p>
-</li>
-<li>
-<p>区间套定理：若 ${[a_n,b_n]}$ 是一个区间套，则在实数系中存在唯一的一点 $\xi$，使得 $\xi \in [a_n,b_n], \ n=1,2,\cdots,$ 即	<br>
-$$<br>
-a_n \leq \xi \leq b_n, \quad n=1,2,\cdots.<br>
-$$</p>
-</li>
-<li>
-<p>Heine-Borel 有限覆盖定理：设 $H$ 为闭区间 $[a,b]$ 的一个（无限）开覆盖，则从 $H$ 中可选出有限个开区间来覆盖 $[a,b]$.</p>
-</li>
-<li>
-<p>Weierstrass 聚点定理：实轴上的任一有界无限点集 $S$ 至少有一个聚点.<br>
-<strong>推论：</strong>（致密性定理）任何有界数列必有收敛的子列.</p>
-</li>
-<li>
-<p>Cauchy 收敛准则：数列 ${a_n}$ 收敛的充要条件是：对任给的 $\varepsilon &gt;0$，存在正整数 $N$，使得当 $n,m&gt;N$ 时有 $|a_n-a_m|&lt;\varepsilon.$</p>
-</li>
-</ol>
-<h2 id="判断题">判断题</h2>
-<ol>
-<li>设 $f(x)$ 定义在 $[-a,a]$ 上，则 $f$ 一定能表示成某个奇函数与某个偶函数之和.</li>
-<li><strong>[华四7.1.4]</strong> 在有理数集上确界原理、单调有界定理、聚点定理和柯西收敛准则也成立.</li>
-<li><strong>[华四7.1.1]</strong> 数集 ${(-1)^n+\frac{1}{n}}$ 有且只有两个聚点.</li>
-<li>如果一个开区间 $(a,b)$ 被一族开区间所覆盖，则 $(a,b)$ 不一定能被这一族开区间中的有限个开区间所覆盖.<br>
-注：$(0,1), \ I={(\frac{1}{n},1)|n=1,2,\cdots}$.</li>
-<li>如果一个无穷限区间 $[1,+\infty)$ 能被一族开区间所覆盖，则 $[1,+\infty)$ 也不一定能被其中的有限个开区间所覆盖.</li>
-<li>存在数列 ${x_n}$ 的聚点为 $(0,1)$.</li>
-<li>设有数列 $a_n=\begin{cases}1, &amp; n=3k,\\ -k, &amp; n=3k+1,\\ 2, &amp; n=3k+2\end{cases}$ 则 ${a_n}$ 的上极限为 $2$, 下极限为 $1$.</li>
-</ol>
-<h2 id="证明题">证明题</h2>
-<ol>
-<li>
-<p><strong>[华四1.1例1]</strong> 证明：两个不相等的实数之间必有一个有理数.<br>
-注：实数的 Archimedes 性.</p>
-</li>
-<li>
-<p><strong>[华四1.1.8]</strong> 设 $p$ 是正整数. 证明: 若 $p$ 不是完全平方数, 则 $\sqrt{p}$ 是无理数.<br>
-注：用反证法.</p>
-</li>
-<li>
-<p><strong>[华四1.4例6]</strong> 证明: $y=a^x$ 当 $a&gt;1$ 时在 $\mathbb{R}$ 上严格递增; 当 $0&lt;a&lt;1$ 时在 $\mathbb{R}$ 上严格递减.<br>
-注：实数集上指数函数的定义.<br>
-$$<br>
-a^x=\begin{cases}<br>
-\sup\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; a&gt;1\\<br>
-\inf\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; 0&lt;a&lt;1<br>
-\end{cases}<br>
-$$</p>
-</li>
-<li>
-<p><strong>[华四1.4.10]</strong> 证明：任意有理数都是 Dirichlet 函数的周期，任意无理数都不是 Dirichlet 函数的周期.<br>
-注：有理数集对四则运算封闭.</p>
-</li>
-<li>
-<p><strong>[华四第一章总练习题12]</strong> 设 $f,g$ 为 $D$ 上的有界函数. 证明: $\inf\limits_D{f+g}\le\inf\limits_Df+\sup\limits_D g.$</p>
-</li>
-<li>
-<p><strong>[华四第一章总练习题17]</strong> 证明 Riemann 函数在 $(0,1)$ 上任意点的任意领域内无界.</p>
-</li>
-<li>
-<p><strong>[华四定理2.9]</strong> 用确界原理证明单调有界定理.<br>
-注：7~12为实数系六大定理的等价性证明</p>
-</li>
-<li>
-<p>*<strong>[华四定理7.1]</strong> 用单调有界定理证明区间套定理.</p>
-</li>
-<li>
-<p>**<strong>[华四定理7.3]</strong> 用区间套定理证明 Heine-Borel 有限覆盖定理.</p>
-</li>
-<li>
-<p>*<strong>[华四7.1.8]</strong> 用 Heine-Borel 有限覆盖定理定理证明 Weierstrass 聚点定理.</p>
-</li>
-<li>
-<p>**<strong>[华四7.1.9]</strong> 用聚点定理证明 Cauchy 收敛准则.</p>
-</li>
-<li>
-<p>**<strong>[华四7.1例3]</strong> 用 Cauchy 收敛准则证明确界原理.</p>
-</li>
-<li>
-<p>*<strong>[华四7.1例1]</strong> 用区间套定理证明连续函数根的存在性定理.</p>
-</li>
-<li>
-<p>*<strong>[华四7.1定理7.2]</strong> 用区间套定理证明 Weierstrass 聚点定理。</p>
-</li>
-<li>
-<p>*<strong>[华四7.2定理7.4]</strong> 用区间套定理证明：有界无限点列（数列）${x_n}$ 至少有一个聚点，且存在最大聚点与最小聚点.<br>
-注：这只是对定理7.2证明过程的一个调整.</p>
-</li>
-<li>
-<p>*<strong>[华四2.3例5]</strong> 任何数列都有单调子列.</p>
-</li>
-<li>
-<p><strong>[华四定理2.10]</strong> 用单调有界定理证明致密性定理.</p>
-</li>
-<li>
-<p>*<strong>[华四定理2.11]</strong> 用致密性定理证明 Cauchy 收敛准则.</p>
-</li>
-<li>
-<p><strong>[华四定理7.2]</strong> 用致密性定理证明 Weierstrass 聚点定理.</p>
-</li>
-<li>
-<p>**<strong>[华四第七章总练习题2]</strong> 用确界原理证明有限覆盖定理.<br>
-注：构造集合 $S={c|c\in(a,b],s.t. [a,c] 能被有限覆盖}$.</p>
-</li>
-<li>
-<p>*<strong>[华四7.1例2]</strong> 用有限覆盖定理证明闭区间上连续函数的有界性.<br>
-注：利用连续函数的局部有界性.</p>
-</li>
-<li>
-<p>**<strong>[华四7.1.10]</strong> 用有限覆盖定理证明根的存在性定理.<br>
-注：反证法，利用连续函数的保号性.</p>
-</li>
-<li>
-<p>**<strong>[华四7.1.11]</strong> 用有限覆盖定理证明连续函数的一致连续性定理.<br>
-注：开区间列半径的有意减半.</p>
-</li>
-<li>
-<p><strong>[华四7.2.2(4)]</strong> 设 $a_n&gt;0,\underline{\lim}\limits_{n\to\infty}a_n&gt;0$, 证明 $\overline{\lim}\limits_{n\to\infty}\frac{1}{a_n}=\frac{1}{\underline{\lim}\limits_{n\to\infty}a_n}.$</p>
-</li>
-<li>
-<p>**<strong>[华四第七章总练习题3]</strong> 设 $\underline{\lim}\limits_{n\to\infty}x_n=A&lt;B=\overline{\lim}\limits_{n\to\infty}x_n, \ \lim\limits_{n\to\infty}(x_{n+1}-x_n)=0$. 证明: 数列 ${x_n}$ 的聚点全体恰为闭区间 $[A,B].$<br>
-注：反证法.</p>
-</li>
-<li>
-<p>***[华四7.1.7]**设 ${x_n}$ 是单调数列. 证明: 若 ${x_n}$ 存在聚点, 则必是唯一的, 且为 ${x_n}$ 的上确界.</p>
-</li>
-<li>
-<p>*<strong>[裴1.1.9]</strong> 设 $A,B$ 是两个由非负数组成的任意数集，证明：$\sup\limits_{x\in A}x\cdot\sup\limits_{y\in B}y=\sup\limits_{x\in A, \ y\in B}xy$.</p>
-</li>
-<li>
-<p>**<strong>[裴1.1.11]</strong> 设 $f,g$ 是 $\mathbb{R}$ 上的实函数，且 $f(x+y)+f(x-y)=2f(x)g(y), \ \ \forall x,y\in\mathbb{R}.$ 在 $\mathbb{R}$ 上 $f(x)$ 不恒等于零，但有界，证明：$|g(y)|\le1 \ (\forall y\in\mathbb{R}).$</p>
-</li>
-<li>
-<p>**<strong>[裴1.1.12]</strong> 设 $f$ 是闭区间 $[a,b]$ 上的增函数，若 $f(a)\ge a,f(b)\le b$，证明：$\exists x_0\in[a,b]$，使得 $f(x_0)=x_0$.<br>
-注：构造集合利用确界原理或者二等分区间利用闭区间套原理.</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>习题集</category>
-      </categories>
-      <tags>
-        <tag>数学分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一元积分学</title>
     <url>/2025/09/07/5/</url>
     <content><![CDATA[<h1>一元积分学</h1>
@@ -3503,6 +3503,79 @@ $$<br>
       </tags>
   </entry>
   <entry>
+    <title>函数项级数</title>
+    <url>/2025/09/07/7/</url>
+    <content><![CDATA[<h1>函数项级数</h1>
+<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
+<ol>
+<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
+<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
+<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
+</ol>
+<p>【华四/李】考察以下函数项级数的一致收敛性</p>
+<ol>
+<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
+<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
+<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
+</ol>
+<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
+<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
+<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
+<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
+<p>【定理13.6(Abel判别法)】设<br>
+(i) $\sum u_n(x)$在区间1上一致收敛；<br>
+(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
+(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
+则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
+<p>【定理 13.7(Dirichlet判别法)】 设<br>
+(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
+(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
+(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
+则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
+<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
+<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
+<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
+<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
+<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
+<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
+<p>【华四13.2例1】设函数<br>
+$$<br>
+f_{n}(x)=\begin{cases}<br>
+2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
+2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
+0,&amp;\frac{1}{n}\le x\le 1,<br>
+\end{cases}\quad n=1,2,\cdots<br>
+$$<br>
+考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
+<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
+<p>$$<br>
+\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
+$$<br>
+【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
+<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
+<p>【华四第十三章总练习题2】证明：<br>
+(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
+(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
+<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
+(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
+(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
+<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
+<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>习题集</category>
+      </categories>
+      <tags>
+        <tag>数学分析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数项级数</title>
     <url>/2025/09/07/6/</url>
     <content><![CDATA[<h1>数项级数</h1>
@@ -3805,79 +3878,6 @@ $$<br>
 <p>$$<br>
 \int_a^bf’(x)\cos f(x)\mathrm{~d}x=\int_a^b(\sin f(x))'\mathrm{~d}x\le2<br>
 $$</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>习题集</category>
-      </categories>
-      <tags>
-        <tag>数学分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>函数项级数</title>
-    <url>/2025/09/07/7/</url>
-    <content><![CDATA[<h1>函数项级数</h1>
-<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
-<ol>
-<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
-<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
-<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
-</ol>
-<p>【华四/李】考察以下函数项级数的一致收敛性</p>
-<ol>
-<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
-<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
-<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
-</ol>
-<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
-<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
-<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
-<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
-<p>【定理13.6(Abel判别法)】设<br>
-(i) $\sum u_n(x)$在区间1上一致收敛；<br>
-(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
-(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
-则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
-<p>【定理 13.7(Dirichlet判别法)】 设<br>
-(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
-(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
-(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
-则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
-<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
-<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
-<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
-<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
-<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
-<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
-<p>【华四13.2例1】设函数<br>
-$$<br>
-f_{n}(x)=\begin{cases}<br>
-2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
-2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
-0,&amp;\frac{1}{n}\le x\le 1,<br>
-\end{cases}\quad n=1,2,\cdots<br>
-$$<br>
-考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
-<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
-<p>$$<br>
-\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
-$$<br>
-【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
-<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
-<p>【华四第十三章总练习题2】证明：<br>
-(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
-(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
-<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
-(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
-(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
-<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
-<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
 ]]></content>
       <categories>
         <category>数学</category>
