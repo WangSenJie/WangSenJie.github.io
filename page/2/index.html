@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
@@ -212,240 +212,6 @@
 
           <div class="content index posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="DMH">
-      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DMH's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/07/3/" class="post-title-link" itemprop="url">实数完备性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-07T00:00:00+08:00">2025-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">习题集</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1>实数完备性</h1>
-<h2 id="相关概念">相关概念</h2>
-<h3 id="实数基本性质：">实数基本性质：</h3>
-<ol>
-<li>有序性</li>
-<li>传递性</li>
-<li>Archimedes 性（对 $\forall a,b\in\mathbb{R}$, 若 $b&gt;a&gt;0$, 则 $\exists n\in\mathbb{N}^+$, 使得 $na&gt;b.$</li>
-<li>稠密性</li>
-</ol>
-<h3 id="实数系基本定理：">实数系基本定理：</h3>
-<ol>
-<li>
-<p>确界原理：设 $S$ 为非空数集. 若 $S$ 有上界，则 $S$ 必有上确界；若 $S$ 有下界，则 $S$ 必有下确界.</p>
-</li>
-<li>
-<p>单调有界定理：在实数系中，有界的单调数列必有极限.</p>
-</li>
-<li>
-<p>区间套定理：若 ${[a_n,b_n]}$ 是一个区间套，则在实数系中存在唯一的一点 $\xi$，使得 $\xi \in [a_n,b_n], \ n=1,2,\cdots,$ 即	<br>
-$$<br>
-a_n \leq \xi \leq b_n, \quad n=1,2,\cdots.<br>
-$$</p>
-</li>
-<li>
-<p>Heine-Borel 有限覆盖定理：设 $H$ 为闭区间 $[a,b]$ 的一个（无限）开覆盖，则从 $H$ 中可选出有限个开区间来覆盖 $[a,b]$.</p>
-</li>
-<li>
-<p>Weierstrass 聚点定理：实轴上的任一有界无限点集 $S$ 至少有一个聚点.<br>
-<strong>推论：</strong>（致密性定理）任何有界数列必有收敛的子列.</p>
-</li>
-<li>
-<p>Cauchy 收敛准则：数列 ${a_n}$ 收敛的充要条件是：对任给的 $\varepsilon &gt;0$，存在正整数 $N$，使得当 $n,m&gt;N$ 时有 $|a_n-a_m|&lt;\varepsilon.$</p>
-</li>
-</ol>
-<h2 id="判断题">判断题</h2>
-<ol>
-<li>设 $f(x)$ 定义在 $[-a,a]$ 上，则 $f$ 一定能表示成某个奇函数与某个偶函数之和.</li>
-<li><strong>[华四7.1.4]</strong> 在有理数集上确界原理、单调有界定理、聚点定理和柯西收敛准则也成立.</li>
-<li><strong>[华四7.1.1]</strong> 数集 ${(-1)^n+\frac{1}{n}}$ 有且只有两个聚点.</li>
-<li>如果一个开区间 $(a,b)$ 被一族开区间所覆盖，则 $(a,b)$ 不一定能被这一族开区间中的有限个开区间所覆盖.<br>
-注：$(0,1), \ I={(\frac{1}{n},1)|n=1,2,\cdots}$.</li>
-<li>如果一个无穷限区间 $[1,+\infty)$ 能被一族开区间所覆盖，则 $[1,+\infty)$ 也不一定能被其中的有限个开区间所覆盖.</li>
-<li>存在数列 ${x_n}$ 的聚点为 $(0,1)$.</li>
-<li>设有数列 $a_n=\begin{cases}1, &amp; n=3k,\\ -k, &amp; n=3k+1,\\ 2, &amp; n=3k+2\end{cases}$ 则 ${a_n}$ 的上极限为 $2$, 下极限为 $1$.</li>
-</ol>
-<h2 id="证明题">证明题</h2>
-<ol>
-<li>
-<p><strong>[华四1.1例1]</strong> 证明：两个不相等的实数之间必有一个有理数.<br>
-注：实数的 Archimedes 性.</p>
-</li>
-<li>
-<p><strong>[华四1.1.8]</strong> 设 $p$ 是正整数. 证明: 若 $p$ 不是完全平方数, 则 $\sqrt{p}$ 是无理数.<br>
-注：用反证法.</p>
-</li>
-<li>
-<p><strong>[华四1.4例6]</strong> 证明: $y=a^x$ 当 $a&gt;1$ 时在 $\mathbb{R}$ 上严格递增; 当 $0&lt;a&lt;1$ 时在 $\mathbb{R}$ 上严格递减.<br>
-注：实数集上指数函数的定义.<br>
-$$<br>
-a^x=\begin{cases}<br>
-\sup\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; a&gt;1\\<br>
-\inf\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; 0&lt;a&lt;1<br>
-\end{cases}<br>
-$$</p>
-</li>
-<li>
-<p><strong>[华四1.4.10]</strong> 证明：任意有理数都是 Dirichlet 函数的周期，任意无理数都不是 Dirichlet 函数的周期.<br>
-注：有理数集对四则运算封闭.</p>
-</li>
-<li>
-<p><strong>[华四第一章总练习题12]</strong> 设 $f,g$ 为 $D$ 上的有界函数. 证明: $\inf\limits_D{f+g}\le\inf\limits_Df+\sup\limits_D g.$</p>
-</li>
-<li>
-<p><strong>[华四第一章总练习题17]</strong> 证明 Riemann 函数在 $(0,1)$ 上任意点的任意领域内无界.</p>
-</li>
-<li>
-<p><strong>[华四定理2.9]</strong> 用确界原理证明单调有界定理.<br>
-注：7~12为实数系六大定理的等价性证明</p>
-</li>
-<li>
-<p>*<strong>[华四定理7.1]</strong> 用单调有界定理证明区间套定理.</p>
-</li>
-<li>
-<p>**<strong>[华四定理7.3]</strong> 用区间套定理证明 Heine-Borel 有限覆盖定理.</p>
-</li>
-<li>
-<p>*<strong>[华四7.1.8]</strong> 用 Heine-Borel 有限覆盖定理定理证明 Weierstrass 聚点定理.</p>
-</li>
-<li>
-<p>**<strong>[华四7.1.9]</strong> 用聚点定理证明 Cauchy 收敛准则.</p>
-</li>
-<li>
-<p>**<strong>[华四7.1例3]</strong> 用 Cauchy 收敛准则证明确界原理.</p>
-</li>
-<li>
-<p>*<strong>[华四7.1例1]</strong> 用区间套定理证明连续函数根的存在性定理.</p>
-</li>
-<li>
-<p>*<strong>[华四7.1定理7.2]</strong> 用区间套定理证明 Weierstrass 聚点定理。</p>
-</li>
-<li>
-<p>*<strong>[华四7.2定理7.4]</strong> 用区间套定理证明：有界无限点列（数列）${x_n}$ 至少有一个聚点，且存在最大聚点与最小聚点.<br>
-注：这只是对定理7.2证明过程的一个调整.</p>
-</li>
-<li>
-<p>*<strong>[华四2.3例5]</strong> 任何数列都有单调子列.</p>
-</li>
-<li>
-<p><strong>[华四定理2.10]</strong> 用单调有界定理证明致密性定理.</p>
-</li>
-<li>
-<p>*<strong>[华四定理2.11]</strong> 用致密性定理证明 Cauchy 收敛准则.</p>
-</li>
-<li>
-<p><strong>[华四定理7.2]</strong> 用致密性定理证明 Weierstrass 聚点定理.</p>
-</li>
-<li>
-<p>**<strong>[华四第七章总练习题2]</strong> 用确界原理证明有限覆盖定理.<br>
-注：构造集合 $S={c|c\in(a,b],s.t. [a,c] 能被有限覆盖}$.</p>
-</li>
-<li>
-<p>*<strong>[华四7.1例2]</strong> 用有限覆盖定理证明闭区间上连续函数的有界性.<br>
-注：利用连续函数的局部有界性.</p>
-</li>
-<li>
-<p>**<strong>[华四7.1.10]</strong> 用有限覆盖定理证明根的存在性定理.<br>
-注：反证法，利用连续函数的保号性.</p>
-</li>
-<li>
-<p>**<strong>[华四7.1.11]</strong> 用有限覆盖定理证明连续函数的一致连续性定理.<br>
-注：开区间列半径的有意减半.</p>
-</li>
-<li>
-<p><strong>[华四7.2.2(4)]</strong> 设 $a_n&gt;0,\underline{\lim}\limits_{n\to\infty}a_n&gt;0$, 证明 $\overline{\lim}\limits_{n\to\infty}\frac{1}{a_n}=\frac{1}{\underline{\lim}\limits_{n\to\infty}a_n}.$</p>
-</li>
-<li>
-<p>**<strong>[华四第七章总练习题3]</strong> 设 $\underline{\lim}\limits_{n\to\infty}x_n=A&lt;B=\overline{\lim}\limits_{n\to\infty}x_n, \ \lim\limits_{n\to\infty}(x_{n+1}-x_n)=0$. 证明: 数列 ${x_n}$ 的聚点全体恰为闭区间 $[A,B].$<br>
-注：反证法.</p>
-</li>
-<li>
-<p>***[华四7.1.7]**设 ${x_n}$ 是单调数列. 证明: 若 ${x_n}$ 存在聚点, 则必是唯一的, 且为 ${x_n}$ 的上确界.</p>
-</li>
-<li>
-<p>*<strong>[裴1.1.9]</strong> 设 $A,B$ 是两个由非负数组成的任意数集，证明：$\sup\limits_{x\in A}x\cdot\sup\limits_{y\in B}y=\sup\limits_{x\in A, \ y\in B}xy$.</p>
-</li>
-<li>
-<p>**<strong>[裴1.1.11]</strong> 设 $f,g$ 是 $\mathbb{R}$ 上的实函数，且 $f(x+y)+f(x-y)=2f(x)g(y), \ \ \forall x,y\in\mathbb{R}.$ 在 $\mathbb{R}$ 上 $f(x)$ 不恒等于零，但有界，证明：$|g(y)|\le1 \ (\forall y\in\mathbb{R}).$</p>
-</li>
-<li>
-<p>**<strong>[裴1.1.12]</strong> 设 $f$ 是闭区间 $[a,b]$ 上的增函数，若 $f(a)\ge a,f(b)\le b$，证明：$\exists x_0\in[a,b]$，使得 $f(x_0)=x_0$.<br>
-注：构造集合利用确界原理或者二等分区间利用闭区间套原理.</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
       
   
   
@@ -924,6 +690,240 @@ $$<br>
 f\left(\frac{a+b}{2}\right)\leqslant\frac{1}{b-a}\int_a^bf(x)\mathrm{d}x\leqslant\frac{f(a)+f(b)}{2}<br>
 $$<br>
 注：事实上, $x=a+t(b-a)=(1-t)a+tb, \ t\in(0,1)$.</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2025/09/07/3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/07/3/" class="post-title-link" itemprop="url">实数完备性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2025-09-07T00:00:00+08:00">2025-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-23 00:11:54" itemprop="dateModified" datetime="2026-03-23T00:11:54+08:00">2026-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">习题集</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>实数完备性</h1>
+<h2 id="相关概念">相关概念</h2>
+<h3 id="实数基本性质：">实数基本性质：</h3>
+<ol>
+<li>有序性</li>
+<li>传递性</li>
+<li>Archimedes 性（对 $\forall a,b\in\mathbb{R}$, 若 $b&gt;a&gt;0$, 则 $\exists n\in\mathbb{N}^+$, 使得 $na&gt;b.$</li>
+<li>稠密性</li>
+</ol>
+<h3 id="实数系基本定理：">实数系基本定理：</h3>
+<ol>
+<li>
+<p>确界原理：设 $S$ 为非空数集. 若 $S$ 有上界，则 $S$ 必有上确界；若 $S$ 有下界，则 $S$ 必有下确界.</p>
+</li>
+<li>
+<p>单调有界定理：在实数系中，有界的单调数列必有极限.</p>
+</li>
+<li>
+<p>区间套定理：若 ${[a_n,b_n]}$ 是一个区间套，则在实数系中存在唯一的一点 $\xi$，使得 $\xi \in [a_n,b_n], \ n=1,2,\cdots,$ 即	<br>
+$$<br>
+a_n \leq \xi \leq b_n, \quad n=1,2,\cdots.<br>
+$$</p>
+</li>
+<li>
+<p>Heine-Borel 有限覆盖定理：设 $H$ 为闭区间 $[a,b]$ 的一个（无限）开覆盖，则从 $H$ 中可选出有限个开区间来覆盖 $[a,b]$.</p>
+</li>
+<li>
+<p>Weierstrass 聚点定理：实轴上的任一有界无限点集 $S$ 至少有一个聚点.<br>
+<strong>推论：</strong>（致密性定理）任何有界数列必有收敛的子列.</p>
+</li>
+<li>
+<p>Cauchy 收敛准则：数列 ${a_n}$ 收敛的充要条件是：对任给的 $\varepsilon &gt;0$，存在正整数 $N$，使得当 $n,m&gt;N$ 时有 $|a_n-a_m|&lt;\varepsilon.$</p>
+</li>
+</ol>
+<h2 id="判断题">判断题</h2>
+<ol>
+<li>设 $f(x)$ 定义在 $[-a,a]$ 上，则 $f$ 一定能表示成某个奇函数与某个偶函数之和.</li>
+<li><strong>[华四7.1.4]</strong> 在有理数集上确界原理、单调有界定理、聚点定理和柯西收敛准则也成立.</li>
+<li><strong>[华四7.1.1]</strong> 数集 ${(-1)^n+\frac{1}{n}}$ 有且只有两个聚点.</li>
+<li>如果一个开区间 $(a,b)$ 被一族开区间所覆盖，则 $(a,b)$ 不一定能被这一族开区间中的有限个开区间所覆盖.<br>
+注：$(0,1), \ I={(\frac{1}{n},1)|n=1,2,\cdots}$.</li>
+<li>如果一个无穷限区间 $[1,+\infty)$ 能被一族开区间所覆盖，则 $[1,+\infty)$ 也不一定能被其中的有限个开区间所覆盖.</li>
+<li>存在数列 ${x_n}$ 的聚点为 $(0,1)$.</li>
+<li>设有数列 $a_n=\begin{cases}1, &amp; n=3k,\\ -k, &amp; n=3k+1,\\ 2, &amp; n=3k+2\end{cases}$ 则 ${a_n}$ 的上极限为 $2$, 下极限为 $1$.</li>
+</ol>
+<h2 id="证明题">证明题</h2>
+<ol>
+<li>
+<p><strong>[华四1.1例1]</strong> 证明：两个不相等的实数之间必有一个有理数.<br>
+注：实数的 Archimedes 性.</p>
+</li>
+<li>
+<p><strong>[华四1.1.8]</strong> 设 $p$ 是正整数. 证明: 若 $p$ 不是完全平方数, 则 $\sqrt{p}$ 是无理数.<br>
+注：用反证法.</p>
+</li>
+<li>
+<p><strong>[华四1.4例6]</strong> 证明: $y=a^x$ 当 $a&gt;1$ 时在 $\mathbb{R}$ 上严格递增; 当 $0&lt;a&lt;1$ 时在 $\mathbb{R}$ 上严格递减.<br>
+注：实数集上指数函数的定义.<br>
+$$<br>
+a^x=\begin{cases}<br>
+\sup\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; a&gt;1\\<br>
+\inf\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; 0&lt;a&lt;1<br>
+\end{cases}<br>
+$$</p>
+</li>
+<li>
+<p><strong>[华四1.4.10]</strong> 证明：任意有理数都是 Dirichlet 函数的周期，任意无理数都不是 Dirichlet 函数的周期.<br>
+注：有理数集对四则运算封闭.</p>
+</li>
+<li>
+<p><strong>[华四第一章总练习题12]</strong> 设 $f,g$ 为 $D$ 上的有界函数. 证明: $\inf\limits_D{f+g}\le\inf\limits_Df+\sup\limits_D g.$</p>
+</li>
+<li>
+<p><strong>[华四第一章总练习题17]</strong> 证明 Riemann 函数在 $(0,1)$ 上任意点的任意领域内无界.</p>
+</li>
+<li>
+<p><strong>[华四定理2.9]</strong> 用确界原理证明单调有界定理.<br>
+注：7~12为实数系六大定理的等价性证明</p>
+</li>
+<li>
+<p>*<strong>[华四定理7.1]</strong> 用单调有界定理证明区间套定理.</p>
+</li>
+<li>
+<p>**<strong>[华四定理7.3]</strong> 用区间套定理证明 Heine-Borel 有限覆盖定理.</p>
+</li>
+<li>
+<p>*<strong>[华四7.1.8]</strong> 用 Heine-Borel 有限覆盖定理定理证明 Weierstrass 聚点定理.</p>
+</li>
+<li>
+<p>**<strong>[华四7.1.9]</strong> 用聚点定理证明 Cauchy 收敛准则.</p>
+</li>
+<li>
+<p>**<strong>[华四7.1例3]</strong> 用 Cauchy 收敛准则证明确界原理.</p>
+</li>
+<li>
+<p>*<strong>[华四7.1例1]</strong> 用区间套定理证明连续函数根的存在性定理.</p>
+</li>
+<li>
+<p>*<strong>[华四7.1定理7.2]</strong> 用区间套定理证明 Weierstrass 聚点定理。</p>
+</li>
+<li>
+<p>*<strong>[华四7.2定理7.4]</strong> 用区间套定理证明：有界无限点列（数列）${x_n}$ 至少有一个聚点，且存在最大聚点与最小聚点.<br>
+注：这只是对定理7.2证明过程的一个调整.</p>
+</li>
+<li>
+<p>*<strong>[华四2.3例5]</strong> 任何数列都有单调子列.</p>
+</li>
+<li>
+<p><strong>[华四定理2.10]</strong> 用单调有界定理证明致密性定理.</p>
+</li>
+<li>
+<p>*<strong>[华四定理2.11]</strong> 用致密性定理证明 Cauchy 收敛准则.</p>
+</li>
+<li>
+<p><strong>[华四定理7.2]</strong> 用致密性定理证明 Weierstrass 聚点定理.</p>
+</li>
+<li>
+<p>**<strong>[华四第七章总练习题2]</strong> 用确界原理证明有限覆盖定理.<br>
+注：构造集合 $S={c|c\in(a,b],s.t. [a,c] 能被有限覆盖}$.</p>
+</li>
+<li>
+<p>*<strong>[华四7.1例2]</strong> 用有限覆盖定理证明闭区间上连续函数的有界性.<br>
+注：利用连续函数的局部有界性.</p>
+</li>
+<li>
+<p>**<strong>[华四7.1.10]</strong> 用有限覆盖定理证明根的存在性定理.<br>
+注：反证法，利用连续函数的保号性.</p>
+</li>
+<li>
+<p>**<strong>[华四7.1.11]</strong> 用有限覆盖定理证明连续函数的一致连续性定理.<br>
+注：开区间列半径的有意减半.</p>
+</li>
+<li>
+<p><strong>[华四7.2.2(4)]</strong> 设 $a_n&gt;0,\underline{\lim}\limits_{n\to\infty}a_n&gt;0$, 证明 $\overline{\lim}\limits_{n\to\infty}\frac{1}{a_n}=\frac{1}{\underline{\lim}\limits_{n\to\infty}a_n}.$</p>
+</li>
+<li>
+<p>**<strong>[华四第七章总练习题3]</strong> 设 $\underline{\lim}\limits_{n\to\infty}x_n=A&lt;B=\overline{\lim}\limits_{n\to\infty}x_n, \ \lim\limits_{n\to\infty}(x_{n+1}-x_n)=0$. 证明: 数列 ${x_n}$ 的聚点全体恰为闭区间 $[A,B].$<br>
+注：反证法.</p>
+</li>
+<li>
+<p>***[华四7.1.7]**设 ${x_n}$ 是单调数列. 证明: 若 ${x_n}$ 存在聚点, 则必是唯一的, 且为 ${x_n}$ 的上确界.</p>
+</li>
+<li>
+<p>*<strong>[裴1.1.9]</strong> 设 $A,B$ 是两个由非负数组成的任意数集，证明：$\sup\limits_{x\in A}x\cdot\sup\limits_{y\in B}y=\sup\limits_{x\in A, \ y\in B}xy$.</p>
+</li>
+<li>
+<p>**<strong>[裴1.1.11]</strong> 设 $f,g$ 是 $\mathbb{R}$ 上的实函数，且 $f(x+y)+f(x-y)=2f(x)g(y), \ \ \forall x,y\in\mathbb{R}.$ 在 $\mathbb{R}$ 上 $f(x)$ 不恒等于零，但有界，证明：$|g(y)|\le1 \ (\forall y\in\mathbb{R}).$</p>
+</li>
+<li>
+<p>**<strong>[裴1.1.12]</strong> 设 $f$ 是闭区间 $[a,b]$ 上的增函数，若 $f(a)\ge a,f(b)\le b$，证明：$\exists x_0\in[a,b]$，使得 $f(x_0)=x_0$.<br>
+注：构造集合利用确界原理或者二等分区间利用闭区间套原理.</p>
 </li>
 </ol>
 
