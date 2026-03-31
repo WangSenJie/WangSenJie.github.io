@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="双塔模型的原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双塔模型">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="双塔模型的原理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B.jpeg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-%E7%94%A8%E6%88%B7%E5%A1%94.jpeg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-%E7%89%A9%E5%93%81%E5%A1%94.jpeg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-pairwise.jpeg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-Listwise.jpeg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-listwise2.jpeg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-%E7%BA%BF%E4%B8%8A%E5%8F%AC%E5%9B%9E.jpeg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-%E6%A8%A1%E5%9E%8B%E6%9B%B4%E6%96%B0.jpeg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A001.jpeg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A002.jpeg">
+<meta property="article:published_time" content="2026-03-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-31T16:32:58.900Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="召回">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B.jpeg">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="双塔模型的原理">
+
+<meta name="twitter:title" content="双塔模型">
+
+  <title>双塔模型 | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          双塔模型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-31 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-31T00:00:00+08:00">2026-03-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-04-01 00:32:58" itemprop="dateModified" datetime="2026-04-01T00:32:58+08:00">2026-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">推荐算法</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">双塔模型的原理</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>双塔模型</h1>
+<h2 id="双塔模型的结构">双塔模型的结构</h2>
+<p>双塔模型模型由<code>用户塔</code>和<code>物品塔</code>两部分组成, 其结构如下:</p>
+<p align="center"><img src="/2026/03/31/post-20260331-2061fb/双塔模型.jpeg" alt="双塔模型结构" width="500"></p>
+<blockquote>
+<p>双塔模型是后期融合, 一般排序是前期融合</p>
+</blockquote>
+<p>左边是用户塔, 右边是物品塔. 而用户塔和物品塔的结构如下:</p>
+<p><img src="/2026/03/31/post-20260331-2061fb/双塔模型-用户塔.jpeg" alt="双塔模型-用户塔" width="360"> <img src="/2026/03/31/post-20260331-2061fb/双塔模型-物品塔.jpeg" alt="双塔模型-物品塔" width="359"></p>
+<h2 id="双塔模型的训练">双塔模型的训练</h2>
+<ul>
+<li>Pointwise: 独立看待每个正样本和负样本, 做简单的二元分类. 把正负样本组成数据集, 对其进行随机梯度下降训练模型.</li>
+<li>Pairwise: 每次取一个正样本, 一个负样本, 组成一个二元组.</li>
+<li>Listwise: 每次取一个正样本和多个负样本, 类似于做多元分类.</li>
+</ul>
+<blockquote>
+<p>正负样本如何界定?</p>
+<ul>
+<li>正样本: 用户点击物品;</li>
+<li>负样本:
+<ul>
+<li>没有召回;</li>
+<li>召回但被粗排、精排淘汰;</li>
+<li>曝光但用户未点击</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="Pointwise训练">Pointwise训练</h3>
+<ul>
+<li>把召回看作二元分类任务.</li>
+<li>对于正样本, 鼓励 $(\vec{a}, \vec{b})$ 接近 $1$;</li>
+<li>对于负样本, 鼓励 $(\vec{a}, \vec{b})$ 接近 $-1$.</li>
+<li>控制正负样本数量比例为 $1:2$ 或 $1:3$.</li>
+</ul>
+<h3 id="Pairwise训练">Pairwise训练</h3>
+<p align="center"><img src="/2026/03/31/post-20260331-2061fb/双塔模型-pairwise.jpeg" alt="Pairwise" width="500" center></p>
+其中, 物品塔共享参数.
+<blockquote>
+<p>基本想法: 鼓励 $\cos(\vec a,\vec b^+)&gt;\cos(\vec a,\vec b^-)$ 且两者相差越大越好.</p>
+</blockquote>
+<ul>
+<li>若 $\cos(\vec a,\vec b^+)&gt;\cos(\vec a,\vec b^-)+m$, 则无损失. 其中 $m$ 为超参数, 要调.</li>
+<li>否则, $Loss=\cos(\vec a,\vec b^-)+m-\cos(\vec a,\vec b^+)$.
+<ul>
+<li>Triplet hinge loss:<br>
+$$<br>
+L(\vec a, \vec b^+, \vec b^-)=\max\lbrace0, \cos(\vec a,\vec b^-)+m-\cos(\vec a,\vec b^+)\rbrace.<br>
+$$</li>
+<li>Triplet logistic loss:<br>
+$$<br>
+L(\vec a, \vec b^+, \vec b^-)=\log\left(1+\exp\left(\sigma\left(\cos(\vec a,\vec b^-)-\cos(\vec a,\vec b^+)\right)\right)\right).<br>
+$$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Listwise训练">Listwise训练</h3>
+<ul>
+<li>一条数据包含
+<ul>
+<li>一个用户向量 $\vec a$;</li>
+<li>一个正样本 $\vec b^+$;</li>
+<li>多个负样本 $\vec b_1^-, \vec b_2^-, \cdots, \vec b_n^-$.</li>
+</ul>
+</li>
+<li>鼓励 $\cos(\vec{a}, \vec{b}^+)$ 尽量大;</li>
+<li>鼓励 $\cos(\vec{a}, \vec{b}_i^-)$ 尽量小.</li>
+</ul>
+<p>训练结构:</p>
+<p align="center"><img src="/2026/03/31/post-20260331-2061fb/双塔模型-Listwise.jpeg" alt="Listwise" width="500"></p>
+<p align="center"><img src="/2026/03/31/post-20260331-2061fb/双塔模型-listwise2.jpeg" alt="Listwise" width="500"></p>
+<blockquote>
+<p>推荐系统中少部分物品(热门物品)占据大部分点击, 大部分物品点击次数不高. 而被抽样的概率正比于点击次数, 因此需要通过纠偏来降低热门物品成为负样本的概率.<br>
+$$<br>
+\cos(\vec a_i, \vec b_j) \quad \text{被替换为}\quad \cos(\vec a_i, \vec b_j)-\log p_j<br>
+$$<br>
+于是<br>
+$$<br>
+\exp(\cos(\vec a_i,\vec b_j)) \to \frac{\exp(\cos(\vec a_i,\vec b_j))}{p_j},<br>
+这相当于降低了热门物品的权重.</p>
+</blockquote>
+<p>此时双塔模型的损失函数为</p>
+<p>$$<br>
+L_{main}[i] = -\log\left(\frac{\exp(\cos(\vec a_i, \vec b_i)-\log p_i)}{\sum_{i=1}^n\exp(\cos(\vec a_i, \vec b_j)-\log p_j)}\right)<br>
+$$</p>
+<p>做梯度下降, 减少损失函数</p>
+<p>$$<br>
+\frac1n\sum_{i=1}^nL_{main}[i].<br>
+$$</p>
+<h2 id="线上召回">线上召回</h2>
+<ul>
+<li>
+<p>离线存储: 把物品向量 $\vec b$ 存入向量数据库.</p>
+<p align="center"><img src="/2026/03/31/post-20260331-2061fb/双塔模型-线上召回.jpeg" alt="离线存储" width="500"></p>
+<ul>
+<li>完成训练后, 用物品塔计算每个物品的特征向量 $\vec b$;</li>
+<li>把几亿个物品向量 $\vec b$ 存入向量数据库 (如 Milvus, Faiss, Hnswlib);</li>
+<li>向量数据库建索引, 以便加速最近邻查找.</li>
+</ul>
+</li>
+<li>
+<p>线上召回: 查找用户最感兴趣的 $k$ 个物品.</p>
+<ul>
+<li>给定用户 ID 与画像, 线上用神经网络算用户向量 $\vec a$.</li>
+<li>最近邻查找
+<ul>
+<li>把向量 $\vec a$ 当作 query, 调用向量数据库做最近邻查找.</li>
+<li>返回余弦相似度最大的 $k$ 个物品作为召回结果.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Q: 为什么事先存储物品向量 $\vec b$, 线上计算用户向量 $\vec a$?</p>
+<ul>
+<li>每做一次召回, 用到一个用户向量 $\vec a$, 几亿件物品向量 $\vec b$ (线上计算物品向量代价太大).</li>
+<li>用户兴趣动态变化, 而物品特征相对稳定 (可以离线存储用户向量, 但不利于推荐效果).</li>
+</ul>
+</blockquote>
+<h2 id="模型更新">模型更新</h2>
+<ul>
+<li>全量更新: 今天凌晨, 用昨天全天的数据训练模型
+<ul>
+<li>在昨天模型参数的基础上做训练 (不是随机初始化).</li>
+<li>用昨天数据打包成 TFRecord 文件训练 $1$ epoch, 即每天训练数据只用一遍.</li>
+<li>发布新的用户塔神经网络和物品向量, 供线上召回使用.</li>
+<li>全量更新对数据流、系统要求比较低.</li>
+</ul>
+</li>
+<li>增量更新: 做 online learning 更新模型参数
+<ul>
+<li>用户兴趣会随时发生变化</li>
+<li>实时搜集线上数据, 做流式处理, 生成 TFRecord 文件.</li>
+<li>对模型做 online learning, 增量更新 ID Embedding 参数, 锁住全连接层.</li>
+<li>发布用户 ID Embedding, 供用户塔在线上计算用户向量.</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="/2026/03/31/post-20260331-2061fb/双塔模型-模型更新.jpeg" alt="模型更新" width="500"></p>
+<h2 id="双塔模型-自监督学习">双塔模型+自监督学习</h2>
+<blockquote>
+<p>为什么进行自监督学习?——双塔模型的问题.</p>
+<ul>
+<li>推荐系统的头部效应严重
+<ul>
+<li>少部分物品占据大部分点击</li>
+<li>大部分物品点击次数不高</li>
+</ul>
+</li>
+<li>高点击物品的表征学得好, 长尾物品的表征学得不好 (训练样本不够)</li>
+<li>自监督学习: 做 data augmentation, 更好地学习长尾物品的向量表征.</li>
+</ul>
+</blockquote>
+<h3 id="训练物品塔">训练物品塔</h3>
+<p align="center"><img src="/2026/03/31/post-20260331-2061fb/双塔模型-自监督学习01.jpeg" alt="自监督学习物品塔" width="500"></p>
+<ul>
+<li>学习目标
+<ul>
+<li>物品 $i$ 的两个向量 $b_i’,b_i’'$ 要有较高的相似度.</li>
+<li>物品 $i$ 和 $j$ 的向量表征 $b_i’$ 和 $b_j’'$ 有较低的相似度.</li>
+<li>鼓励 $\cos(b_i’,b_i’‘)$ 尽量大, 鼓励 $\cos(b_i’,b_j’')$ 尽量大 $(i\neq j)$.</li>
+</ul>
+</li>
+<li>特征变换: Random Mask
+<ul>
+<li>随机选取一些离散特征(比如类目), 把它们遮住.</li>
+<li>例：
+<ul>
+<li>某物品的类目特征为 $u=\lbrace \text{数码}, \text{投影}\rbrace$</li>
+<li>MASK后的类目特征是 $u’=\lbrace \text{default}\rbrace$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特征变换: Dropout (仅对多值离散特征生效)
+<ul>
+<li>一个物品可有多个类目, 那么类目是一个多值离散特征</li>
+<li>Dropout: 随机丢弃 50% 的值</li>
+<li>例:
+<ul>
+<li>某物品类目特征 $u=\lbrace\text{美妆},\text{摄影}\rbrace$</li>
+<li>Dropout 后的类目特征 $u’=\lbrace\text{美妆}\rbrace$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特征变换: 互补特征 (Complementary)
+<ul>
+<li>
+<p>假设一物品有四种特征: <code>ID, 类目, 关键词, 城市</code></p>
+</li>
+<li>
+<p>随机分成两组: <code>&#123;ID, 关键词&#125;</code> 和 <code>&#123;类目, 城市&#125;</code></p>
+</li>
+<li>
+<p><code>&#123;ID, default, 关键词, default&#125; -&gt; 物品表征</code></p>
+<p><code>&#123;default, 类目, default, 城市&#125; -&gt; 物品表征</code></p>
+<p>鼓励两个向量相似.</p>
+</li>
+</ul>
+</li>
+<li>特征变换: Mask一组关联的特征
+<ul>
+<li>例:
+<ul>
+<li>受众性别 <code>u = &#123;男, 女, 中性&#125;</code></li>
+<li>类目 <code>v = &#123;美妆, 数码, 足球, 科技, ...&#125;</code></li>
+<li><code>u = 女</code> 和 <code>v = 美妆</code> 同时出现的概率 <code>p(u,v)</code> 大.</li>
+<li><code>u = 女</code> 和 <code>v = 数码</code> 同时出现的概率 <code>p(u,v)</code> 小.</li>
+<li><code>p(u)</code>: 某特征取值为 <code>u</code> 的概率
+<ul>
+<li><code>p(男) = 20%,  p(女) = 30%, p(中) = 50%</code></li>
+</ul>
+</li>
+<li><code>p(u, v)</code>: 一个特征取 <code>u</code>, 另一个取 <code>v</code> 同时发生的概率
+<ul>
+<li><code>p(女, 美妆) = 3%,  p(女, 数码) = 0.1%</code></li>
+</ul>
+</li>
+<li>离线计算特征两两间关联, 用互信息 (mutual information) 衡量<br>
+$$<br>
+MI(u,v)=\sum_u\sum_vp(u,v)\cdot\log\frac{p(u,v)}{p(u)p(v)}.<br>
+$$</li>
+<li>做法:
+<ul>
+<li>设共有 $k$ 种特征, 离线计算特征两两间的互信息 $MI$, 得到 $k\times k$ 矩阵.</li>
+<li>随机算一个特征作为种子, 找到种子最相关的 $\frac k2$ 种特征。</li>
+<li>MASK 种子及其相关的 $\frac k2$ 种特征, 保留其余 $\frac k2$ 种特征.</li>
+</ul>
+</li>
+<li>好处: 比 Random Mask, Dropout, 互补特征等方法效果更好.</li>
+<li>坏处: 方法复杂, 实现难度大, 不容易维护.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>训练模型
+<ul>
+<li>从全体物品中均匀抽样, 得到 $m$ 个物品, 作为一个 <code>batch</code>.</li>
+<li>做两类特征变换, 得到物品塔输出的两组向量 $b_1’,\cdots, b_m’$ 和 $b_1’‘,\cdots, b_m’'$</li>
+<li>第 $i$ 个物品的损失函数为<br>
+$$<br>
+L_{self}[i] = -\log\left(\frac{\exp(\cos(b_i’,b_i’‘))}{\sum_{j=1}^m\exp(\cos(b_i’,b_j’'))}\right).<br>
+$$</li>
+<li>做梯度下降, 减小自监督学习的损失 $\frac1m\sum_{i=1}^mL_{self}[i]$.</li>
+</ul>
+</li>
+</ul>
+ <p align="center"><img src="/2026/03/31/post-20260331-2061fb/双塔模型-自监督学习02.jpeg" alt="自监督学习损失" width="500"></p>
+<p>为解决长尾问题, 将自监督学习加入到双塔模型的训练之中:</p>
+<ul>
+<li>对点击做随机抽样, 得到 $n$ 对 <code>用户-物品</code> 二元组, 作为一个 <code>batch</code>.</li>
+<li>从全体物品中均匀抽样, 得到 $m$ 个物品, 作为一个 <code>batch</code>.</li>
+<li>做梯度下降, 使得损失减小<br>
+$$<br>
+\frac1n\sum_{i=1}^nL_{main}[i]+\alpha\cdot\frac1m\sum_{j=1}^mL_{self}[j].<br>
+$$<br>
+其中 $\alpha$ 为超参数.</li>
+</ul>
+
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/03/31/post-20260331-2061fb/" data-share-title="双塔模型">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8F%AC%E5%9B%9E/" rel="tag"># 召回</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/03/30/als/" rel="prev" title="ALS 排序算法">
+      <i class="fa fa-chevron-left"></i> ALS 排序算法
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">双塔模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">双塔模型的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="nav-number">1.2.</span> <span class="nav-text">双塔模型的训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pointwise%E8%AE%AD%E7%BB%83"><span class="nav-number">1.2.1.</span> <span class="nav-text">Pointwise训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pairwise%E8%AE%AD%E7%BB%83"><span class="nav-number">1.2.2.</span> <span class="nav-text">Pairwise训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Listwise%E8%AE%AD%E7%BB%83"><span class="nav-number">1.2.3.</span> <span class="nav-text">Listwise训练</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E4%B8%8A%E5%8F%AC%E5%9B%9E"><span class="nav-number">1.3.</span> <span class="nav-text">线上召回</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%9B%B4%E6%96%B0"><span class="nav-number">1.4.</span> <span class="nav-text">模型更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E5%A1%94%E6%A8%A1%E5%9E%8B-%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.5.</span> <span class="nav-text">双塔模型+自监督学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E7%89%A9%E5%93%81%E5%A1%94"><span class="nav-number">1.5.1.</span> <span class="nav-text">训练物品塔</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+
+</body>
+</html>
