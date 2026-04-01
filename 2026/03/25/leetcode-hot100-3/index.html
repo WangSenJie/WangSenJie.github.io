@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="LeetCode-hot100 中图论部分的题解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Hot100 —— 图论">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/03/25/leetcode-hot100-3/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="LeetCode-hot100 中图论部分的题解">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-28T09:28:59.860Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/03/25/leetcode-hot100-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="LeetCode-hot100 中图论部分的题解">
+
+<meta name="twitter:title" content="LeetCode Hot100 —— 图论">
+
+  <title>LeetCode Hot100 —— 图论 | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/03/25/leetcode-hot100-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LeetCode Hot100 —— 图论
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-25 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-25T00:00:00+08:00">2026-03-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-28 17:28:59" itemprop="dateModified" datetime="2026-03-28T17:28:59+08:00">2026-03-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">算法题</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">LeetCode-hot100 中图论部分的题解</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>图论</h1>
+<h2 id="寻找岛屿数量">寻找岛屿数量</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：grid = [</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;1&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;]</span><br><span class="line">]</span><br><span class="line">输出：1</span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入：grid = [</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;0&#x27;,&#x27;0&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;1&#x27;,&#x27;1&#x27;]</span><br><span class="line">]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+<h3 id="思路">思路</h3>
+<p>深度优先遍历 DFS. 当遇到 <code>grid[i][j]='1'</code> 的时候, 代表此处是陆地, 于是岛屿数量+1, 于此同时,  DFS遍历此位置上下左右元素, 遇到 <code>0</code> 或者边界则结束, 否则将遇到的 <code>1</code> 变成 <code>0</code>, 防止干扰下一座陆地的寻找.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">grid, i, j</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="number">0</span> &lt;= i &lt; <span class="built_in">len</span>(grid) <span class="keyword">or</span> <span class="keyword">not</span> <span class="number">0</span> &lt;= j &lt; <span class="built_in">len</span>(grid[<span class="number">0</span>]) <span class="keyword">or</span> grid[i][j] == <span class="string">&#x27;0&#x27;</span>:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            grid[i][j] = <span class="string">&#x27;0&#x27;</span></span><br><span class="line">            dfs(grid, i+<span class="number">1</span>, j)</span><br><span class="line">            dfs(grid, i-<span class="number">1</span>, j)</span><br><span class="line">            dfs(grid, i, j+<span class="number">1</span>)</span><br><span class="line">            dfs(grid, i, j-<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid[<span class="number">0</span>])):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                    res += <span class="number">1</span></span><br><span class="line">                    dfs(grid, i, j)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="腐烂的橘子">腐烂的橘子</h2>
+<p>在给定的 <code>m x n</code> 网格 <code>grid</code> 中，每个单元格可以有以下三个值之一：</p>
+<ul>
+<li>值 <code>0</code> 代表空单元格；</li>
+<li>值 <code>1</code> 代表新鲜橘子；</li>
+<li>值 <code>2</code> 代表腐烂的橘子。</li>
+</ul>
+<p>每分钟，腐烂的橘子周围 4 个方向上相邻的新鲜橘子都会腐烂。</p>
+<p>返回直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 <code>-1</code>。</p>
+<h3 id="思路-2">思路</h3>
+<ul>
+<li>统计新鲜的橘子数量</li>
+<li>存储腐烂的橘子的坐标位置 <code>queue</code></li>
+<li>每一分钟, <code>pop</code> <code>queue</code> 中的腐烂橘子坐标, 分上下左右四个位置腐烂周围的橘子, 再更新 <code>queue</code> 中的腐烂橘子的坐标 (此时老一批腐烂橘子的坐标已经全部弹出), 随后进行下一分钟的腐烂过程</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">orangesRotting</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n, m = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        queue = []</span><br><span class="line"></span><br><span class="line">        count = <span class="number">0</span> <span class="comment"># 新鲜橘子数量</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="number">1</span>:</span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> grid[i][j] == <span class="number">2</span>:</span><br><span class="line">                    queue.append((i, j))</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">round</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(queue)&gt;<span class="number">0</span> <span class="keyword">and</span> count &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">round</span> += <span class="number">1</span></span><br><span class="line">            k = <span class="built_in">len</span>(queue)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">                (r, c) = queue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">if</span> r-<span class="number">1</span> &gt;=<span class="number">0</span> <span class="keyword">and</span> grid[r-<span class="number">1</span>][c] == <span class="number">1</span>:</span><br><span class="line">                    grid[r-<span class="number">1</span>][c] = <span class="number">2</span></span><br><span class="line">                    count -= <span class="number">1</span></span><br><span class="line">                    queue.append((r-<span class="number">1</span>, c))</span><br><span class="line">                <span class="keyword">if</span> r+<span class="number">1</span> &lt;= n-<span class="number">1</span> <span class="keyword">and</span> grid[r+<span class="number">1</span>][c] == <span class="number">1</span>:</span><br><span class="line">                    grid[r+<span class="number">1</span>][c] = <span class="number">2</span></span><br><span class="line">                    count -= <span class="number">1</span></span><br><span class="line">                    queue.append((r+<span class="number">1</span>, c))</span><br><span class="line">                <span class="keyword">if</span> c-<span class="number">1</span> &gt;= <span class="number">0</span> <span class="keyword">and</span> grid[r][c-<span class="number">1</span>] == <span class="number">1</span>:</span><br><span class="line">                    grid[r][c-<span class="number">1</span>] = <span class="number">2</span></span><br><span class="line">                    count -= <span class="number">1</span></span><br><span class="line">                    queue.append((r, c-<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">if</span> c+<span class="number">1</span> &lt;= m-<span class="number">1</span> <span class="keyword">and</span> grid[r][c+<span class="number">1</span>] == <span class="number">1</span>:</span><br><span class="line">                    grid[r][c+<span class="number">1</span>] = <span class="number">2</span></span><br><span class="line">                    count -= <span class="number">1</span></span><br><span class="line">                    queue.append((r, c+<span class="number">1</span>))</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> count &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">round</span></span><br></pre></td></tr></table></figure>
+<h2 id="207-课程表">(207) 课程表</h2>
+<p>你这个学期必须选修 <code>numCourses</code> 门课程，记为 <code>0</code> 到 <code>numCourses - 1</code>. 在选修某些课程之前需要一些先修课程. 先修课程按数组 <code>prerequisites</code> 给出，其中 <code>prerequisites[i] = [ai, bi]</code> ，表示如果要学习课程 <code>ai</code> 则必须先学习课程 <code>bi</code>.</p>
+<ul>
+<li>例如，先修课程对 <code>[0, 1]</code> 表示: 想要学习课程 <code>0</code>, 你需要先完成课程 <code>1</code>.</li>
+</ul>
+<p>请你判断是否可能完成所有课程的学习? 如果可以, 返回 <code>true</code>; 否则, 返回 <code>false</code>.</p>
+<h3 id="思路-3">思路</h3>
+<p>即判断是否是有向无环图.</p>
+<ul>
+<li>构造课程的<strong>入度表</strong>, 如果某课程有 <code>n</code> 门先修课程, 则入度为 <code>n</code>; 如果没有先修课程, 则入度为 <code>0</code>.</li>
+<li>构造后续课程表(字典功能), 记录课程 <code>i</code> 的后续课程, 方便后续索引查找.</li>
+<li>将入度为 <code>0</code> 的课程记录到队列 <code>queue</code> 中, 它们视为最开始修的课程, 因为没有先修课程.</li>
+<li>模拟学习课程
+<ul>
+<li>修了第 <code>i</code> 门课程, 则 <code>pop</code> 该课程, 同时课程数量减 <code>1</code>.</li>
+<li>查找第 <code>i</code> 门课程的后续课程, 将它们的入度 <code>-1</code>. 同时如果此时它们的入度为 <code>0</code>, 则将其 <code>append</code> 到 <code>queue</code>.</li>
+</ul>
+</li>
+<li>判断最后的课程数量, 如果数量非 <code>0</code>, 说明有环, <code>False</code>.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canFinish</span>(<span class="params">self, numCourses: <span class="built_in">int</span>, prerequisites: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        inDegree = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(numCourses)] <span class="comment"># 入度表</span></span><br><span class="line">        preList = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(numCourses)] <span class="comment"># 课程 i 的后续课程</span></span><br><span class="line">        <span class="keyword">for</span> cur, pre <span class="keyword">in</span> prerequisites:</span><br><span class="line">            inDegree[cur] += <span class="number">1</span></span><br><span class="line">            preList[pre].append(cur)</span><br><span class="line">        <span class="comment"># 将入度为 0 的课程入队</span></span><br><span class="line">        queue = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(numCourses):</span><br><span class="line">            <span class="keyword">if</span> inDegree[i] == <span class="number">0</span>:</span><br><span class="line">                queue.append(i)</span><br><span class="line">        <span class="comment"># 模拟</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            cur = queue.pop(<span class="number">0</span>)</span><br><span class="line">            numCourses -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> preList[cur]:</span><br><span class="line">                inDegree[c] -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> inDegree[c] == <span class="number">0</span>:</span><br><span class="line">                    queue.append(c)</span><br><span class="line">        <span class="comment"># 判断</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> numCourses</span><br></pre></td></tr></table></figure>
+<h2 id="208-实现-Trie-前缀树">(208) 实现 Trie (前缀树)</h2>
+<p><code>Trie</code>（发音类似 “try”）或者说前缀树是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查。</p>
+<p>请你实现 <code>Trie</code> 类：</p>
+<ul>
+<li><code>Trie()</code> 初始化前缀树对象。</li>
+<li><code>void insert(String word)</code> 向前缀树中插入字符串 <code>word</code> 。</li>
+<li><code>boolean search(String word)</code> 如果字符串 <code>word</code> 在前缀树中，返回 <code>true</code>（即，在检索之前已经插入）；否则，返回 <code>false</code> 。</li>
+<li><code>boolean startsWith(String prefix)</code> 如果之前已经插入的字符串 <code>word</code> 的前缀之一为 <code>prefix</code> ，返回 <code>true</code> ；否则，返回 <code>false</code> 。</li>
+</ul>
+<h3 id="思路-4">思路</h3>
+<p>必须清楚这是一个树结构</p>
+<ul>
+<li>初始化一个长度为 <code>26</code> 的列表 <code>self.tree = [None]*26</code> (表示 <code>26</code> 个字母), 每个位置事实上都是一个 <code>Trie()</code> 结构. 且设定 <code>self.is_end = False</code>, 代表此时这个 <code>26</code> 个位置并不是任何单词的结尾.</li>
+<li>以 <code>app</code> 说明 <code>insert</code> 过程, 初始化 <code>node = self</code>, 代表现在这棵树是在 <code>node</code> 位置
+<ul>
+<li>先传入字母 <code>a</code>, 对应 <code>index=0</code> 位置, 判断这个位置上是否为 <code>None</code>
+<ul>
+<li>如果为 <code>None</code>, 则在这个位置上创建一个新的 <code>Trie()</code>, 执行 <code>Node = node.tree[0]</code>;</li>
+<li>如果不是 <code>None</code>, 即这个位置之前已经有单词存过, 那么只需执行 <code>Node = node.tree[0]</code>, 跳到下面的分支.</li>
+</ul>
+</li>
+<li>接着传入字母 <code>p</code>, 同样按上述步骤执行.</li>
+<li>最后传入 <code>p</code>, 也同样执行.</li>
+<li>执行完最后一个 <code>p</code> 以后, 设定 <code>node.is_end = True</code>, 代表这个分支是单词的结尾.</li>
+</ul>
+</li>
+<li>以 <code>app</code> 说明 <code>search</code> 过程
+<ul>
+<li>先传入字母 <code>a</code>, 对应 <code>index=0</code> 位置, 判断这个位置上是否为 <code>None</code>
+<ul>
+<li>如果为 <code>None</code>, 则直接返回 <code>False</code>, 说明这个树结构里一定没有 <code>app</code> 这个单词, 因为它甚至没有 <code>a</code>;</li>
+<li>如果不是 <code>None</code>, 即这个位置之前已经有单词存过, 那么只需执行 <code>Node = node.tree[0]</code>, 跳到下面的分支.</li>
+</ul>
+</li>
+<li>接着传入字母 <code>p</code>, 同样按上述步骤执行.</li>
+<li>最后传入 <code>p</code>, 也同样执行.</li>
+<li>执行完最后一个 <code>p</code> 以后, 说明树结构一定有 <code>app</code>, 此时只需判断 <code>node.is_end</code> 是否是 <code>True</code>, 即最后一个 <code>p</code> 是否是结尾.</li>
+</ul>
+</li>
+<li>以 <code>app</code> 说明 <code>startsWith</code> 过程
+<ul>
+<li>先传入字母 <code>a</code>, 对应 <code>index=0</code> 位置, 判断这个位置上是否为 <code>None</code>
+<ul>
+<li>如果为 <code>None</code>, 则直接返回 <code>False</code>, 说明这个树结构里一定没有 <code>app</code> 这个单词, 因为它甚至没有 <code>a</code>;</li>
+<li>如果不是 <code>None</code>, 即这个位置之前已经有单词存过, 那么只需执行 <code>Node = node.tree[0]</code>, 跳到下面的分支.</li>
+</ul>
+</li>
+<li>接着传入字母 <code>p</code>, 同样按上述步骤执行.</li>
+<li>最后传入 <code>p</code>, 也同样执行.</li>
+<li>执行完最后一个 <code>p</code> 以后, 说明树结构一定有 <code>app</code> 开头的单词, 此时只需返回 <code>True</code>.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.tree = [<span class="literal">None</span>] * <span class="number">26</span></span><br><span class="line">        <span class="variable language_">self</span>.is_end = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        node = <span class="variable language_">self</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> word:</span><br><span class="line">            c_index = <span class="built_in">ord</span>(c) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.tree[c_index]:</span><br><span class="line">                node.tree[c_index] = Trie()</span><br><span class="line">            node = node.tree[c_index]</span><br><span class="line">        node.is_end = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self, word: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        node = <span class="variable language_">self</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> word:</span><br><span class="line">            c_index = <span class="built_in">ord</span>(c) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.tree[c_index]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            node = node.tree[c_index]</span><br><span class="line">        <span class="keyword">return</span> node.is_end</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">startsWith</span>(<span class="params">self, prefix: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        node = <span class="variable language_">self</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> prefix:</span><br><span class="line">            c_index = <span class="built_in">ord</span>(c) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.tree[c_index]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            node = node.tree[c_index]</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Your Trie object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = Trie()</span></span><br><span class="line"><span class="comment"># obj.insert(word)</span></span><br><span class="line"><span class="comment"># param_2 = obj.search(word)</span></span><br><span class="line"><span class="comment"># param_3 = obj.startsWith(prefix)</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/03/25/leetcode-hot100-3/" data-share-title="LeetCode Hot100 —— 图论">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/03/24/leetcode-hot100-2/" rel="prev" title="LeetCode Hot100 —— 二叉树">
+      <i class="fa fa-chevron-left"></i> LeetCode Hot100 —— 二叉树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/03/25/basic-abstract-algebra-exercises-notes/" rel="next" title="Basic Abstract Algebra Exercises Notes">
+      Basic Abstract Algebra Exercises Notes <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">寻找岛屿数量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90"><span class="nav-number">1.2.</span> <span class="nav-text">腐烂的橘子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="nav-number">1.2.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#207-%E8%AF%BE%E7%A8%8B%E8%A1%A8"><span class="nav-number">1.3.</span> <span class="nav-text">(207) 课程表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="nav-number">1.3.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#208-%E5%AE%9E%E7%8E%B0-Trie-%E5%89%8D%E7%BC%80%E6%A0%91"><span class="nav-number">1.4.</span> <span class="nav-text">(208) 实现 Trie (前缀树)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-4"><span class="nav-number">1.4.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+
+</body>
+</html>
