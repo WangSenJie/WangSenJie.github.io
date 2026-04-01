@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>分离变量法</title>
+    <url>/2025/09/03/2-1/</url>
+    <content><![CDATA[<p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
+<p><strong>解</strong> 令 $x=y=0$, 则 $f(0)=\frac{2f(0)}{1-f(0)^2}$, 得 $f(0)=0$. 注意到<br>
+$$<br>
+f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}<br>
+$$<br>
+因为 $f’(0)$ 存在, 故由导数的 定义可知<br>
+$$<br>
+f’(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f’(0)[1+f(x)^2]<br>
+$$<br>
+即 $f(x)$ 满足微分方程 $f’(x)=f’(0)[1+f(x)^2], f(0)=0$. 利用分离变量法求得其解为 $y=\tan\left(f’(0)x\right)$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>初等积分法</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 指令</title>
     <url>/2025/09/05/hexo/</url>
     <content><![CDATA[<h2 id="最常用（发文三步走）">最常用（发文三步走）</h2>
@@ -44,29 +67,6 @@
       </categories>
       <tags>
         <tag>Hexo 教程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分离变量法</title>
-    <url>/2025/09/03/2-1/</url>
-    <content><![CDATA[<p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
-<p><strong>解</strong> 令 $x=y=0$, 则 $f(0)=\frac{2f(0)}{1-f(0)^2}$, 得 $f(0)=0$. 注意到<br>
-$$<br>
-f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}<br>
-$$<br>
-因为 $f’(0)$ 存在, 故由导数的 定义可知<br>
-$$<br>
-f’(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f’(0)[1+f(x)^2]<br>
-$$<br>
-即 $f(x)$ 满足微分方程 $f’(x)=f’(0)[1+f(x)^2], f(0)=0$. 利用分离变量法求得其解为 $y=\tan\left(f’(0)x\right)$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>初等积分法</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
       </tags>
   </entry>
   <entry>
@@ -357,6 +357,39 @@ $$<br>
       </tags>
   </entry>
   <entry>
+    <title>常系数齐次线性方程的待定指数函数法</title>
+    <url>/2025/09/03/4-3/</url>
+    <content><![CDATA[<p><strong>[T040301]</strong> 求方程 $x^2 y’‘+2x^2\tan y\cdot y’^2+xy’-\sin y\cos y=0$ 的通解.</p>
+<p><strong>解</strong> 令 $u=\tan y$, 即 $y=\arctan u$, 于是<br>
+$$<br>
+\begin{cases}<br>
+y’=\frac{1}{1+u^2}\frac{\mathrm du}{\mathrm dx},\<br>
+y’'=-\frac{2u}{(1+u^2)^2}\left(\frac{\mathrm du}{\mathrm dx}\right)^2+\frac{1}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}<br>
+\end{cases}<br>
+$$<br>
+于是原方程变为<br>
+$$<br>
+\frac{x^2}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}+\frac{x}{1+u^2}\frac{\mathrm du}{\mathrm dx}-\frac{u}{1+u^2}=0<br>
+$$<br>
+即 $x^2\frac{\mathrm d^2u}{\mathrm dx^2}+x\frac{\mathrm du}{\mathrm dx}-u=0$. 令 $x=e^t$, 即 $t=\ln x$, 令 $D=\frac{\mathrm d}{\mathrm dt}$, 则原方程可改写为<br>
+$$<br>
+D(D-1)u+Du-u=0\Longrightarrow \frac{\mathrm d^2u}{\mathrm dt^2}-u=0.<br>
+$$<br>
+其特征方程为 $\lambda^2-1=0$, 解得特征根为 $\lambda_1=1, \ \lambda_2=-1$, 故通解为<br>
+$$<br>
+u(t)=c_1e^t+c_2e^{-t}<br>
+$$<br>
+其中 $c_1,c_2$ 为任意常数. 再将 $t=\ln x$ 代入, 得<br>
+$$<br>
+u=c_1x+\frac{c_2}{x}\Rightarrow \tan y=c_1x+\frac{c_2}{x}<br>
+$$<br>
+即通解为 $y=\arctan(c_1x+\frac{c_2}{x})$, 其中 $c_1,c_2$ 为任意常数.</p>
+]]></content>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解对初值与参数的连续性与可微性</title>
     <url>/2025/09/03/3-4/</url>
     <content><![CDATA[<p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
@@ -404,116 +437,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>高阶线性微分方程的一般理论</title>
-    <url>/2025/09/03/4-2/</url>
-    <content><![CDATA[<p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
-<p><strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
-$$<br>
-\left\lbrace<br>
-\begin{array}{cccc}<br>
-x_1(t_0)=1, &amp; x’_1(t_0)=0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)=0,\\<br>
-x_2(t_0)=0, &amp; x’_2(t_0)=1, &amp; \cdots, &amp; x_2^{(n-2)}(t_0)=0,\\<br>
-\vdots &amp; \vdots &amp; &amp; \vdots\\<br>
-x_n(t_0)=0, &amp; x_n’(t_0)=0, &amp; \cdots, &amp; x_n^{(n-1)}(t_0)=1<br>
-\end{array}<br>
-\right.<br>
-$$<br>
-的解 $x_1(t),x_2(t),\cdots,x_n(t)$ 一定存在且唯一, 注意到它们的 Wronski 行列式<br>
-$$<br>
-W(x_1(t_0),x_2(t_0),\cdots,x_n(t_0))=1\neq0<br>
-$$<br>
-故这 $n$ 个解必线性无关.</p>
-<hr>
-<p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
-<p><strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
-显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\\<br>
-\Longrightarrow&amp;(c_1x_1+c_2x_2+\cdots+c_nx_n)+(c_1+c_2+\cdots+c_{n+1})\bar x=0<br>
-\end{aligned}<br>
-$$<br>
-此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
-再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
-$$<br>
-\begin{aligned}<br>
-&amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\\<br>
-\Longrightarrow&amp;c_1x_1+c_2x_2+\cdots+c_{n+1}x_{n+1}-(c_1+c_2+\cdots+c_{n+1})x_{n+2}=0<br>
-\end{aligned}<br>
-$$<br>
-故这 $n+2$ 个解在 $[a,b]$ 上线性相关, 产生矛盾!</p>
-<hr>
-<p><strong>[T040203]</strong> (Liouville 公式) 设 $x_1(t),x_2(t),\cdots,x_n(t)$ 是齐次线性方程 $L[x]=0$ 的任意 $n$ 个解, $W(t)$ 是它们的 Wronski 行列式, 则 $W(t)$ 满足一阶线性微分方程 $W’(t)=-a_1(t)W(t)$, 因而有<br>
-$$<br>
-W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
-$$<br>
-<strong>证</strong> 由行列式求导法则可知<br>
-$$<br>
-W’(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
-x_1^{(n)}&amp;x_2^{(n)}&amp;\cdots&amp;x_n^{(n)}<br>
-\end{vmatrix}<br>
-$$<br>
-于是<br>
-$$<br>
-W’(t)+a_1(t)W(t)=\begin{vmatrix}<br>
-x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
-x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
-\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
-x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}&amp;x_2^{(n)}+a_1(t)x_2^{(n-1)}&amp;\cdots&amp;x_n^{(n)}+a_1(t)x_n^{(n-1)}<br>
-\end{vmatrix}<br>
-$$<br>
-注意到<br>
-$$<br>
-\begin{cases}<br>
-x_1^{(n)}+a_1(t)x_1^{(n-1)}=-a_2(t)x_1^{(n-2)}-\cdots-a_n(t)x_1,\\<br>
-x_2^{(n)}+a_1(t)x_2^{(n-1)}=-a_2(t)x_2^{(n-2)}-\cdots-a_n(t)x_2,\\<br>
-\quad\quad\quad\quad\quad\quad\quad~ …\\<br>
-x_n^{(n)}+a_1(t)x_n^{(n-1)}=-a_2(t)x_n^{(n-2)}-\cdots-a_n(t)x_n,\\<br>
-\end{cases}<br>
-$$<br>
-因此 $W’(t)+a_1(t)W(t)=0, \ t\in[a,b]$. 解得<br>
-$$<br>
-W(t)=ce^{-\int_{t_0}^ta_1(s)\mathrm{~d}s}<br>
-$$<br>
-注意到 $W(t_0)=c$, 于是 $W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b]$.</p>
-<hr>
-<p><strong>[T040204]</strong> 设 $x=x_1(t), \ x=x_2(t)$ 是微分方程 $x’‘+x=0$ 的满足初始条件<br>
-$$<br>
-x_1(0)=0,\quad x_1’(0)=1,\\<br>
-x_2(0)=1,\quad x_2’(0)=0<br>
-$$<br>
-的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
-<p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
-<p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.</p>
-<p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
-$$<br>
-\begin{vmatrix}<br>
-x_1(t) &amp; x_2(t)\\<br>
-x_1’(t) &amp; x_2’(t)<br>
-\end{vmatrix}=<br>
-\begin{vmatrix}<br>
-x_1(0) &amp; x_2(0)\\<br>
-x_1’(0) &amp; x_2’(0)<br>
-\end{vmatrix}=-1<br>
-$$<br>
-又 $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$, 故 $x_1^2(t)+x_2^2(t)\equiv1$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>高阶微分方程</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>常系数非齐次线性方程的待定系数法</title>
     <url>/2025/09/03/4-4/</url>
     <content><![CDATA[<p><strong>[T040401]</strong> 求微分方程通解: $\frac{\mathrm d^2x}{\mathrm dt^2}+x=\frac{1}{\sin^3t}$.</p>
@@ -537,278 +460,6 @@ $$</p>
         <category>数学</category>
         <category>常微分方程</category>
         <category>高阶微分方程</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常系数齐次线性方程的待定指数函数法</title>
-    <url>/2025/09/03/4-3/</url>
-    <content><![CDATA[<p><strong>[T040301]</strong> 求方程 $x^2 y’‘+2x^2\tan y\cdot y’^2+xy’-\sin y\cos y=0$ 的通解.</p>
-<p><strong>解</strong> 令 $u=\tan y$, 即 $y=\arctan u$, 于是<br>
-$$<br>
-\begin{cases}<br>
-y’=\frac{1}{1+u^2}\frac{\mathrm du}{\mathrm dx},\<br>
-y’'=-\frac{2u}{(1+u^2)^2}\left(\frac{\mathrm du}{\mathrm dx}\right)^2+\frac{1}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}<br>
-\end{cases}<br>
-$$<br>
-于是原方程变为<br>
-$$<br>
-\frac{x^2}{1+u^2}\frac{\mathrm d^2u}{\mathrm dx^2}+\frac{x}{1+u^2}\frac{\mathrm du}{\mathrm dx}-\frac{u}{1+u^2}=0<br>
-$$<br>
-即 $x^2\frac{\mathrm d^2u}{\mathrm dx^2}+x\frac{\mathrm du}{\mathrm dx}-u=0$. 令 $x=e^t$, 即 $t=\ln x$, 令 $D=\frac{\mathrm d}{\mathrm dt}$, 则原方程可改写为<br>
-$$<br>
-D(D-1)u+Du-u=0\Longrightarrow \frac{\mathrm d^2u}{\mathrm dt^2}-u=0.<br>
-$$<br>
-其特征方程为 $\lambda^2-1=0$, 解得特征根为 $\lambda_1=1, \ \lambda_2=-1$, 故通解为<br>
-$$<br>
-u(t)=c_1e^t+c_2e^{-t}<br>
-$$<br>
-其中 $c_1,c_2$ 为任意常数. 再将 $t=\ln x$ 代入, 得<br>
-$$<br>
-u=c_1x+\frac{c_2}{x}\Rightarrow \tan y=c_1x+\frac{c_2}{x}<br>
-$$<br>
-即通解为 $y=\arctan(c_1x+\frac{c_2}{x})$, 其中 $c_1,c_2$ 为任意常数.</p>
-]]></content>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一阶常系数线性微分方程组</title>
-    <url>/2025/09/03/5-2/</url>
-    <content><![CDATA[<p><strong>[T050201]</strong> 求方程组 $\begin{cases}x’+y’=y+z\\ y’+z’=z+x\\ z’+x’=x+y\end{cases}$ 的通解.</p>
-<p><strong>解</strong> 将方程组写成矩阵形式:<br>
-$$<br>
-\begin{aligned}<br>
-&amp;\begin{pmatrix}<br>
-1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
-\end{pmatrix}<br>
-\begin{pmatrix}<br>
-x’\\y’\\z’<br>
-\end{pmatrix}=<br>
-\begin{pmatrix}<br>
-0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
-\end{pmatrix}<br>
-\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}\\ \\<br>
-\Longrightarrow<br>
-&amp;\begin{pmatrix}<br>
-x’\\y’\\z’<br>
-\end{pmatrix}=\begin{pmatrix}<br>
-1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
-\end{pmatrix}^{-1}\begin{pmatrix}<br>
-0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
-\end{pmatrix}\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}=\begin{pmatrix}<br>
-0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0<br>
-\end{pmatrix}\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}<br>
-:=A\begin{pmatrix}<br>
-x\\y\\z<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-则 $|\lambda E-A|=\begin{vmatrix}\lambda&amp;-1&amp;0\\0&amp;\lambda&amp;-1\\-1&amp;0&amp;\lambda\end{vmatrix}=\lambda^3-1=0\Longrightarrow \lambda_1=1,\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i,\lambda_3=-\frac{1}{2}-\frac{\sqrt3}{2}i$.<br>
-对于特征值 $\lambda_1=1$, 有<br>
-$$<br>
-A-\lambda_1E=<br>
-\begin{pmatrix}<br>
--1&amp;1&amp;0\\0&amp;-1&amp;1\\1&amp;0&amp;-1<br>
-\end{pmatrix}\xrightarrow{初等行变换}<br>
-\begin{pmatrix}<br>
-1&amp;0&amp;-1\\0&amp;1&amp;-1\\0&amp;0&amp;0<br>
-\end{pmatrix}<br>
-$$<br>
-于是可取特征向量 $v_1=(1,1,1)^T$, 从而常系数齐次线性方程组有一个解 $X_1(t)=e^tv_1$.<br>
-对于特征值 $\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i$, 有<br>
-$$<br>
-A-\lambda_2E=<br>
-\begin{pmatrix}<br>
-\frac12-\frac{\sqrt{3}}{2}i&amp;1&amp;0\\0&amp;\frac12-\frac{\sqrt3}{2}i&amp;1\\1&amp;0&amp;\frac12-\frac{\sqrt{3}}{2}i<br>
-\end{pmatrix}<br>
-\xrightarrow{初等行变换}<br>
-\begin{pmatrix}<br>
-1&amp;0&amp;\frac12-\frac{\sqrt3}{2}i\\0&amp;1&amp;\frac12+\frac{\sqrt3}{2}i\\0&amp;0&amp;0<br>
-\end{pmatrix}<br>
-$$<br>
-于是可取特征向量 $v_2=\left(-\frac12-\frac{\sqrt3}{2}i,-\frac12+\frac{\sqrt3}{2}i,1\right)^T$. 注意到<br>
-$$<br>
-\begin{aligned}<br>
-e^{(-\frac{1}{2}+\frac{\sqrt3}{2}i)t}v_2&amp;=e^{-\frac12t}<br>
-\begin{pmatrix}<br>
-(-\frac{1}{2}+\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
-(-\frac{1}{2}-\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
-e^{\frac{\sqrt3}{2}it}<br>
-\end{pmatrix}\\<br>
-&amp;=e^{-\frac12t}<br>
-\left\lbrace<br>
-\begin{pmatrix}<br>
--\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
--\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
-\cos\frac{\sqrt3}{2}t<br>
-\end{pmatrix}+i<br>
-\begin{pmatrix}<br>
--\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
--\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
-\sin\frac{\sqrt3}{2}t<br>
-\end{pmatrix}<br>
-\right\rbrace<br>
-\end{aligned}<br>
-$$<br>
-于是另两个线性无关的解为<br>
-$$<br>
-X_2(t)=e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
--\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
-\cos\frac{\sqrt3}{2}t<br>
-\end{pmatrix},\quad<br>
-X_3(t)=e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
--\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
-\sin\frac{\sqrt3}{2}t<br>
-\end{pmatrix}<br>
-$$<br>
-注意到 $X_1(t),X_2(t),X_3(t)$ 是常系数齐次线性方程组的三个线性无关解, 故通解为<br>
-$$<br>
-\begin{aligned}<br>
-X(t)&amp;=c_1X_1(t)+c_2X_2(t)+c_3X_3(t)\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1\\1\\1<br>
-\end{pmatrix}+<br>
-c_2e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
--\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
-\cos\frac{\sqrt3}{2}t<br>
-\end{pmatrix}+<br>
-c_3e^{-\frac12t}\begin{pmatrix}<br>
--\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
--\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
-\sin\frac{\sqrt3}{2}t<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-其中 $c_1,c_2,c_3$ 为任意常数.</p>
-<hr>
-<p><strong>[T050202]</strong> 求常系数非齐次线性方程组的通解:<br>
-$$<br>
-X’=\begin{pmatrix}<br>
--1&amp;2\\-2&amp;3<br>
-\end{pmatrix}X+\begin{pmatrix}<br>
-1\\0<br>
-\end{pmatrix}.<br>
-$$<br>
-<strong>解</strong> 记 $X’=AX+F$, 于是<br>
-$$<br>
-|\lambda E-A|=\begin{vmatrix}<br>
-\lambda+1&amp;-2\\2&amp;\lambda-3<br>
-\end{vmatrix}=(\lambda-1)^2\Longrightarrow \lambda=1 \ (二 \ 重)<br>
-$$<br>
-从而对应的常系数齐次线性方程组有两个解形如 $X(t)=(R_0+R_1t)e^t$, 其中 $R_0,R_1$ 满足<br>
-$$<br>
-\begin{cases}<br>
-(A-E)R_0=R_1\\<br>
-(A-E)^2R_0=0<br>
-\end{cases}<br>
-$$<br>
-注意到<br>
-$$<br>
-(A-E)^2=\begin{pmatrix}<br>
--2&amp;2\\-2&amp;2<br>
-\end{pmatrix}^2=<br>
-O<br>
-$$<br>
-故可取 $R_0=(1,0)^T$ 和 $(0,1)^T$, 从而 $R_1=(-2,-2)^T$ 和 $(2,2)$, 从而对应的常系数齐次线性方程组有两个线性无关解</p>
-<p>$$<br>
-\begin{aligned}<br>
-X_1(t)&amp;=<br>
-\begin{pmatrix}<br>
-1\\<br>
-0<br>
-\end{pmatrix}+<br>
-\begin{pmatrix}<br>
--2\\<br>
--2<br>
-\end{pmatrix}t<br>
-e^t=e^t\begin{pmatrix}<br>
-1-2t\\<br>
--2t<br>
-\end{pmatrix}\\</p>
-<p>X_2(t)&amp;=\begin{pmatrix}<br>
-0\\1<br>
-\end{pmatrix}+<br>
-\begin{pmatrix}<br>
-2\\2<br>
-\end{pmatrix}t<br>
-e^t=e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-由此可得对应的常系数齐次线性方程组的基解矩阵为</p>
-<p>$$<br>
-\Phi(t)=e^t<br>
-\begin{pmatrix}<br>
-1-2t&amp;2t\\<br>
--2t&amp;1+2t<br>
-\end{pmatrix},<br>
-\Phi^{-1}(t)=e^{-t}<br>
-\begin{pmatrix}<br>
-1+2t&amp;-2t\\<br>
-2t&amp;1-2t<br>
-\end{pmatrix},<br>
-$$</p>
-<p>于是原常系数非齐次线性方程组有特解</p>
-<p>$$<br>
-\begin{aligned}<br>
-\bar X(t)&amp;=\Phi(t)\int_0^t\Phi^{-1}(s)F\mathrm{~d}s=e^t\begin{pmatrix}<br>
-1-2t&amp;2t\\-2t&amp;1+2t<br>
-\end{pmatrix}\begin{pmatrix}<br>
--3e^{-t}-2te^{-t}+3\\-2e^{-t}-2te^{-t}+2<br>
-\end{pmatrix}\\<br>
-&amp;=e^t\begin{pmatrix}<br>
--3e^{-t}+3-2t\\-2e^{-t}+2-2t<br>
-\end{pmatrix}=\begin{pmatrix}<br>
--3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
-\end{pmatrix}<br>
-\end{aligned}<br>
-$$<br>
-故原方程组的通解<br>
-$$<br>
-\begin{aligned}<br>
-X(t)&amp;=c_1X_1(t)+c_2X_2(t)+\bar X(t)\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1-2t\\-2t<br>
-\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}+\begin{pmatrix}<br>
--3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
-\end{pmatrix}\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1-2t\\-2t<br>
-\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}+\begin{pmatrix}<br>
--3+2e^t\\-2+2e^t<br>
-\end{pmatrix}\\<br>
-&amp;=c_1e^t\begin{pmatrix}<br>
-1-2t\\-2t<br>
-\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
-2t\\1+2t<br>
-\end{pmatrix}+\begin{pmatrix}<br>
--3\\-2<br>
-\end{pmatrix}.<br>
-\end{aligned}<br>
-$$</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>常微分方程</category>
-        <category>一阶线性微分方程组</category>
       </categories>
       <tags>
         <tag>常微分方程</tag>
@@ -964,6 +615,116 @@ $$</p>
         <category>数学</category>
         <category>常微分方程</category>
         <category>一阶线性微分方程组</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高阶线性微分方程的一般理论</title>
+    <url>/2025/09/03/4-2/</url>
+    <content><![CDATA[<p><strong>[T040201]</strong> 证明 $n$ 阶齐次线性微分方程一定存在 $n$ 个线性无关解.</p>
+<p><strong>证</strong> 由存在唯一性定理可知 $n$ 阶齐次线性方程满足下列 $n$ 组初始条件<br>
+$$<br>
+\left\lbrace<br>
+\begin{array}{cccc}<br>
+x_1(t_0)=1, &amp; x’_1(t_0)=0, &amp; \cdots, &amp; x_1^{(n-1)}(t_0)=0,\\<br>
+x_2(t_0)=0, &amp; x’_2(t_0)=1, &amp; \cdots, &amp; x_2^{(n-2)}(t_0)=0,\\<br>
+\vdots &amp; \vdots &amp; &amp; \vdots\\<br>
+x_n(t_0)=0, &amp; x_n’(t_0)=0, &amp; \cdots, &amp; x_n^{(n-1)}(t_0)=1<br>
+\end{array}<br>
+\right.<br>
+$$<br>
+的解 $x_1(t),x_2(t),\cdots,x_n(t)$ 一定存在且唯一, 注意到它们的 Wronski 行列式<br>
+$$<br>
+W(x_1(t_0),x_2(t_0),\cdots,x_n(t_0))=1\neq0<br>
+$$<br>
+故这 $n$ 个解必线性无关.</p>
+<hr>
+<p><strong>[T040202]</strong> 证明: $n$ 阶非齐次线性方程 $L[x]=f(t), \ t\in[a,b]$ 最多存在 $n+1$ 个线性无关解.</p>
+<p><strong>证</strong> 注意到其对应的齐次线性方程 $L[x]=0$ 在区间 $[a,b]$ 上存在 $n$ 个线性无关解, 设为 $x_1(t),x_2(t),\cdots,x_n(t)$, 并设 $\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在 $[a,b]$ 上的一个特解. 下证 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 且它们在 $[a,b]$ 上线性无关.<br>
+显然 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解, 设存在一组数 $c_1,\cdots,c_{n+1}$, 使得当 $t\in[a,b]$ 时, 有<br>
+$$<br>
+\begin{aligned}<br>
+&amp;c_1(x_1+\bar x)+c_2(x_2+\bar x)+\cdots+c_n(x_n+\bar x)+c_{n+1}\bar x=0\\<br>
+\Longrightarrow&amp;(c_1x_1+c_2x_2+\cdots+c_nx_n)+(c_1+c_2+\cdots+c_{n+1})\bar x=0<br>
+\end{aligned}<br>
+$$<br>
+此时必有 $c_1+c_2+\cdots+c_{n+1}=0$, 否则 $\bar x$ 可由 $x_1,x_2,\cdots,x_n$ 线性表出, 这与 $\bar x$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 的解矛盾! 于是 $c_1x_1+c_2x_2+\cdots+c_nx_n=0$, 而 $x_1(t),x_2(t),\cdots,x_n(t)$ 在区间 $[a,b]$ 上线性无关, 故 $c_1=c_2=\cdots=c_n=0\Rightarrow c_{n+1}=0$, 所以 $x_1(t)+\bar{x}(t),\cdots,x_n(t)+\bar{x}(t),\bar{x}(t)$ 是 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 在区间 $[a,b]$ 上的 $n+1$ 个线性无关解.<br>
+再证 $n$ 阶非齐次线性方程 $L[x]=f(t)$ 最多存在 $n+1$ 个线性无关解. 设 $x_1(t),x_2(t),\cdots,x_{n+1}(t),x_{n+2}(t)$ 是其任意 $n+2$ 个线性无关解. 显然 $x_1(t)-x_{n+2}(t),\cdots,x_{n+1}(t)-x_{n+2}(t)$ 是对应的齐次线性方程 $L[x]=0$ 的 $n+1$ 个解, 则这 $n+1$ 个解必线性相关, 即存在不全为零的数 $c_1,\cdots,c_{n+1}$, 使得在 $[a,b]$ 上满足<br>
+$$<br>
+\begin{aligned}<br>
+&amp;c_1(x_1(t)-x_{n+2}(t))+c_2(x_2(t)-x_{n+2}(t))+\cdots+c_{n+1}(x_{n+1}(t)-x_{n+2}(t))=0\\<br>
+\Longrightarrow&amp;c_1x_1+c_2x_2+\cdots+c_{n+1}x_{n+1}-(c_1+c_2+\cdots+c_{n+1})x_{n+2}=0<br>
+\end{aligned}<br>
+$$<br>
+故这 $n+2$ 个解在 $[a,b]$ 上线性相关, 产生矛盾!</p>
+<hr>
+<p><strong>[T040203]</strong> (Liouville 公式) 设 $x_1(t),x_2(t),\cdots,x_n(t)$ 是齐次线性方程 $L[x]=0$ 的任意 $n$ 个解, $W(t)$ 是它们的 Wronski 行列式, 则 $W(t)$ 满足一阶线性微分方程 $W’(t)=-a_1(t)W(t)$, 因而有<br>
+$$<br>
+W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b].<br>
+$$<br>
+<strong>证</strong> 由行列式求导法则可知<br>
+$$<br>
+W’(t)=\begin{vmatrix}<br>
+x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
+x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
+x_1^{(n)}&amp;x_2^{(n)}&amp;\cdots&amp;x_n^{(n)}<br>
+\end{vmatrix}<br>
+$$<br>
+于是<br>
+$$<br>
+W’(t)+a_1(t)W(t)=\begin{vmatrix}<br>
+x_1&amp;x_2&amp;\cdots&amp;x_n\\<br>
+x_1’&amp;x_2’&amp;\cdots&amp;x_n’\\<br>
+\vdots&amp;\vdots&amp;&amp;\vdots\\<br>
+x_1^{(n-2)}&amp;x_2^{(n-2)}&amp;\cdots&amp;x_n^{(n-2)}\\<br>
+x_1^{(n)}+a_1(t)x_1^{(n-1)}&amp;x_2^{(n)}+a_1(t)x_2^{(n-1)}&amp;\cdots&amp;x_n^{(n)}+a_1(t)x_n^{(n-1)}<br>
+\end{vmatrix}<br>
+$$<br>
+注意到<br>
+$$<br>
+\begin{cases}<br>
+x_1^{(n)}+a_1(t)x_1^{(n-1)}=-a_2(t)x_1^{(n-2)}-\cdots-a_n(t)x_1,\\<br>
+x_2^{(n)}+a_1(t)x_2^{(n-1)}=-a_2(t)x_2^{(n-2)}-\cdots-a_n(t)x_2,\\<br>
+\quad\quad\quad\quad\quad\quad\quad~ …\\<br>
+x_n^{(n)}+a_1(t)x_n^{(n-1)}=-a_2(t)x_n^{(n-2)}-\cdots-a_n(t)x_n,\\<br>
+\end{cases}<br>
+$$<br>
+因此 $W’(t)+a_1(t)W(t)=0, \ t\in[a,b]$. 解得<br>
+$$<br>
+W(t)=ce^{-\int_{t_0}^ta_1(s)\mathrm{~d}s}<br>
+$$<br>
+注意到 $W(t_0)=c$, 于是 $W(t)=W(t_0)e^{-\int_{t_0}^ta_1(s)\mathrm{~d}s},\quad t,t_0\in[a,b]$.</p>
+<hr>
+<p><strong>[T040204]</strong> 设 $x=x_1(t), \ x=x_2(t)$ 是微分方程 $x’‘+x=0$ 的满足初始条件<br>
+$$<br>
+x_1(0)=0,\quad x_1’(0)=1,\\<br>
+x_2(0)=1,\quad x_2’(0)=0<br>
+$$<br>
+的解, 试不具体求出 $x_1(t)$ 和 $x_2(t)$ 而直接证明</p>
+<p>  (1) $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$;</p>
+<p>  (2) $x_1^2(t)+x_2^2(t)\equiv1$.</p>
+<p><strong>证</strong> (1) 注意到 $x_1’‘(t)+x(t)=0, \ \ x_1(0)=0, \ x_1’(0)=1$, 于是 $x_1’‘(0)=0$. 令 $y(t)=x_1’(t)$, 则 $y’(t)=x_1’‘(t)=-x_1(t)$, 进而 $y’‘(t)=-x_1’(t)=-y(t)$, 即 $y’‘(t)+y(t)=0$, 且满足 $y(0)=x_1’(0)=1, \ y’(0)=x_1’‘(0)=0$, 由题设以及解的存在唯一性定理可知 $y(t)=x_2(t)$, 即 $x_1’(t)=x_2(t)$. 同理可证 $x_2’(t)=-x_1(t)$.</p>
+<p>(2) 设 $W(t)$ 是$x_1(t)$ 和 $x_2(t)$ 的 Wronski 行列式, 由 Liouville 公式可知 $W(t)=W(0)e^{-\int_0^ta_1(s)\mathrm{~d}s}=W(0)$, 于是<br>
+$$<br>
+\begin{vmatrix}<br>
+x_1(t) &amp; x_2(t)\\<br>
+x_1’(t) &amp; x_2’(t)<br>
+\end{vmatrix}=<br>
+\begin{vmatrix}<br>
+x_1(0) &amp; x_2(0)\\<br>
+x_1’(0) &amp; x_2’(0)<br>
+\end{vmatrix}=-1<br>
+$$<br>
+又 $x_1’(t)=x_2(t),\quad x_2’(t)=-x_1(t)$, 故 $x_1^2(t)+x_2^2(t)\equiv1$.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>高阶微分方程</category>
       </categories>
       <tags>
         <tag>常微分方程</tag>
@@ -1217,130 +978,109 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>Deep Retrieval</title>
-    <url>/2026/04/01/deep-retrieval/</url>
-    <content><![CDATA[<blockquote>
+    <title>ItemCF</title>
+    <url>/2026/03/29/itemcf/</url>
+    <content><![CDATA[<h1>ItemCF</h1>
+<blockquote>
+<p>Q: 怎样判断我是否喜欢某物品?</p>
 <ul>
-<li>经典的双塔模型把用户、物品表征成向量, 线上做最近邻查找.</li>
-<li>Deep Retrieval 把物品表征成<code>路径(path)</code>, 线上查找用户最匹配的路径.</li>
-<li>Deep Retrieval 类似于阿里的 TDM</li>
+<li>只需判断我是否喜欢与该物品相似的物品.</li>
 </ul>
 </blockquote>
-<h2 id="索引">索引</h2>
-<p><img src="/2026/04/01/deep-retrieval/DR-%E7%B4%A2%E5%BC%95.jpeg" alt="物品路径索引"></p>
+<h2 id="ItemCF-的实现">ItemCF 的实现</h2>
+<p>目标: 预估用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣.</p>
+<p>已知:</p>
 <ul>
-<li><code>物品</code>到<code>路径</code>的索引: <code>item -&gt; list &lt;path&gt;</code>
-<ul>
-<li>一个物品可以对应多条路径</li>
-<li>用 $3$ 个节点表示一条路径</li>
+<li>用户 $\text{user}$ 对物品 $\lbrace\text{item}_j\rbrace$ 的兴趣 $\text{like}\left(\text{user},\text{item}_j\right)$;</li>
+<li>物品 $\text{item}_j$ 与 $\text{item}$ 的相似度 $\text{sim}\left(\text{item}_j,\text{item}\right)$.</li>
 </ul>
-</li>
-<li><code>路径</code>到<code>物品</code>的索引: <code>path -&gt; list &lt;item&gt;</code>
-<ul>
-<li>一条路径对应多个物品</li>
-</ul>
-</li>
-</ul>
-<h2 id="预估模型">预估模型</h2>
-<p>预估<code>用户</code>到<code>路径</code>的兴趣<br>
-<img src="/2026/04/01/deep-retrieval/DR-%E9%A2%84%E4%BC%B0.jpeg" alt="预估模型"></p>
-<ul>
-<li>用 $3$ 个节点表示一条路径 <code>path = [a, b, c]</code></li>
-<li>给定用户特征 $\vec x$, 预估用户对节点 $a$ 的兴趣 $p_1(a\mid\vec x)$</li>
-<li>给定用户特征 $\vec x$ 和节点 $a$, 预估用户对节点 $b$ 的兴趣 $p_2(b\mid a; \vec x)$</li>
-<li>给定用户特征 $\vec x$ 和节点 $a, b$, 预估用户对节点 $c$ 的兴趣 $p_3(c\mid a, b; \vec x)$</li>
-<li>预估用户对 <code>path = [a, b, c]</code> 的兴趣:<br>
+<p>则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为<br>
 $$<br>
-p(a,b,c\mid \vec x)=p_1(a\mid\vec x)\cdot p_2(b\mid a;\vec x)\cdot p_3(c\mid a,b;\vec x).<br>
-$$</li>
+\sum_{j=1}^n\text{like}\left(\text{user}, \text{item}_j\right)\times\text{sim}\left(\text{item}_j,\text{item}\right)<br>
+$$</p>
+<blockquote>
+<p>Q: 如何量化物品之间的相似度?</p>
+<ul>
+<li>采用余弦相似度</li>
 </ul>
-<h2 id="线上召回">线上召回</h2>
-<p><code>召回: 用户 -&gt; 路径 -&gt; 物品</code></p>
+</blockquote>
+<p>目标: 计算物品 $i_1$ 与 $i_2$ 之间的相似度.</p>
+<p>已知:</p>
+<ul>
+<li>喜欢物品 $i_1$ 的用户集合 $\mathcal W_1$;</li>
+<li>喜欢物品 $i_2$ 的用户集合 $\mathcal W_2$.</li>
+</ul>
+<p>则物品 $i_1, i_2$ 都喜欢的用户集合为 $\mathcal V=\mathcal W_1\cap\mathcal W_2$. 定义<br>
+$$<br>
+\text{sim}(i_1, i_2)=\frac{|\mathcal V|}{\sqrt{|\mathcal W_1|\cdot|\mathcal W_2|}}\in[0, 1].<br>
+$$</p>
+<blockquote>
+<p>RK: 上述公式未考虑喜欢的程度 $\text{like}(\text{user}, \text{item})$.</p>
+</blockquote>
+<p>若考虑用户喜欢的程度, 则物品相似度公式修改为<br>
+$$<br>
+\text{sim}(i_1, i_2)=\frac{\sum_{v\in\mathcal V}\text{like}(v, i_1)\cdot\text{like}(v, i_2)}{\sqrt{\sum_{u_1\in\mathcal W_1}\text{like}^2(u_1,i_1)\cdot\sum_{u_2\in\mathcal W_2}\text{like}^2(u_2,i_2)}}\in[0, 1].<br>
+$$</p>
+<h2 id="ItemCF-召回的完整流程">ItemCF 召回的完整流程</h2>
 <ol>
-<li>给定用户特征, 用 <code>beam search</code> 召回一批路径;</li>
-<li>利用索引 <code>path -&gt; list&lt;item&gt;</code> 召回一批物品;</li>
-<li>对物品做打分和排序, 选出一个子集.</li>
+<li>
+<p>事先做离线计算</p>
+<ul>
+<li>
+<p>建立“用户 $\to$ 物品“索引, 即 $\lbrace\text{用户 ID}: (\text{物品 ID, 兴趣分数})\rbrace$.</p>
+<ul>
+<li>记录每个用户最近点击、交互过的物品 ID.</li>
+<li>给定任意用户 ID, 可找到他最近感兴趣的物品列表.</li>
+</ul>
+</li>
+<li>
+<p>建立“物品 $\to$ 物品“索引, 即 $\lbrace\text{物品 ID}: (\text{相似物品 ID, 相似度})\rbrace$.</p>
+<ul>
+<li>对于每个物品, 索引与它最相似的 $k$ 个物品.</li>
+<li>给定任意物品 ID, 可快速找到与它最相似的 $k$ 个物品.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>线上做召回</p>
+<ul>
+<li>给定用户 ID, 通过“用户 $\to$ 物品“索引, 找到用户最近感兴趣的物品列表 $last-n$.</li>
+<li>对于每个 $last-k$ 物品, 通过“物品 $\to$ 物品“索引, 找到 $top-k$ 相似物品.</li>
+<li>对于召回的 $nk$ 个物品, 用公式预估用户对每个物品的兴趣分数.</li>
+<li>返回分数最高的 $m$ 个物品作为召回结果.</li>
+</ul>
+</li>
 </ol>
-<h3 id="Beam-Search">Beam Search</h3>
+<h2 id="Swing-召回通道">Swing 召回通道</h2>
+<blockquote>
+<p>ItemCF 的不足之处: 小圈子的处理</p>
 <ul>
-<li>假设有 $3$ 层, 每层 $K$ 个节点, 则共 $K^3$ 条路径.</li>
-<li>用神经网络给所有 $K^3$ 条路径打分, 计算量太大.</li>
-<li>用 <code>beam search</code> 减小计算量</li>
-<li>需设置超参数 <code>beam size</code></li>
+<li>如果两物品的受众完全不同, 但他们被转发到了同一个微信群中, 使得很多用户同时交互过这两个物品, 导致程序错误计算了两物品之间的相似度.</li>
+<li>解决措施: 给用户设置权重, 重合度高的用户的权重要降低</li>
 </ul>
-<p><code>beam size = 1</code> 的例子:<br>
-<img src="/2026/04/01/deep-retrieval/DR-%E5%8F%AC%E5%9B%9E01.jpeg" alt="Beam Search(size=1)"></p>
+</blockquote>
+<p><strong>目标: 定义用户 $u_1, u_2$ 之间的重合度.</strong></p>
+<p>已知:</p>
 <ul>
-<li>计算第一层 $p_1(i\mid \vec x)$, 得到最大值的节点 $5$;</li>
-<li>计算第二层 $p_2(i\mid 5;\vec x)$, 得到最大值的节点 $4$;</li>
-<li>计算第三层 $p_3(i\mid 5,4;\vec x)$, 得到最大值的节点 $1$;</li>
-<li>最终得到最优路径 <code>path = [5, 4, 1]</code>.</li>
+<li>用户 $u_1$ 喜欢的物品集合 $\mathcal J_1$;</li>
+<li>用户 $u_2$ 喜欢的物品集合 $\mathcal J_2$.</li>
 </ul>
-<p>不难看出 Beam Search 得到的路径并非最优路径, 事实上这是一种贪心算法, 得到局部的最优路径.</p>
-<p><code>beam size = 4</code> 的例子:<br>
-<img src="/2026/04/01/deep-retrieval/DR-%E5%8F%AC%E5%9B%9E02.jpeg" alt="Beam Search(size=4)_1"></p>
-<ul>
-<li>计算第一层 $p_1(i\mid \vec x)$, 得到最大值的 $4$ 个节点 $2,3,5,7$;</li>
-<li>计算第二层 $p_1(i\mid \vec j;x)$, $j=2,3,5,7$, 得到最大值的四条路径 $[2,1], [2,2], [2,8], [5,3]$.</li>
-</ul>
-<p><img src="/2026/04/01/deep-retrieval/DR-%E5%8F%AC%E5%9B%9E03.jpeg" alt="Beam Search(size=4)_2"></p>
-<ul>
-<li>计算第三层 $p_1(i\mid \vec j,k;x)$, $[j,k]=[2,1], [2,2], [2,8], [5,3]$, 得到最大值的四条路径 $[2,1,1], [2,1, 4], [2, 8, 1], [5, 3, 8]$.</li>
-</ul>
-<h2 id="训练——同时学习神经网络参数和物品表征">训练——同时学习神经网络参数和物品表征</h2>
-<ul>
-<li>神经网络 $p(a,b,c\mid \vec x)$ 预估用户对路径 $[a,b,c]$ 的兴趣.</li>
-<li>把一个物品表征为多条路径 $\lbrace[a,b,c]\rbrace$, 建立索引:
-<ul>
-<li><code>item -&gt; list&lt;path&gt;</code></li>
-<li><code>path -&gt; list&lt;item&gt;</code></li>
-</ul>
-</li>
-<li>正样本 <code>(user, item)</code>: <code>click(user, item) = 1</code></li>
-</ul>
-<h3 id="学习神经网络参数">学习神经网络参数</h3>
-<ul>
-<li>物品表征为 $J$ 条路径 $[a_j, b_j, c_j]_{j=1}^J$.</li>
-<li>用户对路径 $[a, b, c]$ 兴趣:<br>
+<p>则定义 $u_1, u_2$ 之间的重合度<br>
 $$<br>
-p(a,b,c\mid\vec x)=p_1(a\mid\vec x)p_2(b\mid a;\vec x)p_3(c\mid a,b;\vec x)<br>
-$$</li>
-<li>如果用户点击过物品, 则说明用户对这 $J$ 条路径感兴趣.
+\text{overlap}(u_1, u_2)=\vert\mathcal J_1\cap\mathcal J_2\vert.<br>
+$$</p>
+<p><strong>目标: 修正物品相似度公式, 减小小圈子问题带来的影响.</strong></p>
+<p>已知:</p>
 <ul>
-<li>应该让 $\sum_{j=1}^Jp(a_j,b_j,c_j\mid \vec x)$ 变大</li>
-<li>损失函数 $loss=-\log\left(\sum_{j=1}^Jp(a_j,b_j,c_j\mid \vec x)\right)$.</li>
+<li>喜欢物品 $i_1$ 的用户集合 $\mathcal W_1$;</li>
+<li>喜欢物品 $i_2$ 的用户集合 $\mathcal W_2$.</li>
 </ul>
-</li>
-</ul>
-<h3 id="学习物品表征">学习物品表征</h3>
-<p><img src="/2026/04/01/deep-retrieval/DR-%E8%AE%AD%E7%BB%83.png" alt="学习物品表征"></p>
-<ul>
-<li>用户 <code>user</code> 对路径 <code>path = [a, b, c]</code> 兴趣记作<br>
-$$p(\text{path}\mid \text{user})=p(a,b,c\mid \vec x)$$</li>
-<li>物品 <code>item</code> 与路径 <code>path</code> 的相关性<br>
+<p>则物品 $i_1, i_2$ 都喜欢的用户集合为 $\mathcal V=\mathcal W_1\cap\mathcal W_2$. 定义<br>
 $$<br>
-score(\text{item, path})=\sum_{\text{user}} p(\text{path}\mid\text{user})\times\text{click}(\text{user,item}).<br>
-$$</li>
-<li>根据 $score(\text{item, path})$ 选出 $J$ 条路径作为 <code>item</code> 的表征 $\Pi=\lbrace \text{path}_1, \text{path}_2,\cdots,\text{path}_J\rbrace$.</li>
-<li>损失函数 (选与 <code>item</code> 高度相关的 <code>path</code>)<br>
+\text{sim}(i_1, i_2)=\sum_{u_1\in \mathcal V}\sum_{u_2\in\mathcal V}\frac{1}{\alpha+\text{overlap}(u_1, u_2)},<br>
 $$<br>
-loss(\text{item},\Pi)=-\log\left(\sum_{j=1}^Jscore(\text{item,path}_j)\right)<br>
-$$</li>
-<li>正则项 (避免过多的 <code>item</code> 集中在一条 <code>path</code> 上)<br>
-$$<br>
-\text{reg}(\text{path}_j) = (\text{number of items on path}_j)^4<br>
-$$</li>
-<li>用贪心算法更新路径
-<ul>
-<li>假设物品被表征为 $J$ 条路径 $\Pi=\lbrace \text{path}_1, \text{path}_2,\cdots,\text{path}_J\rbrace$.</li>
-<li>每次固定 $\lbrace \text{path}<em>i\rbrace</em>{i\neq l}$, 并从未被选中的路径中, 选出一条作为新的 $\text{path}_l$.<br>
-$$<br>
-\text{path}<em>l\gets\arg\min\limits</em>{\text{path}_l}loss(\text{item},\Pi)+\alpha\cdot\text{reg}(\text{path}_l)<br>
-$$</li>
-<li>选中的路径有较高分数 $score(\text{item, path}_l)$, 而且路径上的物品数量不会太多.</li>
-</ul>
-</li>
-</ul>
+其中 $\alpha$ 为人为设定的参数.</p>
 <blockquote>
 <p>参考: 【推荐系统公开课——8小时完整版，讲解工业界真实的推荐系统】<a href="https://www.bilibili.com/video/BV1HZ421U77y?vd_source=54b296fb4038582045c08b7b00aa22a1">https://www.bilibili.com/video/BV1HZ421U77y?vd_source=54b296fb4038582045c08b7b00aa22a1</a></p>
 </blockquote>
@@ -1655,6 +1395,245 @@ BPR 常用于:
       </tags>
   </entry>
   <entry>
+    <title>一阶常系数线性微分方程组</title>
+    <url>/2025/09/03/5-2/</url>
+    <content><![CDATA[<p><strong>[T050201]</strong> 求方程组 $\begin{cases}x’+y’=y+z\\ y’+z’=z+x\\ z’+x’=x+y\end{cases}$ 的通解.</p>
+<p><strong>解</strong> 将方程组写成矩阵形式:<br>
+$$<br>
+\begin{aligned}<br>
+&amp;\begin{pmatrix}<br>
+1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
+\end{pmatrix}<br>
+\begin{pmatrix}<br>
+x’\\y’\\z’<br>
+\end{pmatrix}=<br>
+\begin{pmatrix}<br>
+0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
+\end{pmatrix}<br>
+\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}\\ \\<br>
+\Longrightarrow<br>
+&amp;\begin{pmatrix}<br>
+x’\\y’\\z’<br>
+\end{pmatrix}=\begin{pmatrix}<br>
+1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1<br>
+\end{pmatrix}^{-1}\begin{pmatrix}<br>
+0&amp;1&amp;1\\1&amp;0&amp;1\\1&amp;1&amp;0<br>
+\end{pmatrix}\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}=\begin{pmatrix}<br>
+0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0<br>
+\end{pmatrix}\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}<br>
+:=A\begin{pmatrix}<br>
+x\\y\\z<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+则 $|\lambda E-A|=\begin{vmatrix}\lambda&amp;-1&amp;0\\0&amp;\lambda&amp;-1\\-1&amp;0&amp;\lambda\end{vmatrix}=\lambda^3-1=0\Longrightarrow \lambda_1=1,\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i,\lambda_3=-\frac{1}{2}-\frac{\sqrt3}{2}i$.<br>
+对于特征值 $\lambda_1=1$, 有<br>
+$$<br>
+A-\lambda_1E=<br>
+\begin{pmatrix}<br>
+-1&amp;1&amp;0\\0&amp;-1&amp;1\\1&amp;0&amp;-1<br>
+\end{pmatrix}\xrightarrow{初等行变换}<br>
+\begin{pmatrix}<br>
+1&amp;0&amp;-1\\0&amp;1&amp;-1\\0&amp;0&amp;0<br>
+\end{pmatrix}<br>
+$$<br>
+于是可取特征向量 $v_1=(1,1,1)^T$, 从而常系数齐次线性方程组有一个解 $X_1(t)=e^tv_1$.<br>
+对于特征值 $\lambda_2=-\frac{1}{2}+\frac{\sqrt3}{2}i$, 有<br>
+$$<br>
+A-\lambda_2E=<br>
+\begin{pmatrix}<br>
+\frac12-\frac{\sqrt{3}}{2}i&amp;1&amp;0\\0&amp;\frac12-\frac{\sqrt3}{2}i&amp;1\\1&amp;0&amp;\frac12-\frac{\sqrt{3}}{2}i<br>
+\end{pmatrix}<br>
+\xrightarrow{初等行变换}<br>
+\begin{pmatrix}<br>
+1&amp;0&amp;\frac12-\frac{\sqrt3}{2}i\\0&amp;1&amp;\frac12+\frac{\sqrt3}{2}i\\0&amp;0&amp;0<br>
+\end{pmatrix}<br>
+$$<br>
+于是可取特征向量 $v_2=\left(-\frac12-\frac{\sqrt3}{2}i,-\frac12+\frac{\sqrt3}{2}i,1\right)^T$. 注意到<br>
+$$<br>
+\begin{aligned}<br>
+e^{(-\frac{1}{2}+\frac{\sqrt3}{2}i)t}v_2&amp;=e^{-\frac12t}<br>
+\begin{pmatrix}<br>
+(-\frac{1}{2}+\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
+(-\frac{1}{2}-\frac{\sqrt3}{2}i)e^{\frac{\sqrt3}{2}it}\\<br>
+e^{\frac{\sqrt3}{2}it}<br>
+\end{pmatrix}\\<br>
+&amp;=e^{-\frac12t}<br>
+\left\lbrace<br>
+\begin{pmatrix}<br>
+-\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+-\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+\cos\frac{\sqrt3}{2}t<br>
+\end{pmatrix}+i<br>
+\begin{pmatrix}<br>
+-\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+-\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+\sin\frac{\sqrt3}{2}t<br>
+\end{pmatrix}<br>
+\right\rbrace<br>
+\end{aligned}<br>
+$$<br>
+于是另两个线性无关的解为<br>
+$$<br>
+X_2(t)=e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+-\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+\cos\frac{\sqrt3}{2}t<br>
+\end{pmatrix},\quad<br>
+X_3(t)=e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+-\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+\sin\frac{\sqrt3}{2}t<br>
+\end{pmatrix}<br>
+$$<br>
+注意到 $X_1(t),X_2(t),X_3(t)$ 是常系数齐次线性方程组的三个线性无关解, 故通解为<br>
+$$<br>
+\begin{aligned}<br>
+X(t)&amp;=c_1X_1(t)+c_2X_2(t)+c_3X_3(t)\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1\\1\\1<br>
+\end{pmatrix}+<br>
+c_2e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\cos\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+-\frac12\cos\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\sin\frac{\sqrt3}{2}t\\<br>
+\cos\frac{\sqrt3}{2}t<br>
+\end{pmatrix}+<br>
+c_3e^{-\frac12t}\begin{pmatrix}<br>
+-\frac12\sin\frac{\sqrt3}{2}t+\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+-\frac12\sin\frac{\sqrt3}{2}t-\frac{\sqrt3}{2}\cos\frac{\sqrt3}{2}t\\<br>
+\sin\frac{\sqrt3}{2}t<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+其中 $c_1,c_2,c_3$ 为任意常数.</p>
+<hr>
+<p><strong>[T050202]</strong> 求常系数非齐次线性方程组的通解:<br>
+$$<br>
+X’=\begin{pmatrix}<br>
+-1&amp;2\\-2&amp;3<br>
+\end{pmatrix}X+\begin{pmatrix}<br>
+1\\0<br>
+\end{pmatrix}.<br>
+$$<br>
+<strong>解</strong> 记 $X’=AX+F$, 于是<br>
+$$<br>
+|\lambda E-A|=\begin{vmatrix}<br>
+\lambda+1&amp;-2\\2&amp;\lambda-3<br>
+\end{vmatrix}=(\lambda-1)^2\Longrightarrow \lambda=1 \ (二 \ 重)<br>
+$$<br>
+从而对应的常系数齐次线性方程组有两个解形如 $X(t)=(R_0+R_1t)e^t$, 其中 $R_0,R_1$ 满足<br>
+$$<br>
+\begin{cases}<br>
+(A-E)R_0=R_1\\<br>
+(A-E)^2R_0=0<br>
+\end{cases}<br>
+$$<br>
+注意到<br>
+$$<br>
+(A-E)^2=\begin{pmatrix}<br>
+-2&amp;2\\-2&amp;2<br>
+\end{pmatrix}^2=<br>
+O<br>
+$$<br>
+故可取 $R_0=(1,0)^T$ 和 $(0,1)^T$, 从而 $R_1=(-2,-2)^T$ 和 $(2,2)$, 从而对应的常系数齐次线性方程组有两个线性无关解</p>
+<p>$$<br>
+\begin{aligned}<br>
+X_1(t)&amp;=<br>
+\begin{pmatrix}<br>
+1\\<br>
+0<br>
+\end{pmatrix}+<br>
+\begin{pmatrix}<br>
+-2\\<br>
+-2<br>
+\end{pmatrix}t<br>
+e^t=e^t\begin{pmatrix}<br>
+1-2t\\<br>
+-2t<br>
+\end{pmatrix}\\</p>
+<p>X_2(t)&amp;=\begin{pmatrix}<br>
+0\\1<br>
+\end{pmatrix}+<br>
+\begin{pmatrix}<br>
+2\\2<br>
+\end{pmatrix}t<br>
+e^t=e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+由此可得对应的常系数齐次线性方程组的基解矩阵为</p>
+<p>$$<br>
+\Phi(t)=e^t<br>
+\begin{pmatrix}<br>
+1-2t&amp;2t\\<br>
+-2t&amp;1+2t<br>
+\end{pmatrix},<br>
+\Phi^{-1}(t)=e^{-t}<br>
+\begin{pmatrix}<br>
+1+2t&amp;-2t\\<br>
+2t&amp;1-2t<br>
+\end{pmatrix},<br>
+$$</p>
+<p>于是原常系数非齐次线性方程组有特解</p>
+<p>$$<br>
+\begin{aligned}<br>
+\bar X(t)&amp;=\Phi(t)\int_0^t\Phi^{-1}(s)F\mathrm{~d}s=e^t\begin{pmatrix}<br>
+1-2t&amp;2t\\-2t&amp;1+2t<br>
+\end{pmatrix}\begin{pmatrix}<br>
+-3e^{-t}-2te^{-t}+3\\-2e^{-t}-2te^{-t}+2<br>
+\end{pmatrix}\\<br>
+&amp;=e^t\begin{pmatrix}<br>
+-3e^{-t}+3-2t\\-2e^{-t}+2-2t<br>
+\end{pmatrix}=\begin{pmatrix}<br>
+-3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
+\end{pmatrix}<br>
+\end{aligned}<br>
+$$<br>
+故原方程组的通解<br>
+$$<br>
+\begin{aligned}<br>
+X(t)&amp;=c_1X_1(t)+c_2X_2(t)+\bar X(t)\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}+\begin{pmatrix}<br>
+-3+(1-2t)e^t+2e^t\\-2+(-2t)e^t+2e^t<br>
+\end{pmatrix}\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}+\begin{pmatrix}<br>
+-3+2e^t\\-2+2e^t<br>
+\end{pmatrix}\\<br>
+&amp;=c_1e^t\begin{pmatrix}<br>
+1-2t\\-2t<br>
+\end{pmatrix}+c_2e^t\begin{pmatrix}<br>
+2t\\1+2t<br>
+\end{pmatrix}+\begin{pmatrix}<br>
+-3\\-2<br>
+\end{pmatrix}.<br>
+\end{aligned}<br>
+$$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>常微分方程</category>
+        <category>一阶线性微分方程组</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SVD 排序算法</title>
     <url>/2026/03/30/svd/</url>
     <content><![CDATA[<h1>SVD 排序算法</h1>
@@ -1854,6 +1833,235 @@ $$<br>
       </tags>
   </entry>
   <entry>
+    <title>LightFM</title>
+    <url>/2026/03/30/lightfm/</url>
+    <content><![CDATA[<h1>LightFM</h1>
+<blockquote>
+<p>Q: 怎样判断我是否喜欢某物品?</p>
+<ul>
+<li>同时利用“用户与物品的交互信息”和“物品本身的内容特征”, 若两者越匹配, 则用户越可能喜欢该物品.</li>
+</ul>
+</blockquote>
+<h2 id="LightFM-的实现">LightFM 的实现</h2>
+<p>目标: 预估用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣.</p>
+<p>已知:</p>
+<ul>
+<li>用户 $\text{user}$ 的隐向量 $\mathbf p_{\text{user}}\in\mathbb R^k$;</li>
+<li>物品 $\text{item}$ 的隐向量 $\mathbf q_{\text{item}}\in\mathbb R^k$.</li>
+</ul>
+<p>则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为</p>
+<p>$$<br>
+\text{score}(\text{user}, \text{item})=\mathbf p_{\text{user}}^\top \mathbf q_{\text{item}}.<br>
+$$</p>
+<blockquote>
+<p>Q: 这和 SVD / ALS 有什么区别?</p>
+<ul>
+<li>相同点: 都通过用户向量与物品向量的点积来打分.</li>
+<li>不同点: LightFM 中的物品向量不仅来自交互行为, 还融合了物品的内容特征.</li>
+</ul>
+</blockquote>
+<h2 id="LightFM-的核心思想">LightFM 的核心思想</h2>
+<p>目标: 同时利用协同过滤信号和内容特征来做推荐.</p>
+<p>已知:</p>
+<ul>
+<li>用户-物品交互信息;</li>
+<li>物品的内容特征, 如 <code>genres / tags / year / director / actors</code>.</li>
+</ul>
+<p>则 LightFM 的思想是:</p>
+<ul>
+<li>一方面保留协同过滤的优势, 即“用户喜欢什么, 相似用户群体也喜欢什么”;</li>
+<li>另一方面引入内容特征, 即“物品本身是什么样”.</li>
+</ul>
+<p>因此 LightFM 可以看作:</p>
+<ul>
+<li>矩阵分解模型的扩展;</li>
+<li>也是一种混合推荐模型.</li>
+</ul>
+<h2 id="LightFM-如何表示物品">LightFM 如何表示物品</h2>
+<p>目标: 用内容特征构造物品表示.</p>
+<p>已知:</p>
+<ul>
+<li>物品 $i$ 的内容特征集合为<br>
+$$<br>
+\mathcal F(i)=\lbrace f_1, f_2, \dots, f_t\rbrace.<br>
+$$</li>
+</ul>
+<p>LightFM 为每个特征 $f$ 学习一个 embedding 向量 $\mathbf e_f$.</p>
+<p>则物品 $i$ 的表示可以写为<br>
+$$<br>
+\mathbf q_i=\sum_{f\in\mathcal F(i)}\mathbf e_f.<br>
+$$</p>
+<p>也就是说:</p>
+<ul>
+<li>一部电影若包含“动画”“冒险”“皮克斯”等特征;</li>
+<li>则该电影的向量由这些特征向量共同组成.</li>
+</ul>
+<blockquote>
+<p>RK: 这使得 LightFM 不必完全依赖交互数据, 即使某个物品交互较少, 也能通过内容特征获得合理表示.</p>
+</blockquote>
+<h2 id="LightFM-如何表示用户">LightFM 如何表示用户</h2>
+<p>目标: 为用户学习隐向量表示.</p>
+<p>已知:</p>
+<ul>
+<li>用户 $u$ 与一组物品发生过正反馈交互.</li>
+</ul>
+<p>则 LightFM 会根据用户与物品的历史交互学习用户向量 $\mathbf p_u$.</p>
+<p>因此:</p>
+<ul>
+<li>用户向量表示“用户偏好的潜在方向”;</li>
+<li>物品向量表示“物品特征和交互模式共同形成的表示”;</li>
+<li>二者点积越大, 用户越可能喜欢该物品.</li>
+</ul>
+<h2 id="LightFM-的训练目标">LightFM 的训练目标</h2>
+<blockquote>
+<p>Q: LightFM 是做评分预测还是做排序?</p>
+<ul>
+<li>常用于排序任务.</li>
+</ul>
+</blockquote>
+<p>LightFM 支持多种损失函数, 如:</p>
+<ul>
+<li>logistic</li>
+<li>bpr</li>
+<li>warp</li>
+</ul>
+<p>其中 WARP (Weighted Approximate-Rank Pairwise) 常用于推荐排序任务.</p>
+<p>目标: 让正样本排在负样本前面.</p>
+<p>若用户 $u$ 喜欢物品 $i^+$, 不喜欢物品 $i^-$, 则希望满足<br>
+$$<br>
+\text{score}(u, i^+) &gt; \text{score}(u, i^-).<br>
+$$</p>
+<p>因此 LightFM 并不只是拟合一个“评分数值”, 而是更关注:</p>
+<ul>
+<li>正样本是否排在前面;</li>
+<li>推荐列表的排序质量是否更好.</li>
+</ul>
+<!-- ## LightFM 排序的完整流程
+
+1. 事先做离线训练
+
+   - 建立“用户 $\to$ 隐向量”索引, 即 $\lbrace\text{用户 ID}: \mathbf p_u\rbrace$.
+     - 对每个用户学习一个长度为 $k$ 的隐向量.
+     - 给定任意用户 ID, 可快速得到该用户的潜在兴趣表示.
+
+   - 建立“特征 $\to$ embedding”索引.
+     - 对每个物品内容特征学习一个 embedding 向量.
+     - 物品向量由其特征 embedding 聚合而成.
+
+   - 建立“物品 $\to$ 隐向量”表示.
+     - 给定任意物品 ID, 根据其内容特征可构造该物品向量.
+     - 也可结合交互行为共同优化该物品表示.
+
+2. 线上做推荐
+
+   - 给定用户 ID, 取出该用户的隐向量 $\mathbf p_u$.
+   - 给定候选物品 $i$, 根据其内容特征构造或读取物品向量 $\mathbf q_i$.
+   - 计算
+   $$
+   \text{score}(u, i)=\mathbf p_u^\top \mathbf q_i.
+   $$
+   - 过滤掉用户已交互物品.
+   - 返回分数最高的 $m$ 个物品作为推荐结果. -->
+<h2 id="LightFM-的优点">LightFM 的优点</h2>
+<p>优点:</p>
+<ul>
+<li>同时利用协同过滤信息与内容特征;</li>
+<li>比纯矩阵分解模型更适合冷启动;</li>
+<li>若新物品缺少交互行为, 仍可根据内容特征获得表示;</li>
+<li>常比纯 Content 模型更准确, 比纯 SVD / ALS 更灵活.</li>
+</ul>
+<h2 id="LightFM-的缺点">LightFM 的缺点</h2>
+<p>缺点:</p>
+<ul>
+<li>训练与调参比传统矩阵分解更复杂;</li>
+<li>需要准备较好的内容特征;</li>
+<li>如果内容特征噪声较大, 可能影响效果;</li>
+<li>工程部署上通常比简单 CF 模型更复杂.</li>
+</ul>
+<h2 id="LightFM-与-Content-的区别">LightFM 与 Content 的区别</h2>
+<ul>
+<li>
+<p>Content:</p>
+<ul>
+<li>主要基于物品内容特征;</li>
+<li>通过内容相似性进行推荐.</li>
+</ul>
+</li>
+<li>
+<p>LightFM:</p>
+<ul>
+<li>既使用内容特征, 也使用用户-物品交互;</li>
+<li>不仅看“物品像不像”, 还看“用户群体如何交互”.</li>
+</ul>
+</li>
+</ul>
+<p>因此:</p>
+<ul>
+<li>Content 更像“纯内容推荐”;</li>
+<li>LightFM 更像“内容 + 协同过滤”的混合模型.</li>
+</ul>
+<h2 id="LightFM-与-SVD-ALS-的区别">LightFM 与 SVD / ALS 的区别</h2>
+<ul>
+<li>
+<p>SVD / ALS:</p>
+<ul>
+<li>主要依赖用户-物品交互矩阵;</li>
+<li>不直接利用物品内容特征.</li>
+</ul>
+</li>
+<li>
+<p>LightFM:</p>
+<ul>
+<li>在交互矩阵基础上引入内容特征;</li>
+<li>可缓解冷启动问题;</li>
+<li>通常比纯矩阵分解更适合带侧信息的场景.</li>
+</ul>
+</li>
+</ul>
+<p>因此:</p>
+<ul>
+<li>SVD / ALS 属于纯协同过滤矩阵分解;</li>
+<li>LightFM 属于混合推荐模型.</li>
+</ul>
+<h2 id="LightFM-在推荐系统中的位置">LightFM 在推荐系统中的位置</h2>
+<blockquote>
+<p>Q: LightFM 更适合做召回还是排序?</p>
+<ul>
+<li>两者都可以, 但常作为较强的单阶段排序模型或重排模型使用.</li>
+</ul>
+</blockquote>
+<p>原因:</p>
+<ul>
+<li>它既能利用协同信号, 又能利用内容特征;</li>
+<li>排序效果通常较强;</li>
+<li>若用于两阶段架构, 也可以作为重排器提升最终排序质量.</li>
+</ul>
+<!-- ## LightFM 的一个重要价值
+
+> Q: 为什么 LightFM 在很多实验中效果较好?
+> - 因为它兼顾了“协同过滤的准确性”和“内容特征的泛化能力”.
+
+也就是说:
+- 当交互数据充足时, 它能利用协同信号提升效果;
+- 当交互数据不足时, 它又能依靠内容特征弥补信息缺失.
+
+因此它常常表现为:
+- 比纯 Content 更准确;
+- 比纯 SVD / ALS 更适合冷启动;
+- 是推荐系统中非常实用的一类混合模型. -->
+<blockquote>
+<p>参考: Kula, Metadata Embeddings for User and Item Cold-start Recommendations, RecSys 2015.</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>推荐算法</category>
+      </categories>
+      <tags>
+        <tag>召回</tag>
+        <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UserCF</title>
     <url>/2026/03/29/usercf/</url>
     <content><![CDATA[<h1>UserCF</h1>
@@ -1936,121 +2144,6 @@ $$<br>
 </ul>
 </li>
 </ol>
-<blockquote>
-<p>参考: 【推荐系统公开课——8小时完整版，讲解工业界真实的推荐系统】<a href="https://www.bilibili.com/video/BV1HZ421U77y?vd_source=54b296fb4038582045c08b7b00aa22a1">https://www.bilibili.com/video/BV1HZ421U77y?vd_source=54b296fb4038582045c08b7b00aa22a1</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>推荐算法</category>
-      </categories>
-      <tags>
-        <tag>召回</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ItemCF</title>
-    <url>/2026/03/29/itemcf/</url>
-    <content><![CDATA[<h1>ItemCF</h1>
-<blockquote>
-<p>Q: 怎样判断我是否喜欢某物品?</p>
-<ul>
-<li>只需判断我是否喜欢与该物品相似的物品.</li>
-</ul>
-</blockquote>
-<h2 id="ItemCF-的实现">ItemCF 的实现</h2>
-<p>目标: 预估用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣.</p>
-<p>已知:</p>
-<ul>
-<li>用户 $\text{user}$ 对物品 $\lbrace\text{item}_j\rbrace$ 的兴趣 $\text{like}\left(\text{user},\text{item}_j\right)$;</li>
-<li>物品 $\text{item}_j$ 与 $\text{item}$ 的相似度 $\text{sim}\left(\text{item}_j,\text{item}\right)$.</li>
-</ul>
-<p>则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为<br>
-$$<br>
-\sum_{j=1}^n\text{like}\left(\text{user}, \text{item}_j\right)\times\text{sim}\left(\text{item}_j,\text{item}\right)<br>
-$$</p>
-<blockquote>
-<p>Q: 如何量化物品之间的相似度?</p>
-<ul>
-<li>采用余弦相似度</li>
-</ul>
-</blockquote>
-<p>目标: 计算物品 $i_1$ 与 $i_2$ 之间的相似度.</p>
-<p>已知:</p>
-<ul>
-<li>喜欢物品 $i_1$ 的用户集合 $\mathcal W_1$;</li>
-<li>喜欢物品 $i_2$ 的用户集合 $\mathcal W_2$.</li>
-</ul>
-<p>则物品 $i_1, i_2$ 都喜欢的用户集合为 $\mathcal V=\mathcal W_1\cap\mathcal W_2$. 定义<br>
-$$<br>
-\text{sim}(i_1, i_2)=\frac{|\mathcal V|}{\sqrt{|\mathcal W_1|\cdot|\mathcal W_2|}}\in[0, 1].<br>
-$$</p>
-<blockquote>
-<p>RK: 上述公式未考虑喜欢的程度 $\text{like}(\text{user}, \text{item})$.</p>
-</blockquote>
-<p>若考虑用户喜欢的程度, 则物品相似度公式修改为<br>
-$$<br>
-\text{sim}(i_1, i_2)=\frac{\sum_{v\in\mathcal V}\text{like}(v, i_1)\cdot\text{like}(v, i_2)}{\sqrt{\sum_{u_1\in\mathcal W_1}\text{like}^2(u_1,i_1)\cdot\sum_{u_2\in\mathcal W_2}\text{like}^2(u_2,i_2)}}\in[0, 1].<br>
-$$</p>
-<h2 id="ItemCF-召回的完整流程">ItemCF 召回的完整流程</h2>
-<ol>
-<li>
-<p>事先做离线计算</p>
-<ul>
-<li>
-<p>建立“用户 $\to$ 物品“索引, 即 $\lbrace\text{用户 ID}: (\text{物品 ID, 兴趣分数})\rbrace$.</p>
-<ul>
-<li>记录每个用户最近点击、交互过的物品 ID.</li>
-<li>给定任意用户 ID, 可找到他最近感兴趣的物品列表.</li>
-</ul>
-</li>
-<li>
-<p>建立“物品 $\to$ 物品“索引, 即 $\lbrace\text{物品 ID}: (\text{相似物品 ID, 相似度})\rbrace$.</p>
-<ul>
-<li>对于每个物品, 索引与它最相似的 $k$ 个物品.</li>
-<li>给定任意物品 ID, 可快速找到与它最相似的 $k$ 个物品.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>线上做召回</p>
-<ul>
-<li>给定用户 ID, 通过“用户 $\to$ 物品“索引, 找到用户最近感兴趣的物品列表 $last-n$.</li>
-<li>对于每个 $last-k$ 物品, 通过“物品 $\to$ 物品“索引, 找到 $top-k$ 相似物品.</li>
-<li>对于召回的 $nk$ 个物品, 用公式预估用户对每个物品的兴趣分数.</li>
-<li>返回分数最高的 $m$ 个物品作为召回结果.</li>
-</ul>
-</li>
-</ol>
-<h2 id="Swing-召回通道">Swing 召回通道</h2>
-<blockquote>
-<p>ItemCF 的不足之处: 小圈子的处理</p>
-<ul>
-<li>如果两物品的受众完全不同, 但他们被转发到了同一个微信群中, 使得很多用户同时交互过这两个物品, 导致程序错误计算了两物品之间的相似度.</li>
-<li>解决措施: 给用户设置权重, 重合度高的用户的权重要降低</li>
-</ul>
-</blockquote>
-<p><strong>目标: 定义用户 $u_1, u_2$ 之间的重合度.</strong></p>
-<p>已知:</p>
-<ul>
-<li>用户 $u_1$ 喜欢的物品集合 $\mathcal J_1$;</li>
-<li>用户 $u_2$ 喜欢的物品集合 $\mathcal J_2$.</li>
-</ul>
-<p>则定义 $u_1, u_2$ 之间的重合度<br>
-$$<br>
-\text{overlap}(u_1, u_2)=\vert\mathcal J_1\cap\mathcal J_2\vert.<br>
-$$</p>
-<p><strong>目标: 修正物品相似度公式, 减小小圈子问题带来的影响.</strong></p>
-<p>已知:</p>
-<ul>
-<li>喜欢物品 $i_1$ 的用户集合 $\mathcal W_1$;</li>
-<li>喜欢物品 $i_2$ 的用户集合 $\mathcal W_2$.</li>
-</ul>
-<p>则物品 $i_1, i_2$ 都喜欢的用户集合为 $\mathcal V=\mathcal W_1\cap\mathcal W_2$. 定义<br>
-$$<br>
-\text{sim}(i_1, i_2)=\sum_{u_1\in \mathcal V}\sum_{u_2\in\mathcal V}\frac{1}{\alpha+\text{overlap}(u_1, u_2)},<br>
-$$<br>
-其中 $\alpha$ 为人为设定的参数.</p>
 <blockquote>
 <p>参考: 【推荐系统公开课——8小时完整版，讲解工业界真实的推荐系统】<a href="https://www.bilibili.com/video/BV1HZ421U77y?vd_source=54b296fb4038582045c08b7b00aa22a1">https://www.bilibili.com/video/BV1HZ421U77y?vd_source=54b296fb4038582045c08b7b00aa22a1</a></p>
 </blockquote>
@@ -2339,293 +2432,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>Carathéodory扩张</title>
-    <url>/2025/09/02/caratheodory/</url>
-    <content><![CDATA[<p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
-<strong>Proof:</strong> 只需证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致.<br>
-<strong>(Step1.)</strong> 先证明 $\mu^{\ast}$ 在 $\mathscr F_0$ 上与 $\mu$ 一致, 即证 $\forall A\in\mathscr F_0$, 满足 $\mu^{\ast}(A)=\mu(A)$. 注意到</p>
-<p>$$<br>
-\mu^{\ast}(A) = \inf\Bigl\lbrace\sum_n\mu(A_n): A_n\in\mathscr{F}_0,~ \bigcup_n A_n\supset A \Bigr\rbrace.<br>
-$$</p>
-<p>而 $A\cup\varnothing\cup\varnothing\cup\cdots\supset A$, 因此<br>
-$$<br>
-\mu^{\ast}(A)\le \mu(A)+\mu(\varnothing)+\mu(\varnothing)+\cdots=\mu(A).<br>
-$$<br>
-另一方面, 若 $\mu^{\ast}(A)&lt;+\infty$, 则对 $\forall\varepsilon&gt;0, ~\exists~A_n\in\mathscr F_0$, 使得 $\bigcup\limits_nA_n\supset A$, 且<br>
-$$<br>
-\sum_n\mu(A_n)&lt;\mu^{\ast}(A)+\varepsilon.<br>
-$$<br>
-由 $\mu$ 的可列可加性和单调性知<br>
-$$<br>
-% \begin{aligned}<br>
-% \mu(A) &amp;\le \mu\left(\bigcup_{n} A_n\right) \<br>
-%        &amp;= \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \<br>
-%        &amp;= \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \<br>
-%        &amp;\le \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
-% \end{aligned}<br>
-\begin{array}{rcl}<br>
-\mu(A) &amp;\le&amp; \mu\left(\bigcup_{n} A_n\right) \\<br>
-&amp;=&amp; \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \\<br>
-&amp;=&amp; \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \\<br>
-&amp;\le&amp; \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
-\end{array}<br>
-$$<br>
-再由 $\varepsilon$ 的任意性可知 $\mu(A)\le\mu^{\ast}(A)$. 综上, $\mu(A)=\mu^{\ast}(A)$.<br>
-<strong>(Step2.)</strong> 再证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度, 只需证明 $\mathscr F=\sigma(\mathscr F_0)\subset\mathscr M$, 其中 $\mathscr M$ 是 $\mu^{\ast}$ 可测子集全体构成的 $\sigma$ 代数.</p>
-<blockquote>
-<p>见“$(\Omega,\mathscr M,\mu^{\ast})$ 是完备测度空间”</p>
-</blockquote>
-<p>对 $\forall A\in\mathscr F_0$, 要证明 $A\in\mathscr M$. 对 $\forall E\subset\Omega$, 不妨设 $\mu^{\ast}(E)&lt;\infty$, 则对 $\forall \varepsilon&gt;0$, 存在子集列 ${A_n}\subset\mathscr F_0$ 满足 $\cup_nA_n\supset E$ 且 $\sum\limits_n\mu(A_n)&lt;\mu^{\ast}(E)+\varepsilon$, 因而<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)&amp;\le\mu^{\ast}\left(\bigcup_n(A_n\cap A)\right)+\mu^{\ast}\left(\bigcup_n(A_n\cap A^c)\right)\\<br>
-(\text{外测度的次可列可加性})~&amp;\le\sum_n\left[\mu^{\ast}(A_n\cap A)+\mu^{\ast}(A_n\cap A^c)\right]\\<br>
-(\text{Step1.})~&amp;=\sum_n\left[\mu(A_n\cap A)+\mu(A_n\cap A^c)\right]\\<br>
-(\text{预测度的可列可加性})~&amp;=\sum_n\mu(A_n)\\<br>
-&amp;&lt;\mu^{\ast}(E)+\varepsilon<br>
-\end{aligned}<br>
-$$<br>
-由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
-综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LightFM</title>
-    <url>/2026/03/30/lightfm/</url>
-    <content><![CDATA[<h1>LightFM</h1>
-<blockquote>
-<p>Q: 怎样判断我是否喜欢某物品?</p>
-<ul>
-<li>同时利用“用户与物品的交互信息”和“物品本身的内容特征”, 若两者越匹配, 则用户越可能喜欢该物品.</li>
-</ul>
-</blockquote>
-<h2 id="LightFM-的实现">LightFM 的实现</h2>
-<p>目标: 预估用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣.</p>
-<p>已知:</p>
-<ul>
-<li>用户 $\text{user}$ 的隐向量 $\mathbf p_{\text{user}}\in\mathbb R^k$;</li>
-<li>物品 $\text{item}$ 的隐向量 $\mathbf q_{\text{item}}\in\mathbb R^k$.</li>
-</ul>
-<p>则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为</p>
-<p>$$<br>
-\text{score}(\text{user}, \text{item})=\mathbf p_{\text{user}}^\top \mathbf q_{\text{item}}.<br>
-$$</p>
-<blockquote>
-<p>Q: 这和 SVD / ALS 有什么区别?</p>
-<ul>
-<li>相同点: 都通过用户向量与物品向量的点积来打分.</li>
-<li>不同点: LightFM 中的物品向量不仅来自交互行为, 还融合了物品的内容特征.</li>
-</ul>
-</blockquote>
-<h2 id="LightFM-的核心思想">LightFM 的核心思想</h2>
-<p>目标: 同时利用协同过滤信号和内容特征来做推荐.</p>
-<p>已知:</p>
-<ul>
-<li>用户-物品交互信息;</li>
-<li>物品的内容特征, 如 <code>genres / tags / year / director / actors</code>.</li>
-</ul>
-<p>则 LightFM 的思想是:</p>
-<ul>
-<li>一方面保留协同过滤的优势, 即“用户喜欢什么, 相似用户群体也喜欢什么”;</li>
-<li>另一方面引入内容特征, 即“物品本身是什么样”.</li>
-</ul>
-<p>因此 LightFM 可以看作:</p>
-<ul>
-<li>矩阵分解模型的扩展;</li>
-<li>也是一种混合推荐模型.</li>
-</ul>
-<h2 id="LightFM-如何表示物品">LightFM 如何表示物品</h2>
-<p>目标: 用内容特征构造物品表示.</p>
-<p>已知:</p>
-<ul>
-<li>物品 $i$ 的内容特征集合为<br>
-$$<br>
-\mathcal F(i)=\lbrace f_1, f_2, \dots, f_t\rbrace.<br>
-$$</li>
-</ul>
-<p>LightFM 为每个特征 $f$ 学习一个 embedding 向量 $\mathbf e_f$.</p>
-<p>则物品 $i$ 的表示可以写为<br>
-$$<br>
-\mathbf q_i=\sum_{f\in\mathcal F(i)}\mathbf e_f.<br>
-$$</p>
-<p>也就是说:</p>
-<ul>
-<li>一部电影若包含“动画”“冒险”“皮克斯”等特征;</li>
-<li>则该电影的向量由这些特征向量共同组成.</li>
-</ul>
-<blockquote>
-<p>RK: 这使得 LightFM 不必完全依赖交互数据, 即使某个物品交互较少, 也能通过内容特征获得合理表示.</p>
-</blockquote>
-<h2 id="LightFM-如何表示用户">LightFM 如何表示用户</h2>
-<p>目标: 为用户学习隐向量表示.</p>
-<p>已知:</p>
-<ul>
-<li>用户 $u$ 与一组物品发生过正反馈交互.</li>
-</ul>
-<p>则 LightFM 会根据用户与物品的历史交互学习用户向量 $\mathbf p_u$.</p>
-<p>因此:</p>
-<ul>
-<li>用户向量表示“用户偏好的潜在方向”;</li>
-<li>物品向量表示“物品特征和交互模式共同形成的表示”;</li>
-<li>二者点积越大, 用户越可能喜欢该物品.</li>
-</ul>
-<h2 id="LightFM-的训练目标">LightFM 的训练目标</h2>
-<blockquote>
-<p>Q: LightFM 是做评分预测还是做排序?</p>
-<ul>
-<li>常用于排序任务.</li>
-</ul>
-</blockquote>
-<p>LightFM 支持多种损失函数, 如:</p>
-<ul>
-<li>logistic</li>
-<li>bpr</li>
-<li>warp</li>
-</ul>
-<p>其中 WARP (Weighted Approximate-Rank Pairwise) 常用于推荐排序任务.</p>
-<p>目标: 让正样本排在负样本前面.</p>
-<p>若用户 $u$ 喜欢物品 $i^+$, 不喜欢物品 $i^-$, 则希望满足<br>
-$$<br>
-\text{score}(u, i^+) &gt; \text{score}(u, i^-).<br>
-$$</p>
-<p>因此 LightFM 并不只是拟合一个“评分数值”, 而是更关注:</p>
-<ul>
-<li>正样本是否排在前面;</li>
-<li>推荐列表的排序质量是否更好.</li>
-</ul>
-<!-- ## LightFM 排序的完整流程
-
-1. 事先做离线训练
-
-   - 建立“用户 $\to$ 隐向量”索引, 即 $\lbrace\text{用户 ID}: \mathbf p_u\rbrace$.
-     - 对每个用户学习一个长度为 $k$ 的隐向量.
-     - 给定任意用户 ID, 可快速得到该用户的潜在兴趣表示.
-
-   - 建立“特征 $\to$ embedding”索引.
-     - 对每个物品内容特征学习一个 embedding 向量.
-     - 物品向量由其特征 embedding 聚合而成.
-
-   - 建立“物品 $\to$ 隐向量”表示.
-     - 给定任意物品 ID, 根据其内容特征可构造该物品向量.
-     - 也可结合交互行为共同优化该物品表示.
-
-2. 线上做推荐
-
-   - 给定用户 ID, 取出该用户的隐向量 $\mathbf p_u$.
-   - 给定候选物品 $i$, 根据其内容特征构造或读取物品向量 $\mathbf q_i$.
-   - 计算
-   $$
-   \text{score}(u, i)=\mathbf p_u^\top \mathbf q_i.
-   $$
-   - 过滤掉用户已交互物品.
-   - 返回分数最高的 $m$ 个物品作为推荐结果. -->
-<h2 id="LightFM-的优点">LightFM 的优点</h2>
-<p>优点:</p>
-<ul>
-<li>同时利用协同过滤信息与内容特征;</li>
-<li>比纯矩阵分解模型更适合冷启动;</li>
-<li>若新物品缺少交互行为, 仍可根据内容特征获得表示;</li>
-<li>常比纯 Content 模型更准确, 比纯 SVD / ALS 更灵活.</li>
-</ul>
-<h2 id="LightFM-的缺点">LightFM 的缺点</h2>
-<p>缺点:</p>
-<ul>
-<li>训练与调参比传统矩阵分解更复杂;</li>
-<li>需要准备较好的内容特征;</li>
-<li>如果内容特征噪声较大, 可能影响效果;</li>
-<li>工程部署上通常比简单 CF 模型更复杂.</li>
-</ul>
-<h2 id="LightFM-与-Content-的区别">LightFM 与 Content 的区别</h2>
-<ul>
-<li>
-<p>Content:</p>
-<ul>
-<li>主要基于物品内容特征;</li>
-<li>通过内容相似性进行推荐.</li>
-</ul>
-</li>
-<li>
-<p>LightFM:</p>
-<ul>
-<li>既使用内容特征, 也使用用户-物品交互;</li>
-<li>不仅看“物品像不像”, 还看“用户群体如何交互”.</li>
-</ul>
-</li>
-</ul>
-<p>因此:</p>
-<ul>
-<li>Content 更像“纯内容推荐”;</li>
-<li>LightFM 更像“内容 + 协同过滤”的混合模型.</li>
-</ul>
-<h2 id="LightFM-与-SVD-ALS-的区别">LightFM 与 SVD / ALS 的区别</h2>
-<ul>
-<li>
-<p>SVD / ALS:</p>
-<ul>
-<li>主要依赖用户-物品交互矩阵;</li>
-<li>不直接利用物品内容特征.</li>
-</ul>
-</li>
-<li>
-<p>LightFM:</p>
-<ul>
-<li>在交互矩阵基础上引入内容特征;</li>
-<li>可缓解冷启动问题;</li>
-<li>通常比纯矩阵分解更适合带侧信息的场景.</li>
-</ul>
-</li>
-</ul>
-<p>因此:</p>
-<ul>
-<li>SVD / ALS 属于纯协同过滤矩阵分解;</li>
-<li>LightFM 属于混合推荐模型.</li>
-</ul>
-<h2 id="LightFM-在推荐系统中的位置">LightFM 在推荐系统中的位置</h2>
-<blockquote>
-<p>Q: LightFM 更适合做召回还是排序?</p>
-<ul>
-<li>两者都可以, 但常作为较强的单阶段排序模型或重排模型使用.</li>
-</ul>
-</blockquote>
-<p>原因:</p>
-<ul>
-<li>它既能利用协同信号, 又能利用内容特征;</li>
-<li>排序效果通常较强;</li>
-<li>若用于两阶段架构, 也可以作为重排器提升最终排序质量.</li>
-</ul>
-<!-- ## LightFM 的一个重要价值
-
-> Q: 为什么 LightFM 在很多实验中效果较好?
-> - 因为它兼顾了“协同过滤的准确性”和“内容特征的泛化能力”.
-
-也就是说:
-- 当交互数据充足时, 它能利用协同信号提升效果;
-- 当交互数据不足时, 它又能依靠内容特征弥补信息缺失.
-
-因此它常常表现为:
-- 比纯 Content 更准确;
-- 比纯 SVD / ALS 更适合冷启动;
-- 是推荐系统中非常实用的一类混合模型. -->
-<blockquote>
-<p>参考: Kula, Metadata Embeddings for User and Item Cold-start Recommendations, RecSys 2015.</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>推荐算法</category>
-      </categories>
-      <tags>
-        <tag>召回</tag>
-        <tag>排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>离散特征的处理——Embedding</title>
     <url>/2026/03/30/embedding/</url>
     <content><![CDATA[<h1>离散特征的处理——Embedding</h1>
@@ -2668,387 +2474,6 @@ $$<br>
       </categories>
       <tags>
         <tag>Embedding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>单调收敛定理</title>
-    <url>/2025/09/02/post-20250902-2e2bd7/</url>
-    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
-$$<br>
-\mu(f)=\lim\limits_n\mu(f_n)<br>
-$$<br>
-<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
-$$<br>
-A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
-$$<br>
-满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
-$$<br>
-\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
-$$<br>
-因为 $g$ 是简单的, 故<br>
-$$<br>
-\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
-$$<br>
-由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
-$$<br>
-\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
-$$<br>
-可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
-$$<br>
-\lim\limits_n\mu(f_n)=\mu(f).<br>
-$$</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>$(&#92;Omega,&#92;mathscr M,&#92;mu^{&#92;ast} )$ 是完备测度空间</title>
-    <url>/2025/09/09/omega-mathscr-m-mu-ast/</url>
-    <content><![CDATA[<p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
-<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
-<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
-<ul>
-<li>
-<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
-<ul>
-<li>
-<p>$\mathscr M$ 非空.<br>
-事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
-&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
-&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
-\end{aligned}<br>
-$$<br>
-即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
-</li>
-<li>
-<p>$\mathscr M$ 对于补集运算封闭.<br>
-事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
-\end{aligned}<br>
-$$<br>
-即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
-</li>
-<li>
-<p>$\mathscr M$ 对于可列并封闭.</p>
-<ul>
-<li>
-<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
-设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
-=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
-&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
-=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
-\end{aligned}<br>
-$$<br>
-即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
-</li>
-<li>
-<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
-设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
-$$<br>
-S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
-$$</p>
-<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
-&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\cdots\cdots\\<br>
-&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
-\end{aligned}<br>
-$$</p>
-<p>令 $n\to\infty$, 有<br>
-$$<br>
-\begin{aligned}<br>
-\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
-&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
-\end{aligned}<br>
-$$</p>
-<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
-</li>
-<li>
-<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
-<ul>
-<li>
-<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
-</li>
-<li>
-<p>$\mu^{\ast} $ 满足可列可加性.<br>
-由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
-$$<br>
-\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
-$$<br>
-令 $E=\Omega$, 得<br>
-$$<br>
-\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
-$$<br>
-从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
-</li>
-</ul>
-<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
-</li>
-</ul>
-<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
-<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>测度论</category>
-      </categories>
-      <tags>
-        <tag>测度论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas数据分析题解汇总</title>
-    <url>/2025/09/05/pandas/</url>
-    <content><![CDATA[<p>这篇笔记把 <code>Python 数据分析</code> 目录下的基础 Pandas 题解合并到了一起，方便集中查阅。内容主要覆盖连接、分组聚合、去重、排序排名以及简单的时间序列比较。</p>
-<h2 id="LeetCode-175-组合两张表">LeetCode 175 组合两张表</h2>
-<p>表: Person</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>personId</code> 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
-<p>表: Address</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
-<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code>。以任意顺序返回结果表。</p>
-<p>示例：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Person 表:</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line"></span><br><span class="line">Address 表:</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on=<span class="string">&#x27;personId&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-<p>此题主要考察“左连接”。</p>
-<h2 id="LeetCode-176-第二高的薪水">LeetCode 176 第二高的薪水</h2>
-<p><code>Employee</code> 表：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是这个表的主键。表的每一行包含员工的工资信息。查询并返回 Employee 表中第二高的不同薪水。如果不存在第二高的薪水，查询应该返回 <code>null</code>，Pandas 则返回 <code>None</code>。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">second_highest_salary</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;SecondHighestSalary&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-177-第-n-高的薪水">LeetCode 177 第 n 高的薪水</h2>
-<p>表: Employee</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 <code>n</code> 高的不同工资。如果少于 <code>n</code> 个不同工资，查询结果应该为 <code>null</code>。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N - <span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-178-分数排名">LeetCode 178 分数排名</h2>
-<p>表: Scores</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。</p>
-<p>排名规则：</p>
-<ul>
-<li>分数按从高到低排列</li>
-<li>如果两个分数相等，那么两个分数的排名应该相同</li>
-<li>排名之间不应该有空缺的数字</li>
-</ul>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-180-连续出现的数">LeetCode 180 连续出现的数</h2>
-<p>表: <code>Logs</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-181-超过经理收入的员工">LeetCode 181 超过经理收入的员工</h2>
-<p>表: Employee</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键。该表的每一行都表示雇员的 ID、姓名、工资和经理的 ID。编写解决方案，找出收入比经理高的员工。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on=<span class="string">&#x27;managerId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns=&#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-182-查找重复的电子邮箱">LeetCode 182 查找重复的电子邮箱</h2>
-<p>表: Person</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p><code>id</code> 是该表的主键。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。编写解决方案来报告所有重复的电子邮件。</p>
-<p>解法一：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns=&#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>] &gt;= <span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
-<p>解法二：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name=<span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-183-从不订购的客户">LeetCode 183 从不订购的客户</h2>
-<p>Customers 表：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>Orders 表：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| customerId  | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
-<p>找出所有从不点任何东西的顾客。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = customers.merge(orders[[<span class="string">&#x27;customerId&#x27;</span>]], left_on=<span class="string">&#x27;id&#x27;</span>, right_on=<span class="string">&#x27;customerId&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_merge.loc[df_merge[<span class="string">&#x27;customerId&#x27;</span>].isna(), [<span class="string">&#x27;name&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Customers&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-184-部门工资最高的员工">LeetCode 184 部门工资最高的员工</h2>
-<p>表：<code>Employee</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| 列名          | 类型    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
-<p>表：<code>Department</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>查找出每个部门中薪资最高的员工。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>] == max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(</span><br><span class="line">        department,</span><br><span class="line">        left_on=<span class="string">&#x27;departmentId&#x27;</span>,</span><br><span class="line">        right_on=<span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">        suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_d&#x27;</span>)</span><br><span class="line">    )[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(</span><br><span class="line">        columns=&#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;</span><br><span class="line">    ).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-185-部门工资前三高的所有员工">LeetCode 185 部门工资前三高的所有员工</h2>
-<p>表: <code>Employee</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
-<p>表: <code>Department</code></p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>找出每个部门中收入高的员工。一个部门的高收入者，是指工资在该部门不同工资中排名前三的员工。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep &lt;= <span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(</span><br><span class="line">        department,</span><br><span class="line">        left_on=<span class="string">&#x27;departmentId&#x27;</span>,</span><br><span class="line">        right_on=<span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">        how=<span class="string">&#x27;left&#x27;</span>,</span><br><span class="line">        suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_dep&#x27;</span>)</span><br><span class="line">    )[[<span class="string">&#x27;name_dep&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(</span><br><span class="line">        columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;</span><br><span class="line">    ).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-196-删除重复的电子邮箱">LeetCode 196 删除重复的电子邮箱</h2>
-<p>表: Person</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
-<p>编写解决方案删除所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="LeetCode-197-上升的温度">LeetCode 197 上升的温度</h2>
-<p>表：Weather</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+---------------+---------+</span><br><span class="line">| Column Name   | Type    |</span><br><span class="line">+---------------+---------+</span><br><span class="line">| id            | int     |</span><br><span class="line">| recordDate    | date    |</span><br><span class="line">| temperature   | int     |</span><br><span class="line">+---------------+---------+</span><br></pre></td></tr></table></figure>
-<p>找出与之前一天相比温度更高的所有日期的 <code>id</code>。</p>
-<p>解答：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rising_temperature</span>(<span class="params">weather: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    weather.sort_values(<span class="string">&#x27;recordDate&#x27;</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">    weather_diff = weather.diff()</span><br><span class="line">    <span class="keyword">return</span> weather.loc[</span><br><span class="line">        (weather_diff[<span class="string">&#x27;recordDate&#x27;</span>] == datetime.timedelta(<span class="number">1</span>)) &amp; (weather_diff[<span class="string">&#x27;temperature&#x27;</span>] &gt; <span class="number">0</span>),</span><br><span class="line">        [<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Python 数据分析</category>
-        <category>Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python 数据分析</tag>
-        <tag>Pandas</tag>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GBDT</title>
-    <url>/2025/10/15/gbdt/</url>
-    <content><![CDATA[<h1>Gradient Boosting Decision Trees</h1>
-<h2 id="背景">背景</h2>
-<p>Gradient Boosting Decision Tree (GBDT) 是 Boosting 算法的一种, 早期理论 (Schapire, 1990) 证明: 只要有一个稍微优于随机猜测的弱分类器 (准确率 &gt; 0.5), 就可以通过 Boosting 组合成强分类器. Freund 和 Schapire (1997) 的 AdaBoost 将这一思想转化为实际算法. 在 AdaBoost 提出之后, 人们逐渐认识到 Boosting 的本质是一种加性模型, 其核心思想是在每一步逐渐叠加弱学习器以最小化某个总体损失函数. Friedman 等人在此基础上提出了更为一般的理论框架, 将 Boosting 视为在函数空间中的梯度下降 (gradient descent) 过程. Friedman (2000) 在论文 <em>Greedy Function Approximation: A Gradient Boosting Machine</em> 中首次系统地提出了 Gradient Boosting 的概念，并指出 AdaBoost 实质上是以指数损失为目标函数的特殊情形. 他进一步推广了这一思想, 允许使用任意可微损失函数, 通过迭代地拟合当前损失的负梯度方向, 构建出更强的预测模型. GBDT 正是这一框架的典型实现: 它以决策树作为基学习器, 在每一轮中利用回归树来拟合损失函数对模型预测值的负梯度, 从而逐步优化整体模型性能.  由于其能够灵活适配不同损失函数 (如平方误差、逻辑损失、Huber 损失等), GBDT 既可用于回归问题, 也可用于分类乃至排序任务. 相比 AdaBoost, GBDT 在理论上更为一般、在实践中更为稳定, 对噪声数据的鲁棒性也更强, 因此成为现代机器学习中最重要的集成学习方法之一, 并衍生出了多种高效实现, 如 XGBoost、LightGBM 与 CatBoost 等.</p>
-<h2 id="问题目标和符号设定">问题目标和符号设定</h2>
-<p>给定训练 $\lbrace(x_i,y_i)\rbrace_{i=1}^n$, 我们想要找到一个函数 $F:~\mathcal X\to\mathbb R^K$ (回归问题 $K=1$, 二分类问题常用 $K=1$ 的对数几率分数) 以最小化经验风险<br>
-$$<br>
-\min\limits_{F\in\mathcal F}\mathcal L(F)=\min\limits_{F\in\mathcal F}\sum_{i=1}^nL(y_i,F(x_i)),<br>
-$$<br>
-其中 $L$ 为损失函数. GBDT 把可行函数集 $\mathcal F$ 限制为 “加性模型” 的闭包:<br>
-$$<br>
-F_M(x)=F_0(x)+\sum_{m=1}^M\nu f_m(x),<br>
-$$<br>
-其中每个学习器 $f_m$ 是回归树, $\nu\in(0,1]$ 为学习率.</p>
-<h2 id="函数空间的梯度下降">函数空间的梯度下降</h2>
-<p>考虑第 $m$ 轮.</p>
-<p>将 $\lbrace F(x_i)\rbrace_{i=1}^n$ 看成 $\mathbb R^n$ 上的向量, 对 $\mathcal L(F)$ 在这些分量求梯度:<br>
-$$<br>
-g_i:=\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\bigg\vert_{F=F_{m-1}}<br>
-$$<br>
-则负梯度 $-g_i$ 方向指向最速下降方向.</p>
-<p>用一棵回归树 $f_m(x)$ 去拟合负梯度<br>
-$$<br>
-f_m\approx\arg\min\limits_{f}\sum_{i=1}^n\left(-g_i-f(x_i)\right)^2,<br>
-$$<br>
-在得到的树划分 $\lbrace R_{jm}\rbrace_{j=1}^{J_m}$ (叶结点区域) 上, 求每个叶子的最佳增量<br>
-$$<br>
-\gamma_{jm}\approx\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma).<br>
-$$<br>
-更新<br>
-$$<br>
-F_m(x)=F_{m-1}(x)+\nu\sum_{j=1}^{J_m}\gamma_{jm}1\lbrace x\in R_{jm}\rbrace.<br>
-$$</p>
-<h2 id="不同损失下的具体形式">不同损失下的具体形式</h2>
-<h3 id="平方损失-回归">平方损失 (回归)</h3>
-<p>$$<br>
-L(y,F)=\frac12(y-F)^2.<br>
-$$</p>
-<p>此时</p>
-<ul>
-<li>梯度 $g_i=F(x_i)-y_i$, 负梯度即为残差 $y_i-F(x_i)$.</li>
-<li>叶值闭式解 $\gamma_{jm}=\mathrm{mean}\lbrace y_i-F_{m-1}(x_i)~:~x_i\in R_{jm}\rbrace$.</li>
-<li>初始值 $F_0=\mathrm{mean}(y)$.</li>
-</ul>
-<h3 id="绝对损失-分位数损失-稳健回归">绝对损失 / 分位数损失 (稳健回归)</h3>
-<ul>
-<li>$L_1$ 损失: 叶值取中位数.</li>
-<li>分位数损失 $\tau\in(0,1)$: 叶值取 $\tau-$ 分位数.<br>
-对异常值更稳健.</li>
-</ul>
-<h3 id="二分类的-Logistic-损失">二分类的 Logistic 损失</h3>
-<p>此时 $y_i\in\lbrace0,1\rbrace$, 令模型输出为对数几率<br>
-$$<br>
-F(x)=\log\frac{p(x)}{1-p(x)},\quad p(x)=\sigma(F(x))=\frac{1}{1+e^{-F(x)}}.<br>
-$$</p>
-<ul>
-<li>
-<p>损失: 交叉熵 $L(y,F)=-\left[y\log p+(1-y)\log(1-p)\right]$.</p>
-</li>
-<li>
-<p>梯度: $g_i=-\left[y_i\frac{p_i(1-p_i)}{p_i}+(1-y_i)\frac{p_i(p_i-1)}{1-p_i}\right]=p_i-y_i$, 负梯度: $r_i=y_i-p_i$.</p>
-</li>
-<li>
-<p>叶值: 在叶 $R_{jm}$<br>
-$$<br>
-\gamma_{jm}\approx\frac{\sum_{x_i\in R_{jm}}(y_i-p_i)}{\sum_{x_i\in R_{jm}}p_i(1-p_i)}.<br>
-$$</p>
-<blockquote>
-<p>注意到 $\frac{\partial L}{\partial F}=p_i-y_i,~\frac{\partial^2 L}{\partial F^2}=p_i(1-p_i)$, 于是由 Taylor 定理<br>
-$$<br>
-L(y_i,F_{m-1}(x_i)+\gamma)\approx L(y_i,F_{m-1}(x_i))+g_i\gamma+\frac12h_i\gamma^2,<br>
-$$<br>
-其中 $g_i,h_i$ 分别为一阶导和二阶导. 因此<br>
-$$<br>
-\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)\approx \sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i))+G_{jm}\gamma+\frac12 H_{jm}\gamma^2,<br>
-$$<br>
-其中 $G_{jm}=\sum_{x_i\in R_{jm}}g_i=\sum_{x_i\in R_{jm}}(p_i-y_i),~H_{jm}=\sum_{x_i\in R_{jm}}h_i=\sum_{x_i\in R_{jm}}p_i(1-p_i)$. 故<br>
-$$<br>
-\gamma_{jm}=\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)=\arg\min\limits_{\gamma}\left(G_{jm}\gamma+\frac12 H_{jm}\gamma^2\right)=-\frac{G_{jm}}{H_{jm}}.<br>
-$$</p>
-</blockquote>
-</li>
-<li>
-<p>初始值: $F_0=\log\frac{\bar y}{1-\bar y}$, 其中 $\bar y$ 是样本中正类比例.</p>
-</li>
-</ul>
-<h3 id="多分类-softmax">多分类 softmax</h3>
-<p>输出向量 $F(x)\in\mathbb R^c,~p_k(x)=\frac{\exp(F_k(x))}{\sum_{l}\exp(F_l(x))}$. 此时损失函数为<br>
-$$<br>
-L=\sum_{i=1}^nl_i,\quad l_i=-\sum_{k=1}^cy_{ik}\log(p_{ik}),~y_{ik}=1\lbrace y_i=k\rbrace,<br>
-$$<br>
-在第 $m$ 轮通常训练 $c$ 棵树, 分别拟合每一类的负梯度<br>
-$$<br>
-r_{ik}=y_{ik}-p_{ik},\quad<br>
-$$<br>
-在叶 $R_{jmk}$ 上, 我们只更新该类的分数 $F_k\to F_k+\gamma$. 用一维二阶近似:<br>
-$$<br>
-\gamma_{jmk}\approx-\frac{G_{jmk}}{H_{jmk}},\quad G_{jmk}=\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik}),\quad H_{jmk}=\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda<br>
-$$<br>
-因此<br>
-$$<br>
-\gamma_{jmk}\approx-\frac{\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik})}{\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda}.<br>
-$$<br>
-其中 $\lambda$ 为正则项. 更新模型:<br>
-$$<br>
-F_k^{(m)}(x)=F_k^{(m-1)}(x)+\nu\sum_{j=1}^{J_{mk}}\gamma_{jmk}1\lbrace x\in R_{jmk}\rbrace,\quad k=1,2,\cdots,c.<br>
-$$<br>
-最后用 softmax 函数得到概率.</p>
-]]></content>
-      <categories>
-        <category>机器学习与深度学习</category>
-      </categories>
-      <tags>
-        <tag>集成学习</tag>
-        <tag>boosting</tag>
       </tags>
   </entry>
   <entry>
@@ -3344,6 +2769,261 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>Deep Retrieval</title>
+    <url>/2026/04/01/deep-retrieval/</url>
+    <content><![CDATA[<blockquote>
+<ul>
+<li>经典的双塔模型把用户、物品表征成向量, 线上做最近邻查找.</li>
+<li>Deep Retrieval 把物品表征成<code>路径(path)</code>, 线上查找用户最匹配的路径.</li>
+<li>Deep Retrieval 类似于阿里的 TDM</li>
+</ul>
+</blockquote>
+<h2 id="索引">索引</h2>
+<p><img src="/2026/04/01/deep-retrieval/index.jpeg" alt="物品路径索引"></p>
+<ul>
+<li><code>物品</code>到<code>路径</code>的索引: <code>item -&gt; list &lt;path&gt;</code>
+<ul>
+<li>一个物品可以对应多条路径</li>
+<li>用 $3$ 个节点表示一条路径</li>
+</ul>
+</li>
+<li><code>路径</code>到<code>物品</code>的索引: <code>path -&gt; list &lt;item&gt;</code>
+<ul>
+<li>一条路径对应多个物品</li>
+</ul>
+</li>
+</ul>
+<h2 id="预估模型">预估模型</h2>
+<p>预估<code>用户</code>到<code>路径</code>的兴趣<br>
+<img src="/2026/04/01/deep-retrieval/estimate.jpeg" alt="预估模型"></p>
+<ul>
+<li>用 $3$ 个节点表示一条路径 <code>path = [a, b, c]</code></li>
+<li>给定用户特征 $\vec x$, 预估用户对节点 $a$ 的兴趣 $p_1(a\mid\vec x)$</li>
+<li>给定用户特征 $\vec x$ 和节点 $a$, 预估用户对节点 $b$ 的兴趣 $p_2(b\mid a; \vec x)$</li>
+<li>给定用户特征 $\vec x$ 和节点 $a, b$, 预估用户对节点 $c$ 的兴趣 $p_3(c\mid a, b; \vec x)$</li>
+<li>预估用户对 <code>path = [a, b, c]</code> 的兴趣:<br>
+$$<br>
+p(a,b,c\mid \vec x)=p_1(a\mid\vec x)\cdot p_2(b\mid a;\vec x)\cdot p_3(c\mid a,b;\vec x).<br>
+$$</li>
+</ul>
+<h2 id="线上召回">线上召回</h2>
+<p><code>召回: 用户 -&gt; 路径 -&gt; 物品</code></p>
+<ol>
+<li>给定用户特征, 用 <code>beam search</code> 召回一批路径;</li>
+<li>利用索引 <code>path -&gt; list&lt;item&gt;</code> 召回一批物品;</li>
+<li>对物品做打分和排序, 选出一个子集.</li>
+</ol>
+<h3 id="Beam-Search">Beam Search</h3>
+<ul>
+<li>假设有 $3$ 层, 每层 $K$ 个节点, 则共 $K^3$ 条路径.</li>
+<li>用神经网络给所有 $K^3$ 条路径打分, 计算量太大.</li>
+<li>用 <code>beam search</code> 减小计算量</li>
+<li>需设置超参数 <code>beam size</code></li>
+</ul>
+<p><code>beam size = 1</code> 的例子:<br>
+<img src="/2026/04/01/deep-retrieval/beam-search-1.jpeg" alt="Beam Search(size=1)"></p>
+<ul>
+<li>计算第一层 $p_1(i\mid \vec x)$, 得到最大值的节点 $5$;</li>
+<li>计算第二层 $p_2(i\mid 5;\vec x)$, 得到最大值的节点 $4$;</li>
+<li>计算第三层 $p_3(i\mid 5,4;\vec x)$, 得到最大值的节点 $1$;</li>
+<li>最终得到最优路径 <code>path = [5, 4, 1]</code>.</li>
+</ul>
+<p>不难看出 Beam Search 得到的路径并非最优路径, 事实上这是一种贪心算法, 得到局部的最优路径.</p>
+<p><code>beam size = 4</code> 的例子:<br>
+<img src="/2026/04/01/deep-retrieval/beam-search-2.jpeg" alt="Beam Search(size=4)_1"></p>
+<ul>
+<li>计算第一层 $p_1(i\mid \vec x)$, 得到最大值的 $4$ 个节点 $2,3,5,7$;</li>
+<li>计算第二层 $p_1(i\mid \vec j;x)$, $j=2,3,5,7$, 得到最大值的四条路径 $[2,1], [2,2], [2,8], [5,3]$.</li>
+</ul>
+<p><img src="/2026/04/01/deep-retrieval/beam-search-3.jpeg" alt="Beam Search(size=4)_2"></p>
+<ul>
+<li>计算第三层 $p_1(i\mid \vec j,k;x)$, $[j,k]=[2,1], [2,2], [2,8], [5,3]$, 得到最大值的四条路径 $[2,1,1], [2,1, 4], [2, 8, 1], [5, 3, 8]$.</li>
+</ul>
+<h2 id="训练——同时学习神经网络参数和物品表征">训练——同时学习神经网络参数和物品表征</h2>
+<ul>
+<li>神经网络 $p(a,b,c\mid \vec x)$ 预估用户对路径 $[a,b,c]$ 的兴趣.</li>
+<li>把一个物品表征为多条路径 $\lbrace[a,b,c]\rbrace$, 建立索引:
+<ul>
+<li><code>item -&gt; list&lt;path&gt;</code></li>
+<li><code>path -&gt; list&lt;item&gt;</code></li>
+</ul>
+</li>
+<li>正样本 <code>(user, item)</code>: <code>click(user, item) = 1</code></li>
+</ul>
+<h3 id="学习神经网络参数">学习神经网络参数</h3>
+<ul>
+<li>物品表征为 $J$ 条路径 $[a_j, b_j, c_j]_{j=1}^J$.</li>
+<li>用户对路径 $[a, b, c]$ 兴趣:<br>
+$$<br>
+p(a,b,c\mid\vec x)=p_1(a\mid\vec x)p_2(b\mid a;\vec x)p_3(c\mid a,b;\vec x)<br>
+$$</li>
+<li>如果用户点击过物品, 则说明用户对这 $J$ 条路径感兴趣.
+<ul>
+<li>应该让 $\sum_{j=1}^Jp(a_j,b_j,c_j\mid \vec x)$ 变大</li>
+<li>损失函数 $loss=-\log\left(\sum_{j=1}^Jp(a_j,b_j,c_j\mid \vec x)\right)$.</li>
+</ul>
+</li>
+</ul>
+<h3 id="学习物品表征">学习物品表征</h3>
+<p><img src="/2026/04/01/deep-retrieval/training.png" alt="学习物品表征"></p>
+<ul>
+<li>用户 <code>user</code> 对路径 <code>path = [a, b, c]</code> 兴趣记作<br>
+$$p(\text{path}\mid \text{user})=p(a,b,c\mid \vec x)$$</li>
+<li>物品 <code>item</code> 与路径 <code>path</code> 的相关性<br>
+$$<br>
+score(\text{item, path})=\sum_{\text{user}} p(\text{path}\mid\text{user})\times\text{click}(\text{user,item}).<br>
+$$</li>
+<li>根据 $score(\text{item, path})$ 选出 $J$ 条路径作为 <code>item</code> 的表征 $\Pi=\lbrace \text{path}_1, \text{path}_2,\cdots,\text{path}_J\rbrace$.</li>
+<li>损失函数 (选与 <code>item</code> 高度相关的 <code>path</code>)<br>
+$$<br>
+loss(\text{item},\Pi)=-\log\left(\sum_{j=1}^Jscore(\text{item,path}_j)\right)<br>
+$$</li>
+<li>正则项 (避免过多的 <code>item</code> 集中在一条 <code>path</code> 上)<br>
+$$<br>
+\text{reg}(\text{path}_j) = (\text{number of items on path}_j)^4<br>
+$$</li>
+<li>用贪心算法更新路径
+<ul>
+<li>假设物品被表征为 $J$ 条路径 $\Pi=\lbrace \text{path}_1, \text{path}_2,\cdots,\text{path}_J\rbrace$.</li>
+<li>每次固定 $\lbrace \text{path}<em>i\rbrace</em>{i\neq l}$, 并从未被选中的路径中, 选出一条作为新的 $\text{path}_l$.<br>
+$$<br>
+\text{path}<em>l\gets\arg\min\limits</em>{\text{path}_l}loss(\text{item},\Pi)+\alpha\cdot\text{reg}(\text{path}_l)<br>
+$$</li>
+<li>选中的路径有较高分数 $score(\text{item, path}_l)$, 而且路径上的物品数量不会太多.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>参考: 【推荐系统公开课——8小时完整版，讲解工业界真实的推荐系统】<a href="https://www.bilibili.com/video/BV1HZ421U77y?vd_source=54b296fb4038582045c08b7b00aa22a1">https://www.bilibili.com/video/BV1HZ421U77y?vd_source=54b296fb4038582045c08b7b00aa22a1</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>推荐算法</category>
+      </categories>
+      <tags>
+        <tag>召回</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GBDT</title>
+    <url>/2025/10/15/gbdt/</url>
+    <content><![CDATA[<h1>Gradient Boosting Decision Trees</h1>
+<h2 id="背景">背景</h2>
+<p>Gradient Boosting Decision Tree (GBDT) 是 Boosting 算法的一种, 早期理论 (Schapire, 1990) 证明: 只要有一个稍微优于随机猜测的弱分类器 (准确率 &gt; 0.5), 就可以通过 Boosting 组合成强分类器. Freund 和 Schapire (1997) 的 AdaBoost 将这一思想转化为实际算法. 在 AdaBoost 提出之后, 人们逐渐认识到 Boosting 的本质是一种加性模型, 其核心思想是在每一步逐渐叠加弱学习器以最小化某个总体损失函数. Friedman 等人在此基础上提出了更为一般的理论框架, 将 Boosting 视为在函数空间中的梯度下降 (gradient descent) 过程. Friedman (2000) 在论文 <em>Greedy Function Approximation: A Gradient Boosting Machine</em> 中首次系统地提出了 Gradient Boosting 的概念，并指出 AdaBoost 实质上是以指数损失为目标函数的特殊情形. 他进一步推广了这一思想, 允许使用任意可微损失函数, 通过迭代地拟合当前损失的负梯度方向, 构建出更强的预测模型. GBDT 正是这一框架的典型实现: 它以决策树作为基学习器, 在每一轮中利用回归树来拟合损失函数对模型预测值的负梯度, 从而逐步优化整体模型性能.  由于其能够灵活适配不同损失函数 (如平方误差、逻辑损失、Huber 损失等), GBDT 既可用于回归问题, 也可用于分类乃至排序任务. 相比 AdaBoost, GBDT 在理论上更为一般、在实践中更为稳定, 对噪声数据的鲁棒性也更强, 因此成为现代机器学习中最重要的集成学习方法之一, 并衍生出了多种高效实现, 如 XGBoost、LightGBM 与 CatBoost 等.</p>
+<h2 id="问题目标和符号设定">问题目标和符号设定</h2>
+<p>给定训练 $\lbrace(x_i,y_i)\rbrace_{i=1}^n$, 我们想要找到一个函数 $F:~\mathcal X\to\mathbb R^K$ (回归问题 $K=1$, 二分类问题常用 $K=1$ 的对数几率分数) 以最小化经验风险<br>
+$$<br>
+\min\limits_{F\in\mathcal F}\mathcal L(F)=\min\limits_{F\in\mathcal F}\sum_{i=1}^nL(y_i,F(x_i)),<br>
+$$<br>
+其中 $L$ 为损失函数. GBDT 把可行函数集 $\mathcal F$ 限制为 “加性模型” 的闭包:<br>
+$$<br>
+F_M(x)=F_0(x)+\sum_{m=1}^M\nu f_m(x),<br>
+$$<br>
+其中每个学习器 $f_m$ 是回归树, $\nu\in(0,1]$ 为学习率.</p>
+<h2 id="函数空间的梯度下降">函数空间的梯度下降</h2>
+<p>考虑第 $m$ 轮.</p>
+<p>将 $\lbrace F(x_i)\rbrace_{i=1}^n$ 看成 $\mathbb R^n$ 上的向量, 对 $\mathcal L(F)$ 在这些分量求梯度:<br>
+$$<br>
+g_i:=\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\bigg\vert_{F=F_{m-1}}<br>
+$$<br>
+则负梯度 $-g_i$ 方向指向最速下降方向.</p>
+<p>用一棵回归树 $f_m(x)$ 去拟合负梯度<br>
+$$<br>
+f_m\approx\arg\min\limits_{f}\sum_{i=1}^n\left(-g_i-f(x_i)\right)^2,<br>
+$$<br>
+在得到的树划分 $\lbrace R_{jm}\rbrace_{j=1}^{J_m}$ (叶结点区域) 上, 求每个叶子的最佳增量<br>
+$$<br>
+\gamma_{jm}\approx\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma).<br>
+$$<br>
+更新<br>
+$$<br>
+F_m(x)=F_{m-1}(x)+\nu\sum_{j=1}^{J_m}\gamma_{jm}1\lbrace x\in R_{jm}\rbrace.<br>
+$$</p>
+<h2 id="不同损失下的具体形式">不同损失下的具体形式</h2>
+<h3 id="平方损失-回归">平方损失 (回归)</h3>
+<p>$$<br>
+L(y,F)=\frac12(y-F)^2.<br>
+$$</p>
+<p>此时</p>
+<ul>
+<li>梯度 $g_i=F(x_i)-y_i$, 负梯度即为残差 $y_i-F(x_i)$.</li>
+<li>叶值闭式解 $\gamma_{jm}=\mathrm{mean}\lbrace y_i-F_{m-1}(x_i)~:~x_i\in R_{jm}\rbrace$.</li>
+<li>初始值 $F_0=\mathrm{mean}(y)$.</li>
+</ul>
+<h3 id="绝对损失-分位数损失-稳健回归">绝对损失 / 分位数损失 (稳健回归)</h3>
+<ul>
+<li>$L_1$ 损失: 叶值取中位数.</li>
+<li>分位数损失 $\tau\in(0,1)$: 叶值取 $\tau-$ 分位数.<br>
+对异常值更稳健.</li>
+</ul>
+<h3 id="二分类的-Logistic-损失">二分类的 Logistic 损失</h3>
+<p>此时 $y_i\in\lbrace0,1\rbrace$, 令模型输出为对数几率<br>
+$$<br>
+F(x)=\log\frac{p(x)}{1-p(x)},\quad p(x)=\sigma(F(x))=\frac{1}{1+e^{-F(x)}}.<br>
+$$</p>
+<ul>
+<li>
+<p>损失: 交叉熵 $L(y,F)=-\left[y\log p+(1-y)\log(1-p)\right]$.</p>
+</li>
+<li>
+<p>梯度: $g_i=-\left[y_i\frac{p_i(1-p_i)}{p_i}+(1-y_i)\frac{p_i(p_i-1)}{1-p_i}\right]=p_i-y_i$, 负梯度: $r_i=y_i-p_i$.</p>
+</li>
+<li>
+<p>叶值: 在叶 $R_{jm}$<br>
+$$<br>
+\gamma_{jm}\approx\frac{\sum_{x_i\in R_{jm}}(y_i-p_i)}{\sum_{x_i\in R_{jm}}p_i(1-p_i)}.<br>
+$$</p>
+<blockquote>
+<p>注意到 $\frac{\partial L}{\partial F}=p_i-y_i,~\frac{\partial^2 L}{\partial F^2}=p_i(1-p_i)$, 于是由 Taylor 定理<br>
+$$<br>
+L(y_i,F_{m-1}(x_i)+\gamma)\approx L(y_i,F_{m-1}(x_i))+g_i\gamma+\frac12h_i\gamma^2,<br>
+$$<br>
+其中 $g_i,h_i$ 分别为一阶导和二阶导. 因此<br>
+$$<br>
+\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)\approx \sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i))+G_{jm}\gamma+\frac12 H_{jm}\gamma^2,<br>
+$$<br>
+其中 $G_{jm}=\sum_{x_i\in R_{jm}}g_i=\sum_{x_i\in R_{jm}}(p_i-y_i),~H_{jm}=\sum_{x_i\in R_{jm}}h_i=\sum_{x_i\in R_{jm}}p_i(1-p_i)$. 故<br>
+$$<br>
+\gamma_{jm}=\arg\min\limits_{\gamma}\sum_{x_i\in R_{jm}}L(y_i,F_{m-1}(x_i)+\gamma)=\arg\min\limits_{\gamma}\left(G_{jm}\gamma+\frac12 H_{jm}\gamma^2\right)=-\frac{G_{jm}}{H_{jm}}.<br>
+$$</p>
+</blockquote>
+</li>
+<li>
+<p>初始值: $F_0=\log\frac{\bar y}{1-\bar y}$, 其中 $\bar y$ 是样本中正类比例.</p>
+</li>
+</ul>
+<h3 id="多分类-softmax">多分类 softmax</h3>
+<p>输出向量 $F(x)\in\mathbb R^c,~p_k(x)=\frac{\exp(F_k(x))}{\sum_{l}\exp(F_l(x))}$. 此时损失函数为<br>
+$$<br>
+L=\sum_{i=1}^nl_i,\quad l_i=-\sum_{k=1}^cy_{ik}\log(p_{ik}),~y_{ik}=1\lbrace y_i=k\rbrace,<br>
+$$<br>
+在第 $m$ 轮通常训练 $c$ 棵树, 分别拟合每一类的负梯度<br>
+$$<br>
+r_{ik}=y_{ik}-p_{ik},\quad<br>
+$$<br>
+在叶 $R_{jmk}$ 上, 我们只更新该类的分数 $F_k\to F_k+\gamma$. 用一维二阶近似:<br>
+$$<br>
+\gamma_{jmk}\approx-\frac{G_{jmk}}{H_{jmk}},\quad G_{jmk}=\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik}),\quad H_{jmk}=\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda<br>
+$$<br>
+因此<br>
+$$<br>
+\gamma_{jmk}\approx-\frac{\sum_{x_i\in R_{jmk}}(p_{ik}-y_{ik})}{\sum_{x_i\in R_{jmk}}p_{ik}(1-p_{ik})+\lambda}.<br>
+$$<br>
+其中 $\lambda$ 为正则项. 更新模型:<br>
+$$<br>
+F_k^{(m)}(x)=F_k^{(m-1)}(x)+\nu\sum_{j=1}^{J_{mk}}\gamma_{jmk}1\lbrace x\in R_{jmk}\rbrace,\quad k=1,2,\cdots,c.<br>
+$$<br>
+最后用 softmax 函数得到概率.</p>
+]]></content>
+      <categories>
+        <category>机器学习与深度学习</category>
+      </categories>
+      <tags>
+        <tag>集成学习</tag>
+        <tag>boosting</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Transformer 架构 —— Attention Is All You Need</title>
     <url>/2025/10/16/transformer-architecture/</url>
     <content><![CDATA[<h1>Transformer — 模型架构</h1>
@@ -3455,6 +3135,326 @@ $$<br>
       </categories>
       <tags>
         <tag>Transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Carathéodory扩张</title>
+    <url>/2025/09/02/caratheodory/</url>
+    <content><![CDATA[<p><strong>[T241107]</strong> <strong>(Carathéodory 扩张)</strong> 设 $\mu$ 是代数 $\mathscr F_0$ 上的预测度, 则其外测度 $\mu^{\ast}$ 是 $\mu$ 的一个扩张, 称为 $\mu$ 的 Carathéodory 扩张. (即 $\mu^{\ast}$ 是 $(\Omega,\sigma(\mathscr F_0))$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致)<br>
+<strong>Proof:</strong> 只需证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度且在 $\mathscr F_0$ 上与 $\mu$ 一致.<br>
+<strong>(Step1.)</strong> 先证明 $\mu^{\ast}$ 在 $\mathscr F_0$ 上与 $\mu$ 一致, 即证 $\forall A\in\mathscr F_0$, 满足 $\mu^{\ast}(A)=\mu(A)$. 注意到</p>
+<p>$$<br>
+\mu^{\ast}(A) = \inf\Bigl\lbrace\sum_n\mu(A_n): A_n\in\mathscr{F}_0,~ \bigcup_n A_n\supset A \Bigr\rbrace.<br>
+$$</p>
+<p>而 $A\cup\varnothing\cup\varnothing\cup\cdots\supset A$, 因此<br>
+$$<br>
+\mu^{\ast}(A)\le \mu(A)+\mu(\varnothing)+\mu(\varnothing)+\cdots=\mu(A).<br>
+$$<br>
+另一方面, 若 $\mu^{\ast}(A)&lt;+\infty$, 则对 $\forall\varepsilon&gt;0, ~\exists~A_n\in\mathscr F_0$, 使得 $\bigcup\limits_nA_n\supset A$, 且<br>
+$$<br>
+\sum_n\mu(A_n)&lt;\mu^{\ast}(A)+\varepsilon.<br>
+$$<br>
+由 $\mu$ 的可列可加性和单调性知<br>
+$$<br>
+% \begin{aligned}<br>
+% \mu(A) &amp;\le \mu\left(\bigcup_{n} A_n\right) \<br>
+%        &amp;= \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \<br>
+%        &amp;= \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \<br>
+%        &amp;\le \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+% \end{aligned}<br>
+\begin{array}{rcl}<br>
+\mu(A) &amp;\le&amp; \mu\left(\bigcup_{n} A_n\right) \\<br>
+&amp;=&amp; \mu\left(A_1 \cup (A_2\cap A_1^{c}) \cup (A_3\cap (A_1\cup A_2)^{c}) \cup \cdots \right) \\<br>
+&amp;=&amp; \mu(A_1) + \mu(A_2\cap A_1^{c}) + \mu\bigl(A_3\cap (A_1\cup A_2)^{c}\bigr) + \cdots \\<br>
+&amp;\le&amp; \sum_{n}\mu(A_n) &lt; \mu^{\ast}(A) + \varepsilon .<br>
+\end{array}<br>
+$$<br>
+再由 $\varepsilon$ 的任意性可知 $\mu(A)\le\mu^{\ast}(A)$. 综上, $\mu(A)=\mu^{\ast}(A)$.<br>
+<strong>(Step2.)</strong> 再证明 $\mu^{\ast}$ 是 $\mathscr F=\mathscr \sigma(F_0)$ 上的测度, 只需证明 $\mathscr F=\sigma(\mathscr F_0)\subset\mathscr M$, 其中 $\mathscr M$ 是 $\mu^{\ast}$ 可测子集全体构成的 $\sigma$ 代数.</p>
+<blockquote>
+<p>见“$(\Omega,\mathscr M,\mu^{\ast})$ 是完备测度空间”</p>
+</blockquote>
+<p>对 $\forall A\in\mathscr F_0$, 要证明 $A\in\mathscr M$. 对 $\forall E\subset\Omega$, 不妨设 $\mu^{\ast}(E)&lt;\infty$, 则对 $\forall \varepsilon&gt;0$, 存在子集列 ${A_n}\subset\mathscr F_0$ 满足 $\cup_nA_n\supset E$ 且 $\sum\limits_n\mu(A_n)&lt;\mu^{\ast}(E)+\varepsilon$, 因而<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)&amp;\le\mu^{\ast}\left(\bigcup_n(A_n\cap A)\right)+\mu^{\ast}\left(\bigcup_n(A_n\cap A^c)\right)\\<br>
+(\text{外测度的次可列可加性})~&amp;\le\sum_n\left[\mu^{\ast}(A_n\cap A)+\mu^{\ast}(A_n\cap A^c)\right]\\<br>
+(\text{Step1.})~&amp;=\sum_n\left[\mu(A_n\cap A)+\mu(A_n\cap A^c)\right]\\<br>
+(\text{预测度的可列可加性})~&amp;=\sum_n\mu(A_n)\\<br>
+&amp;&lt;\mu^{\ast}(E)+\varepsilon<br>
+\end{aligned}<br>
+$$<br>
+由 $\varepsilon$ 的任意性可知 $\mu^{\ast}(E)\ge\mu^{\ast}(E\cap A)+\mu^{\ast}(E\cap A^c)$, 即 $A$ 满足 Carathéodory 条件, 从而 $A\in\mathscr M$. 由 $A$ 在 $\mathscr F_0$ 中的任意性可知 $\mathscr F_0\subset\mathscr M$, 从而 $\mathscr F=\sigma(\mathscr F_0)\subset\sigma(\mathscr M)=\mathscr M$, 故 $\mu^{\ast}$ 是 $\mathscr F=\sigma(\mathscr F_0)$ 上的测度.<br>
+综上,  $\mu^{\ast}$ 限制在 $\mathscr F$ 上是 $\mu$ 的一个扩张.	#</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单调收敛定理</title>
+    <url>/2025/09/02/post-20250902-2e2bd7/</url>
+    <content><![CDATA[<p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
+$$<br>
+\mu(f)=\lim\limits_n\mu(f_n)<br>
+$$<br>
+<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
+$$<br>
+A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
+$$<br>
+满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
+$$<br>
+\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
+$$<br>
+因为 $g$ 是简单的, 故<br>
+$$<br>
+\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
+$$<br>
+由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
+$$<br>
+\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
+$$<br>
+可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
+$$<br>
+\lim\limits_n\mu(f_n)=\mu(f).<br>
+$$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>$(&#92;Omega,&#92;mathscr M,&#92;mu^{&#92;ast} )$ 是完备测度空间</title>
+    <url>/2025/09/09/omega-mathscr-m-mu-ast/</url>
+    <content><![CDATA[<p><strong>[T0241104]</strong> (<strong>Carathéodory</strong>) $(\Omega,\mathscr{M},\mu^{\ast} )$ 是完备测度空间, 其中 $\mu^{\ast} $ 是 $\Omega$ 上的外测度, $\mathscr M$ 为 $\Omega$ 的 $\mu^{\ast} -$可测子集全体.<br>
+<strong>Proof:</strong> 先证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间, 再证明它是完备的 (若所有测度为零的集及其子集都是可测的, 则该测度空间完备).<br>
+<strong>(Step1.)</strong> 证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+<ul>
+<li>
+<p>$\mathscr M$ 非空.<br>
+事实上, 对 $\forall E\subset\Omega$, 注意到 $\mu^{\ast} (\varnothing)=0$, 于是<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;= \mu^{\ast} (\varnothing)+\mu^{\ast} (E)\\<br>
+&amp;=\mu^{\ast} (E\cap\varnothing)+\mu^{\ast} (E\cap\varnothing^c)\\<br>
+&amp;=\mu^{\ast} (E\cap\Omega^c)+\mu^{\ast} (E\cap\Omega)<br>
+\end{aligned}<br>
+$$<br>
+即 $\varnothing,\Omega$ 满足 Carathéodory 条件, 从而 $\varnothing,\Omega\in\mathscr M$, 即 $\mathscr M$ 非空.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于补集运算封闭.<br>
+事实上, 对 $\forall A\in\mathscr M,~\forall E\subset\Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E) &amp;=\mu^{\ast} (E\cap A)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap A^c)+\mu^{\ast} (E\cap (A^c)^c)<br>
+\end{aligned}<br>
+$$<br>
+即 $A^c\in\mathscr M$, 故 $\mathscr M$ 对于补运算封闭.</p>
+</li>
+<li>
+<p>$\mathscr M$ 对于可列并封闭.</p>
+<ul>
+<li>
+<p>先证明 $\mathscr M$ 对于有限交运算封闭.<br>
+设 $A,B\in\mathscr M$, 则对 $\forall E\subset \Omega$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (A\cap E)+\mu^{\ast} (A^c\cap E)\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} (B\cap(A^c\cap E))+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} (A\cap E)+\mu^{\ast} ((B\cap A^c)\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} \left(A\cap(A\cup(B\cap A^c))\cap E\right)+\mu^{\ast} ((B\cap A^c)\cap(A\cup(B\cap A^c))\cap E)\\<br>
+&amp;+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup(B\cap A^c))\cap E)+\mu^{\ast} (B^c\cap(A^c\cap E))\\<br>
+=&amp;\mu^{\ast} ((A\cup B)\cap E)+\mu^{\ast} ((A\cup B)^c\cap E)\\<br>
+\end{aligned}<br>
+$$<br>
+即 $A\cup B\in\mathscr M$, 于是 $\mathscr M$ 对于有限交运算封闭.</p>
+</li>
+<li>
+<p>再证明 $\mathscr M$ 对于可列并封闭, 注意到 $\mathscr M$ 对于补运算和有限交运算封闭, 因此只需验证 $\mathscr M$ 对于 不交可列并封闭.<br>
+设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中不相交集列, 令<br>
+$$<br>
+S_n:=\bigcup_{k=1}^nA_k,\quad A:=\bigcup_{k=1}^{+\infty}A_k<br>
+$$</p>
+<p>由 $\mathscr M$ 对于补运算和有限交运算封闭可知 $S_n=(\cap_{k=1}^nA_k^c)^c\in\mathscr M$, 再结合外测度的单调性知<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;=\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap S_n^c)\\<br>
+&amp;\ge\mu^{\ast} (E\cap S_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} ((E\cap S_n)\cap S_{n-1})+\mu^{\ast} ((E\cap S_n)\cap S_{n-1}^c)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} (E\cap S_{n-2})+\mu^{\ast} (E\cap A_{n-1})+\mu^{\ast} (E\cap A_n)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\cdots\cdots\\<br>
+&amp;=\left(\sum_{k=1}^n\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>令 $n\to\infty$, 有<br>
+$$<br>
+\begin{aligned}<br>
+\mu^{\ast} (E)&amp;\ge\left(\sum_{k=1}^{\infty}\mu^{\ast} (E\cap A_k)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;\ge\mu^{\ast} \left(\bigcup_{n-1}^{\infty}(E\cap A_n)\right)+\mu^{\ast} (E\cap A^c)\\<br>
+&amp;=\mu^{\ast} \left(E\cap A\right)+\mu^{\ast} (E\cap A^c)<br>
+\end{aligned}<br>
+$$</p>
+<p>因此 $A\in\mathscr M$, 即 $\mathscr M$ 对不交可列并封闭, 从而 $\mathscr M$ 对于可列并运算封闭.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>综上, $\mathscr M$ 是 $\Omega$ 上的一个 $\sigma $ 代数.</p>
+</li>
+<li>
+<p>再证明 $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+<ul>
+<li>
+<p>由外测度的定义知 $\mu^{\ast} (\varnothing)=0$ 且 $\mu^{\ast} $ 非负.</p>
+</li>
+<li>
+<p>$\mu^{\ast} $ 满足可列可加性.<br>
+由 $\mathscr M$ 对于可列并运算封闭的证明可知: 设 $\lbrace A_n\rbrace_1^{+\infty}$ 是 $\mathscr M$ 中任意不相交集列, 对 $\forall E\subset\Omega$, 有<br>
+$$<br>
+\mu^{\ast} (E\cap (\cup_{k=1}^nA_i))=\sum_{k=1}^n\mu^{\ast} (E\cap A_k)<br>
+$$<br>
+令 $E=\Omega$, 得<br>
+$$<br>
+\mu^{\ast} \left(\bigcup_{k=1}^nA_k\right)=\sum_{k=1}^n\mu^{\ast} (A_k)<br>
+$$<br>
+从而 $\mu^{\ast} $ 满足有限可加性, 又 $\mu^{\ast} $ 满足次可列可加性, 故 $\mu^{\ast} $ 在 $\mathscr M$ 上满足可列可加性.</p>
+</li>
+</ul>
+<p>综上,  $\mu^{\ast} $ 是 $\mathscr M$ 上的测度.</p>
+</li>
+</ul>
+<p>综上, $(\Omega,\mathscr M,\mu^{\ast} )$ 是测度空间.</p>
+<p><strong>(Step2.)</strong> 最后证明 $(\Omega,\mathscr M,\mu^{\ast} )$ 是完备测度空间. 由 $\mathscr M$ 的定义知 $\mathscr M$ 包含所有的 $\mu^{\ast} -$ 零测度集. 	#</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>测度论</category>
+      </categories>
+      <tags>
+        <tag>测度论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas数据分析题解汇总</title>
+    <url>/2025/09/05/pandas/</url>
+    <content><![CDATA[<p>这篇笔记把 <code>Python 数据分析</code> 目录下的基础 Pandas 题解合并到了一起，方便集中查阅。内容主要覆盖连接、分组聚合、去重、排序排名以及简单的时间序列比较。</p>
+<h2 id="LeetCode-175-组合两张表">LeetCode 175 组合两张表</h2>
+<p>表: Person</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>personId</code> 是该表的主键（具有唯一值的列）。该表包含一些人的 ID 和他们的姓和名的信息。</p>
+<p>表: Address</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>addressId</code> 是该表的主键（具有唯一值的列）。该表的每一行都包含一个 <code>ID = PersonId</code> 的人的城市和州的信息。</p>
+<p>编写解决方案，报告 <code>Person</code> 表中每个人的姓、名、城市和州。如果 <code>personId</code> 的地址不在 <code>Address</code> 表中，则报告为 <code>null</code>。以任意顺序返回结果表。</p>
+<p>示例：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Person 表:</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| personId | lastName | firstName |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line">| 1        | Wang     | Allen     |</span><br><span class="line">| 2        | Alice    | Bob       |</span><br><span class="line">+----------+----------+-----------+</span><br><span class="line"></span><br><span class="line">Address 表:</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| addressId | personId | city          | state      |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br><span class="line">| 1         | 2        | New York City | New York   |</span><br><span class="line">| 2         | 3        | Leetcode      | California |</span><br><span class="line">+-----------+----------+---------------+------------+</span><br></pre></td></tr></table></figure>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">combine_two_tables</span>(<span class="params">person: pd.DataFrame, address: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person.merge(address, on=<span class="string">&#x27;personId&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)[[<span class="string">&#x27;firstName&#x27;</span>, <span class="string">&#x27;lastName&#x27;</span>, <span class="string">&#x27;city&#x27;</span>, <span class="string">&#x27;state&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+<p>此题主要考察“左连接”。</p>
+<h2 id="LeetCode-176-第二高的薪水">LeetCode 176 第二高的薪水</h2>
+<p><code>Employee</code> 表：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是这个表的主键。表的每一行包含员工的工资信息。查询并返回 Employee 表中第二高的不同薪水。如果不存在第二高的薪水，查询应该返回 <code>null</code>，Pandas 则返回 <code>None</code>。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">second_highest_salary</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;SecondHighestSalary&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-177-第-n-高的薪水">LeetCode 177 第 n 高的薪水</h2>
+<p>表: Employee</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| salary      | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（列中的值互不相同）。该表的每一行都包含有关员工工资的信息。编写一个解决方案查询 Employee 表中第 <code>n</code> 高的不同工资。如果少于 <code>n</code> 个不同工资，查询结果应该为 <code>null</code>。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nth_highest_salary</span>(<span class="params">employee: pd.DataFrame, N: <span class="built_in">int</span></span>) -&gt; pd.DataFrame:</span><br><span class="line">    salaries = employee[<span class="string">&#x27;salary&#x27;</span>].drop_duplicates().sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">    out = [salaries.iloc[N - <span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(salaries) &gt;= N <span class="keyword">and</span> N &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">f&#x27;getNthHighestSalary(<span class="subst">&#123;N&#125;</span>)&#x27;</span>: out&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-178-分数排名">LeetCode 178 分数排名</h2>
+<p>表: Scores</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| score       | decimal |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键（有不同值的列）。该表的每一行都包含了一场比赛的分数。<code>score</code> 是一个有两位小数点的浮点值。编写一个解决方案来查询分数的排名。</p>
+<p>排名规则：</p>
+<ul>
+<li>分数按从高到低排列</li>
+<li>如果两个分数相等，那么两个分数的排名应该相同</li>
+<li>排名之间不应该有空缺的数字</li>
+</ul>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_scores</span>(<span class="params">scores: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    scores[<span class="string">&#x27;rank&#x27;</span>] = scores[<span class="string">&#x27;score&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> scores[[<span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;rank&#x27;</span>]].sort_values([<span class="string">&#x27;score&#x27;</span>], ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-180-连续出现的数">LeetCode 180 连续出现的数</h2>
+<p>表: <code>Logs</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| num         | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>在 SQL 中，<code>id</code> 是该表的主键。<code>id</code> 是一个自增列。找出所有至少连续出现三次的数字。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consecutive_numbers</span>(<span class="params">logs: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    mask = (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">1</span>)) &amp; (logs[<span class="string">&#x27;num&#x27;</span>] == logs[<span class="string">&#x27;num&#x27;</span>].shift(-<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame(&#123;<span class="string">&#x27;ConsecutiveNums&#x27;</span>: logs.loc[mask, <span class="string">&#x27;num&#x27;</span>].unique()&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-181-超过经理收入的员工">LeetCode 181 超过经理收入的员工</h2>
+<p>表: Employee</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">| salary      | int     |</span><br><span class="line">| managerId   | int     |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键。该表的每一行都表示雇员的 ID、姓名、工资和经理的 ID。编写解决方案，找出收入比经理高的员工。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_employees</span>(<span class="params">employee: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = employee.merge(employee, left_on=<span class="string">&#x27;managerId&#x27;</span>, right_on=<span class="string">&#x27;id&#x27;</span>, suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_mgr&#x27;</span>))</span><br><span class="line">    out = df_merge.loc[df_merge[<span class="string">&#x27;salary&#x27;</span>] &gt; df_merge[<span class="string">&#x27;salary_mgr&#x27;</span>], [<span class="string">&#x27;name&#x27;</span>]]</span><br><span class="line">    <span class="keyword">return</span> out.rename(columns=&#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-182-查找重复的电子邮箱">LeetCode 182 查找重复的电子邮箱</h2>
+<p>表: Person</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p><code>id</code> 是该表的主键。此表的每一行都包含一封电子邮件。电子邮件不包含大写字母。编写解决方案来报告所有重复的电子邮件。</p>
+<p>解法一：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df = person.groupby(<span class="string">&#x27;email&#x27;</span>).size().reset_index().rename(columns=&#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;x&#x27;</span>, <span class="number">0</span>: <span class="string">&#x27;y&#x27;</span>&#125;)</span><br><span class="line">    df_m = person.merge(df, left_on=<span class="string">&#x27;email&#x27;</span>, right_on=<span class="string">&#x27;x&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_m.loc[df_m[<span class="string">&#x27;y&#x27;</span>] &gt;= <span class="number">2</span>, [<span class="string">&#x27;email&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;email&#x27;</span>: <span class="string">&#x27;Email&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>).drop_duplicates()</span><br></pre></td></tr></table></figure>
+<p>解法二：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> person[<span class="string">&#x27;email&#x27;</span>].value_counts().loc[<span class="keyword">lambda</span> x: x &gt; <span class="number">1</span>].index.to_frame(name=<span class="string">&#x27;Email&#x27;</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-183-从不订购的客户">LeetCode 183 从不订购的客户</h2>
+<p>Customers 表：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>Orders 表：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+------+</span><br><span class="line">| Column Name | Type |</span><br><span class="line">+-------------+------+</span><br><span class="line">| id          | int  |</span><br><span class="line">| customerId  | int  |</span><br><span class="line">+-------------+------+</span><br></pre></td></tr></table></figure>
+<p>找出所有从不点任何东西的顾客。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    df_merge = customers.merge(orders[[<span class="string">&#x27;customerId&#x27;</span>]], left_on=<span class="string">&#x27;id&#x27;</span>, right_on=<span class="string">&#x27;customerId&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_merge.loc[df_merge[<span class="string">&#x27;customerId&#x27;</span>].isna(), [<span class="string">&#x27;name&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Customers&#x27;</span>&#125;).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-184-部门工资最高的员工">LeetCode 184 部门工资最高的员工</h2>
+<p>表：<code>Employee</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| 列名          | 类型    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p>表：<code>Department</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>查找出每个部门中薪资最高的员工。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">department_highest_salary</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    max_salary = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].transform(<span class="string">&#x27;max&#x27;</span>)</span><br><span class="line">    employee1 = employee.loc[employee[<span class="string">&#x27;salary&#x27;</span>] == max_salary]</span><br><span class="line">    <span class="keyword">return</span> employee1.merge(</span><br><span class="line">        department,</span><br><span class="line">        left_on=<span class="string">&#x27;departmentId&#x27;</span>,</span><br><span class="line">        right_on=<span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">        suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_d&#x27;</span>)</span><br><span class="line">    )[[<span class="string">&#x27;name_d&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(</span><br><span class="line">        columns=&#123;<span class="string">&#x27;name_d&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;</span><br><span class="line">    ).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-185-部门工资前三高的所有员工">LeetCode 185 部门工资前三高的所有员工</h2>
+<p>表: <code>Employee</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+--------------+---------+</span><br><span class="line">| Column Name  | Type    |</span><br><span class="line">+--------------+---------+</span><br><span class="line">| id           | int     |</span><br><span class="line">| name         | varchar |</span><br><span class="line">| salary       | int     |</span><br><span class="line">| departmentId | int     |</span><br><span class="line">+--------------+---------+</span><br></pre></td></tr></table></figure>
+<p>表: <code>Department</code></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| name        | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>找出每个部门中收入高的员工。一个部门的高收入者，是指工资在该部门不同工资中排名前三的员工。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">top_three_salaries</span>(<span class="params">employee: pd.DataFrame, department: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    rank_in_dep = employee.groupby(<span class="string">&#x27;departmentId&#x27;</span>)[<span class="string">&#x27;salary&#x27;</span>].rank(method=<span class="string">&#x27;dense&#x27;</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">    df = employee.loc[rank_in_dep &lt;= <span class="number">3</span>]</span><br><span class="line">    <span class="keyword">return</span> df.merge(</span><br><span class="line">        department,</span><br><span class="line">        left_on=<span class="string">&#x27;departmentId&#x27;</span>,</span><br><span class="line">        right_on=<span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">        how=<span class="string">&#x27;left&#x27;</span>,</span><br><span class="line">        suffixes=(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;_dep&#x27;</span>)</span><br><span class="line">    )[[<span class="string">&#x27;name_dep&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>]].rename(</span><br><span class="line">        columns=&#123;<span class="string">&#x27;name_dep&#x27;</span>: <span class="string">&#x27;Department&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Employee&#x27;</span>, <span class="string">&#x27;salary&#x27;</span>: <span class="string">&#x27;Salary&#x27;</span>&#125;</span><br><span class="line">    ).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-196-删除重复的电子邮箱">LeetCode 196 删除重复的电子邮箱</h2>
+<p>表: Person</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+-------------+---------+</span><br><span class="line">| Column Name | Type    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| id          | int     |</span><br><span class="line">| email       | varchar |</span><br><span class="line">+-------------+---------+</span><br></pre></td></tr></table></figure>
+<p>编写解决方案删除所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_duplicate_emails</span>(<span class="params">person: pd.DataFrame</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    person.drop(person.loc[person[<span class="string">&#x27;id&#x27;</span>] != person.groupby(<span class="string">&#x27;email&#x27;</span>)[<span class="string">&#x27;id&#x27;</span>].transform(<span class="string">&#x27;min&#x27;</span>)].index, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="LeetCode-197-上升的温度">LeetCode 197 上升的温度</h2>
+<p>表：Weather</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">+---------------+---------+</span><br><span class="line">| Column Name   | Type    |</span><br><span class="line">+---------------+---------+</span><br><span class="line">| id            | int     |</span><br><span class="line">| recordDate    | date    |</span><br><span class="line">| temperature   | int     |</span><br><span class="line">+---------------+---------+</span><br></pre></td></tr></table></figure>
+<p>找出与之前一天相比温度更高的所有日期的 <code>id</code>。</p>
+<p>解答：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rising_temperature</span>(<span class="params">weather: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    weather.sort_values(<span class="string">&#x27;recordDate&#x27;</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">    weather_diff = weather.diff()</span><br><span class="line">    <span class="keyword">return</span> weather.loc[</span><br><span class="line">        (weather_diff[<span class="string">&#x27;recordDate&#x27;</span>] == datetime.timedelta(<span class="number">1</span>)) &amp; (weather_diff[<span class="string">&#x27;temperature&#x27;</span>] &gt; <span class="number">0</span>),</span><br><span class="line">        [<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python 数据分析</category>
+        <category>Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python 数据分析</tag>
+        <tag>Pandas</tag>
+        <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -5148,79 +5148,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>函数项级数</title>
-    <url>/2025/09/07/7/</url>
-    <content><![CDATA[<h1>函数项级数</h1>
-<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
-<ol>
-<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
-<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
-<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
-</ol>
-<p>【华四/李】考察以下函数项级数的一致收敛性</p>
-<ol>
-<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
-<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
-<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
-</ol>
-<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
-<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
-<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
-<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
-<p>【定理13.6(Abel判别法)】设<br>
-(i) $\sum u_n(x)$在区间1上一致收敛；<br>
-(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
-(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
-则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
-<p>【定理 13.7(Dirichlet判别法)】 设<br>
-(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
-(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
-(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
-则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
-<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
-<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
-<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
-<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
-<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
-<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
-<p>【华四13.2例1】设函数<br>
-$$<br>
-f_{n}(x)=\begin{cases}<br>
-2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
-2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
-0,&amp;\frac{1}{n}\le x\le 1,<br>
-\end{cases}\quad n=1,2,\cdots<br>
-$$<br>
-考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
-<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
-<p>$$<br>
-\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
-$$<br>
-【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
-<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
-<p>【华四第十三章总练习题2】证明：<br>
-(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
-(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
-<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
-(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
-(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
-<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
-<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>习题集</category>
-      </categories>
-      <tags>
-        <tag>数学分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数项级数</title>
     <url>/2025/09/07/6/</url>
     <content><![CDATA[<h1>数项级数</h1>
@@ -5523,6 +5450,79 @@ $$<br>
 <p>$$<br>
 \int_a^bf’(x)\cos f(x)\mathrm{~d}x=\int_a^b(\sin f(x))'\mathrm{~d}x\le2<br>
 $$</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>习题集</category>
+      </categories>
+      <tags>
+        <tag>数学分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>函数项级数</title>
+    <url>/2025/09/07/7/</url>
+    <content><![CDATA[<h1>函数项级数</h1>
+<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
+<ol>
+<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
+<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
+<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
+</ol>
+<p>【华四/李】考察以下函数项级数的一致收敛性</p>
+<ol>
+<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
+<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
+<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
+<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
+</ol>
+<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
+<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
+<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
+<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
+<p>【定理13.6(Abel判别法)】设<br>
+(i) $\sum u_n(x)$在区间1上一致收敛；<br>
+(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
+(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
+则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
+<p>【定理 13.7(Dirichlet判别法)】 设<br>
+(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
+(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
+(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
+则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
+<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
+<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
+<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
+<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
+<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
+<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
+<p>【华四13.2例1】设函数<br>
+$$<br>
+f_{n}(x)=\begin{cases}<br>
+2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
+2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
+0,&amp;\frac{1}{n}\le x\le 1,<br>
+\end{cases}\quad n=1,2,\cdots<br>
+$$<br>
+考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
+<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
+<p>$$<br>
+\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
+$$<br>
+【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
+<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
+<p>【华四第十三章总练习题2】证明：<br>
+(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
+(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
+<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
+(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
+(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
+<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
+<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
+<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
 ]]></content>
       <categories>
         <category>数学</category>
@@ -5956,8 +5956,60 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>LeetCode Hot100 —— 链表</title>
+    <url>/2026/03/23/leetcode-hot100-3/</url>
+    <content><![CDATA[<h1>LeetCode Hot100 —— 链表</h1>
+<h2 id="160-相交链表">160. 相交链表</h2>
+<p>找出两个单链表相交的节点</p>
+<h3 id="思路">思路</h3>
+<p>假设有两个链表 <code>A</code> 和链表 <code>B</code>, 在某节点处相交, 之后部分重合. 我们用两个指针, 一个从 <code>A</code> 头节点开始遍历, 另一个从 <code>B</code> 头节点开始遍历, 并且指针遍历完一个链表后会移动到另一个链表的头节点. 则最后两个指针一定会相遇. 不妨设 <code>A</code> 和 <code>B</code> 重合部分长度为 <code>l</code>, <code>A</code> 的不重合部分为 <code>a</code>, <code>B</code> 的不重合部分为 <code>b</code>, 注意到 <code>a+l+b=b+l+a</code>, 即两指针在走这么多步后一定相遇, 且相遇在交点.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getIntersectionNode</span>(<span class="params">self, headA: ListNode, headB: ListNode</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        A = headA; B = headB</span><br><span class="line">        <span class="keyword">while</span> A != B:</span><br><span class="line">            A = A.<span class="built_in">next</span> <span class="keyword">if</span> A <span class="keyword">else</span> headB</span><br><span class="line">            B = B.<span class="built_in">next</span> <span class="keyword">if</span> B <span class="keyword">else</span> headA</span><br><span class="line">        <span class="keyword">return</span> A</span><br></pre></td></tr></table></figure>
+<h2 id="206-反转链表">206. 反转链表</h2>
+<h3 id="思路-2">思路</h3>
+<p>构造两个节点, 一个是未反转链表的头节点, 一个是这个头节点应该指向的节点.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        A = head; B = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> A:</span><br><span class="line">            C = A.<span class="built_in">next</span></span><br><span class="line">            A.<span class="built_in">next</span> = B</span><br><span class="line">            B = A</span><br><span class="line">            A = C</span><br><span class="line">        <span class="keyword">return</span> B</span><br></pre></td></tr></table></figure>
+<h2 id="K-个一组翻转链表">$K$ 个一组翻转链表</h2>
+<p>给你链表的头节点 <code>head</code>, 每 <code>k</code> 个节点一组进行翻转, 请你返回修改后的链表.</p>
+<ul>
+<li><code>k</code> 是一个正整数,它的值小于或等于链表的长度.</li>
+<li>如果节点总数不是 <code>k</code> 的整数倍,那么请将最后剩余的节点保持原有顺序.</li>
+</ul>
+<h3 id="思路——利用栈">思路——利用栈</h3>
+<p>依次将<code>k</code>个节点放入栈中, 然后再一个个<code>pop</code>出来, 这样就实现了反转.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseKGroup</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode], k: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        new_list = ListNode(<span class="number">0</span>)</span><br><span class="line">        p = new_list</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            count = k</span><br><span class="line">            stack = []</span><br><span class="line">            tmp = head</span><br><span class="line">            <span class="comment"># 只要 count&gt;0 且 tmp 不是 None, 就把结点放到栈里</span></span><br><span class="line">            <span class="keyword">while</span> count <span class="keyword">and</span> tmp:</span><br><span class="line">                stack.append(tmp)</span><br><span class="line">                tmp = tmp.<span class="built_in">next</span></span><br><span class="line">                count -= <span class="number">1</span></span><br><span class="line">            <span class="comment"># 注意：如果count=0, 那么此时 tmp 对应 k 个结点之后的结点</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 如果剩余链表的长度不足 k, 拿着剩下的链表不用再反转了，直接接上就行, 然后退出整个循环</span></span><br><span class="line">            <span class="keyword">if</span> count:</span><br><span class="line">                p.<span class="built_in">next</span> = head</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="comment"># 利用栈的 `pop` 实现反转</span></span><br><span class="line">            <span class="keyword">while</span> stack:</span><br><span class="line">                p.<span class="built_in">next</span> = stack.pop()</span><br><span class="line">                p = p.<span class="built_in">next</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 更新 head</span></span><br><span class="line">            head = tmp</span><br></pre></td></tr></table></figure>
+<h2 id="随机链表的复制">随机链表的复制</h2>
+<p>给你一个长度为 <code>n</code> 的链表，每个节点包含一个额外增加的随机指针 <code>random</code> ，该指针可以指向链表中的任何节点或空节点。构造这个链表的 <strong>深拷贝</strong>。 深拷贝应该正好由 <code>n</code> 个<strong>全新</strong>节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 <code>next</code> 指针和 <code>random</code> 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。复制链表中的指针都不应指向原链表中的节点。</p>
+<h3 id="思路：哈希表">思路：哈希表</h3>
+<ul>
+<li>先遍历链表所有节点，复制节点，构造 <code>&#123;节点: 复制节点&#125;</code> 的键值对；</li>
+<li>再遍历链表所有节点，复制节点的 <code>next</code> 和 <code>random</code>.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"># Definition for a Node.</span></span><br><span class="line"><span class="string">class Node:</span></span><br><span class="line"><span class="string">    def __init__(self, x: int, next: &#x27;Node&#x27; = None, random: &#x27;Node&#x27; = None):</span></span><br><span class="line"><span class="string">        self.val = int(x)</span></span><br><span class="line"><span class="string">        self.next = next</span></span><br><span class="line"><span class="string">        self.random = random</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">copyRandomList</span>(<span class="params">self, head: <span class="string">&#x27;Optional[Node]&#x27;</span></span>) -&gt; <span class="string">&#x27;Optional[Node]&#x27;</span>:</span><br><span class="line">        <span class="comment"># 如果 head 是空链表，则返回 None</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 创建一个空的哈希表 dic</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="comment"># 复制所有节点，构造键值对</span></span><br><span class="line">        cur = head</span><br><span class="line">        <span class="keyword">while</span> cur:</span><br><span class="line">            dic[cur] = Node(cur.val)</span><br><span class="line">            cur = cur.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 复制节点的next和random</span></span><br><span class="line">        cur = head</span><br><span class="line">        <span class="keyword">while</span> cur:</span><br><span class="line">            dic[cur].<span class="built_in">next</span> = dic.get(cur.<span class="built_in">next</span>)</span><br><span class="line">            dic[cur].random = dic.get(cur.random)</span><br><span class="line">            cur = cur.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dic[head]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="链表排序">链表排序</h2>
+<p>你链表的头结点 <code>head</code>，请将其按<strong>升序</strong>排列并返回排序后的链表。</p>
+<h3 id="思路-3">思路</h3>
+<p>利用归并排序</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortList</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="comment"># 如果链表是空的或者只有一个元素，则直接返回链表本身</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> <span class="keyword">not</span> head.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 定义快慢指针，目的是将链表拆分成两两一半</span></span><br><span class="line">        slow, fast = head, head</span><br><span class="line">        <span class="keyword">while</span> fast.<span class="built_in">next</span> <span class="keyword">and</span> fast.<span class="built_in">next</span>.<span class="built_in">next</span>:</span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        curLeft = head <span class="comment"># 链表左半部分</span></span><br><span class="line">        curRight = slow.<span class="built_in">next</span> <span class="comment"># 链表右半部分</span></span><br><span class="line">        slow.<span class="built_in">next</span> = <span class="literal">None</span> <span class="comment"># 将链表断开</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 递归</span></span><br><span class="line">        left = <span class="variable language_">self</span>.sortList(curLeft)</span><br><span class="line">        right = <span class="variable language_">self</span>.sortList(curRight)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 合并</span></span><br><span class="line">        res = ListNode(<span class="number">0</span>)</span><br><span class="line">        p = res</span><br><span class="line">        <span class="keyword">while</span> left <span class="keyword">and</span> right:</span><br><span class="line">            <span class="keyword">if</span> left.val &lt; right.val:</span><br><span class="line">                p.<span class="built_in">next</span> = left</span><br><span class="line">                left = left.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                p.<span class="built_in">next</span> = right</span><br><span class="line">                right = right.<span class="built_in">next</span></span><br><span class="line">            p = p.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">if</span> left:</span><br><span class="line">            p.<span class="built_in">next</span> = left</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            p.<span class="built_in">next</span> = right</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+<h2 id="合并-K-个升序链表">合并 K 个升序链表</h2>
+<h3 id="思路-4">思路</h3>
+<p>顺序两两合并</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeKLists</span>(<span class="params">self, lists: <span class="type">List</span>[<span class="type">Optional</span>[ListNode]]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="comment"># 如果是空列表，就返回空链表</span></span><br><span class="line">        n = <span class="built_in">len</span>(lists)</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        L0 = lists[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            tmp = ListNode(<span class="number">0</span>)</span><br><span class="line">            p = tmp</span><br><span class="line">            <span class="keyword">while</span> L0 <span class="keyword">and</span> lists[i]:</span><br><span class="line">                <span class="keyword">if</span> L0.val &lt; lists[i].val:</span><br><span class="line">                    p.<span class="built_in">next</span> = L0</span><br><span class="line">                    L0 = L0.<span class="built_in">next</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    p.<span class="built_in">next</span> = lists[i]</span><br><span class="line">                    lists[i] = lists[i].<span class="built_in">next</span></span><br><span class="line">                p = p.<span class="built_in">next</span></span><br><span class="line">            p.<span class="built_in">next</span> = L0 <span class="keyword">if</span> L0 <span class="keyword">else</span> lists[i]</span><br><span class="line">            L0 = tmp.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> L0</span><br></pre></td></tr></table></figure>
+<h2 id="LRU-缓存">LRU 缓存</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]</span><br><span class="line">[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]</span><br><span class="line">输出</span><br><span class="line">[null, null, null, 1, null, -1, null, -1, 3, 4]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">LRUCache lRUCache = new LRUCache(2);</span><br><span class="line">lRUCache.put(1, 1); // 缓存是 &#123;1=1&#125;</span><br><span class="line">lRUCache.put(2, 2); // 缓存是 &#123;1=1, 2=2&#125;</span><br><span class="line">lRUCache.get(1);    // 返回 1</span><br><span class="line">lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 &#123;1=1, 3=3&#125;</span><br><span class="line">lRUCache.get(2);    // 返回 -1 (未找到)</span><br><span class="line">lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 &#123;4=4, 3=3&#125;</span><br><span class="line">lRUCache.get(1);    // 返回 -1 (未找到)</span><br><span class="line">lRUCache.get(3);    // 返回 3</span><br><span class="line">lRUCache.get(4);    // 返回 4</span><br></pre></td></tr></table></figure>
+<h3 id="思路-5">思路</h3>
+<p>利用 OrderDict</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="variable language_">self</span>.length = capacity</span><br><span class="line">        <span class="variable language_">self</span>.dic = OrderedDict()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> <span class="variable language_">self</span>.dic:</span><br><span class="line">            <span class="variable language_">self</span>.dic.move_to_end(key) <span class="comment"># 将此 key 移至最后，表示这是最新的更新</span></span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">self</span>.dic[key]</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> <span class="variable language_">self</span>.dic:</span><br><span class="line">            <span class="variable language_">self</span>.dic.move_to_end(key) <span class="comment"># 将此 key 移至最后，表示这是最新的更新</span></span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.dic[key] = value</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(<span class="variable language_">self</span>.dic) &gt; <span class="variable language_">self</span>.length:</span><br><span class="line">            <span class="variable language_">self</span>.dic.popitem(last=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Your LRUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = LRUCache(capacity)</span></span><br><span class="line"><span class="comment"># param_1 = obj.get(key)</span></span><br><span class="line"><span class="comment"># obj.put(key,value)</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法题</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode Hot100 —— 图论</title>
-    <url>/2026/03/25/leetcode-hot100-3/</url>
+    <url>/2026/03/25/leetcode-hot100-4/</url>
     <content><![CDATA[<h1>图论</h1>
 <h2 id="寻找岛屿数量">寻找岛屿数量</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：grid = [</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;1&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;]</span><br><span class="line">]</span><br><span class="line">输出：1</span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入：grid = [</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;1&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;0&#x27;,&#x27;0&#x27;,&#x27;1&#x27;,&#x27;0&#x27;,&#x27;0&#x27;],</span><br><span class="line">  [&#x27;0&#x27;,&#x27;0&#x27;,&#x27;0&#x27;,&#x27;1&#x27;,&#x27;1&#x27;]</span><br><span class="line">]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
@@ -6061,58 +6113,6 @@ $$</p>
       </categories>
       <tags>
         <tag>图论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode Hot100 —— 链表</title>
-    <url>/2026/03/23/leetcode-hot100-4/</url>
-    <content><![CDATA[<h1>LeetCode Hot100 —— 链表</h1>
-<h2 id="160-相交链表">160. 相交链表</h2>
-<p>找出两个单链表相交的节点</p>
-<h3 id="思路">思路</h3>
-<p>假设有两个链表 <code>A</code> 和链表 <code>B</code>, 在某节点处相交, 之后部分重合. 我们用两个指针, 一个从 <code>A</code> 头节点开始遍历, 另一个从 <code>B</code> 头节点开始遍历, 并且指针遍历完一个链表后会移动到另一个链表的头节点. 则最后两个指针一定会相遇. 不妨设 <code>A</code> 和 <code>B</code> 重合部分长度为 <code>l</code>, <code>A</code> 的不重合部分为 <code>a</code>, <code>B</code> 的不重合部分为 <code>b</code>, 注意到 <code>a+l+b=b+l+a</code>, 即两指针在走这么多步后一定相遇, 且相遇在交点.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getIntersectionNode</span>(<span class="params">self, headA: ListNode, headB: ListNode</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        A = headA; B = headB</span><br><span class="line">        <span class="keyword">while</span> A != B:</span><br><span class="line">            A = A.<span class="built_in">next</span> <span class="keyword">if</span> A <span class="keyword">else</span> headB</span><br><span class="line">            B = B.<span class="built_in">next</span> <span class="keyword">if</span> B <span class="keyword">else</span> headA</span><br><span class="line">        <span class="keyword">return</span> A</span><br></pre></td></tr></table></figure>
-<h2 id="206-反转链表">206. 反转链表</h2>
-<h3 id="思路-2">思路</h3>
-<p>构造两个节点, 一个是未反转链表的头节点, 一个是这个头节点应该指向的节点.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        A = head; B = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> A:</span><br><span class="line">            C = A.<span class="built_in">next</span></span><br><span class="line">            A.<span class="built_in">next</span> = B</span><br><span class="line">            B = A</span><br><span class="line">            A = C</span><br><span class="line">        <span class="keyword">return</span> B</span><br></pre></td></tr></table></figure>
-<h2 id="K-个一组翻转链表">$K$ 个一组翻转链表</h2>
-<p>给你链表的头节点 <code>head</code>, 每 <code>k</code> 个节点一组进行翻转, 请你返回修改后的链表.</p>
-<ul>
-<li><code>k</code> 是一个正整数,它的值小于或等于链表的长度.</li>
-<li>如果节点总数不是 <code>k</code> 的整数倍,那么请将最后剩余的节点保持原有顺序.</li>
-</ul>
-<h3 id="思路——利用栈">思路——利用栈</h3>
-<p>依次将<code>k</code>个节点放入栈中, 然后再一个个<code>pop</code>出来, 这样就实现了反转.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseKGroup</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode], k: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        new_list = ListNode(<span class="number">0</span>)</span><br><span class="line">        p = new_list</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            count = k</span><br><span class="line">            stack = []</span><br><span class="line">            tmp = head</span><br><span class="line">            <span class="comment"># 只要 count&gt;0 且 tmp 不是 None, 就把结点放到栈里</span></span><br><span class="line">            <span class="keyword">while</span> count <span class="keyword">and</span> tmp:</span><br><span class="line">                stack.append(tmp)</span><br><span class="line">                tmp = tmp.<span class="built_in">next</span></span><br><span class="line">                count -= <span class="number">1</span></span><br><span class="line">            <span class="comment"># 注意：如果count=0, 那么此时 tmp 对应 k 个结点之后的结点</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 如果剩余链表的长度不足 k, 拿着剩下的链表不用再反转了，直接接上就行, 然后退出整个循环</span></span><br><span class="line">            <span class="keyword">if</span> count:</span><br><span class="line">                p.<span class="built_in">next</span> = head</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="comment"># 利用栈的 `pop` 实现反转</span></span><br><span class="line">            <span class="keyword">while</span> stack:</span><br><span class="line">                p.<span class="built_in">next</span> = stack.pop()</span><br><span class="line">                p = p.<span class="built_in">next</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 更新 head</span></span><br><span class="line">            head = tmp</span><br></pre></td></tr></table></figure>
-<h2 id="随机链表的复制">随机链表的复制</h2>
-<p>给你一个长度为 <code>n</code> 的链表，每个节点包含一个额外增加的随机指针 <code>random</code> ，该指针可以指向链表中的任何节点或空节点。构造这个链表的 <strong>深拷贝</strong>。 深拷贝应该正好由 <code>n</code> 个<strong>全新</strong>节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 <code>next</code> 指针和 <code>random</code> 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。复制链表中的指针都不应指向原链表中的节点。</p>
-<h3 id="思路：哈希表">思路：哈希表</h3>
-<ul>
-<li>先遍历链表所有节点，复制节点，构造 <code>&#123;节点: 复制节点&#125;</code> 的键值对；</li>
-<li>再遍历链表所有节点，复制节点的 <code>next</code> 和 <code>random</code>.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"># Definition for a Node.</span></span><br><span class="line"><span class="string">class Node:</span></span><br><span class="line"><span class="string">    def __init__(self, x: int, next: &#x27;Node&#x27; = None, random: &#x27;Node&#x27; = None):</span></span><br><span class="line"><span class="string">        self.val = int(x)</span></span><br><span class="line"><span class="string">        self.next = next</span></span><br><span class="line"><span class="string">        self.random = random</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">copyRandomList</span>(<span class="params">self, head: <span class="string">&#x27;Optional[Node]&#x27;</span></span>) -&gt; <span class="string">&#x27;Optional[Node]&#x27;</span>:</span><br><span class="line">        <span class="comment"># 如果 head 是空链表，则返回 None</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 创建一个空的哈希表 dic</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="comment"># 复制所有节点，构造键值对</span></span><br><span class="line">        cur = head</span><br><span class="line">        <span class="keyword">while</span> cur:</span><br><span class="line">            dic[cur] = Node(cur.val)</span><br><span class="line">            cur = cur.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 复制节点的next和random</span></span><br><span class="line">        cur = head</span><br><span class="line">        <span class="keyword">while</span> cur:</span><br><span class="line">            dic[cur].<span class="built_in">next</span> = dic.get(cur.<span class="built_in">next</span>)</span><br><span class="line">            dic[cur].random = dic.get(cur.random)</span><br><span class="line">            cur = cur.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dic[head]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="链表排序">链表排序</h2>
-<p>你链表的头结点 <code>head</code>，请将其按<strong>升序</strong>排列并返回排序后的链表。</p>
-<h3 id="思路-3">思路</h3>
-<p>利用归并排序</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortList</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="comment"># 如果链表是空的或者只有一个元素，则直接返回链表本身</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> <span class="keyword">not</span> head.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 定义快慢指针，目的是将链表拆分成两两一半</span></span><br><span class="line">        slow, fast = head, head</span><br><span class="line">        <span class="keyword">while</span> fast.<span class="built_in">next</span> <span class="keyword">and</span> fast.<span class="built_in">next</span>.<span class="built_in">next</span>:</span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        curLeft = head <span class="comment"># 链表左半部分</span></span><br><span class="line">        curRight = slow.<span class="built_in">next</span> <span class="comment"># 链表右半部分</span></span><br><span class="line">        slow.<span class="built_in">next</span> = <span class="literal">None</span> <span class="comment"># 将链表断开</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 递归</span></span><br><span class="line">        left = <span class="variable language_">self</span>.sortList(curLeft)</span><br><span class="line">        right = <span class="variable language_">self</span>.sortList(curRight)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 合并</span></span><br><span class="line">        res = ListNode(<span class="number">0</span>)</span><br><span class="line">        p = res</span><br><span class="line">        <span class="keyword">while</span> left <span class="keyword">and</span> right:</span><br><span class="line">            <span class="keyword">if</span> left.val &lt; right.val:</span><br><span class="line">                p.<span class="built_in">next</span> = left</span><br><span class="line">                left = left.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                p.<span class="built_in">next</span> = right</span><br><span class="line">                right = right.<span class="built_in">next</span></span><br><span class="line">            p = p.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">if</span> left:</span><br><span class="line">            p.<span class="built_in">next</span> = left</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            p.<span class="built_in">next</span> = right</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
-<h2 id="合并-K-个升序链表">合并 K 个升序链表</h2>
-<h3 id="思路-4">思路</h3>
-<p>顺序两两合并</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeKLists</span>(<span class="params">self, lists: <span class="type">List</span>[<span class="type">Optional</span>[ListNode]]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="comment"># 如果是空列表，就返回空链表</span></span><br><span class="line">        n = <span class="built_in">len</span>(lists)</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        L0 = lists[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            tmp = ListNode(<span class="number">0</span>)</span><br><span class="line">            p = tmp</span><br><span class="line">            <span class="keyword">while</span> L0 <span class="keyword">and</span> lists[i]:</span><br><span class="line">                <span class="keyword">if</span> L0.val &lt; lists[i].val:</span><br><span class="line">                    p.<span class="built_in">next</span> = L0</span><br><span class="line">                    L0 = L0.<span class="built_in">next</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    p.<span class="built_in">next</span> = lists[i]</span><br><span class="line">                    lists[i] = lists[i].<span class="built_in">next</span></span><br><span class="line">                p = p.<span class="built_in">next</span></span><br><span class="line">            p.<span class="built_in">next</span> = L0 <span class="keyword">if</span> L0 <span class="keyword">else</span> lists[i]</span><br><span class="line">            L0 = tmp.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> L0</span><br></pre></td></tr></table></figure>
-<h2 id="LRU-缓存">LRU 缓存</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]</span><br><span class="line">[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]</span><br><span class="line">输出</span><br><span class="line">[null, null, null, 1, null, -1, null, -1, 3, 4]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">LRUCache lRUCache = new LRUCache(2);</span><br><span class="line">lRUCache.put(1, 1); // 缓存是 &#123;1=1&#125;</span><br><span class="line">lRUCache.put(2, 2); // 缓存是 &#123;1=1, 2=2&#125;</span><br><span class="line">lRUCache.get(1);    // 返回 1</span><br><span class="line">lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 &#123;1=1, 3=3&#125;</span><br><span class="line">lRUCache.get(2);    // 返回 -1 (未找到)</span><br><span class="line">lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 &#123;4=4, 3=3&#125;</span><br><span class="line">lRUCache.get(1);    // 返回 -1 (未找到)</span><br><span class="line">lRUCache.get(3);    // 返回 3</span><br><span class="line">lRUCache.get(4);    // 返回 4</span><br></pre></td></tr></table></figure>
-<h3 id="思路-5">思路</h3>
-<p>利用 OrderDict</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="variable language_">self</span>.length = capacity</span><br><span class="line">        <span class="variable language_">self</span>.dic = OrderedDict()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> <span class="variable language_">self</span>.dic:</span><br><span class="line">            <span class="variable language_">self</span>.dic.move_to_end(key) <span class="comment"># 将此 key 移至最后，表示这是最新的更新</span></span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">self</span>.dic[key]</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> <span class="variable language_">self</span>.dic:</span><br><span class="line">            <span class="variable language_">self</span>.dic.move_to_end(key) <span class="comment"># 将此 key 移至最后，表示这是最新的更新</span></span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.dic[key] = value</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(<span class="variable language_">self</span>.dic) &gt; <span class="variable language_">self</span>.length:</span><br><span class="line">            <span class="variable language_">self</span>.dic.popitem(last=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Your LRUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = LRUCache(capacity)</span></span><br><span class="line"><span class="comment"># param_1 = obj.get(key)</span></span><br><span class="line"><span class="comment"># obj.put(key,value)</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法题</category>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>链表</tag>
       </tags>
   </entry>
 </search>
