@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="LeetCode-hot100 中回溯部分的题解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Hot100 —— 回溯">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/03/28/leetcode-hot100-3/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="LeetCode-hot100 中回溯部分的题解">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-18T09:55:51.755Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="回溯">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/03/28/leetcode-hot100-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="LeetCode-hot100 中回溯部分的题解">
+
+<meta name="twitter:title" content="LeetCode Hot100 —— 回溯">
+
+  <title>LeetCode Hot100 —— 回溯 | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/03/28/leetcode-hot100-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LeetCode Hot100 —— 回溯
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-28T00:00:00+08:00">2026-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-04-18 17:55:51" itemprop="dateModified" datetime="2026-04-18T17:55:51+08:00">2026-04-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">算法题</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">LeetCode-hot100 中回溯部分的题解</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>回溯</h1>
+<h2 id="46-全排列">(46) 全排列</h2>
+<p>给定一个不含重复数字的数组 <code>nums</code>, 返回其所有可能的全排列</p>
+<h3 id="思路">思路</h3>
+<p>事实上这是一个树结构, 以 <code>[1,2,3]</code> 为例, 即构造</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  1        2       3</span><br><span class="line"> / \      / \     / \</span><br><span class="line">2   3    1   3   1   2</span><br><span class="line">|   |    |   |   |   |</span><br><span class="line">3   2    3   1   2   1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>先固定 <code>1</code>
+<ul>
+<li>再固定 <code>2</code>, 最后固定 <code>3</code>, 得 <code>[1,2,3]</code>, 还原成 <code>[1,2,3]</code></li>
+<li>交换 <code>2</code> 和 <code>3</code>, 即固定 <code>3</code>, 最后固定 <code>2</code>, 得 <code>[1,3,2]</code>, 还原成 <code>[1,2,3]</code></li>
+<li>还原成 <code>[1,2,3]</code></li>
+</ul>
+</li>
+<li>交换 <code>1</code> 和 <code>2</code>, 即固定 <code>2</code>
+<ul>
+<li>固定 <code>1</code>, 最后固定 <code>3</code>, 得 <code>[2,1,3]</code>, 还原成 <code>[2,1,3]</code></li>
+<li>交换 <code>1</code> 和 <code>3</code>, 即固定 <code>3</code>, 最后固定 <code>1</code>, 得 <code>[2,3,1]</code>, 还原成 <code>[2,1,3]</code></li>
+<li>还原成 <code>[1,2,3]</code></li>
+</ul>
+</li>
+<li>交换 <code>1</code> 和 <code>3</code>, 即固定 <code>3</code>
+<ul>
+<li>固定 <code>2</code>, 最后固定 <code>1</code>, 得 <code>[3,2,1]</code>, 还原成 <code>[3,2,1]</code></li>
+<li>交换 <code>1</code> 和 <code>2</code>, 即固定 <code>1</code>, 最后固定 <code>2</code>, 得 <code>[3,1,2]</code>, 还原成 <code>[3,2,1]</code></li>
+<li>还原成 <code>[1,2,3]</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">permute</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">index</span>):</span><br><span class="line">            <span class="keyword">if</span> index == <span class="built_in">len</span>(nums)-<span class="number">1</span>:</span><br><span class="line">                res.append(nums[:]) <span class="comment"># 注意如果直接append(nums)的话，后续nums会不断变动，最后都是变成原先的nums列表. 因此要用[:]拷贝</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(index,<span class="built_in">len</span>(nums)):</span><br><span class="line">                nums[i], nums[index] = nums[index], nums[i]</span><br><span class="line">                dfs(index+<span class="number">1</span>)</span><br><span class="line">                nums[i], nums[index] = nums[index], nums[i]</span><br><span class="line">        dfs(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> res </span><br></pre></td></tr></table></figure>
+<h2 id="78-子集">(78) 子集</h2>
+<p>给你一个整数数组 <code>nums</code>, 数组中的元素互不相同, 返回该数组所有可能的子集(幂集).</p>
+<h3 id="思路-2">思路</h3>
+<p>采用回溯算法:</p>
+<ul>
+<li>构造函数 <code>helper(i, tmp)</code>, 代表此时将第 <code>i</code> 个元素加入到 <code>tmp</code> 列表中, 其中 <code>i</code> $\in$ <code>[0, len(nums)]</code>, <code>i=0</code> 代表不将元素加入 <code>tmp</code> 中.</li>
+<li>函数 <code>helper</code> 先将当前 <code>tmp</code> 存入返回参数 <code>res</code> 中, 然后从第 <code>i</code> 个元素开始向后遍历 <code>nums</code> 数组, 执行 <code>helper</code> 过程.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subsets</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res = []</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">i, tmp</span>):</span><br><span class="line">            res.append(tmp)</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, n):</span><br><span class="line">                helper(j+<span class="number">1</span>, tmp+[nums[j]])</span><br><span class="line"></span><br><span class="line">        helper(<span class="number">0</span>, [])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="17-电话号码的字母组合">(17) 电话号码的字母组合</h2>
+<p>给定一个仅包含数字 <code>2-9</code> 的字符串, 返回所有它能表示的字母组合. 答案可以按任意顺序返回.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">letterCombinations</span>(<span class="params">self, digits: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">cup</span>(<span class="params">l1, l2</span>):</span><br><span class="line">            <span class="comment"># value_n = dig_dic[n]</span></span><br><span class="line">            <span class="comment"># value_m = dig_dic[m]</span></span><br><span class="line">            tmp = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> l1:</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> l2:</span><br><span class="line">                    tmp.append(i+j)</span><br><span class="line">            <span class="keyword">return</span> tmp</span><br><span class="line">        </span><br><span class="line">        dig_dic = &#123;</span><br><span class="line">            <span class="string">&#x27;2&#x27;</span>: [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;3&#x27;</span>: [<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;4&#x27;</span>: [<span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;i&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;5&#x27;</span>: [<span class="string">&#x27;j&#x27;</span>, <span class="string">&#x27;k&#x27;</span>, <span class="string">&#x27;l&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;6&#x27;</span>: [<span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;n&#x27;</span>, <span class="string">&#x27;o&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;7&#x27;</span>: [<span class="string">&#x27;p&#x27;</span>, <span class="string">&#x27;q&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;s&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;8&#x27;</span>: [<span class="string">&#x27;t&#x27;</span>, <span class="string">&#x27;u&#x27;</span>, <span class="string">&#x27;v&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;9&#x27;</span>: [<span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;z&#x27;</span>]</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(digits) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> dig_dic[digits]</span><br><span class="line"></span><br><span class="line">        res = dig_dic[digits[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(digits)):</span><br><span class="line">            res = cup(res, dig_dic[digits[i]])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="39-组合总和">(39) 组合总和</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：candidates = [2,3,6,7], target = 7</span><br><span class="line">输出：[[2,2,3],[7]]</span><br><span class="line">解释：</span><br><span class="line">2 和 3 可以形成一组候选，2 + 2 + 3 = 7 。注意 2 可以使用多次。</span><br><span class="line">7 也是一个候选， 7 = 7 。</span><br><span class="line">仅有这两种组合。</span><br></pre></td></tr></table></figure>
+<h3 id="思路-3">思路</h3>
+<p>采用回溯算法:</p>
+<ul>
+<li>先找 <code>2</code> 开头的组合, 那么 <code>target=7-2=5</code>, <code>tmp=[2]</code>
+<ul>
+<li>同样先找 <code>2</code> 开头的组合, 那么 <code>target=5-2=3</code>, <code>tmp=[2,2]</code>
+<ul>
+<li>同样先找 <code>2</code> 开头的组合, 那么 <code>target=3-2=1</code>, <code>tmp=[2,2,2]</code>
+<ul>
+<li>还是先找 <code>2</code> 开头的组合, 那么 <code>target=1-2=-1&lt;0</code>, 不满足题意, 退出.</li>
+<li>再找 <code>3</code> 开头的组合, 那么 <code>target=1-3=-2&lt;0</code>, 不满足题意, 退出.</li>
+<li>再找 <code>6</code> 开头的组合, 那么 <code>target=1-6=-5&lt;0</code>, 不满足题意, 退出.</li>
+<li>再找 <code>7</code> 开头的组合, 那么 <code>target=1-7=-6&lt;0</code>, 不满足题意, 退出.</li>
+<li><code>tmp</code> 推出 <code>2</code>, 即 <code>tmp=[2,2]</code>.</li>
+</ul>
+</li>
+<li>再找 <code>3</code> 开头的组合, 那么 <code>target=3-3=0</code>, <code>tmp=[2,2,3]</code>, 满足要求, 存储 <code>tmp</code>. <code>tmp</code> 推出 <code>3</code>, 即 <code>tmp=[2,2]</code>, 退出</li>
+<li>再找 <code>6</code> 开头的组合, 那么 <code>target=3-6=-3&lt;0</code>, 不满足题意, 退出.</li>
+<li>最后找 <code>7</code> 开头的组合, 那么 <code>target=3-7=-4&lt;0</code>, 不满足题意, 退出.</li>
+<li><code>tmp</code> 推出 <code>2</code>, 即 <code>tmp=[2]</code>.</li>
+</ul>
+</li>
+<li>再找 <code>3</code> 开头的组合, 那么 <code>target=5-3=2</code>, <code>tmp=[2,3]</code>
+<ul>
+<li>再找 <code>3</code> 开头的组合, 那么 <code>target=2-3=-1&lt;0</code>, 不满意题意, 退出.</li>
+<li>再找 <code>6</code> 开头的组合, 那么 <code>target=2-6=-4&lt;0</code>, 不满意题意, 退出.</li>
+<li>再找 <code>7</code> 开头的组合, 那么 <code>target=2-7=-5&lt;0</code>, 不满意题意, 退出.</li>
+<li><code>tmp</code> 推出 <code>3</code>, 即 <code>tmp=[2]</code>.</li>
+</ul>
+</li>
+<li>再找 <code>6</code> 开头的组合, 那么 <code>target=5-6=-1&lt;0</code>, 不满足题意, 退出.</li>
+<li>再找 <code>7</code> 开头的组合, 那么 <code>target=5-7=-2&lt;0</code>, 不满足题意, 退出.</li>
+</ul>
+</li>
+<li>…</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum</span>(<span class="params">self, candidates: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">i, target, tmp</span>):</span><br><span class="line">            <span class="keyword">if</span> candidates[i] &gt; target:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">            tmp.append(candidates[i])</span><br><span class="line">            <span class="keyword">if</span> candidates[i] == target:</span><br><span class="line">                res.append(tmp[:])</span><br><span class="line">                tmp.pop()</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, <span class="built_in">len</span>(candidates)):</span><br><span class="line">                helper(j, target-candidates[i], tmp)</span><br><span class="line"></span><br><span class="line">            tmp.pop()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(candidates)):</span><br><span class="line">            helper(i, target, [])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="括号生成">括号生成</h2>
+<p>数字 <code>n</code> 代表生成括号的对数, 请你设计一个函数, 用于能够生成所有可能的并且有效的括号组合.</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：[&quot;((()))&quot;,&quot;(()())&quot;,&quot;(())()&quot;,&quot;()(())&quot;,&quot;()()()&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="思路-4">思路</h3>
+<p>采用回溯算法:</p>
+<ul>
+<li>构造一个函数 <code>helper</code> 其参数为 <code>(tmp, l, r)</code>, 分别是当前括号组合、左括号数量、右括号数量. 显然这个组合有效当且仅当 <code>len(tmp) = 2*l = 2*r = 2*n</code>.</li>
+<li>定义停止条件: 若 <code>len(tmp) == 2*n</code>, 则记录该组合, 退出.</li>
+<li>初始化 <code>tmp=[], l=0, r=0</code></li>
+<li><code>len(tmp)=0&lt;2*n</code>
+<ul>
+<li><code>l=0&lt;n</code>
+<ul>
+<li><code>tmp=['(']</code>
+<ul>
+<li><code>len(tmp)=1&lt;2*n</code>
+<ul>
+<li><code>l=1&lt;n</code>
+<ul>
+<li><code>tmp=['(', '(']</code>
+<ul>
+<li><code>len(tmp)=2&lt;2*n</code>
+<ul>
+<li><code>l=2=n&gt;r=0</code>
+<ul>
+<li><code>tmp=['(', '(', ')']</code>
+<ul>
+<li><code>len(tmp)=3&lt;2*n</code>
+<ul>
+<li><code>l=2=n&gt;r=1</code>
+<ul>
+<li><code>tmp=['(', '(', ')', ')']</code>
+<ul>
+<li><code>len(tmp)=4=2*n</code>
+<ul>
+<li>记录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>推出 <code>)</code>, 即 <code>tmp = ['(', '(', ')]'</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>推出 <code>)</code>, 即 <code>tmp=['(', '(']</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>推出 <code>(</code>, 即 <code>tmp=['(']</code>
+<ul>
+<li><code>l=1&gt;r=0</code>
+<ul>
+<li><code>tmp=['(', ')']</code>
+<ul>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateParenthesis</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">tmp, l, r</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(tmp) == <span class="number">2</span>*n:</span><br><span class="line">                res.append(<span class="string">&#x27;&#x27;</span>.join(tmp))</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> l &lt; n:</span><br><span class="line">                tmp.append(<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                helper(tmp, l+<span class="number">1</span>, r)</span><br><span class="line">                tmp.pop()</span><br><span class="line">            <span class="keyword">if</span> l &gt; r:</span><br><span class="line">                tmp.append(<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">                helper(tmp, l, r+<span class="number">1</span>)</span><br><span class="line">                tmp.pop()</span><br><span class="line">        helper([], <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/03/28/leetcode-hot100-3/" data-share-title="LeetCode Hot100 —— 回溯">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag"># 回溯</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/03/25/basic-abstract-algebra-exercises-notes/" rel="prev" title="Basic Abstract Algebra Exercises Notes">
+      <i class="fa fa-chevron-left"></i> Basic Abstract Algebra Exercises Notes
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/03/29/usercf/" rel="next" title="UserCF">
+      UserCF <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">回溯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#46-%E5%85%A8%E6%8E%92%E5%88%97"><span class="nav-number">1.1.</span> <span class="nav-text">(46) 全排列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#78-%E5%AD%90%E9%9B%86"><span class="nav-number">1.2.</span> <span class="nav-text">(78) 子集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="nav-number">1.2.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88"><span class="nav-number">1.3.</span> <span class="nav-text">(17) 电话号码的字母组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C"><span class="nav-number">1.4.</span> <span class="nav-text">(39) 组合总和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90"><span class="nav-number">1.5.</span> <span class="nav-text">括号生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+
+</body>
+</html>
