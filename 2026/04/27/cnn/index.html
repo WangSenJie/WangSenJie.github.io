@@ -23,21 +23,21 @@
   <meta name="description" content="卷积神经网络的原理和学习算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="卷积神经网络 CNN">
-<meta property="og:url" content="https://wangsenjie.github.io/2026/04/28/cnn/index.html">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/04/27/cnn/index.html">
 <meta property="og:site_name" content="DMH&#39;s Blog">
 <meta property="og:description" content="卷积神经网络的原理和学习算法">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://wangsenjie.github.io/2026/04/28/cnn/CNN_NOTE_01.png">
-<meta property="og:image" content="https://wangsenjie.github.io/2026/04/28/cnn/CNN_NOTE_02.png">
-<meta property="og:image" content="https://wangsenjie.github.io/2026/04/28/cnn/CNN_NOTE_03.png">
-<meta property="article:published_time" content="2026-04-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-28T16:10:37.554Z">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/04/27/cnn/CNN_NOTE_01.png">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/04/27/cnn/CNN_NOTE_02.png">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/04/27/cnn/CNN_NOTE_03.png">
+<meta property="article:published_time" content="2026-04-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-28T16:46:57.891Z">
 <meta property="article:author" content="DMH">
 <meta property="article:tag" content="卷积神经网络">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wangsenjie.github.io/2026/04/28/cnn/CNN_NOTE_01.png">
+<meta name="twitter:image" content="https://wangsenjie.github.io/2026/04/27/cnn/CNN_NOTE_01.png">
 
-<link rel="canonical" href="https://wangsenjie.github.io/2026/04/28/cnn/">
+<link rel="canonical" href="https://wangsenjie.github.io/2026/04/27/cnn/">
 
 
 <script id="page-configurations">
@@ -223,7 +223,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/04/28/cnn/">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/04/27/cnn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.jpg">
@@ -246,14 +246,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2026-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-28T00:00:00+08:00">2026-04-28</time>
+              <time title="创建时间：2026-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-27T00:00:00+08:00">2026-04-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-04-29 00:10:37" itemprop="dateModified" datetime="2026-04-29T00:10:37+08:00">2026-04-29</time>
+                <time title="修改时间：2026-04-29 00:46:57" itemprop="dateModified" datetime="2026-04-29T00:46:57+08:00">2026-04-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,18 +294,18 @@
 <li>
 <p>零填充:</p>
 <script type="math/tex; mode=display">\begin{pmatrix}
-3 & 2 & 0 & 1\\\\
-0 & 2 & 1 & 2\\\\
-2 & 0 & 0 & 3\\\\
+3 & 2 & 0 & 1\\
+0 & 2 & 1 & 2\\
+2 & 0 & 0 & 3\\
 3 & 3 & 1 & 2
 \end{pmatrix}
 \overset{\text{zero padding}}{\longrightarrow}
 \begin{pmatrix}
-0 & 0 & 0 & 0 & 0 & 0\\\\
-0 & 3 & 2 & 0 & 1 & 0\\\\
-0 & 0 & 2 & 1 & 2 & 0\\\\
-0 & 2 & 0 & 0 & 3 & 0\\\\
-0 & 3 & 3 & 1 & 2 & 0\\\\
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 3 & 2 & 0 & 1 & 0\\
+0 & 0 & 2 & 1 & 2 & 0\\
+0 & 2 & 0 & 0 & 3 & 0\\
+0 & 3 & 3 & 1 & 2 & 0\\
 0 & 0 & 0 & 0 & 0 & 0
 \end{pmatrix}</script>
 </li>
@@ -325,7 +325,7 @@
 <script type="math/tex; mode=display">\boldsymbol X=(\boldsymbol X_R,\boldsymbol X_G, \boldsymbol X_B),</script>
 <p>其中 <script type="math/tex">\boldsymbol X_R,\boldsymbol X_G, \boldsymbol X_B</script> 是三个通道的数据, 各自用矩阵表示. 卷积核也用张量表示 <script type="math/tex">\boldsymbol W=(\boldsymbol W_R,\boldsymbol W_G, \boldsymbol W_B)</script>, 其中 <script type="math/tex">\boldsymbol W_R,\boldsymbol W_G, \boldsymbol W_B</script> 是三个通道的 (二维) 卷积核, 也各自由矩阵表示. 则三维卷积可以由下式计算得到:</p>
 <script type="math/tex; mode=display">\boldsymbol Y=\boldsymbol X*\boldsymbol W=\boldsymbol X_R*\boldsymbol W_R+\boldsymbol X_G*\boldsymbol W_G+\boldsymbol X_B*\boldsymbol W_B.</script>
-<p><img src="/2026/04/28/cnn/CNN_NOTE_01.png" alt="CNN_NOTE_01"></p>
+<p><img src="/2026/04/27/cnn/CNN_NOTE_01.png" alt="CNN_NOTE_01"></p>
 <h3 id="汇聚-pooling">汇聚 (pooling)</h3>
 <h4 id="二维汇聚">二维汇聚</h4>
 <p><strong>[定义 2 (二维汇聚)]</strong> 给定一个 <script type="math/tex">I\times J</script> 输入矩阵 <script type="math/tex">\boldsymbol X=(x_{i,j})_{I\times J}</script>, 一个虚设的 <script type="math/tex">M\times N</script> 核矩阵 <script type="math/tex">\boldsymbol W=(w_{m,n})_{M\times N}</script>, 满足 <script type="math/tex">M\ll I,~N\ll J</script>. 让核矩阵在输入矩阵从左到右再从上到下按顺序滑动, 将输入矩阵划分成若干个 <script type="math/tex">M\times N</script> 的子矩阵, 这些子矩阵相互不重叠且完全覆盖整个输入矩阵. 对每一个子矩阵求最大值或平均值, 产生一个 <script type="math/tex">K\times l</script> 输出矩阵 <script type="math/tex">\boldsymbol Y=(y_{k,l})_{K\times L}</script>, 称此运算为二维汇聚. 对子矩阵取最大值的汇聚称为最大汇聚 (max pooling), 取平均值的汇聚称为平均汇聚 (mean pooling). 即有</p>
@@ -341,13 +341,13 @@
 </blockquote>
 <h4 id="三维汇聚">三维汇聚</h4>
 <p>三维汇聚的输入和输出都是张量表示的特征图. 对输入张量的各个矩阵进行汇聚, 再将结果按原顺序排列起来, 得到输出张量</p>
-<p><img src="/2026/04/28/cnn/CNN_NOTE_02.png" alt="CNN_NOTE_02"></p>
+<p><img src="/2026/04/27/cnn/CNN_NOTE_02.png" alt="CNN_NOTE_02"></p>
 <h2 id="模型定义">模型定义</h2>
 <ul>
 <li>输入: 张量表示的数据</li>
 <li>输出: 标量 (分类/回归的预测值)</li>
 </ul>
-<p><img src="/2026/04/28/cnn/CNN_NOTE_03.png" alt="CNN_NOTE_03"></p>
+<p><img src="/2026/04/27/cnn/CNN_NOTE_03.png" alt="CNN_NOTE_03"></p>
 <h3 id="卷积层">卷积层</h3>
 <p>卷积层进行基于卷积函数的仿射变换和基于激活函数的非线性变换. 假设第 <script type="math/tex">l</script> 层是卷积层, 则其计算如下:</p>
 <script type="math/tex; mode=display">\boldsymbol Z^{(l)}=\boldsymbol W^{(l)}*\boldsymbol X^{(l-1)}+\boldsymbol b^{(l)},\tag{3}</script>
@@ -381,9 +381,9 @@
 <ul>
 <li><script type="math/tex">\boldsymbol W^{(l)}</script> 可写成<script type="math/tex; mode=display">\boldsymbol W^{(l)}=
 \begin{pmatrix}
-\boldsymbol W_{1,1}^{(l)} & \boldsymbol W_{1,2}^{(l)} & \cdots & \boldsymbol W_{1,k'}^{(l)}\\\\
-\boldsymbol W_{2,1}^{(l)} & \boldsymbol W_{2,2}^{(l)} &\cdots & \boldsymbol W_{2,k'}^{(l)}\\\\
-\vdots&\vdots&&\vdots\\\\
+\boldsymbol W_{1,1}^{(l)} & \boldsymbol W_{1,2}^{(l)} & \cdots & \boldsymbol W_{1,k'}^{(l)}\\
+\boldsymbol W_{2,1}^{(l)} & \boldsymbol W_{2,2}^{(l)} &\cdots & \boldsymbol W_{2,k'}^{(l)}\\
+\vdots&\vdots&&\vdots\\
 \boldsymbol W_{k,1}^{(l)} & \boldsymbol W_{k,2}^{(l)} &\cdots & \boldsymbol W_{k,k'}^{(l)}
 \end{pmatrix}</script>
 </li>
@@ -453,14 +453,14 @@
 <script type="math/tex; mode=display">\boldsymbol{\delta}_{k'}^{(l)}=\frac{\partial L}{\partial \boldsymbol{Z}_{k'}^{(l)}}.</script>
 <p>它可以通过反向传播得到. 于是第 <script type="math/tex">l</script> 层的第 <script type="math/tex">k\times k'</script> 个卷积核矩阵 <script type="math/tex">\boldsymbol{W}_{k,k'}^{(l)}</script> 和第 <script type="math/tex">k'</script> 个偏置矩阵 <script type="math/tex">\boldsymbol{b}_{k'}^{(l)}</script> 的梯度分别为</p>
 <script type="math/tex; mode=display">\begin{aligned}
-\frac{\partial L}{\partial \boldsymbol{W}_{k,k'}^{(l)}}&=\frac{\partial L}{\partial \boldsymbol{Z}_{k'}^{(l)}}*\boldsymbol{X}_k^{(l-1)}=\boldsymbol{\delta}_{k'}^{(l)}*\boldsymbol{X}_k^{(l-1)},\\\\
+\frac{\partial L}{\partial \boldsymbol{W}_{k,k'}^{(l)}}&=\frac{\partial L}{\partial \boldsymbol{Z}_{k'}^{(l)}}*\boldsymbol{X}_k^{(l-1)}=\boldsymbol{\delta}_{k'}^{(l)}*\boldsymbol{X}_k^{(l-1)},\\
 
 \frac{\partial L}{\partial \boldsymbol{b}_{k'}^{(l)}}&=\boldsymbol{\delta}_{k'}^{(l)}.
 \end{aligned}</script>
 <p>下面考虑第 <script type="math/tex">l</script> 层到第 <script type="math/tex">l-1</script> 层的反向传播. 设第 <script type="math/tex">l-1</script> 层的第 <script type="math/tex">k</script> 个误差矩阵 <script type="math/tex">\boldsymbol{\delta}_k^{(l-1)}</script> 为</p>
 <script type="math/tex; mode=display">\begin{aligned}
-\boldsymbol{\delta}_k^{(l-1)}&=\frac{\partial L}{\partial \boldsymbol{Z}_k^{(l-1)}}\\\\
-&=\frac{\partial L}{\partial\boldsymbol{X}_{k}^{(l-1)}}\frac{\partial\boldsymbol{X}_{k}^{(l-1)}}{\partial\boldsymbol{Z}_k^{(l-1)}}\\\\
+\boldsymbol{\delta}_k^{(l-1)}&=\frac{\partial L}{\partial \boldsymbol{Z}_k^{(l-1)}}\\
+&=\frac{\partial L}{\partial\boldsymbol{X}_{k}^{(l-1)}}\frac{\partial\boldsymbol{X}_{k}^{(l-1)}}{\partial\boldsymbol{Z}_k^{(l-1)}}\\
 &=\frac{\partial a}{\partial\boldsymbol Z_{k}^{(l-1)}}\circ\sum_{k'=1}^{K'}\text{rot}180\left(\boldsymbol{W}_{k,k'}^{(l)}\right)*\boldsymbol{\delta}_{k'}^{(l)}.
 \end{aligned}</script>
 <p>其中 <script type="math/tex">\circ</script> 表示 Hadamard 乘积 (element-wise product).</p>
@@ -471,8 +471,8 @@
 <script type="math/tex; mode=display">\boldsymbol{\delta}_k^{(l)} = \frac{\partial L}{\partial \boldsymbol{Z}_k^{(l)}}.</script>
 <p>则第 <script type="math/tex">l-1</script> 层的第 <script type="math/tex">k</script> 个误差矩阵</p>
 <script type="math/tex; mode=display">\begin{aligned}
-\boldsymbol{\delta}_k^{(l-1)}&=\frac{\partial L}{\partial \boldsymbol{Z}_k^{(l-1)}}\\\\
-&=\frac{\partial L}{\partial \boldsymbol{X}_k^{(l)}}\frac{\partial \boldsymbol{X}_k^{(l)}}{\partial \boldsymbol{Z}_k^{(l-1)}}\\\\
+\boldsymbol{\delta}_k^{(l-1)}&=\frac{\partial L}{\partial \boldsymbol{Z}_k^{(l-1)}}\\
+&=\frac{\partial L}{\partial \boldsymbol{X}_k^{(l)}}\frac{\partial \boldsymbol{X}_k^{(l)}}{\partial \boldsymbol{Z}_k^{(l-1)}}\\
 &=\frac{\partial a}{\partial\boldsymbol Z_k^{(l-1)}}\circ\text{up\_sample}\left(\boldsymbol{\delta}_k^{(l)}\right).
 \end{aligned}</script>
 <p>其中 <script type="math/tex">\text{up\_sample}(\cdot)</script> 是上采样函数, 是汇聚 (下采样) 的反向运算. 对于最大汇聚, 上采样函数会将误差矩阵中的每一个元素复制到对应的子矩阵中最大值的位置, 其他位置填充 <script type="math/tex">0</script>. 对于平均汇聚, 上采样函数会将误差矩阵中的每一个元素平均分配到对应的子矩阵中.</p>
@@ -525,7 +525,7 @@
 
     
     
-    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/04/28/cnn/" data-share-title="卷积神经网络 CNN">
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/04/27/cnn/" data-share-title="卷积神经网络 CNN">
   <div class="post-share-title">分享这篇文章</div>
   <div class="post-share-actions">
     <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
@@ -551,8 +551,8 @@
       <i class="fa fa-chevron-left"></i> LeetCode Hot100 题解
     </a></div>
       <div class="post-nav-item">
-    <a href="/2026/04/28/resnet/" rel="next" title="ResNet">
-      ResNet <i class="fa fa-chevron-right"></i>
+    <a href="/2026/04/28/alexnet/" rel="next" title="AlexNet">
+      AlexNet <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
