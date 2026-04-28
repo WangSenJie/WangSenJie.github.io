@@ -293,7 +293,7 @@
 <li><code>物品</code>到<code>路径</code>的索引: <code>item -&gt; list &lt;path&gt;</code>
 <ul>
 <li>一个物品可以对应多条路径</li>
-<li>用 $3$ 个节点表示一条路径</li>
+<li>用 <script type="math/tex">3</script> 个节点表示一条路径</li>
 </ul>
 </li>
 <li><code>路径</code>到<code>物品</code>的索引: <code>path -&gt; list &lt;item&gt;</code>
@@ -306,15 +306,13 @@
 <p>预估<code>用户</code>到<code>路径</code>的兴趣<br>
 <img src="/2026/04/01/deep-retrieval/estimate.jpeg" alt="预估模型"></p>
 <ul>
-<li>用 $3$ 个节点表示一条路径 <code>path = [a, b, c]</code></li>
-<li>给定用户特征 $\vec x$, 预估用户对节点 $a$ 的兴趣 $p_1(a\mid\vec x)$</li>
-<li>给定用户特征 $\vec x$ 和节点 $a$, 预估用户对节点 $b$ 的兴趣 $p_2(b\mid a; \vec x)$</li>
-<li>给定用户特征 $\vec x$ 和节点 $a, b$, 预估用户对节点 $c$ 的兴趣 $p_3(c\mid a, b; \vec x)$</li>
-<li>预估用户对 <code>path = [a, b, c]</code> 的兴趣:<br>
-$$<br>
-p(a,b,c\mid \vec x)=p_1(a\mid\vec x)\cdot p_2(b\mid a;\vec x)\cdot p_3(c\mid a,b;\vec x).<br>
-$$</li>
+<li>用 <script type="math/tex">3</script> 个节点表示一条路径 <code>path = [a, b, c]</code></li>
+<li>给定用户特征 <script type="math/tex">\vec x</script>, 预估用户对节点 <script type="math/tex">a</script> 的兴趣 <script type="math/tex">p_1(a\mid\vec x)</script></li>
+<li>给定用户特征 <script type="math/tex">\vec x</script> 和节点 <script type="math/tex">a</script>, 预估用户对节点 <script type="math/tex">b</script> 的兴趣 <script type="math/tex">p_2(b\mid a; \vec x)</script></li>
+<li>给定用户特征 <script type="math/tex">\vec x</script> 和节点 <script type="math/tex">a, b</script>, 预估用户对节点 <script type="math/tex">c</script> 的兴趣 <script type="math/tex">p_3(c\mid a, b; \vec x)</script></li>
+<li>预估用户对 <code>path = [a, b, c]</code> 的兴趣:</li>
 </ul>
+<script type="math/tex; mode=display">p(a,b,c\mid \vec x)=p_1(a\mid\vec x)\cdot p_2(b\mid a;\vec x)\cdot p_3(c\mid a,b;\vec x).</script>
 <h2 id="线上召回">线上召回</h2>
 <p><code>召回: 用户 -&gt; 路径 -&gt; 物品</code></p>
 <ol>
@@ -324,34 +322,34 @@ $$</li>
 </ol>
 <h3 id="Beam-Search">Beam Search</h3>
 <ul>
-<li>假设有 $3$ 层, 每层 $K$ 个节点, 则共 $K^3$ 条路径.</li>
-<li>用神经网络给所有 $K^3$ 条路径打分, 计算量太大.</li>
+<li>假设有 <script type="math/tex">3</script> 层, 每层 <script type="math/tex">K</script> 个节点, 则共 <script type="math/tex">K^3</script> 条路径.</li>
+<li>用神经网络给所有 <script type="math/tex">K^3</script> 条路径打分, 计算量太大.</li>
 <li>用 <code>beam search</code> 减小计算量</li>
 <li>需设置超参数 <code>beam size</code></li>
 </ul>
 <p><code>beam size = 1</code> 的例子:<br>
 <img src="/2026/04/01/deep-retrieval/beam-search-1.jpeg" alt="Beam Search(size=1)"></p>
 <ul>
-<li>计算第一层 $p_1(i\mid \vec x)$, 得到最大值的节点 $5$;</li>
-<li>计算第二层 $p_2(i\mid 5;\vec x)$, 得到最大值的节点 $4$;</li>
-<li>计算第三层 $p_3(i\mid 5,4;\vec x)$, 得到最大值的节点 $1$;</li>
+<li>计算第一层 <script type="math/tex">p_1(i\mid \vec x)</script>, 得到最大值的节点 <script type="math/tex">5</script>;</li>
+<li>计算第二层 <script type="math/tex">p_2(i\mid 5;\vec x)</script>, 得到最大值的节点 <script type="math/tex">4</script>;</li>
+<li>计算第三层 <script type="math/tex">p_3(i\mid 5,4;\vec x)</script>, 得到最大值的节点 <script type="math/tex">1</script>;</li>
 <li>最终得到最优路径 <code>path = [5, 4, 1]</code>.</li>
 </ul>
 <p>不难看出 Beam Search 得到的路径并非最优路径, 事实上这是一种贪心算法, 得到局部的最优路径.</p>
 <p><code>beam size = 4</code> 的例子:<br>
 <img src="/2026/04/01/deep-retrieval/beam-search-2.jpeg" alt="Beam Search(size=4)_1"></p>
 <ul>
-<li>计算第一层 $p_1(i\mid \vec x)$, 得到最大值的 $4$ 个节点 $2,3,5,7$;</li>
-<li>计算第二层 $p_1(i\mid \vec j;x)$, $j=2,3,5,7$, 得到最大值的四条路径 $[2,1], [2,2], [2,8], [5,3]$.</li>
+<li>计算第一层 <script type="math/tex">p_1(i\mid \vec x)</script>, 得到最大值的 <script type="math/tex">4</script> 个节点 <script type="math/tex">2,3,5,7</script>;</li>
+<li>计算第二层 <script type="math/tex">p_1(i\mid \vec j;x)</script>, <script type="math/tex">j=2,3,5,7</script>, 得到最大值的四条路径 <script type="math/tex">[2,1], [2,2], [2,8], [5,3]</script>.</li>
 </ul>
 <p><img src="/2026/04/01/deep-retrieval/beam-search-3.jpeg" alt="Beam Search(size=4)_2"></p>
 <ul>
-<li>计算第三层 $p_1(i\mid \vec j,k;x)$, $[j,k]=[2,1], [2,2], [2,8], [5,3]$, 得到最大值的四条路径 $[2,1,1], [2,1, 4], [2, 8, 1], [5, 3, 8]$.</li>
+<li>计算第三层 <script type="math/tex">p_1(i\mid \vec j,k;x)</script>, <script type="math/tex">[j,k]=[2,1], [2,2], [2,8], [5,3]</script>, 得到最大值的四条路径 <script type="math/tex">[2,1,1], [2,1, 4], [2, 8, 1], [5, 3, 8]</script>.</li>
 </ul>
 <h2 id="训练——同时学习神经网络参数和物品表征">训练——同时学习神经网络参数和物品表征</h2>
 <ul>
-<li>神经网络 $p(a,b,c\mid \vec x)$ 预估用户对路径 $[a,b,c]$ 的兴趣.</li>
-<li>把一个物品表征为多条路径 $\lbrace[a,b,c]\rbrace$, 建立索引:
+<li>神经网络 <script type="math/tex">p(a,b,c\mid \vec x)</script> 预估用户对路径 <script type="math/tex">[a,b,c]</script> 的兴趣.</li>
+<li>把一个物品表征为多条路径 <script type="math/tex">\lbrace[a,b,c]\rbrace</script>, 建立索引:
 <ul>
 <li><code>item -&gt; list&lt;path&gt;</code></li>
 <li><code>path -&gt; list&lt;item&gt;</code></li>
@@ -361,40 +359,42 @@ $$</li>
 </ul>
 <h3 id="学习神经网络参数">学习神经网络参数</h3>
 <ul>
-<li>物品表征为 $J$ 条路径 $[a_j, b_j, c_j]_{j=1}^J$.</li>
-<li>用户对路径 $[a, b, c]$ 兴趣:<br>
-$$<br>
-p(a,b,c\mid\vec x)=p_1(a\mid\vec x)p_2(b\mid a;\vec x)p_3(c\mid a,b;\vec x)<br>
-$$</li>
-<li>如果用户点击过物品, 则说明用户对这 $J$ 条路径感兴趣.
+<li>物品表征为 <script type="math/tex">J</script> 条路径 <script type="math/tex">[a_j, b_j, c_j]_{j=1}^J</script>.</li>
+<li>用户对路径 <script type="math/tex">[a, b, c]</script> 兴趣:</li>
+</ul>
+<script type="math/tex; mode=display">p(a,b,c\mid\vec x)=p_1(a\mid\vec x)p_2(b\mid a;\vec x)p_3(c\mid a,b;\vec x)</script>
 <ul>
-<li>应该让 $\sum_{j=1}^Jp(a_j,b_j,c_j\mid \vec x)$ 变大</li>
-<li>损失函数 $loss=-\log\left(\sum_{j=1}^Jp(a_j,b_j,c_j\mid \vec x)\right)$.</li>
+<li>如果用户点击过物品, 则说明用户对这 <script type="math/tex">J</script> 条路径感兴趣.
+<ul>
+<li>应该让 <script type="math/tex">\sum_{j=1}^Jp(a_j,b_j,c_j\mid \vec x)</script> 变大</li>
+<li>损失函数 <script type="math/tex">loss=-\log\left(\sum_{j=1}^Jp(a_j,b_j,c_j\mid \vec x)\right)</script>.</li>
 </ul>
 </li>
 </ul>
 <h3 id="学习物品表征">学习物品表征</h3>
 <p><img src="/2026/04/01/deep-retrieval/training.png" alt="学习物品表征"></p>
 <ul>
-<li>用户 <code>user</code> 对路径 <code>path = [a, b, c]</code> 兴趣记作<br>
-$$p(\text{path}\mid \text{user})=p(a,b,c\mid \vec x)$$</li>
-<li>物品 <code>item</code> 与路径 <code>path</code> 的相关性<br>
-$$<br>
-score(\text{item, path})=\sum_{\text{user}} p(\text{path}\mid\text{user})\times\text{click}(\text{user,item}).<br>
-$$</li>
-<li>根据 $score(\text{item, path})$ 选出 $J$ 条路径作为 <code>item</code> 的表征 $\Pi=\lbrace \text{path}_1, \text{path}_2,\cdots,\text{path}_J\rbrace$.</li>
-<li>损失函数 (选与 <code>item</code> 高度相关的 <code>path</code>)<br>
-$$<br>
-loss(\text{item},\Pi)=-\log\left(\sum_{j=1}^Jscore(\text{item,path}_j)\right)<br>
-$$</li>
-<li>正则项 (避免过多的 <code>item</code> 集中在一条 <code>path</code> 上)<br>
-$$<br>
-\text{reg}(\text{path}_j) = (\text{number of items on path}_j)^4<br>
-$$</li>
+<li>用户 <code>user</code> 对路径 <code>path = [a, b, c]</code> 兴趣记作</li>
+</ul>
+<script type="math/tex; mode=display">p(\text{path}\mid \text{user})=p(a,b,c\mid \vec x)</script>
+<ul>
+<li>物品 <code>item</code> 与路径 <code>path</code> 的相关性</li>
+</ul>
+<script type="math/tex; mode=display">score(\text{item, path})=\sum_{\text{user}} p(\text{path}\mid\text{user})\times\text{click}(\text{user,item}).</script>
+<ul>
+<li>根据 <script type="math/tex">score(\text{item, path})</script> 选出 <script type="math/tex">J</script> 条路径作为 <code>item</code> 的表征 <script type="math/tex">\Pi=\lbrace \text{path}_1, \text{path}_2,\cdots,\text{path}_J\rbrace</script>.</li>
+<li>损失函数 (选与 <code>item</code> 高度相关的 <code>path</code>)</li>
+</ul>
+<script type="math/tex; mode=display">loss(\text{item},\Pi)=-\log\left(\sum_{j=1}^Jscore(\text{item,path}_j)\right)</script>
+<ul>
+<li>正则项 (避免过多的 <code>item</code> 集中在一条 <code>path</code> 上)</li>
+</ul>
+<script type="math/tex; mode=display">\text{reg}(\text{path}_j) = (\text{number of items on path}_j)^4</script>
+<ul>
 <li>用贪心算法更新路径
 <ul>
-<li>假设物品被表征为 $J$ 条路径 $\Pi=\lbrace \text{path}_1, \text{path}_2,\cdots,\text{path}_J\rbrace$.</li>
-<li>每次固定 $\lbrace \text{path}_i\rbrace~(i\neq l)$, 并从未被选中的路径中, 选出一条作为新的 $\text{path}_l$.</li>
+<li>假设物品被表征为 <script type="math/tex">J</script> 条路径 <script type="math/tex">\Pi=\lbrace \text{path}_1, \text{path}_2,\cdots,\text{path}_J\rbrace</script>.</li>
+<li>每次固定 <script type="math/tex">\lbrace \text{path}_i\rbrace~(i\neq l)</script>, 并从未被选中的路径中, 选出一条作为新的 <script type="math/tex">\text{path}_l</script>.</li>
 </ul>
 
   $$
@@ -402,7 +402,7 @@ $$</li>
   $$
   
 <ul>
-<li>选中的路径有较高分数 $score(\text{item, path}_l)$, 而且路径上的物品数量不会太多.</li>
+<li>选中的路径有较高分数 <script type="math/tex">score(\text{item, path}_l)</script>, 而且路径上的物品数量不会太多.</li>
 </ul>
 </li>
 </ul>
@@ -517,20 +517,20 @@ $$</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

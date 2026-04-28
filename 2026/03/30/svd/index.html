@@ -276,22 +276,21 @@
 </ul>
 </blockquote>
 <h2 id="SVD-的实现">SVD 的实现</h2>
-<p><strong>目标: 预估用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣.</strong></p>
+<p><strong>目标: 预估用户 <script type="math/tex">\text{user}</script> 对物品 <script type="math/tex">\text{item}</script> 的兴趣.</strong></p>
 <p>已知:</p>
 <ul>
-<li>用户 $\text{user}$ 的隐向量 $\mathbf p_{\text{user}}\in\mathbb R^k$;</li>
-<li>物品 $\text{item}$ 的隐向量 $\mathbf q_{\text{item}}\in\mathbb R^k$.</li>
+<li>用户 <script type="math/tex">\text{user}</script> 的隐向量 <script type="math/tex">\mathbf p_{\text{user}}\in\mathbb R^k</script>;</li>
+<li>物品 <script type="math/tex">\text{item}</script> 的隐向量 <script type="math/tex">\mathbf q_{\text{item}}\in\mathbb R^k</script>.</li>
 </ul>
-<h1>则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为<br>
-$$<br>
-\text{score}(\text{user}, \text{item})</h1>
-<p>\mathbf p_{\text{user}}^\top \mathbf q_{\text{item}}.<br>
-$$</p>
+<p>则用户 <script type="math/tex">\text{user}</script> 对物品 <script type="math/tex">\text{item}</script> 的兴趣为</p>
+<script type="math/tex; mode=display">\text{score}(\text{user}, \text{item})
+=
+\mathbf p_{\text{user}}^\top \mathbf q_{\text{item}}.</script>
 <blockquote>
 <p>Q: 上述公式如何理解?</p>
 <ul>
-<li>用户向量 $\mathbf p_{\text{user}}$ 描述“用户的潜在兴趣”.</li>
-<li>物品向量 $\mathbf q_{\text{item}}$ 描述“物品的潜在属性”.</li>
+<li>用户向量 <script type="math/tex">\mathbf p_{\text{user}}</script> 描述“用户的潜在兴趣”.</li>
+<li>物品向量 <script type="math/tex">\mathbf q_{\text{item}}</script> 描述“物品的潜在属性”.</li>
 <li>两者点积越大, 说明该物品越符合该用户的兴趣.</li>
 </ul>
 </blockquote>
@@ -299,33 +298,29 @@ $$</p>
 <p>目标: 用低维向量刻画用户兴趣与物品属性.</p>
 <p>已知:</p>
 <ul>
-<li>用户数为 $m$;</li>
-<li>物品数为 $n$;</li>
-<li>用户-物品交互矩阵为<br>
-$$<br>
-R\in\mathbb R^{m\times n}.<br>
-$$</li>
+<li>用户数为 <script type="math/tex">m</script>;</li>
+<li>物品数为 <script type="math/tex">n</script>;</li>
+<li>用户-物品交互矩阵为</li>
 </ul>
+<script type="math/tex; mode=display">R\in\mathbb R^{m\times n}.</script>
 <p>其中:</p>
 <ul>
-<li>若用户 $u$ 喜欢物品 $i$, 则 $R_{ui}$ 较大;</li>
-<li>若用户 $u$ 未交互过物品 $i$, 则 $R_{ui}$ 通常为空或为 $0$.</li>
+<li>若用户 <script type="math/tex">u</script> 喜欢物品 <script type="math/tex">i</script>, 则 <script type="math/tex">R_{ui}</script> 较大;</li>
+<li>若用户 <script type="math/tex">u</script> 未交互过物品 <script type="math/tex">i</script>, 则 <script type="math/tex">R_{ui}</script> 通常为空或为 <script type="math/tex">0</script>.</li>
 </ul>
-<p>SVD 的思想是: 将原始交互矩阵分解为两个低秩矩阵的乘积<br>
-$$<br>
-R \approx P Q^\top,<br>
-$$<br>
-其中:</p>
+<p>SVD 的思想是: 将原始交互矩阵分解为两个低秩矩阵的乘积</p>
+<script type="math/tex; mode=display">R \approx P Q^\top,</script>
+<p>其中:</p>
 <ul>
-<li>$P\in\mathbb R^{m\times k}$ 为用户隐向量矩阵;</li>
-<li>$Q\in\mathbb R^{n\times k}$ 为物品隐向量矩阵;</li>
-<li>$k\ll m,n$ 为隐向量维度.</li>
+<li><script type="math/tex">P\in\mathbb R^{m\times k}</script> 为用户隐向量矩阵;</li>
+<li><script type="math/tex">Q\in\mathbb R^{n\times k}</script> 为物品隐向量矩阵;</li>
+<li><script type="math/tex">k\ll m,n</script> 为隐向量维度.</li>
 </ul>
 <p>于是:</p>
 <ul>
-<li>第 $u$ 个用户对应向量 $\mathbf p_u$;</li>
-<li>第 $i$ 个物品对应向量 $\mathbf q_i$;</li>
-<li>用户 $u$ 对物品 $i$ 的兴趣由 $\mathbf p_u^\top \mathbf q_i$ 给出.</li>
+<li>第 <script type="math/tex">u</script> 个用户对应向量 <script type="math/tex">\mathbf p_u</script>;</li>
+<li>第 <script type="math/tex">i</script> 个物品对应向量 <script type="math/tex">\mathbf q_i</script>;</li>
+<li>用户 <script type="math/tex">u</script> 对物品 <script type="math/tex">i</script> 的兴趣由 <script type="math/tex">\mathbf p_u^\top \mathbf q_i</script> 给出.</li>
 </ul>
 <blockquote>
 <p>RK: 这里的“隐向量”并不是人工定义的特征, 而是模型从用户历史行为中自动学习得到的.</p>
@@ -386,22 +381,18 @@ $$<br>
 <li>可以.</li>
 </ul>
 </blockquote>
-<p>若已知用户 $u$ 对物品 $i$ 的真实评分为 $r_{ui}$, 则可令模型预测评分<br>
-$$<br>
-\hat r_{ui}=\mathbf p_u^\top \mathbf q_i.<br>
-$$</p>
-<p>训练目标是最小化预测评分与真实评分之间的误差, 例如<br>
-$$<br>
-\min_{P,Q}<br>
-\sum_{(u,i)\in\Omega}<br>
-\left(r_{ui}-\mathbf p_u^\top \mathbf q_i\right)^2<br>
-+<br>
-\lambda\left(|\mathbf p_u|^2+|\mathbf q_i|^2\right),<br>
-$$<br>
-其中:</p>
+<p>若已知用户 <script type="math/tex">u</script> 对物品 <script type="math/tex">i</script> 的真实评分为 <script type="math/tex">r_{ui}</script>, 则可令模型预测评分</p>
+<script type="math/tex; mode=display">\hat r_{ui}=\mathbf p_u^\top \mathbf q_i.</script>
+<p>训练目标是最小化预测评分与真实评分之间的误差, 例如</p>
+<script type="math/tex; mode=display">\min_{P,Q}
+\sum_{(u,i)\in\Omega}
+\left(r_{ui}-\mathbf p_u^\top \mathbf q_i\right)^2
++
+\lambda\left(\|\mathbf p_u\|^2+\|\mathbf q_i\|^2\right),</script>
+<p>其中:</p>
 <ul>
-<li>$\Omega$ 表示已观测到的用户-物品交互集合;</li>
-<li>$\lambda$ 为正则化参数.</li>
+<li><script type="math/tex">\Omega</script> 表示已观测到的用户-物品交互集合;</li>
+<li><script type="math/tex">\lambda</script> 为正则化参数.</li>
 </ul>
 <!-- > RK: 在很多推荐场景中, 用户行为比显式评分更常见, 因此工业界也常将矩阵分解用于隐式反馈场景. -->
 <h2 id="SVD-的优缺点">SVD 的优缺点</h2>
@@ -548,9 +539,7 @@ $$<br>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">SVD 排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.</span> <span class="nav-text">SVD 的实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为
-$$
-\text{score}(\text{user}, \text{item})</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">2.1.</span> <span class="nav-text">SVD 的核心思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E6%9C%89%E6%95%88"><span class="nav-number">2.2.</span> <span class="nav-text">为什么矩阵分解有效?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E4%B8%8E%E6%98%BE%E5%BC%8F%E8%AF%84%E5%88%86"><span class="nav-number">2.3.</span> <span class="nav-text">SVD 与显式评分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">2.4.</span> <span class="nav-text">SVD 的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E4%B8%8E-ItemCF-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.5.</span> <span class="nav-text">SVD 与 ItemCF 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.6.</span> <span class="nav-text">在推荐系统中的位置</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">SVD 排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.</span> <span class="nav-text">SVD 的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.2.</span> <span class="nav-text">SVD 的核心思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E6%9C%89%E6%95%88"><span class="nav-number">1.3.</span> <span class="nav-text">为什么矩阵分解有效?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E4%B8%8E%E6%98%BE%E5%BC%8F%E8%AF%84%E5%88%86"><span class="nav-number">1.4.</span> <span class="nav-text">SVD 与显式评分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.5.</span> <span class="nav-text">SVD 的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-%E4%B8%8E-ItemCF-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.6.</span> <span class="nav-text">SVD 与 ItemCF 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.7.</span> <span class="nav-text">在推荐系统中的位置</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -566,20 +555,20 @@ $$
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

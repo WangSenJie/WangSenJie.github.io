@@ -281,32 +281,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>[T020201]</strong> 若 $y=y^{\ast}(x)$ 是一阶齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y$ 的非零解, 而 $y=\bar y$ 是一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的解. 证明: 一阶非齐次线性方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)$ 的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
-<p><strong>证</strong> 设 $y=\bar y+z$, 两边对 $x$ 求导, 得</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z<br>
-$$</p>
-<p>由题意可知上述方程得通解为 $z=cy^{\ast}$, 故原方程的通解为 $y=cy^{\ast}(x)+\bar y(x)$, 其中 $c$ 为任意常数.</p>
+        <p><strong>[T020201]</strong> 若 <script type="math/tex">y=y^{\ast}(x)</script> 是一阶齐次线性方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=p(x)y</script> 的非零解, 而 <script type="math/tex">y=\bar y</script> 是一阶非齐次线性方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)</script> 的解. 证明: 一阶非齐次线性方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)</script> 的通解为 <script type="math/tex">y=cy^{\ast}(x)+\bar y(x)</script>, 其中 <script type="math/tex">c</script> 为任意常数.</p>
+<p><strong>证</strong> 设 <script type="math/tex">y=\bar y+z</script>, 两边对 <script type="math/tex">x</script> 求导, 得</p>
+<script type="math/tex; mode=display">\frac{\mathrm dy}{\mathrm dx}=\frac{\mathrm d\bar{y}}{\mathrm dx}+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow py+q=p\bar y+q+\frac{\mathrm dz}{\mathrm dx}\Longrightarrow \frac{\mathrm dz}{\mathrm dx}=p(x)z</script>
+<p>由题意可知上述方程得通解为 <script type="math/tex">z=cy^{\ast}</script>, 故原方程的通解为 <script type="math/tex">y=cy^{\ast}(x)+\bar y(x)</script>, 其中 <script type="math/tex">c</script> 为任意常数.</p>
 <hr>
-<p><strong>[T020202]</strong> 设 $y(x)$ 是方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y$ 的满足 $y(0)=0$ 的解, 其中 $p(x)$ 是 $(-\infty,+\infty)$ 上的连续函数. 证明 $y(x)\equiv0$.</p>
+<p><strong>[T020202]</strong> 设 <script type="math/tex">y(x)</script> 是方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y</script> 的满足 <script type="math/tex">y(0)=0</script> 的解, 其中 <script type="math/tex">p(x)</script> 是 <script type="math/tex">(-\infty,+\infty)</script> 上的连续函数. 证明 <script type="math/tex">y(x)\equiv0</script>.</p>
 <p><strong>证</strong> 注意到</p>
-<p>$$<br>
-\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}<br>
-$$</p>
+<script type="math/tex; mode=display">\frac{\mathrm dy}{\mathrm dx}=p(x)\sin y=2p(x)\sin\frac{y}{2}\cos\frac{y}{2}\Longrightarrow \frac{\mathrm d\tan\frac{y}{2}}{\mathrm dx}=p(x)\tan\frac{y}{2}</script>
 <p>解得</p>
-<p>$$<br>
-\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}<br>
-$$</p>
-<p>将 $y(0)=0$ 代入可得 $c=0$, 故 $y(x)\equiv0$.</p>
+<script type="math/tex; mode=display">\tan\frac{y}{2}=ce^{\int p(x)\mathrm dx}</script>
+<p>将 <script type="math/tex">y(0)=0</script> 代入可得 <script type="math/tex">c=0</script>, 故 <script type="math/tex">y(x)\equiv0</script>.</p>
 <hr>
-<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 $P$ 的切线方向 $\overrightarrow{PQ}$ 与向径 $\overrightarrow{OP}$ 的交角等于 $45^{\circ}$.</p>
+<p><strong>[T020203]</strong> 求一曲线, 使得曲线上任一点 <script type="math/tex">P</script> 的切线方向 <script type="math/tex">\overrightarrow{PQ}</script> 与向径 <script type="math/tex">\overrightarrow{OP}</script> 的交角等于 <script type="math/tex">45^{\circ}</script>.</p>
 <p><strong>解</strong> 由题设可知</p>
-<p>$$<br>
-1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow<br>
-\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}<br>
-$$</p>
-<p>令 $\frac{y}{x}=u$, 则 $y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}$, 利用分离变量法解得 $2\arctan u+\ln\left[(u^2+1)x^2\right]=c$, 即<br>
-$2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
+<script type="math/tex; mode=display">1=\tan45^{\circ}=\frac{\frac{y}{x}-\frac{\mathrm dy}{\mathrm dx}}{1+\frac{y}{x}\frac{\mathrm dy}{\mathrm dx}}\Longrightarrow
+\frac{\mathrm dy}{\mathrm dx}=\frac{\frac{y}{x}-1}{\frac yx+1}</script>
+<p>令 <script type="math/tex">\frac{y}{x}=u</script>, 则 <script type="math/tex">y=xu\Rightarrow \frac{\mathrm dy}{\mathrm dx}=u+x\frac{\mathrm du}{\mathrm dx}=\frac{u-1}{u+1}</script>, 利用分离变量法解得 <script type="math/tex">2\arctan u+\ln\left[(u^2+1)x^2\right]=c</script>, 即<br>
+<script type="math/tex">2\arctan\frac{y}{x}+\ln(x^2+y^2)=c</script>, 其中 <script type="math/tex">c</script> 为任意常数.</p>
 
     </div>
 
@@ -338,8 +330,8 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
       <i class="fa fa-chevron-left"></i> 积分因子法
     </a></div>
       <div class="post-nav-item">
-    <a href="/2025/09/03/2-1/" rel="next" title="分离变量法">
-      分离变量法 <i class="fa fa-chevron-right"></i>
+    <a href="/2025/09/05/hexo/" rel="next" title="Hexo 指令">
+      Hexo 指令 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -414,20 +406,20 @@ $2\arctan\frac{y}{x}+\ln(x^2+y^2)=c$, 其中 $c$ 为任意常数.</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

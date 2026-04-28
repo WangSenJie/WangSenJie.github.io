@@ -281,40 +281,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 $\frac{\mathrm dy}{\mathrm dx}=f(x,y)$ 的右端函数 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, $y=\xi(x),x\in[x_n,X],X&lt;b$ 是方程的经过点 $(x_0,\xi_0)$ 的解. 则对任意的 $\varepsilon&gt;0$, 存在 $\delta(x)\ge0,\delta(x)\in C[x_n,X]$, 对任何方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$, 只要 $g(x,y)$ 在区域 $D$ 中连续, 满足局部 Lipschitz 条件以及不等式<br>
-$$<br>
-|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty&lt;y&lt;+\infty<br>
-$$<br>
-那么方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 的经过点 $(x_0,\xi_0)$ 的积分曲线 $y=\eta(x)$ 也必在 $[x_0,X]$ 上有定义, 且在 $[x_0,X]$ 上满足不等式<br>
-$$<br>
-|\eta(x)-\xi(x)|&lt; \varepsilon,\quad x_0\le x\le X.<br>
-$$<br>
-<strong>证</strong> 因为 $f(x,y)$ 在区域 $D$ 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 $y\mid_{x=x_0}=\xi_0$ 的解 $y=\xi(x)$ 存在且唯一. 记积分曲线 $y=\xi(x)$ 为 $l_1$, 则 $l_1: \ y=\xi(x),x\in[x_0,X]$ 为 $xOy$ 平面上的有界闭集. 对 $l_1$ 上的任一点 $(x,y)$, 必存在以该点为圆心的开圆 $C\subset D$, 使在其内的函数 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 $C_i \ (i=1,2,\cdots,N)$, 且它们的全体可以覆盖整个积分曲线段 $l_1$. 设 $C_i$ 的半径为 $\varepsilon_i$, Lipschitz 常数为 $L$. 再记 $\varepsilon_0=\min\limits_{1\le i\le N}\lbrace\varepsilon_i\rbrace$, 令 $\Omega=\bigcup\limits_{i=1}^NC_i$, 则 $l_1\subset \Omega\subset D$, 且 $\Omega$ 的边界 $\partial \Omega$ 到 $l_1$ 的距离为 $0&lt;\rho\le\varepsilon_0$.<br>
-设方程 $\frac{\mathrm dy}{\mathrm dx}=g(x,y)$ 经过点 $(x_0,\xi_0)$ 的积分曲线为 $l_2:\ y=\eta(x)$. 注意到 $\xi(x)$ 与 $\eta(x)$ 满足积分方程<br>
-$$<br>
-\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t<br>
-$$<br>
-则<br>
-$$<br>
-\begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\\<br>
-&amp;=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\\<br>
-&amp;\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\\<br>
-&amp;=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t<br>
-\end{aligned}<br>
-$$<br>
-由 Gronwall 不等式可知<br>
-$$<br>
-|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t<br>
-$$<br>
- 取 $\bar\varepsilon=\min{\varepsilon,\rho}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}$, 则有<br>
-$$<br>
-\begin{aligned}<br>
-|\xi(x)-\eta(x)|&amp;\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\\<br>
-&amp;\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}&lt;\rho<br>
-\end{aligned}<br>
-$$<br>
-即积分曲线 $l_2: \ y=\eta(x)$ 一定在 $\Omega$ 的内部, 且也有 $|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}&lt;\varepsilon$.</p>
+        <p><strong>[T030401]</strong> 证明解对方程右端函数的连续性定理: 设方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=f(x,y)</script> 的右端函数 <script type="math/tex">f(x,y)</script> 在区域 <script type="math/tex">D</script> 中连续, 且满足 Lipschitz 条件, <script type="math/tex">y=\xi(x),x\in[x_n,X],X<b</script> 是方程的经过点 <script type="math/tex">(x_0,\xi_0)</script> 的解. 则对任意的 <script type="math/tex">\varepsilon>0</script>, 存在 <script type="math/tex">\delta(x)\ge0,\delta(x)\in C[x_n,X]</script>, 对任何方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=g(x,y)</script>, 只要 <script type="math/tex">g(x,y)</script> 在区域 <script type="math/tex">D</script> 中连续, 满足局部 Lipschitz 条件以及不等式</p>
+<script type="math/tex; mode=display">|f(x,y)-g(x,y)|\le \delta(x),\quad x_0\le x\le X, \ -\infty<y<+\infty</script>
+<p>那么方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=g(x,y)</script> 的经过点 <script type="math/tex">(x_0,\xi_0)</script> 的积分曲线 <script type="math/tex">y=\eta(x)</script> 也必在 <script type="math/tex">[x_0,X]</script> 上有定义, 且在 <script type="math/tex">[x_0,X]</script> 上满足不等式</p>
+<script type="math/tex; mode=display">|\eta(x)-\xi(x)|< \varepsilon,\quad x_0\le x\le X.</script>
+<p><strong>证</strong> 因为 <script type="math/tex">f(x,y)</script> 在区域 <script type="math/tex">D</script> 中连续, 且满足 Lipschitz 条件, 故由 Picard 存在唯一性定理可知满足初始条件 <script type="math/tex">y\mid_{x=x_0}=\xi_0</script> 的解 <script type="math/tex">y=\xi(x)</script> 存在且唯一. 记积分曲线 <script type="math/tex">y=\xi(x)</script> 为 <script type="math/tex">l_1</script>, 则 <script type="math/tex">l_1: \ y=\xi(x),x\in[x_0,X]</script> 为 <script type="math/tex">xOy</script> 平面上的有界闭集. 对 <script type="math/tex">l_1</script> 上的任一点 <script type="math/tex">(x,y)</script>, 必存在以该点为圆心的开圆 <script type="math/tex">C\subset D</script>, 使在其内的函数 <script type="math/tex">f(x,y)</script> 关于 <script type="math/tex">y</script> 满足 Lipschitz 条件. 根据有限覆盖定理, 可找到有限个具有此性质的开圆 <script type="math/tex">C_i \ (i=1,2,\cdots,N)</script>, 且它们的全体可以覆盖整个积分曲线段 <script type="math/tex">l_1</script>. 设 <script type="math/tex">C_i</script> 的半径为 <script type="math/tex">\varepsilon_i</script>, Lipschitz 常数为 <script type="math/tex">L</script>. 再记 <script type="math/tex">\varepsilon_0=\min\limits_{1\le i\le N}\lbrace\varepsilon_i\rbrace</script>, 令 <script type="math/tex">\Omega=\bigcup\limits_{i=1}^NC_i</script>, 则 <script type="math/tex">l_1\subset \Omega\subset D</script>, 且 <script type="math/tex">\Omega</script> 的边界 <script type="math/tex">\partial \Omega</script> 到 <script type="math/tex">l_1</script> 的距离为 <script type="math/tex">0<\rho\le\varepsilon_0</script>.<br>
+设方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=g(x,y)</script> 经过点 <script type="math/tex">(x_0,\xi_0)</script> 的积分曲线为 <script type="math/tex">l_2:\ y=\eta(x)</script>. 注意到 <script type="math/tex">\xi(x)</script> 与 <script type="math/tex">\eta(x)</script> 满足积分方程</p>
+<script type="math/tex; mode=display">\xi(x)=\xi_0+\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t,\quad \eta(x)=\xi_0+\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t</script>
+<p>则</p>
+<script type="math/tex; mode=display">\begin{aligned}
+|\xi(x)-\eta(x)|&=\left|\int_{x_0}^xf(t,\xi(t))\mathrm{~d}t-\int_{x_0}^xg(t,\eta(t))\mathrm{~d}t\right|\\\\
+&=\left|\int_{x_0}^x\left[f(t,\xi(t))-f(t,\eta(t))\right]\mathrm{~d}t+\int_{x_0}^x\left[f(t,\eta(t))-g(t,\eta(t))\right]\mathrm{~d}t\right|\\\\
+&\le L \int_{x_0}^x\left|\xi(t)-\eta(t)\right|\mathrm{~d}t+\int_{x_0}^x\delta(t)\mathrm{~d}t\\\\
+&=\int_{x_0}^x \left[L\left|\xi(t)-\eta(t)\right|+\delta(t)\right]\mathrm{~d}t
+\end{aligned}</script>
+<p>由 Gronwall 不等式可知</p>
+<script type="math/tex; mode=display">|\xi(x)-\eta(x)|\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t</script>
+<p>取 <script type="math/tex">\bar\varepsilon=\min\{\varepsilon,\rho\}, \ \delta(x)=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}</script>, 则有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+|\xi(x)-\eta(x)|&\le\int_{x_0}^xe^{L(x-t)}\delta(t)\mathrm{~d}t=\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\int_{x_0}^xe^{L(x-t)}\mathrm{~d}t\\\\
+&\le\frac{L\bar\varepsilon}{2\left(e^{L(X-x_0)}-1\right)}\cdot\frac{w^{L(X-x_0)}-1}{L}=\frac{\bar\varepsilon}{2}<\rho
+\end{aligned}</script>
+<p>即积分曲线 <script type="math/tex">l_2: \ y=\eta(x)</script> 一定在 <script type="math/tex">\Omega</script> 的内部, 且也有 <script type="math/tex">|\xi(x)-\eta(x)|\le\frac{\bar\varepsilon}{2}<\varepsilon</script>.</p>
 
     </div>
 
@@ -422,20 +410,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -276,16 +276,14 @@
 </ul>
 </blockquote>
 <h2 id="LightFM-的实现">LightFM 的实现</h2>
-<p>目标: 预估用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣.</p>
+<p>目标: 预估用户 <script type="math/tex">\text{user}</script> 对物品 <script type="math/tex">\text{item}</script> 的兴趣.</p>
 <p>已知:</p>
 <ul>
-<li>用户 $\text{user}$ 的隐向量 $\mathbf p_{\text{user}}\in\mathbb R^k$;</li>
-<li>物品 $\text{item}$ 的隐向量 $\mathbf q_{\text{item}}\in\mathbb R^k$.</li>
+<li>用户 <script type="math/tex">\text{user}</script> 的隐向量 <script type="math/tex">\mathbf p_{\text{user}}\in\mathbb R^k</script>;</li>
+<li>物品 <script type="math/tex">\text{item}</script> 的隐向量 <script type="math/tex">\mathbf q_{\text{item}}\in\mathbb R^k</script>.</li>
 </ul>
-<p>则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为</p>
-<p>$$<br>
-\text{score}(\text{user}, \text{item})=\mathbf p_{\text{user}}^\top \mathbf q_{\text{item}}.<br>
-$$</p>
+<p>则用户 <script type="math/tex">\text{user}</script> 对物品 <script type="math/tex">\text{item}</script> 的兴趣为</p>
+<script type="math/tex; mode=display">\text{score}(\text{user}, \text{item})=\mathbf p_{\text{user}}^\top \mathbf q_{\text{item}}.</script>
 <blockquote>
 <p>Q: 这和 SVD / ALS 有什么区别?</p>
 <ul>
@@ -314,16 +312,12 @@ $$</p>
 <p>目标: 用内容特征构造物品表示.</p>
 <p>已知:</p>
 <ul>
-<li>物品 $i$ 的内容特征集合为<br>
-$$<br>
-\mathcal F(i)=\lbrace f_1, f_2, \dots, f_t\rbrace.<br>
-$$</li>
+<li>物品 <script type="math/tex">i</script> 的内容特征集合为</li>
 </ul>
-<p>LightFM 为每个特征 $f$ 学习一个 embedding 向量 $\mathbf e_f$.</p>
-<p>则物品 $i$ 的表示可以写为<br>
-$$<br>
-\mathbf q_i=\sum_{f\in\mathcal F(i)}\mathbf e_f.<br>
-$$</p>
+<script type="math/tex; mode=display">\mathcal F(i)=\lbrace f_1, f_2, \dots, f_t\rbrace.</script>
+<p>LightFM 为每个特征 <script type="math/tex">f</script> 学习一个 embedding 向量 <script type="math/tex">\mathbf e_f</script>.</p>
+<p>则物品 <script type="math/tex">i</script> 的表示可以写为</p>
+<script type="math/tex; mode=display">\mathbf q_i=\sum_{f\in\mathcal F(i)}\mathbf e_f.</script>
 <p>也就是说:</p>
 <ul>
 <li>一部电影若包含“动画”“冒险”“皮克斯”等特征;</li>
@@ -336,9 +330,9 @@ $$</p>
 <p>目标: 为用户学习隐向量表示.</p>
 <p>已知:</p>
 <ul>
-<li>用户 $u$ 与一组物品发生过正反馈交互.</li>
+<li>用户 <script type="math/tex">u</script> 与一组物品发生过正反馈交互.</li>
 </ul>
-<p>则 LightFM 会根据用户与物品的历史交互学习用户向量 $\mathbf p_u$.</p>
+<p>则 LightFM 会根据用户与物品的历史交互学习用户向量 <script type="math/tex">\mathbf p_u</script>.</p>
 <p>因此:</p>
 <ul>
 <li>用户向量表示“用户偏好的潜在方向”;</li>
@@ -360,10 +354,8 @@ $$</p>
 </ul>
 <p>其中 WARP (Weighted Approximate-Rank Pairwise) 常用于推荐排序任务.</p>
 <p>目标: 让正样本排在负样本前面.</p>
-<p>若用户 $u$ 喜欢物品 $i^+$, 不喜欢物品 $i^-$, 则希望满足<br>
-$$<br>
-\text{score}(u, i^+) &gt; \text{score}(u, i^-).<br>
-$$</p>
+<p>若用户 <script type="math/tex">u</script> 喜欢物品 <script type="math/tex">i^+</script>, 不喜欢物品 <script type="math/tex">i^-</script>, 则希望满足</p>
+<script type="math/tex; mode=display">\text{score}(u, i^+) > \text{score}(u, i^-).</script>
 <p>因此 LightFM 并不只是拟合一个“评分数值”, 而是更关注:</p>
 <ul>
 <li>正样本是否排在前面;</li>
@@ -594,20 +586,20 @@ $$</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -282,65 +282,61 @@
 
       
         <h1>函数项级数</h1>
-<p>【华四/李】考察以下函数列 $\lbrace f_n(x)\rbrace $ 的一致收敛性</p>
+<p>【华四/李】考察以下函数列 <script type="math/tex">\lbrace f_n(x)\rbrace </script> 的一致收敛性</p>
 <ol>
-<li>$f_n(x)=\begin{cases}-(n+1)x+1, &amp; 0\le x\le \frac{1}{n+1},\\ 0,&amp;\frac{1}{n+1}&lt;x&lt;1.\end{cases} \quad n=1,2,\cdots$;</li>
-<li>$f_n(x)=\left(1+\frac{x}{n}\right)^n$;</li>
-<li>$f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}$;</li>
+<li><script type="math/tex">f_n(x)=\begin{cases}-(n+1)x+1, & 0\le x\le \frac{1}{n+1},\\\\ 0,&\frac{1}{n+1}<x<1.\end{cases} \quad n=1,2,\cdots</script>;</li>
+<li><script type="math/tex">f_n(x)=\left(1+\frac{x}{n}\right)^n</script>;</li>
+<li><script type="math/tex">f_n(x)=\frac{1}{e^{\frac{x}{n}}+\left(1+\frac{x}{n}\right)^n}</script>;</li>
 </ol>
 <p>【华四/李】考察以下函数项级数的一致收敛性</p>
 <ol>
-<li>$\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{n}{x^n}, \ |x|&gt;r\ge1$;</li>
-<li>$\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)$;</li>
-<li>$\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]$;</li>
-<li>$\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)$;</li>
+<li><script type="math/tex">\sum \frac{(-1)^{n-1}x^2}{(1+x^2)^n}, \ x\in(-\infty,+\infty)</script>;</li>
+<li><script type="math/tex">\sum\frac{n}{x^n}, \ |x|>r\ge1</script>;</li>
+<li><script type="math/tex">\sum\frac{x^2}{(1+x^2)^{n-1}}, \ x\in(-\infty,+\infty)</script>;</li>
+<li><script type="math/tex">\sum\frac{x^n}{\sqrt{n}}, \ x\in[-1,0]</script>;</li>
+<li><script type="math/tex">\sum\frac{\sin nx}{n}, \ x\in(0,2\pi)</script>;</li>
 </ol>
-<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列$\lbrace f_n\rbrace $在数集$D$上一致收敛的充要条件是：对任给正数$\varepsilon$,总存在正数$N$,使得当$n,m&gt;N$ 时，对一切$x\in D$, 都有 $|f_n(x)-f_n(x)|&lt;\varepsilon$.</p>
-<p>【华四定理13.2】函数列$\lbrace f_n\rbrace $在区间$D$上一致收敛于$f$的充要条件是：$\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0$.<br>
-<strong>注：推论</strong> 函数列$\lbrace f_n\rbrace $在$D$上不一致收敛于 $f$ 的充分且必要条件是：存在$\lbrace x_n\rbrace \subset D$,使得$\lbrace f_n(x_n)-f(x_n)\rbrace $不收敛于0.</p>
-<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 $\sum u_n(x)$定义在数集 $D$ 上，$\sum M_n$ 为收敛的正项级数, 若对一切$x\in D$,有 $|u_n(x)|\leqslant M_n,\ n=1,2,…$ 则函数项级数 $\sum u_n(x)$ 在 $D$ 上一致收敛.</p>
+<p>【华四定理13.1( 函数列一致收敛的柯西淮则)】函数列<script type="math/tex">\lbrace f_n\rbrace </script>在数集<script type="math/tex">D</script>上一致收敛的充要条件是：对任给正数<script type="math/tex">\varepsilon</script>,总存在正数<script type="math/tex">N</script>,使得当<script type="math/tex">n,m>N</script> 时，对一切<script type="math/tex">x\in D</script>, 都有 <script type="math/tex">|f_n(x)-f_n(x)|<\varepsilon</script>.</p>
+<p>【华四定理13.2】函数列<script type="math/tex">\lbrace f_n\rbrace </script>在区间<script type="math/tex">D</script>上一致收敛于<script type="math/tex">f</script>的充要条件是：<script type="math/tex">\lim\limits_{n\to\infty}\sup_{x\in D}|f_n(x)-f(x)|=0</script>.<br>
+<strong>注：推论</strong> 函数列<script type="math/tex">\lbrace f_n\rbrace </script>在<script type="math/tex">D</script>上不一致收敛于 <script type="math/tex">f</script> 的充分且必要条件是：存在<script type="math/tex">\lbrace x_n\rbrace \subset D</script>,使得<script type="math/tex">\lbrace f_n(x_n)-f(x_n)\rbrace </script>不收敛于0.</p>
+<p>【华四定理13.5(Weierstrass判别法) 】设函数项级数 <script type="math/tex">\sum u_n(x)</script>定义在数集 <script type="math/tex">D</script> 上，<script type="math/tex">\sum M_n</script> 为收敛的正项级数, 若对一切<script type="math/tex">x\in D</script>,有 <script type="math/tex">|u_n(x)|\leqslant M_n,\ n=1,2,...</script> 则函数项级数 <script type="math/tex">\sum u_n(x)</script> 在 <script type="math/tex">D</script> 上一致收敛.</p>
 <p>【定理13.6(Abel判别法)】设<br>
-(i) $\sum u_n(x)$在区间1上一致收敛；<br>
-(ii) 对于每一个$x\in I,\lbrace v_n(x)\rbrace $是单调的；<br>
-(iii) $\lbrace v_n(x)\rbrace $在$I$ 上一致有界，即对一切 $x\in I$ 和正整数 $n$, 存在正数 $M$, 使得 $|v_{n}(x)|\leq M$,<br>
-则 $\sum u_n(x)v_n(x)$ 在 $I$ 上一致收敛.</p>
+(i) <script type="math/tex">\sum u_n(x)</script>在区间1上一致收敛；<br>
+(ii) 对于每一个<script type="math/tex">x\in I,\lbrace v_n(x)\rbrace </script>是单调的；<br>
+(iii) <script type="math/tex">\lbrace v_n(x)\rbrace </script>在<script type="math/tex">I</script> 上一致有界，即对一切 <script type="math/tex">x\in I</script> 和正整数 <script type="math/tex">n</script>, 存在正数 <script type="math/tex">M</script>, 使得 <script type="math/tex">|v_{n}(x)|\leq M</script>,<br>
+则 <script type="math/tex">\sum u_n(x)v_n(x)</script> 在 <script type="math/tex">I</script> 上一致收敛.</p>
 <p>【定理 13.7(Dirichlet判别法)】 设<br>
-(i) $\sum u_n(x)$的部分和函数列 $U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)$ 在 $I$ 上一致有界；<br>
-(ii) 对于每一个 $x\in I,\lbrace v_n(x)\rbrace $ 是单调的;<br>
-(iii) 在 $I$ 上 $v_n(x)\rightrightarrows0 \ (n\to\infty)$,<br>
-则级数 $\sum u_n(x)v_n(x)$ 在1上一致收敛.</p>
-<p>【华四13.1例7】若数列 $\lbrace a_n\rbrace $ 单调且收敛于零, 则级数 $\sum a_n\cos nx$ 在 $[\alpha, 2 \pi - \alpha]~(0&lt;\alpha&lt;\pi)$ 上一致收敛.</p>
-<p>【华四13.1.7】证明$:\lbrace f_{n}\rbrace $在区间 $I$ 上内闭一致收敛于 $f$ 的充分且必要条件是：对任意 $x_0\in I$, 存在 $x_0$ 的一个邻域 $U(x_0)$, 使得 $|f_n|$ 在 $U(x_0)\cap I$ 上一致收敛于 $f$.</p>
-<p>【华四13.1.8】在 $[0,1]$ 上定义函数列 $u_n(x)=\begin{cases}\frac{1}{n}, &amp; x=\frac{1}{n},\\ 0,&amp;x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots$, 证明级数 $\sum u_n(x)$ 在 $[0,1]$ 上一致收敛, 但不存在优级数.</p>
-<p>【华四13.1.10】证明：级数 $\sum(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 $[0,1]$ 上却不一致收敛.</p>
-<p>【华四13.1.13】证明：若 $\lbrace f_n(z)\rbrace $ 在区间 $I$ 上一致收敛于 $0$，则存在子列 $\lbrace f_{n_i}\rbrace $, 使得 $\sum\limits_{i=1}^{\infty}f_{n_i}(x)$ 在 $1$ 上一致收敛.</p>
-<p>【华四定理13.8】设函数列 $\lbrace f_n\rbrace $ 在 $(a,x_0)\cup(x_0,b)$ 上一致收敛于 $f(x)$, 且对每个 $n,\lim\limits_{n\to\infty} f_n(x)=a_n$, 则 $\lim\limits_{n\to\infty} a$ 和 $\lim\limits_{x\to x_0} f(x)$均存在且相等.</p>
-<p>【华四13.2例1】设函数<br>
-$$<br>
-f_{n}(x)=\begin{cases}<br>
-2n\alpha_nx,&amp;0\leq x&lt;\frac{1}{2n},\\<br>
-2\alpha_{n}-2n\alpha_{n}x,&amp;\frac{1}{2n}\leqslant x&lt;\frac{1}{n},\\<br>
-0,&amp;\frac{1}{n}\le x\le 1,<br>
-\end{cases}\quad n=1,2,\cdots<br>
-$$<br>
-考察函数列 $\lbrace f_n(x)\rbrace $ 一致收敛的充要条件和 $\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x$ 的充要条件.</p>
-<p>【华四定理 13. 11(可微性)】设$\lbrace f_n\rbrace $为定义在$[a,b]$上的函数列，若 $x_0\in[a,b]$ 为 $|f_n|$ 的收敛点, $|f_n|$ 的每一项在 $[a,b]$ 上有连续的导数，且 $\lbrace f_n^{\prime}\rbrace $ 在 $[a,b]$ 上一致收敛，则</p>
-<p>$$<br>
-\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).<br>
-$$<br>
-【华四13.2例4】证明：函数 $\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上有连续的各阶导函数.</p>
-<p>【华四13.2.2】证明：若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上满足定理 13.11 的条件, 则 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四13.2.10】设 $f$ 在 $(-\infty,+\infty)$ 上有任何阶导数, 记 $F_n=f^{(n)}$, 且在任何有限区间内$F_{n}\to\varphi(n\to\infty)$, 试证 $\varphi(x)=ce^x(c$ 为常数).</p>
+(i) <script type="math/tex">\sum u_n(x)</script>的部分和函数列 <script type="math/tex">U_n(x)=\sum_{k=1}^nu_k(x)\quad(n=1,2,\cdots)</script> 在 <script type="math/tex">I</script> 上一致有界；<br>
+(ii) 对于每一个 <script type="math/tex">x\in I,\lbrace v_n(x)\rbrace </script> 是单调的;<br>
+(iii) 在 <script type="math/tex">I</script> 上 <script type="math/tex">v_n(x)\rightrightarrows0 \ (n\to\infty)</script>,<br>
+则级数 <script type="math/tex">\sum u_n(x)v_n(x)</script> 在1上一致收敛.</p>
+<p>【华四13.1例7】若数列 <script type="math/tex">\lbrace a_n\rbrace </script> 单调且收敛于零, 则级数 <script type="math/tex">\sum a_n\cos nx</script> 在 <script type="math/tex">[\alpha, 2 \pi - \alpha]~(0<\alpha<\pi)</script> 上一致收敛.</p>
+<p>【华四13.1.7】证明<script type="math/tex">:\lbrace f_{n}\rbrace </script>在区间 <script type="math/tex">I</script> 上内闭一致收敛于 <script type="math/tex">f</script> 的充分且必要条件是：对任意 <script type="math/tex">x_0\in I</script>, 存在 <script type="math/tex">x_0</script> 的一个邻域 <script type="math/tex">U(x_0)</script>, 使得 <script type="math/tex">|f_n|</script> 在 <script type="math/tex">U(x_0)\cap I</script> 上一致收敛于 <script type="math/tex">f</script>.</p>
+<p>【华四13.1.8】在 <script type="math/tex">[0,1]</script> 上定义函数列 <script type="math/tex">u_n(x)=\begin{cases}\frac{1}{n}, & x=\frac{1}{n},\\\\ 0,&x\neq\frac1n,\end{cases}, \ \ n=1,2,\cdots</script>, 证明级数 <script type="math/tex">\sum u_n(x)</script> 在 <script type="math/tex">[0,1]</script> 上一致收敛, 但不存在优级数.</p>
+<p>【华四13.1.10】证明：级数 <script type="math/tex">\sum(-1)^nx^n(1-x)</script> 在 <script type="math/tex">[0,1]</script> 上绝对收敛并一致收敛，但由其各项绝对值组成的级数在 <script type="math/tex">[0,1]</script> 上却不一致收敛.</p>
+<p>【华四13.1.13】证明：若 <script type="math/tex">\lbrace f_n(z)\rbrace </script> 在区间 <script type="math/tex">I</script> 上一致收敛于 <script type="math/tex">0</script>，则存在子列 <script type="math/tex">\lbrace f_{n_i}\rbrace </script>, 使得 <script type="math/tex">\sum\limits_{i=1}^{\infty}f_{n_i}(x)</script> 在 <script type="math/tex">1</script> 上一致收敛.</p>
+<p>【华四定理13.8】设函数列 <script type="math/tex">\lbrace f_n\rbrace </script> 在 <script type="math/tex">(a,x_0)\cup(x_0,b)</script> 上一致收敛于 <script type="math/tex">f(x)</script>, 且对每个 <script type="math/tex">n,\lim\limits_{n\to\infty} f_n(x)=a_n</script>, 则 <script type="math/tex">\lim\limits_{n\to\infty} a</script> 和 <script type="math/tex">\lim\limits_{x\to x_0} f(x)</script>均存在且相等.</p>
+<p>【华四13.2例1】设函数</p>
+<script type="math/tex; mode=display">f_{n}(x)=\begin{cases}
+2n\alpha_nx,&0\leq x<\frac{1}{2n},\\\\ 
+2\alpha_{n}-2n\alpha_{n}x,&\frac{1}{2n}\leqslant x<\frac{1}{n},\\\\ 
+0,&\frac{1}{n}\le x\le 1,
+\end{cases}\quad n=1,2,\cdots</script>
+<p>考察函数列 <script type="math/tex">\lbrace f_n(x)\rbrace </script> 一致收敛的充要条件和 <script type="math/tex">\lim\limits_{n\to\infty}\int_0^1f_n(x)\mathrm{d}x=\int_0^1\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x</script> 的充要条件.</p>
+<p>【华四定理 13. 11(可微性)】设<script type="math/tex">\lbrace f_n\rbrace </script>为定义在<script type="math/tex">[a,b]</script>上的函数列，若 <script type="math/tex">x_0\in[a,b]</script> 为 <script type="math/tex">|f_n|</script> 的收敛点, <script type="math/tex">|f_n|</script> 的每一项在 <script type="math/tex">[a,b]</script> 上有连续的导数，且 <script type="math/tex">\lbrace f_n^{\prime}\rbrace </script> 在 <script type="math/tex">[a,b]</script> 上一致收敛，则</p>
+<script type="math/tex; mode=display">\frac{\mathrm{d}}{\mathrm{d}x}(\lim_{n\to\infty}f_n(x))=\lim_{n\to\infty}\frac{\mathrm{d}}{\mathrm{d}x}f_n(x).</script>
+<p>【华四13.2例4】证明：函数 <script type="math/tex">\zeta(x)=\sum\limits_{n=1}^{\infty}\frac1{n^x}</script> 在 <script type="math/tex">(1,+\infty)</script> 上有连续的各阶导函数.</p>
+<p>【华四13.2.2】证明：若函数列 <script type="math/tex">\lbrace f_n\rbrace </script> 在 <script type="math/tex">[a,b]</script> 上满足定理 13.11 的条件, 则 <script type="math/tex">\lbrace f_n\rbrace </script> 在 <script type="math/tex">[a,b]</script> 上一致收敛.</p>
+<p>【华四13.2.10】设 <script type="math/tex">f</script> 在 <script type="math/tex">(-\infty,+\infty)</script> 上有任何阶导数, 记 <script type="math/tex">F_n=f^{(n)}</script>, 且在任何有限区间内<script type="math/tex">F_{n}\to\varphi(n\to\infty)</script>, 试证 <script type="math/tex">\varphi(x)=ce^x(c</script> 为常数).</p>
 <p>【华四第十三章总练习题2】证明：<br>
-(1) 若$f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且 $f$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 至多除有限项外在 $I$ 上是一致有界的；<br>
-(2) 若 $f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I$, 且对每个正整数 $n,f_n$ 在 $I$ 上有界, 则 $\lbrace f_n\rbrace $ 在 $I$ 上一致有界.</p>
-<p>【华四第十三章总练习题3】设 $f$ 为 $\left[\frac12,1\right]$ 上的连续函数，证明:<br>
-(1) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上收敛;<br>
-(2) $\lbrace x^nf(x)\rbrace $在 $\left[\frac{1}{2},1\right]$ 上一致收敛的充要条件是$f(1)=0$.</p>
-<p>【华四第十三章总练习题4】若函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛, 且 $f_n(x)\in R[a,b]$, 则 $\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x$.</p>
-<p>【华四第十三章总练习题6】设可微函数列 $\lbrace f_n\rbrace $ 在 $[a,b]$ 上收敛, $\lbrace f^{\prime}\rbrace $ 在 $[a,b]$ 上一致有界, 证明： $\lbrace f_n\rbrace $ 在 $[a,b]$ 上一致收敛.</p>
-<p>【华四第十三章总练习题7】设连续函数列 $\lbrace f_n(x)\rbrace $ 在 $[a,b]$ 上一致收敛于 $f(x)$, 而 $g(x)$ 在 $(-\infty,+\infty)$ 上连续.证明: $\lbrace g(f_n(x))\rbrace $ 在 $[a,b]$ 上一致收敛于 $g(f(x))$.</p>
+(1) 若<script type="math/tex">f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I</script>, 且 <script type="math/tex">f</script> 在 <script type="math/tex">I</script> 上有界, 则 <script type="math/tex">\lbrace f_n\rbrace </script> 至多除有限项外在 <script type="math/tex">I</script> 上是一致有界的；<br>
+(2) 若 <script type="math/tex">f_n(x)\rightrightarrows f(x)(n\to\infty),x\in I</script>, 且对每个正整数 <script type="math/tex">n,f_n</script> 在 <script type="math/tex">I</script> 上有界, 则 <script type="math/tex">\lbrace f_n\rbrace </script> 在 <script type="math/tex">I</script> 上一致有界.</p>
+<p>【华四第十三章总练习题3】设 <script type="math/tex">f</script> 为 <script type="math/tex">\left[\frac12,1\right]</script> 上的连续函数，证明:<br>
+(1) <script type="math/tex">\lbrace x^nf(x)\rbrace </script>在 <script type="math/tex">\left[\frac{1}{2},1\right]</script> 上收敛;<br>
+(2) <script type="math/tex">\lbrace x^nf(x)\rbrace </script>在 <script type="math/tex">\left[\frac{1}{2},1\right]</script> 上一致收敛的充要条件是<script type="math/tex">f(1)=0</script>.</p>
+<p>【华四第十三章总练习题4】若函数列 <script type="math/tex">\lbrace f_n\rbrace </script> 在 <script type="math/tex">[a,b]</script> 上一致收敛, 且 <script type="math/tex">f_n(x)\in R[a,b]</script>, 则 <script type="math/tex">\int_a^b\lim\limits_{n\to\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}\int_a^bf_n(x)\mathrm{d}x</script>.</p>
+<p>【华四第十三章总练习题6】设可微函数列 <script type="math/tex">\lbrace f_n\rbrace </script> 在 <script type="math/tex">[a,b]</script> 上收敛, <script type="math/tex">\lbrace f^{\prime}\rbrace </script> 在 <script type="math/tex">[a,b]</script> 上一致有界, 证明： <script type="math/tex">\lbrace f_n\rbrace </script> 在 <script type="math/tex">[a,b]</script> 上一致收敛.</p>
+<p>【华四第十三章总练习题7】设连续函数列 <script type="math/tex">\lbrace f_n(x)\rbrace </script> 在 <script type="math/tex">[a,b]</script> 上一致收敛于 <script type="math/tex">f(x)</script>, 而 <script type="math/tex">g(x)</script> 在 <script type="math/tex">(-\infty,+\infty)</script> 上连续.证明: <script type="math/tex">\lbrace g(f_n(x))\rbrace </script> 在 <script type="math/tex">[a,b]</script> 上一致收敛于 <script type="math/tex">g(f(x))</script>.</p>
 
     </div>
 
@@ -449,20 +445,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

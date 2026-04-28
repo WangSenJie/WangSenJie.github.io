@@ -278,127 +278,109 @@
         <h1>动态规划</h1>
 <h2 id="斐波那契数列">斐波那契数列</h2>
 <blockquote>
-<p>斐波那契数 (通常用 $F(n)$ 表示) 形成的序列称为斐波那契数列. 该数列由 $0$ 和 $1$ 开始, 后面的每一项数字都是前面两项数字的和. 也就是:<br>
-$$<br>
-F(n)=\begin{cases}<br>
-0, &amp; n=0\\<br>
-1, &amp; n=1\\<br>
-F(n-1)+F(n-2), &amp; n&gt;1<br>
-\end{cases}<br>
-$$<br>
-现给定 $n$, 请计算 $F(n)$.</p>
+<p>斐波那契数 (通常用 <script type="math/tex">F(n)</script> 表示) 形成的序列称为斐波那契数列. 该数列由 <script type="math/tex">0</script> 和 <script type="math/tex">1</script> 开始, 后面的每一项数字都是前面两项数字的和. 也就是:</p>
+<script type="math/tex; mode=display">F(n)=\begin{cases}
+0, & n=0\\\\
+1, & n=1\\\\
+F(n-1)+F(n-2), & n>1
+\end{cases}</script>
+<p>现给定 <script type="math/tex">n</script>, 请计算 <script type="math/tex">F(n)</script>.</p>
 </blockquote>
 <h3 id="思路">思路</h3>
 <p><strong>方法一: 动态规划</strong></p>
 <ul>
-<li>输入 $n\ge0$.</li>
-<li>若 $n=0$, 则输出 $0$.</li>
-<li>若 $n=1$, 则输出 $1$.</li>
-<li>若 $n&gt;1$,
+<li>输入 <script type="math/tex">n\ge0</script>.</li>
+<li>若 <script type="math/tex">n=0</script>, 则输出 <script type="math/tex">0</script>.</li>
+<li>若 <script type="math/tex">n=1</script>, 则输出 <script type="math/tex">1</script>.</li>
+<li>若 <script type="math/tex">n>1</script>,
 <ul>
-<li>定义 $n+1$ 维向量 $v=(0,1,0,\cdots,0)$.</li>
-<li>对于 $i=3,\cdots,n+1$
+<li>定义 <script type="math/tex">n+1</script> 维向量 <script type="math/tex">v=(0,1,0,\cdots,0)</script>.</li>
+<li>对于 <script type="math/tex">i=3,\cdots,n+1</script>
 <ul>
-<li>$v_i\gets v_{i-1}+v_{i-2}$.</li>
+<li><script type="math/tex">v_i\gets v_{i-1}+v_{i-2}</script>.</li>
 </ul>
 </li>
-<li>输出 $v_{n+1}$.</li>
+<li>输出 <script type="math/tex">v_{n+1}</script>.</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>):</span><br><span class="line">                r.append(r[i]+r[i+<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">return</span> r[n]</span><br></pre></td></tr></table></figure>
-<p><strong>方法二: 通项公式</strong> 递推式的特征方程为<br>
-$$<br>
-\lambda^2=\lambda+1\Rightarrow \lambda^2-\lambda-1=0.<br>
-$$<br>
-解得<br>
-$$<br>
-\lambda_1=\frac{1+\sqrt5}{2},\quad \lambda_2=\frac{1-\sqrt5}{2}.<br>
-$$<br>
-于是可设通项为<br>
-$$<br>
-F(n)=c_1\left(\frac{1+\sqrt5}{2}\right)^n+c_2\left(\frac{1-\sqrt5}{2}\right)^n.<br>
-$$<br>
-代入 $F(0)=0,~F(1)=1$, 解得<br>
-$$<br>
-c_1=\frac{1}{\sqrt5},\quad c_2=-\frac{1}{\sqrt5}.<br>
-$$<br>
-故通项为<br>
-$$<br>
-F(n)=\frac{1}{\sqrt5}\left(\left(\frac{1+\sqrt5}{2}\right)^n-\left(\frac{1-\sqrt5}{2}\right)^n\right).<br>
-$$</p>
+<p><strong>方法二: 通项公式</strong> 递推式的特征方程为</p>
+<script type="math/tex; mode=display">\lambda^2=\lambda+1\Rightarrow \lambda^2-\lambda-1=0.</script>
+<p>解得</p>
+<script type="math/tex; mode=display">\lambda_1=\frac{1+\sqrt5}{2},\quad \lambda_2=\frac{1-\sqrt5}{2}.</script>
+<p>于是可设通项为</p>
+<script type="math/tex; mode=display">F(n)=c_1\left(\frac{1+\sqrt5}{2}\right)^n+c_2\left(\frac{1-\sqrt5}{2}\right)^n.</script>
+<p>代入 <script type="math/tex">F(0)=0,~F(1)=1</script>, 解得</p>
+<script type="math/tex; mode=display">c_1=\frac{1}{\sqrt5},\quad c_2=-\frac{1}{\sqrt5}.</script>
+<p>故通项为</p>
+<script type="math/tex; mode=display">F(n)=\frac{1}{\sqrt5}\left(\left(\frac{1+\sqrt5}{2}\right)^n-\left(\frac{1-\sqrt5}{2}\right)^n\right).</script>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>( (<span class="number">1</span>/(<span class="number">5</span>**<span class="number">0.5</span>))*(((<span class="number">1</span>+<span class="number">5</span>**<span class="number">0.5</span>)/<span class="number">2</span>)**n-((<span class="number">1</span>-<span class="number">5</span>**<span class="number">0.5</span>)/<span class="number">2</span>)**n) )</span><br></pre></td></tr></table></figure>
 <hr>
 <p><strong>方法三: 矩阵推导式</strong><br>
-注意到<br>
-$$<br>
-\begin{pmatrix}<br>
-F(n)\\<br>
-F(n-1)<br>
-\end{pmatrix}=<br>
-\begin{pmatrix}<br>
-1 &amp; 1\\<br>
-1 &amp; 0<br>
-\end{pmatrix}<br>
-\begin{pmatrix}<br>
-F(n-1)\\<br>
-F(n-2)<br>
-\end{pmatrix}.<br>
-$$<br>
-从而<br>
-$$<br>
-\begin{pmatrix}<br>
-F(n)\\<br>
-F(n-1)<br>
-\end{pmatrix}=<br>
-\begin{pmatrix}<br>
-1 &amp; 1\\<br>
-1 &amp; 0<br>
-\end{pmatrix}^{n-1}<br>
-\begin{pmatrix}<br>
-F(1)\\<br>
-F(0)<br>
-\end{pmatrix}=<br>
-\begin{pmatrix}<br>
-1 &amp; 1\\<br>
-1 &amp; 0<br>
-\end{pmatrix}^{n-1}<br>
-\begin{pmatrix}<br>
-1\\<br>
-0<br>
-\end{pmatrix}:=D^{n-1}\alpha.<br>
-$$<br>
-注意到矩阵 $D$ 代表先交换向量 $\alpha$ 的上下两行, 再将向量的第 $2$ 行加到第 $1$ 行上去. 因此 $F(n)$ 就是上述操作执行 $n-1$ 次以后得到的向量的第 $1$ 行元素.</p>
+注意到</p>
+<script type="math/tex; mode=display">\begin{pmatrix}
+F(n)\\\\
+F(n-1)
+\end{pmatrix}=
+\begin{pmatrix}
+1 & 1\\\\
+1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+F(n-1)\\\\
+F(n-2)
+\end{pmatrix}.</script>
+<p>从而</p>
+<script type="math/tex; mode=display">\begin{pmatrix}
+F(n)\\\\
+F(n-1)
+\end{pmatrix}=
+\begin{pmatrix}
+1 & 1\\\\
+1 & 0
+\end{pmatrix}^{n-1}
+\begin{pmatrix}
+F(1)\\\\
+F(0)
+\end{pmatrix}=
+\begin{pmatrix}
+1 & 1\\\\
+1 & 0
+\end{pmatrix}^{n-1}
+\begin{pmatrix}
+1\\\\
+0
+\end{pmatrix}:=D^{n-1}\alpha.</script>
+<p>注意到矩阵 <script type="math/tex">D</script> 代表先交换向量 <script type="math/tex">\alpha</script> 的上下两行, 再将向量的第 <script type="math/tex">2</script> 行加到第 <script type="math/tex">1</script> 行上去. 因此 <script type="math/tex">F(n)</script> 就是上述操作执行 <script type="math/tex">n-1</script> 次以后得到的向量的第 <script type="math/tex">1</script> 行元素.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        a, b = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>):</span><br><span class="line">            a, b = b, a</span><br><span class="line">            a += b</span><br><span class="line">        <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
 <h2 id="70-爬楼梯">70. 爬楼梯</h2>
 <blockquote>
-<p>设你正在爬楼梯. 需要 $n$ 阶你才能到达楼顶. 每次你可以爬 $1$ 或 $2$ 个台阶. 总共有多少种不同的方法可以爬到楼顶?</p>
+<p>设你正在爬楼梯. 需要 <script type="math/tex">n</script> 阶你才能到达楼顶. 每次你可以爬 <script type="math/tex">1</script> 或 <script type="math/tex">2</script> 个台阶. 总共有多少种不同的方法可以爬到楼顶?</p>
 </blockquote>
 <h3 id="思路-2">思路</h3>
 <p><strong>解析:</strong></p>
-<p>不妨设 $f(n)$ 为走到第 $n$ 级台阶的方法数, 而第 $n$ 级台阶只能通过第 $n-1$ 级台阶或第 $n-2$ 级台阶才能到达, 于是我们有递推式子:<br>
-$$<br>
-f(n)=\begin{cases}<br>
-f(n-1)+f(n-2) &amp; n\ge 3,\\<br>
-1 &amp; n=1,\\<br>
-2 &amp; n=2\\<br>
-\end{cases}<br>
-$$</p>
+<p>不妨设 <script type="math/tex">f(n)</script> 为走到第 <script type="math/tex">n</script> 级台阶的方法数, 而第 <script type="math/tex">n</script> 级台阶只能通过第 <script type="math/tex">n-1</script> 级台阶或第 <script type="math/tex">n-2</script> 级台阶才能到达, 于是我们有递推式子:</p>
+<script type="math/tex; mode=display">f(n)=\begin{cases}
+f(n-1)+f(n-2) & n\ge 3,\\\\
+1 & n=1,\\\\
+2 & n=2\\\\
+\end{cases}</script>
 <p><strong>算法:</strong></p>
 <ul>
-<li>输入台阶数量 $n$</li>
-<li>构造 $n$ 维迭代向量 $v\gets (0,\cdots,0)$</li>
-<li>如果 $n==1$ 则输出 $1$</li>
-<li>如果 $n==2$ 则输出 $2$</li>
+<li>输入台阶数量 <script type="math/tex">n</script></li>
+<li>构造 <script type="math/tex">n</script> 维迭代向量 <script type="math/tex">v\gets (0,\cdots,0)</script></li>
+<li>如果 <script type="math/tex">n==1</script> 则输出 <script type="math/tex">1</script></li>
+<li>如果 <script type="math/tex">n==2</script> 则输出 <script type="math/tex">2</script></li>
 <li>反之
 <ul>
-<li>赋值 $v_1\gets 1,~ v_2\gets 2$</li>
-<li>对于 $i=3,4,\cdots,n$:
+<li>赋值 <script type="math/tex">v_1\gets 1,~ v_2\gets 2</script></li>
+<li>对于 <script type="math/tex">i=3,4,\cdots,n</script>:
 <ul>
-<li>$v_i\gets v_{i-1}+v_{i-2}$</li>
+<li><script type="math/tex">v_i\gets v_{i-1}+v_{i-2}</script></li>
 </ul>
 </li>
-<li>输出 $v_n$</li>
+<li>输出 <script type="math/tex">v_n</script></li>
 </ul>
 </li>
 </ul>
@@ -652,20 +634,20 @@ $$</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

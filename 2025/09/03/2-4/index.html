@@ -281,51 +281,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>[T020401]</strong> 求微分方程的通解 $y’^2=4y^3(1-y)$.</p>
-<p><strong>解</strong> 将方程化为 $y’=\pm 2\sqrt{y^3(1-y)}$, 当 $y\neq 0,1$ 时, $\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx$, 两边积分可得 $-\left(\frac1y-1\right)^{1/2}=\pm x+c$, 从而原方程的通解为 $y=\frac{1}{1+(\mp x+c)^2}$, 其中 $c$ 为任意常数. 此外, $y=0$ 和 $y=1$ 也是方程的解.</p>
+        <p><strong>[T020401]</strong> 求微分方程的通解 <script type="math/tex">y'^2=4y^3(1-y)</script>.</p>
+<p><strong>解</strong> 将方程化为 <script type="math/tex">y'=\pm 2\sqrt{y^3(1-y)}</script>, 当 <script type="math/tex">y\neq 0,1</script> 时, <script type="math/tex">\frac{1}{2y^2\sqrt{\frac 1y-1}}\mathrm dy=\pm \mathrm dx</script>, 两边积分可得 <script type="math/tex">-\left(\frac1y-1\right)^{1/2}=\pm x+c</script>, 从而原方程的通解为 <script type="math/tex">y=\frac{1}{1+(\mp x+c)^2}</script>, 其中 <script type="math/tex">c</script> 为任意常数. 此外, <script type="math/tex">y=0</script> 和 <script type="math/tex">y=1</script> 也是方程的解.</p>
 <hr>
-<p><strong>[T020402]</strong> 求微分方程的通解 $y’^3+y^3-3yy’=0$.</p>
-<p><strong>解</strong> 令 $y’=p, \ y=pt$, 其中 $p,t$ 都是参数, 则 $p^3+p^3t^3-3p^2t=0$. 当 $p\neq0$ 时,<br>
-$$<br>
-p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}<br>
-$$<br>
-(此时 $t\neq 0,-1$, 否则 $p=0$) 从而 $y=\frac{3t^2}{1+t^3}$. 注意到<br>
-$$<br>
-\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt<br>
-$$<br>
-两边积分可得 $x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c$, 故原方程的通解为<br>
-$$<br>
-\begin{cases}<br>
-x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\<br>
-y=\frac{3t^2}{1+t^3}<br>
-\end{cases}<br>
-$$<br>
-其中 $c$ 为任意常数.</p>
-<p>当 $p=0$ 时, $y=0$ 也是方程的解.</p>
+<p><strong>[T020402]</strong> 求微分方程的通解 <script type="math/tex">y'^3+y^3-3yy'=0</script>.</p>
+<p><strong>解</strong> 令 <script type="math/tex">y'=p, \ y=pt</script>, 其中 <script type="math/tex">p,t</script> 都是参数, 则 <script type="math/tex">p^3+p^3t^3-3p^2t=0</script>. 当 <script type="math/tex">p\neq0</script> 时,</p>
+<script type="math/tex; mode=display">p(1+t^3)-3t=0\Longrightarrow p=\frac{3t}{1+t^3}</script>
+<p>(此时 <script type="math/tex">t\neq 0,-1</script>, 否则 <script type="math/tex">p=0</script>) 从而 <script type="math/tex">y=\frac{3t^2}{1+t^3}</script>. 注意到</p>
+<script type="math/tex; mode=display">\mathrm dx=\frac{1}{p}\mathrm dy=\frac{1+t^3}{3t}\cdot\frac{3t(2-t^3)}{1+t^3}\mathrm dt=\frac{2-t^3}{1+t^3}\mathrm dt</script>
+<p>两边积分可得 <script type="math/tex">x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c</script>, 故原方程的通解为</p>
+<script type="math/tex; mode=display">\begin{cases}
+x=-t+\ln\frac{|1+t|}{\sqrt{t^2-t+1}}+\sqrt{3}\arctan\frac{2t-1}{\sqrt3}+c\\
+y=\frac{3t^2}{1+t^3}
+\end{cases}</script>
+<p>其中 <script type="math/tex">c</script> 为任意常数.</p>
+<p>当 <script type="math/tex">p=0</script> 时, <script type="math/tex">y=0</script> 也是方程的解.</p>
 <hr>
-<p><strong>[T020403]</strong> 求微分方程的通解 $y’^3+y’^2-y’+1=0$.</p>
-<p><strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 $y’=a \ (\neq0)$, 则 $y=ax+c$ 为原方程的解, 从而 $a=\frac{y-c}{x}$, 于是 $y’=\frac{y-c}{x}$, 故方程的通解为<br>
-$$<br>
-\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.<br>
-$$</p>
+<p><strong>[T020403]</strong> 求微分方程的通解 <script type="math/tex">y'^3+y'^2-y'+1=0</script>.</p>
+<p><strong>解</strong> 注意到这是一个奇数次多项式方程且系数全为实数, 故此方程必有实根, 不妨设为 <script type="math/tex">y'=a \ (\neq0)</script>, 则 <script type="math/tex">y=ax+c</script> 为原方程的解, 从而 <script type="math/tex">a=\frac{y-c}{x}</script>, 于是 <script type="math/tex">y'=\frac{y-c}{x}</script>, 故方程的通解为</p>
+<script type="math/tex; mode=display">\left(\frac{y-c}{x}\right)^3+\left(\frac{y-c}{x}\right)^2-\left(\frac{y-c}{x}\right)+1=0.</script>
 <hr>
-<p><strong>[T020404]</strong> 用多种方法求解微分方程 $y^2(1-y’^2)=1$.</p>
-<p><strong>解法一</strong> 显然 $y\neq0$. 当 $y\neq \pm1$ 时, $y’=\pm\sqrt{1-\frac{1}{y^2}}$, 即 $\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx$, 两边积分可得 $\sqrt{y^2-1}=\pm x+c$, 其中 $c$ 为任意常数. 此外 $y=\pm1$ 也是方程的解.</p>
-<p><strong>解法二</strong> 注意到 $y=\pm\sqrt{\frac{1}{1-y’^2}}$, 令 $y’=p$, 则 $y=\pm\sqrt{\frac{1}{1-p^2}}$. 当 $p\neq 0$ 时, 有<br>
-$$<br>
-\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法三</strong> 令 $y’=p$, 则 $y^2(1-p^2)=1$, 再令 $p=\cos t$, 可解得 $y=\pm\frac{1}{\sin t}$. 当 $p\neq0$ 时, 有<br>
-$$<br>
-\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\mp\cot t+c\\ y=\pm\frac{1}{\sin t} \end{cases}$, 其中 $c$ 为任意常数. 当 $p=0$ 时, $y=\pm1$ 也是原方程的解.</p>
-<p><strong>解法四</strong> 令 $1-y’^2=\frac{t}{y}$, 则 $y=\frac{1}{t}, \ y’=\pm\sqrt{1-t^2}$. 当 $y’\neq0$ 时,<br>
-$$<br>
-\mathrm dx=\frac{1}{y’}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c<br>
-$$<br>
-故原方程的通解为 $\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\ y=\frac{1}{t} \end{cases}$, 其中 $c$ 为任意常数. 当 $y’=0$ 时, $y=\pm1$ 也是原方程的解.</p>
+<p><strong>[T020404]</strong> 用多种方法求解微分方程 <script type="math/tex">y^2(1-y'^2)=1</script>.</p>
+<p><strong>解法一</strong> 显然 <script type="math/tex">y\neq0</script>. 当 <script type="math/tex">y\neq \pm1</script> 时, <script type="math/tex">y'=\pm\sqrt{1-\frac{1}{y^2}}</script>, 即 <script type="math/tex">\sqrt{1-\frac{1}{y^2}}\mathrm dy=\pm\mathrm dx</script>, 两边积分可得 <script type="math/tex">\sqrt{y^2-1}=\pm x+c</script>, 其中 <script type="math/tex">c</script> 为任意常数. 此外 <script type="math/tex">y=\pm1</script> 也是方程的解.</p>
+<p><strong>解法二</strong> 注意到 <script type="math/tex">y=\pm\sqrt{\frac{1}{1-y'^2}}</script>, 令 <script type="math/tex">y'=p</script>, 则 <script type="math/tex">y=\pm\sqrt{\frac{1}{1-p^2}}</script>. 当 <script type="math/tex">p\neq 0</script> 时, 有</p>
+<script type="math/tex; mode=display">\mathrm dx=\frac1p\mathrm dy=\pm(1-p^2)^{-\frac32}\mathrm dp\Rightarrow x=\pm\frac{p}{\sqrt{1-p^2}}+c</script>
+<p>故原方程的通解为 <script type="math/tex">\begin{cases}x=\pm\frac{p}{\sqrt{1-p^2}}+c\\ y=\pm\sqrt{\frac{1}{1-p^2}}\end{cases}</script>, 其中 <script type="math/tex">c</script> 为任意常数. 当 <script type="math/tex">p=0</script> 时, <script type="math/tex">y=\pm1</script> 也是原方程的解.</p>
+<p><strong>解法三</strong> 令 <script type="math/tex">y'=p</script>, 则 <script type="math/tex">y^2(1-p^2)=1</script>, 再令 <script type="math/tex">p=\cos t</script>, 可解得 <script type="math/tex">y=\pm\frac{1}{\sin t}</script>. 当 <script type="math/tex">p\neq0</script> 时, 有</p>
+<script type="math/tex; mode=display">\mathrm dx=\frac1p\mathrm dy=\mp\frac{1}{\sin^2 t}\mathrm dt\Rightarrow x=\mp\cot t+c</script>
+<p>故原方程的通解为 <script type="math/tex">\begin{cases}x=\mp\cot t+c\\\\ y=\pm\frac{1}{\sin t} \end{cases}</script>, 其中 <script type="math/tex">c</script> 为任意常数. 当 <script type="math/tex">p=0</script> 时, <script type="math/tex">y=\pm1</script> 也是原方程的解.</p>
+<p><strong>解法四</strong> 令 <script type="math/tex">1-y'^2=\frac{t}{y}</script>, 则 <script type="math/tex">y=\frac{1}{t}, \ y'=\pm\sqrt{1-t^2}</script>. 当 <script type="math/tex">y'\neq0</script> 时,</p>
+<script type="math/tex; mode=display">\mathrm dx=\frac{1}{y'}\mathrm dy=\mp\frac{1}{t^2\sqrt{1-t^2}}\mathrm dt\Rightarrow x=\pm\frac{\sqrt{1-t^2}}{t}+c</script>
+<p>故原方程的通解为 <script type="math/tex">\begin{cases}x=\pm\frac{\sqrt{1-t^2}}{t}+c\\\\ y=\frac{1}{t} \end{cases}</script>, 其中 <script type="math/tex">c</script> 为任意常数. 当 <script type="math/tex">y'=0</script> 时, <script type="math/tex">y=\pm1</script> 也是原方程的解.</p>
 
     </div>
 
@@ -353,8 +339,8 @@ $$<br>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/09/03/3-1picard/" rel="prev" title="Picard 存在唯一性定理">
-      <i class="fa fa-chevron-left"></i> Picard 存在唯一性定理
+    <a href="/2025/09/03/2-1/" rel="prev" title="分离变量法">
+      <i class="fa fa-chevron-left"></i> 分离变量法
     </a></div>
       <div class="post-nav-item">
     <a href="/2025/09/03/2-3/" rel="next" title="积分因子法">
@@ -433,20 +419,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

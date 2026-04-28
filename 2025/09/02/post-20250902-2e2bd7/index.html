@@ -277,30 +277,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 $\lbrace f_n\rbrace$ 是递增收敛于 $f$ 的非负可测函数序列, 则<br>
-$$<br>
-\mu(f)=\lim\limits_n\mu(f_n)<br>
-$$<br>
-<strong>Proof:</strong> 因为 $\lbrace f_n\rbrace$ 是递增的非负可测函数序列, 由积分的单调性可知 $\lbrace\mu(f_n)\rbrace$ 也递增, $\mu(f)\ge\lim\limits_n\mu(f_n)$. 任取非负简单函数 $g$, 满足 $g\le f$ 以及 $\forall ~0&lt;\lambda&lt;1$, 因为在$\lbrace f&gt;0\rbrace$ 上, 有 $f&gt;\lambda g$. 于是<br>
-$$<br>
-A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace<br>
-$$<br>
-满足 $A_{n+1}\supset A_n$, 且 $\lim\limits_n A_n=\Omega$. 而<br>
-$$<br>
-\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})<br>
-$$<br>
-因为 $g$ 是简单的, 故<br>
-$$<br>
-\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)<br>
-$$<br>
-由 $\lambda$ 的任意性可知 $\lim\limits_n\mu(f_n)\ge\mu(g)$, 再由 $\mu(f)$ 的定义:<br>
-$$<br>
-\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace<br>
-$$<br>
-可知 $\lim\limits_n\mu(f_n)\ge\mu(f)$, 综上,<br>
-$$<br>
-\lim\limits_n\mu(f_n)=\mu(f).<br>
-$$</p>
+        <p><strong>[T241111]</strong> <strong>(单调收敛定理)</strong> 设 <script type="math/tex">\lbrace f_n\rbrace</script> 是递增收敛于 <script type="math/tex">f</script> 的非负可测函数序列, 则</p>
+<script type="math/tex; mode=display">\mu(f)=\lim\limits_n\mu(f_n)</script>
+<p><strong>Proof:</strong> 因为 <script type="math/tex">\lbrace f_n\rbrace</script> 是递增的非负可测函数序列, 由积分的单调性可知 <script type="math/tex">\lbrace\mu(f_n)\rbrace</script> 也递增, <script type="math/tex">\mu(f)\ge\lim\limits_n\mu(f_n)</script>. 任取非负简单函数 <script type="math/tex">g</script>, 满足 <script type="math/tex">g\le f</script> 以及 <script type="math/tex">\forall ~0<\lambda<1</script>, 因为在<script type="math/tex">\lbrace f>0\rbrace</script> 上, 有 <script type="math/tex">f>\lambda g</script>. 于是</p>
+<script type="math/tex; mode=display">A_n:=\lbrace f_n\ge\lambda g\rbrace=\lbrace x|f_n(x)\ge\lambda g(x)\rbrace</script>
+<p>满足 <script type="math/tex">A_{n+1}\supset A_n</script>, 且 <script type="math/tex">\lim\limits_n A_n=\Omega</script>. 而</p>
+<script type="math/tex; mode=display">\mu(f_n)\ge\mu(f_n1_{A_n})\ge\lambda\mu(g1_{A_n})</script>
+<p>因为 <script type="math/tex">g</script> 是简单的, 故</p>
+<script type="math/tex; mode=display">\lim\limits_n\mu(f_n)\ge\lim\limits_n\lambda\mu(g1_{A_n})=\lambda\mu(g)</script>
+<p>由 <script type="math/tex">\lambda</script> 的任意性可知 <script type="math/tex">\lim\limits_n\mu(f_n)\ge\mu(g)</script>, 再由 <script type="math/tex">\mu(f)</script> 的定义:</p>
+<script type="math/tex; mode=display">\mu(f)=\sup\lbrace\mu(g):~0\le g\le f,~g\in S^+\rbrace</script>
+<p>可知 <script type="math/tex">\lim\limits_n\mu(f_n)\ge\mu(f)</script>, 综上,</p>
+<script type="math/tex; mode=display">\lim\limits_n\mu(f_n)=\mu(f).</script>
 
     </div>
 
@@ -327,13 +315,10 @@ $$</p>
 
         
     <div class="post-nav">
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2025/09/02/caratheodory/" rel="prev" title="Carathéodory扩张">
-      <i class="fa fa-chevron-left"></i> Carathéodory扩张
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/09/03/5-2/" rel="next" title="一阶常系数线性微分方程组">
-      一阶常系数线性微分方程组 <i class="fa fa-chevron-right"></i>
+    <a href="/2025/09/02/caratheodory/" rel="next" title="Carathéodory扩张">
+      Carathéodory扩张 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -408,20 +393,20 @@ $$</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

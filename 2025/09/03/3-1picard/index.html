@@ -281,49 +281,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>[T030101]</strong> 证明初值问题 $\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0$ 的解 $y=\varphi(x)$ 在 $[0,\frac12]$ 上存在, 且当 $x\in[0,\frac12]$ 时, $|\varphi(x)|\le1$.</p>
-<p><strong>证</strong> 设 $f(x,y)=x^2+e^{-y^2}$, 取矩形区域 $R: \ |x|\le1, \ |y|\le1$, 即 $a=b=1$, 显然 $f(x,y)$ 在 $R$ 上连续, 又 $|f_y|=|-2ye^{-y^2}|&lt;1$, 取 $L=1$, 则  $\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|$. 即 $f(x,y)$ 关于 $y$ 满足 Lipschitz 条件.  再取 $M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace$=$\frac12$. 由 Picard 存在唯一性定理可知原初值问题在 $\vert x\vert\le h=\frac12$ 上存在唯一的解 $y=\varphi(x)$. 由逐次逼近法构造 Picard 逐步逼近序列得<br>
-$$<br>
-\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.<br>
-$$<br>
-显然当 $x\in[0,\frac12 ]$ 时, $|\varphi_1(x)|\le\frac{13}{24}$. 再由误差估计式知<br>
-$$<br>
-|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14<br>
-$$<br>
-于是当 $x\in[0,\frac12]$ 时, 有<br>
-$$<br>
-|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}&lt;1.<br>
-$$</p>
+        <p><strong>[T030101]</strong> 证明初值问题 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=x^2+e^{-y^2}, \ y(0)=0</script> 的解 <script type="math/tex">y=\varphi(x)</script> 在 <script type="math/tex">[0,\frac12]</script> 上存在, 且当 <script type="math/tex">x\in[0,\frac12]</script> 时, <script type="math/tex">|\varphi(x)|\le1</script>.</p>
+<p><strong>证</strong> 设 <script type="math/tex">f(x,y)=x^2+e^{-y^2}</script>, 取矩形区域 <script type="math/tex">R: \ |x|\le1, \ |y|\le1</script>, 即 <script type="math/tex">a=b=1</script>, 显然 <script type="math/tex">f(x,y)</script> 在 <script type="math/tex">R</script> 上连续, 又 <script type="math/tex">|f_y|=|-2ye^{-y^2}|<1</script>, 取 <script type="math/tex">L=1</script>, 则  <script type="math/tex">\forall y_1,y_2\in[-1,1], \ |f(x,y_1)-f(x,y_2)|\le L|y_1-y_2|</script>. 即 <script type="math/tex">f(x,y)</script> 关于 <script type="math/tex">y</script> 满足 Lipschitz 条件.  再取 <script type="math/tex">M=\max\limits_{(x,y)\in R}|f(x,y)|=2, \ h=\min\left\lbrace a,\frac{b}{M}\right\rbrace</script>=<script type="math/tex">\frac12</script>. 由 Picard 存在唯一性定理可知原初值问题在 <script type="math/tex">\vert x\vert\le h=\frac12</script> 上存在唯一的解 <script type="math/tex">y=\varphi(x)</script>. 由逐次逼近法构造 Picard 逐步逼近序列得</p>
+<script type="math/tex; mode=display">\varphi_0(x)=y(0)=0,\quad \varphi_1(x)=y(0)+\int_0^x\left(t^2+e^{-\varphi^2(t)}\right)\mathrm dt=x+\frac13x^3.</script>
+<p>显然当 <script type="math/tex">x\in[0,\frac12 ]</script> 时, <script type="math/tex">|\varphi_1(x)|\le\frac{13}{24}</script>. 再由误差估计式知</p>
+<script type="math/tex; mode=display">|\varphi_1(x)-\varphi(x)|\le\frac{LM}{2!}h^2=\frac{2}{2}\cdot\frac{1}{4}=\frac14</script>
+<p>于是当 <script type="math/tex">x\in[0,\frac12]</script> 时, 有</p>
+<script type="math/tex; mode=display">|\varphi(x)|\le|\varphi(x)-\varphi_1(x)|+|\varphi_1(x)|\le\frac14+\frac{13}{24}=\frac{19}{24}<1.</script>
 <hr>
-<p><strong>[T030102]</strong> 设 $f(x)$ 定义在 $-\infty&lt;x&lt;+\infty$ 上, 且满足 $|f(x_1)-f(x_2)|\le L|x_1-x_2|$, 其中 $L&lt;1$, 证明方程 $x=f(x)$ 存在唯一的一个解.</p>
-<p><strong>解</strong> 对 $\forall x\in \mathbb{R}, \forall \varepsilon&gt;0$, 取 $\delta=\frac{\varepsilon}{L}&gt;0$, 则对 $\forall y\in\mathbb{R}$, 当 $|y-x|&lt;\delta$ 时, 有<br>
-$$<br>
-|f(x)-f(y)|\le L|x-y|&lt;L\delta=\varepsilon<br>
-$$<br>
-即 $f$ 在点 $x$ 处连续, 由 $x$ 在 $\mathbb{R}$ 上的任意性可知 $f$ 在 $\mathbb{R}$ 上连续.</p>
-<p>任取 $x_0\in\mathbb{R}$, 构造迭代数列<br>
-$$<br>
-x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}<br>
-$$<br>
-则 $x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)$. 考察级数 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$, 注意到<br>
-$$<br>
-|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|<br>
-$$<br>
-由 $0&lt;L&lt;1$ 可知正项级数 $\sum L^{n-1}|x_1-x_0|$ 收敛, 由比较判别法可知 $\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)$ 绝对收敛, 从而数列 ${x_n}$ 也收敛, 记 $x^<em>=\lim\limits_{n\to\infty}x_n$. 对 $(1)$ 式两边同取 $n\to\infty$, 由 $f(x)$ 的连续性以及 Heine 归结原理可知<br>
-$$<br>
-x^</em>=f(x^<em>)<br>
-$$<br>
-即方程 $x=f(x)$ 存在解 $x=x^</em>$.</p>
+<p><strong>[T030102]</strong> 设 <script type="math/tex">f(x)</script> 定义在 <script type="math/tex">-\infty<x<+\infty</script> 上, 且满足 <script type="math/tex">|f(x_1)-f(x_2)|\le L|x_1-x_2|</script>, 其中 <script type="math/tex">L<1</script>, 证明方程 <script type="math/tex">x=f(x)</script> 存在唯一的一个解.</p>
+<p><strong>解</strong> 对 <script type="math/tex">\forall x\in \mathbb{R}, \forall \varepsilon>0</script>, 取 <script type="math/tex">\delta=\frac{\varepsilon}{L}>0</script>, 则对 <script type="math/tex">\forall y\in\mathbb{R}</script>, 当 <script type="math/tex">|y-x|<\delta</script> 时, 有</p>
+<script type="math/tex; mode=display">|f(x)-f(y)|\le L|x-y|<L\delta=\varepsilon</script>
+<p>即 <script type="math/tex">f</script> 在点 <script type="math/tex">x</script> 处连续, 由 <script type="math/tex">x</script> 在 <script type="math/tex">\mathbb{R}</script> 上的任意性可知 <script type="math/tex">f</script> 在 <script type="math/tex">\mathbb{R}</script> 上连续.</p>
+<p>任取 <script type="math/tex">x_0\in\mathbb{R}</script>, 构造迭代数列</p>
+<script type="math/tex; mode=display">x_{n+1}=f(x_n), \quad n=0,1,2,\cdots \tag{1}</script>
+<p>则 <script type="math/tex">x_n=x_0+\sum\limits_{k=1}^n\left(x_{k}-x_{k-1}\right)</script>. 考察级数 <script type="math/tex">\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)</script>, 注意到</p>
+<script type="math/tex; mode=display">|x_n-x_{n-1}|=\left|f(x_{n-1})-f(x_{n-2})\right|\le L|x_{n-1}-x_{n-2}|\le\cdots\le L^{n-1}|x_1-x_0|</script>
+<p>由 <script type="math/tex">0<L<1</script> 可知正项级数 <script type="math/tex">\sum L^{n-1}|x_1-x_0|</script> 收敛, 由比较判别法可知 <script type="math/tex">\sum\limits_{n=1}^{\infty}\left(x_{n}-x_{n-1}\right)</script> 绝对收敛, 从而数列 <script type="math/tex">\{x_n\}</script> 也收敛, 记 <script type="math/tex">x^*=\lim\limits_{n\to\infty}x_n</script>. 对 <script type="math/tex">(1)</script> 式两边同取 <script type="math/tex">n\to\infty</script>, 由 <script type="math/tex">f(x)</script> 的连续性以及 Heine 归结原理可知</p>
+<script type="math/tex; mode=display">x^*=f(x^*)</script>
+<p>即方程 <script type="math/tex">x=f(x)</script> 存在解 <script type="math/tex">x=x^*</script>.</p>
 <hr>
-<p>再证解的唯一性, 假设原方程还有一个解 $y^{\ast}\neq x^<em>$, 则有<br>
-$$<br>
-x^</em>=f(x^<em>),\quad y^{\ast}=f(y^{\ast})<br>
-$$<br>
-从而 $|f(y^{\ast})-f(x^</em>)|=|y^{\ast}-x^<em>|$. 再由题设可知 $|f(y^{\ast})-f(x^</em>)|\le L|y^{\ast}-x^<em>|$, 故<br>
-$$<br>
-|y^{\ast}-x^</em>|\le L|y^{\ast}-x^<em>|\rightarrow L\ge1<br>
-$$<br>
-这与 $L&lt;1$ 矛盾! 故方程 $x=f(x)$ 存在唯一的一个解 $x^</em>$.</p>
+<p>再证解的唯一性, 假设原方程还有一个解 <script type="math/tex">y^{\ast}\neq x^*</script>, 则有</p>
+<script type="math/tex; mode=display">x^*=f(x^*),\quad y^{\ast}=f(y^{\ast})</script>
+<p>从而 <script type="math/tex">|f(y^{\ast})-f(x^*)|=|y^{\ast}-x^*|</script>. 再由题设可知 <script type="math/tex">|f(y^{\ast})-f(x^*)|\le L|y^{\ast}-x^*|</script>, 故</p>
+<script type="math/tex; mode=display">|y^{\ast}-x^*|\le L|y^{\ast}-x^*|\rightarrow L\ge1</script>
+<p>这与 <script type="math/tex">L<1</script> 矛盾! 故方程 <script type="math/tex">x=f(x)</script> 存在唯一的一个解 <script type="math/tex">x^*</script>.</p>
 
     </div>
 
@@ -355,8 +337,8 @@ $$<br>
       <i class="fa fa-chevron-left"></i> 不动点定理与解的存在性
     </a></div>
       <div class="post-nav-item">
-    <a href="/2025/09/03/2-4/" rel="next" title="参数法">
-      参数法 <i class="fa fa-chevron-right"></i>
+    <a href="/2025/09/03/2-1/" rel="next" title="分离变量法">
+      分离变量法 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -431,20 +413,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

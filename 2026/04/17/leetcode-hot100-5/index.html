@@ -274,13 +274,13 @@
 
       
         <h1>子串</h1>
-<h2 id="560-和为-k-的子数组">(560) 和为 $k$ 的子数组</h2>
+<h2 id="560-和为-k-的子数组">(560) 和为 <script type="math/tex">k</script> 的子数组</h2>
 <p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code>, 请你统计并返回该数组中和为 <code>k</code> 的子数组的个数.</p>
 <p>子数组是数组中元素的<strong>连续非空序列</strong>.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：nums = [1,1,1], k = 2</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>利用<strong>前缀和</strong>和<strong>Hash表</strong>, 其中前缀和表示数组的起点到当前位置的元素和.<br>
-如果用 $Prefix_j$ 代表从起点到 $j$ 位置的元素和, 则第 $i+1$ 位置到第 $j$ 位置的元素和为 $Prefix_j-Prefix_{i}$.</p>
+如果用 <script type="math/tex">Prefix_j</script> 代表从起点到 <script type="math/tex">j</script> 位置的元素和, 则第 <script type="math/tex">i+1</script> 位置到第 <script type="math/tex">j</script> 位置的元素和为 <script type="math/tex">Prefix_j-Prefix_{i}</script>.</p>
 <ul>
 <li>初始化当前前缀和 <code>Prefix &lt;- 0</code>, 初始化满足条件的非空连续序列的数量 <code>count &lt;- 0</code>, 定义一个 Hash 表 <code>hashtable = &#123;prefix: count&#125;</code> (键为记录的前缀和, 值为前缀和出现的次数).</li>
 <li>遍历 <code>nums</code> 中的所有元素 <code>num</code>.
@@ -292,7 +292,7 @@
 </ul>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subarraySum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        prefix = <span class="number">0</span></span><br><span class="line">        hashtable = &#123;<span class="number">0</span>: <span class="number">1</span>&#125; <span class="comment"># 表示前缀和为0的情况出现一次, 处理了当从数组开头到某个位置子数组和恰好为 k 的情况</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            prefix += num</span><br><span class="line">            res += hashtable.get(prefix-k, <span class="number">0</span>)</span><br><span class="line">            hashtable[prefix] = hashtable.get(prefix, <span class="number">0</span>)+<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<h2 id="star-239-滑动窗口最大值">$\star$(239) 滑动窗口最大值</h2>
+<h2 id="star-239-滑动窗口最大值"><script type="math/tex">\star</script>(239) 滑动窗口最大值</h2>
 <p>给你一个整数数组 <code>nums</code>, 有一个大小为 <code>k</code> 的滑动窗口从数组的最左侧移动到数组的最右侧. 你只可以看到在滑动窗口内的 <code>k</code> 个数字. 滑动窗口每次只向右移动一位.</p>
 <p>返回滑动窗口中的最大值.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：nums = [1,3,-1,-3,5,3,6,7], k = 3</span><br><span class="line">输出：[3,3,5,5,6,7]</span><br><span class="line">解释：</span><br><span class="line">滑动窗口的位置                最大值</span><br><span class="line">---------------               -----</span><br><span class="line">[1  3  -1] -3  5  3  6  7       3</span><br><span class="line"> 1 [3  -1  -3] 5  3  6  7       3</span><br><span class="line"> 1  3 [-1  -3  5] 3  6  7       5</span><br><span class="line"> 1  3  -1 [-3  5  3] 6  7       5</span><br><span class="line"> 1  3  -1  -3 [5  3  6] 7       6</span><br><span class="line"> 1  3  -1  -3  5 [3  6  7]      7</span><br></pre></td></tr></table></figure>
@@ -321,7 +321,7 @@
 <li>将右边界从 <code>r = 0</code> 开始向右移动
 <ul>
 <li>更新计数器 <code>count_s[s[r]] += 1</code></li>
-<li>如果 <code>count_s &gt;= count_t</code>, 则说明此时窗口中的子串可以覆盖 <code>t</code>, 下面判断该覆盖子串是否比以往的最小覆盖子串更小, 即 $[l, r]\subset[l*,r*]$ 是否成立, 若成立, 则更新 <code>l*, r*</code> 的值. 随后将窗口左边界往右移动, 即 <code>count_s[s[l]] -= 1, l += 1</code>.</li>
+<li>如果 <code>count_s &gt;= count_t</code>, 则说明此时窗口中的子串可以覆盖 <code>t</code>, 下面判断该覆盖子串是否比以往的最小覆盖子串更小, 即 <script type="math/tex">[l, r]\subset[l*,r*]</script> 是否成立, 若成立, 则更新 <code>l*, r*</code> 的值. 随后将窗口左边界往右移动, 即 <code>count_s[s[l]] -= 1, l += 1</code>.</li>
 </ul>
 </li>
 <li>如果执行完循环后, 仍有 <code>l = -1</code>, 则说明一定没有覆盖子串, 此时返回空字符串.</li>
@@ -420,7 +420,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">子串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#560-%E5%92%8C%E4%B8%BA-k-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.</span> <span class="nav-text">(560) 和为 $k$ 的子数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#star-239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="nav-number">1.2.</span> <span class="nav-text">$\star$(239) 滑动窗口最大值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2"><span class="nav-number">1.3.</span> <span class="nav-text">(76) 最小覆盖子串</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">子串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#560-%E5%92%8C%E4%B8%BA-k-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.</span> <span class="nav-text">(560) 和为 k 的子数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#star-239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="nav-number">1.2.</span> <span class="nav-text">\star(239) 滑动窗口最大值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2"><span class="nav-number">1.3.</span> <span class="nav-text">(76) 最小覆盖子串</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -436,20 +436,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

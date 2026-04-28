@@ -269,24 +269,22 @@
       
         <h1>离散特征的处理——Embedding</h1>
 <blockquote>
-<p>假设有用户的 IP 地址, 其取值为 $34$ 个省份自治区, 如何将其数值化?</p>
+<p>假设有用户的 IP 地址, 其取值为 <script type="math/tex">34</script> 个省份自治区, 如何将其数值化?</p>
 </blockquote>
 <p>容易想到, 直接将类别映射成序号, 例如:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">北京 --&gt; 1</span><br><span class="line">上海 --&gt; 2</span><br><span class="line">浙江 --&gt; 3</span><br><span class="line">   ...</span><br></pre></td></tr></table></figure>
 <p>但这样不同地址就有数值的大小之分, 事实上这些不同的地址都是平等的, 因此要设法规避.</p>
 <h2 id="One-hot-编码">One-hot 编码</h2>
-<p>将不同类别映射成一个向量, 例如上述例子中 $34$ 个省份自治区就映射成 $34$ 维向量：<br>
-$$<br>
-\text{北京} \to \begin{pmatrix}1 \\ 0 \\ \vdots \\ 0\end{pmatrix},\qquad<br>
-\text{上海} \to \begin{pmatrix}0 \\ 1 \\ \vdots \\ 0\end{pmatrix}.<br>
-$$<br>
-但这样如果遇到类别数量很庞大的情况, 例如某 APP 的用户可能会有上亿个, 这样向量的维度也会很庞大, 运算成本会很大. 因此此方法也仅在类别数量比较小的时候适用.</p>
+<p>将不同类别映射成一个向量, 例如上述例子中 <script type="math/tex">34</script> 个省份自治区就映射成 <script type="math/tex">34</script> 维向量：</p>
+<script type="math/tex; mode=display">\text{北京} \to \begin{pmatrix}1 \\\\ 0 \\\\ \vdots \\\\ 0\end{pmatrix},\qquad 
+\text{上海} \to \begin{pmatrix}0 \\\\ 1 \\\\ \vdots \\\\ 0\end{pmatrix}.</script>
+<p>但这样如果遇到类别数量很庞大的情况, 例如某 APP 的用户可能会有上亿个, 这样向量的维度也会很庞大, 运算成本会很大. 因此此方法也仅在类别数量比较小的时候适用.</p>
 <h2 id="Embedding">Embedding</h2>
 <blockquote>
 <p>解决 One-hot 编码向量维数过大的问题</p>
 </blockquote>
-<p><strong>目标: 将每一类映射成一个低维向量, 例如这里我们映射成 $5$ 维向量</strong></p>
-<p>我们需要通过机器学习得到每个类别的 $5$ 维向量中的参数值.</p>
+<p><strong>目标: 将每一类映射成一个低维向量, 例如这里我们映射成 <script type="math/tex">5</script> 维向量</strong></p>
+<p>我们需要通过机器学习得到每个类别的 <script type="math/tex">5</script> 维向量中的参数值.</p>
 <p>不同地区的用户喜欢的内容可能有差别, 例如</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">北京 = [&#x27;豆汁&#x27;, 炸酱面&#x27;, ...]</span><br><span class="line">上海 = [&#x27;葱油拌面&#x27;, &#x27;红烧肉&#x27;, ...]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>于是模型学得的参数值也有所差别.</p>
@@ -296,11 +294,11 @@ $$<br>
 <ul>
 <li>随机初始化向量, 例如<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">北京 -&gt; [ 0.12, -0.07, 0.03, 0.19, 0.02]</span><br><span class="line">上海 -&gt; [-0.21,  0.18, 0.05, 0.08, 0.25]</span><br><span class="line">广东 -&gt; [ 0.09,  0.11,-0.14,-0.09, 0.11]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 </li>
-<li>将这些向量传入后续排序模型预估用户对某物品的兴趣分数 $\hat y$</li>
-<li>与真实值进行比较, 计算 Loss: $\mathcal L=BCE(\hat y, y)=-[y\log\hat y+(1-y)\log(1-\hat y)]$.</li>
+<li>将这些向量传入后续排序模型预估用户对某物品的兴趣分数 <script type="math/tex">\hat y</script></li>
+<li>与真实值进行比较, 计算 Loss: <script type="math/tex">\mathcal L=BCE(\hat y, y)=-[y\log\hat y+(1-y)\log(1-\hat y)]</script>.</li>
 <li>通过反向传播更新参数.</li>
 </ul>
-<p>通过 Embedding 层, 最后得到 $5\times 34$ 维矩阵.</p>
+<p>通过 Embedding 层, 最后得到 <script type="math/tex">5\times 34</script> 维矩阵.</p>
 
     </div>
 
@@ -409,20 +407,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

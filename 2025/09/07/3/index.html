@@ -287,44 +287,42 @@
 <ol>
 <li>有序性</li>
 <li>传递性</li>
-<li>Archimedes 性（对 $\forall a,b\in\mathbb{R}$, 若 $b&gt;a&gt;0$, 则 $\exists n\in\mathbb{N}^+$, 使得 $na&gt;b.$</li>
+<li>Archimedes 性（对 <script type="math/tex">\forall a,b\in\mathbb{R}</script>, 若 <script type="math/tex">b>a>0</script>, 则 <script type="math/tex">\exists n\in\mathbb{N}^+</script>, 使得 <script type="math/tex">na>b.</script></li>
 <li>稠密性</li>
 </ol>
 <h3 id="实数系基本定理：">实数系基本定理：</h3>
 <ol>
 <li>
-<p>确界原理：设 $S$ 为非空数集. 若 $S$ 有上界，则 $S$ 必有上确界；若 $S$ 有下界，则 $S$ 必有下确界.</p>
+<p>确界原理：设 <script type="math/tex">S</script> 为非空数集. 若 <script type="math/tex">S</script> 有上界，则 <script type="math/tex">S</script> 必有上确界；若 <script type="math/tex">S</script> 有下界，则 <script type="math/tex">S</script> 必有下确界.</p>
 </li>
 <li>
 <p>单调有界定理：在实数系中，有界的单调数列必有极限.</p>
 </li>
 <li>
-<p>区间套定理：若 ${[a_n,b_n]}$ 是一个区间套，则在实数系中存在唯一的一点 $\xi$，使得 $\xi \in [a_n,b_n], \ n=1,2,\cdots,$ 即	<br>
-$$<br>
-a_n \leq \xi \leq b_n, \quad n=1,2,\cdots.<br>
-$$</p>
+<p>区间套定理：若 <script type="math/tex">\{[a_n,b_n]\}</script> 是一个区间套，则在实数系中存在唯一的一点 <script type="math/tex">\xi</script>，使得 <script type="math/tex">\xi \in [a_n,b_n], \ n=1,2,\cdots,</script> 即</p>
+<script type="math/tex; mode=display">a_n \leq \xi \leq b_n, \quad n=1,2,\cdots.</script>
 </li>
 <li>
-<p>Heine-Borel 有限覆盖定理：设 $H$ 为闭区间 $[a,b]$ 的一个（无限）开覆盖，则从 $H$ 中可选出有限个开区间来覆盖 $[a,b]$.</p>
+<p>Heine-Borel 有限覆盖定理：设 <script type="math/tex">H</script> 为闭区间 <script type="math/tex">[a,b]</script> 的一个（无限）开覆盖，则从 <script type="math/tex">H</script> 中可选出有限个开区间来覆盖 <script type="math/tex">[a,b]</script>.</p>
 </li>
 <li>
-<p>Weierstrass 聚点定理：实轴上的任一有界无限点集 $S$ 至少有一个聚点.<br>
+<p>Weierstrass 聚点定理：实轴上的任一有界无限点集 <script type="math/tex">S</script> 至少有一个聚点.<br>
 <strong>推论：</strong>（致密性定理）任何有界数列必有收敛的子列.</p>
 </li>
 <li>
-<p>Cauchy 收敛准则：数列 ${a_n}$ 收敛的充要条件是：对任给的 $\varepsilon &gt;0$，存在正整数 $N$，使得当 $n,m&gt;N$ 时有 $|a_n-a_m|&lt;\varepsilon.$</p>
+<p>Cauchy 收敛准则：数列 <script type="math/tex">\{a_n\}</script> 收敛的充要条件是：对任给的 <script type="math/tex">\varepsilon >0</script>，存在正整数 <script type="math/tex">N</script>，使得当 <script type="math/tex">n,m>N</script> 时有 <script type="math/tex">|a_n-a_m|<\varepsilon.</script></p>
 </li>
 </ol>
 <h2 id="判断题">判断题</h2>
 <ol>
-<li>设 $f(x)$ 定义在 $[-a,a]$ 上，则 $f$ 一定能表示成某个奇函数与某个偶函数之和.</li>
+<li>设 <script type="math/tex">f(x)</script> 定义在 <script type="math/tex">[-a,a]</script> 上，则 <script type="math/tex">f</script> 一定能表示成某个奇函数与某个偶函数之和.</li>
 <li><strong>[华四7.1.4]</strong> 在有理数集上确界原理、单调有界定理、聚点定理和柯西收敛准则也成立.</li>
-<li><strong>[华四7.1.1]</strong> 数集 ${(-1)^n+\frac{1}{n}}$ 有且只有两个聚点.</li>
-<li>如果一个开区间 $(a,b)$ 被一族开区间所覆盖，则 $(a,b)$ 不一定能被这一族开区间中的有限个开区间所覆盖.<br>
-注：$(0,1), \ I={(\frac{1}{n},1)|n=1,2,\cdots}$.</li>
-<li>如果一个无穷限区间 $[1,+\infty)$ 能被一族开区间所覆盖，则 $[1,+\infty)$ 也不一定能被其中的有限个开区间所覆盖.</li>
-<li>存在数列 ${x_n}$ 的聚点为 $(0,1)$.</li>
-<li>设有数列 $a_n=\begin{cases}1, &amp; n=3k,\\ -k, &amp; n=3k+1,\\ 2, &amp; n=3k+2\end{cases}$ 则 ${a_n}$ 的上极限为 $2$, 下极限为 $1$.</li>
+<li><strong>[华四7.1.1]</strong> 数集 <script type="math/tex">\{(-1)^n+\frac{1}{n}\}</script> 有且只有两个聚点.</li>
+<li>如果一个开区间 <script type="math/tex">(a,b)</script> 被一族开区间所覆盖，则 <script type="math/tex">(a,b)</script> 不一定能被这一族开区间中的有限个开区间所覆盖.<br>
+注：<script type="math/tex">(0,1), \ I=\{(\frac{1}{n},1)|n=1,2,\cdots\}</script>.</li>
+<li>如果一个无穷限区间 <script type="math/tex">[1,+\infty)</script> 能被一族开区间所覆盖，则 <script type="math/tex">[1,+\infty)</script> 也不一定能被其中的有限个开区间所覆盖.</li>
+<li>存在数列 <script type="math/tex">\{x_n\}</script> 的聚点为 <script type="math/tex">(0,1)</script>.</li>
+<li>设有数列 <script type="math/tex">a_n=\begin{cases}1, & n=3k,\\\\ -k, & n=3k+1,\\\\ 2, & n=3k+2\end{cases}</script> 则 <script type="math/tex">\{a_n\}</script> 的上极限为 <script type="math/tex">2</script>, 下极限为 <script type="math/tex">1</script>.</li>
 </ol>
 <h2 id="证明题">证明题</h2>
 <ol>
@@ -333,28 +331,26 @@ $$</p>
 注：实数的 Archimedes 性.</p>
 </li>
 <li>
-<p><strong>[华四1.1.8]</strong> 设 $p$ 是正整数. 证明: 若 $p$ 不是完全平方数, 则 $\sqrt{p}$ 是无理数.<br>
+<p><strong>[华四1.1.8]</strong> 设 <script type="math/tex">p</script> 是正整数. 证明: 若 <script type="math/tex">p</script> 不是完全平方数, 则 <script type="math/tex">\sqrt{p}</script> 是无理数.<br>
 注：用反证法.</p>
 </li>
 <li>
-<p><strong>[华四1.4例6]</strong> 证明: $y=a^x$ 当 $a&gt;1$ 时在 $\mathbb{R}$ 上严格递增; 当 $0&lt;a&lt;1$ 时在 $\mathbb{R}$ 上严格递减.<br>
-注：实数集上指数函数的定义.<br>
-$$<br>
-a^x=\begin{cases}<br>
-\sup\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; a&gt;1\\<br>
-\inf\limits_{r&lt;x}{a^r|r\in\mathbb{Q}}, &amp; 0&lt;a&lt;1<br>
-\end{cases}<br>
-$$</p>
+<p><strong>[华四1.4例6]</strong> 证明: <script type="math/tex">y=a^x</script> 当 <script type="math/tex">a>1</script> 时在 <script type="math/tex">\mathbb{R}</script> 上严格递增; 当 <script type="math/tex">0<a<1</script> 时在 <script type="math/tex">\mathbb{R}</script> 上严格递减.<br>
+注：实数集上指数函数的定义.</p>
+<script type="math/tex; mode=display">a^x=\begin{cases}
+\sup\limits_{r<x}\{a^r|r\in\mathbb{Q}\}, & a>1\\\\ 
+\inf\limits_{r<x}\{a^r|r\in\mathbb{Q}\}, & 0<a<1
+\end{cases}</script>
 </li>
 <li>
 <p><strong>[华四1.4.10]</strong> 证明：任意有理数都是 Dirichlet 函数的周期，任意无理数都不是 Dirichlet 函数的周期.<br>
 注：有理数集对四则运算封闭.</p>
 </li>
 <li>
-<p><strong>[华四第一章总练习题12]</strong> 设 $f,g$ 为 $D$ 上的有界函数. 证明: $\inf\limits_D{f+g}\le\inf\limits_Df+\sup\limits_D g.$</p>
+<p><strong>[华四第一章总练习题12]</strong> 设 <script type="math/tex">f,g</script> 为 <script type="math/tex">D</script> 上的有界函数. 证明: <script type="math/tex">\inf\limits_D\{f+g\}\le\inf\limits_Df+\sup\limits_D g.</script></p>
 </li>
 <li>
-<p><strong>[华四第一章总练习题17]</strong> 证明 Riemann 函数在 $(0,1)$ 上任意点的任意领域内无界.</p>
+<p><strong>[华四第一章总练习题17]</strong> 证明 Riemann 函数在 <script type="math/tex">(0,1)</script> 上任意点的任意领域内无界.</p>
 </li>
 <li>
 <p><strong>[华四定理2.9]</strong> 用确界原理证明单调有界定理.<br>
@@ -382,7 +378,7 @@ $$</p>
 <p>*<strong>[华四7.1定理7.2]</strong> 用区间套定理证明 Weierstrass 聚点定理。</p>
 </li>
 <li>
-<p>*<strong>[华四7.2定理7.4]</strong> 用区间套定理证明：有界无限点列（数列）${x_n}$ 至少有一个聚点，且存在最大聚点与最小聚点.<br>
+<p>*<strong>[华四7.2定理7.4]</strong> 用区间套定理证明：有界无限点列（数列）<script type="math/tex">\{x_n\}</script> 至少有一个聚点，且存在最大聚点与最小聚点.<br>
 注：这只是对定理7.2证明过程的一个调整.</p>
 </li>
 <li>
@@ -399,7 +395,7 @@ $$</p>
 </li>
 <li>
 <p>**<strong>[华四第七章总练习题2]</strong> 用确界原理证明有限覆盖定理.<br>
-注：构造集合 $S={c|c\in(a,b],s.t. [a,c] 能被有限覆盖}$.</p>
+注：构造集合 <script type="math/tex">S=\{c|c\in(a,b],s.t. [a,c] 能被有限覆盖\}</script>.</p>
 </li>
 <li>
 <p>*<strong>[华四7.1例2]</strong> 用有限覆盖定理证明闭区间上连续函数的有界性.<br>
@@ -414,23 +410,23 @@ $$</p>
 注：开区间列半径的有意减半.</p>
 </li>
 <li>
-<p><strong>[华四7.2.2(4)]</strong> 设 $a_n&gt;0,\underline{\lim}\limits_{n\to\infty}a_n&gt;0$, 证明 $\overline{\lim}\limits_{n\to\infty}\frac{1}{a_n}=\frac{1}{\underline{\lim}\limits_{n\to\infty}a_n}.$</p>
+<p><strong>[华四7.2.2(4)]</strong> 设 <script type="math/tex">a_n>0,\underline{\lim}\limits_{n\to\infty}a_n>0</script>, 证明 <script type="math/tex">\overline{\lim}\limits_{n\to\infty}\frac{1}{a_n}=\frac{1}{\underline{\lim}\limits_{n\to\infty}a_n}.</script></p>
 </li>
 <li>
-<p>**<strong>[华四第七章总练习题3]</strong> 设 $\underline{\lim}\limits_{n\to\infty}x_n=A&lt;B=\overline{\lim}\limits_{n\to\infty}x_n, \ \lim\limits_{n\to\infty}(x_{n+1}-x_n)=0$. 证明: 数列 ${x_n}$ 的聚点全体恰为闭区间 $[A,B].$<br>
+<p>**<strong>[华四第七章总练习题3]</strong> 设 <script type="math/tex">\underline{\lim}\limits_{n\to\infty}x_n=A<B=\overline{\lim}\limits_{n\to\infty}x_n, \ \lim\limits_{n\to\infty}(x_{n+1}-x_n)=0</script>. 证明: 数列 <script type="math/tex">\{x_n\}</script> 的聚点全体恰为闭区间 <script type="math/tex">[A,B].</script><br>
 注：反证法.</p>
 </li>
 <li>
-<p>***[华四7.1.7]**设 ${x_n}$ 是单调数列. 证明: 若 ${x_n}$ 存在聚点, 则必是唯一的, 且为 ${x_n}$ 的上确界.</p>
+<p>***[华四7.1.7]**设 <script type="math/tex">\{x_n\}</script> 是单调数列. 证明: 若 <script type="math/tex">\{x_n\}</script> 存在聚点, 则必是唯一的, 且为 <script type="math/tex">\{x_n\}</script> 的上确界.</p>
 </li>
 <li>
-<p>*<strong>[裴1.1.9]</strong> 设 $A,B$ 是两个由非负数组成的任意数集，证明：$\sup\limits_{x\in A}x\cdot\sup\limits_{y\in B}y=\sup\limits_{x\in A, \ y\in B}xy$.</p>
+<p>*<strong>[裴1.1.9]</strong> 设 <script type="math/tex">A,B</script> 是两个由非负数组成的任意数集，证明：<script type="math/tex">\sup\limits_{x\in A}x\cdot\sup\limits_{y\in B}y=\sup\limits_{x\in A, \ y\in B}xy</script>.</p>
 </li>
 <li>
-<p>**<strong>[裴1.1.11]</strong> 设 $f,g$ 是 $\mathbb{R}$ 上的实函数，且 $f(x+y)+f(x-y)=2f(x)g(y), \ \ \forall x,y\in\mathbb{R}.$ 在 $\mathbb{R}$ 上 $f(x)$ 不恒等于零，但有界，证明：$|g(y)|\le1 \ (\forall y\in\mathbb{R}).$</p>
+<p>**<strong>[裴1.1.11]</strong> 设 <script type="math/tex">f,g</script> 是 <script type="math/tex">\mathbb{R}</script> 上的实函数，且 <script type="math/tex">f(x+y)+f(x-y)=2f(x)g(y), \ \ \forall x,y\in\mathbb{R}.</script> 在 <script type="math/tex">\mathbb{R}</script> 上 <script type="math/tex">f(x)</script> 不恒等于零，但有界，证明：<script type="math/tex">|g(y)|\le1 \ (\forall y\in\mathbb{R}).</script></p>
 </li>
 <li>
-<p>**<strong>[裴1.1.12]</strong> 设 $f$ 是闭区间 $[a,b]$ 上的增函数，若 $f(a)\ge a,f(b)\le b$，证明：$\exists x_0\in[a,b]$，使得 $f(x_0)=x_0$.<br>
+<p>**<strong>[裴1.1.12]</strong> 设 <script type="math/tex">f</script> 是闭区间 <script type="math/tex">[a,b]</script> 上的增函数，若 <script type="math/tex">f(a)\ge a,f(b)\le b</script>，证明：<script type="math/tex">\exists x_0\in[a,b]</script>，使得 <script type="math/tex">f(x_0)=x_0</script>.<br>
 注：构造集合利用确界原理或者二等分区间利用闭区间套原理.</p>
 </li>
 </ol>
@@ -461,8 +457,8 @@ $$</p>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/09/07/4/" rel="prev" title="一元微分学">
-      <i class="fa fa-chevron-left"></i> 一元微分学
+    <a href="/2025/09/07/5/" rel="prev" title="一元积分学">
+      <i class="fa fa-chevron-left"></i> 一元积分学
     </a></div>
       <div class="post-nav-item">
     <a href="/2025/09/07/2/" rel="next" title="函数的连续性">
@@ -542,20 +538,20 @@ $$</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -276,17 +276,16 @@
 </ul>
 </blockquote>
 <h2 id="ALS-的实现">ALS 的实现</h2>
-<p>目标: 预估用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣.</p>
+<p>目标: 预估用户 <script type="math/tex">\text{user}</script> 对物品 <script type="math/tex">\text{item}</script> 的兴趣.</p>
 <p>已知:</p>
 <ul>
-<li>用户 $\text{user}$ 的隐向量 $\mathbf p_{\text{user}}\in\mathbb R^k$;</li>
-<li>物品 $\text{item}$ 的隐向量 $\mathbf q_{\text{item}}\in\mathbb R^k$.</li>
+<li>用户 <script type="math/tex">\text{user}</script> 的隐向量 <script type="math/tex">\mathbf p_{\text{user}}\in\mathbb R^k</script>;</li>
+<li>物品 <script type="math/tex">\text{item}</script> 的隐向量 <script type="math/tex">\mathbf q_{\text{item}}\in\mathbb R^k</script>.</li>
 </ul>
-<h1>则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为<br>
-$$<br>
-\text{score}(\text{user}, \text{item})</h1>
-<p>\mathbf p_{\text{user}}^\top \mathbf q_{\text{item}}.<br>
-$$</p>
+<p>则用户 <script type="math/tex">\text{user}</script> 对物品 <script type="math/tex">\text{item}</script> 的兴趣为</p>
+<script type="math/tex; mode=display">\text{score}(\text{user}, \text{item})
+=
+\mathbf p_{\text{user}}^\top \mathbf q_{\text{item}}.</script>
 <blockquote>
 <p>Q: 这和 SVD 有什么区别?</p>
 <ul>
@@ -298,27 +297,23 @@ $$</p>
 <p>目标: 在隐式反馈场景下学习用户和物品的低维表示.</p>
 <p>已知:</p>
 <ul>
-<li>用户数为 $m$;</li>
-<li>物品数为 $n$;</li>
-<li>用户-物品偏好矩阵为<br>
-$$<br>
-R\in\mathbb R^{m\times n}.<br>
-$$</li>
+<li>用户数为 <script type="math/tex">m</script>;</li>
+<li>物品数为 <script type="math/tex">n</script>;</li>
+<li>用户-物品偏好矩阵为</li>
 </ul>
+<script type="math/tex; mode=display">R\in\mathbb R^{m\times n}.</script>
 <p>其中:</p>
 <ul>
-<li>若用户 $u$ 喜欢物品 $i$, 则 $R_{ui}=1$;</li>
-<li>若用户 $u$ 未交互过物品 $i$, 则 $R_{ui}=0$.</li>
+<li>若用户 <script type="math/tex">u</script> 喜欢物品 <script type="math/tex">i</script>, 则 <script type="math/tex">R_{ui}=1</script>;</li>
+<li>若用户 <script type="math/tex">u</script> 未交互过物品 <script type="math/tex">i</script>, 则 <script type="math/tex">R_{ui}=0</script>.</li>
 </ul>
-<p>ALS 的思想仍然是矩阵分解:<br>
-$$<br>
-R \approx P Q^\top,<br>
-$$<br>
-其中:</p>
+<p>ALS 的思想仍然是矩阵分解:</p>
+<script type="math/tex; mode=display">R \approx P Q^\top,</script>
+<p>其中:</p>
 <ul>
-<li>$P\in\mathbb R^{m\times k}$ 为用户隐向量矩阵;</li>
-<li>$Q\in\mathbb R^{n\times k}$ 为物品隐向量矩阵;</li>
-<li>$k\ll m,n$ 为隐向量维度.</li>
+<li><script type="math/tex">P\in\mathbb R^{m\times k}</script> 为用户隐向量矩阵;</li>
+<li><script type="math/tex">Q\in\mathbb R^{n\times k}</script> 为物品隐向量矩阵;</li>
+<li><script type="math/tex">k\ll m,n</script> 为隐向量维度.</li>
 </ul>
 <p>但 ALS 的重点不在于“直接分解评分矩阵”, 而在于:</p>
 <ul>
@@ -340,50 +335,40 @@ $$<br>
 <p>因此, ALS 不只是考虑偏好矩阵, 还要考虑置信度矩阵.</p>
 <p>定义:</p>
 <ul>
-<li>
-<p>偏好矩阵<br>
-$$<br>
-p_{ui}=<br>
-\begin{cases}<br>
-1, &amp; \text{若用户 }u\text{ 与物品 }i\text{ 有正反馈};\<br>
-0, &amp; \text{否则}.<br>
-\end{cases}<br>
-$$</p>
-</li>
-<li>
-<p>置信度矩阵<br>
-$$<br>
-c_{ui}=1+\alpha r_{ui},<br>
-$$<br>
-其中:</p>
-</li>
-<li>
-<p>$r_{ui}$ 表示用户 $u$ 对物品 $i$ 的交互强度;</p>
-</li>
-<li>
-<p>$\alpha$ 为人为设定参数.</p>
-</li>
+<li>偏好矩阵</li>
+</ul>
+<script type="math/tex; mode=display">p_{ui}=
+\begin{cases}
+1, & \text{若用户 }u\text{ 与物品 }i\text{ 有正反馈};\\
+0, & \text{否则}.
+\end{cases}</script>
+<ul>
+<li>置信度矩阵</li>
+</ul>
+<script type="math/tex; mode=display">c_{ui}=1+\alpha r_{ui},</script>
+<p>其中:</p>
+<ul>
+<li><script type="math/tex">r_{ui}</script> 表示用户 <script type="math/tex">u</script> 对物品 <script type="math/tex">i</script> 的交互强度;</li>
+<li><script type="math/tex">\alpha</script> 为人为设定参数.</li>
 </ul>
 <blockquote>
 <p>RK: 在最简单的二值交互场景中, 若用户喜欢过某物品, 则该位置的置信度会更高.</p>
 </blockquote>
 <h2 id="ALS-的优化目标">ALS 的优化目标</h2>
-<p>目标: 学习用户向量 $\mathbf p_u$ 与物品向量 $\mathbf q_i$.</p>
-<p>定义优化目标为<br>
-$$<br>
-\min_{P,Q}<br>
-\sum_{u=1}^m\sum_{i=1}^n<br>
-c_{ui}\left(p_{ui}-\mathbf p_u^\top \mathbf q_i\right)^2<br>
-+<br>
-\lambda\left(<br>
-\sum_{u=1}^m|\mathbf p_u|^2+\sum_{i=1}^n|\mathbf q_i|^2<br>
-\right),<br>
-$$<br>
-其中:</p>
+<p>目标: 学习用户向量 <script type="math/tex">\mathbf p_u</script> 与物品向量 <script type="math/tex">\mathbf q_i</script>.</p>
+<p>定义优化目标为</p>
+<script type="math/tex; mode=display">\min_{P,Q}
+\sum_{u=1}^m\sum_{i=1}^n
+c_{ui}\left(p_{ui}-\mathbf p_u^\top \mathbf q_i\right)^2
++
+\lambda\left(
+\sum_{u=1}^m\|\mathbf p_u\|^2+\sum_{i=1}^n\|\mathbf q_i\|^2
+\right),</script>
+<p>其中:</p>
 <ul>
-<li>$p_{ui}$ 为偏好;</li>
-<li>$c_{ui}$ 为置信度;</li>
-<li>$\lambda$ 为正则化参数.</li>
+<li><script type="math/tex">p_{ui}</script> 为偏好;</li>
+<li><script type="math/tex">c_{ui}</script> 为置信度;</li>
+<li><script type="math/tex">\lambda</script> 为正则化参数.</li>
 </ul>
 <p>这个目标的含义是:</p>
 <ul>
@@ -399,8 +384,8 @@ $$<br>
 </blockquote>
 <p>具体过程如下:</p>
 <ol>
-<li>固定所有物品向量 $Q$, 求每个用户向量 $P$;</li>
-<li>固定所有用户向量 $P$, 求每个物品向量 $Q$;</li>
+<li>固定所有物品向量 <script type="math/tex">Q</script>, 求每个用户向量 <script type="math/tex">P</script>;</li>
+<li>固定所有用户向量 <script type="math/tex">P</script>, 求每个物品向量 <script type="math/tex">Q</script>;</li>
 <li>重复上述过程, 直到收敛.</li>
 </ol>
 <p>由于每一步都变成一个标准最小二乘问题, 因此称为“交替最小二乘”.</p>
@@ -596,9 +581,7 @@ $$<br>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">ALS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.</span> <span class="nav-text">ALS 的实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为
-$$
-\text{score}(\text{user}, \text{item})</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">2.1.</span> <span class="nav-text">ALS 的核心思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%BD%AE%E4%BF%A1%E5%BA%A6"><span class="nav-number">2.2.</span> <span class="nav-text">为什么需要置信度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E7%9A%84%E4%BC%98%E5%8C%96%E7%9B%AE%E6%A0%87"><span class="nav-number">2.3.</span> <span class="nav-text">ALS 的优化目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AB-Alternating-Least-Squares"><span class="nav-number">2.4.</span> <span class="nav-text">为什么叫 Alternating Least Squares</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E4%B8%8E-SVD-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.5.</span> <span class="nav-text">ALS 与 SVD 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">2.6.</span> <span class="nav-text">ALS 的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E5%9C%A8%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.7.</span> <span class="nav-text">ALS 在推荐系统中的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E4%B8%8E-ItemCF-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.8.</span> <span class="nav-text">ALS 与 ItemCF 的区别</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">ALS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.</span> <span class="nav-text">ALS 的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.2.</span> <span class="nav-text">ALS 的核心思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%BD%AE%E4%BF%A1%E5%BA%A6"><span class="nav-number">1.3.</span> <span class="nav-text">为什么需要置信度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E7%9A%84%E4%BC%98%E5%8C%96%E7%9B%AE%E6%A0%87"><span class="nav-number">1.4.</span> <span class="nav-text">ALS 的优化目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AB-Alternating-Least-Squares"><span class="nav-number">1.5.</span> <span class="nav-text">为什么叫 Alternating Least Squares</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E4%B8%8E-SVD-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.6.</span> <span class="nav-text">ALS 与 SVD 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.7.</span> <span class="nav-text">ALS 的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E5%9C%A8%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.8.</span> <span class="nav-text">ALS 在推荐系统中的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALS-%E4%B8%8E-ItemCF-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.9.</span> <span class="nav-text">ALS 与 ItemCF 的区别</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -614,20 +597,20 @@ $$
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

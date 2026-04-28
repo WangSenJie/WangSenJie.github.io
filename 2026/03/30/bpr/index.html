@@ -278,33 +278,29 @@
 <p>因此, 推荐系统的目标往往不是“评分预测”, 而是“排序优化”.</p>
 <p>BPR 的核心思想是:</p>
 <blockquote>
-<p>对于用户 $u$, 我们希望用户喜欢过的物品 $i$ 排在未喜欢过的物品 $j$ 前面.</p>
+<p>对于用户 <script type="math/tex">u</script>, 我们希望用户喜欢过的物品 <script type="math/tex">i</script> 排在未喜欢过的物品 <script type="math/tex">j</script> 前面.</p>
 </blockquote>
 <p>也就是说, BPR 直接优化排序关系, 而不是拟合具体分数.</p>
 <hr>
 <h2 id="2-BPR-的基本假设">2. BPR 的基本假设</h2>
 <p>设:</p>
 <ul>
-<li>用户为 $u$;</li>
-<li>用户有正反馈的物品为 $i$;</li>
-<li>用户没有交互过的物品为 $j$.</li>
+<li>用户为 <script type="math/tex">u</script>;</li>
+<li>用户有正反馈的物品为 <script type="math/tex">i</script>;</li>
+<li>用户没有交互过的物品为 <script type="math/tex">j</script>.</li>
 </ul>
 <p>BPR 假设:</p>
 <blockquote>
-<p>用户 $u$ 更偏好 $i$, 而不是 $j$.</p>
+<p>用户 <script type="math/tex">u</script> 更偏好 <script type="math/tex">i</script>, 而不是 <script type="math/tex">j</script>.</p>
 </blockquote>
-<p>记作<br>
-$$<br>
-i \succ_u j.<br>
-$$</p>
-<p>于是, BPR 的训练样本不是单个 $(u, i)$, 而是三元组<br>
-$$<br>
-(u, i, j),<br>
-$$<br>
-表示:</p>
+<p>记作</p>
+<script type="math/tex; mode=display">i \succ_u j.</script>
+<p>于是, BPR 的训练样本不是单个 <script type="math/tex">(u, i)</script>, 而是三元组</p>
+<script type="math/tex; mode=display">(u, i, j),</script>
+<p>表示:</p>
 <ul>
-<li>用户 $u$ 喜欢物品 $i$;</li>
-<li>用户 $u$ 相比于 $j$, 更偏好 $i$.</li>
+<li>用户 <script type="math/tex">u</script> 喜欢物品 <script type="math/tex">i</script>;</li>
+<li>用户 <script type="math/tex">u</script> 相比于 <script type="math/tex">j</script>, 更偏好 <script type="math/tex">i</script>.</li>
 </ul>
 <p>这也是 BPR 和 SVD / ALS 很不一样的地方:</p>
 <ul>
@@ -315,63 +311,49 @@ $$<br>
 <h2 id="3-BPR-的打分方式">3. BPR 的打分方式</h2>
 <p>和很多矩阵分解模型一样, BPR 也给:</p>
 <ul>
-<li>每个用户学习一个隐向量 $\mathbf p_u\in\mathbb R^k$</li>
-<li>每个物品学习一个隐向量 $\mathbf q_i\in\mathbb R^k$</li>
+<li>每个用户学习一个隐向量 <script type="math/tex">\mathbf p_u\in\mathbb R^k</script></li>
+<li>每个物品学习一个隐向量 <script type="math/tex">\mathbf q_i\in\mathbb R^k</script></li>
 </ul>
-<p>则用户 $u$ 对物品 $i$ 的分数定义为<br>
-$$<br>
-\hat y_{ui}=\mathbf p_u^\top \mathbf q_i.<br>
-$$</p>
+<p>则用户 <script type="math/tex">u</script> 对物品 <script type="math/tex">i</script> 的分数定义为</p>
+<script type="math/tex; mode=display">\hat y_{ui}=\mathbf p_u^\top \mathbf q_i.</script>
 <p>这个公式和 SVD / ALS 很像, 但关键区别不在打分形式, 而在<strong>训练目标</strong>。</p>
 <hr>
 <h2 id="4-BPR-的核心目标">4. BPR 的核心目标</h2>
-<p>BPR 不是直接让<br>
-$$<br>
-\hat y_{ui}\approx r_{ui},<br>
-$$<br>
-而是希望:<br>
-$$<br>
-\hat y_{ui} &gt; \hat y_{uj}.<br>
-$$</p>
-<p>也就是说, 对于三元组 $(u, i, j)$, 我们希望<br>
-$$<br>
-\hat y_{ui}-\hat y_{uj} &gt; 0.<br>
-$$</p>
+<p>BPR 不是直接让</p>
+<script type="math/tex; mode=display">\hat y_{ui}\approx r_{ui},</script>
+<p>而是希望:</p>
+<script type="math/tex; mode=display">\hat y_{ui} > \hat y_{uj}.</script>
+<p>也就是说, 对于三元组 <script type="math/tex">(u, i, j)</script>, 我们希望</p>
+<script type="math/tex; mode=display">\hat y_{ui}-\hat y_{uj} > 0.</script>
 <p>因为:</p>
 <ul>
-<li>$i$ 是用户喜欢过的物品</li>
-<li>$j$ 是用户没交互过的物品</li>
+<li><script type="math/tex">i</script> 是用户喜欢过的物品</li>
+<li><script type="math/tex">j</script> 是用户没交互过的物品</li>
 </ul>
-<p>于是定义两者的差值为<br>
-$$<br>
-\hat y_{uij} = \hat y_{ui}-\hat y_{uj}<br>
-= \mathbf p_u^\top \mathbf q_i - \mathbf p_u^\top \mathbf q_j.<br>
-$$</p>
-<p>若 $\hat y_{uij}$ 越大, 表示模型越确信:</p>
+<p>于是定义两者的差值为</p>
+<script type="math/tex; mode=display">\hat y_{uij} = \hat y_{ui}-\hat y_{uj}
+= \mathbf p_u^\top \mathbf q_i - \mathbf p_u^\top \mathbf q_j.</script>
+<p>若 <script type="math/tex">\hat y_{uij}</script> 越大, 表示模型越确信:</p>
 <ul>
-<li>用户更喜欢 $i$</li>
-<li>而不是 $j$</li>
+<li>用户更喜欢 <script type="math/tex">i</script></li>
+<li>而不是 <script type="math/tex">j</script></li>
 </ul>
 <hr>
 <h2 id="5-BPR-的损失函数">5. BPR 的损失函数</h2>
-<p>BPR 使用的经典目标是:<br>
-$$<br>
-\max \sum_{(u,i,j)\in\mathcal D}\ln \sigma(\hat y_{uij}) - \lambda |\Theta|^2,<br>
-$$<br>
-其中:</p>
+<p>BPR 使用的经典目标是:</p>
+<script type="math/tex; mode=display">\max \sum_{(u,i,j)\in\mathcal D}\ln \sigma(\hat y_{uij}) - \lambda \|\Theta\|^2,</script>
+<p>其中:</p>
 <ul>
-<li>$\mathcal D$ 为训练三元组集合</li>
-<li>$\sigma(x)=\frac{1}{1+e^{-x}}$ 为 sigmoid 函数</li>
-<li>$\Theta$ 表示所有模型参数</li>
-<li>$\lambda$ 为正则化系数</li>
+<li><script type="math/tex">\mathcal D</script> 为训练三元组集合</li>
+<li><script type="math/tex">\sigma(x)=\frac{1}{1+e^{-x}}</script> 为 sigmoid 函数</li>
+<li><script type="math/tex">\Theta</script> 表示所有模型参数</li>
+<li><script type="math/tex">\lambda</script> 为正则化系数</li>
 </ul>
-<p>等价地, 也可以写成最小化损失:<br>
-$$<br>
-\min -\sum_{(u,i,j)\in\mathcal D}\ln \sigma(\hat y_{uij}) + \lambda |\Theta|^2.<br>
-$$</p>
+<p>等价地, 也可以写成最小化损失:</p>
+<script type="math/tex; mode=display">\min -\sum_{(u,i,j)\in\mathcal D}\ln \sigma(\hat y_{uij}) + \lambda \|\Theta\|^2.</script>
 <p>这个目标很好理解:</p>
 <ul>
-<li>若 $\hat y_{ui} \gg \hat y_{uj}$, 则 $\sigma(\hat y_{uij})$ 接近 1, 损失很小</li>
+<li>若 <script type="math/tex">\hat y_{ui} \gg \hat y_{uj}</script>, 则 <script type="math/tex">\sigma(\hat y_{uij})</script> 接近 1, 损失很小</li>
 <li>若模型把负样本排到前面, 则损失会很大</li>
 </ul>
 <p>因此 BPR 本质上是在做:</p>
@@ -408,65 +390,51 @@ $$</p>
 <h2 id="7-BPR-的训练流程">7. BPR 的训练流程</h2>
 <p>BPR 的训练通常分为以下几步。</p>
 <h3 id="第一步-构造正反馈集合">第一步: 构造正反馈集合</h3>
-<p>对每个用户 $u$, 记其正反馈物品集合为<br>
-$$<br>
-\mathcal I_u^+.<br>
-$$</p>
+<p>对每个用户 <script type="math/tex">u</script>, 记其正反馈物品集合为</p>
+<script type="math/tex; mode=display">\mathcal I_u^+.</script>
 <p>例如:</p>
 <ul>
 <li>用户1喜欢电影1、电影3</li>
-<li>则 $\mathcal I_1^+={1,3}$</li>
+<li>则 <script type="math/tex">\mathcal I_1^+=\{1,3\}</script></li>
 </ul>
 <h3 id="第二步-负采样">第二步: 负采样</h3>
-<p>从用户没交互过的物品中随机采样一个物品 $j$,<br>
+<p>从用户没交互过的物品中随机采样一个物品 <script type="math/tex">j</script>,<br>
 作为“相对不喜欢”的物品.</p>
-<p>于是得到训练样本:<br>
-$$<br>
-(u, i, j), \quad i\in\mathcal I_u^+, \ j\notin\mathcal I_u^+.<br>
-$$</p>
+<p>于是得到训练样本:</p>
+<script type="math/tex; mode=display">(u, i, j), \quad i\in\mathcal I_u^+, \ j\notin\mathcal I_u^+.</script>
 <h3 id="第三步-计算分数差">第三步: 计算分数差</h3>
-<p>计算:<br>
-$$<br>
-\hat y_{uij} = \hat y_{ui} - \hat y_{uj}.<br>
-$$</p>
+<p>计算:</p>
+<script type="math/tex; mode=display">\hat y_{uij} = \hat y_{ui} - \hat y_{uj}.</script>
 <h3 id="第四步-更新参数">第四步: 更新参数</h3>
 <p>根据损失函数, 用 SGD 或其他优化方法更新:</p>
 <ul>
-<li>用户向量 $\mathbf p_u$</li>
-<li>正样本物品向量 $\mathbf q_i$</li>
-<li>负样本物品向量 $\mathbf q_j$</li>
+<li>用户向量 <script type="math/tex">\mathbf p_u</script></li>
+<li>正样本物品向量 <script type="math/tex">\mathbf q_i</script></li>
+<li>负样本物品向量 <script type="math/tex">\mathbf q_j</script></li>
 </ul>
 <p>不断重复, 直到收敛.</p>
 <hr>
 <h2 id="8-一个简单例子">8. 一个简单例子</h2>
-<p>假设有用户 $u$:</p>
+<p>假设有用户 <script type="math/tex">u</script>:</p>
 <ul>
 <li>喜欢《哈利波特》</li>
 <li>没看过《霸王别姬》</li>
 </ul>
-<p>训练时就可以构造一个三元组:<br>
-$$<br>
-(u, \text{哈利波特}, \text{霸王别姬})<br>
-$$</p>
-<p>如果当前模型算出来:<br>
-$$<br>
-\hat y_{u,\text{哈利波特}}=0.6,\quad<br>
-\hat y_{u,\text{霸王别姬}}=0.8,<br>
-$$<br>
-则<br>
-$$<br>
-\hat y_{uij}=0.6-0.8=-0.2<br>
-$$</p>
+<p>训练时就可以构造一个三元组:</p>
+<script type="math/tex; mode=display">(u, \text{哈利波特}, \text{霸王别姬})</script>
+<p>如果当前模型算出来:</p>
+<script type="math/tex; mode=display">\hat y_{u,\text{哈利波特}}=0.6,\quad
+\hat y_{u,\text{霸王别姬}}=0.8,</script>
+<p>则</p>
+<script type="math/tex; mode=display">\hat y_{uij}=0.6-0.8=-0.2</script>
 <p>这说明模型把负样本排到了正样本前面, 是不合理的.</p>
 <p>于是损失会推动模型更新参数, 使得下一次:</p>
 <ul>
 <li>《哈利波特》的分数更高</li>
 <li>《霸王别姬》的分数更低</li>
 </ul>
-<p>训练的最终目标就是让:<br>
-$$<br>
-\hat y_{u,\text{哈利波特}} &gt; \hat y_{u,\text{霸王别姬}}<br>
-$$</p>
+<p>训练的最终目标就是让:</p>
+<script type="math/tex; mode=display">\hat y_{u,\text{哈利波特}} > \hat y_{u,\text{霸王别姬}}</script>
 <hr>
 <h2 id="9-BPR-与-SVD-ALS-的区别">9. BPR 与 SVD / ALS 的区别</h2>
 <h3 id="相同点">相同点</h3>
@@ -667,20 +635,20 @@ BPR 常用于:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -275,64 +275,56 @@
 </ul>
 </blockquote>
 <h2 id="UserCF-的实现">UserCF 的实现</h2>
-<p>目标: 预估用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣.</p>
+<p>目标: 预估用户 <script type="math/tex">\text{user}</script> 对物品 <script type="math/tex">\text{item}</script> 的兴趣.</p>
 <p>已知:</p>
 <ul>
-<li>用户 $\text{user}$ 与用户队列 $\lbrace\text{user}_j\rbrace$ 之间的相似度 $\text{sim}\left(\text{user},\text{user}_j\right)$;</li>
-<li>用户 $\text{user}_j$ 对物品 $\text{item}$ 的兴趣 $\text{like}\left(\text{user}_j,\text{item}\right)$.</li>
+<li>用户 <script type="math/tex">\text{user}</script> 与用户队列 <script type="math/tex">\lbrace\text{user}_j\rbrace</script> 之间的相似度 <script type="math/tex">\text{sim}\left(\text{user},\text{user}_j\right)</script>;</li>
+<li>用户 <script type="math/tex">\text{user}_j</script> 对物品 <script type="math/tex">\text{item}</script> 的兴趣 <script type="math/tex">\text{like}\left(\text{user}_j,\text{item}\right)</script>.</li>
 </ul>
-<p>则用户 $\text{user}$ 对物品 $\text{item}$ 的兴趣为<br>
-$$<br>
-\sum_{j=1}^n\text{sim}\left(\text{user}, \text{user}_j\right)\times\text{like}\left(\text{user}_j,\text{item}\right)<br>
-$$</p>
+<p>则用户 <script type="math/tex">\text{user}</script> 对物品 <script type="math/tex">\text{item}</script> 的兴趣为</p>
+<script type="math/tex; mode=display">\sum_{j=1}^n\text{sim}\left(\text{user}, \text{user}_j\right)\times\text{like}\left(\text{user}_j,\text{item}\right)</script>
 <blockquote>
 <p>Q: 如何计算两用户之间的相似度?</p>
 <ul>
 <li>余弦相似度</li>
 </ul>
 </blockquote>
-<p>目标: 计算用户 $u_1$ 与 $u_2$ 之间的相似度.</p>
+<p>目标: 计算用户 <script type="math/tex">u_1</script> 与 <script type="math/tex">u_2</script> 之间的相似度.</p>
 <p>已知:</p>
 <ul>
-<li>用户 $u_1$ 喜欢的物品集合 $\mathcal J_1$;</li>
-<li>用户 $u_2$ 喜欢的物品集合 $\mathcal J_2$.</li>
+<li>用户 <script type="math/tex">u_1</script> 喜欢的物品集合 <script type="math/tex">\mathcal J_1</script>;</li>
+<li>用户 <script type="math/tex">u_2</script> 喜欢的物品集合 <script type="math/tex">\mathcal J_2</script>.</li>
 </ul>
-<p>则 $u_1, u_2$ 都喜欢的物品集合为 $\mathcal I=\mathcal J_1\cap\mathcal J_2$. 定义<br>
-$$<br>
-\text{sim}(u_1, u_2)=\frac{|\mathcal I|}{\sqrt{|\mathcal J_1|\cdot|\mathcal J_2|}}\in[0, 1].<br>
-$$</p>
+<p>则 <script type="math/tex">u_1, u_2</script> 都喜欢的物品集合为 <script type="math/tex">\mathcal I=\mathcal J_1\cap\mathcal J_2</script>. 定义</p>
+<script type="math/tex; mode=display">\text{sim}(u_1, u_2)=\frac{|\mathcal I|}{\sqrt{|\mathcal J_1|\cdot|\mathcal J_2|}}\in[0, 1].</script>
 <blockquote>
-<p>Q: 如果 $u_1, u_2$ 喜欢的恰好都是热门物品, 这里的喜欢通过用户“点击”、“点赞”、“转发”…反应, 那能说这两个用户兴趣相同吗?</p>
+<p>Q: 如果 <script type="math/tex">u_1, u_2</script> 喜欢的恰好都是热门物品, 这里的喜欢通过用户“点击”、“点赞”、“转发”…反应, 那能说这两个用户兴趣相同吗?</p>
 <ul>
 <li>答案是否定的, 热门物品往往会被大部分人点击、转发, 两个不同领域不同兴趣的人很有可能都喜欢看《西游记》，但不代表他们兴趣一样. 因此需要降低热门物品权重, 物品越热门, 权重越低.</li>
 </ul>
 </blockquote>
-<p>事实上, 用户相似度公式可以写成<br>
-$$<br>
-\text{sim}(u_1, u_2)=\frac{\sum_{i\in\mathcal I}1}{\sqrt{|\mathcal J_1|\cdot|\mathcal J_2|}}.<br>
-$$<br>
-不难看出 $\mathcal I$ 中物品的权重都是 $1$, 将其修正为:<br>
-$$<br>
-\text{sim}(u_1, u_2)=\frac{\sum_{i\in\mathcal I}\frac{1}{\log(1+n_i)}}{\sqrt{|\mathcal J_1|\cdot|\mathcal J_2|}},<br>
-$$<br>
-其中 $n_i$ 为喜欢物品 $i$ 的用户数量, 反应该物品的热门程度.</p>
+<p>事实上, 用户相似度公式可以写成</p>
+<script type="math/tex; mode=display">\text{sim}(u_1, u_2)=\frac{\sum_{i\in\mathcal I}1}{\sqrt{|\mathcal J_1|\cdot|\mathcal J_2|}}.</script>
+<p>不难看出 <script type="math/tex">\mathcal I</script> 中物品的权重都是 <script type="math/tex">1</script>, 将其修正为:</p>
+<script type="math/tex; mode=display">\text{sim}(u_1, u_2)=\frac{\sum_{i\in\mathcal I}\frac{1}{\log(1+n_i)}}{\sqrt{|\mathcal J_1|\cdot|\mathcal J_2|}},</script>
+<p>其中 <script type="math/tex">n_i</script> 为喜欢物品 <script type="math/tex">i</script> 的用户数量, 反应该物品的热门程度.</p>
 <h2 id="UserCF-召回的完整流程">UserCF 召回的完整流程</h2>
 <ol>
 <li>
 <p>事先做离线计算</p>
 <ul>
 <li>
-<p>建立“用户 $\to$ 物品“索引, 即 $\lbrace\text{用户 ID}: (\text{物品 ID, 兴趣分数})\rbrace$.</p>
+<p>建立“用户 <script type="math/tex">\to</script> 物品“索引, 即 <script type="math/tex">\lbrace\text{用户 ID}: (\text{物品 ID, 兴趣分数})\rbrace</script>.</p>
 <ul>
 <li>记录每个用户最近点击、交互过的物品 ID.</li>
 <li>给定任意用户 ID, 可找到他最近感兴趣的物品列表.</li>
 </ul>
 </li>
 <li>
-<p>建立“用户 $\to$ 用户“索引</p>
+<p>建立“用户 <script type="math/tex">\to</script> 用户“索引</p>
 <ul>
-<li>对于每个用户, 索引与他最相似的 $k$ 个用户.</li>
-<li>给定任意用户 ID, 可快速找到与他最相似的 $k$ 个用户.</li>
+<li>对于每个用户, 索引与他最相似的 <script type="math/tex">k</script> 个用户.</li>
+<li>给定任意用户 ID, 可快速找到与他最相似的 <script type="math/tex">k</script> 个用户.</li>
 </ul>
 </li>
 </ul>
@@ -340,10 +332,10 @@ $$<br>
 <li>
 <p>线上做召回</p>
 <ul>
-<li>给定用户 ID, 通过“用户 $\to$ 用户“索引, 找到 $top-k$ 相似用户.</li>
-<li>对于每个 $top-k$ 用户, 通过“用户 $\to$ 物品“索引, 找到用户近期感兴趣的物品列表 $list-n$.</li>
-<li>对于召回的 $nk$ 个物品, 用公式预估用户对每个物品的兴趣分数.</li>
-<li>返回分数最高的 $m$ 个物品作为召回结果.</li>
+<li>给定用户 ID, 通过“用户 <script type="math/tex">\to</script> 用户“索引, 找到 <script type="math/tex">top-k</script> 相似用户.</li>
+<li>对于每个 <script type="math/tex">top-k</script> 用户, 通过“用户 <script type="math/tex">\to</script> 物品“索引, 找到用户近期感兴趣的物品列表 <script type="math/tex">list-n</script>.</li>
+<li>对于召回的 <script type="math/tex">nk</script> 个物品, 用公式预估用户对每个物品的兴趣分数.</li>
+<li>返回分数最高的 <script type="math/tex">m</script> 个物品作为召回结果.</li>
 </ul>
 </li>
 </ol>
@@ -458,20 +450,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

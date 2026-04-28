@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="AlexNet 网络结构和训练方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlexNet">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/04/28/alexnet/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="AlexNet 网络结构和训练方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zh-v2.d2l.ai/_images/alexnet.svg">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/04/28/alexnet/Relu.png">
+<meta property="article:published_time" content="2026-04-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-28T16:07:51.334Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="卷积神经网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zh-v2.d2l.ai/_images/alexnet.svg">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/04/28/alexnet/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="AlexNet 网络结构和训练方法">
+
+<meta name="twitter:title" content="AlexNet">
+
+  <title>AlexNet | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/04/28/alexnet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AlexNet
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-28T00:00:00+08:00">2026-04-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-04-29 00:07:51" itemprop="dateModified" datetime="2026-04-29T00:07:51+08:00">2026-04-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习与深度学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">卷积神经网络</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">AlexNet 网络结构和训练方法</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>AlexNet</h1>
+<p>AlexNet在2012年ImageNet挑战赛中取得了第一名的成绩. AlexNet以 Alex Krizhevsky的名字命名. AlexNet的网络结构如下图所示:</p>
+<p><img src="https://zh-v2.d2l.ai/_images/alexnet.svg" alt="AlexNet"></p>
+<p>左边为 LetNet 网络结构, 右边为 AlexNet 网络结构. AlexNet 的网络结构比 LeNet 更深, 包含了更多的卷积层和全连接层. AlexNet 还引入了 ReLU 激活函数和 Dropout 技术来提高模型的性能和防止过拟合. AlexNet 的成功标志着深度学习在计算机视觉领域的突破, 并引发了后续更深更复杂的卷积神经网络的发展.</p>
+<h2 id="激活函数">激活函数</h2>
+<p>AlexNet 使用了 ReLU (Rectified Linear Unit) 激活函数, 定义为</p>
+<script type="math/tex; mode=display">\mathrm{ReLU}(x) = \max(0, x).</script>
+<p>ReLU 激活函数的优点是计算简单, 可以加速模型的训练过程, 并且在一定程度上缓解了梯度消失问题. ReLU 还具有稀疏激活的特性, 即在某些输入下会输出零, 这有助于提高模型的表达能力和泛化能力.</p>
+<blockquote>
+<p><strong>Q1: 为什么ReLU可以缓解梯度消失问题?</strong><br>
+<img src="/2026/04/28/alexnet/Relu.png" alt="激活函数"><br>
+<em>(Made by ChatGPT</em>)</p>
+<ul>
+<li>本质上一个 <script type="math/tex">L</script> 层的神经网络可表示为 <script type="math/tex">y=f_L(f_{L-1}(\cdots f_1(x)))</script>, 由求导的链式法则可知</li>
+</ul>
+<script type="math/tex; mode=display">\frac{\partial y}{\partial x} = f_L'(z_L)f'_{L-1}(z_{L-1})\cdots f'_1(z_1).</script>
+<p>如果 <script type="math/tex">f_i</script> 是 Sigmoid 或 Tanh 激活函数, 则 <script type="math/tex">f'_i(z_i)</script> 的值在 <script type="math/tex">(0, 1)</script> 之间, 当网络层数较多时, <script type="math/tex">\frac{\partial y}{\partial x}</script> 的值会变得非常小, 导致梯度消失问题. 而 ReLU 激活函数的导数在 <script type="math/tex">x > 0</script> 时为 1, 在 <script type="math/tex">x \leq 0</script> 时为 0, 因此在正区间内不会导致梯度消失问题.</p>
+</blockquote>
+<blockquote>
+<p><strong>Q2: ReLU为什么具有稀疏激活的特性?</strong></p>
+<ul>
+<li>ReLU 激活函数在输入小于或等于零时输出零,在输入大于零时输出输入值本身. 这意味着在某些输入下，ReLU 的输出会是零，这就形成了稀疏激活的特性. 稀疏激活有助于提高模型的表达能力和泛化能力, 因为它可以使模型更专注于重要的特征, 并且减少了不必要的计算和过拟合的风险.</li>
+<li>注意：不是越稀疏越好, ReLU 也有缺点.如果某些神经元长期输入都是负数，它们输出一直是 <script type="math/tex">0</script>, 梯度也可能一直是 <script type="math/tex">0</script>. 这就是所谓的死亡 ReLU：<script type="math/tex">x<0\Rightarrow f(x)=0,f'(x)=0</script>, 这个神经元可能再也学不动了. 所以后来有一些改进版本, 比如 Leaky ReLU：</li>
+</ul>
+<script type="math/tex; mode=display">f(x)=\begin{cases}x,&x>0\\\\ \alpha x,&x\leq 0\end{cases}</script>
+<p><script type="math/tex">\quad\quad~~</script>它在负半轴保留一个很小的斜率，避免神经元彻底死亡.</p>
+</blockquote>
+<h2 id="Dropout">Dropout</h2>
+<p>AlexNet 还引入了 Dropout 技术来防止过拟合. Dropout 的基本思想是在训练过程中随机丢弃一部分神经元的输出,以减少神经元之间的依赖关系. 在每次训练迭代中,Dropout 会以一定的概率 <script type="math/tex">p</script> 将神经元的输出设置为零,从而使模型在训练过程中更具鲁棒性和泛化能力. 在测试阶段, Dropout 不会丢弃神经元的输出, 而是将神经元的输出乘以 <script type="math/tex">1-p</script> 来保持输出的期望值不变.</p>
+<blockquote>
+<p><strong>例</strong>: 某个神经元输出为 <script type="math/tex">h</script>, 且在训练阶段使用了 Dropout, 以概率 <script type="math/tex">p</script> 将该神经元的输出设置为零. 则它的平均输出为 <script type="math/tex">h(1-p) + 0 \cdot p = h(1-p)</script>. 在测试阶段, 为了保持输出的期望值不变, 需要将神经元的输出乘以 <script type="math/tex">1-p</script>, 即 <script type="math/tex">h(1-p)</script>.</p>
+</blockquote>
+<p>Dropout 技术在 AlexNet 中被广泛应用于全连接层, 有效地减少了过拟合现象, 提高了模型的性能.</p>
+<h2 id="AlexNet-各层的输出大小">AlexNet 各层的输出大小</h2>
+<ul>
+<li><strong>输入层</strong>: 输入图像大小为 <script type="math/tex">224 \times 224 \times 3</script> (RGB 图像)</li>
+<li><strong>卷积层 1 (96)</strong>: 参数为 <script type="math/tex">11 \times 11</script> 的卷积核, 步长为 4<script type="math/tex; mode=display">\left\lfloor\frac{224 - 11}{4}\right\rfloor + 1 = 54</script>
+输出大小为 <script type="math/tex">54 \times 54 \times 96</script>.</li>
+<li><strong>汇聚层 1</strong>: 参数为 <script type="math/tex">3 \times 3</script> 的汇聚核, 步长为 2<script type="math/tex; mode=display">\left\lfloor\frac{54 - 3}{2}\right\rfloor + 1 = 26</script>
+输出大小为 <script type="math/tex">26 \times 26 \times 96</script>.</li>
+<li><strong>卷积层 2 (256)</strong>: 参数为 <script type="math/tex">5 \times 5</script> 的卷积核, 步长为 1, 填充为 2<script type="math/tex; mode=display">\left\lfloor\frac{26 +2\times2 - 5}{1}\right\rfloor + 1 = 26</script>
+输出大小为 <script type="math/tex">26 \times 26 \times 256</script>.</li>
+<li><strong>汇聚层 2</strong>: 参数为 <script type="math/tex">3 \times 3</script> 的汇聚核, 步长为 2<script type="math/tex; mode=display">\left\lfloor\frac{26 - 3}{2}\right\rfloor + 1 = 12</script>
+输出大小为 <script type="math/tex">12 \times 12 \times 256</script>.</li>
+<li><strong>卷积层 3 (384)</strong>: 参数为 <script type="math/tex">3 \times 3</script> 的卷积核, 步长为 1, 填充为 1<script type="math/tex; mode=display">\left\lfloor\frac{12 + 2\times1 - 3}{1}\right\rfloor + 1 = 12</script>
+输出大小为 <script type="math/tex">12 \times 12 \times 384</script>.</li>
+<li><strong>卷积层 4 (384)</strong>: 参数为 <script type="math/tex">3 \times 3</script> 的卷积核, 步长为 1, 填充为 1<script type="math/tex; mode=display">\left\lfloor\frac{12 + 2\times1 - 3}{1}\right\rfloor + 1 = 12</script>
+输出大小为 <script type="math/tex">12 \times 12 \times 384</script>.</li>
+<li><strong>卷积层 5 (256)</strong>: 参数为 <script type="math/tex">3 \times 3</script> 的卷积核, 步长为 1, 填充为 1<script type="math/tex; mode=display">\left\lfloor\frac{12 + 2\times1 - 3}{1}\right\rfloor + 1 = 12</script>
+输出大小为 <script type="math/tex">12 \times 12 \times 256</script>.</li>
+<li><strong>汇聚层 3</strong>: 参数为 <script type="math/tex">3 \times 3</script> 的汇聚核, 步长为 2<script type="math/tex; mode=display">\left\lfloor\frac{12 - 3}{2}\right\rfloor + 1 = 5</script>
+输出大小为 <script type="math/tex">5 \times 5 \times 256</script>.</li>
+<li><strong>全连接层 1 (4096)</strong>: 输出大小为 <script type="math/tex">4096</script>.</li>
+<li><strong>全连接层 2 (4096)</strong>: 输出大小为 <script type="math/tex">4096</script>.</li>
+<li><strong>全连接层 3 (1000)</strong>: 输出大小为 <script type="math/tex">1000</script>.</li>
+</ul>
+<blockquote>
+<p>参考:</p>
+<ul>
+<li>机器学习方法, 李航</li>
+<li>动手学深度学习, 李沐等著</li>
+</ul>
+</blockquote>
+
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/04/28/alexnet/" data-share-title="AlexNet">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag"># 卷积神经网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/04/28/resnet/" rel="prev" title="ResNet">
+      <i class="fa fa-chevron-left"></i> ResNet
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">AlexNet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">激活函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dropout"><span class="nav-number">1.2.</span> <span class="nav-text">Dropout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AlexNet-%E5%90%84%E5%B1%82%E7%9A%84%E8%BE%93%E5%87%BA%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.3.</span> <span class="nav-text">AlexNet 各层的输出大小</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+
+</body>
+</html>

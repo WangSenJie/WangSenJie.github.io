@@ -281,16 +281,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>[T020101]</strong> 设 $f(x)$ 满足 $f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}$, 且 $f’(0)$ 存在, 求 $f(x)$ 的表达式.</p>
-<p><strong>解</strong> 令 $x=y=0$, 则 $f(0)=\frac{2f(0)}{1-f(0)^2}$, 得 $f(0)=0$. 注意到<br>
-$$<br>
-f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}<br>
-$$<br>
-因为 $f’(0)$ 存在, 故由导数的 定义可知<br>
-$$<br>
-f’(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f’(0)[1+f(x)^2]<br>
-$$<br>
-即 $f(x)$ 满足微分方程 $f’(x)=f’(0)[1+f(x)^2], f(0)=0$. 利用分离变量法求得其解为 $y=\tan\left(f’(0)x\right)$.</p>
+        <p><strong>[T020101]</strong> 设 <script type="math/tex">f(x)</script> 满足 <script type="math/tex">f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)}</script>, 且 <script type="math/tex">f'(0)</script> 存在, 求 <script type="math/tex">f(x)</script> 的表达式.</p>
+<p><strong>解</strong> 令 <script type="math/tex">x=y=0</script>, 则 <script type="math/tex">f(0)=\frac{2f(0)}{1-f(0)^2}</script>, 得 <script type="math/tex">f(0)=0</script>. 注意到</p>
+<script type="math/tex; mode=display">f(x+\Delta x)=\frac{f(x)+f(\Delta x)}{1-f(x)f(\Delta x)} \Longrightarrow \frac{f(x+\Delta x)-f(x)}{\Delta x}=\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}</script>
+<p>因为 <script type="math/tex">f'(0)</script> 存在, 故由导数的 定义可知</p>
+<script type="math/tex; mode=display">f'(x)=\lim\limits_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}=\lim\limits_{\Delta x\to0}\frac{f(\Delta x)}{\Delta x}\cdot\frac{1+f(x)^2}{1-f(x)f(\Delta x)}=f'(0)[1+f(x)^2]</script>
+<p>即 <script type="math/tex">f(x)</script> 满足微分方程 <script type="math/tex">f'(x)=f'(0)[1+f(x)^2], f(0)=0</script>. 利用分离变量法求得其解为 <script type="math/tex">y=\tan\left(f'(0)x\right)</script>.</p>
 
     </div>
 
@@ -318,12 +314,12 @@ $$<br>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/09/03/2-2/" rel="prev" title="变量替换法">
-      <i class="fa fa-chevron-left"></i> 变量替换法
+    <a href="/2025/09/03/3-1picard/" rel="prev" title="Picard 存在唯一性定理">
+      <i class="fa fa-chevron-left"></i> Picard 存在唯一性定理
     </a></div>
       <div class="post-nav-item">
-    <a href="/2025/09/05/hexo/" rel="next" title="Hexo 指令">
-      Hexo 指令 <i class="fa fa-chevron-right"></i>
+    <a href="/2025/09/03/2-4/" rel="next" title="参数法">
+      参数法 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -398,20 +394,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

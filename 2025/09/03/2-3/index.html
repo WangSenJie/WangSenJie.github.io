@@ -281,40 +281,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>[T020301]</strong> 求微分方程通解: $\left(\frac{y^2}{(x-y)^2}-\frac{1}{x}\right)\mathrm dx+\left(\frac{1}{y}-\frac{x^2}{(x-y)^2}\right)\mathrm dx=0$.</p>
-<p><strong>解</strong> 设 $M=\frac{y^2}{(x-y)^2}-\frac{1}{x}, \ N=\frac{1}{y}-\frac{x^2}{(x-y)^2}$, 注意到<br>
-$$<br>
-\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}=\frac{2xy}{(x-y)^3},<br>
-$$<br>
-于是原方程为全微分方程, 又注意到<br>
-$$<br>
-\begin{aligned}<br>
-\left(\frac1y\mathrm dy-\frac1x\mathrm dx\right)+\frac{y^2\mathrm dx-x^2\mathrm dy}{(x-y)^2}&amp;=0\\<br>
-\mathrm d\left(\ln\left|\frac{y}{x}\right|\right)-\mathrm d\left(\frac{xy}{x-y}\right)&amp;=0\\<br>
-\mathrm d\left(\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}\right)&amp;=0<br>
-\end{aligned}<br>
-$$<br>
-从而原方程的通解为 $\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}=c$, 其中 $c$ 为任意常数.</p>
+        <p><strong>[T020301]</strong> 求微分方程通解: <script type="math/tex">\left(\frac{y^2}{(x-y)^2}-\frac{1}{x}\right)\mathrm dx+\left(\frac{1}{y}-\frac{x^2}{(x-y)^2}\right)\mathrm dx=0</script>.</p>
+<p><strong>解</strong> 设 <script type="math/tex">M=\frac{y^2}{(x-y)^2}-\frac{1}{x}, \ N=\frac{1}{y}-\frac{x^2}{(x-y)^2}</script>, 注意到</p>
+<script type="math/tex; mode=display">\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}=\frac{2xy}{(x-y)^3},</script>
+<p>于是原方程为全微分方程, 又注意到</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\left(\frac1y\mathrm dy-\frac1x\mathrm dx\right)+\frac{y^2\mathrm dx-x^2\mathrm dy}{(x-y)^2}&=0\\\\
+\mathrm d\left(\ln\left|\frac{y}{x}\right|\right)-\mathrm d\left(\frac{xy}{x-y}\right)&=0\\\\
+\mathrm d\left(\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}\right)&=0
+\end{aligned}</script>
+<p>从而原方程的通解为 <script type="math/tex">\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}=c</script>, 其中 <script type="math/tex">c</script> 为任意常数.</p>
 <hr>
 <p><strong>[T020302]</strong> 求 Bernoulli 方程的积分因子.</p>
-<p><strong>解</strong> 因为 Bernoulli 方程可化为一阶线性微分方程, 因此可先求解一阶线性微分方程的积分因子. 设有一阶线性微分方程 $\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)$, 其中 $P(x),Q(x)$ 连续. 将方程变形为 $\left(P(x)y+Q(x)\right)\mathrm dx-\mathrm dy=0$, 设 $M=P(x)y+Q(x),  N=-1$, 则 $\frac{\partial M}{\partial y}=P(x), \ \frac{\partial N}{\partial x}=0$, 于是<br>
-$$<br>
-\frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{N}=-P(x),<br>
-$$<br>
-故线性方程有一个只依赖于 $x$ 的积分因子 $\mu(x)=e^{-\int P(x)\mathrm dx}$. 将此积分因子乘到原方程的两边可得全微分方程<br>
-$$<br>
-e^{-\int P(x)\mathrm dx}\left(P(x)y+Q(x)\right)\mathrm dx-e^{-\int P(x)\mathrm dx}\mathrm dy=0,<br>
-$$<br>
-不难求得其通解为 $y=ce^{\int P(x)\mathrm dx}+e^{\int P(x)\mathrm dx}\displaystyle\int Q(x)e^{-\int P(x)\mathrm dx}\mathrm dx$.</p>
-<p>现设有 Bernoulli 方程 $\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)y^n$, 其中 $n\neq 0,1$ 且 $p(x),q(x)$ 连续. 方程两边同除 $y^n \ (y\neq0)$ 有<br>
-$$<br>
-y^{-n}\frac{\mathrm dy}{\mathrm dx}=y^{1-n}p(x)+q(x)\Longrightarrow \frac{\mathrm dy^{1-n}}{\mathrm dx}=(1-n)p(x)y^{1-n}+(1-n)q(x),<br>
-$$<br>
-这是以 $y^{1-n}$ 为未知函数的一阶线性微分方程, 由上面的讨论可知其积分因子为 $e^{-(1-n)\int  p(x)\mathrm dx}$, 从而原方程的积分因子为 $y^{-n}e^{-(1-n)\int  p(x)\mathrm dx}$, 且原方程的通解为<br>
-$$<br>
-y^{1-n}=ce^{(1-n)\int p(x)\mathrm dx}+(1-n)e^{(1-n)\int p(x)\mathrm dx}\displaystyle\int q(x)e^{-(1-n)\int p(x)\mathrm dx}\mathrm dx.<br>
-$$<br>
-此外, 若 $n&gt;0$, 则 $y=0$ 也是方程的解.</p>
+<p><strong>解</strong> 因为 Bernoulli 方程可化为一阶线性微分方程, 因此可先求解一阶线性微分方程的积分因子. 设有一阶线性微分方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=P(x)y+Q(x)</script>, 其中 <script type="math/tex">P(x),Q(x)</script> 连续. 将方程变形为 <script type="math/tex">\left(P(x)y+Q(x)\right)\mathrm dx-\mathrm dy=0</script>, 设 <script type="math/tex">M=P(x)y+Q(x),  N=-1</script>, 则 <script type="math/tex">\frac{\partial M}{\partial y}=P(x), \ \frac{\partial N}{\partial x}=0</script>, 于是</p>
+<script type="math/tex; mode=display">\frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{N}=-P(x),</script>
+<p>故线性方程有一个只依赖于 <script type="math/tex">x</script> 的积分因子 <script type="math/tex">\mu(x)=e^{-\int P(x)\mathrm dx}</script>. 将此积分因子乘到原方程的两边可得全微分方程</p>
+<script type="math/tex; mode=display">e^{-\int P(x)\mathrm dx}\left(P(x)y+Q(x)\right)\mathrm dx-e^{-\int P(x)\mathrm dx}\mathrm dy=0,</script>
+<p>不难求得其通解为 <script type="math/tex">y=ce^{\int P(x)\mathrm dx}+e^{\int P(x)\mathrm dx}\displaystyle\int Q(x)e^{-\int P(x)\mathrm dx}\mathrm dx</script>.</p>
+<p>现设有 Bernoulli 方程 <script type="math/tex">\frac{\mathrm dy}{\mathrm dx}=p(x)y+q(x)y^n</script>, 其中 <script type="math/tex">n\neq 0,1</script> 且 <script type="math/tex">p(x),q(x)</script> 连续. 方程两边同除 <script type="math/tex">y^n \ (y\neq0)</script> 有</p>
+<script type="math/tex; mode=display">y^{-n}\frac{\mathrm dy}{\mathrm dx}=y^{1-n}p(x)+q(x)\Longrightarrow \frac{\mathrm dy^{1-n}}{\mathrm dx}=(1-n)p(x)y^{1-n}+(1-n)q(x),</script>
+<p>这是以 <script type="math/tex">y^{1-n}</script> 为未知函数的一阶线性微分方程, 由上面的讨论可知其积分因子为 <script type="math/tex">e^{-(1-n)\int  p(x)\mathrm dx}</script>, 从而原方程的积分因子为 <script type="math/tex">y^{-n}e^{-(1-n)\int  p(x)\mathrm dx}</script>, 且原方程的通解为</p>
+<script type="math/tex; mode=display">y^{1-n}=ce^{(1-n)\int p(x)\mathrm dx}+(1-n)e^{(1-n)\int p(x)\mathrm dx}\displaystyle\int q(x)e^{-(1-n)\int p(x)\mathrm dx}\mathrm dx.</script>
+<p>此外, 若 <script type="math/tex">n>0</script>, 则 <script type="math/tex">y=0</script> 也是方程的解.</p>
 
     </div>
 
@@ -422,20 +410,20 @@ $$<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
