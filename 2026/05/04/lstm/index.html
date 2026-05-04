@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=9ef93338">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=0038dc97">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="LSTM、GRU的基本原理和应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="门控循环神经网络">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/05/04/lstm/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="LSTM、GRU的基本原理和应用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/05/04/lstm/LSTM%E7%BB%93%E6%9E%84.png">
+<meta property="article:published_time" content="2026-05-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-04T15:37:27.614Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="LSTM">
+<meta property="article:tag" content="GRU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wangsenjie.github.io/2026/05/04/lstm/LSTM%E7%BB%93%E6%9E%84.png">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/05/04/lstm/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="LSTM、GRU的基本原理和应用">
+
+<meta name="twitter:title" content="门控循环神经网络">
+
+  <title>门控循环神经网络 | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/05/04/lstm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          门控循环神经网络
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-04 00:00:00 / 修改时间：23:37:27" itemprop="dateCreated datePublished" datetime="2026-05-04T00:00:00+08:00">2026-05-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习与深度学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">循环神经网络</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">LSTM、GRU的基本原理和应用</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>LSTM</h1>
+<blockquote>
+<p>S-RNN 对长距离依存关系处理能力有限, 问题主要有三点:</p>
+<ul>
+<li>
+<p>梯度消失</p>
+</li>
+<li>
+<p>隐藏状态容量有限</p>
+<p>S-RNN 用一个固定长度的向量 <script type="math/tex">h_t</script> 来表示历史信息. 随着序列变长, 早期信息容易被丢失.</p>
+</li>
+<li>
+<p>缺少显式的记忆控制机制</p>
+</li>
+</ul>
+</blockquote>
+<p>LSTM 由 Hochreiter 和 Schmidhuber 在 1997 年提出, 是一种改进的循环神经网络架构, 旨在解决 S-RNN 的上述问题.</p>
+<p>LSTM 引入了两个机制: 记忆元 (memory cell) 和门控 (gated control). 其中门控包含遗忘门 (forget gate), 输入门 (input gate) 和输出门 (output gate). 这些机制使得 LSTM 能够更好地捕捉长距离依赖关系, 并且具有更强的记忆能力.</p>
+<blockquote>
+<p><strong>定义 (单元)</strong> 在 RNN 的每一个位置上, 以当前位置的输入 <script type="math/tex">\boldsymbol x_t</script> 和前一个位置的状态 <script type="math/tex">\boldsymbol h_{t-1}</script> 作为输入, 输出当前状态 <script type="math/tex">\boldsymbol h_t</script> 的函数称为单元 (unit).</p>
+</blockquote>
+<h2 id="LSTM-的定义">LSTM 的定义</h2>
+<p>设有一组序列数据 <script type="math/tex">\{\boldsymbol{x}_1, \boldsymbol{x}_2, \cdots, \boldsymbol{x}_T\}</script>, 其中 <script type="math/tex">\boldsymbol{x}_t</script> 是在时间步 <script type="math/tex">t</script> 的输入. 在 RNN 的每一个位置上都有状态和记忆元, 以及输入门、遗忘门和输出门, 构成一个单元.</p>
+<p>第 <script type="math/tex">t</script> 位置上的单元是以当前位置的输入 <script type="math/tex">\boldsymbol x_t</script> 、之前位置的记忆元 <script type="math/tex">\boldsymbol c_{t-1}</script> 和之前位置的状态 <script type="math/tex">\boldsymbol h_{t-1}</script> 作为输入, 输出当前状态 <script type="math/tex">\boldsymbol h_t</script> 和记忆元 <script type="math/tex">\boldsymbol c_t</script>的函数.</p>
+<p><img src="/2026/05/04/lstm/LSTM%E7%BB%93%E6%9E%84.png" alt="LSTM结构"></p>
+<p>计算过程如下:</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\boldsymbol{i}_t &= \sigma(\boldsymbol{U}_i \cdot \boldsymbol{h}_{t-1} + \boldsymbol{W}_i\boldsymbol{x}_t + \boldsymbol{b}_i) \\
+\boldsymbol{f}_t &= \sigma(\boldsymbol{U}_f \cdot \boldsymbol{h}_{t-1} + \boldsymbol{W}_f\boldsymbol{x}_t + \boldsymbol{b}_f) \\
+\boldsymbol{o}_t &= \sigma(\boldsymbol{U}_o \cdot \boldsymbol{h}_{t-1} + \boldsymbol{W}_o\boldsymbol{x}_t + \boldsymbol{b}_o) \\
+\tilde{\boldsymbol{c}}_t &= \tanh(\boldsymbol{U}_c \cdot \boldsymbol{h}_{t-1} + \boldsymbol{W}_c\boldsymbol{x}_t + \boldsymbol{b}_c) \\
+\boldsymbol{c}_t &= \boldsymbol{f}_t \odot \boldsymbol{c}_{t-1} + \boldsymbol{i}_t \odot \tilde{\boldsymbol{c}}_t \\
+\boldsymbol{h}_t &= \boldsymbol{o}_t \odot \tanh(\boldsymbol{c}_t)
+\end{aligned}</script>
+<p>其中, <script type="math/tex">i_t</script> 是输入门, <script type="math/tex">f_t</script> 是遗忘门, <script type="math/tex">o_t</script> 是输出门, <script type="math/tex">\tilde{c}_t</script> 是中间结果, <script type="math/tex">c_t</script> 是当前记忆元, <script type="math/tex">h_t</script> 是当前状态. <script type="math/tex">\sigma</script> 是 sigmoid 函数, <script type="math/tex">\odot</script> 表示Harmard积.</p>
+<p>一般取 <script type="math/tex">\boldsymbol c_0=\boldsymbol 0, \boldsymbol h_0=\boldsymbol 0</script>.</p>
+<blockquote>
+<p><strong>推论:</strong> 当前记忆元 <script type="math/tex">\boldsymbol c_t</script> 是之前所有位置的中间结果 <script type="math/tex">\tilde{\boldsymbol c}_i</script> 的线性组合.</p>
+</blockquote>
+<p><em>Proof</em> : 由 LSTM 的定义可知</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\boldsymbol{c}_t&=\boldsymbol i_t\odot\tilde{\boldsymbol c}_t+\boldsymbol f_t\odot\boldsymbol c_{t-1}\\
+&=\boldsymbol i_t\odot\tilde{\boldsymbol c}_t+\boldsymbol f_t\odot \left(\boldsymbol i_{t-1}\odot\tilde{\boldsymbol c}_{t-1}+\boldsymbol f_{t-1}\odot\boldsymbol c_{t-2}\right)\\
+&=\boldsymbol i_t\odot\tilde{\boldsymbol c}_t+\left(\boldsymbol f_t\odot \boldsymbol i_{t-1}\right)\odot\tilde{\boldsymbol c}_{t-1}+\left(\boldsymbol f_t\odot\boldsymbol f_{t-1}\right)\odot\boldsymbol c_{t-2}\\
+&=\cdots\\
+&=\boldsymbol i_t\odot\tilde{\boldsymbol c}_t+\left(\boldsymbol f_t\odot \boldsymbol i_{t-1}\right)\odot\tilde{\boldsymbol c}_{t-1}+\left(\boldsymbol f_t\odot\boldsymbol f_{t-1}\odot \boldsymbol i_{t-2}\right)\odot\tilde{\boldsymbol c}_{t-2}+\cdots+\left(\boldsymbol f_t\odot\cdots\odot\boldsymbol f_3\odot\boldsymbol i_{2}\right)\odot\tilde{\boldsymbol c}_2+\left(\boldsymbol f_t\odot\cdots\odot\boldsymbol f_3\odot\boldsymbol f_{2}\right)\odot{\boldsymbol c}_1\\
+\end{aligned}</script>
+<p>又 <script type="math/tex">\boldsymbol c_1=\boldsymbol i_1\odot\tilde{\boldsymbol c}_1</script>, 故</p>
+<script type="math/tex; mode=display">\boldsymbol c_t=\boldsymbol i_t\odot\tilde{\boldsymbol c}_t+\sum_{i=1}^{t-1}\left(\prod_{j=i+1}^t\boldsymbol f_j\odot\boldsymbol i_i\right)\odot \tilde{\boldsymbol c}_i.</script>
+<p>记 <script type="math/tex">\boldsymbol w_t^{(t)}=\boldsymbol i_t,~\boldsymbol{w}_i^{(t)}=\prod_{j=i+1}^t\boldsymbol f_j\odot\boldsymbol i_i~(1\le i\le t-1)</script>, 则</p>
+<script type="math/tex; mode=display">\boldsymbol c_t=\sum_{i=1}^{t}\boldsymbol w_i\odot \tilde{\boldsymbol c}_i.\tag*{$\square$}</script>
+<h2 id="LSTM-的优势">LSTM 的优势</h2>
+<p>与 S-RNN 相比:</p>
+<p><strong>(1) LSTM 缓解了梯度消失和梯度爆炸</strong></p>
+<ul>
+<li>
+<p>先看 S-RNN</p>
+<p>S-RNN 可写成</p>
+<script type="math/tex; mode=display">\boldsymbol h_t=\tanh\left(\boldsymbol r_t\right),\quad \boldsymbol{r}_t=\boldsymbol U\cdot\boldsymbol h_{t-1}+\boldsymbol W\cdot\boldsymbol x_t+\boldsymbol b</script>
+<p>于是,</p>
+<script type="math/tex; mode=display">\frac{\partial\boldsymbol h_t}{\partial\boldsymbol h_{t-1}}=\text{diag}\left(\boldsymbol 1-\tanh^2\boldsymbol{r}_t\right)\boldsymbol U:=\boldsymbol{D}_t\boldsymbol U.</script>
+<p>因此,</p>
+<script type="math/tex; mode=display">\frac{\partial L_T}{\partial \boldsymbol h_k}=\frac{\partial L_T}{\partial \boldsymbol h_T}\frac{\partial \boldsymbol{h}_T}{\partial \boldsymbol h_k}=\frac{\partial L_T}{\partial \boldsymbol h_T}\prod_{t=k+1}^T\frac{\partial \boldsymbol{h}_t}{\partial \boldsymbol h_{t-1}}=\frac{\partial L_T}{\partial \boldsymbol h_T}\prod_{t=k+1}^T\boldsymbol D_t\boldsymbol U.</script>
+<p>注意到</p>
+<script type="math/tex; mode=display">\left\Vert\frac{\boldsymbol{h}_T}{\boldsymbol{h}_k}\right\Vert\le\prod_{t=k+1}^T\left\Vert\boldsymbol D_t\boldsymbol U\right\Vert\le\prod_{t=k+1}^T\left\Vert\boldsymbol D_t\right\Vert\left\Vert\boldsymbol U\right\Vert</script>
+<p>而 <script type="math/tex">\Vert\boldsymbol D_t\Vert\le 1</script>. 若长期来看 <script type="math/tex">\left\Vert\boldsymbol D_t\boldsymbol U\right\Vert<1</script>, 则指数衰减</p>
+<script type="math/tex; mode=display">\left\Vert\frac{\partial L_T}{\partial \boldsymbol h_k}\right\Vert\to\boldsymbol{0}</script>
+<p>这就导致了梯度消失.</p>
+<p>若长期来看 <script type="math/tex">\left\Vert\boldsymbol D_t\boldsymbol U\right\Vert>1</script>, 则梯度可能指数增长, 这就导致了梯度爆炸.</p>
+</li>
+<li>
+<p>LSTM 的记忆元 <script type="math/tex">\boldsymbol{c}_t=\boldsymbol i_t\odot\tilde{\boldsymbol c}_t+\boldsymbol f_t\odot\boldsymbol c_{t-1}</script>, 于是</p>
+<script type="math/tex; mode=display">\frac{\partial\boldsymbol c_t}{\partial\boldsymbol c_{t-1}}=\text{diag}(\boldsymbol f_t)</script>
+<p>而遗忘门 <script type="math/tex">\boldsymbol f_t=\sigma(\boldsymbol{U}_f \cdot \boldsymbol{h}_{t-1} + \boldsymbol{W})\in (\bold 0, \bold 1)</script>, 如果模型需要长期保留某些信息, 就可以学习到 <script type="math/tex">\boldsymbol f_t\approx \boldsymbol 1</script>, 于是 <script type="math/tex">\frac{\partial\boldsymbol c_t}{\partial\boldsymbol c_{t-1}}\approx\boldsymbol I</script>. 因此梯度沿记忆元 <script type="math/tex">\boldsymbol c_t</script> 这条路径传播时, 不会被压缩, 从而缓解梯度消失.</p>
+<p>另一方面,</p>
+<script type="math/tex; mode=display">\Vert\text{diag}(\boldsymbol{f}_t)\Vert_2=\max_j\vert f_t^{(j)}\vert<1</script>
+<p>因此沿着条路径的梯度不会被放大.</p>
+</li>
+<li>
+<p>LSTM 不能完全消除梯度消失和梯度爆炸问题, 它只是缓解这些现象.</p>
+<ul>
+<li>一方面, 遗忘门 <script type="math/tex">f_t^{(j)}</script> 不一定总是接近 <script type="math/tex">1</script>, 如果某段时间内 <script type="math/tex">f_t^{(j)}=0.9</script>, 虽然接近 <script type="math/tex">1</script>, 但经过 <script type="math/tex">100</script> 步以后, <script type="math/tex">0.9^{100}\approx2.66\times10^{-5}</script>, 梯度仍会明显衰减.</li>
+<li>另一方面, 完整的LSTM还有很多乘法路径, 如果其他路径的权重矩阵范数很大, 仍然会导致梯度爆炸.</li>
+</ul>
+</li>
+</ul>
+<p><strong>(2) LSTM 能选择性记忆和选择性遗忘</strong></p>
+<h2 id="LSTM-的缺陷">LSTM 的缺陷</h2>
+<p><strong>(1) 参数量大</strong></p>
+<p><strong>(2) 计算复杂度高</strong></p>
+<p><strong>(3) 难以并行计算</strong></p>
+<h1>GRU</h1>
+<p>针对 LSTM 参数量大计算效率低的问题, 门控循环单元 GRU 对其进行了简化. GRU 只有两个门: 更新门 (update gate) 和重置门 (reset gate), 不使用记忆元.</p>
+<h2 id="GRU的定义">GRU的定义</h2>
+<p>GRU的单元由状态、重置门和更新门构成. 第 <script type="math/tex">t</script> 个位置上的单元是以当前位置的输入 <script type="math/tex">\boldsymbol x_t</script>、之前位置的状态 <script type="math/tex">\boldsymbol h_{t-1}</script>为输入, 以当前位置的状态为输出的函数.</p>
+<p>计算过程如下:</p>
+<script type="math/tex; mode=display">\boldsymbol{r}_t=\sigma\left(\boldsymbol{U}_r\boldsymbol{h}_{t-1}+\boldsymbol{W}_r\boldsymbol{x}_t+\boldsymbol{b}_r\right)\\
+\boldsymbol{z}_t=\sigma\left(\boldsymbol{U}_z\boldsymbol{h}_{t-1}+\boldsymbol{W}_z\boldsymbol{x}_t+\boldsymbol{b}_z\right)\\
+\tilde{\boldsymbol{h}}_t=\tanh\left(\boldsymbol{U}_h\boldsymbol{r}_t\odot\boldsymbol{h}_{t-1}+\boldsymbol{W}_h\boldsymbol{x}_t+\boldsymbol{b}_h\right)\\
+\boldsymbol{h}_t=(\boldsymbol{1}-\boldsymbol{z}_t)\odot\tilde{\boldsymbol{h}}_t+\boldsymbol{z}_t\odot\boldsymbol{h}_{t-1}</script>
+<p>这里, <script type="math/tex">\boldsymbol r_t</script> 是重置门, <script type="math/tex">\boldsymbol z_t</script> 是更新门, <script type="math/tex">\tilde{\boldsymbol{h}}_t</script> 是中间结果.</p>
+<blockquote>
+<p>参考: 机器学习方法, 李航</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/05/04/lstm/" data-share-title="门控循环神经网络">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/LSTM/" rel="tag"># LSTM</a>
+              <a href="/tags/GRU/" rel="tag"># GRU</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/04/30/logistic-regression/" rel="prev" title="Logistic Regression">
+      <i class="fa fa-chevron-left"></i> Logistic Regression
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">LSTM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">LSTM 的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">1.2.</span> <span class="nav-text">LSTM 的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-%E7%9A%84%E7%BC%BA%E9%99%B7"><span class="nav-number">1.3.</span> <span class="nav-text">LSTM 的缺陷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">GRU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GRU%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">GRU的定义</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=47cb482a"></script>
+  <script src="/lib/velocity/velocity.min.js?v=2f1afadc"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=ed5e534c"></script>
+
+<script src="/js/utils.js?v=730cca7f"></script>
+
+<script src="/js/motion.js?v=72df86f6"></script>
+
+
+<script src="/js/schemes/muse.js?v=1eb9b881"></script>
+
+
+<script src="/js/next-boot.js?v=a1b06364"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js?v=35ccf100"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+
+</body>
+</html>
