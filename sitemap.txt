@@ -1,3 +1,5 @@
+https://wangsenjie.github.io/ai-data/chunks.json
+https://wangsenjie.github.io/ai-data/posts.json
 https://wangsenjie.github.io/2026/05/04/lstm/
 https://wangsenjie.github.io/2026/04/30/mlp/
 https://wangsenjie.github.io/2026/04/30/post-20260430-13327d/

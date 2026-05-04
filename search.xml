@@ -3538,7 +3538,7 @@ w_i^{(m+1)}=\exp\left(-y_iF_{m}(x_i)\right)=\exp\left(-y_i(F_{m-1}(x_i)+\alpha_m
 <li>
 <p>LSTM 的记忆元 <script type="math/tex">\boldsymbol{c}_t=\boldsymbol i_t\odot\tilde{\boldsymbol c}_t+\boldsymbol f_t\odot\boldsymbol c_{t-1}</script>, 于是</p>
 <script type="math/tex; mode=display">\frac{\partial\boldsymbol c_t}{\partial\boldsymbol c_{t-1}}=\text{diag}(\boldsymbol f_t)</script>
-<p>而遗忘门 <script type="math/tex">\boldsymbol f_t=\sigma(\boldsymbol{U}_f \cdot \boldsymbol{h}_{t-1} + \boldsymbol{W})\in (\bold 0, \bold 1)</script>, 如果模型需要长期保留某些信息, 就可以学习到 <script type="math/tex">\boldsymbol f_t\approx \boldsymbol 1</script>, 于是 <script type="math/tex">\frac{\partial\boldsymbol c_t}{\partial\boldsymbol c_{t-1}}\approx\boldsymbol I</script>. 因此梯度沿记忆元 <script type="math/tex">\boldsymbol c_t</script> 这条路径传播时, 不会被压缩, 从而缓解梯度消失.</p>
+<p>而遗忘门 <script type="math/tex">\boldsymbol f_t=\sigma(\boldsymbol{U}_f \cdot \boldsymbol{h}_{t-1} + \boldsymbol{W})\in (\boldsymbol 0, \boldsymbol 1)</script>, 如果模型需要长期保留某些信息, 就可以学习到 <script type="math/tex">\boldsymbol f_t\approx \boldsymbol 1</script>, 于是 <script type="math/tex">\frac{\partial\boldsymbol c_t}{\partial\boldsymbol c_{t-1}}\approx\boldsymbol I</script>. 因此梯度沿记忆元 <script type="math/tex">\boldsymbol c_t</script> 这条路径传播时, 不会被压缩, 从而缓解梯度消失.</p>
 <p>另一方面,</p>
 <script type="math/tex; mode=display">\Vert\text{diag}(\boldsymbol{f}_t)\Vert_2=\max_j\vert f_t^{(j)}\vert<1</script>
 <p>因此沿着条路径的梯度不会被放大.</p>
@@ -3561,10 +3561,12 @@ w_i^{(m+1)}=\exp\left(-y_iF_{m}(x_i)\right)=\exp\left(-y_i(F_{m-1}(x_i)+\alpha_m
 <h2 id="GRU的定义">GRU的定义</h2>
 <p>GRU的单元由状态、重置门和更新门构成. 第 <script type="math/tex">t</script> 个位置上的单元是以当前位置的输入 <script type="math/tex">\boldsymbol x_t</script>、之前位置的状态 <script type="math/tex">\boldsymbol h_{t-1}</script>为输入, 以当前位置的状态为输出的函数.</p>
 <p>计算过程如下:</p>
-<script type="math/tex; mode=display">\boldsymbol{r}_t=\sigma\left(\boldsymbol{U}_r\boldsymbol{h}_{t-1}+\boldsymbol{W}_r\boldsymbol{x}_t+\boldsymbol{b}_r\right)\\
-\boldsymbol{z}_t=\sigma\left(\boldsymbol{U}_z\boldsymbol{h}_{t-1}+\boldsymbol{W}_z\boldsymbol{x}_t+\boldsymbol{b}_z\right)\\
-\tilde{\boldsymbol{h}}_t=\tanh\left(\boldsymbol{U}_h\boldsymbol{r}_t\odot\boldsymbol{h}_{t-1}+\boldsymbol{W}_h\boldsymbol{x}_t+\boldsymbol{b}_h\right)\\
-\boldsymbol{h}_t=(\boldsymbol{1}-\boldsymbol{z}_t)\odot\tilde{\boldsymbol{h}}_t+\boldsymbol{z}_t\odot\boldsymbol{h}_{t-1}</script>
+<script type="math/tex; mode=display">\begin{align*}
+\boldsymbol{r}_t&=\sigma\left(\boldsymbol{U}_r\boldsymbol{h}_{t-1}+\boldsymbol{W}_r\boldsymbol{x}_t+\boldsymbol{b}_r\right)\\
+\boldsymbol{z}_t&=\sigma\left(\boldsymbol{U}_z\boldsymbol{h}_{t-1}+\boldsymbol{W}_z\boldsymbol{x}_t+\boldsymbol{b}_z\right)\\
+\tilde{\boldsymbol{h}}_t&=\tanh\left(\boldsymbol{U}_h\boldsymbol{r}_t\odot\boldsymbol{h}_{t-1}+\boldsymbol{W}_h\boldsymbol{x}_t+\boldsymbol{b}_h\right)\\
+\boldsymbol{h}_t&=(\boldsymbol{1}-\boldsymbol{z}_t)\odot\tilde{\boldsymbol{h}}_t+\boldsymbol{z}_t\odot\boldsymbol{h}_{t-1}
+\end{align*}</script>
 <p>这里, <script type="math/tex">\boldsymbol r_t</script> 是重置门, <script type="math/tex">\boldsymbol z_t</script> 是更新门, <script type="math/tex">\tilde{\boldsymbol{h}}_t</script> 是中间结果.</p>
 <blockquote>
 <p>参考: 机器学习方法, 李航</p>

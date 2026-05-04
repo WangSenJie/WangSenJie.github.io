@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=9ef93338">
+<link rel="stylesheet" href="/css/main.css?v=0735659f">
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=0038dc97">
@@ -1012,6 +1012,14 @@ document.addEventListener('click', async event => {
   }
 });
 </script>
+<div id="blog-ai-agent-root"></div>
+<script>
+window.__BLOG_AI_CONFIG__ = window.__BLOG_AI_CONFIG__ || {
+  apiBaseUrl: 'https://blog-ai-api.vercel.app',
+  dataBasePath: '/ai-data'
+};
+</script>
+<script src="/js/blog-ai-agent.js?v=9a78b70f"></script>
 
 </body>
 </html>
