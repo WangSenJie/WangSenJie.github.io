@@ -13,7 +13,8 @@
     posts: null,
     chunks: null,
     loadingCorpus: null,
-    elements: null
+    elements: null,
+    mathJaxReady: null
   };
 
   function escapeHtml(value) {
@@ -39,6 +40,70 @@
 
     if (condensed.length <= maxLength) return condensed;
     return `${condensed.slice(0, maxLength).trim()}...`;
+  }
+
+  function ensureMathJaxLoaded() {
+    if (state.mathJaxReady) {
+      return state.mathJaxReady;
+    }
+
+    if (window.MathJax && typeof window.MathJax.typesetPromise === 'function') {
+      state.mathJaxReady = Promise.resolve(window.MathJax);
+      return state.mathJaxReady;
+    }
+
+    state.mathJaxReady = new Promise((resolve, reject) => {
+      if (typeof window.MathJax === 'undefined') {
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            tags: 'ams'
+          }
+        };
+      }
+
+      const existingScript = document.querySelector('script[data-blog-ai-mathjax]');
+      if (existingScript) {
+        existingScript.addEventListener('load', () => resolve(window.MathJax), { once: true });
+        existingScript.addEventListener('error', reject, { once: true });
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
+      script.defer = true;
+      script.setAttribute('data-blog-ai-mathjax', 'true');
+      script.addEventListener('load', () => resolve(window.MathJax), { once: true });
+      script.addEventListener('error', reject, { once: true });
+      document.head.appendChild(script);
+    });
+
+    return state.mathJaxReady;
+  }
+
+  async function typesetMath(target) {
+    const text = target && target.textContent ? target.textContent : '';
+    if (!text || !/[\\$]/.test(text)) {
+      return;
+    }
+
+    try {
+      const mathJax = await ensureMathJaxLoaded();
+      if (!mathJax || typeof mathJax.typesetPromise !== 'function') {
+        return;
+      }
+
+      if (mathJax.startup && mathJax.startup.document) {
+        mathJax.startup.document.state(0);
+      }
+      if (typeof mathJax.texReset === 'function') {
+        mathJax.texReset();
+      }
+      await mathJax.typesetPromise([target]);
+    } catch (error) {
+      // Keep raw LaTeX visible if MathJax fails.
+    }
   }
 
   function getCurrentContext() {
@@ -312,7 +377,10 @@
 
   function appendMessage(html) {
     state.elements.messages.insertAdjacentHTML('beforeend', html);
+    const message = state.elements.messages.lastElementChild;
     state.elements.messages.scrollTop = state.elements.messages.scrollHeight;
+    typesetMath(message);
+    return message;
   }
 
   function setBusy(isBusy) {
