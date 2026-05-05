@@ -397,7 +397,7 @@
         <div class="blog-ai-agent__messages">
           <div class="blog-ai-agent__message blog-ai-agent__message--assistant">
             <div class="blog-ai-agent__message-label">向导</div>
-            <div class="blog-ai-agent__message-body">嘿嘿，我是你的站内向导。你可以直接问我“这里有没有讲双塔模型？”或者“总结这篇文章”，我会帮你翻翻看的。</div>
+            <div class="blog-ai-agent__message-body">嘿嘿，我是你的站内向导。有什么问题？只要站内有的我都能回答哦。</div>
           </div>
         </div>
         <form class="blog-ai-agent__form">
