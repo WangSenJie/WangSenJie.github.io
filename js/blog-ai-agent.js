@@ -495,6 +495,15 @@
       ask(state.elements.input.value);
     });
 
+    state.elements.input.addEventListener('keydown', event => {
+      if (event.key !== 'Enter') return;
+      if (event.shiftKey) return;
+      if (event.isComposing || event.keyCode === 229) return;
+
+      event.preventDefault();
+      ask(state.elements.input.value);
+    });
+
     state.elements.suggestionButtons.forEach(button => {
       button.addEventListener('click', () => {
         const question = button.getAttribute('data-question') || '';
