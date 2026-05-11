@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=da763839">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=0038dc97">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Vue 是什么？为什么要用 Vue？核心概念有哪些？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VUE-BASIC">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/05/11/vue/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="Vue 是什么？为什么要用 Vue？核心概念有哪些？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-11T07:22:07.911Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/05/11/vue/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="Vue 是什么？为什么要用 Vue？核心概念有哪些？">
+
+<meta name="twitter:title" content="VUE-BASIC">
+
+  <title>VUE-BASIC | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/05/11/vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VUE-BASIC
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-11 00:00:00 / 修改时间：15:22:07" itemprop="dateCreated datePublished" datetime="2026-05-11T00:00:00+08:00">2026-05-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Vue 是什么？为什么要用 Vue？核心概念有哪些？</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1><code>Vue</code> 简介</h1>
+<h2 id="Vue-是什么"><code>Vue</code> 是什么</h2>
+<p><code>Vue</code> 是一个用来构建用户界面的 <code>JavaScript</code> 框架.</p>
+<p>如果前面学的 <code>HTML</code>、<code>CSS</code> 和 <code>JavaScript</code> 是前端开发的基础三件套, 那么 <code>Vue</code> 可以理解成: 它是在这三件套之上, 提供了一套更高效的组织方式.</p>
+<p>你可以先粗暴地把它理解成:</p>
+<ul>
+<li><code>HTML</code> 用来写页面结构</li>
+<li><code>CSS</code> 用来写页面样式</li>
+<li><code>JavaScript</code> 用来写交互逻辑</li>
+<li><code>Vue</code> 用来把这些内容更清楚地组织起来</li>
+</ul>
+<p>所以 <code>Vue</code> 不是替代前端三件套, 而是建立在它们之上的一套开发方式.</p>
+<h2 id="为什么要用-Vue">为什么要用 <code>Vue</code></h2>
+<p>当页面非常简单时, 只用原生 <code>HTML</code>、<code>CSS</code> 和 <code>JavaScript</code> 就够了.</p>
+<p>但当页面越来越复杂时, 代码往往会出现这些问题:</p>
+<ul>
+<li>页面结构越来越大</li>
+<li>交互逻辑越来越多</li>
+<li>手动操作 <code>DOM</code> 很繁琐</li>
+<li>同样的页面块容易重复写</li>
+</ul>
+<p>这时候 <code>Vue</code> 的价值就出来了.</p>
+<p>它主要帮你解决这些问题:</p>
+<ul>
+<li>用组件拆分页面</li>
+<li>用数据驱动页面更新</li>
+<li>更方便地处理事件和表单</li>
+<li>让代码更容易维护</li>
+</ul>
+<p>你可以把它理解成:<br>
+页面复杂之后, <code>Vue</code> 能让前端代码没那么乱.</p>
+<!-- ## `Vue` 和原生前端三件套的关系
+
+`Vue` 和原生前端三件套不是对立关系, 而是建立关系.
+
+你仍然需要:
+
+- 用 `HTML` 理解页面结构
+- 用 `CSS` 控制页面样式
+- 用 `JavaScript` 理解变量、函数、事件和逻辑
+
+而 `Vue` 做的事是:
+
+- 用模板更方便地写页面
+- 用响应式数据驱动界面变化
+- 用组件组织页面
+
+可以这样理解:
+
+- 原生前端三件套 = 基础能力
+- `Vue` = 更适合做复杂页面的组织方式
+
+所以学 `Vue` 的前提不是把原生 `JavaScript` 学到很深, 而是至少能看懂基础的变量、函数、对象和事件. -->
+<h2 id="什么是组件">什么是组件</h2>
+<p>组件是 <code>Vue</code> 里非常重要的概念.</p>
+<p>你可以把组件理解成: 页面中的一个独立小模块.</p>
+<p>比如一个页面可以拆成:</p>
+<ul>
+<li>顶部导航栏</li>
+<li>侧边栏</li>
+<li>文章卡片</li>
+<li>评论区</li>
+<li>登录框</li>
+</ul>
+<p>这些都可以做成组件.</p>
+<p>组件的好处是:</p>
+<ul>
+<li>每一块功能更独立</li>
+<li>可以重复使用</li>
+<li>页面结构更清楚</li>
+<li>后续修改时影响范围更小</li>
+</ul>
+<p>例如一个按钮组件、一个卡片组件, 可以在多个页面里重复使用, 不需要每次都从头写一遍.</p>
+<p>所以 <code>Vue</code> 的一个核心思路就是:<br>
+把大页面拆成很多小组件.</p>
+<h2 id="什么是数据驱动视图">什么是数据驱动视图</h2>
+<p>这是 <code>Vue</code> 最核心的思想之一.</p>
+<p>所谓“数据驱动视图”, 可以简单理解成:</p>
+<ul>
+<li>数据变了</li>
+<li>页面会自动跟着变</li>
+</ul>
+<p>在原生 <code>JavaScript</code> 里, 你可能需要手动:</p>
+<ul>
+<li>选中元素</li>
+<li>修改 <code>textContent</code></li>
+<li>处理页面更新</li>
+</ul>
+<p>而在 <code>Vue</code> 里, 通常你只需要修改数据, 页面会自动重新渲染.</p>
+<p>例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;button @click=&quot;changeMessage&quot;&gt;点我&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const message = ref(&#x27;Hello Vue&#x27;)</span><br><span class="line"></span><br><span class="line">function changeMessage() &#123;</span><br><span class="line">  message.value = &#x27;你点击了按钮&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这里最重要的不是语法细节, 而是理解这个过程:</p>
+<ul>
+<li><code>message</code> 是数据</li>
+<li>页面显示 <code>message</code></li>
+<li>按钮点击后修改 <code>message</code></li>
+<li>页面自动更新</li>
+</ul>
+<!-- 
+所以你可以把 `Vue` 的核心思路记成一句话:
+
+`数据变, 界面跟着变` -->
+<h2 id="常见模板语法">常见模板语法</h2>
+<p><code>Vue</code> 模板语法就是在页面里把数据和界面连起来的写法.</p>
+<p>最常见的有下面几种.</p>
+<h3 id="插值表达式">插值表达式</h3>
+<p>用 <code>&#123;&#123; &#125;&#125;</code> 把数据直接显示到页面上:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>如果 <code>message = 'Hello Vue'</code>, 页面上就会显示 <code>Hello Vue</code>.</p>
+<h3 id="绑定属性">绑定属性</h3>
+<p>用 <code>v-bind</code> 或简写 <code>:</code> 给标签属性绑定数据:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;img :src=&quot;imageUrl&quot; :alt=&quot;title&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>表示图片地址和说明文字不是写死的, 而是来自数据.</p>
+<h3 id="绑定事件">绑定事件</h3>
+<p>用 <code>v-on</code> 或简写 <code>@</code> 监听事件:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click=&quot;handleClick&quot;&gt;点我&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>表示点击按钮时执行 <code>handleClick</code>.</p>
+<p>如果你只想先看懂大多数简单 <code>Vue</code> 代码, 先掌握这三个语法就够用了:</p>
+<ul>
+<li><code>&#123;&#123; &#125;&#125;</code></li>
+<li><code>:</code></li>
+<li><code>@</code></li>
+</ul>
+<h2 id="常见指令">常见指令</h2>
+<p><code>Vue</code> 提供了一些很常用的指令, 用来控制页面渲染和交互.</p>
+<h3 id="v-if"><code>v-if</code></h3>
+<p>根据条件决定元素是否显示:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;p v-if=&quot;isLogin&quot;&gt;欢迎回来&lt;/p&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>如果 <code>isLogin</code> 为真, 就显示这段内容.</p>
+<h3 id="v-for"><code>v-for</code></h3>
+<p>用来渲染列表:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;li v-for=&quot;item in list&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">    &#123;&#123; item.name &#125;&#125;</span><br><span class="line">  &lt;/li&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>表示把 <code>list</code> 里的每一项渲染出来.</p>
+<h3 id="v-model"><code>v-model</code></h3>
+<p>用来做表单双向绑定:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;input v-model=&quot;username&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>它的作用是:</p>
+<ul>
+<li>输入框内容变了, 数据会变</li>
+<li>数据变了, 输入框内容也会变</li>
+</ul>
+<!-- 对入门来说, 最值得先记住的三个指令就是:
+
+- `v-if`
+- `v-for`
+- `v-model` -->
+<!-- ## 如何用 `Vue` 指挥 `AI`
+
+如果你后续主要是靠 `AI` 帮你写 `Vue`, 那你最需要学会的不是所有语法, 而是怎么把需求拆清楚.
+
+描述一个 `Vue` 需求时, 最好至少说清楚这几件事:
+
+- 页面要拆成哪些组件
+- 每个组件显示什么内容
+- 组件里有哪些数据
+- 用户点击后会发生什么
+- 是否需要请求接口
+
+例如你想让 `AI` 写一个登录框, 可以这样描述:
+
+- 用 `Vue 3` 写一个登录卡片组件
+- 页面包含标题、用户名输入框、密码输入框、登录按钮
+- 使用 `v-model` 绑定输入内容
+- 点击按钮后先校验是否为空
+- 如果不为空, 调用登录接口
+- 样式保持简洁, 卡片居中, 有圆角和阴影
+
+再比如你想做一个文章列表页, 可以这样描述:
+
+- 用 `Vue` 写一个文章列表页面
+- 页面拆成“搜索框组件”和“文章卡片组件”
+- 文章列表通过 `v-for` 渲染
+- 搜索框输入时实时过滤标题
+- 点击文章卡片跳转详情页
+
+你可以把“指挥 `AI` 写 `Vue`”总结成一个固定模板:
+
+- 组件结构是什么
+- 数据有哪些
+- 交互有哪些
+- 接口有哪些
+- 样式想要什么效果
+
+只要这 5 点说清楚, `AI` 写出来的结果通常就会更接近你的预期. -->
+<h2 id="小结">小结</h2>
+<!-- 对入门来说, 学 `Vue` 不需要一开始就陷进复杂概念里.
+
+你先抓住下面这些最关键的点就够了: -->
+<ul>
+<li><code>Vue</code> 是一个构建用户界面的 <code>JavaScript</code> 框架</li>
+<li>它建立在 <code>HTML</code>、<code>CSS</code> 和 <code>JavaScript</code> 之上</li>
+<li>它擅长用组件拆页面</li>
+<li>它的核心思路是“数据变, 界面跟着变”</li>
+<li>最常见的模板语法是 <code>&#123;&#123; &#125;&#125;</code>、<code>:</code> 和 <code>@</code></li>
+<li>最常见的指令是 <code>v-if</code>、<code>v-for</code> 和 <code>v-model</code></li>
+</ul>
+<!-- 
+如果你能先看懂这些内容, 基本就已经能理解简单的 `Vue` 代码, 也能更准确地让 `AI` 帮你生成和修改 `Vue` 页面了. -->
+
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/05/11/vue/" data-share-title="VUE-BASIC">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/09/frontend-basic/" rel="prev" title="FRONTEND-BASIC">
+      <i class="fa fa-chevron-left"></i> FRONTEND-BASIC
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Vue 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">Vue 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-Vue"><span class="nav-number">1.2.</span> <span class="nav-text">为什么要用 Vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%84%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">什么是组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E8%A7%86%E5%9B%BE"><span class="nav-number">1.4.</span> <span class="nav-text">什么是数据驱动视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">常见模板语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.5.1.</span> <span class="nav-text">插值表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E5%B1%9E%E6%80%A7"><span class="nav-number">1.5.2.</span> <span class="nav-text">绑定属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.5.3.</span> <span class="nav-text">绑定事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.</span> <span class="nav-text">常见指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-if"><span class="nav-number">1.6.1.</span> <span class="nav-text">v-if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-for"><span class="nav-number">1.6.2.</span> <span class="nav-text">v-for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model"><span class="nav-number">1.6.3.</span> <span class="nav-text">v-model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.7.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=47cb482a"></script>
+  <script src="/lib/velocity/velocity.min.js?v=2f1afadc"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=ed5e534c"></script>
+
+<script src="/js/utils.js?v=730cca7f"></script>
+
+<script src="/js/motion.js?v=72df86f6"></script>
+
+
+<script src="/js/schemes/muse.js?v=1eb9b881"></script>
+
+
+<script src="/js/next-boot.js?v=a1b06364"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js?v=35ccf100"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+<div id="blog-ai-agent-root"></div>
+<script>
+window.__BLOG_AI_CONFIG__ = window.__BLOG_AI_CONFIG__ || {
+  apiBaseUrl: 'https://blog-ai-api.vercel.app',
+  dataBasePath: '/ai-data'
+};
+</script>
+<script src="/js/blog-ai-agent.js?v=5bc2e74a"></script>
+
+</body>
+</html>

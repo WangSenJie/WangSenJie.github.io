@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=da763839">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=0038dc97">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="HTML、CSS 和 JS 是什么？解决什么问题？怎么用？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FRONTEND-BASIC">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/05/09/frontend-basic/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="HTML、CSS 和 JS 是什么？解决什么问题？怎么用？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-11T06:59:20.534Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/05/09/frontend-basic/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="HTML、CSS 和 JS 是什么？解决什么问题？怎么用？">
+
+<meta name="twitter:title" content="FRONTEND-BASIC">
+
+  <title>FRONTEND-BASIC | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/05/09/frontend-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FRONTEND-BASIC
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-05-09 00:00:00" itemprop="dateCreated datePublished" datetime="2026-05-09T00:00:00+08:00">2026-05-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-05-11 14:59:20" itemprop="dateModified" datetime="2026-05-11T14:59:20+08:00">2026-05-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">HTML、CSS 和 JS 是什么？解决什么问题？怎么用？</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1><code>HTML</code>、<code>CSS</code> 和 <code>JavaScript</code> 的分工</h1>
+<p>前端最核心的三件套就是 <code>HTML</code>、<code>CSS</code> 和 <code>JavaScript</code>.</p>
+<blockquote>
+<ul>
+<li><code>HTML</code>: 页面里有什么</li>
+<li><code>CSS</code>: 页面长什么样</li>
+<li><code>JavaScript</code>: 页面会发生什么</li>
+</ul>
+</blockquote>
+<p>例如做一个简单的登录页面:</p>
+<ul>
+<li><code>HTML</code> 负责写出标题、输入框、按钮这些页面结构</li>
+<li><code>CSS</code> 负责控制颜色、间距、边框、对齐方式这些外观样式</li>
+<li><code>JavaScript</code> 负责处理点击按钮、校验输入、发送请求这些交互逻辑</li>
+</ul>
+<p>也可以把它们理解成:</p>
+<ul>
+<li><code>HTML</code> = 骨架</li>
+<li><code>CSS</code> = 外观</li>
+<li><code>JavaScript</code> = 行为</li>
+</ul>
+<!-- 
+所以当你和 AI 一起写前端代码时, 最重要的不是立刻去写复杂语法, 而是先把需求拆清楚:
+
+- 哪些内容属于页面结构
+- 哪些内容属于样式表现
+- 哪些内容属于交互逻辑
+
+比如你可以这样给 AI 描述需求:
+
+- `HTML`: 我要一个标题、一个输入框和一个提交按钮
+- `CSS`: 整体居中, 按钮是蓝色, 卡片有圆角和阴影
+- `JavaScript`: 点击按钮后校验输入内容, 然后弹出提示 -->
+<p>这就是最基础但最实用的前端思维方式.</p>
+<h1><code>HTML</code> 简介</h1>
+<h2 id="HTML-是什么"><code>HTML</code> 是什么</h2>
+<blockquote>
+<p><code>HTML</code> 是什么?</p>
+<ul>
+<li><code>HTML</code> 是用来定义网页内容和结构的标记语言, 英文全称是 <code>HyperText Markup Language</code>, 中文一般叫&quot;超文本标记语言&quot;.</li>
+<li>可以理解成: 它告诉浏览器, 这个页面里有什么.</li>
+</ul>
+</blockquote>
+<h2 id="HTML-页面基本结构"><code>HTML</code> 页面基本结构</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh-CN&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>我的第一个页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello HTML<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一个简单的网页。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中:</p>
+<ul>
+<li><code>&lt;!DOCTYPE html&gt;</code> 声明这是一个 <code>HTML5</code> 页面.</li>
+<li><code>&lt;html lang=&quot;zh-CN&quot;&gt;</code> 是整个 <code>HTML</code> 页面的根标签, 并且告诉浏览器和搜索引擎这个页面的语言是 “简体中文”.</li>
+<li><code>&lt;head&gt;</code> 放页面的“配置信息”, 这些内容通常不给用户直接看. 比如字符编码、页面标题、移动端适配、引入 <code>CSS</code>/<code>JS</code>.</li>
+<li><code>&lt;meta charset=&quot;UTF-8&quot; /&gt;</code> 指定字符编码是 <code>UTF-8</code>, 避免中文乱码.</li>
+<li><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</code> 让页面在手机上正常缩放和显示. 页面的宽度应该跟设备宽度一致, 并且初始缩放比例是 <code>1</code></li>
+<li><code>&lt;title&gt;</code> 浏览器标签页上显示的标题</li>
+<li><code>&lt;body&gt;</code> 放页面真正显示给用户看的内容. 比如标题、段落、图片、按钮、表单这些.</li>
+</ul>
+<blockquote>
+<p><code>HTML</code> 页面本质上就是: 用 <code>&lt;head&gt;</code> 描述页面, 用 <code>&lt;body&gt;</code> 承载内容.</p>
+</blockquote>
+<h3 id="常见的-HTML-标签">常见的 <code>HTML</code> 标签:</h3>
+<ul>
+<li><code>&lt;h1&gt;</code> 到 <code>&lt;h6&gt;</code>: 标题. 例: <code>&lt;h1&gt;HTML&lt;/h1&gt;</code></li>
+<li><code>&lt;p&gt;</code>: 段落. 例: <code>&lt;p&gt;hello world&lt;/p&gt;</code></li>
+<li><code>&lt;a&gt;</code>: 链接. 例: <code>&lt;a href=&quot;https://example.com&quot;&gt;打开网站&lt;/a&gt;</code></li>
+<li><code>&lt;img&gt;</code>: 图片. 例: <code>&lt;img src=&quot;cover.jpg&quot; alt=&quot;封面图&quot; /&gt;</code></li>
+<li><code>&lt;div&gt;</code>: 块级容器标签, 用来把一组内容包起来.</li>
+<li><code>&lt;span&gt;</code>: 行内容器标签, 通常用来包住一小段文字或局部内容</li>
+<li><code>&lt;ul&gt;</code>: 无序列表.</li>
+<li><code>&lt;ol&gt;</code>: 有序列表.</li>
+<li><code>&lt;li&gt;</code>: 列表项.<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>HTML<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><code>input</code>: 输入框.</li>
+<li><code>button</code>: 按钮<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>用户名<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="HTML-标签的常见属性"><code>HTML</code> 标签的常见属性</h2>
+<p><code>HTML</code> 标签的属性, 是写在开始标签里的补充信息, 用来说明这个元素的更多细节.</p>
+<blockquote>
+<ul>
+<li>标签决定“这是什么”</li>
+<li>属性决定“它怎么表现、指向哪里、有什么标识”</li>
+</ul>
+</blockquote>
+<p>属性的基本写法通常是:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> <span class="attr">属性名</span>=<span class="string">&quot;属性值&quot;</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="常见的-HTML-标签属性">常见的 <code>HTML</code> 标签属性</h3>
+<ul>
+<li><code>href</code>: 用于 <code>&lt;a&gt;</code> 标签, 指定链接地址. 例: <code>&lt;a href=&quot;https://example.com&quot;&gt;打开网站&lt;/a&gt;</code></li>
+<li><code>src</code>: 用于 <code>&lt;img&gt;</code> 标签, 指定图片地址. 例: <code>&lt;img src=&quot;cover.jpg&quot; alt=&quot;封面图&quot; /&gt;</code></li>
+<li><code>alt</code>: 用于 <code>&lt;img&gt;</code> 标签, 图片无法显示时的替代文本. 例: <code>&lt;img src=&quot;cover.jpg&quot; alt=&quot;封面图&quot; /&gt;</code></li>
+<li><code>class</code>: 用于给元素指定一个或多个类名, 方便 <code>CSS</code> 和 <code>JS</code> 选择和操作. 例: <code>&lt;div class=&quot;card&quot;&gt;这是一张卡片&lt;/div&gt;</code></li>
+<li><code>id</code>: 用于给元素指定一个唯一的标识符, 方便 <code>CSS</code> 和 <code>JS</code> 选择和操作. 例: <code>&lt;h1 id=&quot;main-title&quot;&gt;欢迎来到我的网站&lt;/h1&gt;</code></li>
+<li><code>title</code>: 用于给元素添加一个提示文本, 当用户鼠标悬停在元素上时显示. 例: <code>&lt;p title=&quot;这是一个段落&quot;&gt;这是一个段落&lt;/p&gt;</code></li>
+<li><code>target</code>: 用于 <code>&lt;a&gt;</code> 标签, 指定链接的打开方式. 例: <code>&lt;a href=&quot;https://example.com&quot; target=&quot;_blank&quot;&gt;在新标签页打开&lt;/a&gt;</code></li>
+<li><code>type</code>: 用于 <code>&lt;input&gt;</code> 和 <code>&lt;button&gt;</code> 标签, 指定输入框或按钮的类型. 例: <code>&lt;input type=&quot;text&quot; /&gt;</code>, <code>&lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;</code></li>
+<li><code>placeholder</code>: 用于 <code>&lt;input&gt;</code> 标签, 指定输入框的占位文本. 例: <code>&lt;input type=&quot;text&quot; placeholder=&quot;请输入用户名&quot; /&gt;</code></li>
+</ul>
+<h2 id="语义化标签">语义化标签</h2>
+<p>语义化标签, 指的是标签本身就带有明确含义, 能让人一眼看出这部分内容是做什么的.</p>
+<p>比如:</p>
+<ul>
+<li><code>&lt;header&gt;</code>: 页头</li>
+<li><code>&lt;nav&gt;</code>: 导航</li>
+<li><code>&lt;main&gt;</code>: 页面主要内容</li>
+<li><code>&lt;section&gt;</code>: 一个内容区块</li>
+<li><code>&lt;article&gt;</code>: 一篇独立的文章或内容</li>
+<li><code>&lt;footer&gt;</code>: 页脚</li>
+</ul>
+<p>相比只使用 <code>&lt;div&gt;</code>, 语义化标签能让页面结构更清楚.</p>
+<p>例如下面两种写法都能实现页面结构:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>网站标题<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>导航菜单<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>文章内容<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>页脚<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span>网站标题<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nav</span>&gt;</span>导航菜单<span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">article</span>&gt;</span>文章内容<span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span>页脚<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第二种写法更容易读懂, 因为标签本身已经说明了这块区域的用途.</p>
+<h3 id="为什么要用语义化标签">为什么要用语义化标签</h3>
+<p>语义化标签的好处主要有这些:</p>
+<ul>
+<li>代码结构更清晰, 自己以后回头看也更容易懂</li>
+<li>更利于搜索引擎理解页面内容</li>
+<li>更利于屏幕阅读器等辅助工具识别页面结构</li>
+<li>与 <code>CSS</code>、<code>JavaScript</code> 配合时, 语义上更自然</li>
+</ul>
+<h2 id="表单基础">表单基础</h2>
+<p>表单是网页中用于接收用户输入信息的区域.</p>
+<p>比如登录、注册、搜索、留言、提交评论, 本质上都离不开表单.</p>
+<p>一个最简单的表单例子如下:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;username&quot;</span>&gt;</span>用户名<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;username&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入用户名&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;password&quot;</span>&gt;</span>密码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;password&quot;</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入密码&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个表单里最常见的几个标签有:</p>
+<ul>
+<li><code>&lt;form&gt;</code>: 表单整体</li>
+<li><code>&lt;label&gt;</code>: 输入项的说明文字</li>
+<li><code>&lt;input&gt;</code>: 输入框</li>
+<li><code>&lt;button&gt;</code>: 按钮</li>
+</ul>
+<h3 id="常见表单标签">常见表单标签</h3>
+<ul>
+<li><code>&lt;form&gt;</code>: 表示一个表单区域, 用来包裹所有需要提交的数据.</li>
+<li><code>&lt;input&gt;</code>: 最常见的输入标签, 不同的 <code>type</code> 表示不同类型的输入框, 比如 <code>text</code>、<code>password</code>、<code>email</code>.</li>
+<li><code>&lt;label&gt;</code>: 用来描述输入框的含义, 让用户知道这里该填什么.</li>
+<li><code>&lt;button&gt;</code>: 表示按钮, 在表单中最常见的是提交按钮.</li>
+<li><code>&lt;textarea&gt;</code>: 用于多行文本输入, 比如留言、评论.</li>
+<li><code>&lt;select&gt;</code>: 用于下拉选择.</li>
+</ul>
+<p>例如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入留言内容&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span>&gt;</span>上海<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span>&gt;</span>广州<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1><code>CSS</code> 简介</h1>
+<h2 id="CSS-是什么"><code>CSS</code> 是什么</h2>
+<p><code>CSS</code>(<code>Cascading Style Sheets</code>) 是用来控制网页样式的语言.</p>
+<blockquote>
+<ul>
+<li><code>HTML</code> 决定页面里有什么</li>
+<li><code>CSS</code> 决定这些内容长什么样</li>
+</ul>
+</blockquote>
+<p>比如文字颜色、字体大小、边距、边框、背景颜色、页面布局这些, 都主要由 <code>CSS</code> 控制.</p>
+<p>例如:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">32px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段 <code>CSS</code> 的意思是:</p>
+<ul>
+<li>把页面中的 <code>h1</code> 标题文字设置成蓝色</li>
+<li>把字体大小设置成 <code>32px</code></li>
+</ul>
+<h2 id="CSS-怎么写到页面里"><code>CSS</code> 怎么写到页面里</h2>
+<p>常见的写法有三种:</p>
+<h3 id="行内样式">行内样式</h3>
+<p>直接写在标签的 <code>style</code> 属性里:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;color: red;&quot;</span>&gt;</span>这是一段红色文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这种方式简单直接, 但不适合写太多样式.</p>
+<h3 id="内部样式">内部样式</h3>
+<p>写在页面的 <code>&lt;style&gt;</code> 标签里:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">color</span>: red;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<!-- 这种方式适合小型页面或练习时使用. -->
+<h3 id="外部样式表">外部样式表</h3>
+<p>把样式写到单独的 <code>.css</code> 文件中, 再在 <code>HTML</code> 中引入:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这是实际开发中最常见的方式.</p>
+<h2 id="常见选择器">常见选择器</h2>
+<p>选择器的作用, 就是告诉 <code>CSS</code>: 你要给谁加样式.</p>
+<h3 id="标签选择器">标签选择器</h3>
+<p>直接选中某种标签:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>表示所有 <code>&lt;p&gt;</code> 标签都变成绿色.</p>
+<h3 id="类选择器">类选择器</h3>
+<p>用 <code>.类名</code> 选中带有某个 <code>class</code> 的元素:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;card&quot;</span>&gt;</span>这是一张卡片<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="id-选择器"><code>id</code> 选择器</h3>
+<p>用 <code>#id名</code> 选中带有某个 <code>id</code> 的元素:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;title&quot;</span>&gt;</span>我的博客<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#title</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: purple;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<!-- 对于初学者来说, 先掌握这三种选择器就够用了. -->
+<h2 id="常见样式属性">常见样式属性</h2>
+<p>下面这些是最常见、最实用的 <code>CSS</code> 属性:</p>
+<ul>
+<li><code>color</code>: 文字颜色</li>
+<li><code>font-size</code>: 字体大小</li>
+<li><code>background</code>: 背景颜色</li>
+<li><code>width</code>: 宽度</li>
+<li><code>height</code>: 高度</li>
+<li><code>margin</code>: 外边距</li>
+<li><code>padding</code>: 内边距</li>
+<li><code>border</code>: 边框</li>
+<li><code>border-radius</code>: 圆角</li>
+<li><code>text-align</code>: 文本对齐方式</li>
+</ul>
+<p>例如:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> auto;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#f8f8f8</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段样式可以把一个普通的 <code>div</code> 变成一个简单的卡片区域.</p>
+<h2 id="布局基础-flex">布局基础: <code>flex</code></h2>
+<!-- 前端布局里最值得先学的是 `flex`. -->
+<p>它适合用来做:</p>
+<ul>
+<li>水平排列</li>
+<li>垂直居中</li>
+<li>元素之间均匀分布</li>
+</ul>
+<p>一个最简单的例子:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里:</p>
+<ul>
+<li><code>display: flex</code> 开启弹性布局</li>
+<li><code>justify-content: center</code> 让内容水平居中</li>
+<li><code>align-items: center</code> 让内容垂直居中</li>
+</ul>
+<!-- 如果你只是想先看懂大多数简单页面, 那掌握 `flex` 就已经很够用了. -->
+<h2 id="CSS-负责什么-不负责什么"><code>CSS</code> 负责什么, 不负责什么</h2>
+<p><code>CSS</code> 主要负责:</p>
+<ul>
+<li>颜色</li>
+<li>字体</li>
+<li>间距</li>
+<li>边框</li>
+<li>阴影</li>
+<li>布局</li>
+</ul>
+<p><code>CSS</code> 不负责:</p>
+<ul>
+<li>页面内容本身</li>
+<li>点击后的业务逻辑</li>
+<li>数据请求</li>
+</ul>
+<p>可以简单记成:</p>
+<ul>
+<li><code>HTML</code> 负责结构</li>
+<li><code>CSS</code> 负责外观</li>
+<li><code>JavaScript</code> 负责交互</li>
+</ul>
+<h1><code>JavaScript</code> 简介</h1>
+<h2 id="JavaScript-是什么"><code>JavaScript</code> 是什么</h2>
+<p><code>JavaScript</code> 是让网页“动起来”的语言.</p>
+<p>如果说:</p>
+<ul>
+<li><code>HTML</code> 是页面骨架</li>
+<li><code>CSS</code> 是页面外观</li>
+</ul>
+<p>那么 <code>JavaScript</code> 就是页面的行为和交互.</p>
+<p>比如:</p>
+<ul>
+<li>点击按钮后弹出提示</li>
+<li>输入内容后实时校验</li>
+<li>请求后端接口获取数据</li>
+<li>修改页面上的文字和内容</li>
+</ul>
+<p>这些通常都由 <code>JavaScript</code> 完成.</p>
+<h2 id="JavaScript-能做什么"><code>JavaScript</code> 能做什么</h2>
+<p>对初学者来说, 最常见的用途有三类:</p>
+<ul>
+<li>处理用户操作, 比如点击、输入、提交</li>
+<li>修改页面内容</li>
+<li>与后端接口通信</li>
+</ul>
+<p>例如点击按钮后修改文字:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;text&quot;</span>&gt;</span>还没有点击按钮<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span>&gt;</span>点我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;btn&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> text = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;text&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  btn.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    text.<span class="property">textContent</span> = <span class="string">&quot;你点击了按钮&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="常见语法-变量、条件、函数">常见语法: 变量、条件、函数</h2>
+<h3 id="变量">变量</h3>
+<p>变量用来保存数据, 常见写法有 <code>let</code> 和 <code>const</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">&quot;Tom&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> age = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>let</code>: 之后可能会变(变量)</li>
+<li><code>const</code>: 定义后通常不再改(常量)</li>
+</ul>
+<h3 id="条件判断">条件判断</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> score = <span class="number">85</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (score &gt;= <span class="number">60</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;及格&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;不及格&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数">函数</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sayHello</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sayHello</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="DOM-操作-选元素、改内容、绑事件"><code>DOM</code> 操作: 选元素、改内容、绑事件</h2>
+<p>前端里最常见的 <code>JavaScript</code> 操作之一, 就是操作页面元素, 也就是操作 <code>DOM</code>.</p>
+<p>常见动作有:</p>
+<ul>
+<li>选中元素</li>
+<li>修改内容</li>
+<li>监听事件</li>
+</ul>
+<p>例如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;title&quot;</span>&gt;</span>原始标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;changeBtn&quot;</span>&gt;</span>修改标题<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> title = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;title&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> changeBtn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;changeBtn&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  changeBtn.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    title.<span class="property">textContent</span> = <span class="string">&quot;标题已修改&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里:</p>
+<ul>
+<li><code>document.getElementById</code> 用来选中元素</li>
+<li><code>addEventListener</code> 用来监听事件</li>
+<li><code>textContent</code> 用来修改文字内容</li>
+</ul>
+<h2 id="与后端通信-fetch">与后端通信: <code>fetch</code></h2>
+<p>前端经常需要请求后端接口, 最常见的方法之一就是 <code>fetch</code>.</p>
+<p>例如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/api/user&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>它的意思是:</p>
+<ul>
+<li>向 <code>/api/user</code> 发请求</li>
+<li>把返回结果转成 <code>JSON</code></li>
+<li>再处理返回的数据</li>
+</ul>
+<!-- 你现阶段不需要把异步原理学得很深, 只要知道前端可以通过 `fetch` 获取数据就够了. -->
+<!-- ## `JavaScript` 负责什么, 不负责什么
+
+`JavaScript` 主要负责:
+
+- 事件响应
+- 页面内容更新
+- 表单校验
+- 网络请求
+- 交互逻辑
+
+`JavaScript` 不负责:
+
+- 页面基础结构
+- 主要视觉样式
+
+所以:
+
+- 结构问题看 `HTML`
+- 样式问题看 `CSS`
+- 交互问题看 `JavaScript` -->
+<!-- ## 如何用 `HTML`、`CSS` 和 `JavaScript` 指挥 `AI`
+
+如果你打算让 `AI` 帮你写前端代码, 最重要的不是把三种语言学得很深, 而是先学会拆需求.
+
+你可以按下面这套思路给 `AI` 提要求:
+
+- `HTML`: 页面里要有什么
+- `CSS`: 页面要长什么样
+- `JavaScript`: 页面要怎么交互
+
+例如你想做一个登录框, 可以这样描述:
+
+- `HTML`: 一个标题、两个输入框、一个登录按钮
+- `CSS`: 整个卡片居中, 白底, 圆角, 阴影, 按钮蓝色
+- `JavaScript`: 点击登录按钮时检查输入是否为空, 如果为空就提示, 不为空就发请求
+
+这种表达方式会让 `AI` 写出来的代码更清楚, 也更容易修改. -->
+<h2 id="小结">小结</h2>
+<p>这篇文章里最重要的不是记住所有标签、属性和语法细节, 而是先建立一个最小认知框架:</p>
+<ul>
+<li><code>HTML</code> 决定页面结构</li>
+<li><code>CSS</code> 决定页面样式</li>
+<li><code>JavaScript</code> 决定页面交互</li>
+</ul>
+<p>能把一个需求拆成这三部分时, 就具备和 <code>AI</code> 配合完成大多数简单前端页面的基础能力了.</p>
+
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/05/09/frontend-basic/" data-share-title="FRONTEND-BASIC">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/04/lstm/" rel="prev" title="门控循环神经网络">
+      <i class="fa fa-chevron-left"></i> 门控循环神经网络
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/05/11/vue/" rel="next" title="VUE-BASIC">
+      VUE-BASIC <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">HTML、CSS 和 JavaScript 的分工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">HTML 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.1.</span> <span class="nav-text">HTML 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-%E9%A1%B5%E9%9D%A2%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">HTML 页面基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84-HTML-%E6%A0%87%E7%AD%BE"><span class="nav-number">2.2.1.</span> <span class="nav-text">常见的 HTML 标签:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-%E6%A0%87%E7%AD%BE%E7%9A%84%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7"><span class="nav-number">2.3.</span> <span class="nav-text">HTML 标签的常见属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84-HTML-%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7"><span class="nav-number">2.3.1.</span> <span class="nav-text">常见的 HTML 标签属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE"><span class="nav-number">2.4.</span> <span class="nav-text">语义化标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE"><span class="nav-number">2.4.1.</span> <span class="nav-text">为什么要用语义化标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95%E5%9F%BA%E7%A1%80"><span class="nav-number">2.5.</span> <span class="nav-text">表单基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E8%A1%A8%E5%8D%95%E6%A0%87%E7%AD%BE"><span class="nav-number">2.5.1.</span> <span class="nav-text">常见表单标签</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">CSS 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">3.1.</span> <span class="nav-text">CSS 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-%E6%80%8E%E4%B9%88%E5%86%99%E5%88%B0%E9%A1%B5%E9%9D%A2%E9%87%8C"><span class="nav-number">3.2.</span> <span class="nav-text">CSS 怎么写到页面里</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%86%85%E6%A0%B7%E5%BC%8F"><span class="nav-number">3.2.1.</span> <span class="nav-text">行内样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E6%A0%B7%E5%BC%8F"><span class="nav-number">3.2.2.</span> <span class="nav-text">内部样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E8%A1%A8"><span class="nav-number">3.2.3.</span> <span class="nav-text">外部样式表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">3.3.</span> <span class="nav-text">常见选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">3.3.1.</span> <span class="nav-text">标签选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">3.3.2.</span> <span class="nav-text">类选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#id-%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">3.3.3.</span> <span class="nav-text">id 选择器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%A0%B7%E5%BC%8F%E5%B1%9E%E6%80%A7"><span class="nav-number">3.4.</span> <span class="nav-text">常见样式属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%83%E5%B1%80%E5%9F%BA%E7%A1%80-flex"><span class="nav-number">3.5.</span> <span class="nav-text">布局基础: flex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-%E8%B4%9F%E8%B4%A3%E4%BB%80%E4%B9%88-%E4%B8%8D%E8%B4%9F%E8%B4%A3%E4%BB%80%E4%B9%88"><span class="nav-number">3.6.</span> <span class="nav-text">CSS 负责什么, 不负责什么</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">JavaScript 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">4.1.</span> <span class="nav-text">JavaScript 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88"><span class="nav-number">4.2.</span> <span class="nav-text">JavaScript 能做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E8%AF%AD%E6%B3%95-%E5%8F%98%E9%87%8F%E3%80%81%E6%9D%A1%E4%BB%B6%E3%80%81%E5%87%BD%E6%95%B0"><span class="nav-number">4.3.</span> <span class="nav-text">常见语法: 变量、条件、函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">4.3.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="nav-number">4.3.2.</span> <span class="nav-text">条件判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">4.3.3.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM-%E6%93%8D%E4%BD%9C-%E9%80%89%E5%85%83%E7%B4%A0%E3%80%81%E6%94%B9%E5%86%85%E5%AE%B9%E3%80%81%E7%BB%91%E4%BA%8B%E4%BB%B6"><span class="nav-number">4.4.</span> <span class="nav-text">DOM 操作: 选元素、改内容、绑事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E5%90%8E%E7%AB%AF%E9%80%9A%E4%BF%A1-fetch"><span class="nav-number">4.5.</span> <span class="nav-text">与后端通信: fetch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">4.6.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=47cb482a"></script>
+  <script src="/lib/velocity/velocity.min.js?v=2f1afadc"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=ed5e534c"></script>
+
+<script src="/js/utils.js?v=730cca7f"></script>
+
+<script src="/js/motion.js?v=72df86f6"></script>
+
+
+<script src="/js/schemes/muse.js?v=1eb9b881"></script>
+
+
+<script src="/js/next-boot.js?v=a1b06364"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js?v=35ccf100"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+<div id="blog-ai-agent-root"></div>
+<script>
+window.__BLOG_AI_CONFIG__ = window.__BLOG_AI_CONFIG__ || {
+  apiBaseUrl: 'https://blog-ai-api.vercel.app',
+  dataBasePath: '/ai-data'
+};
+</script>
+<script src="/js/blog-ai-agent.js?v=5bc2e74a"></script>
+
+</body>
+</html>
