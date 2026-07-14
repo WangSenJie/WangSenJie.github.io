@@ -118,23 +118,6 @@
     </author>
     <category term="机器学习与深度学习" scheme="https://wangsenjie.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     <category term="线性机器学习模型" scheme="https://wangsenjie.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/"/>
-    <category term="Logistic Regression" scheme="https://wangsenjie.github.io/tags/Logistic-Regression/"/>
-    <content>
-      <![CDATA[<div class="pdfobject-container" data-target="Logistic回归.pdf" data-height="960px"></div>]]>
-    </content>
-    <id>https://wangsenjie.github.io/2026/04/30/logistic-regression/</id>
-    <link href="https://wangsenjie.github.io/2026/04/30/logistic-regression/"/>
-    <published>2026-04-29T16:00:00.000Z</published>
-    <summary>Logistic Regression 的基本原理</summary>
-    <title>Logistic Regression</title>
-    <updated>2026-04-30T09:01:41.523Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>DMH</name>
-    </author>
-    <category term="机器学习与深度学习" scheme="https://wangsenjie.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    <category term="线性机器学习模型" scheme="https://wangsenjie.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/"/>
     <category term="MLP" scheme="https://wangsenjie.github.io/tags/MLP/"/>
     <content>
       <![CDATA[<div class="pdfobject-container" data-target="MLP.pdf" data-height="960px"></div>]]>
@@ -145,6 +128,23 @@
     <summary>MLP 的基本原理</summary>
     <title>MLP</title>
     <updated>2026-04-30T09:12:39.974Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>DMH</name>
+    </author>
+    <category term="机器学习与深度学习" scheme="https://wangsenjie.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <category term="线性机器学习模型" scheme="https://wangsenjie.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/"/>
+    <category term="Logistic Regression" scheme="https://wangsenjie.github.io/tags/Logistic-Regression/"/>
+    <content>
+      <![CDATA[<div class="pdfobject-container" data-target="Logistic回归.pdf" data-height="960px"></div>]]>
+    </content>
+    <id>https://wangsenjie.github.io/2026/04/30/logistic-regression/</id>
+    <link href="https://wangsenjie.github.io/2026/04/30/logistic-regression/"/>
+    <published>2026-04-29T16:00:00.000Z</published>
+    <summary>Logistic Regression 的基本原理</summary>
+    <title>Logistic Regression</title>
+    <updated>2026-04-30T09:01:41.523Z</updated>
   </entry>
   <entry>
     <author>
