@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=02679c9a">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=0038dc97">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="LangGraph 入门 —— 状态、路由、Agent 与记忆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LangGraph 基础">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/07/03/langgraph-foundations/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="LangGraph 入门 —— 状态、路由、Agent 与记忆">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wangsenjie.github.io/2026/07/03/langgraph-foundations/wangsenjie/Sites/blog/source/_posts/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E2%80%94%E2%80%94AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/LangChain/langgraph-foundations/Agent.png">
+<meta property="article:published_time" content="2026-07-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-13T07:50:19.321Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="数学, 机器学习, 深度学习, 算法, Python, 数据分析, Hexo, NexT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wangsenjie.github.io/2026/07/03/langgraph-foundations/wangsenjie/Sites/blog/source/_posts/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E2%80%94%E2%80%94AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/LangChain/langgraph-foundations/Agent.png">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/07/03/langgraph-foundations/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="LangGraph 入门 —— 状态、路由、Agent 与记忆">
+
+<meta name="twitter:title" content="LangGraph 基础">
+
+  <title>LangGraph 基础 | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/07/03/langgraph-foundations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LangGraph 基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-03T00:00:00+08:00">2026-07-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-07-13 15:50:19" itemprop="dateModified" datetime="2026-07-13T15:50:19+08:00">2026-07-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E2%80%94%E2%80%94AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">从零开始——AI应用开发</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E2%80%94%E2%80%94AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/LangChain/" itemprop="url" rel="index"><span itemprop="name">LangChain</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">LangGraph 入门 —— 状态、路由、Agent 与记忆</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>LangGraph</h1>
+<h2 id="1-Simple-Graph">1. Simple Graph</h2>
+<p><code>LangGraph</code> 最基础的组成有:</p>
+<ul>
+<li><code>State</code> : 图中传递的数据</li>
+<li><code>Node</code> : 执行工作的 <code>Python</code> 函数</li>
+<li><code>Edge</code> : 节点之间的连接</li>
+<li><code>Conditional Edge</code> : 条件分支</li>
+<li><code>START / END</code> : 图的 入口 / 出口</li>
+<li><code>compile()</code> : 编译图</li>
+<li><code>invoke()</code> : 执行图</li>
+</ul>
+<p><strong>示例:</strong> 构造如下流程图</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">START</span><br><span class="line">  ↓</span><br><span class="line">node_1：追加 &quot; I am&quot;</span><br><span class="line">  ↓</span><br><span class="line">随机条件判断</span><br><span class="line">  ├── node_2：追加 &quot; happy!&quot;</span><br><span class="line">  └── node_3：追加 &quot; sad!&quot;</span><br><span class="line">          ↓</span><br><span class="line">         END</span><br></pre></td></tr></table></figure>
+<p>这样, 输入 <code>&#123;&quot;graph_state&quot; : &quot;Hi, this is Lance.&quot;&#125;</code>, 可能会输出  <code>&#123;&quot;graph_state&quot; : &quot;Hi, this is Lance. I am happy!&quot;&#125;</code>, 也可能会输出  <code>&#123;&quot;graph_state&quot; : &quot;Hi, this is Lance. I am sad!&quot;&#125;</code></p>
+<h3 id="1-1-构造图中的共享数据-State">1.1 构造图中的共享数据 <code>State</code></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> TypedDict</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    graph_state: <span class="built_in">str</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2-构造-Node-处理数据的步骤">1.2 构造 <code>Node</code>: 处理数据的步骤</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">node_1</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 1---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;graph_state&quot;</span>: state[<span class="string">&#x27;graph_state&#x27;</span>] +<span class="string">&quot; I am&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_2</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 2---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;graph_state&quot;</span>: state[<span class="string">&#x27;graph_state&#x27;</span>] +<span class="string">&quot; happy!&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_3</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 3---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;graph_state&quot;</span>: state[<span class="string">&#x27;graph_state&#x27;</span>] +<span class="string">&quot; sad!&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-Edge-规定节点如何连接">1.3 <code>Edge</code>: 规定节点如何连接</h3>
+<p>普通边表示无条件执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">builder.add_edge(START, <span class="string">&quot;node_1&quot;</span>) <span class="comment"># START -&gt; node_1</span></span><br><span class="line">builder.add_edge(<span class="string">&quot;node_2&quot;</span>, END) <span class="comment"># node_2 -&gt; END</span></span><br></pre></td></tr></table></figure>
+<p><strong>条件分支</strong>:</p>
+<ul>
+<li>
+<p>先定义一个条件判断函数 <code>decide_mood()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Literal</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decide_mood</span>(<span class="params">state</span>) -&gt; <span class="type">Literal</span>[<span class="string">&quot;node_2&quot;</span>, <span class="string">&quot;node_3&quot;</span>]:</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Often, we will use state to decide on the next node to visit</span></span><br><span class="line">    user_input = state[<span class="string">&#x27;graph_state&#x27;</span>] </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Here, let&#x27;s just do a 50 / 50 split between nodes 2, 3</span></span><br><span class="line">    <span class="keyword">if</span> random.random() &lt; <span class="number">0.5</span>:</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 50% of the time, we return Node 2</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;node_2&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 50% of the time, we return Node 3</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;node_3&quot;</span></span><br></pre></td></tr></table></figure>
+<p><code>Literal[&quot;node_2&quot;, &quot;node_3&quot;]</code> 表示函数的输出只能是 <code>node_2</code> 或者 <code>node_3</code></p>
+</li>
+<li>
+<p>连接</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">builder.add_conditional_edges(</span><br><span class="line">    <span class="string">&quot;node_1&quot;</span>,</span><br><span class="line">    decide_mood</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="1-4-构建图">1.4 构建图</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image, display</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, START, END</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build graph</span></span><br><span class="line">builder = StateGraph(State)</span><br><span class="line">builder.add_node(<span class="string">&quot;node_1&quot;</span>, node_1)</span><br><span class="line">builder.add_node(<span class="string">&quot;node_2&quot;</span>, node_2)</span><br><span class="line">builder.add_node(<span class="string">&quot;node_3&quot;</span>, node_3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Logic</span></span><br><span class="line">builder.add_edge(START, <span class="string">&quot;node_1&quot;</span>)</span><br><span class="line">builder.add_conditional_edges(<span class="string">&quot;node_1&quot;</span>, decide_mood)</span><br><span class="line">builder.add_edge(<span class="string">&quot;node_2&quot;</span>, END)</span><br><span class="line">builder.add_edge(<span class="string">&quot;node_3&quot;</span>, END)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add</span></span><br><span class="line">graph = builder.<span class="built_in">compile</span>() <span class="comment"># 编译生成可执行对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># View</span></span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<h3 id="1-5-调用图">1.5 调用图</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph.invoke(&#123;</span><br><span class="line">    <span class="string">&quot;graph_state&quot;</span>: <span class="string">&quot;Hi, this is Lance.&quot;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>执行过程:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">初始状态：</span><br><span class="line">&quot;Hi, this is Lance.&quot;</span><br><span class="line"></span><br><span class="line">经过 node_1：</span><br><span class="line">&quot;Hi, this is Lance. I am&quot;</span><br><span class="line"></span><br><span class="line">经过 node_2：</span><br><span class="line">&quot;Hi, this is Lance. I am happy!&quot;</span><br><span class="line"></span><br><span class="line">到达 END，返回最终状态</span><br></pre></td></tr></table></figure>
+<h2 id="2-Chain">2. Chain</h2>
+<p>把聊天模型引入到 <code>LangGraph</code>, 重点包括:</p>
+<ul>
+<li><code>HumanMessage</code>, <code>AIMessage</code>, <code>ToolMessage</code></li>
+<li>使用模型处理消息列表</li>
+<li><code>bind_tools()</code> 把 <code>Python</code> 函数描述给模型</li>
+<li>模型生成 <code>tool_calls</code></li>
+<li>使用 <code>MessageState</code> 保存消息</li>
+<li>使用 <code>add_message</code>  reducer 追加消息</li>
+</ul>
+<p><strong>目标:</strong> 构建一条简单的线性图</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">START → tool_calling_llm → END</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-Messages">2.1 Messages</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pprint <span class="keyword">import</span> pprint</span><br><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> AIMessage, HumanMessage</span><br><span class="line"></span><br><span class="line">messages = [AIMessage(content=<span class="string">f&quot;So you said you were researching ocean mammals?&quot;</span>, name=<span class="string">&quot;Model&quot;</span>)]</span><br><span class="line">messages.append(HumanMessage(content=<span class="string">f&quot;Yes, that&#x27;s right.&quot;</span>,name=<span class="string">&quot;Lance&quot;</span>))</span><br><span class="line">messages.append(AIMessage(content=<span class="string">f&quot;Great, what would you like to learn about.&quot;</span>, name=<span class="string">&quot;Model&quot;</span>))</span><br><span class="line">messages.append(HumanMessage(content=<span class="string">f&quot;I want to learn about the best place to see Orcas in the US.&quot;</span>, name=<span class="string">&quot;Lance&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> messages:</span><br><span class="line">    m.pretty_print()</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">================================== Ai Message ==================================</span><br><span class="line">Name: Model</span><br><span class="line"></span><br><span class="line">So you said you were researching ocean mammals?</span><br><span class="line">================================ Human Message =================================</span><br><span class="line">Name: Lance</span><br><span class="line"></span><br><span class="line">Yes, that&#x27;s right.</span><br><span class="line">================================== Ai Message ==================================</span><br><span class="line">Name: Model</span><br><span class="line"></span><br><span class="line">Great, what would you like to learn about.</span><br><span class="line">================================ Human Message =================================</span><br><span class="line">Name: Lance</span><br><span class="line"></span><br><span class="line">I want to learn about the best place to see Orcas in the US.</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-调用-Chat-Models">2.2 调用 Chat Models</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, getpass</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_set_env</span>(<span class="params">var: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.environ.get(var):</span><br><span class="line">        os.environ[var] = getpass.getpass(<span class="string">f&quot;<span class="subst">&#123;var&#125;</span>: &quot;</span>)</span><br><span class="line"></span><br><span class="line">_set_env(<span class="string">&quot;DEEPSEEK_API_KEY&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line">llm = ChatOpenAI(</span><br><span class="line">  model=<span class="string">&quot;deepseek-v4-flash&quot;</span>, </span><br><span class="line">  temperature=<span class="number">0</span>, </span><br><span class="line">  api_key=os.environ[<span class="string">&quot;DEEPSEEK_API_KEY&quot;</span>], </span><br><span class="line">  base_url=<span class="string">&quot;https://api.deepseek.com&quot;</span></span><br><span class="line">)</span><br><span class="line">result = llm.invoke(messages)</span><br><span class="line"><span class="built_in">type</span>(result)</span><br></pre></td></tr></table></figure>
+<p><code>type(result)</code> 的返回为 <code>langchain_core.messages.ai.AIMessage</code></p>
+<ul>
+<li><code>result.content</code> 为 AI 模型返回的正文内容</li>
+<li><code>result.content</code> 为模型元数据, 包含 模型名称、token数量、结束原因、服务商信息</li>
+</ul>
+<h3 id="2-3-定义工具并绑定">2.3 定义工具并绑定</h3>
+<p>这里定义一个简单的示例工具 — 乘法函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">multiply</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Multiply a and b.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        a: first int</span></span><br><span class="line"><span class="string">        b: second int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> a * b</span><br><span class="line"></span><br><span class="line">llm_with_tools = llm.bind_tools([multiply]) <span class="comment"># 给模型绑定工具</span></span><br></pre></td></tr></table></figure>
+<p>调用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tool_call = llm_with_tools.invoke([</span><br><span class="line">    HumanMessage(</span><br><span class="line">        content=<span class="string">&quot;What is 2 multiplied by 3?&quot;</span></span><br><span class="line">    )</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>其中得到的 <code>tool_call.tool_calls</code> 为</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">	&#123;</span><br><span class="line">		&#x27;name&#x27;: &#x27;multiply&#x27;,</span><br><span class="line">  	&#x27;args&#x27;: &#123;</span><br><span class="line">  		&#x27;a&#x27;: 2, </span><br><span class="line">  		&#x27;b&#x27;: 3</span><br><span class="line">  	&#125;,</span><br><span class="line">  	&#x27;id&#x27;: &#x27;call_XXX&#x27;,</span><br><span class="line">  	&#x27;type&#x27;: &#x27;tool_call&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-使用消息作为-State">2.4 使用消息作为 State</h3>
+<p>手动定义:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> TypedDict</span><br><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> AnyMessage</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MessagesState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    messages: <span class="built_in">list</span>[AnyMessage]</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-Reducers">2.5 Reducers</h3>
+<blockquote>
+<p><strong>Q: 为什么需要 <code>Reducer</code> ?</strong></p>
+<ul>
+<li>
+<p>假设当前 State 为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">        HumanMessage(content=<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>模型节点返回:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">        AIMessage(content=<span class="string">&quot;Hi&quot;</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>如果没有 reducer, 则新值会覆盖旧值, 最后只剩下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">        AIMessage(content=<span class="string">&quot;Hi&quot;</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>这样导致 <code>HumanMessage</code> 消失了, 但对话状态需要追加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    HumanMessage(content=<span class="string">&quot;Hello&quot;</span>),</span><br><span class="line">    AIMessage(content=<span class="string">&quot;Hi&quot;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>因此需要 <code>add_messages</code></p>
+</li>
+</ul>
+</blockquote>
+<p><strong>add_messages:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Annotated</span><br><span class="line"><span class="keyword">from</span> langgraph.graph.message <span class="keyword">import</span> add_messages</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MessagesState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    messages: Annotated[</span><br><span class="line">        <span class="built_in">list</span>[AnyMessage],</span><br><span class="line">        add_messages</span><br><span class="line">    ] <span class="comment"># messages 是一个 list[AnyMessage] 类型的字段，并且这个字段更新时要使用 add_messages 这个规则。</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-6-内置-MessageState">2.6 内置 MessageState</h3>
+<p>由于消息状态非常常见, LangGraph 已经内置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> MessagesState</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MessagesState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    messages: Annotated[</span><br><span class="line">        <span class="built_in">list</span>[AnyMessage],</span><br><span class="line">        add_messages</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<p>如果要扩展内置状态, 例如添加自定义字段:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CustomState</span>(<span class="title class_ inherited__">MessagesState</span>):</span><br><span class="line">    user_id: <span class="built_in">str</span></span><br><span class="line">    retry_count: <span class="built_in">int</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-7-构建图">2.7 构建图</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image, display</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, START, END</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Node</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tool_calling_llm</span>(<span class="params">state: MessagesState</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: [llm_with_tools.invoke(state[<span class="string">&quot;messages&quot;</span>])]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build graph</span></span><br><span class="line">builder = StateGraph(MessagesState)</span><br><span class="line">builder.add_node(<span class="string">&quot;tool_calling_llm&quot;</span>, tool_calling_llm)</span><br><span class="line">builder.add_edge(START, <span class="string">&quot;tool_calling_llm&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;tool_calling_llm&quot;</span>, END)</span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># View</span></span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<p><strong>示例1:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">messages = graph.invoke(&#123;<span class="string">&quot;messages&quot;</span>: HumanMessage(content=<span class="string">&quot;Hello!&quot;</span>)&#125;)</span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> messages[<span class="string">&#x27;messages&#x27;</span>]:</span><br><span class="line">    m.pretty_print()</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">================================ Human Message =================================</span><br><span class="line"></span><br><span class="line">Hello!</span><br><span class="line">================================== Ai Message ==================================</span><br><span class="line"></span><br><span class="line">Hello! How can I help you today?</span><br></pre></td></tr></table></figure>
+<p><strong>示例2:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">messages = graph.invoke(&#123;<span class="string">&quot;messages&quot;</span>: HumanMessage(content=<span class="string">&quot;Multiply 2 and 3&quot;</span>)&#125;)</span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> messages[<span class="string">&#x27;messages&#x27;</span>]:</span><br><span class="line">    m.pretty_print()</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">================================ Human Message =================================</span><br><span class="line"></span><br><span class="line">Multiply 2 and 3</span><br><span class="line">================================== Ai Message ==================================</span><br><span class="line">Tool Calls:</span><br><span class="line">  multiply (call_00_1neDhYhULBgO7OdVbYjL1912)</span><br><span class="line"> Call ID: call_00_1neDhYhULBgO7OdVbYjL1912</span><br><span class="line">  Args:</span><br><span class="line">    a: 2</span><br><span class="line">    b: 3</span><br></pre></td></tr></table></figure>
+<h2 id="3-Router">3. Router</h2>
+<p>让大模型根据用户的问题, 决定直接回答, 还是调用某个工具</p>
+<p><strong>整体流程:</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">                  ┌─ 没有工具调用 ─→ END</span><br><span class="line">用户 → 大模型判断 ┤</span><br><span class="line">                  └─ 产生工具调用 ─→ ToolNode → END</span><br></pre></td></tr></table></figure>
+<p>例如:</p>
+<ul>
+<li>用户问 “你好”: 模型就直接回答, 然后 END;</li>
+<li>用户问 “2 乘 2 等于多少“: 模型决定调用 <code>multiply</code> 工具</li>
+</ul>
+<h3 id="3-1-定义工具">3.1 定义工具</h3>
+<p>定义 <code>multiply</code> 工具, 并绑定给模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lanchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">multiply</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">  	<span class="string">&quot;&quot;&quot;Multiply a and b.</span></span><br><span class="line"><span class="string">  	</span></span><br><span class="line"><span class="string">  	Args:</span></span><br><span class="line"><span class="string">  			a: first int</span></span><br><span class="line"><span class="string">  			b: second int</span></span><br><span class="line"><span class="string">  	&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> a*b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定给模型</span></span><br><span class="line">llm = ChatOpenAI(</span><br><span class="line">		model = <span class="string">&quot;deepseek-v4-flash&quot;</span>,</span><br><span class="line">  	temperature=<span class="number">0</span>,</span><br><span class="line">  	api_key=os.environ[<span class="string">&quot;DEEPSEEK_API_KEY&quot;</span>],</span><br><span class="line">  	base_url=<span class="string">&quot;https://api.deepseek.com&quot;</span></span><br><span class="line">)</span><br><span class="line">llm_with_tools = llm.bind_tools([multiply])</span><br></pre></td></tr></table></figure>
+<p>此时, 可以使用名为 <code>multiply</code> 的工具, 当用户问 &quot;what is 2 multiplied by 2? &quot;, 模型会返回一个<strong>工具调用请求</strong> (还没有真正执行 <code>Python</code> 函数):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">AIMessage(</span><br><span class="line">    tool_calls=[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;multiply&quot;</span>,</span><br><span class="line">            <span class="string">&quot;args&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;a&quot;</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">&quot;b&quot;</span>: <span class="number">2</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-定义图">3.2 定义图</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image, display</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, START, END</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> MessagesState <span class="comment"># 使用 LangGraph 内置的 MessagesState, 对 message 是用了消息 reducer</span></span><br><span class="line"><span class="keyword">from</span> langgraph.prebuilt <span class="keyword">import</span> ToolNode</span><br><span class="line"><span class="keyword">from</span> langgraph.prebuilt <span class="keyword">import</span> tools_condition <span class="comment"># 本图的 router</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Node</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tool_calling_llm</span>(<span class="params">state: MessagesState</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: [llm_with_tools.invoke(state[<span class="string">&quot;messages&quot;</span>])]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build graph</span></span><br><span class="line">builder = StateGraph(MessagesState)</span><br><span class="line">builder.add_node(<span class="string">&quot;tool_calling_llm&quot;</span>, tool_calling_llm)</span><br><span class="line">builder.add_node(<span class="string">&quot;tools&quot;</span>, ToolNode([multiply]))</span><br><span class="line">builder.add_edge(START, <span class="string">&quot;tool_calling_llm&quot;</span>)</span><br><span class="line">builder.add_conditional_edges(</span><br><span class="line">    <span class="string">&quot;tool_calling_llm&quot;</span>,</span><br><span class="line">    <span class="comment"># If the latest message (result) from assistant is a tool call -&gt; tools_condition routes to tools</span></span><br><span class="line">    <span class="comment"># If the latest message (result) from assistant is a not a tool call -&gt; tools_condition routes to END</span></span><br><span class="line">    tools_condition,</span><br><span class="line">) <span class="comment"># 检查最新的 AIMessage, 若存在 tool_calls, 则返回 &quot;tools&quot;, 执行 ToolNode; 反之, 则返回 END.</span></span><br><span class="line">builder.add_edge(<span class="string">&quot;tools&quot;</span>, END)</span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># View</span></span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<p><strong>调用:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> HumanMessage</span><br><span class="line">messages = [HumanMessage(content=<span class="string">&quot;Hello, what is 2 multiplied by 2?&quot;</span>)]</span><br><span class="line">messages = graph.invoke(&#123;<span class="string">&quot;messages&quot;</span>: messages&#125;)</span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> messages[<span class="string">&#x27;messages&#x27;</span>]:</span><br><span class="line">    m.pretty_print()</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">================================[1m Human Message [0m=================================</span><br><span class="line"></span><br><span class="line">Hello, what is 2 multiplied by 2?</span><br><span class="line">==================================[1m Ai Message [0m==================================</span><br><span class="line">Tool Calls:</span><br><span class="line">  multiply (call_00_4gO4eoSW9OTspeFrBTPC5704)</span><br><span class="line"> Call ID: call_00_4gO4eoSW9OTspeFrBTPC5704</span><br><span class="line">  Args:</span><br><span class="line">    a: 2</span><br><span class="line">    b: 2</span><br><span class="line">=================================[1m Tool Message [0m=================================</span><br><span class="line">Name: multiply</span><br><span class="line"></span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<h2 id="4-Agent">4. Agent</h2>
+<p>在 <code>Router</code> 一节中, <code>ToolNode</code> 后面直接连 <code>END</code> 了, 这样最后输出的是 <code>ToolMessage(content=&quot;4&quot;)</code>, 而不是模型整理后的自然语言:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 multipled by 2 is 4.</span><br></pre></td></tr></table></figure>
+<p>而一个完整的基础 Agent 会让 <code>ToolMessage</code> 重新回到模型, 再考虑调用工具还是得到最终回答, 其流程如下:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">用户</span><br><span class="line"> ↓</span><br><span class="line">模型</span><br><span class="line"> ├── 直接回答 → END</span><br><span class="line"> └── 调用工具</span><br><span class="line">        ↓</span><br><span class="line">      工具结果</span><br><span class="line">        ↓</span><br><span class="line">      返回模型</span><br><span class="line">        ├── 再调用工具</span><br><span class="line">        └── 最终回答 → END</span><br></pre></td></tr></table></figure>
+<h3 id="4-1-ReAct">4.1 ReAct</h3>
+<p>ReAct 全称 Reasoning+Acting</p>
+<ul>
+<li>Reason: 模型分析当前问题和已有结果</li>
+<li>Act: 模型选择并调用工具</li>
+<li>Observe: 把工具结果作为 ToolMessage 返回模型</li>
+<li>重复以上过程, 直至模型直接回答</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">用户提出问题</span><br><span class="line">    ↓</span><br><span class="line">Thought：分析当前需要做什么</span><br><span class="line">    ↓</span><br><span class="line">Action：调用某个工具</span><br><span class="line">    ↓</span><br><span class="line">Observation：获得工具返回结果</span><br><span class="line">    ↓</span><br><span class="line">Thought：根据结果继续判断</span><br><span class="line">    ↓</span><br><span class="line">Action：继续调用工具或生成答案</span><br><span class="line">    ↓</span><br><span class="line">Final Answer：输出最终结果</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-定义多个工具并绑定到模型">4.2 定义多个工具并绑定到模型</h3>
+<p>定义工具:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">multiply</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="keyword">return</span> a * b</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">divide</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">float</span>:</span><br><span class="line">    <span class="keyword">return</span> a / b</span><br><span class="line"></span><br><span class="line">tools = [add, multiply, divide]</span><br></pre></td></tr></table></figure>
+<p>绑定模型:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">llm_with_tools = llm.bind_tools(</span><br><span class="line">    tools,</span><br><span class="line">    parallel_tool_calls=<span class="literal">False</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><code>parallel_tool_calls=False</code> 表示每次模型调用最多选择一个工具</p>
+<h3 id="4-3-SystemMessage">4.3 SystemMessage</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys_msg = SystemMessage(</span><br><span class="line">    content=(</span><br><span class="line">        <span class="string">&quot;You are a helpful assistant tasked &quot;</span></span><br><span class="line">        <span class="string">&quot;with performing arithmetic on a set of inputs.&quot;</span></span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><code>SystemMessage</code> 规定 Agent 得总体职责为 执行算术任务.</p>
+<p>模型节点:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">assistant</span>(<span class="params">state: MessagesState</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">            llm_with_tools.invoke(</span><br><span class="line">                [sys_msg] + state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>每次调用模型, 输入由两部分组成 <code>SystemMessage+当前历史消息</code></p>
+<h3 id="4-4-MessageState">4.4 MessageState</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">        HumanMessage(...),</span><br><span class="line">        AIMessage(tool_calls=[...]),</span><br><span class="line">        ToolMessage(...),</span><br><span class="line">        AIMessage(tool_calls=[...]),</span><br><span class="line">        ToolMessage(...),</span><br><span class="line">        AIMessage(content=<span class="string">&quot;最终答案&quot;</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-5-构建图">4.5 构建图</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> START, StateGraph</span><br><span class="line"><span class="keyword">from</span> langgraph.prebuilt <span class="keyword">import</span> tools_condition</span><br><span class="line"><span class="keyword">from</span> langgraph.prebuilt <span class="keyword">import</span> ToolNode</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image, display</span><br><span class="line"></span><br><span class="line"><span class="comment"># Graph</span></span><br><span class="line">builder = StateGraph(MessagesState)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define nodes: these do the work</span></span><br><span class="line">builder.add_node(<span class="string">&quot;assistant&quot;</span>, assistant)</span><br><span class="line">builder.add_node(<span class="string">&quot;tools&quot;</span>, ToolNode(tools))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define edges: these determine how the control flow moves</span></span><br><span class="line">builder.add_edge(START, <span class="string">&quot;assistant&quot;</span>)</span><br><span class="line">builder.add_conditional_edges(</span><br><span class="line">    <span class="string">&quot;assistant&quot;</span>,</span><br><span class="line">    <span class="comment"># If the latest message (result) from assistant is a tool call -&gt; tools_condition routes to tools</span></span><br><span class="line">    <span class="comment"># If the latest message (result) from assistant is a not a tool call -&gt; tools_condition routes to END</span></span><br><span class="line">    tools_condition,</span><br><span class="line">)</span><br><span class="line">builder.add_edge(<span class="string">&quot;tools&quot;</span>, <span class="string">&quot;assistant&quot;</span>)</span><br><span class="line">react_graph = builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show</span></span><br><span class="line">display(Image(react_graph.get_graph(xray=<span class="literal">True</span>).draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<p><img src="/2026/07/03/langgraph-foundations/wangsenjie/Sites/blog/source/_posts/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E2%80%94%E2%80%94AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/LangChain/langgraph-foundations/Agent.png" alt="agent"></p>
+<h3 id="4-6-执行">4.6 执行</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">messages = [</span><br><span class="line">  HumanMessage(</span><br><span class="line">    content=<span class="string">&quot;Add 3 and 4. Multiply the output by 2. Divide the output by 5&quot;</span></span><br><span class="line">  )</span><br><span class="line">]</span><br><span class="line">messages = react_graph.invoke(&#123;<span class="string">&quot;messages&quot;</span>: messages&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> messages[<span class="string">&#x27;messages&#x27;</span>]:</span><br><span class="line">    m.pretty_print()</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">================================[1m Human Message [0m=================================</span><br><span class="line"></span><br><span class="line">Add 3 and 4. Multiply the output by 2. Divide the output by 5</span><br><span class="line">==================================[1m Ai Message [0m==================================</span><br><span class="line">Tool Calls:</span><br><span class="line">  add (call_00_hDatE3PUZjBEpoV0EKTx0453)</span><br><span class="line"> Call ID: call_00_hDatE3PUZjBEpoV0EKTx0453</span><br><span class="line">  Args:</span><br><span class="line">    a: 3</span><br><span class="line">    b: 4</span><br><span class="line">=================================[1m Tool Message [0m=================================</span><br><span class="line">Name: add</span><br><span class="line"></span><br><span class="line">7</span><br><span class="line">==================================[1m Ai Message [0m==================================</span><br><span class="line">Tool Calls:</span><br><span class="line">  multiply (call_00_mT9QDArQQsqWvpneF0kp5285)</span><br><span class="line"> Call ID: call_00_mT9QDArQQsqWvpneF0kp5285</span><br><span class="line">  Args:</span><br><span class="line">    a: 7</span><br><span class="line">    b: 2</span><br><span class="line">=================================[1m Tool Message [0m=================================</span><br><span class="line">Name: multiply</span><br><span class="line"></span><br><span class="line">14</span><br><span class="line">==================================[1m Ai Message [0m==================================</span><br><span class="line">Tool Calls:</span><br><span class="line">  divide (call_00_NzuDcoyKMNwOHs6kK7hQ1714)</span><br><span class="line"> Call ID: call_00_NzuDcoyKMNwOHs6kK7hQ1714</span><br><span class="line">  Args:</span><br><span class="line">    a: 14</span><br><span class="line">    b: 5</span><br><span class="line">=================================[1m Tool Message [0m=================================</span><br><span class="line">Name: divide</span><br><span class="line"></span><br><span class="line">2.8</span><br><span class="line">==================================[1m Ai Message [0m==================================</span><br><span class="line"></span><br><span class="line">Here are the results:</span><br><span class="line"></span><br><span class="line">1. **Add 3 and 4**: 3 + 4 = **7**</span><br><span class="line">2. **Multiply by 2**: 7 × 2 = **14**</span><br><span class="line">3. **Divide by 5**: 14 ÷ 5 = **2.8**</span><br><span class="line"></span><br><span class="line">Final answer: **2.8**</span><br></pre></td></tr></table></figure>
+<h2 id="5-Agent-Memory">5. Agent-Memory</h2>
+<blockquote>
+<p><strong>Q: 为什么需要 Memory ?</strong></p>
+<ul>
+<li>
+<p>上一节的 Agent 在一次 <code>invoke</code> 里面连续调用了多个工具;</p>
+</li>
+<li>
+<p>但是实际很多时候不会在一个 <code>invoke()</code> 里面说全;</p>
+</li>
+<li>
+<p>往往是分多个对话输入:</p>
+<ul>
+<li>
+<p>第一次调用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">react_graph.invoke(&#123;</span><br><span class="line">    <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">        HumanMessage(content=<span class="string">&quot;Add 3 and 4.&quot;</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>模型得到 <code>3+4=7</code></p>
+</li>
+<li>
+<p>第二次调用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">react_graph.invoke(&#123;</span><br><span class="line">    <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">        HumanMessage(content=<span class="string">&quot;Multiply that by 2.&quot;</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>此时模型看不到上一轮的 <code>7</code>, 不知道 <code>that</code> 指的是什么.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>LLM 本身没有记忆</p>
+<p>大模型本身不会记住上一次 API 请求. 所谓的 “对话记忆”, 实际上是应用程序保存历史消息, 并在下一次请求时重新发送给模型.</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="5-1-MemorySaver">5.1 MemorySaver</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.checkpoint.memory <span class="keyword">import</span> MemorySaver</span><br><span class="line"></span><br><span class="line">memory = MemorySaver()</span><br><span class="line"></span><br><span class="line">react_graph_memory = builder.<span class="built_in">compile</span>(</span><br><span class="line">    checkpointer=memory</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>MemorySaver</code> 是一个内存中的检查点存储</li>
+<li><code>checkpointer</code> 会在图执行过程中保存 State (是某个时刻保存下来的 State 快照), 包括:
+<ul>
+<li>消息历史</li>
+<li>当前节点位置</li>
+<li>节点执行结果</li>
+<li>工具调用和工具结果</li>
+</ul>
+</li>
+<li><code>Memory</code> 通过加载历史 <code>checkpoint</code> 实现跨调用记忆.</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">StateGraph</span><br><span class="line">   ↓ 每一步保存</span><br><span class="line">Checkpointer</span><br><span class="line">   ↓</span><br><span class="line">某个 thread_id 对应的检查点</span><br></pre></td></tr></table></figure>
+<p><code>thread_id</code> 是某段对话的唯一标识:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">config = &#123;</span><br><span class="line">    <span class="string">&quot;configurable&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;thread_id&quot;</span>: <span class="string">&quot;1&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以理解成聊天会话的ID:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">thread_id=&quot;1&quot; → 用户A的第一段对话</span><br><span class="line">thread_id=&quot;2&quot; → 用户A的另一段对话</span><br></pre></td></tr></table></figure>
+<p>不同 <code>thread_id</code> 状态相互隔离.</p>
+<h3 id="5-2-调用">5.2 调用</h3>
+<h4 id="第一次调用">第一次调用</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">messages = [</span><br><span class="line">    HumanMessage(content=<span class="string">&quot;Add 3 and 4.&quot;</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">result = react_graph_memory.invoke(</span><br><span class="line">    &#123;<span class="string">&quot;messages&quot;</span>: messages&#125;,</span><br><span class="line">    config</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>这里的 <code>config</code> 包含 <code>thread_id= &quot;1&quot;</code></p>
+<p>执行流程如下:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HumanMessage：3 + 4</span><br><span class="line">    ↓</span><br><span class="line">AIMessage：调用 add(3, 4)</span><br><span class="line">    ↓</span><br><span class="line">ToolMessage：7</span><br><span class="line">    ↓</span><br><span class="line">AIMessage：结果是 7</span><br><span class="line">    ↓</span><br><span class="line">保存到 thread_id=&quot;1&quot;</span><br></pre></td></tr></table></figure>
+<p>保存的 State 为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">        HumanMessage(<span class="string">&quot;Add 3 and 4.&quot;</span>),</span><br><span class="line">        AIMessage(tool_calls=[...]),</span><br><span class="line">        ToolMessage(<span class="string">&quot;7&quot;</span>),</span><br><span class="line">        AIMessage(<span class="string">&quot;The result is 7.&quot;</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第二次调用">第二次调用</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">messages = [</span><br><span class="line">    HumanMessage(</span><br><span class="line">        content=<span class="string">&quot;Multiply that by 2.&quot;</span></span><br><span class="line">    )</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">result = react_graph_memory.invoke(</span><br><span class="line">    &#123;<span class="string">&quot;messages&quot;</span>: messages&#125;,</span><br><span class="line">    config</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>因为仍然适用 <code>thread_id = &quot;1&quot;</code>, 所以 LangGraph 会加载上一次保存的 State, 并把新的 <code>HumanMessage</code> 追加到历史消息, 再继续执行 Agent, 最后保存更新后的 State.</p>
+<p>如果换一个新的 <code>thread_id</code>, 那么模型仍然不知道 <code>that</code> 是什么.</p>
+
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/07/03/langgraph-foundations/" data-share-title="LangGraph 基础">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/17/agent-2/" rel="prev" title="报告生成Agent——环境配置">
+      <i class="fa fa-chevron-left"></i> 报告生成Agent——环境配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/07/03/langchain-basic/" rel="next" title="LangChain 基础">
+      LangChain 基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">LangGraph</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Simple-Graph"><span class="nav-number">1.1.</span> <span class="nav-text">1. Simple Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%9E%84%E9%80%A0%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE-State"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 构造图中的共享数据 State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%9E%84%E9%80%A0-Node-%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 构造 Node: 处理数据的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Edge-%E8%A7%84%E5%AE%9A%E8%8A%82%E7%82%B9%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 Edge: 规定节点如何连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E6%9E%84%E5%BB%BA%E5%9B%BE"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 构建图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E8%B0%83%E7%94%A8%E5%9B%BE"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5 调用图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Chain"><span class="nav-number">1.2.</span> <span class="nav-text">2. Chain</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Messages"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Messages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E8%B0%83%E7%94%A8-Chat-Models"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 调用 Chat Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7%E5%B9%B6%E7%BB%91%E5%AE%9A"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 定义工具并绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E4%BD%9C%E4%B8%BA-State"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 使用消息作为 State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Reducers"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 Reducers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E5%86%85%E7%BD%AE-MessageState"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6 内置 MessageState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E6%9E%84%E5%BB%BA%E5%9B%BE"><span class="nav-number">1.2.7.</span> <span class="nav-text">2.7 构建图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Router"><span class="nav-number">1.3.</span> <span class="nav-text">3. Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 定义工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%AE%9A%E4%B9%89%E5%9B%BE"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 定义图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Agent"><span class="nav-number">1.4.</span> <span class="nav-text">4. Agent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-ReAct"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 ReAct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%AE%9A%E4%B9%89%E5%A4%9A%E4%B8%AA%E5%B7%A5%E5%85%B7%E5%B9%B6%E7%BB%91%E5%AE%9A%E5%88%B0%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 定义多个工具并绑定到模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-SystemMessage"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 SystemMessage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-MessageState"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4 MessageState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E6%9E%84%E5%BB%BA%E5%9B%BE"><span class="nav-number">1.4.5.</span> <span class="nav-text">4.5 构建图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-%E6%89%A7%E8%A1%8C"><span class="nav-number">1.4.6.</span> <span class="nav-text">4.6 执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Agent-Memory"><span class="nav-number">1.5.</span> <span class="nav-text">5. Agent-Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-MemorySaver"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 MemorySaver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E8%B0%83%E7%94%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B0%83%E7%94%A8"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">第一次调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%B0%83%E7%94%A8"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">第二次调用</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=47cb482a"></script>
+  <script src="/lib/velocity/velocity.min.js?v=2f1afadc"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=ed5e534c"></script>
+
+<script src="/js/utils.js?v=730cca7f"></script>
+
+<script src="/js/motion.js?v=72df86f6"></script>
+
+
+<script src="/js/schemes/muse.js?v=1eb9b881"></script>
+
+
+<script src="/js/next-boot.js?v=a1b06364"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js?v=35ccf100"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+<div id="blog-ai-agent-root"></div>
+<script>
+window.__BLOG_AI_CONFIG__ = window.__BLOG_AI_CONFIG__ || {
+  apiBaseUrl: 'https://blog-ai-api.vercel.app',
+  dataBasePath: '/ai-data'
+};
+</script>
+<script src="/js/blog-ai-agent.js?v=5bc2e74a"></script>
+
+</body>
+</html>
