@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=169f59cf">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=0038dc97">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wangsenjie.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="状态与短期记忆 —— Reducer、消息管理与持久化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="状态与短期记忆">
+<meta property="og:url" content="https://wangsenjie.github.io/2026/07/14/state-and-short-term-memory/index.html">
+<meta property="og:site_name" content="DMH&#39;s Blog">
+<meta property="og:description" content="状态与短期记忆 —— Reducer、消息管理与持久化">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-15T02:09:58.324Z">
+<meta property="article:author" content="DMH">
+<meta property="article:tag" content="数学, 机器学习, 深度学习, 算法, Python, 数据分析, Hexo, NexT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wangsenjie.github.io/2026/07/14/state-and-short-term-memory/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta property="og:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:image" content="https://wangsenjie.github.io/images/tx.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <meta name="twitter:description" content="状态与短期记忆 —— Reducer、消息管理与持久化">
+
+<meta name="twitter:title" content="状态与短期记忆">
+
+  <title>状态与短期记忆 | DMH's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DMH's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DMH's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">数学、机器学习与编程笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/subscribe/" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangsenjie.github.io/2026/07/14/state-and-short-term-memory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="DMH">
+      <meta itemprop="description" content="专注于数学、机器学习与编程的学习笔记与整理。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DMH's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          状态与短期记忆
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-07-14 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-14T00:00:00+08:00">2026-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-07-15 10:09:58" itemprop="dateModified" datetime="2026-07-15T10:09:58+08:00">2026-07-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E2%80%94%E2%80%94AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">从零开始——AI应用开发</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E2%80%94%E2%80%94AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/LangChain/" itemprop="url" rel="index"><span itemprop="name">LangChain</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">状态与短期记忆 —— Reducer、消息管理与持久化</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>State与短期记忆</h1>
+<p>再上一章, 我们已经构造了一个简单的 Agent, 实现了 <code>act</code> <code>observe</code> <code>reason</code> <code>memory</code></p>
+<blockquote>
+<p><a href="langgraph-foundations.md">LangGraph Foundations</a></p>
+</blockquote>
+<p>在这一章, 我们将进一步去理解 <code>State</code> 和 <code>Memory</code>.</p>
+<h2 id="1-State-Schema">1. State Schema</h2>
+<blockquote>
+<p><strong>Q: 为什么需要 State Schema ?</strong></p>
+<ul>
+<li>在 LangGraph 中, 节点不是靠普通函数参数一个个传递数据, 而是共享一个 <code>state</code>, 我们需要事先定义这个 <code>State</code> 长什么样, 即
+<ul>
+<li>Graph 运行过程中, 会保存哪些字段 ?</li>
+<li>每个字段是什么类型 ?</li>
+<li>每个节点可以读写哪些字段 ?</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>State 的定义方式有:</p>
+<ul>
+<li><code>TypedDict</code></li>
+<li><code>dataclass</code></li>
+<li><code>Pydantic</code></li>
+</ul>
+<h3 id="1-1-用-TypedDict-定义-State">1.1 用 <code>TypedDict</code> 定义 State</h3>
+<p>例:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> TypedDict</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TypedDictState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">  	name: <span class="built_in">str</span></span><br><span class="line">    mood: <span class="built_in">str</span></span><br></pre></td></tr></table></figure>
+<p>如果你想要 <code>mood</code> 字段的取值只能是 <code>happy</code> 或者 <code>sad</code>, 那可以使用 <code>Literal</code> 方法:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> TypedDict</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Literal</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TypedDictState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">  	name: <span class="built_in">str</span></span><br><span class="line">    mood: <span class="type">Literal</span>[<span class="string">&quot;happy&quot;</span>, <span class="string">&quot;sad&quot;</span>]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注: <code>TypedDict</code> 主要是类型提示, 不是运行时校验, 即用了错误的数据不会报错, 例:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;name&quot;</span>: <span class="number">123</span>, <span class="string">&quot;mood&quot;</span>: <span class="string">&quot;angry&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="构建-Graph">构建 Graph</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image, display</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, START, END</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_1</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 1---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;name&quot;</span>: state[<span class="string">&#x27;name&#x27;</span>] + <span class="string">&quot; is ... &quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_2</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 2---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;mood&quot;</span>: <span class="string">&quot;happy&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_3</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 3---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;mood&quot;</span>: <span class="string">&quot;sad&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decide_mood</span>(<span class="params">state</span>) -&gt; <span class="type">Literal</span>[<span class="string">&quot;node_2&quot;</span>, <span class="string">&quot;node_3&quot;</span>]:</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># Here, let&#x27;s just do a 50 / 50 split between nodes 2, 3</span></span><br><span class="line">    <span class="keyword">if</span> random.random() &lt; <span class="number">0.5</span>:</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 50% of the time, we return Node 2</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;node_2&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 50% of the time, we return Node 3</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;node_3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Build graph</span></span><br><span class="line">builder = StateGraph(TypedDictState)</span><br><span class="line">builder.add_node(<span class="string">&quot;node_1&quot;</span>, node_1)</span><br><span class="line">builder.add_node(<span class="string">&quot;node_2&quot;</span>, node_2)</span><br><span class="line">builder.add_node(<span class="string">&quot;node_3&quot;</span>, node_3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Logic</span></span><br><span class="line">builder.add_edge(START, <span class="string">&quot;node_1&quot;</span>)</span><br><span class="line">builder.add_conditional_edges(<span class="string">&quot;node_1&quot;</span>, decide_mood)</span><br><span class="line">builder.add_edge(<span class="string">&quot;node_2&quot;</span>, END)</span><br><span class="line">builder.add_edge(<span class="string">&quot;node_3&quot;</span>, END)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add</span></span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># View</span></span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">START</span><br><span class="line">  ↓</span><br><span class="line">node_1</span><br><span class="line">  ↓</span><br><span class="line">根据 decide_mood 随机分支</span><br><span class="line">  ↓              ↓</span><br><span class="line">node_2          node_3</span><br><span class="line">  ↓              ↓</span><br><span class="line">END            END</span><br></pre></td></tr></table></figure>
+<p>调用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graph.invoke(&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;Lance&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---Node 1---</span><br><span class="line">---Node 2---</span><br><span class="line">&#123;&#x27;name&#x27;: &#x27;Lance is ... &#x27;, &#x27;mood&#x27;: &#x27;happy&#x27;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注: 因为 <code>TypedDict</code> 本质上是 <code>dict</code> 风格的 State, 所以这里直接使用 <code>dict</code> 也是一样的.</p>
+</blockquote>
+<h3 id="1-2-用-dataclass-定义-State">1.2 用 <code>dataclass</code> 定义 State</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</span><br><span class="line"></span><br><span class="line"><span class="meta">@dataclass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DataclassState</span>:</span><br><span class="line">    name: <span class="built_in">str</span></span><br><span class="line">    mood: <span class="type">Literal</span>[<span class="string">&quot;happy&quot;</span>,<span class="string">&quot;sad&quot;</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>这里 <code>dataclass</code> 是一个装饰器函数.</p>
+</li>
+<li>
+<p><code>@dataclass</code> 为类装饰器, 可以为 <code>DataclassState</code> 自动生成 <code>__init__</code> <code>__repr__</code> <code>__eq__</code> 方法, 从而简化数据类的定义.</p>
+</li>
+<li>
+<p>他不是字典, 而是对象, 因此读取字段时, 不是 <code>state[&quot;name&quot;]</code>, 而是 <code>state.name</code>. 因此之前的 <code>node_1</code> 要改成:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">node_1</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 1---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;name&quot;</span>: state.name + <span class="string">&quot; is ... &quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>调用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graph.invoke(DataclassState(name=<span class="string">&quot;Lance&quot;</span>,mood=<span class="string">&quot;sad&quot;</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---Node 1---</span><br><span class="line">---Node 3---</span><br><span class="line">&#123;&#x27;name&#x27;: &#x27;Lance is ... &#x27;, &#x27;mood&#x27;: &#x27;sad&#x27;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-用-Pydantic-定义-State">1.3 用 <code>Pydantic</code> 定义 State</h3>
+<blockquote>
+<p><strong><code>TypedDict</code> 和 <code>dataclass</code> 的共同问题:</strong></p>
+<ul>
+<li>虽然它们都提供了类型提示, 但不严格做运行时校验. 例如 <code>DataclassState(name=&quot;lance&quot;, mood=&quot;mad&quot;)</code> 也不会触发报错</li>
+<li>基于此, 如果希望错误数据触发报错, 就要引入 <code>Pydantic</code></li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, field_validator, ValidationError</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PydanticState</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    name: <span class="built_in">str</span></span><br><span class="line">    mood: <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @field_validator(<span class="params"><span class="string">&#x27;mood&#x27;</span></span>)</span></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">validate_mood</span>(<span class="params">cls, value</span>):</span><br><span class="line">        <span class="keyword">if</span> value <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">&quot;happy&quot;</span>, <span class="string">&quot;sad&quot;</span>]:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;Each mood must be either &#x27;happy&#x27; or &#x27;sad&#x27;&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><code>@field_validator('mood')</code> 是一个装饰器, 意思是: 下面这个方法专门负责校验 <code>mood</code> 字段.</p>
+</li>
+<li>
+<p><code>@classmethod</code> 是类方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">validate_mood</span>(<span class="params">cls, value</span>):</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里 <code>cls</code> 就是当前类, 即 <code>PydanticState</code></li>
+<li><code>value</code> 表示正在校验的 <code>mood</code> 值</li>
+</ul>
+</li>
+</ul>
+<p>此时运行:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    state = PydanticState(name=<span class="string">&quot;John Doe&quot;</span>, mood=<span class="string">&quot;mad&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> ValidationError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Validation Error:&quot;</span>, e)</span><br></pre></td></tr></table></figure>
+<p>将触发 <code>Validation Error</code>.</p>
+<h2 id="2-State-Reducers">2. State Reducers</h2>
+<p>在 <a href="langgraph-foundations.md">LangGraph Foundations</a> 中我们以及知道: 对于一个没有 <code>Reducer</code> 的 LanGraph, 默认新的 State 会覆盖旧的 State.</p>
+<p>事实上还有另一个问题: 多分支同时更新同一字段. 先构建一个分支图:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    foo: <span class="built_in">int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_1</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 1---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;foo&quot;</span>: state[<span class="string">&#x27;foo&#x27;</span>] + <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_2</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 2---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;foo&quot;</span>: state[<span class="string">&#x27;foo&#x27;</span>] + <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_3</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 3---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;foo&quot;</span>: state[<span class="string">&#x27;foo&#x27;</span>] + <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build graph</span></span><br><span class="line">builder = StateGraph(State)</span><br><span class="line">builder.add_node(<span class="string">&quot;node_1&quot;</span>, node_1)</span><br><span class="line">builder.add_node(<span class="string">&quot;node_2&quot;</span>, node_2)</span><br><span class="line">builder.add_node(<span class="string">&quot;node_3&quot;</span>, node_3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Logic</span></span><br><span class="line">builder.add_edge(START, <span class="string">&quot;node_1&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;node_1&quot;</span>, <span class="string">&quot;node_2&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;node_1&quot;</span>, <span class="string">&quot;node_3&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;node_2&quot;</span>, END)</span><br><span class="line">builder.add_edge(<span class="string">&quot;node_3&quot;</span>, END)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add</span></span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># View</span></span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">START</span><br><span class="line">  ↓</span><br><span class="line">node_1</span><br><span class="line">  ↓</span><br><span class="line"> ┌─────────┐</span><br><span class="line"> ↓         ↓</span><br><span class="line">node_2    node_3</span><br><span class="line"> ↓         ↓</span><br><span class="line">END       END</span><br></pre></td></tr></table></figure>
+<p>注意到 <code>node_2</code> 和 <code>node_3</code> 都会返回 <code>return &#123;&quot;foo&quot;: state['foo'] + 1&#125;</code>, 它们在同一步并行发生, 此时 LangGraph 不知道应该保留谁, 就会触发 <code>InvalidUpdateError</code> 报错.</p>
+<h3 id="2-1-Reducer">2.1 Reducer</h3>
+<p>Reducer 是一条 “合并规则”, 面对多个节点更新同一个 state 字段, 不直接覆盖, 而是按照某种规则合并.</p>
+<h4 id="用-Annotated-给字段指定-reducer">用 Annotated 给字段指定 reducer</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> add</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Annotated</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    foo: Annotated[<span class="built_in">list</span>[<span class="built_in">int</span>], add]</span><br></pre></td></tr></table></figure>
+<p>这里 <code>foo: Annotated[list[int], add]</code> 的意思是 <code>foo</code> 是 <code>list[int]</code> 类型的, 且有新值写入 <code>foo</code> 时, 用 <code>add</code> 函数合并. <code>operator.add</code> 对 <code>list</code> 的效果是列表拼接.</p>
+<h4 id="reducer-解决并行分支冲突">reducer 解决并行分支冲突</h4>
+<p>仍然考虑之前的并行分支的例子, 先修改 <code>node_1, node_2, node_3</code> 的定义:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">node_1</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 1---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;foo&quot;</span>: [state[<span class="string">&#x27;foo&#x27;</span>][-<span class="number">1</span>] + <span class="number">1</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_2</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 2---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;foo&quot;</span>: [state[<span class="string">&#x27;foo&#x27;</span>][-<span class="number">1</span>] + <span class="number">1</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_3</span>(<span class="params">state</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 3---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;foo&quot;</span>: [state[<span class="string">&#x27;foo&#x27;</span>][-<span class="number">1</span>] + <span class="number">1</span>]&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>假设输入 <code>&#123;&quot;foo&quot;: [1]&#125;</code></li>
+<li><code>node_1</code> 先执行, <code>1+1=2</code>, 此时按 <code>add</code> 规则追加: <code>[1] -&gt; [1, 2]</code></li>
+<li>然后 <code>node_2</code> 和 <code>node_3</code> 并行执行, 它们都基于最后一个值 <code>2</code> 生成
+<ul>
+<li><code>node_2</code> 返回 <code>&#123;&quot;foo&quot;: [3]&#125;</code></li>
+<li><code>node_3</code> 返回 <code>&#123;&quot;foo&quot;: [3]&#125;</code></li>
+<li>因为 <code>foo</code> 有 reducer, 所以会执行 <code>add</code> 合并, 得到 <code>&#123;&quot;foo&quot;: [1, 2, 3, 3]&#125;</code> 而不会产生冲突报错.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-Reducer-的问题与解决方式">2.2 Reducer 的问题与解决方式</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    graph.invoke(&#123;<span class="string">&quot;foo&quot;</span> : <span class="literal">None</span>&#125;)</span><br><span class="line"><span class="keyword">except</span> TypeError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;TypeError occurred: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>由于 reducer 是 <code>operator.add</code>, 它会尝试 <code>None + 2</code> (<code>node_1</code> 之后), 这是不合法的, 所以会产生 <code>TypeError</code> 报错.</p>
+<p>为了解决以上问题, 可以写一个自定义 reducer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">reduce_list</span>(<span class="params">left: <span class="built_in">list</span> | <span class="literal">None</span>, right: <span class="built_in">list</span> | <span class="literal">None</span></span>) -&gt; <span class="built_in">list</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Safely combine two lists, handling cases where either or both inputs might be None.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        left (list | None): The first list to combine, or None.</span></span><br><span class="line"><span class="string">        right (list | None): The second list to combine, or None.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        list: A new list containing all elements from both input lists.</span></span><br><span class="line"><span class="string">               If an input is None, it&#x27;s treated as an empty list.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> left:</span><br><span class="line">        left = []</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> right:</span><br><span class="line">        right = []</span><br><span class="line">    <span class="keyword">return</span> left + right</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DefaultState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    foo: Annotated[<span class="built_in">list</span>[<span class="built_in">int</span>], add]</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomReducerState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    foo: Annotated[<span class="built_in">list</span>[<span class="built_in">int</span>], reduce_list]</span><br></pre></td></tr></table></figure>
+<p>可以发现在输入 <code>None</code> 这个例子下: 采用 <code>DefaultState</code> 会出现 <code>TypeError</code> 报错, 而采用 <code>CustomReducerState</code> 就能解决这个问题.</p>
+<h3 id="2-3-MessageState">2.3 MessageState</h3>
+<p>有两种方式定义 Message Reducer</p>
+<ul>
+<li>
+<p>手动定义:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Annotated</span><br><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> AnyMessage</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomMessagesState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    messages: Annotated[<span class="built_in">list</span>[AnyMessage], add_messages]</span><br><span class="line">    added_key_1: <span class="built_in">str</span></span><br><span class="line">    added_key_2: <span class="built_in">str</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>LangGraph 内置:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> MessagesState</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ExtendedMessagesState</span>(<span class="title class_ inherited__">MessagesState</span>):</span><br><span class="line">    added_key_1: <span class="built_in">str</span></span><br><span class="line">    added_key_2: <span class="built_in">str</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>这两种方法类似</p>
+</li>
+</ul>
+<h4 id="add-messages-的作用"><code>add_messages</code> 的作用</h4>
+<p>与普通的列表拼接不同, <code>add_messages</code> 更适合聊天消息, 支持:</p>
+<ul>
+<li>
+<p>追加新消息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">initial_messages = [</span><br><span class="line">    AIMessage(content=<span class="string">&quot;Hello!&quot;</span>, <span class="built_in">id</span>=<span class="string">&quot;1&quot;</span>),</span><br><span class="line">    HumanMessage(content=<span class="string">&quot;I&#x27;m looking for information.&quot;</span>, <span class="built_in">id</span>=<span class="string">&quot;2&quot;</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">new_message = AIMessage(content=<span class="string">&quot;Sure, I can help.&quot;</span>, <span class="built_in">id</span>=<span class="string">&quot;3&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_messages(initial_messages, new_message)</span><br></pre></td></tr></table></figure>
+<p>就是追加新消息</p>
+</li>
+<li>
+<p>根据消息 ID 覆盖旧消息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">initial_messages = [</span><br><span class="line">    AIMessage(content=<span class="string">&quot;Hello!&quot;</span>, <span class="built_in">id</span>=<span class="string">&quot;1&quot;</span>),</span><br><span class="line">    HumanMessage(content=<span class="string">&quot;I&#x27;m looking for information on marine biology.&quot;</span>, <span class="built_in">id</span>=<span class="string">&quot;2&quot;</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">new_message = HumanMessage(</span><br><span class="line">    content=<span class="string">&quot;I&#x27;m looking for information on whales, specifically&quot;</span>,</span><br><span class="line">    <span class="built_in">id</span>=<span class="string">&quot;2&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_messages(initial_messages, new_message)</span><br></pre></td></tr></table></figure>
+<p>结果不是追加，而是替换 <code>id=&quot;2&quot;</code> 的旧消息。</p>
+</li>
+<li>
+<p>删除指定消息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> RemoveMessage</span><br></pre></td></tr></table></figure>
+<p>假设原来有消息:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">messages = [</span><br><span class="line">    AIMessage(<span class="string">&quot;Hi.&quot;</span>, <span class="built_in">id</span>=<span class="string">&quot;1&quot;</span>),</span><br><span class="line">    HumanMessage(<span class="string">&quot;Hi.&quot;</span>, <span class="built_in">id</span>=<span class="string">&quot;2&quot;</span>),</span><br><span class="line">    AIMessage(<span class="string">&quot;So you said...&quot;</span>, <span class="built_in">id</span>=<span class="string">&quot;3&quot;</span>),</span><br><span class="line">    HumanMessage(<span class="string">&quot;Yes...&quot;</span>, <span class="built_in">id</span>=<span class="string">&quot;4&quot;</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>删除前两条:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete_messages = [RemoveMessage(<span class="built_in">id</span>=m.<span class="built_in">id</span>) <span class="keyword">for</span> m <span class="keyword">in</span> messages[:-<span class="number">2</span>]]</span><br></pre></td></tr></table></figure>
+<p>然后执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_messages(messages, delete_messages)</span><br></pre></td></tr></table></figure>
+<p>结果就是删除 <code>id=&quot;1&quot;</code> 和 <code>id=&quot;2&quot;</code> 的消息.</p>
+</li>
+</ul>
+<h2 id="3-Multiple-Schemas">3 Multiple Schemas</h2>
+<p>在 <strong>State Schema</strong> 这一节中, 我们整个 graph 只定义了一个 <code>State</code>, 输入、节点之间传递和最终输出都用这个 <code>State</code>.</p>
+<p>但真实项目里经常不够用, 因为有些字段只用于中间计算, 不希望用户输入, 也不希望最终返回.</p>
+<h3 id="3-1-Private-State">3.1 Private State</h3>
+<p>先定义 <code>OverallState</code> 和 <code>PrivateState</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">OverallState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    foo: <span class="built_in">int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PrivateState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    baz: <span class="built_in">int</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>OverallState</code> 为整个 graph 的正式状态</li>
+<li><code>PrivateState</code> 为节点之间临时传递的状态</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">node_1</span>(<span class="params">state: OverallState</span>) -&gt; PrivateState:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 1---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;baz&quot;</span>: state[<span class="string">&#x27;foo&#x27;</span>] + <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_2</span>(<span class="params">state: PrivateState</span>) -&gt; OverallState:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---Node 2---&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;foo&quot;</span>: state[<span class="string">&#x27;baz&#x27;</span>] + <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>node_1</code> 读取正式状态里的 <code>foo</code>, 但返回的是临时状态 <code>baz</code>;</li>
+<li><code>node_2</code> 读取临时状态 <code>baz</code>, 然后写回正式状态 <code>foo</code>.</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入 &#123;&quot;foo&quot;: 1&#125;</span><br><span class="line">   ↓</span><br><span class="line">node_1 读取 foo，生成 baz = 2</span><br><span class="line">   ↓</span><br><span class="line">node_2 读取 baz，生成 foo = 3</span><br><span class="line">   ↓</span><br><span class="line">输出 &#123;&quot;foo&quot;: 3&#125;</span><br></pre></td></tr></table></figure>
+<p>最终输出里没有 <code>baz</code>, 因为 <code>baz</code> 只在 <code>PrivateState</code> 里, 不在 <code>OverallState</code> 里.</p>
+<h3 id="3-2-InputState-和-OutputState">3.2 InputState 和 OutputState</h3>
+<p>先定义三个 <code>schema</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InputState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    question: <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OutputState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    answer: <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OverallState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    question: <span class="built_in">str</span></span><br><span class="line">    answer: <span class="built_in">str</span></span><br><span class="line">    notes: <span class="built_in">str</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>InputState</code> 限制用户输入什么</li>
+<li><code>OverallState</code> 为 graph 内部完整状态</li>
+<li><code>OutputState</code> 限制最终输出什么</li>
+</ul>
+<p>构建图:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">thinking_node</span>(<span class="params">state: InputState</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;answer&quot;</span>: <span class="string">&quot;bye&quot;</span>, <span class="string">&quot;notes&quot;</span>: <span class="string">&quot;... his is name is Lance&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">answer_node</span>(<span class="params">state: OverallState</span>) -&gt; OutputState:</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;answer&quot;</span>: <span class="string">&quot;bye Lance&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">graph = StateGraph(</span><br><span class="line">  OverallState, </span><br><span class="line">  input_schema=InputState, </span><br><span class="line">  output_schema=OutputState</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">graph.add_node(<span class="string">&quot;answer_node&quot;</span>, answer_node)</span><br><span class="line">graph.add_node(<span class="string">&quot;thinking_node&quot;</span>, thinking_node)</span><br><span class="line">graph.add_edge(START, <span class="string">&quot;thinking_node&quot;</span>)</span><br><span class="line">graph.add_edge(<span class="string">&quot;thinking_node&quot;</span>, <span class="string">&quot;answer_node&quot;</span>)</span><br><span class="line">graph.add_edge(<span class="string">&quot;answer_node&quot;</span>, END)</span><br><span class="line"></span><br><span class="line">graph = graph.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># View</span></span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br><span class="line"></span><br><span class="line">graph.invoke(&#123;<span class="string">&quot;question&quot;</span>:<span class="string">&quot;hi&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#x27;answer&#x27;: &#x27;bye Lance&#x27;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-Filtering-and-trimming-messages">4 Filtering and trimming messages</h2>
+<p>在实际使用过程中, <code>messages</code> 会随着聊天轮数不断增长, 如果每次都把完整历史传给模型, 成本、延迟和上下文长度都会出现问题.</p>
+<p>本节给出下面三种处理方式:</p>
+<ul>
+<li>用 <code>RemoveMessage</code> 真正删除 <code>state</code> 里的旧消息</li>
+<li>调用模型时只过滤一部分消息, 但不改 state</li>
+<li>按 token 数量裁剪 messages</li>
+</ul>
+<h3 id="4-1-用-RemoveMessage-删除旧消息">4.1 用 <code>RemoveMessage</code> 删除旧消息</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> RemoveMessage</span><br><span class="line"></span><br><span class="line"><span class="comment"># Nodes</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">filter_messages</span>(<span class="params">state: MessagesState</span>):</span><br><span class="line">    <span class="comment"># Delete all but the 2 most recent messages</span></span><br><span class="line">    delete_messages = [RemoveMessage(<span class="built_in">id</span>=m.<span class="built_in">id</span>) <span class="keyword">for</span> m <span class="keyword">in</span> state[<span class="string">&quot;messages&quot;</span>][:-<span class="number">2</span>]]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: delete_messages&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">chat_model_node</span>(<span class="params">state: MessagesState</span>):    </span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: [llm.invoke(state[<span class="string">&quot;messages&quot;</span>])]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build graph</span></span><br><span class="line">builder = StateGraph(MessagesState)</span><br><span class="line">builder.add_node(<span class="string">&quot;filter&quot;</span>, filter_messages)</span><br><span class="line">builder.add_node(<span class="string">&quot;chat_model&quot;</span>, chat_model_node)</span><br><span class="line">builder.add_edge(START, <span class="string">&quot;filter&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;filter&quot;</span>, <span class="string">&quot;chat_model&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;chat_model&quot;</span>, END)</span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># View</span></span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">START</span><br><span class="line">  ↓</span><br><span class="line">filter：删除旧消息，只保留最近 2 条</span><br><span class="line">  ↓</span><br><span class="line">chat_model：把剩下的消息传给模型</span><br><span class="line">  ↓</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+<p>此方法会真正修改 graph state.</p>
+<h3 id="4-2-过滤">4.2 过滤</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Node</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">chat_model_node</span>(<span class="params">state: MessagesState</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: [llm.invoke(state[<span class="string">&quot;messages&quot;</span>][-<span class="number">1</span>:])]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build graph</span></span><br><span class="line">builder = StateGraph(MessagesState)</span><br><span class="line">builder.add_node(<span class="string">&quot;chat_model&quot;</span>, chat_model_node)</span><br><span class="line">builder.add_edge(START, <span class="string">&quot;chat_model&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;chat_model&quot;</span>, END)</span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># View</span></span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<p><code>llm.invoke(state[&quot;messages&quot;][-1:]</code> 表示只取最后一条消息传给模型, 与 <code>RemoveMessage</code> 不同, 它不会修改 graph state.</p>
+<p>但是, 只传最后一句消息是有风险的, 比如用户问 <code>它生活在哪?</code>, 此时模型只看到这一句从而不知道 <code>它</code> 指的是什么. 实际项目里通常不会只保留最后一条, 而是保留最近几轮消息.</p>
+<h3 id="4-3-Trim-Messages">4.3 Trim Messages</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> trim_messages</span><br><span class="line"></span><br><span class="line"><span class="comment"># Node</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">chat_model_node</span>(<span class="params">state: MessagesState</span>):</span><br><span class="line">    messages = trim_messages(</span><br><span class="line">            state[<span class="string">&quot;messages&quot;</span>],</span><br><span class="line">            max_tokens=<span class="number">100</span>,</span><br><span class="line">            strategy=<span class="string">&quot;last&quot;</span>,</span><br><span class="line">            token_counter=<span class="built_in">len</span>,</span><br><span class="line">            allow_partial=<span class="literal">False</span>,</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: [llm.invoke(messages)]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build graph</span></span><br><span class="line">builder = StateGraph(MessagesState)</span><br><span class="line">builder.add_node(<span class="string">&quot;chat_model&quot;</span>, chat_model_node)</span><br><span class="line">builder.add_edge(START, <span class="string">&quot;chat_model&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;chat_model&quot;</span>, END)</span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># View</span></span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<p>其中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">messages = trim_messages(</span><br><span class="line">           state[<span class="string">&quot;messages&quot;</span>],</span><br><span class="line">           max_tokens=<span class="number">100</span>,</span><br><span class="line">           strategy=<span class="string">&quot;last&quot;</span>,</span><br><span class="line">           token_counter=<span class="built_in">len</span>,</span><br><span class="line">           allow_partial=<span class="literal">False</span>,</span><br><span class="line">       )</span><br></pre></td></tr></table></figure>
+<p>表示从 <code>messages</code> 里裁剪出一部分, 最多不超过 100 tokens, 优先保留最后的消息, 不允许保留半条消息.</p>
+<blockquote>
+<p>注: 这里做了简化, 直接使用 <code>len</code> 来计算 <code>token</code> 数量, 实际上是不对的, <code>token</code> 有专门的计算方法.</p>
+</blockquote>
+<h3 id="4-4-三种方法比较">4.4 三种方法比较</h3>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>是否修改 state</th>
+<th>控制方式</th>
+<th>适合场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RemoveMessage</code></td>
+<td>是</td>
+<td>删除指定消息</td>
+<td>真正清理历史</td>
+</tr>
+<tr>
+<td><code>state[&quot;messages&quot;][-N:]</code></td>
+<td>否</td>
+<td>保留最近 N 条</td>
+<td>简单过滤</td>
+</tr>
+<tr>
+<td><code>trim_messages</code></td>
+<td>否</td>
+<td>保留指定 token 内的消息</td>
+<td>控制 token 成本</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-Chatbot-with-message-summarization">5 Chatbot with message summarization</h2>
+<p>再上一节, 我们学习了利用三种方法来处理上下文过长带来的问题. 但是这些方法的问题是: 旧信息可能会直接丢失. 在这一节我们将学习一种新的思路 — 压缩. 具体来讲:</p>
+<ul>
+<li>不直接丢掉旧消息</li>
+<li>先把旧消息总结成 summary</li>
+<li>然后删除旧消息, 只保留 summary + 最近的消息</li>
+</ul>
+<p>这样既减少了 token, 又能保留关键信息.</p>
+<h3 id="5-1-实现">5.1 实现</h3>
+<p><strong>先定义 State 结构</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> MessagesState</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">MessagesState</span>):</span><br><span class="line">  	summary: <span class="built_in">str</span></span><br></pre></td></tr></table></figure>
+<p><code>MessagesState</code> 默认有 <code>messages</code> 字段, 现在额外增加了 <code>summary</code> 字段.</p>
+<p><strong>再定义调用聊天模型的节点 <code>call_model</code></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> SystemMessage, HumanMessage, RemoveMessage</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the logic to call the model</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">call_model</span>(<span class="params">state: State</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Get summary if it exists</span></span><br><span class="line">    summary = state.get(<span class="string">&quot;summary&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># If there is summary, then we add it</span></span><br><span class="line">    <span class="keyword">if</span> summary:</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Add summary to system message</span></span><br><span class="line">        system_message = <span class="string">f&quot;Summary of conversation earlier: <span class="subst">&#123;summary&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Append summary to any newer messages</span></span><br><span class="line">        messages = [SystemMessage(content=system_message)] + state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        messages = state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    response = model.invoke(messages)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: response&#125;</span><br></pre></td></tr></table></figure>
+<p>它的逻辑是:</p>
+<ul>
+<li>如果没有 <code>summary</code>
+<ul>
+<li>直接把 <code>messages</code> 给模型</li>
+</ul>
+</li>
+<li>如果有 <code>summary</code>
+<ul>
+<li>先构造一条 <code>SystemMessage</code>, 把 <code>summary</code> 放进去</li>
+<li>再拼接最近的 <code>messages</code></li>
+<li>一起传给模型</li>
+</ul>
+</li>
+</ul>
+<p><strong>接着构造摘要生成节点 <code>summarize_conversation</code></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">summarize_conversation</span>(<span class="params">state: State</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># First, we get any existing summary</span></span><br><span class="line">    summary = state.get(<span class="string">&quot;summary&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create our summarization prompt </span></span><br><span class="line">    <span class="keyword">if</span> summary:</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># A summary already exists</span></span><br><span class="line">        summary_message = (</span><br><span class="line">            <span class="string">f&quot;This is summary of the conversation to date: <span class="subst">&#123;summary&#125;</span>\n\n&quot;</span></span><br><span class="line">            <span class="string">&quot;Extend the summary by taking into account the new messages above:&quot;</span></span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        summary_message = <span class="string">&quot;Create a summary of the conversation above:&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add prompt to our history</span></span><br><span class="line">    messages = state[<span class="string">&quot;messages&quot;</span>] + [HumanMessage(content=summary_message)]</span><br><span class="line">    response = model.invoke(messages)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Delete all but the 2 most recent messages</span></span><br><span class="line">    delete_messages = [RemoveMessage(<span class="built_in">id</span>=m.<span class="built_in">id</span>) <span class="keyword">for</span> m <span class="keyword">in</span> state[<span class="string">&quot;messages&quot;</span>][:-<span class="number">2</span>]]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;summary&quot;</span>: response.content, <span class="string">&quot;messages&quot;</span>: delete_messages&#125;</span><br></pre></td></tr></table></figure>
+<p>它主要完成以下步骤:</p>
+<ul>
+<li>
+<p>生成或更新 <code>summary</code></p>
+<ul>
+<li>如果没有旧 <code>summary</code>, 即当前 <code>summary</code> 为空
+<ul>
+<li>则让模型总结当前对话</li>
+</ul>
+</li>
+<li>如果已经有 <code>summary</code>
+<ul>
+<li>则让模型基于旧 <code>summary</code> 和新消息, 扩展 <code>summary</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>删除旧消息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete_messages = [RemoveMessage(<span class="built_in">id</span>=m.<span class="built_in">id</span>) <span class="keyword">for</span> m <span class="keyword">in</span> state[<span class="string">&quot;messages&quot;</span>][:-<span class="number">2</span>]]</span><br></pre></td></tr></table></figure>
+<p>即删除除了最近 2 条之外的所有消息</p>
+</li>
+</ul>
+<p><strong>接下来定义一个条件分支 <code>should_continue</code> 来判断什么时候总结</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> END</span><br><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> <span class="type">Literal</span></span><br><span class="line"><span class="comment"># Determine whether to end or summarize the conversation</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">should_continue</span>(<span class="params">state: State</span>) -&gt; <span class="type">Literal</span> [<span class="string">&quot;summarize_conversation&quot;</span>,END]:</span><br><span class="line">    </span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the next node to execute.&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    messages = state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># If there are more than six messages, then we summarize the conversation</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(messages) &gt; <span class="number">6</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;summarize_conversation&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Otherwise we can just end</span></span><br><span class="line">    <span class="keyword">return</span> END</span><br></pre></td></tr></table></figure>
+<p>其逻辑为</p>
+<ul>
+<li>如果 <code>messages</code> 超过 6 条
+<ul>
+<li>则去 <code>summarize_conversation</code> 节点做摘要</li>
+</ul>
+</li>
+<li>反之, 直接结束</li>
+</ul>
+<p>综上, 实现流程为:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">用户输入</span><br><span class="line">  ↓</span><br><span class="line">conversation 调用模型回答</span><br><span class="line">  ↓</span><br><span class="line">检查 messages 数量</span><br><span class="line">  ↓</span><br><span class="line">如果 &lt;= 6：结束</span><br><span class="line">如果 &gt; 6：总结对话，然后结束</span><br></pre></td></tr></table></figure>
+<p>图结构可以理解为</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">START</span><br><span class="line">  ↓</span><br><span class="line">conversation</span><br><span class="line">  ↓</span><br><span class="line">should_continue</span><br><span class="line">  ├── END</span><br><span class="line">  └── summarize_conversation</span><br><span class="line">          ↓</span><br><span class="line">         END</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-增加-Memory">5.2 增加 <code>Memory</code></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.checkpoint.memory <span class="keyword">import</span> MemorySaver</span><br><span class="line"></span><br><span class="line">memory = MemorySaver()</span><br><span class="line">graph = workflow.<span class="built_in">compile</span>(checkpointer=memory)</span><br></pre></td></tr></table></figure>
+<p><code>MemorySaver</code> 是一个内存里的 checkpointer</p>
+<p>作用是：</p>
+<ul>
+<li>每次 graph 执行后, 把 state 保存下来</li>
+<li>下一次同一个 thread_id 调用时, 可以接着上一次 state 继续</li>
+</ul>
+<p>否则每次:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graph.invoke(...)</span><br></pre></td></tr></table></figure>
+<p>都是独立执行, 模型不会记得前一次对话.</p>
+<p><code>thread_id</code> 用来区分不同对话.</p>
+<h2 id="6-Chatbot-with-message-summarization-external-DB-memory">6  Chatbot with message summarization &amp; external DB memory</h2>
+<p>根据上一节内容, 我们已经通过 <code>MemorySaver</code> 实现了简单的内存, 但是 <code>MemorySaver</code> 只能保存在当前的 <code>Python</code> 进程中. 一旦 <code>Python</code> 进程重启, 记忆就没了. 如果想让记忆长期保存, 就要用外部数据库 <code>checkpointer</code>, 例如 <code>SQLite</code>、<code>Postgres</code>.</p>
+<h3 id="6-1-SQLite">6.1 SQLite</h3>
+<p><code>SQLite</code> 是一个轻量级的关系型数据库, 它不需要像 <code>MySQL</code> 一样要开 <code>server</code>, 它通常只是一个本地文件 <code>state_db/example.db</code>.</p>
+<h3 id="创建-SQLite-连接">创建 <code>SQLite</code> 连接</h3>
+<p>先利用 <code>&quot;:memory:&quot;</code> 创建一个内存 <code>SQLite</code> 数据库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line"><span class="comment"># In memory</span></span><br><span class="line">conn = sqlite3.connect(<span class="string">&quot;:memory:&quot;</span>, check_same_thread = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><code>check_same_thread = False</code> 是为了允许多线程访问同一个连接, 否则默认只允许同一个线程访问. 但这种方式和 <code>MemorySaver</code> 类似, 进程结束后数据也没了.</p>
+<p>想要实现持久化, 可以指定一个文件路径, 例如 <code>state_db/example.db</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db_path = <span class="string">&quot;state_db/example.db&quot;</span></span><br><span class="line">conn = sqlite3.connect(db_path, check_same_thread=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>只要文件 <code>state_db/example.db</code> 还在, <code>checkpoint</code> 就能保留.</p>
+<h3 id="创建-SqliteSaver">创建 <code>SqliteSaver</code></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Here is our checkpointer </span></span><br><span class="line"><span class="keyword">from</span> langgraph.checkpoint.sqlite <span class="keyword">import</span> SqliteSaver</span><br><span class="line">memory = SqliteSaver(conn)</span><br></pre></td></tr></table></figure>
+<p>这里把 <code>SQLite</code> 连接包装成 LangGraph 的 <code>checkpointer</code>.</p>
+<h2 id="6-2-创建-Chatbot">6.2 创建 Chatbot</h2>
+<p>同上一节的内容, 定义我们的 chatbot:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> <span class="type">Literal</span></span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> SystemMessage, HumanMessage, RemoveMessage</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> END</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> MessagesState</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># model = ChatOpenAI(model=&quot;gpt-4o&quot;,temperature=0)</span></span><br><span class="line">model = ChatOpenAI(</span><br><span class="line">  model=<span class="string">&quot;deepseek-v4-flash&quot;</span>, </span><br><span class="line">  temperature=<span class="number">0</span>, </span><br><span class="line">  api_key=os.environ[<span class="string">&quot;DEEPSEEK_API_KEY&quot;</span>], </span><br><span class="line">  base_url=<span class="string">&quot;https://api.deepseek.com&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">MessagesState</span>):</span><br><span class="line">    summary: <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the logic to call the model</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">call_model</span>(<span class="params">state: State</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Get summary if it exists</span></span><br><span class="line">    summary = state.get(<span class="string">&quot;summary&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># If there is summary, then we add it</span></span><br><span class="line">    <span class="keyword">if</span> summary:</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Add summary to system message</span></span><br><span class="line">        system_message = <span class="string">f&quot;Summary of conversation earlier: <span class="subst">&#123;summary&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Append summary to any newer messages</span></span><br><span class="line">        messages = [SystemMessage(content=system_message)] + state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        messages = state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    response = model.invoke(messages)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: response&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">summarize_conversation</span>(<span class="params">state: State</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># First, we get any existing summary</span></span><br><span class="line">    summary = state.get(<span class="string">&quot;summary&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create our summarization prompt </span></span><br><span class="line">    <span class="keyword">if</span> summary:</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># A summary already exists</span></span><br><span class="line">        summary_message = (</span><br><span class="line">            <span class="string">f&quot;This is summary of the conversation to date: <span class="subst">&#123;summary&#125;</span>\n\n&quot;</span></span><br><span class="line">            <span class="string">&quot;Extend the summary by taking into account the new messages above:&quot;</span></span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        summary_message = <span class="string">&quot;Create a summary of the conversation above:&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add prompt to our history</span></span><br><span class="line">    messages = state[<span class="string">&quot;messages&quot;</span>] + [HumanMessage(content=summary_message)]</span><br><span class="line">    response = model.invoke(messages)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Delete all but the 2 most recent messages</span></span><br><span class="line">    delete_messages = [RemoveMessage(<span class="built_in">id</span>=m.<span class="built_in">id</span>) <span class="keyword">for</span> m <span class="keyword">in</span> state[<span class="string">&quot;messages&quot;</span>][:-<span class="number">2</span>]]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;summary&quot;</span>: response.content, <span class="string">&quot;messages&quot;</span>: delete_messages&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Determine whether to end or summarize the conversation</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">should_continue</span>(<span class="params">state: State</span>)-&gt; <span class="type">Literal</span> [<span class="string">&quot;summarize_conversation&quot;</span>,END]:</span><br><span class="line">    </span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the next node to execute.&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    messages = state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># If there are more than six messages, then we summarize the conversation</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(messages) &gt; <span class="number">6</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;summarize_conversation&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Otherwise we can just end</span></span><br><span class="line">    <span class="keyword">return</span> END</span><br></pre></td></tr></table></figure>
+<p>编译:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> Image, display</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, START</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define a new graph</span></span><br><span class="line">workflow = StateGraph(State)</span><br><span class="line">workflow.add_node(<span class="string">&quot;conversation&quot;</span>, call_model)</span><br><span class="line">workflow.add_node(summarize_conversation)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the entrypoint as conversation</span></span><br><span class="line">workflow.add_edge(START, <span class="string">&quot;conversation&quot;</span>)</span><br><span class="line">workflow.add_conditional_edges(<span class="string">&quot;conversation&quot;</span>, should_continue)</span><br><span class="line">workflow.add_edge(<span class="string">&quot;summarize_conversation&quot;</span>, END)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compile</span></span><br><span class="line">graph = workflow.<span class="built_in">compile</span>(checkpointer=memory)</span><br><span class="line">display(Image(graph.get_graph().draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<p>注: 这里的 <code>graph = workflow.compile(checkpointer=memory)</code> 中的 <code>memory</code> 已经跟上一节不一样了.</p>
+
+    </div>
+
+    
+    
+    <section class="post-share" data-share-url="https://wangsenjie.github.io/2026/07/14/state-and-short-term-memory/" data-share-title="状态与短期记忆">
+  <div class="post-share-title">分享这篇文章</div>
+  <div class="post-share-actions">
+    <button class="post-share-btn" type="button" data-share-action="copy">复制链接</button>
+    <button class="post-share-btn" type="button" data-share-action="native">系统分享</button>
+  </div>
+  <p class="post-share-hint">芝士，与你分享！</p>
+  <div class="post-share-status" aria-live="polite"></div>
+</section>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/07/03/langchain-basic/" rel="prev" title="LangChain 基础">
+      <i class="fa fa-chevron-left"></i> LangChain 基础
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">State与短期记忆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-State-Schema"><span class="nav-number">1.1.</span> <span class="nav-text">1. State Schema</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E7%94%A8-TypedDict-%E5%AE%9A%E4%B9%89-State"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 用 TypedDict 定义 State</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA-Graph"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">构建 Graph</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E7%94%A8-dataclass-%E5%AE%9A%E4%B9%89-State"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 用 dataclass 定义 State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E7%94%A8-Pydantic-%E5%AE%9A%E4%B9%89-State"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 用 Pydantic 定义 State</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-State-Reducers"><span class="nav-number">1.2.</span> <span class="nav-text">2. State Reducers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Reducer"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Reducer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8-Annotated-%E7%BB%99%E5%AD%97%E6%AE%B5%E6%8C%87%E5%AE%9A-reducer"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">用 Annotated 给字段指定 reducer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reducer-%E8%A7%A3%E5%86%B3%E5%B9%B6%E8%A1%8C%E5%88%86%E6%94%AF%E5%86%B2%E7%AA%81"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">reducer 解决并行分支冲突</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Reducer-%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 Reducer 的问题与解决方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-MessageState"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 MessageState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#add-messages-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">add_messages 的作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Multiple-Schemas"><span class="nav-number">1.3.</span> <span class="nav-text">3 Multiple Schemas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Private-State"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 Private State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-InputState-%E5%92%8C-OutputState"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 InputState 和 OutputState</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Filtering-and-trimming-messages"><span class="nav-number">1.4.</span> <span class="nav-text">4 Filtering and trimming messages</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E7%94%A8-RemoveMessage-%E5%88%A0%E9%99%A4%E6%97%A7%E6%B6%88%E6%81%AF"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 用 RemoveMessage 删除旧消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%BF%87%E6%BB%A4"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Trim-Messages"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 Trim Messages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E6%AF%94%E8%BE%83"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4 三种方法比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Chatbot-with-message-summarization"><span class="nav-number">1.5.</span> <span class="nav-text">5 Chatbot with message summarization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E5%A2%9E%E5%8A%A0-Memory"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 增加 Memory</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Chatbot-with-message-summarization-external-DB-memory"><span class="nav-number">1.6.</span> <span class="nav-text">6  Chatbot with message summarization &amp; external DB memory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-SQLite"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 SQLite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-SQLite-%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.6.2.</span> <span class="nav-text">创建 SQLite 连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-SqliteSaver"><span class="nav-number">1.6.3.</span> <span class="nav-text">创建 SqliteSaver</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E5%88%9B%E5%BB%BA-Chatbot"><span class="nav-number">1.7.</span> <span class="nav-text">6.2 创建 Chatbot</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DMH"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">DMH</p>
+  <div class="site-description" itemprop="description">专注于数学、机器学习与编程的学习笔记与整理。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/WangSenJie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;WangSenJie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DMH</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=47cb482a"></script>
+  <script src="/lib/velocity/velocity.min.js?v=2f1afadc"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=ed5e534c"></script>
+
+<script src="/js/utils.js?v=730cca7f"></script>
+
+<script src="/js/motion.js?v=72df86f6"></script>
+
+
+<script src="/js/schemes/muse.js?v=1eb9b881"></script>
+
+
+<script src="/js/next-boot.js?v=a1b06364"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js?v=35ccf100"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('.post-share-btn');
+  if (!button) return;
+
+  const shareBox = button.closest('.post-share');
+  if (!shareBox) return;
+
+  const url = shareBox.dataset.shareUrl;
+  const title = shareBox.dataset.shareTitle;
+  const status = shareBox.querySelector('.post-share-status');
+  const action = button.dataset.shareAction;
+
+  const setStatus = message => {
+    if (status) status.textContent = message;
+  };
+
+  if (action === 'copy') {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+      setStatus('链接已复制');
+    } catch (error) {
+      setStatus('复制失败，请手动复制地址');
+    }
+    return;
+  }
+
+  if (action === 'native') {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        setStatus('已打开系统分享');
+      } catch (error) {
+        if (error && error.name !== 'AbortError') {
+          setStatus('系统分享失败，请改用复制链接');
+        }
+      }
+    } else {
+      setStatus('当前浏览器不支持系统分享，请使用复制链接');
+    }
+  }
+});
+</script>
+<div id="blog-ai-agent-root"></div>
+<script>
+window.__BLOG_AI_CONFIG__ = window.__BLOG_AI_CONFIG__ || {
+  apiBaseUrl: 'https://blog-ai-api.vercel.app',
+  dataBasePath: '/ai-data'
+};
+</script>
+<script src="/js/blog-ai-agent.js?v=f5a3d3ae"></script>
+
+</body>
+</html>

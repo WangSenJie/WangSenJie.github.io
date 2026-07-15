@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=5b51a6c9">
+<link rel="stylesheet" href="/css/main.css?v=169f59cf">
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=0038dc97">
@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wangsenjie.github.io/2026/07/03/langgraph-foundations/wangsenjie/Sites/blog/source/_posts/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E2%80%94%E2%80%94AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/LangChain/langgraph-foundations/Agent.png">
 <meta property="article:published_time" content="2026-07-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-07-13T07:50:19.321Z">
+<meta property="article:modified_time" content="2026-07-14T02:53:16.477Z">
 <meta property="article:author" content="DMH">
 <meta property="article:tag" content="数学, 机器学习, 深度学习, 算法, Python, 数据分析, Hexo, NexT">
 <meta name="twitter:card" content="summary">
@@ -251,7 +251,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-07-13 15:50:19" itemprop="dateModified" datetime="2026-07-13T15:50:19+08:00">2026-07-13</time>
+                <time title="修改时间：2026-07-14 10:53:16" itemprop="dateModified" datetime="2026-07-14T10:53:16+08:00">2026-07-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -340,7 +340,7 @@
 <p><code>type(result)</code> 的返回为 <code>langchain_core.messages.ai.AIMessage</code></p>
 <ul>
 <li><code>result.content</code> 为 AI 模型返回的正文内容</li>
-<li><code>result.content</code> 为模型元数据, 包含 模型名称、token数量、结束原因、服务商信息</li>
+<li><code>result.response_metadata</code> 为模型元数据, 包含 模型名称、token数量、结束原因、服务商信息</li>
 </ul>
 <h3 id="2-3-定义工具并绑定">2.3 定义工具并绑定</h3>
 <p>这里定义一个简单的示例工具 — 乘法函数</p>
@@ -435,7 +435,7 @@
 <p><code>parallel_tool_calls=False</code> 表示每次模型调用最多选择一个工具</p>
 <h3 id="4-3-SystemMessage">4.3 SystemMessage</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys_msg = SystemMessage(</span><br><span class="line">    content=(</span><br><span class="line">        <span class="string">&quot;You are a helpful assistant tasked &quot;</span></span><br><span class="line">        <span class="string">&quot;with performing arithmetic on a set of inputs.&quot;</span></span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p><code>SystemMessage</code> 规定 Agent 得总体职责为 执行算术任务.</p>
+<p><code>SystemMessage</code> 规定 Agent 的总体职责为 执行算术任务.</p>
 <p>模型节点:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">assistant</span>(<span class="params">state: MessagesState</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">            llm_with_tools.invoke(</span><br><span class="line">                [sys_msg] + state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>每次调用模型, 输入由两部分组成 <code>SystemMessage+当前历史消息</code></p>
@@ -483,7 +483,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.checkpoint.memory <span class="keyword">import</span> MemorySaver</span><br><span class="line"></span><br><span class="line">memory = MemorySaver()</span><br><span class="line"></span><br><span class="line">react_graph_memory = builder.<span class="built_in">compile</span>(</span><br><span class="line">    checkpointer=memory</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>MemorySaver</code> 是一个内存中的检查点存储</li>
-<li><code>checkpointer</code> 会在图执行过程中保存 State (是某个时刻保存下来的 State 快照), 包括:
+<li><code>checkpointer</code> 会在图执行过程中保存 State (<code>checkpoint</code> 是某个时刻保存下来的 State 快照), 包括:
 <ul>
 <li>消息历史</li>
 <li>当前节点位置</li>
@@ -616,7 +616,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
