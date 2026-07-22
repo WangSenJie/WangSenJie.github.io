@@ -1,5 +1,6 @@
 https://wangsenjie.github.io/ai-data/chunks.json
 https://wangsenjie.github.io/ai-data/posts.json
+https://wangsenjie.github.io/2026/07/15/human-in-the-loop/
 https://wangsenjie.github.io/2026/07/14/state-and-short-term-memory/
 https://wangsenjie.github.io/2026/07/03/langgraph-foundations/
 https://wangsenjie.github.io/2026/07/03/langchain-basic/
