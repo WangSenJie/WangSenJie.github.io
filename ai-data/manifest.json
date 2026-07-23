@@ -1,27 +1,32 @@
 {
   "schemaVersion": 1,
-  "corpusVersion": "3e34f03e1b65b5253fc409369cc2110ae781d684bfb4af97401fe7c23323d50c",
+  "corpusVersion": "3a51ec6c8a4808598a2f55aaeac8b92a43350526fbf684ae3b423106ba3225de",
   "files": {
     "posts": {
-      "sha256": "d1f40b540cd677e28ec95635637ad2a980ca4deff51d88e3514a098087b7b30c",
-      "count": 69
+      "sha256": "e3331ac2f848f71f82b2f8c13ea429470a6ad73fddc2527aa41bd2382a643364",
+      "count": 71
     },
     "chunks": {
-      "sha256": "09c923f6426477c67fa9cf6e6a3d8574510f5b9a475253589e5ddbf0cdf90e51",
-      "count": 886
+      "sha256": "00784ee04726413ff456a971d5be74d2b9ddb0cc32917d900a96068ae31c9502",
+      "count": 961
     }
   },
   "stats": {
-    "sourcePosts": 101,
-    "publishedPosts": 69,
-    "indexedPosts": 66,
-    "indexedChunks": 886,
+    "sourcePosts": 107,
+    "publishedPosts": 71,
+    "indexedPosts": 68,
+    "indexedChunks": 961,
     "skippedUnpublishedPosts": 32,
-    "skippedPostsWithoutUrl": 0,
+    "skippedPostsWithoutUrl": 4,
     "skippedPostsWithoutIndexableContent": 3
   },
   "warnings": {
-    "postsWithoutUrl": [],
+    "postsWithoutUrl": [
+      "/Users/wangsenjie/Sites/blog/source/_posts/概率论/第一章 事件与概率.md",
+      "/Users/wangsenjie/Sites/blog/source/_posts/概率论/第三章 随机变量与分布函数.md",
+      "/Users/wangsenjie/Sites/blog/source/_posts/概率论/第二章 条件概率与统计独立性.md",
+      "/Users/wangsenjie/Sites/blog/source/_posts/概率论/第四章 数字特征与特征函数.md"
+    ],
     "postsWithoutIndexableContent": [
       "Logistic Regression",
       "MLP",

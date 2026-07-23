@@ -8389,4 +8389,896 @@ s(T)\le s(T')\le s(T)+(M-m)p||T||\\</script>
         <tag>数学分析</tag>
       </tags>
   </entry>
+  <entry>
+    <title>概率论——大纲</title>
+    <url>/2026/07/23/post-20260723-bae228/</url>
+    <content><![CDATA[<h2 id="概率论选题">概率论选题</h2>
+<p>一、基本概念</p>
+<ol>
+<li>
+<p>随机现象</p>
+</li>
+<li>
+<p>概率</p>
+</li>
+<li>
+<p>古典概型</p>
+</li>
+<li>
+<p>Newton 二项式定理</p>
+</li>
+<li>
+<p>几何概率</p>
+</li>
+<li>
+<p>概率空间</p>
+</li>
+<li>
+<p>条件概率</p>
+</li>
+<li>
+<p>Bayes 公式</p>
+</li>
+<li>
+<p>独立性</p>
+</li>
+<li>
+<p>伯努利试验</p>
+<ol>
+<li>
+<p>伯努利分布：只进行一次伯努利试验</p>
+</li>
+<li>
+<p>二项分布：<script type="math/tex">n</script> 重伯努利试验中事件 <script type="math/tex">A</script> 出现 <script type="math/tex">k</script> 次的概率 <script type="math/tex">b(k;n,p)=\binom nkp^kq^{n-k}</script>.</p>
+<ol>
+<li><script type="math/tex">E\xi=np,\quad D\xi=npq</script>.</li>
+</ol>
+</li>
+<li>
+<p>几何分布：在伯努利试验中首次成功出现在第 <script type="math/tex">k</script> 次试验的概率 <script type="math/tex">g(k;p)=q^{k-1}p</script>.</p>
+<ol>
+<li><script type="math/tex">E\xi=\frac{1}{p},\quad D\xi=\frac{q}{p^2}</script>.</li>
+</ol>
+</li>
+<li>
+<p>帕斯卡分布：在伯努利试验中第 <script type="math/tex">r</script> 次成功发生在第 <script type="math/tex">k</script> 次试验的概率 <script type="math/tex">f(k;r,p)=\binom{k-1}{r-1}p^rq^{k-r}</script>.</p>
+<ol>
+<li><script type="math/tex">E\xi=\frac{r}{p},\quad D\xi=\frac{rq}{p^2}</script>.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>随机游动</p>
+</li>
+<li>
+<p>泊松分布: <script type="math/tex">P\{\xi=k\}=\frac{\lambda^k}{k!}e^{-\lambda}</script>.</p>
+<ol>
+<li><script type="math/tex">E\xi=\lambda,\quad D\xi=\lambda</script></li>
+</ol>
+</li>
+<li>
+<p>泊松过程</p>
+</li>
+<li>
+<p>随机变量</p>
+</li>
+<li>
+<p>随机变量的分布函数、密度函数</p>
+</li>
+<li>
+<p>退化分布 <script type="math/tex">P\{\xi=c\}=1</script></p>
+</li>
+<li>
+<p>超几何分布：对 <script type="math/tex">N</script> 件产品进行不放回抽样调查, 若这批产品中有 <script type="math/tex">M</script> 间次品, 现从整批产品中随机抽出 <script type="math/tex">n</script> 件产品, 其中的次品数的概率分布为超几何分布.</p>
+<ol>
+<li><script type="math/tex">p_k=\frac{\binom Mk\binom{N-M}{n-k}}{\binom Nn}</script>;</li>
+<li><script type="math/tex">EX=\frac{nM}{N},\quad DX=\frac{nM}{N}\left(1-\frac MN\right)\cdot\frac{N-n}{N-1}</script>.</li>
+</ol>
+</li>
+<li>
+<p>负二项分布: 对任意 <script type="math/tex">0<r\in \R</script>, 称 <script type="math/tex">Nb(l;r,p)=\binom{-r}{l}p^r(-q)^l, \ l=0,1,2,\cdots</script> 为负二项分布.</p>
+</li>
+<li>
+<p>均匀分布 <script type="math/tex">U[a,b]</script></p>
+<ol>
+<li><script type="math/tex">p(x)=\begin{cases}\frac{1}{b-a},&a\le x\le b,\\0,&x<a\ \or x>b\end{cases}</script>;</li>
+<li><script type="math/tex">F(x)=\begin{cases}0,&x\le a\\ \frac{x-a}{b-a},& a<x\le b\\1,&x>b\end{cases}</script>;</li>
+<li><script type="math/tex">E\xi=\frac{a+b}{2},\quad D\xi=-\frac{(b-a)^2}{12}</script>.</li>
+</ol>
+</li>
+<li>
+<p>正态分布 <script type="math/tex">N(\mu,\sigma^2)</script></p>
+<ol>
+<li><script type="math/tex">p(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\}, \quad x\in\R</script>;</li>
+<li><script type="math/tex">E\xi=\mu,\quad D\xi=\sigma^2</script>.</li>
+</ol>
+</li>
+<li>
+<p>指数分布 <script type="math/tex">Exp(\lambda)</script></p>
+<ol>
+<li><script type="math/tex">p(x)=\begin{cases}\lambda e^{-\lambda x},&x\ge0\\0,&x<0\end{cases}</script>;</li>
+<li><script type="math/tex">F(x)=\begin{cases}1-e^{-\lambda x},&x\ge0\\0,&x<0\end{cases}</script>;</li>
+<li><script type="math/tex">E\xi=\frac{1}{\lambda},\quad D\xi=\frac{1}{\lambda^2}</script>.</li>
+</ol>
+</li>
+<li>
+<p><script type="math/tex">n</script> 元正态分布 <script type="math/tex">N(\pmb{\mu},\pmb{\Sigma})</script></p>
+<ol>
+<li><script type="math/tex">p(\pmb{x})=\frac{1}{(2\pi)^{n/2}(\det\pmb{\Sigma})^{1/2}}\exp\{-\frac12(\pmb{x}-\pmb\mu)\pmb\Sigma^{-1}(\pmb x-\pmb\mu)^T\}</script>;</li>
+<li>二元正态分布 <script type="math/tex">N(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)</script><script type="math/tex; mode=display">p(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_1)^2}{\sigma^2}-2\rho\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}\right]\right\}</script>
+</li>
+</ol>
+</li>
+<li>
+<p>卷积</p>
+</li>
+<li>
+<p>对数正态分布：<script type="math/tex">\ln\xi</script> 服从正态分布</p>
+</li>
+<li>
+<p>卡方分布 <script type="math/tex">\chi^2_n</script></p>
+<ol>
+<li><script type="math/tex">p(x)=\frac{1}{2^{n/2}\Gamma(\frac n2)}x^{\frac n2-1}e^{-\frac x2},\quad x>0</script>;</li>
+<li><script type="math/tex">EX=n,\quad DX=2n</script>.</li>
+</ol>
+</li>
+<li>
+<p><script type="math/tex">F</script> 分布：两独立卡方分布变量除以自由度的商</p>
+</li>
+<li>
+<p><script type="math/tex">\Gamma</script> 分布 <script type="math/tex">\Gamma(r,\lambda)</script>：<script type="math/tex">p(x)=\frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}</script></p>
+<ol>
+<li><script type="math/tex">EX=\frac{r}{\lambda},\quad DX=\frac{r}{\lambda^2}</script>.</li>
+</ol>
+</li>
+<li>
+<p>贝特朗奇论：单位圆内随机取一条弦, 问其长超过该圆内接等边三角形边长的概率.</p>
+<ol>
+<li>三种解法的随机变量服从不同的均匀分布假定</li>
+</ol>
+</li>
+<li>
+<p>数学期望</p>
+</li>
+<li>
+<p>方差</p>
+</li>
+<li>
+<p>切比雪夫不等式</p>
+<script type="math/tex; mode=display">P\{|\xi-E\xi|\ge\varepsilon\}\le\frac{D\xi}{\varepsilon^2}</script>
+</li>
+<li>
+<p>协方差</p>
+</li>
+<li>
+<p>相关系数</p>
+</li>
+<li>
+<p>Cauchy-Schwarz 不等式 <script type="math/tex">|E\xi\eta|^2\le E\xi^2\cdot E\eta^2</script>.</p>
+</li>
+<li>
+<p><script type="math/tex">\xi,\eta</script> 独立 <script type="math/tex">\Rightarrow \xi,\eta</script> 不相关 <script type="math/tex">\Leftrightarrow cov(\xi,\eta)=0\Leftrightarrow E\xi\eta=E\xi\cdot E\eta \Leftrightarrow D(\xi+\eta)=D\xi+D\eta</script>.</p>
+</li>
+<li>
+<p>矩 (原点矩/中心矩)</p>
+</li>
+<li>
+<p>分位数</p>
+</li>
+<li>
+<p>熵</p>
+</li>
+<li>
+<p>母函数 <script type="math/tex">Es^{\xi}</script></p>
+</li>
+<li>
+<p>特征函数 <script type="math/tex">Ee^{it\xi}</script></p>
+</li>
+<li>
+<p>大数定律</p>
+<ol>
+<li>
+<p>切比雪夫大数定律</p>
+<ol>
+<li>方差有公共上界</li>
+</ol>
+</li>
+<li>
+<p>马尔可夫大数定律</p>
+<ol>
+<li>均值的方差趋于0</li>
+</ol>
+</li>
+<li>
+<p>伯努利大数定律</p>
+<ol>
+<li>重复的伯努利试验次数足够多, 则频率与概率将无限接近</li>
+</ol>
+</li>
+<li>
+<p>泊松大数定律</p>
+<ol>
+<li>试验次数充分大时, 事件出现的频率稳定于概率的算术平均值附近</li>
+</ol>
+</li>
+<li>
+<p>辛钦大数定律</p>
+<ol>
+<li>当 <script type="math/tex">n</script> 充分大, 独立同分布的随机变量序列的算术平均值逼近期望</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>中心极限定理</p>
+<ol>
+<li>独立同分布的随机变量的标准化随机变量之和的极限分布为正态分布.</li>
+</ol>
+</li>
+</ol>
+<p>二、计算题</p>
+<ol>
+<li>
+<p>求参加某次集会的 <script type="math/tex">n</script> 个人至少有两个人生日相同的概率 (设一年365天).</p>
+</li>
+<li>
+<p>从 <script type="math/tex">n</script> 双不同的鞋子中任取 <script type="math/tex">2r\ (2r<n)</script> 只, 求下列事件发生的概率:<br>
+(1) 没有成对的鞋子;	(2) 只有一对鞋子;	(3) 恰有两对鞋子;	(4) 有 <script type="math/tex">r</script> 对鞋子.</p>
+</li>
+<li>
+<p><script type="math/tex">m</script> 个男孩和 <script type="math/tex">n</script> 个女孩 <script type="math/tex">(n\le m)</script> 随机沿圆桌坐下, 求任意两个女孩都不相邻的概率.</p>
+</li>
+<li>
+<p>从装有号码 <script type="math/tex">1,2,\cdots,N</script> 的球的箱子中有放回地摸了 <script type="math/tex">n</script> 次球, 依次记下其号码, 求这些号码按上升(不一定严格)次序排列的概率.</p>
+</li>
+<li>
+<p>任意从数列 <script type="math/tex">1,2,\cdots,N</script> 中有放回地取出 <script type="math/tex">n</script> 个数并按大小排列成: <script type="math/tex">x_1\le x_2\le\cdots\le x_m\le\cdots\le x_n</script>, 求 <script type="math/tex">x_m=M</script> 的概率.</p>
+</li>
+<li>
+<p>在一张方格纸上投直径为 <script type="math/tex">1</script> 的硬币, 方格边长为 <script type="math/tex">a</script>, 求硬币与方格线不相交的概率.</p>
+</li>
+<li>
+<p>某班有 <script type="math/tex">N</script> 个士兵, 每人各有一支枪, 这些枪外形完全一样, 在一次夜间紧急集合中, 若每人随机地取走一支枪, 问恰好有 <script type="math/tex">k \ (0\le k\le N)</script> 个人拿到自己的枪的概率.</p>
+</li>
+<li>
+<p>食品厂把印有水浒 <script type="math/tex">108</script> 将之一的画卡作为赠券装入某种儿童食品袋中, 每袋一卡, 试求购买 <script type="math/tex">n</script> 袋这种食品而能收齐全套画卡的概率.</p>
+</li>
+<li>
+<p>在伯努利试验中, 事件 <script type="math/tex">A</script> 出现的概率为 <script type="math/tex">p</script> , 求在 <script type="math/tex">n</script> 次独立试验中事件 <script type="math/tex">A</script> 出现奇数次的概率.</p>
+</li>
+<li>
+<p>设有 <script type="math/tex">N</script> 个袋子, 每个袋子中装有 <script type="math/tex">a</script> 只黑球, <script type="math/tex">b</script> 只白球, 从第一袋中取出一球放入第二袋中, 然后从第二袋中取出一球放入第三袋中, 如此下去, 问从最后一个袋中取出一球而为黑球的概率是多少?</p>
+</li>
+<li>
+<p>某商店中出售某种商品, 据历史记录分析, 每月销售量服从泊松分布, 参数为 <script type="math/tex">7</script>, 问在月初进货时要库存多少件此种商品, 才能以 <script type="math/tex">0.999</script> 的概率充分满足顾客的需要.</p>
+</li>
+<li>
+<p>投硬币 <script type="math/tex">n</script> 回, 第一回出正面的概率为 <script type="math/tex">c</script>, 第二回后每次出现与前一次相同表面的概率为 <script type="math/tex">p</script>, 求第 <script type="math/tex">n</script> 回时出正面的概率, 并讨论当 <script type="math/tex">n\to\infty</script> 时的情况.</p>
+</li>
+<li>
+<p>若每条蚕的产卵数服从泊松分布, 参数为 <script type="math/tex">\lambda</script>, 而每个卵变为成虫的概率为 <script type="math/tex">p</script>, 且各卵是否变为成虫彼此独立, 求每蚕养活 <script type="math/tex">k</script> 只小蚕的概率.</p>
+</li>
+<li>
+<p>某交叉路口车流可看作泊松过程, 若一分钟内没有车的概率为 <script type="math/tex">0.2</script>, 求两分钟内有多于一车的概率.<br>
+<strong>解</strong>：设车流量服从参数为 <script type="math/tex">\lambda</script> 的泊松分布, 则</p>
+<script type="math/tex; mode=display">P_k(t)=\frac{(\lambda t)^k}{k!}e^{-\lambda t},\quad k=0,1,2,\cdots</script>
+<p>于是 <script type="math/tex">P_0(1)=0.2</script>.</p>
+</li>
+<li>
+<p>系统中每个元件正常工作的概率为 <script type="math/tex">p</script>, 有半数元件正常则系统可工作, 对什么 <script type="math/tex">p</script> 值, <script type="math/tex">2k+1</script> 个元件的系统比 <script type="math/tex">2k-1</script> 个元件的系统好.</p>
+</li>
+<li>
+<p>设 <script type="math/tex">\xi,\eta</script> 是两个随机变量, 且 <script type="math/tex">\xi\sim N(0,1), \ \eta\sim\chi^2(n)</script>. 令 <script type="math/tex">T=\frac{\xi}{\sqrt{\eta/n}}</script>, 求 <script type="math/tex">T</script> 的密度.<br>
+<strong>解</strong>：增补变量 <script type="math/tex">S=\eta</script>.</p>
+</li>
+<li>
+<p>若 <script type="math/tex">P\{\mu=m,\nu=n\}=\frac{(\lambda p)^m(\lambda-\lambda p)^{n-m}}{m!(n-m)!}e^{-\lambda},\ m=0,1,\cdots,n; \ n=0,1,2,\cdots</script>. 求 (1) <script type="math/tex">P\{\nu=n\}</script>; (2) <script type="math/tex">P\{\mu=m\}</script>; (3) <script type="math/tex">P\{\mu=m|\nu=n\}</script>; (4) <script type="math/tex">P\{\nu-\mu=k\}</script>.</p>
+</li>
+<li>
+<p>设 <script type="math/tex">(\xi,\eta)</script> 的联合密度为</p>
+<script type="math/tex; mode=display">p(x,y)=\frac{1}{\Gamma(k_1)\Gamma(k_2)}x^{k_1-1}(y-x)^{k_2-1}e^{-y}</script>
+<p><script type="math/tex">k_1,k_2>0, \ 0<x\le y<\infty</script>. 试求 <script type="math/tex">\xi</script> 和 <script type="math/tex">\eta</script> 的边际分布密度.</p>
+</li>
+<li>
+<p>设 <script type="math/tex">(\xi,\eta)</script> 服从二元正态分布, 参数为 <script type="math/tex">\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho</script>, 以 <script type="math/tex">D(\lambda)</script> 记下面椭圆的内部:</p>
+<script type="math/tex; mode=display">\frac{(x-\mu_1)^2}{\sigma_1^2}-\frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}=\lambda^2</script>
+<p>试求 <script type="math/tex">P\{(\xi,\eta)\in D(\lambda)\}</script>.</p>
+</li>
+<li>
+<p>若 <script type="math/tex">(\xi,\eta)</script> 服从参数为 <script type="math/tex">\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho</script> 的二元正态分布, 试找出 <script type="math/tex">\xi+\eta</script> 与 <script type="math/tex">\xi-\eta</script> 相互独立的充要条件.</p>
+</li>
+<li>
+<p>设随机变量 <script type="math/tex">\xi</script> 和 <script type="math/tex">\eta</script> 相互独立, 且 <script type="math/tex">\xi\sim B(n,p), \ \eta\sim U(0,1)</script>, 试求 <script type="math/tex">\xi+\eta</script> 的分布函数和密度函数.</p>
+</li>
+<li>
+<p>试求顺序统计量 <script type="math/tex">\xi_k^*</script> 与 <script type="math/tex">\xi_l^* \ (k<l)</script> 的联合密度函数.</p>
+</li>
+<li>
+<p>为收集 <script type="math/tex">N</script> 张赠券中 <script type="math/tex">r</script> 张所需购买的食品袋数 <script type="math/tex">\xi</script> 的数学期望.<br>
+<strong>解</strong>：设收集齐 <script type="math/tex">j-1</script> 张赠券后到收集齐 <script type="math/tex">j</script> 张赠券时所购买的食品袋数为 <script type="math/tex">\eta_j</script>.</p>
+</li>
+<li>
+<p>甲袋中有 <script type="math/tex">a</script> 只白球, <script type="math/tex">b</script> 只黑球; 乙袋中有 <script type="math/tex">c</script> 只白球, <script type="math/tex">d</script> 只黑球. 从两袋中各摸出一球, 并交换放入另一袋中, 这样做了 <script type="math/tex">n</script> 次, 再从甲袋中摸出一球是白球的概率为多少?</p>
+</li>
+<li>
+<p>甲与乙依下列规则玩随机游戏: 甲从装有 <script type="math/tex">i</script> 号球 <script type="math/tex">i</script> 个<script type="math/tex">(i＝1,2,3,4,5)</script> 的袋中随机摸出一球放入密盒中, 让乙猜号. 乙对甲的支付是他猜的号码与真正的号码之差的 (1) 平方; (2) 绝对值. 试对这两种场合, 讨论乙应采取的最佳策略.<br>
+<strong>解</strong>：均值是最小二乘问题之解, 中位数是最小绝对偏差之解</p>
+</li>
+<li>
+<p>求二项分布的熵.<br>
+<strong>解</strong>：<script type="math/tex">H(\alpha)=-\sum\limits_{i=1}^np(A_i)\log p(A_i)</script>.</p>
+</li>
+<li>
+<p>求均匀分布 <script type="math/tex">U[0,1]</script> 的特征函数.</p>
+</li>
+</ol>
+<p>三、证明题</p>
+<ol>
+<li>
+<p>证明抽签与顺序无关.</p>
+</li>
+<li>
+<p>证明 Bonferroni 不等式: <script type="math/tex">P(AB)\ge P(A)+P(B)-1</script>.</p>
+</li>
+<li>
+<p>证明概率既是上连续的又是下连续的.<br>
+<strong>证</strong>：只需证明下连续, 利用对偶原理即可证明上连续. 考虑事件 <script type="math/tex">A_i \ (i=1,2,\cdots,n)\in\mathscr{F}</script>, 记 <script type="math/tex">S_n=\sum\limits_{k=1}^nA_i\in\mathscr{F}</script>, 则 <script type="math/tex">\{S_n\}</script> 为单调不减的序列, 利用可列可加性即得 <script type="math/tex">\lim\limits_{n\to\infty}P(S_n)=P(\lim\limits_{n\to\infty}S_n)</script>.</p>
+</li>
+<li>
+<p>证明下列等式<br>
+(1) <script type="math/tex">\binom n1+2\binom n2+3\binom n3+\cdots+n\binom nn=n2^{n-1}</script>;<br>
+(2) <script type="math/tex">\binom n1-2\binom n2+3\binom n3+\cdots+(-1)^{n-1}n\binom nn=0</script>;<br>
+(3) <script type="math/tex">\sum_{k=0}^{a-r}\binom a{k+r}\binom bk=\binom{a+b}{a-r}</script>.</p>
+</li>
+<li>
+<p>利用概率论的思想证明等式</p>
+<script type="math/tex; mode=display">1+\frac{A-a}{A-1}+\frac{(A-a)(A-a-1)}{(A-1)(A-2)}+\cdots+\frac{(A-a)\cdots 2\cdot1}{(A-1)\cdots(a+1)a}=\frac Aa,</script>
+<p>其中 <script type="math/tex">A,a\in\N^+</script>, 且 <script type="math/tex">A>a</script>.</p>
+</li>
+<li>
+<p>证明 <script type="math/tex">\left|P(AB)-P(A)P(B)\right|\le\frac14</script>, 并讨论等号成立的条件.</p>
+</li>
+<li>
+<p>设一个家庭有 <script type="math/tex">n</script> 个小孩的概率为</p>
+<script type="math/tex; mode=display">p_n=\begin{cases}
+\alpha p^n&, n\ge1\\
+1-\frac{\alpha p}{1-p} &,n=0
+\end{cases}</script>
+<p>这里 <script type="math/tex">0<p<1, \ 0<\alpha<\frac{1-p}{p}</script>, 若认为生一个小孩为男孩或女孩的概率是等可能的, 求证一个家庭有 <script type="math/tex">k \ (k\ge1)</script> 个男孩的概率为 <script type="math/tex">\frac{2\alpha p^k}{(2-p)^{k+1}}</script>.</p>
+</li>
+<li>
+<p>证明对于事件 <script type="math/tex">A,B</script>, 关系式 <script type="math/tex">P^2(AB)+P^2(\bar AB)+P^2(A\bar B)+P^2(\bar A\bar B)=\frac14</script> 成立当且仅当 <script type="math/tex">P(A)=P(B)=\frac12, \ P(AB)=\frac14</script>.</p>
+</li>
+<li>
+<p>证明: 事件 <script type="math/tex">A_1,A_2,\cdots,A_n</script> 相互独立的充要条件为下列 <script type="math/tex">2^n</script> 个等式成立</p>
+<script type="math/tex; mode=display">P(\hat{A}_1\hat A_2\cdots\hat A_n)=P(\hat A_1)P(\hat A_2)\cdots P(\hat A_n)</script>
+<p>其中 <script type="math/tex">\hat A_i</script> 取为 <script type="math/tex">A_i</script> 或 <script type="math/tex">\bar A_i</script>.<br>
+<strong>证</strong>：利用数学归纳法</p>
+</li>
+<li>
+<p>在伯努利试验中, 若 <script type="math/tex">A</script> 出现的概率为 <script type="math/tex">p</script>, 试证在出现 <script type="math/tex">m</script> 次 <script type="math/tex">\bar A</script> 之前出现 <script type="math/tex">n</script> 次 <script type="math/tex">A</script> 的概率, 即分赌注问题中甲最终取胜的概率, 可由</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">P_1=\sum_{k=0}^{m-1}\binom{n+k-1}{k}p^nq^k,\\
+P_2=\sum_{k=n}^{\infty}\binom{m+k-1}{k}p^kq^m,\\
+P_3=\sum_{k=n}^{n+m-1}\binom{n+m-1}{k}p^kq^{n+m-1-k}</script>
+<p>中的任一式子表出, 即它们是相等的, 其中 <script type="math/tex">q=1-p</script>.</p>
+<ol start="11">
+<li>
+<p>利用概率论思想证明恒等式 <script type="math/tex">\sum\limits_{k=0}^N\binom{N+k}{k}\frac{1}{2^k}=2^N</script>.<br>
+<strong>证</strong>：考虑巴拿赫火柴盒问题.</p>
+</li>
+<li>
+<p>证明从正整数中随机地选取两数, 此两数互素地概率为 <script type="math/tex">\frac{6}{\pi^2}</script>.<br>
+<strong>证</strong>：设 <script type="math/tex">p_i</script> 是素数, 则所取的数能被 <script type="math/tex">p_i</script> 整除的概率为 <script type="math/tex">\frac{1}{p_i}</script>.</p>
+</li>
+<li>
+<p>证明在离散性分布中, 只有几何分布具有无记忆性.</p>
+</li>
+<li>
+<p>证明在连续性分布中, 只有指数分布具有无记忆性.</p>
+</li>
+<li>
+<p>设随机变量 <script type="math/tex">\xi</script> 取值于 <script type="math/tex">[0,1]</script>, 若 <script type="math/tex">P\{x\le\xi<y\}</script> 只与长度 <script type="math/tex">y-x</script> 有关 (对一切 <script type="math/tex">0\le x\le y\le 1</script>), 试证 <script type="math/tex">\xi\sim U[0,1]</script>.</p>
+</li>
+<li>
+<p>设随机变量 <script type="math/tex">\xi</script> 与 <script type="math/tex">\eta</script> 独立同分布于 <script type="math/tex">N(0,1)</script>. 试证 <script type="math/tex">\psi=\frac{\xi}{\eta}</script> 服从 Cauchy 分布.</p>
+</li>
+<li>
+<p>若 <script type="math/tex">\xi_1,\cdots,\xi_n</script> 相互独立同分布于 <script type="math/tex">N(0,1)</script>, 证明 <script type="math/tex">\eta=\xi_1^2+\cdots+\xi_n^2</script> 服从 <script type="math/tex">\chi^2</script> 分布.</p>
+</li>
+<li>
+<p>设随机变量 <script type="math/tex">\xi,\eta</script> 独立同分布于 <script type="math/tex">N(0,1)</script>. 试求 <script type="math/tex">U=\xi^2+\eta^2</script> 与 <script type="math/tex">V=\frac{\xi}{\eta}</script> 的分布密度函数, 并证明他们是独立的.</p>
+</li>
+<li>
+<p>设随机变量 <script type="math/tex">\xi</script> 与 <script type="math/tex">\eta</script> 独立同分布, 其密度函数不为 <script type="math/tex">0</script> 且有二阶导数, 试证: 若 <script type="math/tex">\xi+\eta</script> 与 <script type="math/tex">\xi-\eta</script> 相互独立, 则随机变量 <script type="math/tex">\xi,\eta,\xi+\eta,\xi-\eta</script> 均服从正态分布.</p>
+</li>
+<li>
+<p>证明<strong>切比雪夫不等式</strong>：对任何具有有限方差的随机变量 <script type="math/tex">\xi</script>, 都有 <script type="math/tex">P\{|\xi-E\xi|\ge\varepsilon\}\le\frac{D\xi}{\varepsilon^2}</script>, 其中 <script type="math/tex">\varepsilon</script> 为任一正数.</p>
+</li>
+<li>
+<p>证明方差为零的随机变量必是常数<br>
+<strong>证</strong>：利用切比雪夫不等式.</p>
+</li>
+<li>
+<p>证明两个二值随机变量的不相关性与独立性等价.<br>
+<strong>证</strong>：利用示性函数.</p>
+</li>
+<li>
+<p>试证: 若取非负整数值的随机变量 <script type="math/tex">\xi</script> 的数学期望存在, 则 <script type="math/tex">E\xi=\sum\limits_{k=1}^{\infty}P\{\xi\ge k\}</script>.</p>
+</li>
+<li>
+<p>若随机变量 <script type="math/tex">\xi</script> 的分布函数为 <script type="math/tex">F(x)</script>, 试证:</p>
+<script type="math/tex; mode=display">E\xi=\int_0^{+\infty}[1-F(x)]\mathrm{d}x-\int_{-\infty}^0F(x)\mathrm{d}x.</script>
+</li>
+<li>
+<p>若 <script type="math/tex">a\le \xi\le b</script>, 证明: <script type="math/tex">D\xi\le\frac{(b-a)^2}{4}</script>. 并说明等号成立的条件.</p>
+</li>
+<li>
+<p>若 <script type="math/tex">\xi_1,\xi_2</script> 相互独立, 均服从 <script type="math/tex">N(\mu,\sigma^2)</script>, 试证: <script type="math/tex">E\max\{\xi_1,\xi_2\}=\mu+\frac{\sigma}{\sqrt\pi}</script>.</p>
+</li>
+<li>
+<p>设 <script type="math/tex">f(x) \ (0\le x<\infty)</script> 单调非降, 且 <script type="math/tex">f(x)>0</script>. 对随机变量 <script type="math/tex">\xi</script>, 若 <script type="math/tex">E f(|\xi|)<\infty</script>, 则对任意 <script type="math/tex">x>0</script>, <script type="math/tex">P\{|\xi|\ge x\}\le\frac{1}{f(x)}Ef(|\xi|)</script>.</p>
+</li>
+<li>
+<p>(李雅普诺夫定理) 记 <script type="math/tex">a_k=E|\xi|^k</script>, 若 <script type="math/tex">a_n<\infty</script>. 试证: <script type="math/tex">\sqrt[k]{a_k}\le\sqrt[k+1]{a_{k+1}}, \ k=1,2,\cdots,n-1</script>.<br>
+<strong>解</strong>：利用 Cauchy-Schwarz 不等式</p>
+<script type="math/tex; mode=display">\left|E|\xi|^{\frac{k-1}{2}}|\xi|^{\frac{k+1}{2}}\right|^2\le E|\xi|^{k-1}\cdot E|\xi|^{k+1}\Rightarrow a_k^2\le a_{k-1}a_{k+1}.</script>
+</li>
+<li>
+<p>若 <script type="math/tex">(\xi,\eta)</script> 服从二元正态分布, <script type="math/tex">E\xi=a,D\xi=1,E\eta=b,D\eta=1</script>. 证明: <script type="math/tex">\xi</script> 与 <script type="math/tex">\eta</script> 的相关系数为 <script type="math/tex">r=\cos q\pi</script>, 其中 <script type="math/tex">q=P\{(\xi-a)(\eta-b)<0\}</script>.</p>
+</li>
+<li>
+<p>若 <script type="math/tex">(\xi,\eta)</script> 服从二元正态分布, <script type="math/tex">E\xi=E\eta=0,D\xi=D\eta=1,r_{\xi\eta}=\rho</script>. 试证: <script type="math/tex">E\max(\xi,\eta)=\sqrt{\frac{1-\rho}{\pi}}</script>.</p>
+</li>
+<li>
+<p>证明 Fisher 定理: 若 <script type="math/tex">X_1,\cdots,X_n</script> 相互独立, 均服从 <script type="math/tex">N(\mu,\sigma^2)</script>, 记</p>
+<script type="math/tex; mode=display">\bar X=\frac 1n\sum_{i=1}^nX_i, \ S_n^2=\frac 1n\sum_{i=1}^n(X_i-\bar X)^2</script>
+<p>则 (1) <script type="math/tex">\bar X</script> 与 <script type="math/tex">S^2</script> 相互独立; (2) <script type="math/tex">\bar X\sim N(\mu,\frac{\sigma^2}{n})</script>; (3) <script type="math/tex">\frac{nS_n^2}{\sigma^2}\sim \chi_{n-1}^2</script>.</p>
+</li>
+<li>
+<p>(单边切比雪夫不等式) 设 <script type="math/tex">\xi</script> 为随机变量, <script type="math/tex">E\xi=0,D\xi=\sigma^2<\infty</script>, 则对 <script type="math/tex">\forall a>0</script>, 证明 <script type="math/tex">P\{\xi\ge a\}\le\frac{\sigma^2}{\sigma^2+a^2}</script>.</p>
+</li>
+<li>
+<p>设 <script type="math/tex">\{\xi_n,n\ge1\}</script> 是独立随机变量序列, 对所有 <script type="math/tex">n\ge1, \ D\xi</script> 存在且 <script type="math/tex">\frac{D\xi_n}{n}\to0(n\to\infty)</script>. 证明 <script type="math/tex">\{\xi_n,n\ge1\}</script> 服从大数定律.<br>
+<strong>证</strong>：验证马尔科夫条件.</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>概率论</category>
+      </categories>
+      <tags>
+        <tag>概率论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>概率论——习题集</title>
+    <url>/2026/07/23/post-20260723-0a3780/</url>
+    <content><![CDATA[<h1>概率论习题集</h1>
+<blockquote>
+<p>本文按原文件顺序整合第一至第四章。下列各章正文未作修改，原始章节文件也继续保留。</p>
+</blockquote>
+<h2 id="目录">目录</h2>
+<ul>
+<li><a href="#%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B9%A0%E9%A2%98%E9%9B%86">概率论习题集</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87">第一章 事件与概率</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E4%B8%8E%E7%BB%9F%E8%AE%A1%E7%8B%AC%E7%AB%8B%E6%80%A7">第二章 条件概率与统计独立性</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8E%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0">第三章 随机变量与分布函数</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81%E4%B8%8E%E7%89%B9%E5%BE%81%E5%87%BD%E6%95%B0">第四章 数字特征与特征函数</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li></li>
+</ul>
+<h2 id="第一章-事件与概率">第一章 事件与概率</h2>
+<p><strong>[T0101]</strong> 证明下列等式<br>
+(1) <script type="math/tex">\binom n1+2\binom n2+3\binom n3+\cdots+n\binom nn=n2^{n-1}</script>;<br>
+(2) <script type="math/tex">\binom n1-2\binom n2+3\binom n3+\cdots+(-1)^{n-1}n\binom nn=0</script>;<br>
+(3) <script type="math/tex">\sum_{k=0}^{a-r}\binom a{k+r}\binom bk=\binom{a+b}{a-r}</script>.</p>
+<p>    <strong>证</strong> (1) 注意到</p>
+<script type="math/tex; mode=display">(1+x)^n=\binom n0+\binom n1x+\binom n2x^2+\cdots+\binom nnx^n,</script>
+<p>两边对 <script type="math/tex">x</script> 求导, 有</p>
+<script type="math/tex; mode=display">n(1+x)^{n-1}=\binom n1+2\binom n2x+3\binom n3x^2+\cdots+n\binom nnx^{n-1},\tag{1.1}</script>
+<p>令 <script type="math/tex">x=1</script>, 有 <script type="math/tex">\binom n1+2\binom n2+3\binom n3+\cdots+n\binom nn=n2^{n-1}</script>.</p>
+<p>    (2) 在 (1.1) 式中令 <script type="math/tex">x=-1</script>, 立刻有 <script type="math/tex">\binom n1-2\binom n2+3\binom n3+\cdots+(-1)^{n-1}n\binom nn=0</script>.</p>
+<p>    (3) 注意到</p>
+<script type="math/tex; mode=display">(1+x)^a(1+x)^b=(1+x)^{a+b}</script>
+<p>二项式展开:</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&\left(\sum_{m=1}^a\binom amx^m\right)\left(\sum_{n=0}^b\binom bnx^n\right)=\sum_{l=0}^{a+b}\binom{a+b}{l}x^l\\
+\Longrightarrow&\sum_{l=0}^{a+b}\left(\sum_{j=0}^l\binom aj\binom b{l-j}\right)x^{l}=\sum_{l=0}^{a+b}\binom{a+b}{l}x^l
+\end{aligned}</script>
+<p>比较 <script type="math/tex">x^l</script> 的系数可得</p>
+<script type="math/tex; mode=display">\sum_{j=0}^l\binom aj\binom b{l-j}=\binom {a+b}l</script>
+<p>取 <script type="math/tex">l=a-r \ (0\le r\le a)</script>, 则有</p>
+<script type="math/tex; mode=display">\sum_{j=0}^{a-r}\binom aj\binom b{a-r-j}=\binom{a+b}{a-r}</script>
+<p>再令 <script type="math/tex">a-r-j=k</script>, 即 <script type="math/tex">j=a-r-k</script>, 则</p>
+<script type="math/tex; mode=display">\sum_{j=0}^{a-r}\binom a{a-r-k}\binom b{k}=\binom{a+b}{a-r} \Rightarrow \sum_{j=0}^{a-r}\binom a{r+k}\binom b{k}=\binom{a+b}{a-r}.\quad\quad\#</script>
+<hr>
+<p><strong>[T0102]</strong> 从 <script type="math/tex">n</script> 双不同的鞋子中任取 <script type="math/tex">2r\ (2r<n)</script> 只, 求下列事件发生的概率:<br>
+(1) 没有成对的鞋子;	(2) 只有一对鞋子;	(3) 恰有两对鞋子;	(4) 有 <script type="math/tex">r</script> 对鞋子.</p>
+<p>    <strong>解</strong> (1) 即 <script type="math/tex">2r</script> 只鞋子分别属于 <script type="math/tex">2r</script> 种不同的鞋, 于是共有 <script type="math/tex">\binom n{2r}</script> 种取法, 每双鞋有两种取法, 因此有利场合的数目为 <script type="math/tex">\binom n{2r}2^{2r}</script>, 故概率为 <script type="math/tex">\frac{\binom n{2r}2^{2r}}{\binom{2n}{2r}}</script>;</p>
+<p>    (2) 类似 (1) 的考虑, 概率为 <script type="math/tex">\frac{\binom n1\binom{n-1}{2r-2}2^{2r-2}}{\binom{2n}{2r}}</script>;</p>
+<p>    (3) 同理, 概率为 <script type="math/tex">\frac{\binom n2\binom{n-1}{2r-4}2^{2r-4}}{\binom{2n}{2r}}</script>;</p>
+<p>    (4) 同理, 概率为 <script type="math/tex">\frac{\binom nr}{\binom{2n}{2r}}</script>.	#</p>
+<hr>
+<p><strong>[T0103]</strong> <script type="math/tex">m</script> 个男孩和 <script type="math/tex">n</script> 个女孩 <script type="math/tex">(n\le m)</script> 随机沿圆桌坐下, 求任意两个女孩都不相邻的概率.</p>
+<p>    <strong>解</strong> 考虑将这 <script type="math/tex">m</script> 个男孩先排成一条直线, 共 <script type="math/tex">m!</script> 种排法, 则将这 <script type="math/tex">m</script> 个男孩排成一圆圈共有 <script type="math/tex">\frac{m!}{m}</script> 种排法, 这是因为一种圆排列对应于 <script type="math/tex">m</script> 种线排列 (例如线排列1,2,3,4; 2,3,4,1; 3,4,1,2; 4,1,2,3 对应的圆排列一致). 此时沿圆桌而坐的男孩之间共有 <script type="math/tex">m</script> 个空位可以给 <script type="math/tex">n</script> 个女孩坐, 因此能使 <script type="math/tex">n</script> 个女孩都不相邻的坐法共有 <script type="math/tex">\binom mn n!</script> 种. 又样本点总数为 <script type="math/tex">m+n</script> 个孩子的圆排列共有 <script type="math/tex">(m+n-1)!</script> 种排法, 故所求概率为</p>
+<script type="math/tex; mode=display">\frac{(m-1)!\binom mnn!}{(m+n-1)!}=\frac{\binom mn}{\binom{m+n-1}{n}}.\quad\quad \#</script>
+<hr>
+<p><strong>[T0104]</strong> 从装有号码 <script type="math/tex">1,2,\cdots,N</script> 的球的箱子中有放回地摸了 <script type="math/tex">n</script> 次球, 依次记下其号码, 求这些号码按上升(不一定严格)次序排列的概率.</p>
+<p>    <strong>解</strong> 等价于从 <script type="math/tex">N</script> 个不同元素中取 <script type="math/tex">n</script> 个元素的重复组合, 因此概率为</p>
+<script type="math/tex; mode=display">\frac{\binom{N+n-1}{n}}{N^n}.\quad\quad \#</script>
+<hr>
+<p><strong>[T0105]</strong> 任意从数列 <script type="math/tex">1,2,\cdots,N</script> 中有放回地取出 <script type="math/tex">n</script> 个数并按大小排列成: <script type="math/tex">x_1\le x_2\le\cdots\le x_m\le\cdots\le x_n</script>, 求 <script type="math/tex">x_m=M</script> 的概率.</p>
+<p>    <strong>解</strong> 将取到的 <script type="math/tex">n</script> 个数分为三类: 小于 <script type="math/tex">M</script>, 等于 <script type="math/tex">M</script>, 大于 <script type="math/tex">M</script>. 记 <script type="math/tex">k_1</script> 为小于 <script type="math/tex">M</script> 的个数, <script type="math/tex">k_2</script> 为大于 <script type="math/tex">M</script> 的个数, 则等于 <script type="math/tex">M</script> 的个数为 <script type="math/tex">n-k_1-k_2</script>. 在固定 <script type="math/tex">k_1,k_2</script> 的条件下, 取到 <script type="math/tex">k_1</script> 个小于 <script type="math/tex">M</script> 的数, <script type="math/tex">k_2</script> 个大于 <script type="math/tex">M</script> 的数, <script type="math/tex">n-k_1-k_2</script> 个等于 <script type="math/tex">M</script> 的数的概率为</p>
+<script type="math/tex; mode=display">\frac{n!}{k_1!k_2!(n-k_1-k_2)!}\frac{(M-1)^{k_1}(N-M)^{k_2}}{N^n}</script>
+<p>要使 <script type="math/tex">x_m=M</script>, 可知 <script type="math/tex">k_1</script> 可取 <script type="math/tex">0,1,2,\cdots,m-1</script>, <script type="math/tex">k_2</script> 可取 <script type="math/tex">0,1,2,\cdots,n-m</script>, 于是</p>
+<script type="math/tex; mode=display">P\{x_m=M\}=\sum_{k_1=0}^{m-1}\sum_{k_2=0}^{n-m}\frac{n!}{k_1!k_2!(n-k_1-k_2)!}\frac{(M-1)^{k_1}(N-M)^{k_2}}{N^n}.\quad\quad \#</script>
+<hr>
+<p><strong>[T0106]</strong> 利用概率论的思想证明等式</p>
+<script type="math/tex; mode=display">1+\frac{A-a}{A-1}+\frac{(A-a)(A-a-1)}{(A-1)(A-2)}+\cdots+\frac{(A-a)\cdots 2\cdot1}{(A-1)\cdots(a+1)a}=\frac Aa,</script>
+<p>其中 <script type="math/tex">A,a\in\N^+</script>, 且 <script type="math/tex">A>a</script>.</p>
+<p>    <strong>证</strong> 设袋中有 <script type="math/tex">A</script> 只球, 其中 <script type="math/tex">a</script> 只白球, <script type="math/tex">A-a</script> 只黑球, 现不放回从袋中逐个取球, 第 <script type="math/tex">k</script> 次才首次取到白球的概率为 <script type="math/tex">p_k</script>, 则</p>
+<script type="math/tex; mode=display">p_1=\frac aA,\quad p_k=\frac{a(A-a)(A-a-1)\cdots(A-a-k+2)}{A(A-1)(A-2)\cdots(A-k+1)},\ k=2,3,\cdots,A-a+1</script>
+<p>因为至多第 <script type="math/tex">A-a+1</script> 次必取到白球, 故</p>
+<script type="math/tex; mode=display">1=p_1+p_2+\cdots+p_{A-a+1}=\frac{a}{A}+\frac{a(A-a)}{A(A-1)}+\cdots+\frac{a(A-a)(A-a-1)\cdots 2\cdot1}{A(A-1)\cdots(a+1)a}</script>
+<p>两边同乘 <script type="math/tex">\frac Aa</script>, 即得</p>
+<script type="math/tex; mode=display">1+\frac{A-a}{A-1}+\frac{(A-a)(A-a-1)}{(A-1)(A-2)}+\cdots+\frac{(A-a)\cdots 2\cdot1}{(A-1)\cdots(a+1)a}=\frac Aa. \quad\quad \#</script>
+<hr>
+<p><strong>[T0107]</strong> 某班有 <script type="math/tex">N</script> 个士兵, 每人各有一支枪, 这些枪外形完全一样, 在一次夜间紧急集合中, 若每人随机地取走一支枪, 问恰好有 <script type="math/tex">k \ (0\le k\le N)</script> 个人拿到自己的枪的概率.</p>
+<p>    <strong>解</strong> 从 <script type="math/tex">N</script> 个士兵中选出 <script type="math/tex">k</script> 个士兵共有 <script type="math/tex">\binom Nk</script> 种选法, 指定 <script type="math/tex">k</script> 个士兵拿到自己的枪的概率为 <script type="math/tex">\frac{1}{N(N-1)\cdots(N-k+1)}</script>. 下面考虑其余 <script type="math/tex">N-k</script> 个士兵都没拿到自己的枪的概率, 这等价于计算至少有一个士兵拿到自己的枪的反面, 记事件 <script type="math/tex">A_i</script> 为第 <script type="math/tex">i</script> 个人拿到了自己的枪, 则</p>
+<script type="math/tex; mode=display">P(A_i)=\frac{(N-k-1)!}{(N-k)!}=\frac1{N-k},\\
+P(A_iA_j)=\frac{(N-k-2)!}{(N-k)!}=\frac{1}{(N-k)(N-k-1)}, \ (i\neq j)\\
+\cdots\cdots\\
+P(A_1A_2\cdots A_{N-k})=\frac{1}{(N-k)!}</script>
+<p>因此</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P(A_1\cup A_2\cup\cdots\cup A_{N-k})&=\sum_{i=1}^{N-k}P(A_i)-\sum\limits_{1\le i<j\le N-k}P(A_iA_j)+\cdots+(-1)^{N-k-1}P(A_1A_2\cdots A_{N-k})\\
+&=\binom {N-k}1\frac 1{N-k}-\binom{N-k}2\frac{1}{(N-k)(N-k-1)}+\cdots+(-1)^{N-k-1}\frac1{(N-k)!}\\
+&=\sum_{i=1}^{N-k}\frac{(-1)^{i-1}}{i!}
+\end{aligned}</script>
+<p>故其余 <script type="math/tex">N-k</script> 个士兵都没拿到自己的枪的概率为 <script type="math/tex">1-\sum\limits_{i=1}^{N-k}\frac{(-1)^{i-1}}{i!}=\sum\limits_{l=0}^{N-k}\frac{(-1)^l}{l!}</script>. 综上, 恰有 <script type="math/tex">k \ (0\le k\le N)</script> 个人拿到自己的枪的概率为</p>
+<script type="math/tex; mode=display">P_k=\binom Nk\frac{1}{N(N-1)\cdots(N-k+1)}\sum\limits_{l=0}^{N-k}\frac{(-1)^l}{l!}=\frac{1}{k!}\sum\limits_{l=0}^{N-k}\frac{(-1)^l}{l!}.\quad\quad \#</script>
+<hr>
+<p><strong>[T0108]</strong> (赠券收集) 食品厂把印有水浒 <script type="math/tex">108</script> 将之一的画卡作为赠券装入某种儿童食品袋中, 每袋一卡, 试求购买 <script type="math/tex">n</script> 袋这种食品而能收齐全套画卡的概率.</p>
+<p>    <strong>解</strong> 记事件 <script type="math/tex">B=</script> {购买的 <script type="math/tex">n</script> 袋食品能收集到全套画卡}, <script type="math/tex">A_i=</script> {这 <script type="math/tex">n</script> 袋食品中有第 <script type="math/tex">i</script> 号画卡}, 则有</p>
+<script type="math/tex; mode=display">B=A_1A_2\cdots A_{108}\Rightarrow \bar B=\bar A_1\cup\bar A_2\cup\cdots\cup\bar A_{108}</script>
+<p>而</p>
+<script type="math/tex; mode=display">P(\bar A_i)=\frac{107^n}{108^n}, \ P(\bar A_i\bar A_j)=\frac{106^n}{108^n},\cdots,P(\bar A_1\bar A_2\cdots \bar A_{108})=0.</script>
+<p>故</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P(\bar B)&=P(\bar A_1\cup\bar A_2\cup\cdots\cup\bar A_{108})\\
+&=\sum_{i=1}^{108}P(\bar A_i)-\sum\limits_{1\le i<j\le 108}P(\bar A_i\bar A_j)+\cdots+(-1)^{107}P(\bar A_1\bar A_2\cdots \bar A_{108})\\
+&=\sum_{k=1}^{108}(-1)^{k-1}\binom {108}k\left(1-\frac{k}{108}\right)^n
+\end{aligned}</script>
+<p>从而 <script type="math/tex">P(B)=1-P(\bar B)=\sum\limits_{k=0}^{108}(-1)^{k}\binom {108}k\left(1-\frac{k}{108}\right)^n</script>.	#</p>
+<hr>
+<p><strong>[T0109]</strong> 证明 <script type="math/tex">\left|P(AB)-P(A)P(B)\right|\le\frac14</script>, 并讨论等号成立的条件.</p>
+<p>    <strong>证</strong> 一方面</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P(A)P(B)-P(AB)&=P(A)[P(AB)+P(\bar AB)]-P(AB)\\
+&=P(A)P(\bar AB)-P(AB)[1-P(A)]\\
+&\le P(A)P(\bar AB)\le P(A)P(\bar A)\\
+&=P(A)[1-P(A)]\le\frac14
+\end{aligned}</script>
+<p>另一方面, 不妨设 <script type="math/tex">P(A)\ge P(B)</script>, 有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P(AB)-P(A)P(B)&\le P(B)-P(B)^2\le\frac14
+\end{aligned}</script>
+<p>综上, 有 <script type="math/tex">\left|P(AB)-P(A)P(B)\right|\le\frac14</script>. 要使 <script type="math/tex">P(A)[1-P(A)]\le\frac14</script> 的等号成立, 当且仅当 <script type="math/tex">P(A)=\frac12</script>, 有对称性知 <script type="math/tex">P(B)=\frac12</script>. 因此当且仅当 <script type="math/tex">P(A)=P(B)=\frac12</script> 且 <script type="math/tex">P(AB)=0</script> 或 <script type="math/tex">P(AB)=\frac{1}{2}</script> 时等号成立.</p>
+<hr>
+<p><strong>[T0110]</strong> 证明: 包含一切形如 <script type="math/tex">(-\infty,x)</script> 的区间的最小 <script type="math/tex">\sigma</script> 域是一维博雷尔 <script type="math/tex">\sigma</script> 域.</p>
+<p>    <strong>证</strong> 设一维博雷尔 <script type="math/tex">\sigma</script> 域为 <script type="math/tex">\mathscr{B}=\sigma\{[a,b)\}</script>, 再设 <script type="math/tex">\widetilde{\mathscr{B}}=\sigma\{(-\infty,x)\}</script> 是形如 <script type="math/tex">(-\infty,x)</script> 区间类生成的 <script type="math/tex">\sigma </script> 域. 下证 <script type="math/tex">\mathscr{B}=\widetilde{\mathscr{B}}</script>.<br>
+    一方面, 由于 <script type="math/tex">[a,b)=(-\infty,b)-(-\infty,a)</script>, 而 <script type="math/tex">\widetilde{\mathscr{B}}</script> 是 <script type="math/tex">\sigma</script> 域, 故 <script type="math/tex">[a,b)\in\widetilde{\mathscr{B}}</script>, 因此 <script type="math/tex">\mathscr{B}\subset\widetilde{\mathscr{B}}</script>.<br>
+    另一方面, 注意到 <script type="math/tex">(-\infty,x)=\bigcup\limits_{n=1}^{\infty}[x-n,x-n+1)</script>, 而 <script type="math/tex">\mathscr{B}</script> 是 <script type="math/tex">\sigma </script> 域, 故 <script type="math/tex">(-\infty,x)\in\mathscr{B}</script>, 因此 <script type="math/tex">\widetilde{\mathscr{B}}\subset\mathscr{B}</script>.<br>
+    综上, <script type="math/tex">\mathscr{B}=\widetilde{\mathscr{B}}</script>.	#+</p>
+<h2 id="第二章-条件概率与统计独立性">第二章 条件概率与统计独立性</h2>
+<p><strong>[T0201]</strong> 设一个家庭有 <script type="math/tex">n</script> 个小孩的概率为</p>
+<script type="math/tex; mode=display">p_n=\begin{cases}
+\alpha p^n&, n\ge1\\
+1-\frac{\alpha p}{1-p} &,n=0
+\end{cases}</script>
+<p>这里 <script type="math/tex">0<p<1, \ 0<\alpha<\frac{1-p}{p}</script>, 若认为生一个小孩为男孩或女孩的概率是等可能的, 求证一个家庭有 <script type="math/tex">k \ (k\ge1)</script> 个男孩的概率为 <script type="math/tex">\frac{2\alpha p^k}{(2-p)^{k+1}}</script>.</p>
+<p>    <strong>证</strong> 设事件 <script type="math/tex">A_n=\{\text{一个家庭中有 </script>n<script type="math/tex"> 个小孩}\}, \ n=1,2,\cdots</script>; <script type="math/tex">B_k=\{\text{该家庭中有 </script>k<script type="math/tex"> 个男孩}\}, \ k\ge1</script>. 则</p>
+<script type="math/tex; mode=display">P(B_k|A_n)=\binom nk\left(\frac12\right)^n</script>
+<p>于是</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P(B_k)&=\sum\limits_{n=k}^{\infty}P(A_n)P(B_k|A_n)=\sum_{n=k}^{\infty}\alpha p^n\binom nk\left(\frac12\right)^n\\
+&=\alpha\sum_{n=k}^{\infty}\binom nk\left(\frac p2\right)^n=\alpha\sum_{i=0}^{\infty}\binom {i+k}{k}\left(\frac p2\right)^{i+k}\\
+&=\alpha\left(\frac p2\right)^k\sum_{i=0}^{\infty}\binom{i+k}{i}\left(\frac p2\right)^i\\
+&=\alpha\left(\frac p2\right)^k\sum_{i=0}^{\infty}\binom{-k-1}{i}\left(-\frac p2\right)^i\\
+&=\alpha\left(\frac p2\right)^k\left(1-\frac p2\right)^{-k-1}\\
+&=\frac{2\alpha p^k}{(2-p)^{k+1}}.\quad\quad\#
+\end{aligned}</script>
+<hr>
+<p><strong>[T0202]</strong> 证明: 事件 <script type="math/tex">A_1,A_2,\cdots,A_n</script> 相互独立的充要条件为下列 <script type="math/tex">2^n</script> 个等式成立</p>
+<script type="math/tex; mode=display">P(\hat{A}_1\hat A_2\cdots\hat A_n)=P(\hat A_1)P(\hat A_2)\cdots P(\hat A_n)</script>
+<p>其中 <script type="math/tex">\hat A_i</script> 取为 <script type="math/tex">A_i</script> 或 <script type="math/tex">\bar A_i</script>.</p>
+<p>    <strong>证</strong> (必要性) 设事件 <script type="math/tex">A_1,A_2,\cdots,A_n</script> 相互独立. 由于事件的交和数的乘法都满足交换律, 故不妨设 <script type="math/tex">\hat{A}_1,\hat A_2,\cdots\hat A_n</script> 中前 <script type="math/tex">m</script> 个为 <script type="math/tex">\bar A_i</script>, 后 <script type="math/tex">n-m</script> 个为 <script type="math/tex">A_i</script>. 下面用数学归纳法证明等式.<br>
+    当 <script type="math/tex">m=0</script> 时, 由事件 <script type="math/tex">A_1,A_2,\cdots,A_n</script> 相互独立, 立刻有 <script type="math/tex">P(A_1A_2\cdots A_n)=P(A_1)P(A_2)\cdots P(A_n)</script>.<br>
+    当 <script type="math/tex">m=1</script> 时, 注意到</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P(\bar A_1A_2\cdots A_n)&=P(A_2A_3\cdots A_n-A_1A_2\cdots A_n)=P(A_2A_3\cdots A_n)-P(A_1\cdots A_n)\\
+&=P(A_2)\cdots P(A_n)-P(A_1)P(A_2)\cdots P(A_n)\\
+&=\left[1-P(A_1)\right]P(A_2)\cdots P(A_n)\\
+&=P(\bar A_1)P(A_2)\cdots P(A_n).
+\end{aligned}</script>
+<p>    假设 <script type="math/tex">m=k</script> 时有 <script type="math/tex">P(\bar A_1\cdots \bar A_kA_{k+1}\cdots A_n)=P(\bar A_1)\cdots P(\bar A_k)P(A_{k+1})\cdots P(A_n)</script>. 则当 <script type="math/tex">m=k+1</script> 时,</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P(\bar A_1\cdots \bar A_{k+1}A_{k+2}\cdots A_n)&=P(\bar A_1\cdots \bar A_kA_{k+2}\cdots A_n-\bar A_1\cdots \bar A_kA_{k+1}\cdots A_n)\\
+&=P(\bar A_1)\cdots P(\bar A_k)P(A_{k+2})\cdots P(A_n)-P(\bar A_1)\cdots P(\bar A_k)P(A_{k+1})\cdots P(A_n)\\
+&=P(\bar A_1)\cdots P(\bar A_{k+1})P(A_{k+2})\cdots P(A_n)
+\end{aligned}</script>
+<p>从而题设的 <script type="math/tex">2^n</script> 个等式成立.<br>
+    (充分性) 设 <script type="math/tex">P(\hat{A}_1\hat A_2\cdots\hat A_n)=P(\hat A_1)P(\hat A_2)\cdots P(\hat A_n)</script>, 其中 <script type="math/tex">\hat A_i</script> 取为 <script type="math/tex">A_i</script> 或 <script type="math/tex">\bar A_i</script>. 则立刻有</p>
+<script type="math/tex; mode=display">P(A_1A_2\cdots A_n)=P(A_1)P(A_2)\cdots P(A_n)</script>
+<p>又对 <script type="math/tex">n-1</script> 个事件的交, 有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P(A_1\cdots A_{i-1}A_{i+1}\cdots A_n)&=P(A_1\cdots A_{i-1}A_iA_{i+1}\cdots A_n)+P(A_1\cdots A_{i-1}\bar A_iA_{i+1}\cdots A_n)\\
+&=P(A_1)\cdots P(A_n)+P(A_1)\cdots P(A_{i-1})P(\bar A_i)P(A_{i+1})P(A_n)\\
+&=P(A_1)\cdots P(A_{i-1})P(A_{i+1})\cdots P(A_n)
+\end{aligned}</script>
+<p>依次类推可知独立性定义所要求的 <script type="math/tex">2^n-n-1</script> 个等式均成立, 故 <script type="math/tex">A_1,\cdots,A_n</script> 相互独立.	#</p>
+<hr>
+<p><strong>[T0203]</strong> 在伯努利试验中, 事件 <script type="math/tex">A</script> 出现的概率为 <script type="math/tex">p</script> , 求在 <script type="math/tex">n</script> 次独立试验中事件 <script type="math/tex">A</script> 出现奇数次的概率.</p>
+<p>    <strong>解</strong> 设在 <script type="math/tex">n</script> 次独立试验中事件 <script type="math/tex">A</script> 出现偶数次的概率为 <script type="math/tex">a</script>, 出现奇数次的概率为 <script type="math/tex">b</script>, 则</p>
+<script type="math/tex; mode=display">a=\binom n0p^0(1-p)^n+\binom n2p^2(1-p)^{n-2}+\cdots\\
+b=\binom n1p(1-p)^{n-2}+\binom n3p^3(1-p)^{n-3}+\cdots</script>
+<p>由二项式展开公式知 <script type="math/tex">a+b=(p+1-p)^n=1, \ a-b=(1-p-p)^n=(1-2p)^n</script>, 故所求概率为 <script type="math/tex">b=\frac{1+(1-2p)^n}{2}</script>.	#</p>
+<hr>
+<p><strong>[T0204]</strong> 在伯努利试验中, 若 <script type="math/tex">A</script> 出现的概率为 <script type="math/tex">p</script>, 试证在出现 <script type="math/tex">m</script> 次 <script type="math/tex">\bar A</script> 之前出现 <script type="math/tex">n</script> 次 <script type="math/tex">A</script> 的概率, 即分赌注问题中甲最终取胜的概率, 可由</p>
+<script type="math/tex; mode=display">P_1=\sum_{k=0}^{m-1}\binom{n+k-1}{k}p^nq^k,\\
+P_2=\sum_{k=n}^{\infty}\binom{m+k-1}{k}p^kq^m,\\
+P_3=\sum_{k=n}^{n+m-1}\binom{n+m-1}{k}p^kq^{n+m-1-k}</script>
+<p>中的任一式子表出, 即它们是相等的, 其中 <script type="math/tex">q=1-p</script>.</p>
+<p>    <strong>证</strong> 即出现第 <script type="math/tex">n</script> 次 <script type="math/tex">A</script> 时是在第 <script type="math/tex">n+k</script> 次试验, 其中 <script type="math/tex">k=0,1,\cdots,m-1</script>, 故由帕斯卡分布知所求概率为</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P_1&=\sum_{k=0}^{m-1}f(n+k;n,p)=\sum_{k=0}^{m-1}\binom{n+k-1}{n-1}p^nq^k=\sum_{k=0}^{m-1}\binom{n+k-1}{k}p^nq^k.
+\end{aligned}</script>
+<p>另一方面, 该事件也等价于出现第 <script type="math/tex">m</script> 次 <script type="math/tex">\bar A</script> 时是在第 <script type="math/tex">m+k</script> 次试验的反面, 其中 <script type="math/tex">k=0,1,\cdots,n-1</script>, 由帕斯卡分布的性质可知此概率也等于</p>
+<script type="math/tex; mode=display">P_2=1-\sum_{k=0}^{n-1}\binom{m+k-1}{k}p^kq^m=\sum_{k=n}^{\infty}\binom{m+k-1}{k}p^kq^m.</script>
+<p>此外, 不难发现事件“出现 <script type="math/tex">m</script> 次 <script type="math/tex">\bar A</script> 之前出现 <script type="math/tex">n</script> 次 <script type="math/tex">A</script> ”一定发生在前 <script type="math/tex">n+m-1</script> 次试验, 由于每次试验都是独立的, 因此不妨考虑用二项分布, 所求概率即为在这 <script type="math/tex">n+m-1</script> 次试验中 <script type="math/tex">A</script> 至少出现 <script type="math/tex">n</script> 次的概率, 即</p>
+<script type="math/tex; mode=display">P_3=\sum_{k=n}^{n+m-1}\binom{n+m-1}{k}p^kq^{n+m-1-k}.</script>
+<p>    下面证明 <script type="math/tex">P_1=P_2=P_3</script>.<br>
+    (1) 先证 <script type="math/tex">P_3=P_1</script>. 利用数学归纳法, 对 <script type="math/tex">m</script> 进行归纳. 经过简单的计算, 当 <script type="math/tex">m=1</script> 时 <script type="math/tex">P_1=P_3=p^n</script>; 当 <script type="math/tex">m=2</script> 时 <script type="math/tex">P_1=P_3=(1+nq)p^n</script>. 假设 <script type="math/tex">m=r</script> 时有</p>
+<script type="math/tex; mode=display">\sum_{k=n}^{n+r-1}\binom{n+r-1}{k}p^kq^{n+r-1-k}=\sum_{k=0}^{r-1}\binom{n+k-1}{k}p^nq^k\tag{2.1}</script>
+<p>则当 <script type="math/tex">m=r+1</script> 时</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&\sum_{k=n}^{n+r}\binom{n+r}{k}p^kq^{n+r-k}=\sum_{k=n}^{n+r-1}\binom{n+r}{k}p^kq^{n+r-k}+p^{n+r}\\
+&=\sum_{k=n}^{n+r-1}\left[\binom{n+r-1}{k-1}+\binom{n+r-1}{k}\right]p^kq^{n+r-k}+p^{n+r}\\
+&=q\sum_{k=n}^{n+r-1}\binom{n+r-1}{k}p^kq^{n+r-1-k}+\sum_{k=n}^{n+r-1}\binom{n+r-1}{k-1}p^kq^{n+r-k}+\binom{n+r-1}{n+r-1}p^{n+r}\\
+&=q\sum_{k=n}^{n+r-1}\binom{n+r-1}{k}p^kq^{n+r-1-k}+\sum_{k=n}^{n+r}\binom{n+r-1}{k-1}p^kq^{n+r-k}\\
+&\xlongequal{}q\sum_{k=n}^{n+r-1}\binom{n+r-1}{k}p^kq^{n+r-1-k}+\sum_{k=n+1}^{n+r}\binom{n+r-1}{k-1}p^kq^{n+r-k}+\binom{n+r-1}{n-1}p^nq^r\\
+&\xlongequal{k-1=j}q\sum_{k=n}^{n+r-1}\binom{n+r-1}{k}p^kq^{n+r-1-k}+p\sum_{j=n}^{n+r}\binom{n+r-1}{j}p^jq^{n+r-j-1}+\binom{n+r-1}{n-1}p^nq^r\\
+&=\sum_{k=n}^{n+r-1}\binom{n+r-1}{k}p^kq^{n+r-1-k}+\binom{n+r-1}{n-1}p^nq^r\\
+&\xlongequal{(2.1)}\sum_{k=0}^{r-1}\binom{n+k-1}{k}p^nq^k+\binom{n+r-1}{r}p^nq^r\\
+&=\sum_{k=0}^{r}\binom{n+k-1}{k}p^nq^k
+\end{aligned}</script>
+<p>故 <script type="math/tex">P_3=P_1</script> 得证. 由对称性也成立:</p>
+<script type="math/tex; mode=display">\sum_{k=m}^{n+m-1}\binom{n+m-1}{k}q^kp^{n+m-1-k}=\sum_{k=0}^{n-1}\binom{m+k-1}{k}q^mp^k\tag{2.2}</script>
+<p>    (2) 再证 <script type="math/tex">P_2=P_3</script>, 即</p>
+<script type="math/tex; mode=display">\sum_{k=n}^{\infty}\binom{m+k-1}{k}p^kq^m=
+\sum_{k=n}^{n+m-1}\binom{n+m-1}{k}p^kq^{n+m-1-k}</script>
+<p>由帕斯卡分布的性质可知</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum_{k=n}^{\infty}\binom{m+k-1}{k}p^kq^m&=1-\sum_{k=0}^{n-1}\binom{m+k-1}{k}p^kq^m\\
+&\xlongequal{(2.2)}1-\sum_{k=m}^{n+m-1}\binom{n+m-1}{k}q^kp^{n+m-1-k}
+\end{aligned}</script>
+<p>令 <script type="math/tex">m+n-1-k=j</script>, 则</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum_{k=n}^{\infty}\binom{m+k-1}{k}p^kq^m&=1-\sum_{j=n-1}^{0}\binom{m+n-1}{j}p^jq^{m+n-j-1}\\
+&\xlongequal{}\sum_{j=n}^{n+m-1}\binom{m+n-1}{j}p^jq^{m+n-j-1}.\quad\quad\#
+\end{aligned}</script>
+<hr>
+<p><strong>[T0205]</strong> 设有 <script type="math/tex">N</script> 个袋子, 每个袋子中装有 <script type="math/tex">a</script> 只黑球, <script type="math/tex">b</script> 只白球, 从第一袋中取出一球放入第二袋中, 然后从第二袋中取出一球放入第三袋中, 如此下去, 问从最后一个袋中取出一球而为黑球的概率是多少?</p>
+<p>    <strong>解</strong> 设 <script type="math/tex">A_1=\{\text{从第 </script>1<script type="math/tex"> 袋中取出的球是黑球}\}</script>, 则 <script type="math/tex">P(A_1)=\frac{a}{a+b}, \ P(\bar A_1)=\frac{b}{a+b}</script>. 设 <script type="math/tex">A_2=\{\text{从第 </script>1<script type="math/tex"> 袋中取出一球放入第 </script>2<script type="math/tex"> 袋, 再从第 </script>2<script type="math/tex"> 袋中取出的一球是黑球}\}</script>， 则</p>
+<script type="math/tex; mode=display">P(A_2)=P(A_1)P(A_2|A_1)+P(\bar A_1)P(A_2|\bar A_1)=\frac{a}{a+b}, \quad P(\bar A_2)=\frac{b}{a+b}</script>
+<p>一般地, 设 <script type="math/tex">A_k=\{\text{按上述规则取球放球,并在第 </script>k<script type="math/tex"> 袋中取出的一球是黑球}\}</script>, 且 <script type="math/tex">P(A_k)=\frac{a}{a+b}, \ P(\bar A_k)=\frac{b}{a+b}</script>, 则</p>
+<script type="math/tex; mode=display">P(A_{k+1})=P(A_k)P(A_{k+1}|A_k)+P(\bar A_k)P(A_{k+1}|\bar A_k)=\frac{a}{a+b},\quad P(\bar A_{k+1})=\frac{b}{a+b}.</script>
+<p>由归纳法可知 <script type="math/tex">P(A_N)=\frac{a}{a+b}</script>.	#</p>
+<hr>
+<p><strong>[T0206]</strong> 投硬币 <script type="math/tex">n</script> 回, 第一回出正面的概率为 <script type="math/tex">c</script>, 第二回后每次出现与前一次相同表面的概率为 <script type="math/tex">p</script>, 求第 <script type="math/tex">n</script> 回时出正面的概率, 并讨论当 <script type="math/tex">n→0</script> 时的情况.</p>
+<p>    <strong>解</strong> 记事件 <script type="math/tex">A_n=\{\text{第 </script>n<script type="math/tex"> 回出现正面}\}</script>, 令 <script type="math/tex">p_n=P(A_n)</script>, 则</p>
+<script type="math/tex; mode=display">\begin{aligned}
+p_n&=P(A_{n-1})P(A_n|A_{n-1})+P(\bar A_{n-1})P(A_n|\bar A_{n-1})\\
+&=pp_{n-1}+(1-p_{n-1})(1-p)=(2p-1)p_{n-1}+1-p
+\end{aligned}</script>
+<p>设 <script type="math/tex">p_n+\alpha=\beta(p_{n-1}+\alpha)</script>, 不难解出 <script type="math/tex">\beta=2p-1, \ \alpha=-\frac{1}{2}</script>, 故 <script type="math/tex">p_n-\frac12=(2p-1)(p_{n-1}-\frac12)</script>, 注意到 <script type="math/tex">p_1-\frac12=c-\frac12</script>, 故</p>
+<script type="math/tex; mode=display">p_n=\left(c-\frac12\right)(2p-1)^{n-1}+\frac12</script>
+<p>故当 <script type="math/tex">0<p<1</script> 时, <script type="math/tex">\lim\limits_{n\to\infty}p_n=\frac12</script>.	#</p>
+<hr>
+<p><strong>[T0207]</strong> 某商店中出售某种商品, 据历史记录分析, 每月销售量服从泊松分布, 参数为 <script type="math/tex">7</script>, 问在月初进货时要库存多少件此种商品, 才能以 <script type="math/tex">0.999</script> 的概率充分满足顾客的需要.</p>
+<p>    <strong>解</strong> 设进货量为 <script type="math/tex">k</script>, 本月销售量为 <script type="math/tex">x</script>, 由题设, 只需求 <script type="math/tex">k</script>, 使得 <script type="math/tex">P(x\le k)\ge0.999</script>, 又 <script type="math/tex">x</script> 服从参数为 <script type="math/tex">7</script> 的泊松分布, 查表可得 <script type="math/tex">k=16</script>.	#</p>
+<hr>
+<p><strong>[T0208]</strong> 若每条蚕的产卵数服从泊松分布, 参数为 <script type="math/tex">\lambda</script>, 而每个卵变为成虫的概率为 <script type="math/tex">p</script>, 且各卵是否变为成虫彼此独立, 求每蚕养活 <script type="math/tex">k</script> 只小蚕的概率.</p>
+<p>    <strong>解</strong> 记事件 <script type="math/tex">A_n</script> 为蚕产出 <script type="math/tex">n</script> 个卵, <script type="math/tex">B_k</script> 为每条蚕养活 <script type="math/tex">k</script> 只小蚕. 依独立性假定, 若蚕产出 <script type="math/tex">n</script> 个卵, 则这 <script type="math/tex">n</script> 个卵成活的成虫数服从二项分布, 故所求概率为</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P(B_k)&=\sum_{n=k}^{\infty}P(A_n)P(B_k|A_n)=\sum_{n=k}^{\infty}\frac{\lambda^n}{n!}e^{-\lambda}\binom{n}{k}p^k(1-p)^{n-k}\\
+&=e^{-\lambda}p^k\sum_{n=k}^{\infty}\frac{\lambda^n}{n!}\binom{n}{k}(1-p)^{n-k}\\
+&=\frac{e^{-\lambda}(\lambda p)^k}{k!}\sum_{n=k}^{\infty}\frac{\lambda^{n-k}}{(n-k)!}(1-p)^{n-k}\\
+&\xlongequal{n-k=i}\frac{e^{-\lambda}(\lambda p)^k}{k!}\sum_{i=0}^{\infty}\frac{(\lambda(1-p))^i}{i!}\\
+&=\frac{e^{-\lambda}(\lambda p)^k}{k!}e^{\lambda(1-p)}=\frac{e^{-\lambda p}(\lambda p)^k}{k!}.\quad\quad\#
+\end{aligned}</script>
+<hr>
+<p><strong>[T0209]</strong> 利用概率论思想证明恒等式 <script type="math/tex">\sum\limits_{k=0}^N\binom{N+k}{k}\frac{1}{2^k}=2^N</script>.</p>
+<p>    <strong>证</strong> 考虑巴拿赫火柴盒问题: 数学家的左右衣袋中各放有一盒装有 <script type="math/tex">N</script> 根火柴的火柴盒, 每次抽烟时任取一盒用一根, 在发现一盒用光时, 另一盒有 <script type="math/tex">r</script> 根的概率为 <script type="math/tex">\binom{2N-r}{N}\frac{1}{2^{2N-r}}</script>, 易知</p>
+<script type="math/tex; mode=display">\sum_{r=0}^N\binom{2N-r}{N}\frac{1}{2^{2N-r}}=1\Rightarrow \sum_{r=0}^N\binom{2N-r}{N-r}\frac{1}{2^{N-r}}=2^N</script>
+<p>令 <script type="math/tex">N-r=k</script>, 则有</p>
+<script type="math/tex; mode=display">\sum_{k=0}^N\binom{N+k}{k}\frac{1}{2^k}=2^N.\quad\quad\#</script>
+<hr>
+<p><strong>[T0210]</strong> 通过构造适当的概率模型证明: 从正整数中随机地选取两数, 此两数互素的概率等于 <script type="math/tex">\frac{6}{\pi^2}</script>.</p>
+<p>    <strong>证</strong> 设素数序列 <script type="math/tex">p_1=2,\ p_2=3,\ p_3=5,\ \cdots, \ p_k,\cdots</script>. 并记事件 <script type="math/tex">A_{p_i}</script> 为所取的第一个数能被 <script type="math/tex">p_i</script> 整除, 则</p>
+<script type="math/tex; mode=display">P(A_{p_i})=\frac{1}{p_i}</script>
+<p>易见 <script type="math/tex">P(A_{p_i}A_{p_j})=P(A_{p_i})P(A_{p_j})</script>, 即 <script type="math/tex">A_{p_i}</script> 与 <script type="math/tex">A_{p_j} \ (i\neq j)</script> 独立, 此结果可推广到多个互素数的场合. 记事件 <script type="math/tex">B_{p_j}</script> 为第二个数能被 <script type="math/tex">p_j</script> 整除, 则也有</p>
+<script type="math/tex; mode=display">P(B_{p_j})=\frac{1}{p_j}</script>
+<p>且 <script type="math/tex">B_{p_i}</script> 与 <script type="math/tex">B_{p_j} \ (i\neq j)</script> 独立. 由选数的随机性可知</p>
+<script type="math/tex; mode=display">P(A_{p_k}B_{p_l})=P(A_{p_k})P(B_{p_l})</script>
+<p>记事件 <script type="math/tex">C</script> 为随机取两数, 且此两数互素, 即两数不能被某一素数整除, 因此</p>
+<script type="math/tex; mode=display">C=\bigcap\limits_{i=1}^{\infty}\overline{A_{p_i}B_{p_i}}</script>
+<p>而 <script type="math/tex">\overline{A_{p_i}B_{p_i}}=\bar A_{p_i}\cup \bar B_{p_i}, \ i=1,2,\cdots</script> 相互独立, 故</p>
+<script type="math/tex; mode=display">P(C)=\prod_{i=1}^{\infty}P(\overline{A_{p_i}B_{p_i}})=\prod_{i=1}^{\infty}\left(1-P(A_{p_i}B_{p_i})\right)=\prod_{i=1}^{\infty}\left(1-P(A_{p_i})P(B_{p_i})\right)=\prod_{i=1}^{\infty}\left(1-\frac{1}{p_i^2}\right)</script>
+<p>注意到</p>
+<script type="math/tex; mode=display">\frac{1}{1-\frac{1}{p_i^2}}=1+\frac{1}{p_i^2}+\frac{1}{(p_i^2)^2}+\cdots</script>
+<p>于是</p>
+<script type="math/tex; mode=display">0<\prod_{p_i\le N}\frac{1}{1-\frac{1}{p_i^2}}-\sum_{n=1}^N\frac{1}{n^2}<\sum_{n=N+1}^{\infty}\frac{1}{n^2}</script>
+<p>令 <script type="math/tex">N\to\infty</script>, 因级数 <script type="math/tex">\sum\frac{1}{n^2}</script> 收敛, 故由迫敛性知</p>
+<script type="math/tex; mode=display">\prod_{i=1}^{\infty}\frac{1}{1-\frac{1}{p_i^2}}=\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}</script>
+<p>从而证得</p>
+<script type="math/tex; mode=display">P(C)=\prod_{i=1}^{\infty}\left(1-\frac{1}{p_i^2}\right)=\frac{6}{\pi^2}.\quad\quad\#</script>
+<h2 id="第三章-随机变量与分布函数">第三章 随机变量与分布函数</h2>
+<p><strong>[T0301]</strong> 设随机变量 <script type="math/tex">\xi</script> 取值于 <script type="math/tex">[0,1]</script>, 若 <script type="math/tex">P\{x\le\xi<y\}</script> 只与长度 <script type="math/tex">y-x</script> 有关 (对一切 <script type="math/tex">0\le x\le y\le 1</script>). 试证 <script type="math/tex">\xi\sim U[0,1]</script>.</p>
+<p><strong>证</strong> 不妨设 <script type="math/tex">P\{x\le\xi<y\}=f(y-x)</script>. 令 <script type="math/tex">x=0</script>, 则有 <script type="math/tex">P\{0\le\xi<y\}=f(y)</script>. 注意到对 <script type="math/tex">\forall 0\le y_1<y_2\le1</script>, 有</p>
+<script type="math/tex; mode=display">f(y_1+y_2)=P\{0\le\xi<y_1+y_2\}=P\{0\le\xi<y_1\}+P\{y_1\le\xi<y_1+y_2\}=f(y_1)+f(y_2)</script>
+<p>于是 <script type="math/tex">e^{f(y_1+y_2)}=e^{f(y_1)}\cdot e^{f(y_2)}</script>, 由 Cauchy 命题知 <script type="math/tex">e^{f(x)}=a^x\Rightarrow f(x)=x\ln a</script>, 其中 <script type="math/tex">a</script> 待定. 又 <script type="math/tex">f(1)=1</script>, 故 <script type="math/tex">a=e</script>, 从而 <script type="math/tex">f(x)=x</script>, 故</p>
+<script type="math/tex; mode=display">P\{0\le\xi<x\}=x, \quad x\in[0,1]</script>
+<p>即 <script type="math/tex">\xi\sim U[0,1]</script>.	#</p>
+<hr>
+<p><strong>[T0302]</strong> 设 <script type="math/tex">(\xi,\eta)</script> 服从二元正态分布, 参数为 <script type="math/tex">\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho</script>, 以 <script type="math/tex">D(\lambda)</script> 记下面椭圆的内部:</p>
+<script type="math/tex; mode=display">\frac{(x-\mu_1)^2}{\sigma_1^2}-\frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}=\lambda^2</script>
+<p>试求 <script type="math/tex">P\{(\xi,\eta)\in D(\lambda)\}</script>.</p>
+<p><strong>解</strong> 即求二重积分</p>
+<script type="math/tex; mode=display">\iint\limits_{(x,y)\in D(\lambda)}\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_1)^2}{\sigma_1^2}-\frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}\right]\right\}\mathrm{d}x\mathrm dy</script>
+<p>坐标变换 <script type="math/tex">T:\begin{cases}x=\mu_1+\sigma_1r\cos\theta\\ y=\mu_2+\sigma_2r\sin\theta\end{cases}</script>, 则 <script type="math/tex">J=\sigma_1\sigma_2r</script>. 经过简单的计算, 上面的二重积分可化为</p>
+<script type="math/tex; mode=display">\frac{\sqrt{1-\rho^2}}{2\pi}\left(1-e^{-\frac{\lambda^2}{2(1-\rho^2)}}\right)\int_0^{2\pi}\frac{1}{1-2\rho\sin\theta\cos\theta}\mathrm{~d}\theta</script>
+<p>注意到 <script type="math/tex">\lim\limits_{\lambda\to\infty}P\{(\xi,\eta)\in D(\lambda)\}=1</script>, 因此</p>
+<script type="math/tex; mode=display">\frac{\sqrt{1-\rho^2}}{2\pi}\int_0^{2\pi}\frac{1}{1-2\rho\sin\theta\cos\theta}\mathrm{~d}\theta=1\Rightarrow \int_0^{2\pi}\frac{1}{1-2\rho\sin\theta\cos\theta}\mathrm{~d}\theta=\frac{2\pi}{\sqrt{1-\rho^2}}</script>
+<p>故</p>
+<script type="math/tex; mode=display">P\{(\xi,\eta)\in D(\lambda)\}=1-e^{-\frac{\lambda^2}{2(1-\rho^2)}}.\quad\quad\#</script>
+<hr>
+<p><strong>[T0303]</strong> 若 <script type="math/tex">\xi_1,\cdots,\xi_n</script> 相互独立同分布于 <script type="math/tex">N(0,1)</script>, 证明 <script type="math/tex">\eta=\xi_1^2+\cdots+\xi_n^2</script> 服从 <script type="math/tex">\chi^2</script> 分布.</p>
+<p><strong>证</strong></p>
+<script type="math/tex; mode=display">P\{\eta<x\}=P\{\xi_1^2+\cdots+\xi_n^2<x\}=\frac{1}{(2\pi)^{n/2}}{\int\cdots\int}_{x_1^2+\cdots+x_n^2<x}\exp\left\{-\frac{x_1^2+\cdots+x_n^2}{2}\right\}\mathrm dx_1\cdots\mathrm dx_n</script>
+<p>作变换</p>
+<script type="math/tex; mode=display">\begin{cases}
+x_1=\rho\sin\theta_1\sin\theta_2\cdots\sin\theta_{n-1}\\
+x_2=\rho\cos\theta_1\sin\theta_2\cdots\sin\theta_{n-1}\\
+\cdots\cdots\\
+x_{n-1}=\rho\cos\theta_{n-2}\sin\theta_{n-1}\\
+x_n=\rho\cos\theta_{n-1}
+\end{cases}</script>
+<p>则 <script type="math/tex">J=\frac{\partial(x_1,\cdots,x_n)}{\partial(\rho,\theta_1,\cdots,\theta_{n-1})}=\rho^{n-1}D(\theta_1,\cdots,\theta_{n-1})</script>, 其中 <script type="math/tex">D(\theta_1,\cdots,\theta_{n-1})</script> 是 <script type="math/tex">\theta_1,\cdots,\theta_{n-1}</script> 的函数, 与 <script type="math/tex">\rho</script> 无关. 于是</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F(x)&=\frac{1}{(2\pi)^{n/2}}\int_{0}^{\sqrt x}e^{-\frac{\rho^2}{2}}\rho^{n-1}\mathrm d\rho \ \int_0^{\pi}\cdots\int_0^{\pi}\int_0^{2\pi}D(\theta_1,\cdots,\theta_{n-1})\mathrm d\theta_1\cdots\mathrm d\theta_{n-1}\\
+&=C_n\int_{0}^{\sqrt x}e^{-\frac{\rho^2}{2}}\rho^{n-1}\mathrm d\rho
+\end{aligned}</script>
+<p>其中</p>
+<script type="math/tex; mode=display">C_n=\frac{1}{(2\pi)^{n/2}} \int_0^{\pi}\cdots\int_0^{\pi}\int_0^{2\pi}D(\theta_1,\cdots,\theta_{n-1})\mathrm d\theta_1\cdots\mathrm d\theta_{n-1}</script>
+<p>令 <script type="math/tex">\rho=\sqrt{t}</script>, 得</p>
+<script type="math/tex; mode=display">F(x)=\frac{C_n}{2}\int_0^xe^{-\frac12t}\cdot t^{\frac n2-1}\mathrm dt</script>
+<p>再令 <script type="math/tex">x\to+\infty</script>, 得</p>
+<script type="math/tex; mode=display">1=\frac{C_n}{2}\int_0^{+\infty}e^{-\frac12t}\cdot t^{\frac n2-1}\mathrm dt\xlongequal{t=2u}2^{\frac n2-1}C_n\int_0^{+\infty}e^{-u}\cdot u^{\frac n2-1}\mathrm du=2^{\frac n2-1}C_n\Gamma\left(\frac n2\right)</script>
+<p>故</p>
+<script type="math/tex; mode=display">C_n=\frac{1}{2^{\frac n2-1}\Gamma\left(\frac n2\right)}</script>
+<p>于是 <script type="math/tex">\eta</script> 的分布函数为</p>
+<script type="math/tex; mode=display">F(x)=\frac{1}{2^{\frac n2-1}\Gamma\left(\frac n2\right)}\int_0^xe^{-\frac12t}\cdot t^{\frac n2-1}\mathrm dt, \quad x>0.</script>
+<p>即 <script type="math/tex">\eta</script> 服从 <script type="math/tex">\chi^2</script> 分布.	#</p>
+<hr>
+<p><strong>[T0304]</strong> 设随机变量 <script type="math/tex">\xi,\eta</script> 独立同分布于 <script type="math/tex">N(0,1)</script>. 试求 <script type="math/tex">U=\xi^2+\eta^2</script> 与 <script type="math/tex">V=\frac{\xi}{\eta}</script> 的分布密度函数, 并证明他们是独立的.</p>
+<p><strong>解</strong> 易知</p>
+<script type="math/tex; mode=display">p_{\xi\eta}(x,y)=\frac{1}{2\pi}e^{-\frac{x^2+y^2}{2}}</script>
+<p>设 <script type="math/tex">u=x^2+y^2, \ v=\frac{x}{y}</script>, 则 <script type="math/tex">J=-\frac{1}{2}\frac{1}{1+v^2}</script>. 注意到 <script type="math/tex">(x,y)</script> 与 <script type="math/tex">(-x,-y)</script> 对应于同一个 <script type="math/tex">(u,v)</script>, 故</p>
+<script type="math/tex; mode=display">\begin{aligned}
+p_{UV}(u,v)&=p(x(u,v),y(u,v))|J|\binom{-\infty<x<\infty}{y\ge0}+p(x(u,v),y(u,v))|J|\binom{-\infty<x<\infty}{y<0}\\
+&=\frac{1}{2}e^{-\frac u2}\cdot\frac{1}{\pi(1+v^2)}:=p_U(u)\cdot p_V(v)
+\end{aligned}</script>
+<p>故 <script type="math/tex">U</script> 与 <script type="math/tex">V</script> 相互独立, 且</p>
+<script type="math/tex; mode=display">p_U(u)=\frac{1}{2}e^{-\frac u2},\quad u>0\\
+p_V(v)=\frac{1}{\pi(1+v^2)}, -\infty<v<\infty</script>
+<p>即 <script type="math/tex">U</script> 服从参数为 <script type="math/tex">\frac12</script> 的指数分布, <script type="math/tex">V</script> 服从 Cauchy 分布.	#</p>
+<hr>
+<p><strong>[T0305]</strong> 若 <script type="math/tex">(\xi,\eta)</script> 服从参数为 <script type="math/tex">\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho</script> 的二元正态分布, 试找出 <script type="math/tex">\xi+\eta</script> 与 <script type="math/tex">\xi-\eta</script> 相互独立的充要条件.</p>
+<p><strong>证</strong> 显然 <script type="math/tex">\xi+\eta</script> 与 <script type="math/tex">\xi-\eta</script> 相互独立 <script type="math/tex">\Longleftrightarrow</script> <script type="math/tex">U=(\xi-\mu_1)+(\eta-\mu_2)</script> 与 <script type="math/tex">V=(\xi-\mu_1)-(\eta-\mu_2)</script> 相互独立. 设</p>
+<script type="math/tex; mode=display">\binom uv=\pmatrix{1&1\\1&-1}\binom{x-\mu_1}{y-\mu_2}\Rightarrow\binom{x-\mu_1}{y-\mu_2}=\frac12\pmatrix{1&1\\1&-1}\binom uv</script>
+<p>则 <script type="math/tex">J=\frac{\partial(x,y)}{\partial(u,v)}=\frac12</script>. 于是 <script type="math/tex">(U,V)</script> 的密度函数为</p>
+<script type="math/tex; mode=display">\begin{aligned}
+q(u,v)&=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\cdot\frac12\cdot\exp\left\{-\frac12(u,v)\left[\pmatrix{1&1\\1&-1}\pmatrix{\sigma_1^2&\rho\sigma_1\sigma_2\\\rho\sigma_1\sigma_2&\sigma_2^2}\pmatrix{1&1\\1&-1}\right]^{-1}\binom uv\right\}\\
+&=\frac{1}{4\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\left\{-\frac12(u,v)\pmatrix{\sigma_1^2+2\rho\sigma_1\sigma_2+\sigma_2^2&\sigma_1^2-\sigma_2^2\\\sigma_1^2-\sigma_2^2&\sigma_1^2-2\rho\sigma_1\sigma_2+\sigma_2^2}^{-1}\binom uv\right\}
+\end{aligned}</script>
+<p>故 <script type="math/tex">\xi+\eta</script> 与 <script type="math/tex">\xi-\eta</script> 相互独立 <script type="math/tex">\Longleftrightarrow</script> <script type="math/tex">\sigma_1^2-\sigma_2^2=0 \Longleftrightarrow \sigma_1=\sigma_2</script>.	#</p>
+<hr>
+<p><strong>[T0306]</strong> 设随机变量 <script type="math/tex">\xi</script> 与 <script type="math/tex">\eta</script> 独立同分布, 其密度函数不为 <script type="math/tex">0</script> 且有二阶导数, 试证: 若 <script type="math/tex">\xi+\eta</script> 与 <script type="math/tex">\xi-\eta</script> 相互独立, 则随机变量 <script type="math/tex">\xi,\eta,\xi+\eta,\xi-\eta</script> 均服从正态分布.</p>
+<p><strong>证</strong> 设 <script type="math/tex">U=\xi+\eta, \ V=\xi-\eta</script>, 则</p>
+<script type="math/tex; mode=display">p_U(u)p_V(v)=p_{UV}(u,v)=\frac12p_{\xi,\eta}(\frac{u+v}{2},\frac{u-v}{2})=\frac12p(\frac{u+v}{2})p(\frac{u-v}{2})</script>
+<p>其中 <script type="math/tex">p</script> 为 <script type="math/tex">\xi</script> 和 <script type="math/tex">\eta</script> 的密度. 两边取对数得</p>
+<script type="math/tex; mode=display">\ln p(\frac{u+v}{2})+\ln p(\frac{u-v}{2})-\ln2=\ln p_U(u)+\ln p_V(v)</script>
+<p>记 <script type="math/tex">f(x)=\ln p(x)</script>, 则 <script type="math/tex">f(\frac{u+v}{2})+f(\frac{u-v}{2})-\ln2=\ln p_U(u)+\ln p_V(v)</script>. 两边对 <script type="math/tex">u</script> 求偏导, 得</p>
+<script type="math/tex; mode=display">\frac12f'(\frac{u+v}{2})+\frac12f'(\frac{u-v}{2})=\frac{p_U'(u)}{p_U(u)}</script>
+<p>两边再对 <script type="math/tex">v</script> 求偏导, 得</p>
+<script type="math/tex; mode=display">\frac14f''(\frac{u+v}{2})-\frac14f''(\frac{u-v}{2})=0</script>
+<p>令 <script type="math/tex">u=v=x</script> 则 <script type="math/tex">f''(x)=f''(0):=-\lambda</script>, 得 <script type="math/tex">f(x)=-\frac{\lambda}{2}x^2+c_1x+c_2</script>, 于是</p>
+<script type="math/tex; mode=display">\ln p(x)=-\frac{\lambda}{2}x^2+c_1x+c_2\Rightarrow p(x)=e^{c_2+\frac{c_1^2}{2\lambda}}e^{-\frac{\lambda}{2}(x-\frac{c_1}{\lambda})^2}:=Ke^{-\frac{\lambda}{2}(x-\frac{c_1}{\lambda})^2}</script>
+<p>因 <script type="math/tex">p(x)</script> 是密度函数, 故 <script type="math/tex">\lambda>0</script>. 且 <script type="math/tex">c_1=f'(0)=\frac{p'(0)}{p(0)}, \ c_2=f(0)=\ln p(0)</script>. 故 <script type="math/tex">\xi,\eta</script> 服从正态分布, 从而 <script type="math/tex">\xi+\eta,\xi-\eta</script> 也服从正态分布.	#</p>
+<hr>
+<p><strong>[T0307]</strong> 设随机变量 <script type="math/tex">\xi</script> 和 <script type="math/tex">\eta</script> 相互独立, 且 <script type="math/tex">\xi\sim B(n,p), \ \eta\sim U(0,1)</script>, 试求 <script type="math/tex">\xi+\eta</script> 的分布函数和密度函数.</p>
+<p><strong>解</strong> 对 <script type="math/tex">x\le 0</script>, 有 <script type="math/tex">P\{\xi+\eta<x\}=0</script>; 对 <script type="math/tex">x>n+1</script>, 有 <script type="math/tex">P\{\xi+\eta<x\}=1</script>; 对 <script type="math/tex">k<x\le k+1, \ k=0,1,2,\cdots,n</script>, 有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+P\{\xi+\eta<x\}&=P\{\xi=k,\xi+\eta<x\}+P\{\xi\le k-1,\xi+\eta<x\}+P\{\xi\ge k+1,\xi+\eta<x\}\\
+&=P\{\xi=k,\eta<x-k\}+P\{\xi\le k-1\}\\
+&=\binom{n}{k}p^k(1-p)^{n-k}(x-k)+\sum_{\mathscr{l}=0}^{k-1}\binom{n}{\mathscr{l}}p^{\mathscr{l}}(1-p)^{n-\mathscr{l}}
+\end{aligned}</script>
+<p>于是</p>
+<script type="math/tex; mode=display">F(x)=\begin{cases}
+0,& x\le0\\
+\binom{n}{k}p^k(1-p)^{n-k}(x-k)+\sum_{\mathscr{l}=0}^{k-1}\binom{n}{\mathscr{l}}p^{\mathscr{l}}(1-p)^{n-\mathscr{l}}, &k<x\le k+1, \ k=0,1,2,\cdots,n\\
+1, & x>n+1
+\end{cases}</script>
+<p>从而密度函数为</p>
+<script type="math/tex; mode=display">p(x)=\begin{cases}
+\binom{n}{k}p^k(1-p)^{n-k},&k<x\le k+1, \ k=0,1,2,\cdots,n\\
+0,& x\le0, \ x>n+1.
+\end{cases}\quad\quad\#</script>
+<hr>
+<p><strong>[T0308]</strong> 试求顺序统计量 <script type="math/tex">\xi_k^*</script> 与 <script type="math/tex">\xi_l^* \ (k<l)</script> 的联合密度函数.</p>
+<p><strong>解</strong> 对 <script type="math/tex">x<y</script>, 有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&P\{x\le\xi_k^*<x+\Delta x, y\le\xi_l^*<y+\Delta y\}\\
+=&\frac{n!}{(k-1)!1!(l-k-1)!1!(n-l)!}F(x)^{k-1}\cdot p(x)\Delta x\cdot[F(y)-F(x+\Delta x)]^{l-k-1}\cdot p(y)\Delta y\cdot[1-F(y+\Delta y)]^{n-l}
+\end{aligned}</script>
+<p>于是 <script type="math/tex">\xi_k^*</script> 与 <script type="math/tex">\xi_l^* \ (k<l)</script> 的联合密度函数为</p>
+<script type="math/tex; mode=display">p(x,y)=
+\begin{cases}
+\frac{n!}{(k-1)!(l-k-1)!(n-l)!}F(x)^{k-1}\cdot [F(y)-F(x)]^{l-k-1}\cdot[1-F(y)]^{n-l}\cdot p(x)\cdot p(y),&x<y\\
+0,&x\ge y
+\end{cases}</script>
+<p>#</p>
+<h2 id="第四章-数字特征与特征函数">第四章 数字特征与特征函数</h2>
+<p><strong>[T0401]</strong> 为收集 <script type="math/tex">N</script> 张赠券中 <script type="math/tex">r</script> 张所需购买的食品袋数 <script type="math/tex">\xi</script> 的数学期望.</p>
+<p><strong>[T0402]</strong> 试证: 若取非负整数值的随机变量 <script type="math/tex">\xi</script> 的数学期望存在, 则 <script type="math/tex">E\xi=\sum\limits_{k=1}^{\infty}P\{\xi\ge k\}</script>.</p>
+<p><strong>[T0403]</strong> 若随机变量 <script type="math/tex">\xi</script> 的分布函数为 <script type="math/tex">F(x)</script>, 试证:</p>
+<script type="math/tex; mode=display">E\xi=\int_0^{+\infty}[1-F(x)]\mathrm{d}x-\int_{-\infty}^0F(x)\mathrm{d}x.</script>
+<p><strong>[T0404]</strong> 若 <script type="math/tex">a\le \xi\le b</script>, 证明: <script type="math/tex">D\xi\le\frac{(b-a)^2}{4}</script>. 并说明等号成立的条件.</p>
+<p><strong>[T0405]</strong> 若 <script type="math/tex">\xi_1,\xi_2</script> 相互独立, 均服从 <script type="math/tex">N(\mu,\sigma^2)</script>, 试证: <script type="math/tex">E\max\{\xi_1,\xi_2\}=\mu+\frac{\sigma}{\sqrt\pi}</script>.</p>
+<p><strong>[T0406]</strong> 设 <script type="math/tex">f(x) \ (0\le x<\infty)</script> 单调非降, 且 <script type="math/tex">f(x)>0</script>. 对随机变量 <script type="math/tex">\xi</script>, 若 <script type="math/tex">E f(|\xi|)<\infty</script>, 则对任意 <script type="math/tex">x>0</script>, <script type="math/tex">P\{|\xi|\ge x\}\le\frac{1}{f(x)}Ef(|\xi|)</script>.</p>
+<p><strong>[T0407]</strong> 甲袋中有 <script type="math/tex">a</script> 只白球, <script type="math/tex">b</script> 只黑球; 乙袋中有 <script type="math/tex">c</script> 只白球, <script type="math/tex">d</script> 只黑球. 从两袋中各摸出一球, 并交换放入另一袋中, 这样做了 <script type="math/tex">n</script> 次, 再从甲袋中摸出一球是白球的概率为多少?</p>
+<p><strong>[T0408]</strong> 甲与乙依下列规则玩随机游戏: 甲从装有 <script type="math/tex">i</script> 号球 <script type="math/tex">i</script> 个<script type="math/tex">(i＝1,2,3,4,5)</script> 的袋中随机摸出一球放入密盒中, 让乙猜号. 乙对甲的支付是他猜的号码与真正的号码之差的 (1) 平方; (2) 绝对值. 试对这两种场合, 讨论乙应采取的最佳策略.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>概率论</category>
+      </categories>
+      <tags>
+        <tag>概率论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2024/03/17/post-20240317-a18a7c/</url>
+    <content><![CDATA[<p><strong>[T0401]</strong> 为收集 <script type="math/tex">N</script> 张赠券中 <script type="math/tex">r</script> 张所需购买的食品袋数 <script type="math/tex">\xi</script> 的数学期望.</p>
+<p><strong>[T0402]</strong> 试证: 若取非负整数值的随机变量 <script type="math/tex">\xi</script> 的数学期望存在, 则 <script type="math/tex">E\xi=\sum\limits_{k=1}^{\infty}P\{\xi\ge k\}</script>.</p>
+<p><strong>[T0403]</strong> 若随机变量 <script type="math/tex">\xi</script> 的分布函数为 <script type="math/tex">F(x)</script>, 试证:</p>
+<script type="math/tex; mode=display">E\xi=\int_0^{+\infty}[1-F(x)]\mathrm{d}x-\int_{-\infty}^0F(x)\mathrm{d}x.</script>
+<p><strong>[T0404]</strong> 若 <script type="math/tex">a\le \xi\le b</script>, 证明: <script type="math/tex">D\xi\le\frac{(b-a)^2}{4}</script>. 并说明等号成立的条件.</p>
+<p><strong>[T0405]</strong> 若 <script type="math/tex">\xi_1,\xi_2</script> 相互独立, 均服从 <script type="math/tex">N(\mu,\sigma^2)</script>, 试证: <script type="math/tex">E\max\{\xi_1,\xi_2\}=\mu+\frac{\sigma}{\sqrt\pi}</script>.</p>
+<p><strong>[T0406]</strong> 设 <script type="math/tex">f(x) \ (0\le x<\infty)</script> 单调非降, 且 <script type="math/tex">f(x)>0</script>. 对随机变量 <script type="math/tex">\xi</script>, 若 <script type="math/tex">E f(|\xi|)<\infty</script>, 则对任意 <script type="math/tex">x>0</script>, <script type="math/tex">P\{|\xi|\ge x\}\le\frac{1}{f(x)}Ef(|\xi|)</script>.</p>
+<p><strong>[T0407]</strong> 甲袋中有 <script type="math/tex">a</script> 只白球, <script type="math/tex">b</script> 只黑球; 乙袋中有 <script type="math/tex">c</script> 只白球, <script type="math/tex">d</script> 只黑球. 从两袋中各摸出一球, 并交换放入另一袋中, 这样做了 <script type="math/tex">n</script> 次, 再从甲袋中摸出一球是白球的概率为多少?</p>
+<p><strong>[T0408]</strong> 甲与乙依下列规则玩随机游戏: 甲从装有 <script type="math/tex">i</script> 号球 <script type="math/tex">i</script> 个<script type="math/tex">(i＝1,2,3,4,5)</script> 的袋中随机摸出一球放入密盒中, 让乙猜号. 乙对甲的支付是他猜的号码与真正的号码之差的 (1) 平方; (2) 绝对值. 试对这两种场合, 讨论乙应采取的最佳策略.</p>
+]]></content>
+  </entry>
 </search>
